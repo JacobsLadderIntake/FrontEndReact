@@ -1,12 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import { render } from 'react-dom'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import 'bootstrap/dist/css/bootstrap.min.css';
+// supposedly these are needed to use bootstrap but im getting a warning that they arent used
+// import $ from 'jquery';
+// import Popper from 'popper.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import AdminHome from './AdminView/AdminHome'
+
+render(
+    <AdminHome/>,
+    document.getElementById('root')
+)
