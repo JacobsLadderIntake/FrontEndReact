@@ -1,4 +1,4 @@
-.AdminHome {
+.adminHome {
     background-color: #DEDEDE;
     min-height: 100vh;
     display: flex;
@@ -7,3 +7,7 @@
     font-size: calc(10px + 2vmin);
     color: black;
 }
+
+/* define custom settings for buttons
+    probably want to pull these stylings into another file*/
+

@@ -1,24 +1,30 @@
 import React from 'react'
-import './AdminHome.css';
 
+import './adminHome.css';
+import '../custom-style.css'
 import Header from '../Header/Header'
+import { Button, Input} from 'reactstrap'
 
 class AdminHome extends React.Component {
     render() {
         return (
-
-            <div className = "AdminHome">
+            <div>
                 <Header/>
-                <div className = "row">
-                    <div className = "col-8">
-                        <h1>Administrator Board: [add user name here]</h1>
-                        <button>Add New Student</button>
+                <div className = "adminHome container-fluid p-4" >
+                    <div className = "row" >
+                        <a className = "admin-top col-9">
+                            <h1 className="">Admission Team Board: [add user name here]</h1>
+                        </a>
                     </div>
-                    <div className = "col">
-                        <button>Search</button>
+                    <div className={"row p-3"}>
+                        <Button className= "col-6 text-left mr-sm-2 button">Add New Student</Button>
+                        <Input className="col form-control " type="search" placeholder="Search" aria-label="Search"/>
+                        <Button className="col my-2 my-sm-0 button" type="submit">Search</Button>
                     </div>
+
                 </div>
             </div>
+
     )
     }
 }
