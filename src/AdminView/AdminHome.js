@@ -17,11 +17,10 @@ class AdminHome extends React.Component {
                         </a>
                     </div>
                     <div className={"row p-3"}>
-                        <Button className= "col-6 text-left mr-sm-2 button">Add New Student</Button>
-                        <Input className="col form-control " type="search" placeholder="Search" aria-label="Search"/>
-                        <Button className="col my-2 my-sm-0 button" type="submit">Search</Button>
+                        <Button className= "col-2 mr-sm-2 button">Add New Student</Button>
+                        <Input className="col-2 mr-sm-2 form-control ml-auto" type="search" placeholder="Search" aria-label="Search"/>
+                        <Button className="col-1 my-2 my-sm-0 button" type="submit">Search</Button>
                     </div>
-
                 </div>
             </div>
 

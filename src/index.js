@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import AdminHome from './AdminView/AdminHome'
+import Header from './Header/Header'
+
 
 render(
     <AdminHome/>,
