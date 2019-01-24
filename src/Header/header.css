@@ -1,0 +1,14 @@
+.company {
+    font-size: calc(10px + 3vmin);
+}
+
+.header {
+    background-color: #67777C;
+    font-size: calc(5px + 2vmin);
+    color: white;
+}
+
+.navigation {
+    align-items: right;
+    text-align: right;
+}
