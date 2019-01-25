@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import 'react-table/react-table.css';
+import ParentTableHeader from "./ParentTableHeader";
 
 
 class ParentTable extends Component {
     render() {
-        var data =  [{
+        var data = [{
             name: 'Client History and Information Form',
             progress: 'Not Started',
             flag: 'No'
@@ -56,12 +57,14 @@ class ParentTable extends Component {
         }];
 
         return (
-        <div>
-            <ReactTable
-            data = {data}
-            columns = {columns}
-            />
-        </div>
+            <div>
+                <ParentTableHeader/>
+                <ReactTable
+                    data={data}
+                    columns={columns}
+                    defaultPageSize={9}
+                />
+            </div>
         );
     }
 }
