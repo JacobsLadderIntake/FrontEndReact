@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {
   Alert,
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  ControlLabel
-} from "react-bootstrap";
-import LoaderButton from "./LoaderButton";
+  Button,
+  FormFeedback,
+  InputGroup,
+  Input,
+  Label
+} from "reactstrap";
 
 class Register extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Register extends Component {
       studentLastName: "",
       parentFirstName: "",
       parentLastName: "",
-
+      relationship: "",
       password: "",
       confirmPassword: "",
       confirmationCode: "",
@@ -26,27 +26,30 @@ class Register extends Component {
     };
   }
 
+
+
   validateForm() {
-    return (
-      this.state.studentFirstName.length > 0 &&
-      this.state.studentFirstName.length > 0 &&
-      this.state.parentFirstName.length > 0 &&
-      this.state.parentLastName.length > 0 &&
+//    return (
+//      this.state.studentFirstName.length > 0 &&
+//      this.state.studentFirstName.length > 0 &&
+//      this.state.parentFirstName.length > 0 &&
+//      this.state.parentLastName.length > 0 &&
+//      this.state.relationship.length > 0 &&
+//      this.state.password.length > 0 &&
+//      this.state.password === this.state.confirmPassword
+//    );
+    return (this.state.studentFirstName.length > 0);
 
-
-      this.state.password.length > 0 &&
-      this.state.password === this.state.confirmPassword
-    );
   }
 
   validateConfirmationForm() {
     return this.state.confirmationCode.length > 0;
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
+  handleChange (event){
+    let change = {}
+    change[event.target.id] = event.target.value
+    this.setState(change)
   }
 
   handleSubmit = async event => {
@@ -68,19 +71,17 @@ class Register extends Component {
   renderConfirmationForm() {
     return (
       <form onSubmit={this.handleConfirmationSubmit}>
-        <FormGroup controlId="confirmationCode" bsSize="large">
-          <ControlLabel>Confirmation Code</ControlLabel>
-          <FormControl
+        <InputGroup id="confirmationCode">
+          <Label>Confirmation Code</Label>
+          <Input
             autoFocus
             type="tel"
             value={this.state.confirmationCode}
-            onChange={this.handleChange}
+            onChange={event => this.handleChange(event)}
           />
-          <HelpBlock>Please check your email for the code.</HelpBlock>
-        </FormGroup>
-        <LoaderButton
-          block
-          bsSize="large"
+          <FormFeedback>Please check your email for the code.</FormFeedback>
+        </InputGroup>
+        <Button
           disabled={!this.validateConfirmationForm()}
           type="submit"
           isLoading={this.state.isLoading}
@@ -94,70 +95,78 @@ class Register extends Component {
   renderForm() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <FormGroup controlId="studentFirstName" bsSize="large">
-          <ControlLabel>Student First Name</ControlLabel>
-          <FormControl
+        <InputGroup id="studentFirstName">
+          <Label>Student First Name</Label>
+          <Input
             autoFocus
             type="text"
-            value={this.state.studentFirstName}
-            onChange={this.handleChange}
+            placeholder = "testing"
+            value={this.state.id}
+            onChange={this.handleChange.bind(this)}
           />
-        </FormGroup>
-        <FormGroup controlId="studentLastName" bsSize="large">
-            <ControlLabel>Student Last Name</ControlLabel>
-            <FormControl
+        </InputGroup>
+        <InputGroup id="studentLastName">
+            <Label>Student Last Name</Label>
+            <Input
                 autoFocus
                 type="text"
-                value={this.state.studentLastName}
-                onChange={this.handleChange}
+                value={this.state.id}
+                onChange={this.handleChange.bind(this)}
           />
-        </FormGroup>
-        <FormGroup controlId="parentFirstName" bsSize="large">
-            <ControlLabel>Parent Last Name</ControlLabel>
-            <FormControl
+        </InputGroup>
+        <InputGroup id="parentFirstName">
+            <Label>Parent/Guardian First Name</Label>
+            <Input
                 autoFocus
                 type="text"
-                value={this.state.parentFirstName}
-                onChange={this.handleChange}
+                value={this.state.id}
+                onChange={event => this.handleChange(event)}
             />
-        </FormGroup>
-        <FormGroup controlId="parentLastName" bsSize="large">
-        <ControlLabel>Parent Last Name</ControlLabel>
-            <FormControl
+        </InputGroup>
+        <InputGroup id="parentLastName">
+        <Label>Parent/Guardian Last Name</Label>
+            <Input
                 autoFocus
                 type="text"
-                value={this.state.parentLastName}
-                onChange={this.handleChange}
+                value={this.state.id}
+                onChange={event => this.handleChange(event)}
             />
-                </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
-            value={this.state.password}
-            onChange={this.handleChange}
+                </InputGroup>
+         <InputGroup id="relationship">
+         <Label>Relationship to Student</Label>
+            <Input
+                autoFocus
+                type="text"
+                value={this.state.id}
+                onChange={event => this.handleChange(event)}
+             />
+          </InputGroup>
+        <InputGroup id="password">
+          <Label>Password</Label>
+          <Input
+            value={this.state.id}
+            onChange={event => this.handleChange(event)}
             type="password"
           />
-        </FormGroup>
-        <FormGroup controlId="confirmPassword" bsSize="large">
-          <ControlLabel>Confirm Password</ControlLabel>
-          <FormControl
-            value={this.state.confirmPassword}
-            onChange={this.handleChange}
+        </InputGroup>
+        <InputGroup id="confirmPassword">
+          <Label>Confirm Password</Label>
+          <Input
+            value={this.state.id}
+            onChange={event => this.handleChange(event)}
             type="password"
           />
-        </FormGroup>
-        <Alert bsStyle="warning">
-          Passwords do not match
+        </InputGroup>
+        <Alert>
+        Alert!!
         </Alert>
-        <LoaderButton
-          block
-          bsSize="large"
-          disabled={!this.validateForm()}
+        <Button
+        disabled={!this.validateForm()}
+
+        color="primary"
           type="submit"
           isLoading={this.state.isLoading}
-          text="Signup"
-          loadingText="Signing up…"
-        />
+        > Submit </Button>
       </form>
     );
   }

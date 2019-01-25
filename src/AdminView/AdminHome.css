@@ -1,0 +1,16 @@
+.adminHome {
+    background-color: #DEDEDE;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    font-size: calc(10px + 2vmin);
+    color: black;
+}
+
+.adminHome button {
+    background-color: #67777C;
+    color: white;
+    border-color: #67777C;
+    border-width: thin;
+}

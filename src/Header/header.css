@@ -1,0 +1,11 @@
+.header {
+    background-color: #67777C;
+    font-size: calc(10px + 1vmin);
+    font-weight: bold;
+    color: white;
+}
+
+.navigation {
+    align-items: right;
+    text-align: right;
+}
