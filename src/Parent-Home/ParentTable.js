@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactTable from "react-table";
+import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import ParentTableHeader from "./ParentTableHeader";
+import Header from '../Header/Header';
 
 
 class ParentTable extends Component {
@@ -58,7 +58,14 @@ class ParentTable extends Component {
 
         return (
             <div>
-                <ParentTableHeader/>
+                <Header/>
+                <div classname="parent-table-header">
+                    <div className = "row" >
+                        <a className = "parent-top col-9">
+                            <h2>Intake Profile Checklist: Parent Name</h2>
+                        </a>
+                    </div>
+                </div>
                 <ReactTable
                     data={data}
                     columns={columns}
