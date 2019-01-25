@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Register from './Register';
 import Navigation from './Navigation'
 import { BrowserRouter as Router,Route, Link } from "react-router-dom";
+import AdminHome from "./AdminView/AdminHome";
 
 class App extends Component {
   render() {
@@ -13,6 +13,7 @@ class App extends Component {
         <div>
             <Route exact path = "/" component = {Navigation}/>
             <Route path = "/register" component = {Register}/>
+            <Route path = "/adminhome" component = {AdminHome}/>
         </div>
         </Router>
         </div>
