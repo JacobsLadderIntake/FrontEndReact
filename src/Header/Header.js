@@ -6,7 +6,7 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap'
     render() {
         return (
             <Navbar className="navbar navbar-expand-lg header" expand="md">
-                <NavbarBrand className="company">Jacob's Ladder Intake Profile</NavbarBrand>
+                <NavbarBrand className="text-lg-left">Jacob's Ladder Intake Profile</NavbarBrand>
                     <Nav className="ml-auto">
                         <NavItem >
                             <NavLink className="header" href="/">Home</NavLink>

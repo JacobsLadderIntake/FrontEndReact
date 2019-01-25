@@ -1,5 +1,8 @@
 /*started to create a file to hold styling that we would want throughout the site*/
 
+/*okay so this can hold what we want to use throughout the site but will need to be copied/pasted into a css file that
+is specific to each component*/
+
 .button {
     background-color: #788B91;
     width: 10px;
