@@ -8,6 +8,9 @@
     color: black;
 }
 
-/* define custom settings for buttons
-    probably want to pull these stylings into another file*/
-
+.adminHome button {
+    background-color: #67777C;
+    color: white;
+    border-color: #67777C;
+    border-width: thin;
+}
