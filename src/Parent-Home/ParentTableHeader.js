@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './header.css';
 
 class ParentTableHeader extends Component {
     render() {
@@ -10,3 +9,5 @@ class ParentTableHeader extends Component {
         );
     }
 }
+
+export default ParentTableHeader;
