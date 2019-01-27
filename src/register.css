@@ -28,8 +28,15 @@ label {
 
 .registration-page-title {
     text-align:center;
+    padding-top:1em;
 }
 
 .form-style {
-    margin:3em 8em;
+    margin-left:20%;
+    margin-right:20%;
+}
+
+.question-fields {
+    background-color:#DEDEDE;
+    margin: 2em 0em;
 }

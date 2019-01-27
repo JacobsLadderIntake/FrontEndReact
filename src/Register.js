@@ -199,8 +199,11 @@ handleSubmit(e) {
     return (
 
       <form className="form-style" onSubmit={this.handleSubmit}>
-      <h1 className="registration-page-title"> Welcome to Jacob's Ladder</h1>
-      <h2 className="registration-page-title">Registration Page </h2>
+      <div className="registration-page-title">
+      <h1> Welcome to Jacob's Ladder!</h1>
+      <h2>Registration Page </h2>
+      </div>
+        <div className = "question-fields">
         {errors.map(error => (
                         <Alert color = "warning" key={error}>Error: {error}</Alert>
                       ))}
@@ -316,6 +319,7 @@ handleSubmit(e) {
           className="submit-button"
 //          isLoading={this.state.isLoading}
         > Submit </Button>
+        </div>
         </div>
       </form>
     );
