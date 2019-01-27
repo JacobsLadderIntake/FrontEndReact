@@ -1,0 +1,42 @@
+.form-control {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+
+}
+label {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+
+}
+.form-style {
+    display:block;
+}
+.button-div {
+    text-align:center;
+    padding: 20px 0px;
+}
+.btn.submit-button {
+
+    font-size: 1.5em;
+}
+
+.registration-page-title {
+    text-align:center;
+    padding-top:1em;
+}
+
+.form-style {
+    margin-left:20%;
+    margin-right:20%;
+}
+
+.question-fields {
+    background-color:#DEDEDE;
+    margin: 2em 0em;
+}
