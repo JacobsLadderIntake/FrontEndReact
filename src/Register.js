@@ -6,7 +6,7 @@ import './register.css'
 import {
   Alert,
   Button,
-  FormFeedback,
+  FormGroup,
   InputGroup,
   Input,
   Label
@@ -28,7 +28,11 @@ class Register extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-      newUser: null
+      firstName:"",
+      lastName:"",
+      newUser: null,
+      isAdminChecked:false,
+      startsHidden:true
     };
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -44,8 +48,14 @@ handleSubmit(e) {
     const password = ReactDOM.findDOMNode(this.password).value;
     const confirmPassword = ReactDOM.findDOMNode(this.confirmPassword).value;
     const relationship = ReactDOM.findDOMNode(this.relationship).value;
+    const email = ReactDOM.findDOMNode(this.email).value;
+    const firstName = ReactDOM.findDOMNode(this.firstName).value;
+    const lastName = ReactDOM.findDOMNode(this.lastName).value;
 
-    const errors = this.validate(studentFirstName, studentLastName, parentFirstName,parentLastName,relationship,password,confirmPassword);
+
+
+
+    const errors = this.validate(studentFirstName, studentLastName, parentFirstName,parentLastName,relationship,password,confirmPassword,email,firstName,lastName);
     if (errors.length > 0) {
       this.setState({ errors });
       return;
@@ -57,29 +67,49 @@ handleSubmit(e) {
   }
 
 
-  validate(studentFirstName, studentLastName, parentFirstName,parentLastName,password,confirmPassword,relationship) {
+  validate(studentFirstName, studentLastName, parentFirstName,parentLastName,password,confirmPassword,relationship,email,firstName,lastName) {
     // we are going to store errors for all fields
     // in a signle array
     const errors = [];
     console.log("help")
-    if (studentFirstName.length === 0) {
-      errors.push("Student First Name can't be empty");
-      console.log("why")
+    if(!this.state.isAdminChecked) {
+        if (studentFirstName.length === 0) {
+            errors.push("Student First Name can't be empty");
+            console.log("why")
+        }
+        if (studentLastName.length === 0) {
+            errors.push("Student Last Name can't be empty");
+        }
+        if (parentFirstName.length === 0) {
+            errors.push("Parent First Name can't be empty");
+         }
+        if (parentLastName.length === 0) {
+            errors.push("Parent Last Name can't be empty");
+        }
+        if (relationship.length === 0) {
+            errors.push("Relationship with student can't be empty");
+        }
+    } else {
+        if (firstName.length === 0) {
+            errors.push("First Name can't be empty");
+        }
+        if (lastName.length === 0) {
+            errors.push("Last Name can't be empty");
+        }
+
     }
-    if (studentLastName.length === 0) {
-          errors.push("Student Last Name can't be empty");
+
+    if (email.length === 0) {
+        errors.push("Email can't be empty");
     }
-    if (parentFirstName.length === 0) {
-              errors.push("Parent First Name can't be empty");
+    if (password.length === 0) {
+        errors.push("Password can't be empty");
     }
-    if (parentLastName.length === 0) {
-                  errors.push("Parent Last Name can't be empty");
-    }
-    if (relationship.length === 0) {
-       errors.push("Field can't be empty");
+    if (confirmPassword.length === 0) {
+        errors.push("Confirm Password can't be empty");
     }
     if (password !== confirmPassword) {
-        errors.push("wrong");
+        errors.push("Passwords do not match");
     }
 
 //    if (email.length < 5) {
@@ -108,6 +138,13 @@ handleSubmit(e) {
     this.setState(change)
 
   }
+  toggle() {
+  		this.setState({
+  			isAdminChecked: !this.state.isAdminChecked,
+  			startsHidden:!this.state.startsHidden
+  		});
+  	}
+
 
 //  handleSubmit = async event => {
 //    event.preventDefault();
@@ -152,16 +189,28 @@ handleSubmit(e) {
 
   renderForm() {
   const { errors } = this.state;
+  var isAdminChecked = {
+  			display: this.state.isAdminChecked ? "none" : "flex"
+  		};
+  var startsHidden = {
+    	    display: this.state.startsHidden ? "none" : "flex"
+    	};
 
     return (
 
-      <form onSubmit={this.handleSubmit}>
-      <h1> Welcome to Jacob's Ladder</h1>
-      <h2>Registration Page </h2>
+      <form className="form-style" onSubmit={this.handleSubmit}>
+      <h1 className="registration-page-title"> Welcome to Jacob's Ladder</h1>
+      <h2 className="registration-page-title">Registration Page </h2>
         {errors.map(error => (
                         <Alert color = "warning" key={error}>Error: {error}</Alert>
                       ))}
-        <InputGroup id="studentFirstName">
+        <FormGroup check>
+                  <Label check onChange={this.toggle.bind(this)}>
+                    <Input type="checkbox" />{' '}
+                    I am a member of the admission team.
+                  </Label>
+        </FormGroup>
+        <InputGroup id="studentFirstName" style={ isAdminChecked }>
           <Label>Student First Name</Label>
           <Input
             autoFocus
@@ -171,7 +220,7 @@ handleSubmit(e) {
             onChange={this.handleChange.bind(this)}
           />
         </InputGroup>
-        <InputGroup id="studentLastName">
+        <InputGroup id="studentLastName"style={ isAdminChecked }>
             <Label>Student Last Name</Label>
             <Input
                 ref={studentLastName => (this.studentLastName = studentLastName)}
@@ -181,7 +230,7 @@ handleSubmit(e) {
                 onChange={this.handleChange.bind(this)}
           />
         </InputGroup>
-        <InputGroup id="parentFirstName">
+        <InputGroup id="parentFirstName" style={ isAdminChecked}>
             <Label>Parent/Guardian First Name</Label>
             <Input
                 autoFocus
@@ -191,7 +240,7 @@ handleSubmit(e) {
                 onChange={event => this.handleChange(event)}
             />
         </InputGroup>
-        <InputGroup id="parentLastName">
+        <InputGroup id="parentLastName" style={ isAdminChecked }>
         <Label>Parent/Guardian Last Name</Label>
             <Input
                 autoFocus
@@ -200,8 +249,28 @@ handleSubmit(e) {
                 value={this.state.id}
                 onChange={event => this.handleChange(event)}
             />
-                </InputGroup>
-         <InputGroup id="relationship">
+        </InputGroup>
+        <InputGroup id="firstName" style = {startsHidden}>
+            <Label>First Name</Label>
+            <Input
+            autoFocus
+            ref={firstName => (this.firstName = firstName)}
+            type="text"
+            value={this.state.id}
+            onChange={event => this.handleChange(event)}
+            />
+        </InputGroup>
+        <InputGroup id="lastName" style= {startsHidden}>
+            <Label>Last Name</Label>
+                <Input
+                    autoFocus
+                    ref={lastName => (this.lastName = lastName)}
+                    type="text"
+                    value={this.state.id}
+                    onChange={event => this.handleChange(event)}
+                />
+         </InputGroup>
+         <InputGroup id="relationship" style={ isAdminChecked }>
          <Label>Relationship to Student</Label>
             <Input
                 autoFocus
@@ -210,6 +279,16 @@ handleSubmit(e) {
                 value={this.state.id}
                 onChange={event => this.handleChange(event)}
              />
+          </InputGroup>
+          <InputGroup id="email">
+            <Label>Email</Label>
+            <Input
+                autoFocus
+                ref={email => (this.email = email)}
+                type="text"
+                value={this.state.id}
+                onChange={event => this.handleChange(event)}
+            />
           </InputGroup>
         <InputGroup id="password">
           <Label>Password</Label>
@@ -229,13 +308,15 @@ handleSubmit(e) {
             type="password"
           />
         </InputGroup>
+        <div className="button-div">
         <Button
         onClick={this.validForm}
-
-        color="primary"
+        color="success"
           type="submit"
+          className="submit-button"
 //          isLoading={this.state.isLoading}
         > Submit </Button>
+        </div>
       </form>
     );
   }
