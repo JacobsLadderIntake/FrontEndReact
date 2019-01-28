@@ -14,8 +14,6 @@ import {
 
 
 class Login extends Component {
-  var errors = "";
-  var isAdmin = false;
 
   constructor(props) {
     super(props);
@@ -34,6 +32,8 @@ handleSubmit(e) {
 
     const password = ReactDOM.findDOMNode(this.password).value;
     const email = ReactDOM.findDOMNode(this.email).value;
+    var errors = this.validate(email, password);
+    const isAdmin = this.isAdmin(email);
 
     if (errors.length > 0) {
       this.setState({ errors });
@@ -50,18 +50,22 @@ handleSubmit(e) {
   // Login/register might benefit from a parent class & inheritance
   validate(email, password) {
     // TEMP! Will validate against database in future
-    valid = true;
+    var errors = [];
+    var valid = true;
     if (!valid) {
       errors.push("Email or password incorrect");
       return;
     }
     // TEMP! Will validate against database in future
-    errors = [];
-    isAdmin = true;
+    return errors;
+  }
+
+  isAdmin(email) {
+    return true;
   }
 
 
-  handleChange (event){
+  handleChange (event) {
     let change = {}
     change[event.target.id] = event.target.value
     this.setState(change)
@@ -75,8 +79,7 @@ handleSubmit(e) {
 
       <form className="form-style" onSubmit={this.handleSubmit}>
       <div className="login-page-title">
-      <h1> Welcome to Jacob's Ladder!</h1>
-      <h2>Login Page</h2>
+      <h1> Existing User Login</h1>
       </div>
         <div className = "question-fields">
         {errors.map(error => (
@@ -119,9 +122,7 @@ handleSubmit(e) {
   render() {
     return (
       <div className="Login">
-        {this.state.newUser === null
-          ? this.renderForm()
-          : this.renderConfirmationForm()}
+          {this.renderForm()}
       </div>
     );
   }
