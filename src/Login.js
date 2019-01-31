@@ -1,55 +1,130 @@
-var mysql = require('mysql');
-
-//This bit of code deals is me experimenting
-/* var prompt = require('prompt');
-
-prompt.get(['username','password'], function (err, result) {
-	if (err) throw err;
-    console.log('Command-line input received:');
-    console.log('  Username: ' + result.username);
-    console.log('  password: ' + result.password);
-}); */
-
-var con = mysql.createConnection({
-  host: "jacobsladderintaketeam.cik1yin3pif1.us-east-1.rds.amazonaws.com",
-  user: "intaketeam",
-  password: "IwantanA123",
-  database: "intaketeam"
-});
-
-////////////
-//queries///
-////////////
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
+import './register.css'
 
 
+import {
+  Alert,
+  Button,
+  FormGroup,
+  InputGroup,
+  Input,
+  Label
+} from "reactstrap";
 
-//Create User
-const newUser = {
-  Username: 'EmilyTheCSGirl',
-  IsAdmin: 'False',
-  FirstName: 'Emily',
-  LastName: 'TooLazyToLookUp',
-  Password: 'Password12345'
+
+class Login extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      errors: [],
+      email: "",
+      password: "",
+      startsHidden:true
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+handleSubmit(e) {
+    e.preventDefault();
+
+    const password = ReactDOM.findDOMNode(this.password).value;
+    const email = ReactDOM.findDOMNode(this.email).value;
+    var errors = this.validate(email, password);
+    const isAdmin = this.isAdmin(email);
+
+    if (errors.length > 0) {
+      this.setState({ errors });
+      return;
+    } else {
+      if (isAdmin) {
+        this.props.history.push("/adminhome");
+      } else {
+        // this.props.history.push("/parenthome");
+      }    
+    }
+  }
+
+  // Login/register might benefit from a parent class & inheritance
+  validate(email, password) {
+    // TEMP! Will validate against database in future
+    var errors = [];
+    var valid = true;
+    if (!valid) {
+      errors.push("Email or password incorrect");
+      return;
+    }
+    // TEMP! Will validate against database in future
+    return errors;
+  }
+
+  isAdmin(email) {
+    return true;
+  }
+
+
+  handleChange (event) {
+    let change = {}
+    change[event.target.id] = event.target.value
+    this.setState(change)
+
+  }
+
+  renderForm() {
+    const { errors } = this.state;
+
+    return (
+
+      <form className="form-style" onSubmit={this.handleSubmit}>
+      <div className="login-page-title">
+      <h1> Existing User Login</h1>
+      </div>
+        <div className = "question-fields">
+        {errors.map(error => (
+                        <Alert color = "warning" key={error}>Error: {error}</Alert>
+                      ))}
+        <FormGroup check>
+        </FormGroup>
+          <InputGroup id="email">
+            <Label>Email</Label>
+            <Input
+                autoFocus
+                ref={email => (this.email = email)}
+                type="text"
+                value={this.state.id}
+                onChange={event => this.handleChange(event)}
+            />
+          </InputGroup>
+        <InputGroup id="password">
+          <Label>Password</Label>
+          <Input
+            value={this.state.id}
+            ref={password => (this.password = password)}
+            onChange={event => this.handleChange(event)}
+            type="password"
+          />
+        </InputGroup>
+        <div className="button-div">
+        <Button
+        onClick={this.validForm}
+        color="success"
+          type="submit"
+          className="submit-button"
+        > Submit </Button>
+        </div>
+        </div>
+      </form>
+    );
+  }
+
+  render() {
+    return (
+      <div className="Login">
+          {this.renderForm()}
+      </div>
+    );
+  }
 }
-
-/* con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  var sql = "INSERT INTO User SET ?";
-  con.query(sql, newUser, function (err, result) {
-    if (err) throw err;
-    console.log("1 record inserted");
-  });
-}); */
-
-const searchUser = 'EmilyTheCSGirl'
-
-
-con.connect(function(err) {
-  if (err) throw err;
-  // con.query("SELECT * FROM User WHERE Username = ?", [searchUser], function (err, result, fields) {
-  con.query("SELECT * FROM User WHERE Username = ?", searchUser,  function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-  });
-});
+export default Login;

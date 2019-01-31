@@ -1,14 +1,8 @@
+//////////////////////////////
+//Database connection specs///
+//////////////////////////////
+
 var mysql = require('mysql');
-
-//This bit of code deals is me experimenting
-/* var prompt = require('prompt');
-
-prompt.get(['username','password'], function (err, result) {
-	if (err) throw err;
-    console.log('Command-line input received:');
-    console.log('  Username: ' + result.username);
-    console.log('  password: ' + result.password);
-}); */
 
 var con = mysql.createConnection({
   host: "jacobsladderintaketeam.cik1yin3pif1.us-east-1.rds.amazonaws.com",
@@ -21,35 +15,91 @@ var con = mysql.createConnection({
 //queries///
 ////////////
 
-
-
-//Create User
-const newUser = {
-  Username: 'EmilyTheCSGirl',
-  IsAdmin: 'False',
-  FirstName: 'Emily',
-  LastName: 'TooLazyToLookUp',
-  Password: 'Password12345'
+function createUser(userAttributes){
+	var sql = "INSERT INTO User SET ?";
+	
+	con.query(sql, userAttributes, function(err, result){
+		if (err) throw err;
+		console.log(userAttributes.UserID + " Inserted");
+	});
 }
 
-/* con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  var sql = "INSERT INTO User SET ?";
-  con.query(sql, newUser, function (err, result) {
-    if (err) throw err;
-    console.log("1 record inserted");
-  });
-}); */
+function deleteUser(userID) {
+	var sql = "DELETE FROM User WHERE userID = ?";
+	
+	con.query(sql, userID, function(err, result){
+		if (err) throw err;
+		console.log(userID + " Removed");
+	});
+}
+	
+function getParentFirstName(UserID, callback){
+	var sql = "SELECT firstName FROM User WHERE userID = ?";
+	
+	con.query(sql, UserID, function(err, result, fields) {
+		if (err) throw err;
+		return callback(result[0].firstName);
+	});
+}
 
+function createChild(childAttributes) {
+	var sql = "INSERT INTO Child SET ?";
+	
+	con.query(sql, childAttributes, function(err, result){
+		if (err) throw err;
+		console.log(childAttributes.ChildID + " Inserted");
+	});
+}
+
+function getChildren(UserID, callback){
+	var sql = "SELECT p.UserFirstName, p.UserLastName, c.ChildFirstName, c.ChildLastName "
+				+"FROM User p "
+				+"INNER JOIN Child c on p.UserID = c.ParentID "
+				+"WHERE p.UserID = ?";
+
+	con.query(sql, UserID, function(err, result, fields) {
+		if (err) throw err;
+		return callback(result[0]);
+	});
+}
+
+//TODO
+//function deleteChild()
+//function deleteChildren()
+
+/////////////////////////////////////
+//IO objects and executing queries///
+/////////////////////////////////////
+
+var parentFirstNameReturn = '';
+var childrenReturn = '';
 const searchUser = 'EmilyTheCSGirl'
+const newUser = {
+	UserID: 'Cmaggio3',
+	IsAdmin: 'False',
+	UserFirstName: 'Emily',
+	UserLastName: 'TooLazyToLookUp',
+	Password: 'Password12345'
+}
+const newChild = {
+	ChildID: "BillyBoy",
+	ChildFirstName: "Billy",
+	ChildLastName: "Fritterer",
+	ParentID: "Cmaggio3"
+}
+
+//deleteUser(newUser.UserID);
+//createUser(newUser);
+//createChild(newChild);
+getChildren(newUser.UserID, function(result) {
+	childReturn = result;
+	console.log(childReturn);
+});
 
 
-/* con.connect(function(err) {
-  if (err) throw err;
-  //con.query("SELECT * FROM User WHERE Username = ?", [searchUser], function (err, result, fields) {
-  con.query("SELECT * FROM User WHERE Username = ?", searchUser,  function (err, result, fields) {
-    if (err) throw err;
-    console.log(result);
-  });
-}); */
+/*
+getParentFirstName(searchUser, function(result){
+	parentFirstNameReturn = result;
+	console.log(parentFirstNameReturn);
+});
+*/
