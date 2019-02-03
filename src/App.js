@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+// import './App.css';
 import Register from './Register';
 import Navigation from './Navigation'
 import Login from './Login'
@@ -8,6 +8,8 @@ import AdminHome from "./AdminView/AdminHome";
 import ParentTable from "./Parent-Home/ParentTable";
 
 class App extends Component {
+
+
   render() {
     return (
         <div>
