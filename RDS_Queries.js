@@ -67,7 +67,7 @@ function getChildren(UserID, callback){
 //function deleteChild()
 //function deleteChildren()
 
-function getSampleForm(ChildID, FormName, callback){
+function getForm(ChildID, FormName, callback){
 	var sql = "SELECT * "
 			+ "FROM Child "
 			+ "INNER JOIN ?? as F ON F.ChildID = Child.ChildID "
@@ -76,6 +76,33 @@ function getSampleForm(ChildID, FormName, callback){
 	con.query(sql, [FormName,ChildID], function(err, result, fields) {
 		if (err) throw err;
 		return callback(result[0]);
+	});
+}
+
+/*function updateForm(ChildID, FormName, FormAttributes){
+	var sql = "IF EXISTS ( "
+					+ "SELECT * "
+					+ "FROM ?? "
+					+ "WHERE ChildID = ?) "
+				+ "BEGIN UPDATE ?? SET ? WHERE ChildID = ? END"
+			//+ "ELSE "
+			//	+ "BEGIN INSERT INTO ?? VALUES ? END"
+	
+	con.query(sql, [FormName,ChildID,FormName,FormAttributes,ChildID,FormName,FormAttributes], function(err, result){
+		if (err) throw err;
+		console.log(FormName + "Inserted");
+		
+	});
+}*/
+
+function updateForm(ChildID, FormName, FormAttributes){
+	var sql = "INSERT INTO ?? SET ? "
+			+ "ON DUPLICATE KEY UPDATE ?";
+	
+	con.query(sql,[FormName,FormAttributes,FormAttributes], function(err, result){
+		if (err) throw err;
+		console.log(FormName + "Inserted");
+		
 	});
 }
 
@@ -101,8 +128,16 @@ const newChild = {
 	ChildLastName: "Fritterer",
 	ParentID: "Cmaggio3"
 }
+const newSampleForm = {
+	IsSubmitted: 1,
+	IsUnopened: 1,
+	IsFlagged: 1,
+	ChildID: "BillyBoy"
+}
 
-getSampleForm(newChild.ChildID,"SampleForm", function(result) {
+updateForm(newSampleForm.ChildID,"SampleForm",newSampleForm);
+
+getForm(newChild.ChildID,"SampleForm", function(result) {
 	formReturn = result;
 	console.log(formReturn);
 });
