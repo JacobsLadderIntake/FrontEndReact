@@ -21,13 +21,19 @@ class StudentCard extends Component {
         };
     }
 
+    // handleNameClick = event => {
+    //     this.props.history.push("/parenthome");
+    // }
+
     renderCard() {
         return <div>
-            <Card className={"styles.card"}>
+            <Card className="card">
                 <CardHeader
-                    className={"styles.title"}>{this.state.studentFirstName + " " + this.state.studentLastName}</CardHeader>
-                <CardBody>
-                    <CardText className={"styles.text"}>
+                    className="title"
+                    // onClick={this.handleNameClick}
+                    >{this.state.studentFirstName + " " + this.state.studentLastName}</CardHeader>
+                <CardBody >
+                    <CardText className="text">
                         <CardText>Parents: {this.state.parentFirstName + " " + this.state.parentLastName}</CardText>
                         <CardText>Form due: {this.state.formDueDate}</CardText>
                         <CardText>Evaluation on {this.state.formDueDate} with {this.state.evaluator}</CardText>

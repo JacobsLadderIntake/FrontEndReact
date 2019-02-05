@@ -1,11 +1,20 @@
-.StudentCard title {
+.studentCard{
 
 }
 
-.StudentCard card {
-    width: 5vw;
+.card {
+    /*background: ;*/
 }
 
-.StudentCard text {
+/*.card :hover {*/
+    /*border-color: yellow;*/
+    /*border-width: 2px;*/
+/*}*/
 
+.title {
+    font-weight: bold;
+}
+
+.text {
+    font-size: 20px;
 }
