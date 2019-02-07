@@ -34,7 +34,8 @@ class Register extends Component {
             newUser: null,
             isAdminChecked: false,
             startsHidden: true,
-            codeSubmitted: false
+            codeSubmitted: false,
+            submitButtonHit:false
         };
         this.handleChange = this.handleChange.bind(this, false);
         this.goBack = this.goBack.bind(this)
@@ -44,7 +45,7 @@ class Register extends Component {
         window.location.reload()
     }
 
-    handleChange(e, submitdButtonHit) {
+    handleChange(e) {
 
         const studentFirstName = ReactDOM.findDOMNode(this.studentFirstName).value;
         const studentLastName = ReactDOM.findDOMNode(this.studentLastName).value;
@@ -56,12 +57,15 @@ class Register extends Component {
         const email = ReactDOM.findDOMNode(this.email).value;
         const firstName = ReactDOM.findDOMNode(this.firstName).value;
         const lastName = ReactDOM.findDOMNode(this.lastName).value;
+            console.log(this.state.submitButtonHit)
+            if(this.state.submitButtonHit) {
+                return this.validate(studentFirstName, studentLastName, parentFirstName, parentLastName, relationship, password, confirmPassword, email, firstName, lastName);
+            } else {
+                return -1;
+            }
 
 
-        if (submitdButtonHit) {
-            console.log("yo yo yo")
-            this.validate(studentFirstName, studentLastName, parentFirstName, parentLastName, relationship, password, confirmPassword, email, firstName, lastName);
-        }
+
 
 
         // submit the data...
@@ -71,7 +75,7 @@ class Register extends Component {
     validate(studentFirstName, studentLastName, parentFirstName, parentLastName, relationship, password, confirmPassword, email, firstName, lastName) {
         // we are going to store errors for all fields
         // in a signle array
-        const errors = [];
+        const errors=[]
         console.log("help")
         if (!this.state.isAdminChecked) {
             if (studentFirstName.length === 0) {
@@ -125,7 +129,7 @@ class Register extends Component {
         }
         console.log(errors.length)
         this.setState({errors})
-
+        return errors.length
     }
 
 
@@ -161,28 +165,39 @@ class Register extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-        this.handleChange(event, true)
-        if (this.state.errors.length === 0 && this.state.isAdminChecked) {
-            this.props.history.push("/adminhome")
-        } else (
+        this.setState({submitButtonHit:true})
+        const number = this.handleChange(event)
+        console.log(this.state.errors.length)
+        if (number === 0 && this.state.isAdminChecked) {
+            this.props.history.push("/adminhome");
+        } else if(number === 0) {
             this.props.history.push("/parenthome")
-        )
+    } else {
+            console.log("ugh why")
+        }
     }
 
 
     renderConfirmationForm() {
         return (
             <div>
+            <div className="registration-page-title">
+                <h1> Welcome to Jacob's Ladder!</h1>
+                <h2>Registration Page </h2>
+            </div>
+            <div className={"confirmationCode"}>
                 <FormGroup id="confirmationCode">
-                    <Label>Confirmation Code</Label>
+                    <Label>If you are signing in as a member of the admission team, please submit the code provided by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a parent.</Label>
                     <Input
                         autoFocus
                         type="tel"
                         value={this.state.id}
                         ref={confirmationCode => (this.confirmationCode = confirmationCode)}
                         onChange={this.handleChangeConfirmationCode.bind(this)}
+                        placeholder = "Confirmation Code"
                     />
                 </FormGroup>
+                <div className={" confirmation_buttons_div"}>
                 <Button
                     color={"warning"}
                     className={"confirmationCodeButton"}
@@ -193,8 +208,9 @@ class Register extends Component {
                     color={"success"}
                     className={"confirmationCodeButton"}
                     onClick={this.validateConfirmationForm.bind(this)}
-                > Submit </Button>
+                > Submit </Button></div>
 
+            </div>
             </div>
 
         );
@@ -259,7 +275,7 @@ class Register extends Component {
                                 ref={parentFirstName => (this.parentFirstName = parentFirstName)}
                                 type="text"
                                 value={this.state.id}
-                                onChange={event => this.handleChange.bind(this, false)}
+                                onChange={ this.handleChange.bind(this, false)}
                             />
                         </Col>
                     </FormGroup>
@@ -283,7 +299,7 @@ class Register extends Component {
                                 ref={firstName => (this.firstName = firstName)}
                                 type="text"
                                 value={this.state.id}
-                                onChange={event => this.handleChange.bind(this, false)}
+                                onChange={this.handleChange.bind(this, false)}
                             />
                         </Col>
                     </FormGroup>
@@ -295,7 +311,7 @@ class Register extends Component {
                                 ref={lastName => (this.lastName = lastName)}
                                 type="text"
                                 value={this.state.id}
-                                onChange={event => this.handleChange.bind(this, false)}
+                                onChange={this.handleChange.bind(this, false)}
                             />
                         </Col>
                     </FormGroup>
@@ -307,7 +323,7 @@ class Register extends Component {
                                 ref={relationship => (this.relationship = relationship)}
                                 type="text"
                                 value={this.state.id}
-                                onChange={event => this.handleChange.bind(this, false)}
+                                onChange={this.handleChange.bind(this, false)}
                             />
                         </Col>
                     </FormGroup>
@@ -319,7 +335,7 @@ class Register extends Component {
                                 ref={email => (this.email = email)}
                                 type="text"
                                 value={this.state.id}
-                                onChange={event => this.handleChange.bind(this, false)}
+                                onChange={this.handleChange.bind(this, false)}
                             />
                         </Col>
                     </FormGroup>
@@ -329,7 +345,7 @@ class Register extends Component {
                             <Input
                                 value={this.state.id}
                                 ref={password => (this.password = password)}
-                                onChange={event => this.handleChange.bind(this, false)}
+                                onChange={this.handleChange.bind(this, false)}
                                 type="password"
                             />
                         </Col>
@@ -340,7 +356,7 @@ class Register extends Component {
                             <Input
                                 ref={confirmPassword => (this.confirmPassword = confirmPassword)}
                                 value={this.state.id}
-                                onChange={event => this.handleChange.bind(this, false)}
+                                onChange={this.handleChange.bind(this, false)}
                                 type="password"
 
                             />

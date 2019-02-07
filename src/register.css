@@ -50,10 +50,21 @@
     color: red;
 
 }
+.confirmationCode {
+    background-color: #DEDEDE;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2em;
+    padding: 5em 3em;
+}
 
 .confirmationCodeButton{
     padding: 1em;
     margin: 0.5em;
     height: 3em;
     width: 6em;
+    align-self: center;
+}
+.confirmation_buttons_div {
+    text-align: right;
 }
