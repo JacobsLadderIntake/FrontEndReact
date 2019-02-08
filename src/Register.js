@@ -8,6 +8,7 @@ import {
     Col,
     Button,
     FormGroup,
+    FormFeedback,
     Input,
     Label
 } from "reactstrap";
@@ -35,7 +36,9 @@ class Register extends Component {
             isAdminChecked: false,
             startsHidden: true,
             codeSubmitted: false,
-            submitButtonHit:false
+            submitButtonHit:false,
+            confirmationCodeValid:false,
+
         };
         this.handleChange = this.handleChange.bind(this, false);
         this.goBack = this.goBack.bind(this)
@@ -136,13 +139,15 @@ class Register extends Component {
     validateConfirmationForm() {
         console.log("hey")
         const confirmationCode = ReactDOM.findDOMNode(this.confirmationCode).value;
+        if(confirmationCode == 1234) {
+            this.setState({confirmationCodeValid:true})
 
-        if(confirmationCode ==1234) {
-            console.log("success")
-            this.setState({codeSubmitted:true})
         } else {
-            console.log(confirmationCode)
+            this.state.codeSubmitted = true
+            console.log(this.state.codeSubmitted)
+            console.log(this.state.confirmationCodeValid)
         }
+
     }
 
     handleChangeConfirmationCode(e) {
@@ -163,11 +168,12 @@ class Register extends Component {
     }
 
 
-    handleSubmit = async event => {
+    handleSubmit (event){
         event.preventDefault();
-        this.setState({submitButtonHit:true})
+        this.state.submitButtonHit = true
+        console.log(this.state.submitButtonHit)
         const number = this.handleChange(event)
-        console.log(this.state.errors.length)
+        console.log(number)
         if (number === 0 && this.state.isAdminChecked) {
             this.props.history.push("/adminhome");
         } else if(number === 0) {
@@ -195,7 +201,9 @@ class Register extends Component {
                         ref={confirmationCode => (this.confirmationCode = confirmationCode)}
                         onChange={this.handleChangeConfirmationCode.bind(this)}
                         placeholder = "Confirmation Code"
+
                     />
+                    <FormFeedback>Yikes!</FormFeedback>
                 </FormGroup>
                 <div className={" confirmation_buttons_div"}>
                 <Button
@@ -227,7 +235,7 @@ class Register extends Component {
 
         return (
 
-            <form className="form-style" onSubmit={this.handleSubmit}>
+            <form className="form-style" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="registration-page-title">
                     <h1> Welcome to Jacob's Ladder!</h1>
                     <h2>Registration Page </h2>
@@ -238,13 +246,13 @@ class Register extends Component {
                     ))}
                     <FormGroup check>
                         <Label check onChange={this.toggle.bind(this)} >
-                            <Input checked={this.state.isAdminChecked} type="checkbox"/>
+                            <Input disabled = {this.state.isAdminChecked} checked={this.state.isAdminChecked} type="checkbox"/>
                             I am a member of the admission team.
                         </Label>
                     </FormGroup>
                     <FormGroup row id="studentFirstName" style={isAdminChecked}>
                         <Label className="control-label required" sm={4}>Student First Name</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
 
                             <Input
                                 autoFocus
@@ -257,7 +265,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup row id="studentLastName" style={isAdminChecked}>
                         <Label className="control-label required" sm={4}>Student Last Name</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 ref={studentLastName => (this.studentLastName = studentLastName)}
                                 autoFocus
@@ -269,7 +277,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup row id="parentFirstName" style={isAdminChecked}>
                         <Label className="control-label required" sm={4}>Parent/Guardian First Name</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 autoFocus
                                 ref={parentFirstName => (this.parentFirstName = parentFirstName)}
@@ -281,7 +289,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup id="parentLastName" row style={isAdminChecked}>
                         <Label className="control-label required" sm={4}>Parent/Guardian Last Name</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 autoFocus
                                 ref={parentLastName => (this.parentLastName = parentLastName)}
@@ -293,7 +301,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup id="firstName" row style={startsHidden}>
                         <Label className="control-label required" sm={4}>First Name</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 autoFocus
                                 ref={firstName => (this.firstName = firstName)}
@@ -305,7 +313,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup id="lastName" row style={startsHidden}>
                         <Label className="control-label required" sm={4}>Last Name</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 autoFocus
                                 ref={lastName => (this.lastName = lastName)}
@@ -317,7 +325,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup id="relationship" row style={isAdminChecked}>
                         <Label className="control-label required" sm={4}>Relationship to Student</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 autoFocus
                                 ref={relationship => (this.relationship = relationship)}
@@ -329,7 +337,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup id="email" row>
                         <Label className="control-label required" sm={4}>Email</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 autoFocus
                                 ref={email => (this.email = email)}
@@ -341,7 +349,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup id="password" row>
                         <Label className="control-label required" sm={4}>Password</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 value={this.state.id}
                                 ref={password => (this.password = password)}
@@ -352,7 +360,7 @@ class Register extends Component {
                     </FormGroup>
                     <FormGroup id="confirmPassword" row>
                         <Label className="control-label required" sm={4}>Confirm Password</Label>
-                        <Col sm={8}>
+                        <Col sm={12}>
                             <Input
                                 ref={confirmPassword => (this.confirmPassword = confirmPassword)}
                                 value={this.state.id}
@@ -379,7 +387,7 @@ class Register extends Component {
     render() {
         return (
             <div className="Signup">
-                {this.state.isAdminChecked && !this.state.codeSubmitted
+                {this.state.isAdminChecked && !this.state.confirmationCodeValid
                     ? this.renderConfirmationForm()
                     : this.renderForm()}
             </div>
