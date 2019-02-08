@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom';
 
 import './StudentCard.css'
 import {Card, CardBody, CardHeader, CardText} from "reactstrap";
@@ -19,23 +20,28 @@ class StudentCard extends Component {
             evaluator: "Rachel Smith",
             reviewers: "Nancy"
         };
+        this.handleNameClick = this.handleNameClick.bind(this);
     }
 
-    // handleNameClick = event => {
-    //     this.props.history.push("/parenthome");
-    // }
+    handleNameClick() {
+        // event.preventDefault();
+        console.log("card clicked!!");
+        this.props.history.push("/parenthome");
+    };
+
+
 
     renderCard() {
         return <div>
             <Card className="card">
                 <CardHeader
                     className="title"
-                    // onClick={this.handleNameClick}
+                    onClick={this.handleNameClick}
                     >{this.state.studentFirstName + " " + this.state.studentLastName}</CardHeader>
                 <CardBody >
                     <CardText className="text">
                         <CardText>Parents: {this.state.parentFirstName + " " + this.state.parentLastName}</CardText>
-                        <CardText>Form due: {this.state.formDueDate}</CardText>
+                        <CardText>Forms due: {this.state.formDueDate}</CardText>
                         <CardText>Evaluation on {this.state.formDueDate} with {this.state.evaluator}</CardText>
                         <CardText>Reviewed by: {this.state.reviewers}</CardText>
                     </CardText>
@@ -54,4 +60,4 @@ class StudentCard extends Component {
     };
 }
 
-export default StudentCard
+export default withRouter(StudentCard)
