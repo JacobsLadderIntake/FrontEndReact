@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import FormFooter from './FormFooter';
-//npm install react-sticky-footer
 
 class FormFrame extends Component{
     render(){
@@ -11,8 +10,11 @@ class FormFrame extends Component{
         return(
             <div>
                 <Header/>
+                <textarea></textarea>
                 <FormFooter/>
             </ div>
         );
     };
 }
+
+export default FormFrame;

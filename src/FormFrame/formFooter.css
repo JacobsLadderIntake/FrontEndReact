@@ -1,0 +1,8 @@
+.formFooter {
+    width:100%;
+    height:22px;
+    padding-top:20px;
+    position:fixed;
+    bottom: 45px;/*and to the left of the window.*/
+}
+
