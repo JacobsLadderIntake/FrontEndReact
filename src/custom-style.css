@@ -4,9 +4,9 @@
 is specific to each component*/
 
 .button {
-    background-color: #788B91;
+    background-color: #5DA3C7;
     width: 10px;
     color: white;
-    border-color: #67777C;
+    border-color: #5DA3C7;
     border-width: thin;
 }
