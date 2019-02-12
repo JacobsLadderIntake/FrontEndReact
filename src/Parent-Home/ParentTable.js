@@ -59,7 +59,7 @@ class ParentTable extends Component {
         return (
             <div>
                 <Header/>
-                <div classname="parent-table-header">
+                <div className="parent-table-header">
                     <div className = "row" >
                         <a className = "parent-top col-9">
                             <h2>Intake Profile Checklist: Parent Name</h2>

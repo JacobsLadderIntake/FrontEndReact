@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+// import './App.css';
 import Register from './Register';
 import Navigation from './Navigation'
 import Login from './Login'
@@ -7,7 +7,14 @@ import { BrowserRouter as Router,Route, Link } from "react-router-dom";
 import AdminHome from "./AdminView/AdminHome";
 import ParentTable from "./Parent-Home/ParentTable";
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faPlus, faPlusCircle)
+
 class App extends Component {
+
+
   render() {
     return (
         <div>
