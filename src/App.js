@@ -6,6 +6,7 @@ import Login from './Login'
 import { BrowserRouter as Router,Route, Link } from "react-router-dom";
 import AdminHome from "./AdminView/AdminHome";
 import ParentTable from "./Parent-Home/ParentTable";
+import FormFrame from './FormFrame/FormFrame';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
@@ -25,6 +26,7 @@ class App extends Component {
             <Route path = "/adminhome" component = {AdminHome}/>
             <Route path = "/login" component = {Login}/>
             <Route path = "/parenthome" component = {ParentTable}/>
+            <Route path = "/formframe" component = {FormFrame}/>
         </div>
         </Router>
         </div>
