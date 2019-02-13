@@ -17,7 +17,11 @@
 
 .button-div {
     text-align: center;
-    padding: 20px 0px;
+    padding-top: 2rem;
+}
+.submit-button {
+    width:10em;
+    height:3rem;
 }
 
 
@@ -28,8 +32,8 @@
 }
 
 .form-style {
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 .form-check {
@@ -47,10 +51,13 @@
     color: red;
 
 }
+.Signup {
+    background-color:#5da3c7;
+}
 .confirmationCode {
     background-color: #DEDEDE;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 25%;
+    margin-right: 25%;
     margin-top: 2em;
     padding: 5em 3em;
 }
@@ -64,4 +71,12 @@
 }
 .confirmation_buttons_div {
     text-align: right;
+}
+.confirmation-code-background {
+    background-color:#5da3c7;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    position: absolute;
 }
