@@ -19,28 +19,16 @@ class Register extends Component {
         super(props);
 
         this.state = {
-//      isLoading: false,
             errors: [],
-            errorNumber: 0,
-            studentFirstName: "",
-            studentLastName: "",
-            parentFirstName: "",
-            parentLastName: "",
-            relationship: "",
-            password: "",
-            confirmPassword: "",
-            confirmationCode: "",
-            firstName: "",
-            lastName: "",
-            newUser: null,
+            fields: [],
             isAdminChecked: false,
             startsHidden: true,
-            codeSubmitted: false,
-            submitButtonHit:false,
-            confirmationCodeValid:false,
+            confirmationCode:1234,
+            confirmationCodeValid: false,
+            submitButtonPressed: false,
+            confirmButtonPressed:false
 
         };
-        this.handleChange = this.handleChange.bind(this, false);
         this.goBack = this.goBack.bind(this)
     }
 
@@ -48,112 +36,115 @@ class Register extends Component {
         window.location.reload()
     }
 
-    handleChange(e) {
+    handleChange(field, e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.value;
+        this.validate()
+        this.setState({fields});
 
-        const studentFirstName = ReactDOM.findDOMNode(this.studentFirstName).value;
-        const studentLastName = ReactDOM.findDOMNode(this.studentLastName).value;
-        const parentFirstName = ReactDOM.findDOMNode(this.parentFirstName).value;
-        const parentLastName = ReactDOM.findDOMNode(this.parentLastName).value;
-        const relationship = ReactDOM.findDOMNode(this.relationship).value;
-        const password = ReactDOM.findDOMNode(this.password).value;
-        const confirmPassword = ReactDOM.findDOMNode(this.confirmPassword).value;
-        const email = ReactDOM.findDOMNode(this.email).value;
-        const firstName = ReactDOM.findDOMNode(this.firstName).value;
-        const lastName = ReactDOM.findDOMNode(this.lastName).value;
-            console.log(this.state.submitButtonHit)
-            if(this.state.submitButtonHit) {
-                return this.validate(studentFirstName, studentLastName, parentFirstName, parentLastName, relationship, password, confirmPassword, email, firstName, lastName);
-            } else {
-                return -1;
-            }
-
-
-
-
-
-        // submit the data...
     }
 
 
-    validate(studentFirstName, studentLastName, parentFirstName, parentLastName, relationship, password, confirmPassword, email, firstName, lastName) {
+    validate() {
         // we are going to store errors for all fields
-        // in a signle array
-        const errors=[]
-        console.log("help")
-        if (!this.state.isAdminChecked) {
-            if (studentFirstName.length === 0) {
-                errors.push("Student First Name can't be empty");
-            }
-            if (studentLastName.length === 0) {
-                errors.push("Student Last Name can't be empty");
-            }
-            if (parentFirstName.length === 0) {
-                errors.push("Parent First Name can't be empty");
-            }
-            if (parentLastName.length === 0) {
-                errors.push("Parent Last Name can't be empty");
-            }
-            if (relationship.length === 0) {
-                errors.push("Relationship with student can't be empty");
-                console.log("why")
+        // in a single array
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+        let substring ="@";
+        if(this.state.submitButtonHit) {
+            if (!this.state.isAdminChecked) {
+                if (!fields["studentFirstName"]) {
+                    formIsValid = false;
+                    errors["studentFirstName"] = "Cannot be empty";
+                }
+                if (!fields["studentLastName"]) {
+                    formIsValid = false;
+                    errors["studentLastName"] = "Cannot be empty";
+                }
+                if (!fields["parentFirstName"]) {
+                    formIsValid = false;
+                    errors["parentFirstName"] = "Cannot be empty";
+                }
+                if (!fields["parentLastName"]) {
+                    formIsValid = false;
+                    errors["parentLastName"] = "Cannot be empty";
+                }
+                if (!fields["relationship"]) {
+                    formIsValid = false;
+                    errors["relationship"] = "Cannot be empty";
+                }
+            } else {
+                if (!fields["firstName"]) {
+                    formIsValid = false;
+                    errors["firstName"] = "Cannot be empty";
+                }
+                if (!fields["lastName"]) {
+                    formIsValid = false;
+                    errors["lastName"] = "Cannot be empty";
+                }
+
 
             }
-        } else {
-            if (firstName.length === 0) {
-                errors.push("First Name can't be empty");
+
+            if (!fields["email"]) {
+                formIsValid = false;
+                errors["email"] = "Cannot be empty";
+
             }
-            if (lastName.length === 0) {
-                errors.push("Last Name can't be empty");
+            if (fields["email"] && (fields["email"].indexOf("@") == -1 || fields["email"].indexOf(".") == -1)) {
+                errors["email"] = "Email is not formatted correctly"
             }
 
+            if (!fields["password"]) {
+                formIsValid = false;
+                errors["password"] = "Cannot be empty";
+            }
+            if (!fields["confirmPassword"]) {
+                formIsValid = false;
+                errors["confirmPassword"] = "Cannot be empty";
+            }
+            if (fields["confirmPassword"] !== fields["password"]) {
+                formIsValid = false;
+                errors["confirmPassword"] = "Passwords do not match";
+            }
+
+            if (fields["email"] < 5 && fields["email"].length !== 0) {
+                formIsValid = false;
+                errors["email"] = "Email should be at least 5 characters long";
+            }
         }
 
-        if (email.length === 0) {
-            errors.push("Email can't be empty");
-        }
-        if (password.length === 0) {
-            errors.push("Password can't be empty");
-        }
-        if (confirmPassword.length === 0) {
-            errors.push("Confirm Password can't be empty");
-        }
-        if (password !== confirmPassword) {
-            errors.push("Passwords do not match");
-        }
-
-        if (email.length < 5 && email.length !== 0) {
-            errors.push("Email should be at least 5 characters long");
-        }
-        if (email.split("").filter(x => x === "@").length !== 1 && email.length !== 0) {
-            errors.push("Email should contain a @");
-        }
-        if (email.indexOf(".") === -1 && email.length !== 0) {
-            errors.push("Email should contain at least one dot");
-        }
-        console.log(errors.length)
-        this.setState({errors})
-        return errors.length
+        this.setState({errors: errors})
+        return formIsValid
+    }
+    handleConfirmButtonHit(){
+        this.state.confirmButtonPressed = true
+        this.validateConfirmationForm()
     }
 
 
     validateConfirmationForm() {
         console.log("hey")
-        const confirmationCode = ReactDOM.findDOMNode(this.confirmationCode).value;
-        if(confirmationCode == 1234) {
-            this.setState({confirmationCodeValid:true})
-
-        } else {
-            this.state.codeSubmitted = true
-            console.log(this.state.codeSubmitted)
-            console.log(this.state.confirmationCodeValid)
+        let fields = this.state.fields
+        let errors = {};
+        if (this.state.confirmButtonPressed) {
+            if (this.state.confirmationCode == fields["confirmationCode"]) {
+                this.setState({confirmationCodeValid: true})
+            } else {
+                errors["confirmationCode"] = "The code entered is incorrect";
+            }
         }
+        this.setState({errors: errors})
+
 
     }
 
-    handleChangeConfirmationCode(e) {
+    handleChangeConfirmationCode(field,e) {
 
-        const code = ReactDOM.findDOMNode(this.confirmationCode).value;
-    }
+        let fields = this.state.fields;
+        fields[field] = e.target.value;
+        this.setState({fields});    }
 
     toggle() {
         this.setState({
@@ -164,61 +155,68 @@ class Register extends Component {
             this.renderConfirmationForm()
             console.log("confirm")
         }
-        this.setState({errors: []})
     }
 
 
-    handleSubmit (event){
+    handleSubmit(event) {
         event.preventDefault();
         this.state.submitButtonHit = true
-        console.log(this.state.submitButtonHit)
-        const number = this.handleChange(event)
-        console.log(number)
-        if (number === 0 && this.state.isAdminChecked) {
+        if (this.validate() && this.state.isAdminChecked) {
             this.props.history.push("/adminhome");
-        } else if(number === 0) {
+        } else if (this.validate()) {
             this.props.history.push("/parenthome")
-    } else {
+        } else {
             console.log("ugh why")
         }
+    }
+    handleCancel(event) {
+        event.preventDefault();
+        this.props.history.push("/")
     }
 
 
     renderConfirmationForm() {
         return (
-            <div>
-            <div className="registration-page-title">
-                <h1> Welcome to Jacob's Ladder!</h1>
-                <h2>Registration Page </h2>
-            </div>
-            <div className={"confirmationCode"}>
-                <FormGroup id="confirmationCode">
-                    <Label>If you are signing in as a member of the admission team, please submit the code provided by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a parent.</Label>
-                    <Input
-                        autoFocus
-                        type="tel"
-                        value={this.state.id}
-                        ref={confirmationCode => (this.confirmationCode = confirmationCode)}
-                        onChange={this.handleChangeConfirmationCode.bind(this)}
-                        placeholder = "Confirmation Code"
+            <div className="confirmation-code-background">
+                <div className="registration-page-title">
+                    <h1> Welcome to Jacob's Ladder!</h1>
+                    <h2>Registration Page </h2>
+                </div>
+                <div className={"confirmationCode"}>
+                    <FormGroup>
+                        <Col sm={12}>
+
+                        <Label>If you are signing in as a member of the admission team, please submit the code provided
+                            by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
+                            parent.</Label>
+                        <Input
+                            autoFocus
+                            type="tel"
+                            value={this.state.fields["confirmationCode"]}
+                            ref="confirmationCode"
+                            onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
+                            invalid= {this.state.errors["confirmationCode"]}
+
 
                     />
-                    <FormFeedback>Yikes!</FormFeedback>
-                </FormGroup>
-                <div className={" confirmation_buttons_div"}>
-                <Button
-                    color={"warning"}
-                    className={"confirmationCodeButton"}
-                    type="submit"
-                    onClick={this.goBack.bind(this)}
-                > Back </Button>
-                <Button
-                    color={"success"}
-                    className={"confirmationCodeButton"}
-                    onClick={this.validateConfirmationForm.bind(this)}
-                > Submit </Button></div>
+                        <FormFeedback invalid = {this.state.errors["confirmationCode"]}>{this.state.errors["confirmationCode"]}</FormFeedback>
+                        </Col>
 
-            </div>
+                    </FormGroup>
+                    <div className={" confirmation_buttons_div"}>
+                        <Button
+                            color={"warning"}
+                            className={"confirmationCodeButton"}
+                            type="submit"
+                            onClick={this.goBack.bind(this)}
+                        > Back </Button>
+                        <Button
+                            color={"success"}
+                            className={"confirmationCodeButton"}
+                            onClick={this.handleConfirmButtonHit.bind(this)}
+                        > Submit </Button></div>
+
+                </div>
             </div>
 
         );
@@ -240,146 +238,193 @@ class Register extends Component {
                     <h1> Welcome to Jacob's Ladder!</h1>
                     <h2>Registration Page </h2>
                 </div>
-                <div className="question-fields">
-                    {errors.map(error => (
-                        <Alert color="warning" key={error}>Error: {error}</Alert>
-                    ))}
-                    <FormGroup check>
-                        <Label check onChange={this.toggle.bind(this)} >
-                            <Input disabled = {this.state.isAdminChecked} checked={this.state.isAdminChecked} type="checkbox"/>
-                            I am a member of the admission team.
-                        </Label>
-                    </FormGroup>
-                    <FormGroup row id="studentFirstName" style={isAdminChecked}>
-                        <Label className="control-label required" sm={4}>Student First Name</Label>
-                        <Col sm={12}>
+                <fieldset>
+                    <div className="question-fields">
+                        <FormGroup check>
+                            <Label check onChange={this.toggle.bind(this)}>
+                                <Input disabled={this.state.isAdminChecked} checked={this.state.isAdminChecked}
+                                       type="checkbox"/>
+                                I am a member of the admission team.
+                            </Label>
+                        </FormGroup>
+                        <FormGroup row style={isAdminChecked}>
+                            <Label className="control-label required" sm={6}>Student First Name</Label>
+                            <Col sm={12}>
 
-                            <Input
-                                autoFocus
-                                type="text"
-                                ref={studentFirstName => (this.studentFirstName = studentFirstName)}
-                                value={this.state.id}
-                                onChange={this.handleChange.bind(this, false)}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row id="studentLastName" style={isAdminChecked}>
-                        <Label className="control-label required" sm={4}>Student Last Name</Label>
-                        <Col sm={12}>
-                            <Input
-                                ref={studentLastName => (this.studentLastName = studentLastName)}
-                                autoFocus
-                                type="text"
-                                value={this.state.id}
-                                onChange={this.handleChange.bind(this, false)}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row id="parentFirstName" style={isAdminChecked}>
-                        <Label className="control-label required" sm={4}>Parent/Guardian First Name</Label>
-                        <Col sm={12}>
-                            <Input
-                                autoFocus
-                                ref={parentFirstName => (this.parentFirstName = parentFirstName)}
-                                type="text"
-                                value={this.state.id}
-                                onChange={ this.handleChange.bind(this, false)}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup id="parentLastName" row style={isAdminChecked}>
-                        <Label className="control-label required" sm={4}>Parent/Guardian Last Name</Label>
-                        <Col sm={12}>
-                            <Input
-                                autoFocus
-                                ref={parentLastName => (this.parentLastName = parentLastName)}
-                                type="text"
-                                value={this.state.id}
-                                onChange={event => this.handleChange.bind(this, false)}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup id="firstName" row style={startsHidden}>
-                        <Label className="control-label required" sm={4}>First Name</Label>
-                        <Col sm={12}>
-                            <Input
-                                autoFocus
-                                ref={firstName => (this.firstName = firstName)}
-                                type="text"
-                                value={this.state.id}
-                                onChange={this.handleChange.bind(this, false)}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup id="lastName" row style={startsHidden}>
-                        <Label className="control-label required" sm={4}>Last Name</Label>
-                        <Col sm={12}>
-                            <Input
-                                autoFocus
-                                ref={lastName => (this.lastName = lastName)}
-                                type="text"
-                                value={this.state.id}
-                                onChange={this.handleChange.bind(this, false)}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup id="relationship" row style={isAdminChecked}>
-                        <Label className="control-label required" sm={4}>Relationship to Student</Label>
-                        <Col sm={12}>
-                            <Input
-                                autoFocus
-                                ref={relationship => (this.relationship = relationship)}
-                                type="text"
-                                value={this.state.id}
-                                onChange={this.handleChange.bind(this, false)}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup id="email" row>
-                        <Label className="control-label required" sm={4}>Email</Label>
-                        <Col sm={12}>
-                            <Input
-                                autoFocus
-                                ref={email => (this.email = email)}
-                                type="text"
-                                value={this.state.id}
-                                onChange={this.handleChange.bind(this, false)}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup id="password" row>
-                        <Label className="control-label required" sm={4}>Password</Label>
-                        <Col sm={12}>
-                            <Input
-                                value={this.state.id}
-                                ref={password => (this.password = password)}
-                                onChange={this.handleChange.bind(this, false)}
-                                type="password"
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup id="confirmPassword" row>
-                        <Label className="control-label required" sm={4}>Confirm Password</Label>
-                        <Col sm={12}>
-                            <Input
-                                ref={confirmPassword => (this.confirmPassword = confirmPassword)}
-                                value={this.state.id}
-                                onChange={this.handleChange.bind(this, false)}
-                                type="password"
+                                <Input
 
-                            />
-                        </Col>
-                    </FormGroup>
-                    <div className="button-div">
-                        <Button
-                            onClick={this.validForm}
-                            color="success"
-                            type="submit"
-                            className="submit-button"
-                            //          isLoading={this.state.isLoading}
-                        > Submit </Button>
+                                    type="text"
+                                    ref="studentFirstName"
+                                    value={this.state.fields["studentFirstName"]}
+                                    onChange={this.handleChange.bind(this, "studentFirstName")}
+                                    className="error"
+                                    invalid={this.state.errors["studentFirstName"]}
+
+
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["studentFirstName"]}>{this.state.errors["studentFirstName"]}</FormFeedback>
+
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row style={isAdminChecked}>
+                            <Label className="control-label required" sm={6}>Student Last Name</Label>
+                            <Col sm={12}>
+                                <Input
+                                    ref="studentLastName"
+                                    autoFocus
+                                    type="text"
+                                    value={this.state.fields["studentLastName"]}
+                                    onChange={this.handleChange.bind(this, "studentLastName")}
+                                    invalid={this.state.errors["studentLastName"]}
+
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["studentLastName"]}>{this.state.errors["studentLastName"]}</FormFeedback>
+
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row style={isAdminChecked}>
+                            <Label className="control-label required" sm={6}>Parent/Guardian First Name</Label>
+                            <Col sm={12}>
+                                <Input
+                                    autoFocus
+                                    ref="parentFirstName"
+                                    type="text"
+                                    value={this.state.fields["parentFirstName"]}
+                                    onChange={this.handleChange.bind(this, "parentFirstName")}
+                                    invalid={this.state.errors["parentFirstName"]}
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["parentFirstName"]}>{this.state.errors["parentFirstName"]}</FormFeedback>
+
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row style={isAdminChecked}>
+                            <Label className="control-label required" sm={6}>Parent/Guardian Last Name</Label>
+                            <Col sm={12}>
+                                <Input
+                                    autoFocus
+                                    ref="parentLastName"
+                                    type="text"
+                                    value={this.state.fields["parentLastName"]}
+                                    onChange={this.handleChange.bind(this, "parentLastName")}
+                                    invalid={this.state.errors["parentLastName"]}
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["parentLastName"]}>{this.state.errors["parentLastName"]}</FormFeedback>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row style={startsHidden}>
+                            <Label className="control-label required" sm={6}>First Name</Label>
+                            <Col sm={12}>
+                                <Input
+                                    autoFocus
+                                    ref="firstName"
+                                    type="text"
+                                    value={this.state.fields["firstName"]}
+                                    onChange={this.handleChange.bind(this, "firstName")}
+                                    invalid={this.state.errors["firstName"]}
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["firstName"]}>{this.state.errors["firstName"]}</FormFeedback>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row style={startsHidden}>
+                            <Label className="control-label required" sm={6}>Last Name</Label>
+                            <Col sm={12}>
+                                <Input
+                                    autoFocus
+                                    ref="lastName"
+                                    type="text"
+                                    value={this.state.fields["lastName"]}
+                                    onChange={this.handleChange.bind(this, "lastName")}
+                                    invalid={this.state.errors["lastName"]}
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["lastName"]}>{this.state.errors["lastName"]}</FormFeedback>
+
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row style={isAdminChecked}>
+                            <Label className="control-label required" sm={6}>Relationship to Student</Label>
+                            <Col sm={12}>
+                                <Input
+                                    autoFocus
+                                    ref="relationship"
+                                    type="text"
+                                    value={this.state.fields["relationship"]}
+                                    onChange={this.handleChange.bind(this, "relationship")}
+                                    invalid={this.state.errors["relationship"]}
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["relationship"]}>{this.state.errors["relationship"]}</FormFeedback>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="control-label required" sm={6}>Email</Label>
+                            <Col sm={12}>
+                                <Input
+                                    autoFocus
+                                    ref="email"
+                                    type="text"
+                                    value={this.state.fields["email"]}
+                                    onChange={this.handleChange.bind(this, "email")}
+                                    invalid={this.state.errors["email"]}
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["email"]}>{this.state.errors["email"]}</FormFeedback>
+
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="control-label required" sm={6}>Password</Label>
+                            <Col sm={12}>
+                                <Input
+                                    value={this.state.fields["password"]}
+                                    ref="password"
+                                    onChange={this.handleChange.bind(this, "password")}
+                                    type="password"
+                                    invalid={this.state.errors["password"]}
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["password"]}>{this.state.errors["password"]}</FormFeedback>
+
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="control-label required" sm={6}>Confirm Password</Label>
+                            <Col sm={12}>
+                                <Input
+                                    ref="confirmPassword"
+                                    value={this.state.fields["confirmPassword"]}
+                                    onChange={this.handleChange.bind(this, "confirmPassword")}
+                                    type="password"
+                                    invalid={this.state.errors["confirmPassword"]}
+
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["confrimPassword"]}>{this.state.errors["confirmPassword"]}</FormFeedback>
+                            </Col>
+                        </FormGroup>
+                        <div className="button-div">
+                            <Button
+                                onClick={this.validForm}
+                                color="success"
+                                type="submit"
+                                className="submit-button"
+                            > Submit </Button>
+                            <br></br>
+                            <Button
+                                onClick={this.handleCancel.bind(this)}
+                                color="link"
+                                type="submit"
+                            > Cancel </Button>
+                        </div>
+
+
                     </div>
-                </div>
+                </fieldset>
             </form>
         );
     }
@@ -387,7 +432,7 @@ class Register extends Component {
     render() {
         return (
             <div className="Signup">
-                {this.state.isAdminChecked && !this.state.confirmationCodeValid
+                {(this.state.isAdminChecked && !this.state.confirmationCodeValid)
                     ? this.renderConfirmationForm()
                     : this.renderForm()}
             </div>
