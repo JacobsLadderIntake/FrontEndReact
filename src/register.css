@@ -13,6 +13,8 @@
 /*}*/
 .form-style {
     display: block;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 
 .button-div {
@@ -29,19 +31,15 @@
 .registration-page-title {
     text-align: center;
     padding-top: 1em;
+    color: #404040;
 }
 
-.form-style {
-    margin-left: 30%;
-    margin-right: 30%;
-}
 
 .form-check {
     padding-bottom: 1em;
 }
 
 .question-fields {
-    background-color: #DEDEDE;
     margin: 2em 0em;
     padding: 1em 2em;
 }
@@ -49,13 +47,14 @@
 .control-label.required:before {
     content: "*";
     color: red;
-
 }
-.Signup {
-    background-color:#5da3c7;
+
+.signup {
+    /*background-color: #DEDEDE;*/
 }
 .confirmationCode {
     background-color: #DEDEDE;
+    border: gray 2px;
     margin-left: 25%;
     margin-right: 25%;
     margin-top: 2em;
@@ -73,7 +72,6 @@
     text-align: right;
 }
 .confirmation-code-background {
-    background-color:#5da3c7;
     top:0;
     bottom:0;
     left:0;

@@ -27,7 +27,7 @@ class FormFooter extends Component {
 
     renderRedirect = () => {
         if (this.state.redirect) {
-            if (s == 1) {
+            if (s === 1) {
                 return <Redirect to={ParentTable}/>
             } else {
                 return<Redirect to={AdminHome}/>

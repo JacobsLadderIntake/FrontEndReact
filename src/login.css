@@ -1,0 +1,17 @@
+.login-page-title {
+    text-align: center;
+    padding-top: 1em;
+    color: #404040;
+}
+
+.form-style {
+    display: block;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.question-fields {
+    background-color: #DEDEDE;
+    margin: 2em 0em;
+    padding: 1em 2em;
+}

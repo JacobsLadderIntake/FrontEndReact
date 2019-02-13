@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import './AdminHome.css';
 import '../custom-style.css'
-import Header from '../Header/Header'
 import StudentCard from './StudentCard'
 import {Button, Input, Row, Col} from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -28,7 +27,6 @@ class AdminHome extends Component {
 
         return (
             <div>
-                <Header/>
                 <div className = "adminHome container-fluid p-4" >
                     <div className = "row" >
                         <a className = "admin-top col-9">

@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom'
 import './register.css'
 
 
 import {
-    Alert,
     Col,
     Button,
     FormGroup,
@@ -23,7 +21,7 @@ class Register extends Component {
             fields: [],
             isAdminChecked: false,
             startsHidden: true,
-            confirmationCode:1234,
+            confirmationCode:"1234",
             confirmationCodeValid: false,
             submitButtonPressed: false,
             confirmButtonPressed:false
@@ -92,7 +90,7 @@ class Register extends Component {
                 errors["email"] = "Cannot be empty";
 
             }
-            if (fields["email"] && (fields["email"].indexOf("@") == -1 || fields["email"].indexOf(".") == -1)) {
+            if (fields["email"] && (fields["email"].indexOf("@") === -1 || fields["email"].indexOf(".") === -1)) {
                 errors["email"] = "Email is not formatted correctly"
             }
 
@@ -125,11 +123,11 @@ class Register extends Component {
 
 
     validateConfirmationForm() {
-        console.log("hey")
-        let fields = this.state.fields
+        console.log("hey");
+        let fields = this.state.fields;
         let errors = {};
         if (this.state.confirmButtonPressed) {
-            if (this.state.confirmationCode == fields["confirmationCode"]) {
+            if (this.state.confirmationCode === fields["confirmationCode"]) {
                 this.setState({confirmationCodeValid: true})
             } else {
                 errors["confirmationCode"] = "The code entered is incorrect";
@@ -144,7 +142,8 @@ class Register extends Component {
 
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        this.setState({fields});    }
+        this.setState({fields});
+    }
 
     toggle() {
         this.setState({
@@ -169,37 +168,31 @@ class Register extends Component {
             console.log("ugh why")
         }
     }
+
     handleCancel(event) {
         event.preventDefault();
         this.props.history.push("/")
     }
 
-
     renderConfirmationForm() {
         return (
             <div className="confirmation-code-background">
                 <div className="registration-page-title">
-                    <h1> Welcome to Jacob's Ladder!</h1>
                     <h2>Registration Page </h2>
                 </div>
                 <div className={"confirmationCode"}>
                     <FormGroup>
                         <Col sm={12}>
-
-                        <Label>If you are signing in as a member of the admission team, please submit the code provided
-                            by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
-                            parent.</Label>
-                        <Input
-                            autoFocus
-                            type="tel"
-                            value={this.state.fields["confirmationCode"]}
-                            ref="confirmationCode"
-                            onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
-                            invalid= {this.state.errors["confirmationCode"]}
-
-
-                    />
-                        <FormFeedback invalid = {this.state.errors["confirmationCode"]}>{this.state.errors["confirmationCode"]}</FormFeedback>
+                            <Label>If you are signing in as a member of the admission team, please submit the code provided
+                                by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
+                                parent.</Label>
+                            <Input
+                                type="tel"
+                                value={this.state.fields["confirmationCode"]}
+                                ref="confirmationCode"
+                                onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
+                                invalid= {this.state.errors["confirmationCode"]}/>
+                            <FormFeedback invalid = {this.state.errors["confirmationCode"]}>{this.state.errors["confirmationCode"]}</FormFeedback>
                         </Col>
 
                     </FormGroup>
@@ -235,8 +228,7 @@ class Register extends Component {
 
             <form className="form-style" onSubmit={this.handleSubmit.bind(this)}>
                 <div className="registration-page-title">
-                    <h1> Welcome to Jacob's Ladder!</h1>
-                    <h2>Registration Page </h2>
+                    <h2>Registration</h2>
                 </div>
                 <fieldset>
                     <div className="question-fields">
@@ -252,19 +244,14 @@ class Register extends Component {
                             <Col sm={12}>
 
                                 <Input
-
                                     type="text"
                                     ref="studentFirstName"
                                     value={this.state.fields["studentFirstName"]}
                                     onChange={this.handleChange.bind(this, "studentFirstName")}
                                     className="error"
-                                    invalid={this.state.errors["studentFirstName"]}
-
-
-                                />
+                                    invalid={this.state.errors["studentFirstName"]}/>
                                 <FormFeedback
                                     invalid={this.state.errors["studentFirstName"]}>{this.state.errors["studentFirstName"]}</FormFeedback>
-
                             </Col>
                         </FormGroup>
                         <FormGroup row style={isAdminChecked}>
@@ -272,13 +259,10 @@ class Register extends Component {
                             <Col sm={12}>
                                 <Input
                                     ref="studentLastName"
-                                    autoFocus
                                     type="text"
                                     value={this.state.fields["studentLastName"]}
                                     onChange={this.handleChange.bind(this, "studentLastName")}
-                                    invalid={this.state.errors["studentLastName"]}
-
-                                />
+                                    invalid={this.state.errors["studentLastName"]} />
                                 <FormFeedback
                                     invalid={this.state.errors["studentLastName"]}>{this.state.errors["studentLastName"]}</FormFeedback>
 
@@ -288,93 +272,85 @@ class Register extends Component {
                             <Label className="control-label required" sm={6}>Parent/Guardian First Name</Label>
                             <Col sm={12}>
                                 <Input
-                                    autoFocus
                                     ref="parentFirstName"
                                     type="text"
                                     value={this.state.fields["parentFirstName"]}
                                     onChange={this.handleChange.bind(this, "parentFirstName")}
-                                    invalid={this.state.errors["parentFirstName"]}
-                                />
-                                <FormFeedback
-                                    invalid={this.state.errors["parentFirstName"]}>{this.state.errors["parentFirstName"]}</FormFeedback>
-
+                                    invalid={this.state.errors["parentFirstName"]}/>
+                                <FormFeedback invalid={this.state.errors["parentFirstName"]}>
+                                    {this.state.errors["parentFirstName"]}
+                                </FormFeedback>
                             </Col>
                         </FormGroup>
                         <FormGroup row style={isAdminChecked}>
                             <Label className="control-label required" sm={6}>Parent/Guardian Last Name</Label>
                             <Col sm={12}>
                                 <Input
-                                    autoFocus
                                     ref="parentLastName"
                                     type="text"
                                     value={this.state.fields["parentLastName"]}
                                     onChange={this.handleChange.bind(this, "parentLastName")}
-                                    invalid={this.state.errors["parentLastName"]}
-                                />
+                                    invalid={this.state.errors["parentLastName"]}/>
                                 <FormFeedback
-                                    invalid={this.state.errors["parentLastName"]}>{this.state.errors["parentLastName"]}</FormFeedback>
+                                    invalid={this.state.errors["parentLastName"]}>
+                                    {this.state.errors["parentLastName"]}
+                                </FormFeedback>
                             </Col>
                         </FormGroup>
                         <FormGroup row style={startsHidden}>
                             <Label className="control-label required" sm={6}>First Name</Label>
                             <Col sm={12}>
                                 <Input
-                                    autoFocus
                                     ref="firstName"
                                     type="text"
                                     value={this.state.fields["firstName"]}
                                     onChange={this.handleChange.bind(this, "firstName")}
-                                    invalid={this.state.errors["firstName"]}
-                                />
-                                <FormFeedback
-                                    invalid={this.state.errors["firstName"]}>{this.state.errors["firstName"]}</FormFeedback>
+                                    invalid={this.state.errors["firstName"]}/>
+                                <FormFeedback invalid={this.state.errors["firstName"]}>
+                                    {this.state.errors["firstName"]}
+                                </FormFeedback>
                             </Col>
                         </FormGroup>
                         <FormGroup row style={startsHidden}>
                             <Label className="control-label required" sm={6}>Last Name</Label>
                             <Col sm={12}>
                                 <Input
-                                    autoFocus
                                     ref="lastName"
                                     type="text"
                                     value={this.state.fields["lastName"]}
                                     onChange={this.handleChange.bind(this, "lastName")}
-                                    invalid={this.state.errors["lastName"]}
-                                />
-                                <FormFeedback
-                                    invalid={this.state.errors["lastName"]}>{this.state.errors["lastName"]}</FormFeedback>
-
+                                    invalid={this.state.errors["lastName"]}/>
+                                <FormFeedback invalid={this.state.errors["lastName"]}>
+                                    {this.state.errors["lastName"]}
+                                </FormFeedback>
                             </Col>
                         </FormGroup>
                         <FormGroup row style={isAdminChecked}>
                             <Label className="control-label required" sm={6}>Relationship to Student</Label>
                             <Col sm={12}>
                                 <Input
-                                    autoFocus
                                     ref="relationship"
                                     type="text"
                                     value={this.state.fields["relationship"]}
                                     onChange={this.handleChange.bind(this, "relationship")}
-                                    invalid={this.state.errors["relationship"]}
-                                />
-                                <FormFeedback
-                                    invalid={this.state.errors["relationship"]}>{this.state.errors["relationship"]}</FormFeedback>
+                                    invalid={this.state.errors["relationship"]}/>
+                                <FormFeedback invalid={this.state.errors["relationship"]}>
+                                    {this.state.errors["relationship"]}
+                                </FormFeedback>
                             </Col>
                         </FormGroup>
                         <FormGroup row>
                             <Label className="control-label required" sm={6}>Email</Label>
                             <Col sm={12}>
                                 <Input
-                                    autoFocus
                                     ref="email"
                                     type="text"
                                     value={this.state.fields["email"]}
                                     onChange={this.handleChange.bind(this, "email")}
-                                    invalid={this.state.errors["email"]}
-                                />
-                                <FormFeedback
-                                    invalid={this.state.errors["email"]}>{this.state.errors["email"]}</FormFeedback>
-
+                                    invalid={this.state.errors["email"]}/>
+                                <FormFeedback invalid={this.state.errors["email"]}>
+                                    {this.state.errors["email"]}
+                                </FormFeedback>
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -385,11 +361,10 @@ class Register extends Component {
                                     ref="password"
                                     onChange={this.handleChange.bind(this, "password")}
                                     type="password"
-                                    invalid={this.state.errors["password"]}
-                                />
-                                <FormFeedback
-                                    invalid={this.state.errors["password"]}>{this.state.errors["password"]}</FormFeedback>
-
+                                    invalid={this.state.errors["password"]} />
+                                <FormFeedback invalid={this.state.errors["password"]}>
+                                    {this.state.errors["password"]}
+                                </FormFeedback>
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -400,11 +375,10 @@ class Register extends Component {
                                     value={this.state.fields["confirmPassword"]}
                                     onChange={this.handleChange.bind(this, "confirmPassword")}
                                     type="password"
-                                    invalid={this.state.errors["confirmPassword"]}
-
-                                />
-                                <FormFeedback
-                                    invalid={this.state.errors["confrimPassword"]}>{this.state.errors["confirmPassword"]}</FormFeedback>
+                                    invalid={this.state.errors["confirmPassword"]} />
+                                <FormFeedback invalid={this.state.errors["confrimPassword"]}>
+                                    {this.state.errors["confirmPassword"]}
+                                </FormFeedback>
                             </Col>
                         </FormGroup>
                         <div className="button-div">
@@ -431,7 +405,7 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="Signup">
+            <div>
                 {(this.state.isAdminChecked && !this.state.confirmationCodeValid)
                     ? this.renderConfirmationForm()
                     : this.renderForm()}

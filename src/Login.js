@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
-import './register.css'
+import './login.css'
 
 
 import {
@@ -19,6 +19,7 @@ class Login extends Component {
     super(props);
     this.state = {
       errors: [],
+      fields: [],
       email: "",
       password: "",
       startsHidden:true
@@ -42,23 +43,36 @@ handleSubmit(e) {
       if (isAdmin) {
         this.props.history.push("/adminhome");
       } else {
-        // this.props.history.push("/parenthome");
+        this.props.history.push("/parenthome");
       }    
     }
   }
 
-  // Login/register might benefit from a parent class & inheritance
-  validate(email, password) {
-    // TEMP! Will validate against database in future
-    var errors = [];
-    var valid = true;
-    if (!valid) {
-      errors.push("Email or password incorrect");
-      return;
+    validate() {
+        // we are going to store errors for all fields
+        // in a single array
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+        if(this.state.submitButtonHit) {
+            if (!fields["email"]) {
+                formIsValid = false;
+                errors["email"] = "Cannot be empty";
+
+            }
+            if (fields["email"] && (fields["email"].indexOf("@") === -1 || fields["email"].indexOf(".") === -1)) {
+                errors["email"] = "Email is not formatted correctly"
+            }
+
+            if (!fields["password"]) {
+                formIsValid = false;
+                errors["password"] = "Cannot be empty";
+            }
+        }
+
+        this.setState({errors: errors})
+        return formIsValid
     }
-    // TEMP! Will validate against database in future
-    return errors;
-  }
 
   isAdmin(email) {
     return true;
@@ -76,46 +90,37 @@ handleSubmit(e) {
     const { errors } = this.state;
 
     return (
-
-      <form className="form-style" onSubmit={this.handleSubmit}>
-      <div className="login-page-title">
-      <h1> Existing User Login</h1>
-      </div>
-        <div className = "question-fields">
-        {errors.map(error => (
-                        <Alert color = "warning" key={error}>Error: {error}</Alert>
-                      ))}
-        <FormGroup check>
-        </FormGroup>
-          <InputGroup id="email">
-            <Label>Email</Label>
-            <Input
-                autoFocus
-                ref={email => (this.email = email)}
-                type="text"
-                value={this.state.id}
-                onChange={event => this.handleChange(event)}
-            />
-          </InputGroup>
-        <InputGroup id="password">
-          <Label>Password</Label>
-          <Input
-            value={this.state.id}
-            ref={password => (this.password = password)}
-            onChange={event => this.handleChange(event)}
-            type="password"
-          />
-        </InputGroup>
-        <div className="button-div">
-        <Button
-        onClick={this.validForm}
-        color="success"
-          type="submit"
-          className="submit-button"
-        > Submit </Button>
-        </div>
-        </div>
-      </form>
+        <form className="form-style" onSubmit={this.handleSubmit}>
+            <div className="login-page-title">
+                <h1> Existing User Login</h1>
+            </div>
+            <div className = "question-fields">
+                {errors.map(error => (
+                    <Alert color = "warning" key={error}>Error: {error}</Alert>))}
+                    <FormGroup check/>
+                <InputGroup id="email">
+                    <Label className="control-label required" lg={6}>Email</Label>
+                    <Input lg={12}
+                        ref={email => (this.email = email)}
+                        type="text"
+                        value={this.state.id}
+                        onChange={event => this.handleChange(event)}/>
+                </InputGroup>
+                <InputGroup id="password">
+                    <Label className="control-label required" sm={6}>Password</Label>
+                    <Input sm={12}
+                        value={this.state.id}
+                        ref={password => (this.password = password)}
+                        onChange={event => this.handleChange(event)}
+                        type="password"/>
+                </InputGroup>
+                <div className="button-div">
+                    <Button onClick={this.validForm}
+                            color="success"
+                            type="submit"> Login </Button>
+                </div>
+            </div>
+        </form>
     );
   }
 

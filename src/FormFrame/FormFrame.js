@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../Header/Header';
 import FormFooter from './FormFooter';
 
 class FormFrame extends Component{
@@ -9,7 +8,6 @@ class FormFrame extends Component{
 
         return(
             <div>
-                <Header/>
                 <textarea></textarea>
                 <FormFooter/>
             </ div>
