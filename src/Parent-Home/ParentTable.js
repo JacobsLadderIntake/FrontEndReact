@@ -56,7 +56,7 @@ class ParentTable extends Component {
         }];
 
         return (
-            <div>
+            <div className={"parentTable p-4"}>
                 <div className="parent-table-header">
                     <div className = "row" >
                         <a className = "parent-top col-9">
