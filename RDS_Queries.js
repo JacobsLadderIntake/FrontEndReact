@@ -51,7 +51,7 @@ function createChild(childAttributes) {
 	});
 }
 
-function getChildren(UserID, callback){
+export default function getChildren(UserID, callback){
 	var sql = "SELECT p.UserFirstName, p.UserLastName, c.ChildFirstName, c.ChildLastName "
 				+"FROM User p "
 				+"INNER JOIN Child c on p.UserID = c.ParentID "
