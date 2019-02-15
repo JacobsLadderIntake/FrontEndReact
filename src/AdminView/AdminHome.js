@@ -27,7 +27,7 @@ class AdminHome extends Component {
 
         return (
             <div>
-                <div className = "adminHome container-fluid p-4" >
+                <div className = "adminHome container-fluid" >
                     <div className = "row" >
                         <a className = "admin-top col-9">
                             <h1 className="">Admission Team Board: { this.state.user }</h1>

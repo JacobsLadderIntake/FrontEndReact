@@ -15,7 +15,6 @@ class FormFrame extends Component{
 
         return(
             <div>
-                <textarea></textarea>
                 <div className="parent-table-header">
                     <div className = "row" >
                         <a className = "parent-top col-9">
