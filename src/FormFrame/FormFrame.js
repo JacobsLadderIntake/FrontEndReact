@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../Header/Header';
 import FormFooter from './FormFooter';
 
 var bodyOfTextStyle;
@@ -16,7 +15,7 @@ class FormFrame extends Component{
 
         return(
             <div>
-                <Header/>
+                <textarea></textarea>
                 <div className="parent-table-header">
                     <div className = "row" >
                         <a className = "parent-top col-9">

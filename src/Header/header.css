@@ -1,6 +1,5 @@
 .header {
-    background-color: #67777C;
-    font-size: calc(10px + 1vmin);
+    background-color: #86B9B9;
     color: white;
 }
 
@@ -9,6 +8,5 @@
 }
 
 .company {
-    font-size: calc(15px + 2vmin);
     font-weight: bold;
 }
