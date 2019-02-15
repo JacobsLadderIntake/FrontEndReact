@@ -14,19 +14,22 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap'
 
 
     render() {
-        var isLoggedIn = {
+        let isLoggedIn = {
             display: this.state.isLoggedIn ? "flex" : "none",
         };
         return (
-            <Navbar className="header">
-                <NavbarBrand className="company text-lg-left">Jacob's Ladder Intake Profile</NavbarBrand>
-                    <Nav className="ml-auto" row style={isLoggedIn}>
+            <Navbar className="header shadow fixed-top">
+                {/*maybe add a click handler here and have this be the return to home*/}
+                <NavbarBrand className="company text-left">Jacob's Ladder Intake Profile</NavbarBrand>
+                    <Nav className="ml-auto" style={isLoggedIn}>
                         <NavItem >
+                            {/*this need to change to be adminHome or parentHome depending on who is logged in*/}
                             <NavLink className="header" href="/adminHome">Home</NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink className="header" href="">Alert</NavLink>
-                        </NavItem>
+                        {/*is this really needed??? i'm not sure if / when we are even implementing alerts*/}
+                        {/*<NavItem> */}
+                            {/*<NavLink className="header" href="">Alert</NavLink>*/}
+                        {/*</NavItem>*/}
                         <NavItem>
                             <NavLink className="header" href="/login">Logout</NavLink>
                         </NavItem>
