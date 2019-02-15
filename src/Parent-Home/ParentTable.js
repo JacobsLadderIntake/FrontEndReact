@@ -3,7 +3,6 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import Header from '../Header/Header';
 
-
 class ParentTable extends Component {
     render() {
         var data = [{
@@ -56,13 +55,15 @@ class ParentTable extends Component {
             accessor: 'flag'
         }];
 
+        var studentName = "susie lou";//getChildren("emma@gmail.com");
+
         return (
             <div>
                 <Header/>
                 <div className="parent-table-header">
                     <div className = "row" >
                         <a className = "parent-top col-9">
-                            <h2>Intake Profile Checklist: Parent Name</h2>
+                            <h2>Intake Profile Checklist: {studentName}</h2>
                         </a>
                     </div>
                 </div>
