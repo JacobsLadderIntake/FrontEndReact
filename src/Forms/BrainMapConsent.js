@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
-import FormFooter from '../FormFrame/FormFooter';
+import ParentTable from "../Parent-Home/ParentTable";
 import './brainMapConsent.css';
+import { Redirect } from "react-router-dom";
 import {
     Col,
     Button,
+    ButtonToolbar,
     FormGroup,
     FormFeedback,
     Input,
@@ -22,12 +24,14 @@ class BrainMapConsent extends Component{
         this.state = {
             errors: [],
             fields: [],
-            isAdminChecked: false,
             submitButtonPressed: false,
             saveButtonPressed:false
         };
 
         this.goBack = this.goBack.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSaveAndQuit = this.handleSaveAndQuit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     goBack(event) {
@@ -38,7 +42,7 @@ class BrainMapConsent extends Component{
         let fields = this.state.fields;
         fields[field] = e.target.value;
         this.validate();
-        this.setState({fields});
+        this.setState({fields: fields});
     }
 
     validate() {
@@ -48,7 +52,7 @@ class BrainMapConsent extends Component{
         let errors = {};
         let formIsValid = true;
 
-        if (this.state.submitButtonHit) {
+        if (this.state.submitButtonPressed) {
             if (!fields["studentFirstName"]) {
                 formIsValid = false;
                 errors["studentFirstName"] = "Cannot be empty";
@@ -81,7 +85,7 @@ class BrainMapConsent extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
-        this.state.submitButtonHit = true;
+        this.setState({submitButtonPressed: true});
         if (this.validate()) {
             //NEED TO UPDATE DATABASE
             this.props.history.push("/parenthome")
@@ -92,12 +96,13 @@ class BrainMapConsent extends Component{
 
     handleSaveAndQuit(event) {
         event.preventDefault();
+        this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
-        this.props.history.push("/parenthome");
+        this.props.history.push("/parenthome")
     }
 
     renderFields() {
-        const {errors} = this.state;
+        const {errors} = this.state.errors;
         return (
           <fieldset>
               <div className = "question-fields">
@@ -251,7 +256,16 @@ class BrainMapConsent extends Component{
                 </div>
                 <div> {this.renderText()} </div>
                 <div> {this.renderFields()} </div>
-                <FormFooter/>
+                <div className="formFooter">
+                    <ButtonToolbar className="">
+                        <Button variant="outline-secondary" size="sm" onClick={this.handleSaveAndQuit} active>
+                            Save and Quit
+                        </Button>
+                        <Button variant="secondary" size="sm" onClick={this.handleSubmit} active>
+                            Submit
+                        </Button>
+                    </ButtonToolbar>
+                </div>
             </div>
         );
     };
