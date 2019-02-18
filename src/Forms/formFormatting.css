@@ -26,3 +26,13 @@
     padding-left:600px;
     bottom: 45px;/*and to the left of the window.*/
 }
+
+.body-of-text{
+    margin:20px;
+    padding:20px;
+}
+
+.closer-body-of-text{
+    margin:10px;
+    padding:5px;
+}
