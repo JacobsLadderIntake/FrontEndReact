@@ -1,0 +1,38 @@
+.question-fields {
+    margin: 2em 0em;
+    padding: 1em 2em;
+}
+
+.control-label.required:before {
+    content: "*";
+    color: red;
+}
+
+.form-style {
+    display: block;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.side-by-side-style {
+    padding: 0em 1em;
+}
+
+.formFooter {
+    width:100%;
+    height:22px;
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-left:600px;
+    bottom: 45px;/*and to the left of the window.*/
+}
+
+.body-of-text{
+    margin:20px;
+    padding:20px;
+}
+
+.closer-body-of-text{
+    margin:10px;
+    padding:5px;
+}

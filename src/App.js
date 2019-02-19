@@ -7,6 +7,8 @@ import AdminHome from "./AdminView/AdminHome";
 import ParentTable from "./Parent-Home/ParentTable";
 import FormFrame from './FormFrame/FormFrame';
 import BrainMapConsent from './Forms/BrainMapConsent';
+import EnrollmentProcess from './Forms/EnrollmentProcess';
+import ConsentAndMedicalRelease from './Forms/ConsentAndMedicalRelease';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
@@ -47,7 +49,8 @@ class App extends Component {
             <Route path = "/parenthome" component = {ParentTable}/>
             <Route path = "/formframe" component = {FormFrame}/>
             <Route path = "/bmc" component = {BrainMapConsent}/>
-
+            <Route path = "/ep" component = {EnrollmentProcess}/>
+            <Route path = "/cmr" component = {ConsentAndMedicalRelease}/>
         </div>
         </Router>
         </div>
