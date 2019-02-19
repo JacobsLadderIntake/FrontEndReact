@@ -27,6 +27,7 @@ class Register extends Component {
             confirmationCodeValid: false,
             submitButtonPressed: false,
             confirmButtonPressed:false
+            // emailAlreadyExists:false,
 
         };
         this.goBack = this.goBack.bind(this)
@@ -52,7 +53,7 @@ class Register extends Component {
         let errors = {};
         let formIsValid = true;
         let substring ="@";
-        if(this.state.submitButtonHit) {
+        if(this.state.submitButtonPressed ||this.state.confirmButtonPressed) {
             if (!this.state.isAdminChecked) {
                 if (!fields["studentFirstName"]) {
                     formIsValid = false;
@@ -100,6 +101,9 @@ class Register extends Component {
                 formIsValid = false;
                 errors["password"] = "Cannot be empty";
             }
+            // if(this.checkEmailExists()) {
+            //     this.setState({emailAlreadyExists:true})
+            // }
             if (!fields["confirmPassword"]) {
                 formIsValid = false;
                 errors["confirmPassword"] = "Cannot be empty";
@@ -123,9 +127,12 @@ class Register extends Component {
         this.validateConfirmationForm()
     }
 
+    checkEmailExists() {
+        console.log("yeet")
+        return true
+    }
 
     validateConfirmationForm() {
-        console.log("hey")
         let fields = this.state.fields
         let errors = {};
         if (this.state.confirmButtonPressed) {
@@ -153,20 +160,17 @@ class Register extends Component {
         });
         if (!this.state.isAdminChecked) {
             this.renderConfirmationForm()
-            console.log("confirm")
         }
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
-        this.state.submitButtonHit = true
+        this.state.submitButtonPressed= true
         if (this.validate() && this.state.isAdminChecked) {
             this.props.history.push("/adminhome");
         } else if (this.validate()) {
             this.props.history.push("/parenthome")
-        } else {
-            console.log("ugh why")
         }
     }
     handleCancel(event) {
@@ -191,11 +195,11 @@ class Register extends Component {
                             parent.</Label>
                         <Input
                             autoFocus
-                            type="tel"
+                            type="password"
                             value={this.state.fields["confirmationCode"]}
                             ref="confirmationCode"
                             onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
-                            invalid= {this.state.errors["confirmationCode"]}
+                            invalid= {this.state.errors["confirmationCode"] != null}
 
 
                     />
@@ -230,7 +234,9 @@ class Register extends Component {
         var startsHidden = {
             display: this.state.startsHidden ? "none" : "flex"
         };
-
+        // var emailAlreadyExists = {
+        //     display: this.state.emailAlreadyExists ? "block" : "none",
+        // };
         return (
 
             <form className="form-style" onSubmit={this.handleSubmit.bind(this)}>
@@ -240,9 +246,11 @@ class Register extends Component {
                 </div>
                 <fieldset>
                     <div className="question-fields">
+                        {/*<Alert style={emailAlreadyExists}> This email is already connected to an account. Would you to like to return to return to the <a href = './login'>login page</a>?</Alert>*/}
+
                         <FormGroup check>
                             <Label check onChange={this.toggle.bind(this)}>
-                                <Input disabled={this.state.isAdminChecked} checked={this.state.isAdminChecked}
+                                <Input disabled={this.state.isAdminChecked} defaultChecked={this.state.isAdminChecked}
                                        type="checkbox"/>
                                 I am a member of the admission team.
                             </Label>
@@ -258,7 +266,7 @@ class Register extends Component {
                                     value={this.state.fields["studentFirstName"]}
                                     onChange={this.handleChange.bind(this, "studentFirstName")}
                                     className="error"
-                                    invalid={this.state.errors["studentFirstName"]}
+                                    invalid={this.state.errors["studentFirstName"] != null}
 
 
                                 />
@@ -276,7 +284,7 @@ class Register extends Component {
                                     type="text"
                                     value={this.state.fields["studentLastName"]}
                                     onChange={this.handleChange.bind(this, "studentLastName")}
-                                    invalid={this.state.errors["studentLastName"]}
+                                    invalid={this.state.errors["studentLastName"] != null}
 
                                 />
                                 <FormFeedback
@@ -293,7 +301,7 @@ class Register extends Component {
                                     type="text"
                                     value={this.state.fields["parentFirstName"]}
                                     onChange={this.handleChange.bind(this, "parentFirstName")}
-                                    invalid={this.state.errors["parentFirstName"]}
+                                    invalid={this.state.errors["parentFirstName"] != null}
                                 />
                                 <FormFeedback
                                     invalid={this.state.errors["parentFirstName"]}>{this.state.errors["parentFirstName"]}</FormFeedback>
@@ -309,7 +317,7 @@ class Register extends Component {
                                     type="text"
                                     value={this.state.fields["parentLastName"]}
                                     onChange={this.handleChange.bind(this, "parentLastName")}
-                                    invalid={this.state.errors["parentLastName"]}
+                                    invalid={this.state.errors["parentLastName"] != null}
                                 />
                                 <FormFeedback
                                     invalid={this.state.errors["parentLastName"]}>{this.state.errors["parentLastName"]}</FormFeedback>
@@ -355,7 +363,7 @@ class Register extends Component {
                                     type="text"
                                     value={this.state.fields["relationship"]}
                                     onChange={this.handleChange.bind(this, "relationship")}
-                                    invalid={this.state.errors["relationship"]}
+                                    invalid={this.state.errors["relationship"] != null}
                                 />
                                 <FormFeedback
                                     invalid={this.state.errors["relationship"]}>{this.state.errors["relationship"]}</FormFeedback>
@@ -370,7 +378,7 @@ class Register extends Component {
                                     type="text"
                                     value={this.state.fields["email"]}
                                     onChange={this.handleChange.bind(this, "email")}
-                                    invalid={this.state.errors["email"]}
+                                    invalid={this.state.errors["email"] != null}
                                 />
                                 <FormFeedback
                                     invalid={this.state.errors["email"]}>{this.state.errors["email"]}</FormFeedback>
@@ -385,7 +393,7 @@ class Register extends Component {
                                     ref="password"
                                     onChange={this.handleChange.bind(this, "password")}
                                     type="password"
-                                    invalid={this.state.errors["password"]}
+                                    invalid={this.state.errors["password"] != null}
                                 />
                                 <FormFeedback
                                     invalid={this.state.errors["password"]}>{this.state.errors["password"]}</FormFeedback>
@@ -400,11 +408,11 @@ class Register extends Component {
                                     value={this.state.fields["confirmPassword"]}
                                     onChange={this.handleChange.bind(this, "confirmPassword")}
                                     type="password"
-                                    invalid={this.state.errors["confirmPassword"]}
+                                    invalid={this.state.errors["confirmPassword"] != null}
 
                                 />
                                 <FormFeedback
-                                    invalid={this.state.errors["confrimPassword"]}>{this.state.errors["confirmPassword"]}</FormFeedback>
+                                    invalid={this.state.errors["confirmPassword"]}>{this.state.errors["confirmPassword"]}</FormFeedback>
                             </Col>
                         </FormGroup>
                         <div className="button-div">
