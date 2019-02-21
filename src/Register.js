@@ -3,6 +3,7 @@ import './register.css'
 
 
 import {
+    Alert,
     Col,
     Button,
     FormGroup,
@@ -24,7 +25,8 @@ class Register extends Component {
             confirmationCode:"1234",
             confirmationCodeValid: false,
             submitButtonPressed: false,
-            confirmButtonPressed:false
+            confirmButtonPressed:false,
+            // emailAlreadyExists:false
 
         };
         this.goBack = this.goBack.bind(this)
@@ -50,7 +52,7 @@ class Register extends Component {
         let errors = {};
         let formIsValid = true;
         let substring ="@";
-        if(this.state.submitButtonHit) {
+        if(this.state.submitButtonPressed) {
             if (!this.state.isAdminChecked) {
                 if (!fields["studentFirstName"]) {
                     formIsValid = false;
@@ -93,6 +95,9 @@ class Register extends Component {
             if (fields["email"] && (fields["email"].indexOf("@") === -1 || fields["email"].indexOf(".") === -1)) {
                 errors["email"] = "Email is not formatted correctly"
             }
+            // if(this.checkEmailExists()) {
+            //     this.setState({emailAlreadyExists:true})
+            // }
 
             if (!fields["password"]) {
                 formIsValid = false;
@@ -120,10 +125,12 @@ class Register extends Component {
         this.state.confirmButtonPressed = true
         this.validateConfirmationForm()
     }
+    checkEmailExists() {
+        return true
+    }
 
 
     validateConfirmationForm() {
-        console.log("hey");
         let fields = this.state.fields;
         let errors = {};
         if (this.state.confirmButtonPressed) {
@@ -159,13 +166,11 @@ class Register extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.state.submitButtonHit = true
+        this.state.submitButtonPressed = true
         if (this.validate() && this.state.isAdminChecked) {
             this.props.history.push("/adminhome");
         } else if (this.validate()) {
             this.props.history.push("/parenthome")
-        } else {
-            console.log("ugh why")
         }
     }
 
@@ -187,7 +192,7 @@ class Register extends Component {
                                 by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
                                 parent.</Label>
                             <Input
-                                type="tel"
+                                type="password"
                                 value={this.state.fields["confirmationCode"]}
                                 ref="confirmationCode"
                                 onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
@@ -223,6 +228,9 @@ class Register extends Component {
         var startsHidden = {
             display: this.state.startsHidden ? "none" : "flex"
         };
+        // var emailAlreadyExists = {
+        //     display: this.state.emailAlreadyExists ? "block" : "none",
+        // };
 
         return (
 
@@ -232,6 +240,8 @@ class Register extends Component {
                 </div>
                 <fieldset>
                     <div className="question-fields">
+                        {/*<Alert style={emailAlreadyExists}> This email is already connected to an account. Would you to like to return to return to the <a href = './login'>login page</a>?</Alert>*/}
+
                         <FormGroup check>
                             <Label check onChange={this.toggle.bind(this)}>
                                 <Input disabled={this.state.isAdminChecked} checked={this.state.isAdminChecked}
