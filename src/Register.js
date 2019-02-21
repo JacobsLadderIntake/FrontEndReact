@@ -279,7 +279,6 @@ class Register extends Component {
 
 
                                 />
-                                    invalid={this.state.errors["studentFirstName"]}/>
                                 <FormFeedback
                                     invalid={this.state.errors["studentFirstName"]}>{this.state.errors["studentFirstName"]}</FormFeedback>
                             </Col>
