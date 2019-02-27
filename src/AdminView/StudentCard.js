@@ -33,10 +33,10 @@ class StudentCard extends Component {
 
     renderCard() {
         return <div>
-            <Card className="card">
+            <Card className="card"
+                  onClick={this.handleNameClick}>
                 <CardHeader
                     className="title"
-                    onClick={this.handleNameClick}
                     >{this.state.studentFirstName + " " + this.state.studentLastName}</CardHeader>
                 <CardBody >
                     <CardText className="text">
