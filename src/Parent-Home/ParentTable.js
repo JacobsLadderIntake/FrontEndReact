@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {Row} from "react-bootstrap";
+import Header from "../Header/Header";
 
 class ParentTable extends Component {
     constructor (props) {
@@ -70,6 +71,7 @@ class ParentTable extends Component {
 
         return (
             <div className={"parentTable p-4"}>
+                <Header loggedIn = {true}/>
                 <Row className="parent-table-header">
                     <h2 className = "parent-top col-9">Intake Profile Checklist: {studentName}</h2>
                 </Row>

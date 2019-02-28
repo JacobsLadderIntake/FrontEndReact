@@ -5,6 +5,7 @@ import '../custom-style.css'
 import StudentCard from './StudentCard'
 import {Button, Input, Row, Col} from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Header from "../Header/Header";
 
 class AdminHome extends Component {
     constructor(props) {
@@ -53,6 +54,7 @@ class AdminHome extends Component {
 
         return (
             <div>
+                <Header loggedIn = {true}/>
                 <div className = "adminHome container-fluid" >
                     <div className = "row" >
                         <a className = "admin-top col-9">
