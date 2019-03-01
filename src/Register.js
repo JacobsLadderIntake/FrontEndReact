@@ -11,6 +11,7 @@ import {
     Input,
     Label
 } from "reactstrap";
+import Header from "./Header/Header";
 
 
 class Register extends Component {
@@ -235,6 +236,7 @@ class Register extends Component {
         return (
 
             <form className="form-style" onSubmit={this.handleSubmit.bind(this)}>
+                <Header/>
                 <div className="registration-page-title">
                     <h2>Registration</h2>
                 </div>

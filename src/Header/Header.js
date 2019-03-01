@@ -6,20 +6,19 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap'
  class Header extends React.Component {
      constructor(props) {
          super(props);
-         this.state = {
-             isLoggedIn: true
-         };
+         // this.state = {
+         //     loggedIn: true
+         // };
 
      }
 
 
     render() {
         let isLoggedIn = {
-            display: this.state.isLoggedIn ? "flex" : "none",
+            display: this.props.loggedIn ? "flex" : "none",
         };
         return (
             <Navbar className="header shadow fixed-top">
-                {/*maybe add a click handler here and have this be the return to home*/}
                 <NavbarBrand className="company text-left">Jacob's Ladder Intake Profile</NavbarBrand>
                     <Nav className="ml-auto" style={isLoggedIn}>
                         <NavItem >

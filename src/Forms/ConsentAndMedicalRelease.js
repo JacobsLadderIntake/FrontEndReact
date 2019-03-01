@@ -239,7 +239,7 @@ class ConsentAndMedicalRelease extends Component{
     render(){
         return (
             <div>
-                <Header/>
+                <Header loggedIn = {true}/>
                 <div className="form-title">
                     <div className = "row" >
                         <a className = "parent-top col-9">
