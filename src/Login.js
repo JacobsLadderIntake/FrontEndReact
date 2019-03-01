@@ -10,6 +10,7 @@ import {
   Label,
   FormFeedback
 } from "reactstrap";
+import Header from "./Header/Header";
 
 
 class Login extends Component {
@@ -89,6 +90,7 @@ class Login extends Component {
 
     return (
         <form className="form-style" onSubmit={this.handleLogin}>
+            <Header/>
             <div className="login-page-title">
                 <h1> Existing User Login</h1>
             </div>
