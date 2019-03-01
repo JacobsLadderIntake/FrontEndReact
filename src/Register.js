@@ -166,12 +166,13 @@ class Register extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.state.submitButtonPressed= true
-        if (this.validate() && this.state.isAdminChecked) {
-            this.props.history.push("/adminhome");
-        } else if (this.validate()) {
-            this.props.history.push("/parenthome")
-        }
+        this.setState({submitButtonPressed: true},()=> {
+            if (this.validate() && this.state.isAdminChecked) {
+                this.props.history.push("/adminhome");
+            } else if (this.validate()) {
+                this.props.history.push("/parenthome")
+            }
+        });
     }
     handleCancel(event) {
         event.preventDefault();
@@ -272,7 +273,7 @@ class Register extends Component {
 
                                     type="text"
                                     ref="studentFirstName"
-                                    value={this.state.fields["studentFirstName"]}
+                                    value={this.state.fields["studentFirstName"] || ""}
                                     onChange={this.handleChange.bind(this, "studentFirstName")}
                                     className="error"
                                     invalid={this.state.errors["studentFirstName"] != null}
@@ -289,7 +290,7 @@ class Register extends Component {
                                 <Input
                                     ref="studentLastName"
                                     type="text"
-                                    value={this.state.fields["studentLastName"]}
+                                    value={this.state.fields["studentLastName"] || ""}
                                     onChange={this.handleChange.bind(this, "studentLastName")}
                                     invalid={this.state.errors["studentLastName"] != null}
 
@@ -305,7 +306,7 @@ class Register extends Component {
                                 <Input
                                     ref="parentFirstName"
                                     type="text"
-                                    value={this.state.fields["parentFirstName"]}
+                                    value={this.state.fields["parentFirstName"] || ""}
                                     onChange={this.handleChange.bind(this, "parentFirstName")}
                                     invalid={this.state.errors["parentFirstName"] != null}
                                 />
@@ -320,7 +321,7 @@ class Register extends Component {
                                 <Input
                                     ref="parentLastName"
                                     type="text"
-                                    value={this.state.fields["parentLastName"]}
+                                    value={this.state.fields["parentLastName"] || ""}
                                     onChange={this.handleChange.bind(this, "parentLastName")}
                                     invalid={this.state.errors["parentLastName"] != null}
                                 />
@@ -334,7 +335,7 @@ class Register extends Component {
                                 <Input
                                     ref="firstName"
                                     type="text"
-                                    value={this.state.fields["firstName"]}
+                                    value={this.state.fields["firstName"] || ""}
                                     onChange={this.handleChange.bind(this, "firstName")}
                                     invalid={this.state.errors["firstName"]}
                                 />
@@ -348,7 +349,7 @@ class Register extends Component {
                                 <Input
                                     ref="lastName"
                                     type="text"
-                                    value={this.state.fields["lastName"]}
+                                    value={this.state.fields["lastName"] || ""}
                                     onChange={this.handleChange.bind(this, "lastName")}
                                     invalid={this.state.errors["lastName"]}
                                 />
@@ -363,7 +364,7 @@ class Register extends Component {
                                 <Input
                                     ref="relationship"
                                     type="text"
-                                    value={this.state.fields["relationship"]}
+                                    value={this.state.fields["relationship"] || ""}
                                     onChange={this.handleChange.bind(this, "relationship")}
                                     invalid={this.state.errors["relationship"] != null}
                                 />
@@ -377,7 +378,7 @@ class Register extends Component {
                                 <Input
                                     ref="email"
                                     type="text"
-                                    value={this.state.fields["email"]}
+                                    value={this.state.fields["email"] || ""}
                                     onChange={this.handleChange.bind(this, "email")}
                                     invalid={this.state.errors["email"] != null}
                                 />
@@ -390,7 +391,7 @@ class Register extends Component {
                             <Label className="control-label required" sm={6}>Password</Label>
                             <Col sm={12}>
                                 <Input
-                                    value={this.state.fields["password"]}
+                                    value={this.state.fields["password"] || ""}
                                     ref="password"
                                     onChange={this.handleChange.bind(this, "password")}
                                     type="password"
@@ -406,7 +407,7 @@ class Register extends Component {
                             <Col sm={12}>
                                 <Input
                                     ref="confirmPassword"
-                                    value={this.state.fields["confirmPassword"]}
+                                    value={this.state.fields["confirmPassword"] || ""}
                                     onChange={this.handleChange.bind(this, "confirmPassword")}
                                     type="password"
                                     invalid={this.state.errors["confirmPassword"] != null}
