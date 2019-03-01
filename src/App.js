@@ -12,7 +12,7 @@ import ConsentAndMedicalRelease from './Forms/ConsentAndMedicalRelease';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faPlus, faPlusCircle)
+library.add(faPlus, faPlusCircle);
 
 class App extends Component {
     state = {
