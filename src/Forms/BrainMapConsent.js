@@ -12,6 +12,11 @@ import {
     Row
 } from "reactstrap";
 
+var object = '{"info":[' +
+    '{"token": "", "values": [' +
+    '{"studentFirstName":"", "studentLastName": "", "parentFirstName": "", "parentLastName": "", "signature": "", "date": ""}]}]}';
+var infoObj;
+
 class BrainMapConsent extends Component{
     constructor(props) {
         super(props);
@@ -26,6 +31,8 @@ class BrainMapConsent extends Component{
         this.goBack = this.goBack.bind(this);
 
     }
+
+    infoObj = JSON.parse(object);
 
     goBack(event) {
         window.location.reload();
@@ -78,6 +85,7 @@ class BrainMapConsent extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        this.componentDidMount();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
                 //NEED TO UPDATE DATABASE
@@ -90,8 +98,32 @@ class BrainMapConsent extends Component{
         event.preventDefault();
         this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
-        this.props.history.push("/parenthome")
+        this.componentDidMount();
+        //back to homepage
+        this.props.history.push("/parenthome");
     }
+
+    componentDidMount() {
+        this.callApi()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+    callApi = async () => {
+        const response = await fetch('users/Emma@gmail.com/BrainMapConsentForm', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                infoObj
+            })
+        });
+        const body = await response.json();
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        return body;
+    };
 
     renderFields() {
         const {errors} = this.state.errors;
