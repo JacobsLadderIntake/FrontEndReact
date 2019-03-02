@@ -73,13 +73,6 @@ class ParentTable extends Component {
         // need to figure out how to access the row that has been clicked on, not sure how to do that though
     }
 
-    formatTable(state, rowInfo) {
-        return {
-            style: {
-                background: "blue"}
-        }
-    }
-
 
     render() {
 
