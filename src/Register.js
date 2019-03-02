@@ -11,6 +11,7 @@ import {
     Input,
     Label
 } from "reactstrap";
+import Header from "./Header/Header";
 
 
 class Register extends Component {
@@ -442,6 +443,7 @@ class Register extends Component {
     render() {
         return (
             <div>
+                <Header loggedIn = {false}/>
                 {(this.state.isAdminChecked && !this.state.confirmationCodeValid)
                     ? this.renderConfirmationForm()
                     : this.renderForm()}

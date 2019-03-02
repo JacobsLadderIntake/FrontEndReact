@@ -15,7 +15,7 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap'
 
     render() {
         let isLoggedIn = {
-            display: this.state.isLoggedIn ? "flex" : "none",
+            display: this.props.loggedIn ? "flex" : "none",
         };
         return (
             <Navbar className="header shadow fixed-top">
