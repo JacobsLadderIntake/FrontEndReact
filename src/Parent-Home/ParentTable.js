@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {Row} from "react-bootstrap";
-import Header from "../Header/Header";
 
 class ParentTable extends Component {
     constructor (props) {
@@ -21,7 +20,7 @@ class ParentTable extends Component {
                 progress: 'Not Started',
                 flag: 'No'
             }, {
-                name: 'Consent and Medical Release Form',
+                name: 'JL Consent and Medical Release Form',
                 progress: 'Not Started',
                 flag: 'No'
             }, {
@@ -59,15 +58,7 @@ class ParentTable extends Component {
         };
     }
 
-    handleClick(row, event) {
-        event.preventDefault();
-        if (row.name === "Brain Map Consent Form") {
-            this.props.history.push("/bmc");
-        } else if (row.name === "Enrollment Process Form") {
-            this.props.history.push("/ep");
-        } else if (row.name === "Consent and Medical Release Form") {
-            this.props.history.push("/cmr");
-        }
+    handleClick() {
         // console.log(this.state.data.name);
         // need to figure out how to access the row that has been clicked on, not sure how to do that though
     }
@@ -79,7 +70,6 @@ class ParentTable extends Component {
 
         return (
             <div className={"parentTable p-4"}>
-                <Header loggedIn = {true}/>
                 <Row className="parent-table-header">
                     <h2 className = "parent-top col-9">Intake Profile Checklist: {studentName}</h2>
                 </Row>
@@ -87,15 +77,7 @@ class ParentTable extends Component {
                     data={this.state.data}
                     columns={this.state.columns}
                     defaultPageSize={9}
-                    showPagination={false}
-                    getTdProps={(state, rowInfo) => {
-                        return {
-                            //style: {background rowInfo.progress === "In Progress" ? #DEDEDD : #DEDEDE}
-                            onClick: (e) => {
-                                console.log(rowInfo);
-                                this.handleClick(rowInfo.original, e);}
-                        }
-                    }}
+                    onClick= {this.handleClick()}
                 />
             </div>
         );

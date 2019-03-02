@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FormFooter from './FormFooter';
-import Header from "../Header/Header";
 
 var bodyOfTextStyle;
 
@@ -16,7 +15,6 @@ class FormFrame extends Component{
 
         return(
             <div>
-
                 <div className="parent-table-header">
                     <div className = "row" >
                         <a className = "parent-top col-9">
