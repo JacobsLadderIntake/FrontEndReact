@@ -1,7 +1,7 @@
 
 
 .parentTable {
-    background-color: #DEDEDE;
+    background-color: red;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -14,12 +14,7 @@
 }
 
 .parentTableHeader {
-    background-color: #67777C;
+    background-color: #67777C; !important;
     font-size: calc(5px + 2vmin);
     color: white;
-}
-
-.navigation {
-    align-items: right;
-    text-align: right;
 }
