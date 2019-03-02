@@ -8,6 +8,7 @@ import FormFrame from './FormFrame/FormFrame';
 import BrainMapConsent from './Forms/BrainMapConsent';
 import EnrollmentProcess from './Forms/EnrollmentProcess';
 import ConsentAndMedicalRelease from './Forms/ConsentAndMedicalRelease';
+import ClientHistoryAndInformation from "./Forms/ClientHistoryAndInformation";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
@@ -33,6 +34,7 @@ class App extends Component {
             <Route path = "/bmc" component = {BrainMapConsent}/>
             <Route path = "/ep" component = {EnrollmentProcess}/>
             <Route path = "/cmr" component = {ConsentAndMedicalRelease}/>
+            <Route path = "/chai" component = {ClientHistoryAndInformation}/>
         </div>
         </Router>
         </div>
