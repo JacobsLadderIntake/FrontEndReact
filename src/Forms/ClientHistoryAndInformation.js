@@ -88,55 +88,83 @@ class ClientHistoryAndInformation extends Component{
 
     renderSection1() {
         return(
-            <h1>Section 1</h1>
+            <fieldset>
+                <div>Section 1: Client Information</div>
+
+            </fieldset>
+
+
         );
     }
 
     renderSection2() {
         return(
-            <h1>Section 2</h1>
+            <fieldset>
+                <div>Section 2: Family Information</div>
+            </fieldset>
+
         );
     }
 
     renderSection3() {
         return(
-            <h1>Section 3</h1>
+            <fieldset>
+                <div>Section 3: Prenatal and Birth History</div>
+            </fieldset>
+
         );
     }
 
     renderSection4() {
         return(
-            <h1>Section 4</h1>
+            <fieldset>
+                <div>Section 4: Developmental History</div>
+            </fieldset>
+
         );
     }
 
     renderSection5() {
         return(
-            <h1>Section 5</h1>
+            <fieldset>
+                <div>Section 5: Medical History/Past Therapies</div>
+            </fieldset>
         );
     }
 
     renderSection6() {
         return(
-            <h1>Section 6</h1>
+            <fieldset>
+                <div>Section 6: General Health</div>
+            </fieldset>
+
         );
     }
 
     renderSection7() {
         return(
-            <h1>Section 7</h1>
+            <fieldset>
+                <div>Section 7: Educational History</div>
+            </fieldset>
+
         );
     }
 
     renderSection8() {
         return(
-            <h1>Section 8</h1>
+            <fieldset>
+                <div>Section 8: Communication</div>
+            </fieldset>
+
         );
     }
 
     renderSection9() {
         return(
-            <h1>Section 9</h1>
+            <fieldset>
+                <div>Section 9: Emotional/Behavioral History</div>
+            </fieldset>
+
         );
     }
 
@@ -151,15 +179,17 @@ class ClientHistoryAndInformation extends Component{
                         </a>
                     </div>
                 </div>
-                <div> {this.renderSection1()} </div>
-                <div> {this.renderSection2()} </div>
-                <div> {this.renderSection3()} </div>
-                <div> {this.renderSection4()} </div>
-                <div> {this.renderSection5()} </div>
-                <div> {this.renderSection6()} </div>
-                <div> {this.renderSection7()} </div>
-                <div> {this.renderSection8()} </div>
-                <div> {this.renderSection9()} </div>
+                <div className={"frame p-4"}>
+                    <div> {this.renderSection1()} </div>
+                    <div> {this.renderSection2()} </div>
+                    <div> {this.renderSection3()} </div>
+                    <div> {this.renderSection4()} </div>
+                    <div> {this.renderSection5()} </div>
+                    <div> {this.renderSection6()} </div>
+                    <div> {this.renderSection7()} </div>
+                    <div> {this.renderSection8()} </div>
+                    <div> {this.renderSection9()} </div>
+                </div>
                 <div className="formFooter">
                     <ButtonToolbar className="">
                         <Button variant="outline-secondary" size="sm" onClick={this.handleSaveAndQuit.bind(this)} active>

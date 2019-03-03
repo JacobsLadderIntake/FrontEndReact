@@ -36,3 +36,8 @@
     margin:10px;
     padding:5px;
 }
+
+.frame {
+    border: solid gray 1px ;
+    border-radius: 25px;
+}
