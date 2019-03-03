@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import './formFormatting.css';
 import {
-    ButtonToolbar, Button
+    Col,
+    Button,
+    ButtonToolbar,
+    FormGroup,
+    FormFeedback,
+    Input,
+    Label,
+    Row
 } from "reactstrap";
 
 class ClientHistoryAndInformation extends Component{
@@ -39,30 +46,47 @@ class ClientHistoryAndInformation extends Component{
         let formIsValid = true;
 
         if (this.state.submitButtonPressed) {
-            // if (!fields["studentFirstName"]) {
-            //     formIsValid = false;
-            //     errors["studentFirstName"] = "Cannot be empty";
-            // }
-            // if (!fields["studentLastName"]) {
-            //     formIsValid = false;
-            //     errors["studentLastName"] = "Cannot be empty";
-            // }
-            // if (!fields["parentFirstName"]) {
-            //     formIsValid = false;
-            //     errors["parentFirstName"] = "Cannot be empty";
-            // }
-            // if (!fields["parentLastName"]) {
-            //     formIsValid = false;
-            //     errors["parentLastName"] = "Cannot be empty";
-            // }
-            // if (!fields["parentSignature"]) {
-            //     formIsValid = false;
-            //     errors["parentSignature"] = "Cannot be empty";
-            // }
-            // if (!fields["date"]) {
-            //     formIsValid = false;
-            //     errors["date"] = "Cannot be empty";
-            // }
+            if (!fields["dob"]) {
+                formIsValid = false;
+                errors["dob"] = "Cannot be empty";
+            }
+            if (!fields["age"]) {
+                formIsValid = false;
+                errors["age"] = "Cannot be empty";
+            }
+            if (!fields["diagnosis"]) {
+                formIsValid = false;
+                errors["diagnosis"] = "Cannot be empty";
+            }
+            if (!fields["height"]) {
+                formIsValid = false;
+                errors["height"] = "Cannot be empty";
+            }
+            if (!fields["weight"]) {
+                formIsValid = false;
+                errors["weight"] = "Cannot be empty";
+            }
+            if (!fields["street"]) {
+                formIsValid = false;
+                errors["street"] = "Cannot be empty";
+            }
+            if (!fields["city"]) {
+                formIsValid = false;
+                errors["city"] = "Cannot be empty";
+            }
+            if (!fields["state"]) {
+                formIsValid = false;
+                errors["state"] = "Cannot be empty";
+            }
+            if (!fields["zip"]) {
+                formIsValid = false;
+                errors["zip"] = "Cannot be empty";
+            }
+            if (!fields["country"]) {
+                formIsValid = false;
+                errors["country"] = "Cannot be empty";
+            }
+
         }
 
         this.setState({errors: errors});
@@ -89,7 +113,171 @@ class ClientHistoryAndInformation extends Component{
     renderSection1() {
         return(
             <fieldset>
-                <div>Section 1: Client Information</div>
+                <div className={"section"}>Section 1: Client Information</div>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>Date of Birth</Label>
+                            <Input
+                                type="text"
+                                ref="dob"
+                                value={this.state.fields["dob"] || ""}
+                                onChange={this.handleChange.bind(this, "dob")}
+                                className="error"
+                                invalid={this.state.errors["dob"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["dob"] }>{this.state.errors["dob"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>Current Age</Label>
+                            <Input
+                                type="text"
+                                ref="age"
+                                value={this.state.fields["age"] || ""}
+                                onChange={this.handleChange.bind(this, "age")}
+                                className="error"
+                                invalid={this.state.errors["age"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["age"] }>{this.state.errors["age"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>Referring Diagnosis</Label>
+                            <Input
+                                type="text"
+                                ref="diagnosis"
+                                value={this.state.fields["diagnosis"] || ""}
+                                onChange={this.handleChange.bind(this, "diagnosis")}
+                                className="error"
+                                invalid={this.state.errors["diagnosis"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["diagnosis"] }>{this.state.errors["diagnosis"]}
+                            </FormFeedback>
+                            <Label className={"additional-note"}>
+                                *If you wish to use private insurance funds, please discus diagnosis (and resulting diagnosis code(s)) with our insurance biller.
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>Current Height</Label>
+                            <Input
+                                type="text"
+                                ref="height"
+                                value={this.state.fields["height"] || ""}
+                                onChange={this.handleChange.bind(this, "height")}
+                                className="error"
+                                invalid={this.state.errors["height"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["height"] }>{this.state.errors["height"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>Current Weight</Label>
+                            <Input
+                                type="text"
+                                ref="weight"
+                                value={this.state.fields["weight"] || ""}
+                                onChange={this.handleChange.bind(this, "weight")}
+                                className="error"
+                                invalid={this.state.errors["weight"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["weight"] }>{this.state.errors["weight"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>Street Name</Label>
+                            <Input
+                                type="text"
+                                ref="street"
+                                value={this.state.fields["street"] || ""}
+                                onChange={this.handleChange.bind(this, "street")}
+                                className="error"
+                                invalid={this.state.errors["street"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["street"] }>{this.state.errors["street"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>City</Label>
+                            <Input
+                                type="text"
+                                ref="city"
+                                value={this.state.fields["city"] || ""}
+                                onChange={this.handleChange.bind(this, "city")}
+                                className="error"
+                                invalid={this.state.errors["city"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["city"] }>{this.state.errors["city"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={2}>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>State</Label>
+                            <Input
+                                type="text"
+                                ref="state"
+                                value={this.state.fields["state"] || ""}
+                                onChange={this.handleChange.bind(this, "state")}
+                                className="error"
+                                invalid={this.state.errors["state"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["state"] }>{this.state.errors["state"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>Zip Code</Label>
+                            <Input
+                                type="text"
+                                ref="zip"
+                                value={this.state.fields["zip"] || ""}
+                                onChange={this.handleChange.bind(this, "zip")}
+                                className="error"
+                                invalid={this.state.errors["zip"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["zip"] }>{this.state.errors["zip"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required" sm={6}>Country</Label>
+                            <Input
+                                type="text"
+                                ref="country"
+                                value={this.state.fields["country"] || ""}
+                                onChange={this.handleChange.bind(this, "country")}
+                                className="error"
+                                invalid={this.state.errors["country"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["country"] }>{this.state.errors["country"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
 
             </fieldset>
 
@@ -100,7 +288,7 @@ class ClientHistoryAndInformation extends Component{
     renderSection2() {
         return(
             <fieldset>
-                <div>Section 2: Family Information</div>
+                <div className={"section"}>Section 2: Family Information</div>
             </fieldset>
 
         );
@@ -109,7 +297,7 @@ class ClientHistoryAndInformation extends Component{
     renderSection3() {
         return(
             <fieldset>
-                <div>Section 3: Prenatal and Birth History</div>
+                <div className={"section"}>Section 3: Prenatal and Birth History</div>
             </fieldset>
 
         );
@@ -118,7 +306,7 @@ class ClientHistoryAndInformation extends Component{
     renderSection4() {
         return(
             <fieldset>
-                <div>Section 4: Developmental History</div>
+                <div className={"section"}>Section 4: Developmental History</div>
             </fieldset>
 
         );
@@ -127,7 +315,7 @@ class ClientHistoryAndInformation extends Component{
     renderSection5() {
         return(
             <fieldset>
-                <div>Section 5: Medical History/Past Therapies</div>
+                <div className={"section"}>Section 5: Medical History/Past Therapies</div>
             </fieldset>
         );
     }
@@ -135,7 +323,7 @@ class ClientHistoryAndInformation extends Component{
     renderSection6() {
         return(
             <fieldset>
-                <div>Section 6: General Health</div>
+                <div className={"section"}>Section 6: General Health</div>
             </fieldset>
 
         );
@@ -144,7 +332,7 @@ class ClientHistoryAndInformation extends Component{
     renderSection7() {
         return(
             <fieldset>
-                <div>Section 7: Educational History</div>
+                <div className={"section"}>Section 7: Educational History</div>
             </fieldset>
 
         );
@@ -153,7 +341,7 @@ class ClientHistoryAndInformation extends Component{
     renderSection8() {
         return(
             <fieldset>
-                <div>Section 8: Communication</div>
+                <div className={"section"}>Section 8: Communication</div>
             </fieldset>
 
         );
@@ -162,7 +350,7 @@ class ClientHistoryAndInformation extends Component{
     renderSection9() {
         return(
             <fieldset>
-                <div>Section 9: Emotional/Behavioral History</div>
+                <div className={"section"}>Section 9: Emotional/Behavioral History</div>
             </fieldset>
 
         );
@@ -179,7 +367,7 @@ class ClientHistoryAndInformation extends Component{
                         </a>
                     </div>
                 </div>
-                <div className={"frame p-4"}>
+                <div className={"frame p-4"} data-spy="scroll">
                     <div> {this.renderSection1()} </div>
                     <div> {this.renderSection2()} </div>
                     <div> {this.renderSection3()} </div>
@@ -189,17 +377,19 @@ class ClientHistoryAndInformation extends Component{
                     <div> {this.renderSection7()} </div>
                     <div> {this.renderSection8()} </div>
                     <div> {this.renderSection9()} </div>
+
                 </div>
                 <div className="formFooter">
-                    <ButtonToolbar className="">
-                        <Button variant="outline-secondary" size="sm" onClick={this.handleSaveAndQuit.bind(this)} active>
-                            Save and Quit
-                        </Button>
-                        <Button variant="secondary" size="sm" onClick={this.handleSubmit.bind(this)} active>
-                            Submit
-                        </Button>
-                    </ButtonToolbar>
+                    {/*<ButtonToolbar className="">*/}
+                    <Button variant="outline-secondary" size="sm" onClick={this.handleSaveAndQuit.bind(this)} active>
+                        Save and Quit
+                    </Button>
+                    <Button variant="secondary" size="sm" onClick={this.handleSubmit.bind(this)} active>
+                        Submit
+                    </Button>
+                    {/*</ButtonToolbar>*/}
                 </div>
+
             </div>
         );
     };
