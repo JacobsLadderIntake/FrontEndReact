@@ -379,16 +379,16 @@ class ClientHistoryAndInformation extends Component{
                     <div> {this.renderSection9()} </div>
 
                 </div>
-                <div className="formFooter">
-                    {/*<ButtonToolbar className="">*/}
-                    <Button variant="outline-secondary" size="sm" onClick={this.handleSaveAndQuit.bind(this)} active>
+                <Row className={"p-2 justify-content-center"}>
+                    <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
                         Save and Quit
                     </Button>
-                    <Button variant="secondary" size="sm" onClick={this.handleSubmit.bind(this)} active>
+
+                    <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
                         Submit
                     </Button>
-                    {/*</ButtonToolbar>*/}
-                </div>
+
+                </Row>
 
             </div>
         );

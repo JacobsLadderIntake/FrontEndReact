@@ -28,7 +28,6 @@
 }
 
 .body-of-text{
-    margin:20px;
     padding:20px;
 }
 
@@ -55,4 +54,11 @@
 
 .checkBox {
     font-weight: bold;
+}
+
+.button {
+    background-color: #5DA3C7;
+    margin: 5px;
+    color: white;
+    border: thin #5DA3C7;
 }

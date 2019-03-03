@@ -85,7 +85,7 @@ class BrainMapConsent extends Component{
         const {errors} = this.state.errors;
         return (
           <fieldset>
-              <div className = "question-fields">
+              <div>
                   <FormGroup>
                       <Col sm={12}>
                           <Label sm={12} className={"checkBox"}>
@@ -169,9 +169,6 @@ class BrainMapConsent extends Component{
                     <div>
                         *Note: Please let us know if the client has any sensitivities on the head or scalp. The recording of an EEG is a non-invasive method of measuring surface electrical activity in the brain. It is recorded with a 19-electrode medical-grade cap, and a water/saline based conductive gel. The EEG reading can be affected by medications, diet changes, sickness, and hair products. Avoid using conditioner, hair gel,and hair spray the day of the recording. Please make sure to limit any drastic changes in the client’s typical day-to-day routine as much as possible.
                     </div>
-                    {/*<div className="closer-body-of-text">*/}
-                    {/*I hereby give release to complete a brain map as part of the Jacob’s Ladder initial evaluation process.*/}
-                    {/*</div>*/}
                 </div>
             </div>
         );
@@ -182,24 +179,27 @@ class BrainMapConsent extends Component{
             <div>
                 <Header loggedIn = {true}/>
                 <div className="form-title">
-                    <div className = "row" >
+                    <Row >
                         <a className = "parent-top col-9">
                             <h2>Brain Map Consent Form</h2>
                         </a>
-                    </div>
+                    </Row>
                 </div>
-                <div> {this.renderText()} </div>
-                <div> {this.renderFields()} </div>
-                <div className="formFooter">
-                    <ButtonToolbar className="">
-                        <Button variant="outline-secondary" size="sm" onClick={this.handleSaveAndQuit.bind(this)} active>
-                            Save and Quit
-                        </Button>
-                        <Button variant="secondary" size="sm" onClick={this.handleSubmit.bind(this)} active>
-                            Submit
-                        </Button>
-                    </ButtonToolbar>
+
+                <div className={"frame p-4"} data-spy="scroll">
+                    <div> {this.renderText()} </div>
+                    <div> {this.renderFields()} </div>
                 </div>
+
+                <Row className={"p-2 justify-content-center"}>
+                    <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
+                        Save and Quit
+                    </Button>
+
+                    <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
+                        Submit
+                    </Button>
+                </Row>
             </div>
         );
     };

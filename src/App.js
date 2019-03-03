@@ -29,7 +29,6 @@ class App extends Component {
             <Route path = "/register" component = {Register}/>
             <Route path = "/adminhome" component = {AdminHome}/>
             <Route path = "/parenthome" component = {ParentTable}/>
-            <Route path = "/formframe" component = {FormFrame}/>
             <Route path = "/bmc" component = {BrainMapConsent}/>
             <Route path = "/ep" component = {EnrollmentProcess}/>
             <Route path = "/cmr" component = {ConsentAndMedicalRelease}/>

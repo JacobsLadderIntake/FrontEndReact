@@ -52,7 +52,7 @@ class ConsentAndMedicalRelease extends Component{
             }
             if (!fields["parentName"]) {
                 formIsValid = false;
-                errors["parentFirstName"] = "Cannot be empty";
+                errors["parentName"] = "Cannot be empty";
             }
             if (!fields["date"]) {
                 formIsValid = false;
@@ -86,9 +86,9 @@ class ConsentAndMedicalRelease extends Component{
         const {errors} = this.state.errors;
         return (
             <fieldset>
-                <div className = "question-fields">
+                <div>
                     <FormGroup>
-                        <Label className="control-label required" sm={6}>List any special considerations or requests below.</Label>
+                        <Label sm={6}>List any special considerations or requests below.</Label>
                         <Col sm={12}>
                             <Input
                                 type="text"
@@ -98,7 +98,7 @@ class ConsentAndMedicalRelease extends Component{
                         </Col>
                     </FormGroup>
                 </div>
-                <div className = "question-fields">
+                <div>
                     <FormGroup>
                         <Col sm={12}>
                             <Label sm={12} className={"checkBox"}>
@@ -190,18 +190,21 @@ class ConsentAndMedicalRelease extends Component{
                         </a>
                     </div>
                 </div>
-                <div> {this.renderText()} </div>
-                <div> {this.renderFields()} </div>
-                <div className="formFooter">
-                    <ButtonToolbar className="">
-                        <Button variant="outline-secondary" size="sm" onClick={this.handleSaveAndQuit.bind(this)} active>
+                <div className={"frame p-4"} data-spy="scroll">
+                    <div> {this.renderText()} </div>
+                    <div> {this.renderFields()} </div>
+                </div>
+
+                <Row className={"p-2 justify-content-center"}>
+                        <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
                             Save and Quit
                         </Button>
-                        <Button variant="secondary" size="sm" onClick={this.handleSubmit.bind(this)} active>
+
+                        <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
                             Submit
                         </Button>
-                    </ButtonToolbar>
-                </div>
+
+                </Row>
             </div>
         );
     };

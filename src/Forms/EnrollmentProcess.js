@@ -84,7 +84,7 @@ class EnrollmentProcess extends Component{
         const {errors} = this.state.errors;
         return (
             <fieldset>
-                <div className = "question-fields">
+                <div>
                     <FormGroup>
                         <Col sm={12}>
                             <Label sm={12} className={"checkBox"}>
@@ -193,18 +193,20 @@ class EnrollmentProcess extends Component{
                         </a>
                     </div>
                 </div>
-                <div> {this.renderText()} </div>
-                <div> {this.renderFields()} </div>
-                <div className="formFooter">
-                    <ButtonToolbar className="">
-                        <Button variant="outline-secondary" size="sm" onClick={this.handleSaveAndQuit.bind(this)} active>
-                            Save and Quit
-                        </Button>
-                        <Button variant="secondary" size="sm" onClick={this.handleSubmit.bind(this)} active>
-                            Submit
-                        </Button>
-                    </ButtonToolbar>
+                <div className={"frame p-4"} data-spy="scroll">
+                    <div> {this.renderText()} </div>
+                    <div> {this.renderFields()} </div>
                 </div>
+                <Row className={"p-2 justify-content-center"}>
+                    <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
+                        Save and Quit
+                    </Button>
+
+                    <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
+                        Submit
+                    </Button>
+
+                </Row>
             </div>
         );
     };
