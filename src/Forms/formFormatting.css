@@ -38,14 +38,22 @@
 
 .frame {
     border: solid gray 1px ;
-    border-radius: 25px;
+    border-radius: 10px;
     height: 75vh;
     overflow-y: scroll;
 }
 
 .section {
-    font-weight: bold;
+    font-weight: bolder;
     font-size: 20px;
+    padding: 8px;
+}
+
+.sub-section {
+    font-weight: bold;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .additional-note {

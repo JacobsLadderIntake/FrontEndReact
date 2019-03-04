@@ -87,6 +87,51 @@ class ClientHistoryAndInformation extends Component{
                 errors["country"] = "Cannot be empty";
             }
 
+            if (!fields["homeNumber"]) {
+                formIsValid = false;
+                errors["homeNumber"] = "Cannot be empty";
+            }
+            if (!fields["motherName"]) {
+                formIsValid = false;
+                errors["motherName"] = "Cannot be empty";
+            }
+            if (!fields["motherAge"]) {
+                formIsValid = false;
+                errors["motherAge"] = "Cannot be empty";
+            }
+            if (!fields["motherCell"]) {
+                formIsValid = false;
+                errors["motherCell"] = "Cannot be empty";
+            }
+            if (!fields["motherEmail"]) {
+                formIsValid = false;
+                errors["motherEmail"] = "Cannot be empty";
+            }
+            if (!fields["motherOccupation"]) {
+                formIsValid = false;
+                errors["motherOccupation"] = "Cannot be empty";
+            }
+            if (!fields["fatherName"]) {
+                formIsValid = false;
+                errors["fatherName"] = "Cannot be empty";
+            }
+            if (!fields["fatherAge"]) {
+                formIsValid = false;
+                errors["fatherAge"] = "Cannot be empty";
+            }
+            if (!fields["fatherCell"]) {
+                formIsValid = false;
+                errors["fatherCell"] = "Cannot be empty";
+            }
+            if (!fields["fatherEmail"]) {
+                formIsValid = false;
+                errors["fatherEmail"] = "Cannot be empty";
+            }
+            if (!fields["fatherOccupation"]) {
+                formIsValid = false;
+                errors["fatherOccupation"] = "Cannot be empty";
+            }
+
         }
 
         this.setState({errors: errors});
@@ -117,7 +162,7 @@ class ClientHistoryAndInformation extends Component{
                 <Row>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>Date of Birth</Label>
+                            <Label className="control-label required">Date of Birth</Label>
                             <Input
                                 type="text"
                                 ref="dob"
@@ -132,7 +177,7 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>Current Age</Label>
+                            <Label className="control-label required">Current Age</Label>
                             <Input
                                 type="text"
                                 ref="age"
@@ -149,7 +194,7 @@ class ClientHistoryAndInformation extends Component{
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>Referring Diagnosis</Label>
+                            <Label className="control-label required">Referring Diagnosis</Label>
                             <Input
                                 type="text"
                                 ref="diagnosis"
@@ -169,7 +214,7 @@ class ClientHistoryAndInformation extends Component{
                 <Row>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>Current Height</Label>
+                            <Label className="control-label required">Current Height</Label>
                             <Input
                                 type="text"
                                 ref="height"
@@ -184,7 +229,7 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>Current Weight</Label>
+                            <Label className="control-label required">Current Weight</Label>
                             <Input
                                 type="text"
                                 ref="weight"
@@ -201,7 +246,7 @@ class ClientHistoryAndInformation extends Component{
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>Street Name</Label>
+                            <Label className="control-label required">Street Name</Label>
                             <Input
                                 type="text"
                                 ref="street"
@@ -218,7 +263,7 @@ class ClientHistoryAndInformation extends Component{
                 <Row>
                     <Col sm={4}>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>City</Label>
+                            <Label className="control-label required">City</Label>
                             <Input
                                 type="text"
                                 ref="city"
@@ -233,7 +278,7 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                     <Col sm={2}>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>State</Label>
+                            <Label className="control-label required">State</Label>
                             <Input
                                 type="text"
                                 ref="state"
@@ -248,7 +293,7 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>Zip Code</Label>
+                            <Label className="control-label required">Zip Code</Label>
                             <Input
                                 type="text"
                                 ref="zip"
@@ -263,7 +308,7 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required" sm={6}>Country</Label>
+                            <Label className="control-label required">Country</Label>
                             <Input
                                 type="text"
                                 ref="country"
@@ -273,6 +318,23 @@ class ClientHistoryAndInformation extends Component{
                                 invalid={this.state.errors["country"] != null}/>
                             <FormFeedback
                                 invalid={this.state.errors["country"] }>{this.state.errors["country"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required">Home Phone Number</Label>
+                            <Input
+                                type="text"
+                                ref="homeNumber"
+                                value={this.state.fields["homeNumber"] || ""}
+                                onChange={this.handleChange.bind(this, "homeNumber")}
+                                className="error"
+                                invalid={this.state.errors["homeNumber"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["homeNumber"] }>{this.state.errors["homeNumber"]}
                             </FormFeedback>
                         </FormGroup>
                     </Col>
@@ -289,6 +351,356 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 2: Family Information</div>
+                <div className={"sub-section"}>Mother's Information</div>
+                    <Row>
+                        <Col sm={9}>
+                            <FormGroup>
+                                <Label className="control-label required">Mother's Name</Label>
+                                <Input
+                                    type="text"
+                                    ref="motherName"
+                                    value={this.state.fields["motherName"] || ""}
+                                    onChange={this.handleChange.bind(this, "motherName")}
+                                    className="error"
+                                    invalid={this.state.errors["motherName"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["motherName"] }>{this.state.errors["motherName"]}
+                                </FormFeedback>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={3}>
+                            <FormGroup>
+                                <Label className="control-label required">Mother's Age</Label>
+                                <Input
+                                    type="text"
+                                    ref="motherAge"
+                                    value={this.state.fields["motherAge"] || ""}
+                                    onChange={this.handleChange.bind(this, "motherAge")}
+                                    className="error"
+                                    invalid={this.state.errors["motherAge"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["motherAge"] }>{this.state.errors["motherAge"]}
+                                </FormFeedback>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required">Mother's Cell Phone #</Label>
+                            <Input
+                                type="text"
+                                ref="motherCell"
+                                value={this.state.fields["motherCell"] || ""}
+                                onChange={this.handleChange.bind(this, "motherCell")}
+                                className="error"
+                                invalid={this.state.errors["motherCell"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["motherCell"] }>{this.state.errors["motherCell"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup>
+                            <Label className="control-label required">Mother's Email</Label>
+                            <Input
+                                type="text"
+                                ref="motherEmail"
+                                value={this.state.fields["motherEmail"] || ""}
+                                onChange={this.handleChange.bind(this, "motherEmail")}
+                                className="error"
+                                invalid={this.state.errors["motherEmail"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["motherEmail"] }>{this.state.errors["motherEmail"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col >
+                        <FormGroup>
+                            <Label className="control-label required">Mother's Occupation</Label>
+                            <Input
+                                type="text"
+                                ref="motherOccupation"
+                                value={this.state.fields["motherOccupation"] || ""}
+                                onChange={this.handleChange.bind(this, "motherOccupation")}
+                                className="error"
+                                invalid={this.state.errors["motherOccupation"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["motherOccupation"] }>{this.state.errors["motherOccupation"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                <div className={"sub-section"}>Father's Information</div>
+                <Row>
+                    <Col sm={9}>
+                        <FormGroup>
+                            <Label className="control-label required">Father's Name</Label>
+                            <Input
+                                type="text"
+                                ref="fatherName"
+                                value={this.state.fields["fatherName"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherName")}
+                                className="error"
+                                invalid={this.state.errors["fatherName"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherName"] }>{this.state.errors["fatherName"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Father's Age</Label>
+                            <Input
+                                type="text"
+                                ref="fatherAge"
+                                value={this.state.fields["fatherAge"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherAge")}
+                                className="error"
+                                invalid={this.state.errors["fatherAge"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherAge"] }>{this.state.errors["fatherAge"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required">Father's Cell Phone #</Label>
+                            <Input
+                                type="text"
+                                ref="fatherCell"
+                                value={this.state.fields["fatherCell"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherCell")}
+                                className="error"
+                                invalid={this.state.errors["fatherCell"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherCell"] }>{this.state.errors["fatherCell"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup>
+                            <Label className="control-label required">Father's Email</Label>
+                            <Input
+                                type="text"
+                                ref="fatherEmail"
+                                value={this.state.fields["fatherEmail"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherEmail")}
+                                className="error"
+                                invalid={this.state.errors["fatherEmail"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherEmail"] }>{this.state.errors["fatherEmail"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col >
+                        <FormGroup>
+                            <Label className="control-label required">Father's Occupation</Label>
+                            <Input
+                                type="text"
+                                ref="fatherOccupation"
+                                value={this.state.fields["fatherOccupation"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherOccupation")}
+                                className="error"
+                                invalid={this.state.errors["fatherOccupation"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Marital Status</Label>
+                            <Input type="select"
+                                   name="maritalStatus"
+                                   id="maritalStatus">
+                                <option>Single</option>
+                                <option>Married</option>
+                                <option>Divorced</option>
+                                <option>Separated</option>
+                                <option>Widowed</option>
+                            </Input>
+                            {/*<FormFeedback*/}
+                            {/*invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}*/}
+                            {/*</FormFeedback>*/}
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className={"pt-3"}>If Divorced or Separated, who is the legal guardian?</Label>
+                            <Input type="text"
+                                   ref="legalGuardian"
+                                   value={this.state.fields["legalGuardian"] || ""}
+                                   onChange={this.handleChange.bind(this, "legalGuardian")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                <div className={"sub-section"}>Step Mother's Information (if applicable)</div>
+                <Row>
+                    <Col sm={9}>
+                        <FormGroup>
+                            <Label >Step Mother's Name</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherName"
+                                value={this.state.fields["sMotherName"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherName")}/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label >Step Mother's Age</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherAge"
+                                value={this.state.fields["sMotherAge"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherAge")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label>Step Mother's Cell Phone #</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherCell"
+                                value={this.state.fields["sMotherCell"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherCell")}/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup>
+                            <Label>Step Mother's Email</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherEmail"
+                                value={this.state.fields["sMotherEmail"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherEmail")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col >
+                        <FormGroup>
+                            <Label>Step Mother's Occupation</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherOccupation"
+                                value={this.state.fields["sMotherOccupation"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherOccupation")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                <div className={"sub-section"}>Step Father's Information (if applicable)</div>
+                <Row>
+                    <Col sm={9}>
+                        <FormGroup>
+                            <Label >Step Father's Name</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherName"
+                                value={this.state.fields["sFatherName"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherName")}/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label >Step Father's Age</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherAge"
+                                value={this.state.fields["sFatherAge"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherAge")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label>Step Father's Cell Phone #</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherCell"
+                                value={this.state.fields["sFatherCell"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherCell")}/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup>
+                            <Label>Step Father's Email</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherEmail"
+                                value={this.state.fields["sFatherEmail"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherEmail")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col >
+                        <FormGroup>
+                            <Label>Step Father's Occupation</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherOccupation"
+                                value={this.state.fields["sFatherOccupation"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherOccupation")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Is your child adopted?</Label>
+                            <Input type="select"
+                                   name="isAdopted"
+                                   id="isAdopted">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </Input>
+                            {/*<FormFeedback*/}
+                            {/*invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}*/}
+                            {/*</FormFeedback>*/}
+                        </FormGroup>
+                    </Col>
+                    <Col sm={1} className={"text-right align-bottom"}>
+                        <Label>If yes:</Label>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup >
+                            <Label>What Age?</Label>
+                            <Input type="text"
+                                   name="isAdopted"
+                                   id="isAdopted">
+                            </Input>
+
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup >
+                            <Label>Country of Birth?</Label>
+                            <Input type="text"
+                                   name="birthCountry"
+                                   id="birthCountry">
+                            </Input>
+
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -356,6 +768,51 @@ class ClientHistoryAndInformation extends Component{
         );
     }
 
+    renderSection10() {
+        return(
+            <fieldset>
+                <div className={"section"}>Section 10: Current Schedule and Typical Day</div>
+            </fieldset>
+        );
+    }
+
+    renderSection11() {
+        return(
+            <fieldset>
+                <div className={"section"}>Section 11: Independent Skill</div>
+            </fieldset>
+
+        );
+    }
+
+    renderSection12() {
+        return(
+            <fieldset>
+                <div className={"section"}>Section 12: Additional Information for Evaluation Day</div>
+            </fieldset>
+
+        );
+    }
+
+    renderSection13() {
+        return(
+            <fieldset>
+                <div className={"section"}>Section 13: Goals and Additional Information</div>
+            </fieldset>
+
+        );
+    }
+
+    renderSection14() {
+        return(
+            <fieldset>
+                <div className={"section"}>Section 14: Signature</div>
+            </fieldset>
+
+        );
+    }
+
+
     render(){
         return (
             <div>
@@ -377,6 +834,11 @@ class ClientHistoryAndInformation extends Component{
                     <div> {this.renderSection7()} </div>
                     <div> {this.renderSection8()} </div>
                     <div> {this.renderSection9()} </div>
+                    <div> {this.renderSection10()} </div>
+                    <div> {this.renderSection11()} </div>
+                    <div> {this.renderSection12()} </div>
+                    <div> {this.renderSection13()} </div>
+                    <div> {this.renderSection14()} </div>
 
                 </div>
                 <Row className={"p-2 justify-content-center"}>
