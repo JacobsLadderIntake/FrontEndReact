@@ -40,10 +40,10 @@ class StudentCard extends Component {
                     >{this.state.studentFirstName + " " + this.state.studentLastName}</CardHeader>
                 <CardBody >
                     <CardText className="text">
-                        <CardText>Parents: {this.state.parentFirstName + " " + this.state.parentLastName}</CardText>
-                        <CardText>Forms due: {this.state.formDueDate}</CardText>
-                        <CardText>Evaluation on {this.state.formDueDate} with {this.state.evaluator}</CardText>
-                        <CardText>Reviewed by: {this.state.reviewers}</CardText>
+                        Parents: {this.state.parentFirstName + " " + this.state.parentLastName}<br/>
+                        Forms due: {this.state.formDueDate}<br/>
+                        Evaluation on {this.state.formDueDate} with {this.state.evaluator}<br/>
+                        Reviewed by: {this.state.reviewers}
                     </CardText>
                 </CardBody>
             </Card>
