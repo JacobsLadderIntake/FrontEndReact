@@ -12,9 +12,6 @@ import {
     Row
 } from "reactstrap";
 
-var object = '{"info":[' +
-    '{"token": "", "values": [' +
-    '{"studentFirstName":"", "studentLastName": "", "parentFirstName": "", "parentLastName": "", "signature": "", "date": ""}]}]}';
 var infoObj;
 
 class BrainMapConsent extends Component{
@@ -32,7 +29,7 @@ class BrainMapConsent extends Component{
 
     }
 
-    infoObj = JSON.parse(object);
+    infoObj = JSON.parse('{"info":[{"token": "", "values": [{"studentFirstName": "", "studentLastName": "", "parentFirstName": "", "parentLastName": "", "parentSignature": "", "date": ""}]}]}');
 
     goBack(event) {
         window.location.reload();
@@ -43,6 +40,17 @@ class BrainMapConsent extends Component{
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields: fields});
+    }
+
+    updateFields() {
+        let fields = this.state.fields;
+        let infoObj = this.infoObj;
+        infoObj.info[0].values.studentFirstName = fields["studentFirstName"];
+        infoObj.info[0].values.studentLastName = fields["studentLastName"];
+        infoObj.info[0].values.parentFirstName = fields["parentFirstName"];
+        infoObj.info[0].values.parentLastName = fields["parentLastName"];
+        infoObj.info[0].values.parentSignature = fields["parentSignature"];
+        infoObj.info[0].values.date = fields["date"];
     }
 
     validate() {
@@ -85,6 +93,7 @@ class BrainMapConsent extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        this.updateFields();
         this.componentDidMount();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
@@ -96,6 +105,7 @@ class BrainMapConsent extends Component{
 
     handleSaveAndQuit(event) {
         event.preventDefault();
+        this.updateFields();
         this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
         this.componentDidMount();
