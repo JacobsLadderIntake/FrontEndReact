@@ -12,7 +12,6 @@ import {
     Row
 } from "reactstrap";
 import ReactTable from "react-table";
-import Editable from "react-x-editable";
 
 class ClientHistoryAndInformation extends Component{
     constructor(props) {
