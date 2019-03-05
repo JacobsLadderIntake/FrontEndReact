@@ -11,6 +11,8 @@ import {
     Label,
     Row
 } from "reactstrap";
+import ReactTable from "react-table";
+import Editable from "react-x-editable";
 
 class ClientHistoryAndInformation extends Component{
     constructor(props) {
@@ -20,11 +22,515 @@ class ClientHistoryAndInformation extends Component{
             errors: [],
             fields: [],
             submitButtonPressed: false,
-            saveButtonPressed:false
+            saveButtonPressed:false,
+            devHistoryColumns:[{
+                Header: 'Activity',
+                accessor: 'activity'
+            }, {
+                Header: 'Years',
+                accessor: 'years'
+            }, {
+                Header: 'Months',
+                accessor: 'months'
+            }, {
+                Header: 'Not Yet Developed',
+                accessor: 'na'
+            }],
+            devHistoryData:[{
+                activity: 'Crawled on stomach',
+                years: <Input type="select"
+                              name="crawlYears"
+                              id="crawlYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="crawlMonths"
+                               id="crawlMonths">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </Input>,
+                na: <Input type="select"
+                           name="crawlNa"
+                           id="crawlNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: 'Crept on hands and knees',
+                years: <Input type="select"
+                              name="creptYears"
+                              id="creptYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="creptMmonths"
+                               id="creptMonths">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </Input>,
+                na: <Input type="select"
+                           name="creptNa"
+                           id="creptNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: 'Walked',
+                years: <Input type="select"
+                              name="walkYears"
+                              id="walkYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="walkMonths"
+                               id="walkMonths">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </Input>,
+                na: <Input type="select"
+                           name="walkNa"
+                           id="walkNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: 'Toilet trained',
+                years: <Input type="select"
+                              name="toiletYears"
+                              id="toiletYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="toiletMonths"
+                               id="toiletMonths">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </Input>,
+                na: <Input type="select"
+                           name="toiletNa"
+                           id="toiletNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: 'First word',
+                years: <Input type="select"
+                              name="wordYears"
+                              id="wordYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="wordMonths"
+                               id="wordMonths">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </Input>,
+                na: <Input type="select"
+                           name="wordNa"
+                           id="wordNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: 'Use of couplets (2 words together)',
+                years: <Input type="select"
+                              name="coupletYears"
+                              id="coupletYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="coupletMonths"
+                               id="coupletMonths">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </Input>,
+                na: <Input type="select"
+                           name="coupletNa"
+                           id="coupletNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: '3-4 word phrases',
+                years: <Input type="select"
+                              name="phraseYears"
+                              id="phraseYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="phraseMonths"
+                               id="phraseMonths">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                        </Input>,
+                na: <Input type="select"
+                           name="phraseNa"
+                           id="phraseNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: 'Sentences',
+                years: <Input type="select"
+                              name="sentenceYears"
+                              id="sentenceYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="sentenceMonths"
+                               id="sentenceMonths">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </Input>,
+                na: <Input type="select"
+                           name="sentenceNa"
+                           id="sentenceNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: 'Conversational language',
+                years: <Input type="select"
+                              name="conversationYears"
+                              id="conversationYears">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19+</option>
+                        </Input>,
+                months: <Input type="select"
+                               name="conversationMonths"
+                               id="conversationMonths">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </Input>,
+                na: <Input type="select"
+                           name="conversationNa"
+                           id="conversationNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }, {
+                activity: 'Reading',
+                years:<Input type="select"
+                            name="readYears"
+                            id="readYears">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19+</option>
+                    </Input>,
+                months: <Input type="select"
+                               name="readMonths"
+                               id="readMonths">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </Input>,
+                na: <Input type="select"
+                           name="readNa"
+                           id="readNa">
+                        <option>true</option>
+                        <option>false</option>
+                    </Input>
+            }]
         };
 
         this.goBack = this.goBack.bind(this);
-
+        const devHistoryOnChange = () => console.log('waddup');
     }
 
     goBack(event) {
@@ -46,6 +552,7 @@ class ClientHistoryAndInformation extends Component{
         let formIsValid = true;
 
         if (this.state.submitButtonPressed) {
+            //SECTION ONE
             if (!fields["dob"]) {
                 formIsValid = false;
                 errors["dob"] = "Cannot be empty";
@@ -91,6 +598,7 @@ class ClientHistoryAndInformation extends Component{
                 formIsValid = false;
                 errors["homeNumber"] = "Cannot be empty";
             }
+            //SECTION TWO
             if (!fields["motherName"]) {
                 formIsValid = false;
                 errors["motherName"] = "Cannot be empty";
@@ -131,6 +639,7 @@ class ClientHistoryAndInformation extends Component{
                 formIsValid = false;
                 errors["fatherOccupation"] = "Cannot be empty";
             }
+            //SECTION FOUR
 
         }
 
@@ -206,7 +715,7 @@ class ClientHistoryAndInformation extends Component{
                                 invalid={this.state.errors["diagnosis"] }>{this.state.errors["diagnosis"]}
                             </FormFeedback>
                             <Label className={"additional-note"}>
-                                *If you wish to use private insurance funds, please discus diagnosis (and resulting diagnosis code(s)) with our insurance biller.
+                                *If you wish to use private insurance funds, please discuss diagnosis (and resulting diagnosis code(s)) with our insurance biller.
                             </Label>
                         </FormGroup>
                     </Col>
@@ -719,8 +1228,29 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 4: Developmental History</div>
+                <div className={"sub-section"}>If your child is over 18 years of age, please mark what is known.</div>
+                <ReactTable
+                    className={"devHistoryTable -striped -highlight"}
+                    data={this.state.devHistoryData}
+                    columns={this.state.devHistoryColumns}
+                    defaultPageSize={9}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
             </fieldset>
-
         );
     }
 
