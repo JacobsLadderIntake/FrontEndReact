@@ -28,7 +28,6 @@
 }
 
 .body-of-text{
-    margin:20px;
     padding:20px;
 }
 
@@ -37,6 +36,37 @@
     padding:5px;
 }
 
+.frame {
+    border: solid gray 1px ;
+    border-radius: 10px;
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+.section {
+    font-weight: bolder;
+    font-size: 20px;
+    padding: 8px;
+}
+
+.sub-section {
+    font-weight: bold;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.additional-note {
+    font-style: italic;
+}
+
 .checkBox {
     font-weight: bold;
+}
+
+.button {
+    background-color: #5DA3C7;
+    margin: 5px;
+    color: white;
+    border: thin #5DA3C7;
 }
