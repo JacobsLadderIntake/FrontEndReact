@@ -525,11 +525,46 @@ class ClientHistoryAndInformation extends Component{
                         <option>true</option>
                         <option>false</option>
                     </Input>
-            }]
+            }],
+            otherDoctorsColumns:[{
+                Header: 'Name',
+                accessor: 'name'
+            }, {
+                Header: 'Specialty',
+                accessor: 'specialty'
+            }, {
+                Header: 'Phone Number',
+                accessor: 'phone'
+            }, {
+                Header: 'Schedule of Service',
+                accessor: 'sched'
+            }],
+            otherDoctorsData:[{
+                name: <input type="text" name="doc1Name"/>,
+                specialty: <input type="text" name="doc1Specialty"/>,
+                phone: <input type="text" name="doc1Phone"/>,
+                sched: <input type="text" name="doc1Sched"/>
+            }, {
+                name: <input type="text" name="doc2Name"/>,
+                specialty: <input type="text" name="doc2Specialty"/>,
+                phone: <input type="text" name="doc2Phone"/>,
+                sched: <input type="text" name="doc2Sched"/>
+            }, {
+                name: <input type="text" name="doc3Name"/>,
+                specialty: <input type="text" name="doc3Specialty"/>,
+                phone: <input type="text" name="doc3Phone"/>,
+                sched: <input type="text" name="doc3Sched"/>
+            }, {
+                name: <input type="text" name="doc4Name" />,
+                specialty: <input type="text" name="doc4Specialty" />,
+                phone: <input type="text" name="doc4Phone" />,
+                sched: <input type="text" name="doc4Sched" />
+            }],
+            epilepsy: false
         };
 
         this.goBack = this.goBack.bind(this);
-        const devHistoryOnChange = () => console.log('waddup');
+        this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
     }
 
     goBack(event) {
@@ -541,6 +576,16 @@ class ClientHistoryAndInformation extends Component{
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields: fields});
+    }
+
+    handleCheckBoxChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
     validate() {
@@ -1257,6 +1302,188 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 5: Medical History/Past Therapies</div>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Primary Physician's Name</Label>
+                            <Input
+                                type="text"
+                                ref="drName"
+                                value={this.state.fields["drName"] || ""}
+                                onChange={this.handleChange.bind(this, "drName")}
+                                className="error"
+                                invalid={this.state.errors["drName"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drName"] }>{this.state.errors["drName"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Primary Physician's Phone Number</Label>
+                            <Input
+                                type="text"
+                                ref="drPhone"
+                                value={this.state.fields["drPhone"] || ""}
+                                onChange={this.handleChange.bind(this, "drPhone")}
+                                className="error"
+                                invalid={this.state.errors["drPhone"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drPhone"] }>{this.state.errors["drPhone"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Primary Physician's Address</Label>
+                            <Input
+                                type="text"
+                                ref="drStreet"
+                                value={this.state.fields["drStreet"] || ""}
+                                onChange={this.handleChange.bind(this, "drStreet")}
+                                className="error"
+                                invalid={this.state.errors["drStreet"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drStreet"] }>{this.state.errors["drStreet"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required">City</Label>
+                            <Input
+                                type="text"
+                                ref="drCity"
+                                value={this.state.fields["drCity"] || ""}
+                                onChange={this.handleChange.bind(this, "drCity")}
+                                className="error"
+                                invalid={this.state.errors["drCity"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drCity"] }>{this.state.errors["drCity"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={2}>
+                        <FormGroup>
+                            <Label className="control-label required">State</Label>
+                            <Input
+                                type="text"
+                                ref="drState"
+                                value={this.state.fields["drState"] || ""}
+                                onChange={this.handleChange.bind(this, "drState")}
+                                className="error"
+                                invalid={this.state.errors["drState"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drState"] }>{this.state.errors["drState"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Zip Code</Label>
+                            <Input
+                                type="text"
+                                ref="drZip"
+                                value={this.state.fields["drZip"] || ""}
+                                onChange={this.handleChange.bind(this, "drZip")}
+                                className="error"
+                                invalid={this.state.errors["drZip"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drZip"] }>{this.state.errors["drZip"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Country</Label>
+                            <Input
+                                type="text"
+                                ref="drCountry"
+                                value={this.state.fields["drCountry"] || ""}
+                                onChange={this.handleChange.bind(this, "drCountry")}
+                                className="error"
+                                invalid={this.state.errors["drCountry"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drCountry"] }>{this.state.errors["drCountry"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={6}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Does the client currently receive therapy services outside of Jacob's Ladder?</Label>
+                            <Input type="select"
+                                   name="outsideTherapy"
+                                   id="outsideTherapy">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </Input>
+                            {/*<FormFeedback*/}
+                            {/*invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}*/}
+                            {/*</FormFeedback>*/}
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <ReactTable
+                    className={"otherDoctorsTable -striped -highlight"}
+                    data={this.state.otherDoctorsData}
+                    columns={this.state.otherDoctorsColumns}
+                    defaultPageSize={4}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Please list any hospitalizations and/or medical procedures the client has received.</Label>
+                            <Input
+                                type="text"
+                                ref="hospital"
+                                value={this.state.fields["hospital"] || ""}
+                                onChange={this.handleChange.bind(this, "hospital")}
+                                className="error"
+                                invalid={this.state.errors["hospital"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["hospital"] }>{this.state.errors["hospital"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Please check all of the following that apply to the client</Label>
+                            <Row>
+                                <Label>Epilepsy/Seizures
+                                    <Input
+                                        name="epilepsy"
+                                        type="checkbox"
+                                        checked={this.state.epilepsy}
+                                        onChange={this.handleCheckBoxChange}
+                                    />
+                                </Label>
+                            </Row>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
         );
     }
