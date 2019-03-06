@@ -29,7 +29,7 @@ class BrainMapConsent extends Component{
 
     }
 
-    infoObj = JSON.parse('{"info":[{"token": "", "values": [{"studentFirstName": "", "studentLastName": "", "parentFirstName": "", "parentLastName": "", "parentSignature": "", "date": ""}]}]}');
+    infoObj = JSON.parse('{"info":[{"token": "", "values": [{"childID": "", "studentFirstName": "", "studentLastName": "", "parentFirstName": "", "parentLastName": "", "parentSignature": "", "date": ""}]}]}');
 
     goBack(event) {
         window.location.reload();
