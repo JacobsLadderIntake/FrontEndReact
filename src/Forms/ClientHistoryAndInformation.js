@@ -691,15 +691,103 @@ class ClientHistoryAndInformation extends Component{
             }],
             skillsData:[{
                 skill: "Poor Pencil Grip",
-                checkApplied: <Input type="radio"
-                                     name="yesradio1"
-                                     id="yesradio1">
+                checkApplied: <Input type="select"
+                                     name="skill1"
+                                     id="skill1">
+                    <option>  </option>
                     <option>Yes</option>
                     <option>No</option>
-                    <option>Not applicable</option>
+                    <option>Not Sure</option>
                 </Input>
 
 
+            },{
+                skill: "Sloppy Writing",
+                checkApplied: <Input type="select"
+                                     name="skill2"
+                                     id="skill2">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Letter Reversals",
+                checkApplied: <Input type="select"
+                                     name="skill3"
+                                     id="skill3">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },,{
+                skill: "Right/Left Confusion",
+                checkApplied: <Input type="select"
+                                     name="skill4"
+                                     id="skill4">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Poor reading ability",
+                checkApplied: <Input type="select"
+                                     name="skill5"
+                                     id="skill5">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Math Computation Challenges",
+                checkApplied: <Input type="select"
+                                     name="skill6"
+                                     id="skill6">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Math Concept Challenges",
+                checkApplied: <Input type="select"
+                                     name="skill7"
+                                     id="skill7">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Math Word Problem Challenges",
+                checkApplied: <Input type="select"
+                                     name="skill8"
+                                     id="skill8">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Math Logic Challenges",
+                checkApplied: <Input type="select"
+                                     name="skill9"
+                                     id="skill9">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Other related Challenges",
+                checkApplied: <Input type="text"
+                                     name="skill10"
+                                     id="skill10"
+                                     placeholder="Please Explain">
+                </Input>
             }],
 
 
@@ -836,6 +924,14 @@ class ClientHistoryAndInformation extends Component{
             if (!fields["exceptionalTalents"]) {
                 formIsValid = false;
                 errors["exceptionalTalents"] = "Cannot be empty";
+            }
+            if (!fields["academicGoal"]) {
+                formIsValid = false;
+                errors["academicGoal"] = "Cannot be empty";
+            }
+            if (!fields["skill1"]) {
+                formIsValid = false;
+                errors["skill1"] = "Cannot be empty";
             }
 
         }
@@ -1737,12 +1833,12 @@ class ClientHistoryAndInformation extends Component{
                         }
                     }}
                 />
-                <p>Indicate your child’s hand preference for each activity: Right/Left/Mixed/Not Applicable.</p>
+                <p>Please check all that apply.</p>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.skillsData}
                     columns={this.state.skillsColumns}
-                    defaultPageSize={6}
+                    defaultPageSize={11}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -1759,6 +1855,19 @@ class ClientHistoryAndInformation extends Component{
                         }
                     }}
                 />
+                <FormGroup>
+                    <Label className="control-label required">What is your specific academic goal for your child?</Label>
+                    <Input
+                        type="text"
+                        ref="academicGoal"
+                        value={this.state.fields["academicGoal"] || ""}
+                        onChange={this.handleChange.bind(this, "academicGoal")}
+                        className="error"
+                        invalid={this.state.errors["academicGoal"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["academicGoal"] }>{this.state.errors["academicGoal"]}
+                    </FormFeedback>
+                </FormGroup>
             </fieldset>
 
         );
