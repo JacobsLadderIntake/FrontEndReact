@@ -45,9 +45,9 @@ class AdminHome extends Component {
                 <Header loggedIn = {true}/>
                 <div className = "adminHome container-fluid" >
                     <div className = "row" >
-                        <a className = "admin-top col-9">
+                        <div className = "admin-top col-9">
                             <h1 className="">Admission Team Board: { this.state.user }</h1>
-                        </a>
+                        </div>
                     </div>
                     <div className="row pl-3 pr-3 align-items-center">
                         <Button className= "col-2 button h-50" >

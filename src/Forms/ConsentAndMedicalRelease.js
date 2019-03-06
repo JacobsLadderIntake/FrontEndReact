@@ -4,7 +4,6 @@ import './formFormatting.css';
 import {
     Col,
     Button,
-    ButtonToolbar,
     FormGroup,
     FormFeedback,
     Input,
@@ -83,7 +82,6 @@ class ConsentAndMedicalRelease extends Component{
     }
 
     renderFields() {
-        const {errors} = this.state.errors;
         return (
             <fieldset>
                 <div>
@@ -185,9 +183,9 @@ class ConsentAndMedicalRelease extends Component{
                 <Header loggedIn = {true}/>
                 <div className="form-title">
                     <div className = "row" >
-                        <a className = "parent-top col-9">
+                        <div className = "parent-top col-9">
                             <h2>Consent and Medical Release Form</h2>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div className={"frame p-4"} data-spy="scroll">

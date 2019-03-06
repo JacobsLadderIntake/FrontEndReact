@@ -31,7 +31,7 @@ class Login extends Component {
 
     handleLogin(e) {
         e.preventDefault();
-        this.state.loginButtonPressed = true;
+        this.state.loginButtonPressed.setState(true);
 
         const password = ReactDOM.findDOMNode(this.password).value;
         const email = ReactDOM.findDOMNode(this.email).value;
@@ -86,7 +86,6 @@ class Login extends Component {
   }
 
   renderForm() {
-    const { errors } = this.state;
 
     return (
         <form className="form-style" onSubmit={this.handleLogin}>
