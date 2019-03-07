@@ -25,6 +25,34 @@ class ClientHistoryAndInformation extends Component{
             fields: [],
             submitButtonPressed: false,
             saveButtonPressed:false,
+            siblingColumns:[{
+                Header: 'Name',
+                accessor: 'name'
+            }, {
+                Header: 'Age',
+                accessor: 'age'
+            }, {
+                Header: 'Gender',
+                accessor: 'gender'
+            }],
+            siblingData:[{
+                name: <input type="text" name="sib1Name"/>,
+                age: <input type="text" name="sib1Age"/>,
+                gender: <input type="text" name="sib1Gender"/>,
+            }, {
+                name: <input type="text" name="sib2Name"/>,
+                age: <input type="text" name="sib2Age"/>,
+                gender: <input type="text" name="sib2Gender"/>,
+            }, {
+                name: <input type="text" name="sib3Name"/>,
+                age: <input type="text" name="sib3Age"/>,
+                gender: <input type="text" name="sib3Gender"/>,
+            }, {
+                name: <input type="text" name="sib4Name" />,
+                age: <input type="text" name="sib4Age" />,
+                gender: <input type="text" name="sib4Gender" />,
+            }],
+
             devHistoryColumns:[{
                 Header: 'Activity',
                 accessor: 'devHistoryActivity'
@@ -1408,6 +1436,17 @@ class ClientHistoryAndInformation extends Component{
                 formIsValid = false;
                 errors["fatherOccupation"] = "Cannot be empty";
             }
+            // Section 3
+            if (!fields["birthWeek"]) {
+                formIsValid = false;
+                errors["birthWeek"] = "Cannot be empty";
+            }
+            if (!fields["birthWeight"]) {
+                formIsValid = false;
+                errors["birthWeight"] = "Cannot be empty";
+            }
+
+
             //SECTION FOUR
 
             //SECTION SEVEN
@@ -1426,6 +1465,20 @@ class ClientHistoryAndInformation extends Component{
             if (!fields["skill1"]) {
                 formIsValid = false;
                 errors["skill1"] = "Cannot be empty";
+            }
+
+            //SECTION 14
+            if (!fields["studentName"]) {
+                formIsValid = false;
+                errors["studentName"] = "Cannot be empty";
+            }
+            if (!fields["parentName"]) {
+                formIsValid = false;
+                errors["parentName"] = "Cannot be empty";
+            }
+            if (!fields["date"]) {
+                formIsValid = false;
+                errors["date"] = "Cannot be empty";
             }
 
         }
@@ -1997,6 +2050,29 @@ class ClientHistoryAndInformation extends Component{
                         </FormGroup>
                     </Col>
                 </Row>
+                <Label className="pr-2">Please list siblings in the table below. </Label>
+                <ReactTable
+                    className={"-striped -highlight"}
+                    data={this.state.siblingData}
+                    columns={this.state.siblingColumns}
+                    defaultPageSize={4}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+
             </fieldset>
 
         );
@@ -2006,10 +2082,115 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 3: Prenatal and Birth History</div>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required pr-2">At how many weeks was the client born?</Label>
+                            <Input
+                                type="text"
+                                ref="birthWeek"
+                                value={this.state.fields["birthWeek"] || ""}
+                                onChange={this.handleChange.bind(this, "birthWeek")}
+                                className="error"
+                                invalid={this.state.errors["birthWeek"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["birthWeek"] }>{this.state.errors["birthWeek"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required pr-2">Birth Weight</Label>
+                            <Input
+                                type="text"
+                                ref="birthWeight"
+                                value={this.state.fields["birthWeight"] || ""}
+                                onChange={this.handleChange.bind(this, "birthWeight")}
+                                className="error"
+                                invalid={this.state.errors["birthWeight"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["birthWeight"] }>{this.state.errors["birthWeight"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Delivery Type:</Label>
+                            <Input type="select"
+                                   name="deliveryType"
+                                   id="deliveryType">
+                                <option>Vaginal</option>
+                                <option>Cesarean</option>
+                            </Input>
+                            {/*<FormFeedback*/}
+                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
+                            {/*</FormFeedback>*/}
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Were there any complications during the pregnancy or delivery?</Label>
+                            <Input type="select"
+                                   name="pregComplications"
+                                   id="pregComplications">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </Input>
+                            {/*<FormFeedback*/}
+                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
+                            {/*</FormFeedback>*/}
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>If yes, please describe</Label>
+                            <Input
+                                type="text"
+                                ref="pregComplicationDescription"
+                                value={this.state.fields["pregComplicationDescription"] || ""}
+                                onChange={this.handleChange.bind(this, "pregComplicationDescription")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Was your child hospitalized after birth?</Label>
+                            <Input type="select"
+                                   name="hospitaliedAfterBirth"
+                                   id="hospitaliedAfterBirth">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </Input>
+                            {/*<FormFeedback*/}
+                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
+                            {/*</FormFeedback>*/}
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>If yes, please describe</Label>
+                            <Input
+                                type="text"
+                                ref="hospitaliedAfterBirthDescription"
+                                value={this.state.fields["hospitaliedAfterBirthDescription"] || ""}
+                                onChange={this.handleChange.bind(this, "hospitaliedAfterBirthDescription")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
     }
+
 
     renderSection4() {
         return(
@@ -2872,10 +3053,69 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 14: Signature</div>
+                <div>
+                    <FormGroup>
+                        <Col sm={12}>
+                            <Label sm={12} className={"checkBox"}>
+                                <Input type="checkbox"
+                                       ref="consentCheck"
+                                       className="error"/>
+                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.
+                            </Label>
+                        </Col>
+
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="control-label required" sm={12}>Student Name</Label>
+                        <Col sm={12}>
+                            <Input
+                                type="text"
+                                ref="studentName"
+                                value={this.state.fields["studentName"] || ""}
+                                onChange={this.handleChange.bind(this, "studentName")}
+                                className="error"
+                                invalid={this.state.errors["studentName"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["studentName"] }>{this.state.errors["studentName"]}
+                            </FormFeedback>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="control-label required" sm={12}>Parent/Guardian First Name</Label>
+                        <Col sm={12}>
+                            <Input
+                                type="text"
+                                ref="parentName"
+                                value={this.state.fields["parentName"] || ""}
+                                onChange={this.handleChange.bind(this, "parentName")}
+                                className="error"
+                                invalid={this.state.errors["parentName"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["parentName"]}>{this.state.errors["parentName"]}
+                            </FormFeedback>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="control-label required" sm={12}>Date</Label>
+                        <Col sm={12}>
+                            <Input
+                                type="text"
+                                ref="date"
+                                value={this.state.fields["date"] || ""}
+                                onChange={this.handleChange.bind(this, "date")}
+                                className="error"
+                                invalid={this.state.errors["date"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["date"]}>{this.state.errors["date"]}
+                            </FormFeedback>
+                        </Col>
+                    </FormGroup>
+                </div>
             </fieldset>
 
         );
     }
+
 
 
     render(){
