@@ -70,3 +70,11 @@
     color: white;
     border: thin #5DA3C7;
 }
+.card-body.toggle-card-body {
+    background-color: #DEDEDE;
+    padding: 0rem;
+}
+.card.toggle-card{
+    border: 0px #DEDEDE;
+
+}

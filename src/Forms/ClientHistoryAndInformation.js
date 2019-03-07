@@ -3,6 +3,9 @@ import Header from '../Header/Header';
 import './formFormatting.css';
 import {
     Col,
+    Card,
+    CardBody,
+    Collapse,
     Button,
     ButtonToolbar,
     FormGroup,
@@ -975,16 +978,107 @@ class ClientHistoryAndInformation extends Component{
             }],
             skillsData:[{
                 skill: "Poor Pencil Grip",
-                checkApplied: <Input type="radio"
-                                     name="yesradio1"
-                                     id="yesradio1">
+                checkApplied: <Input type="select"
+                                     name="skill1"
+                                     id="skill1">
+                    <option>  </option>
                     <option>Yes</option>
                     <option>No</option>
-                    <option>Not applicable</option>
+                    <option>Not Sure</option>
                 </Input>
 
 
+            },{
+                skill: "Sloppy Writing",
+                checkApplied: <Input type="select"
+                                     name="skill2"
+                                     id="skill2">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Letter Reversals",
+                checkApplied: <Input type="select"
+                                     name="skill3"
+                                     id="skill3">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },,{
+                skill: "Right/Left Confusion",
+                checkApplied: <Input type="select"
+                                     name="skill4"
+                                     id="skill4">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Poor reading ability",
+                checkApplied: <Input type="select"
+                                     name="skill5"
+                                     id="skill5">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Math Computation Challenges",
+                checkApplied: <Input type="select"
+                                     name="skill6"
+                                     id="skill6">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Math Concept Challenges",
+                checkApplied: <Input type="select"
+                                     name="skill7"
+                                     id="skill7">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Math Word Problem Challenges",
+                checkApplied: <Input type="select"
+                                     name="skill8"
+                                     id="skill8">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Math Logic Challenges",
+                checkApplied: <Input type="select"
+                                     name="skill9"
+                                     id="skill9">
+                    <option>  </option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            },{
+                skill: "Other related Challenges",
+                checkApplied: <Input type="text"
+                                     name="skill10"
+                                     id="skill10"
+                                     placeholder="Please Explain">
+                </Input>
             }],
+
+            collapseVerbal:false,
+            collapseCommunication:false
         };
 
         this.goBack = this.goBack.bind(this);
@@ -993,6 +1087,12 @@ class ClientHistoryAndInformation extends Component{
 
     goBack(event) {
         window.location.reload();
+    }
+    toggleVerbal() {
+        this.setState(state => ({ collapseVerbal: !state.collapseVerbal }));
+    }
+    toggleCommunication() {
+        this.setState(state => ({ collapseCommunication: !state.collapseCommunication }));
     }
 
     handleChange(field, e) {
@@ -1117,6 +1217,14 @@ class ClientHistoryAndInformation extends Component{
             if (!fields["exceptionalTalents"]) {
                 formIsValid = false;
                 errors["exceptionalTalents"] = "Cannot be empty";
+            }
+            if (!fields["academicGoal"]) {
+                formIsValid = false;
+                errors["academicGoal"] = "Cannot be empty";
+            }
+            if (!fields["skill1"]) {
+                formIsValid = false;
+                errors["skill1"] = "Cannot be empty";
             }
 
         }
@@ -2131,12 +2239,12 @@ class ClientHistoryAndInformation extends Component{
                         }
                     }}
                 />
-                <p>Indicate your child’s hand preference for each activity: Right/Left/Mixed/Not Applicable.</p>
+                <p>Please check all that apply.</p>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.skillsData}
                     columns={this.state.skillsColumns}
-                    defaultPageSize={6}
+                    defaultPageSize={11}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -2153,6 +2261,20 @@ class ClientHistoryAndInformation extends Component{
                         }
                     }}
                 />
+                <FormGroup>
+                    <Label className="control-label required">What is your specific academic goal for your child?</Label>
+                    <Input
+                        type="text"
+                        ref="academicGoal"
+                        value={this.state.fields["academicGoal"] || ""}
+                        onChange={this.handleChange.bind(this, "academicGoal")}
+                        className="error"
+                        invalid={this.state.errors["academicGoal"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["academicGoal"] }>{this.state.errors["academicGoal"]}
+                    </FormFeedback>
+                </FormGroup>
+
             </fieldset>
 
         );
@@ -2162,6 +2284,74 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 8: Communication</div>
+                <div>
+                    <FormGroup check >
+                        <Label check onChange={this.toggleVerbal.bind(this)}>
+
+                    <Input type="checkbox"/>
+                    Verbal
+                    </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.state.collapseVerbal}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Input
+                                type = "select"
+                                placeholder = "why">
+                                <option>Select Current Independent Level</option>
+                                    <option>fully conversational with original thought language</option>
+                                    <option>sentences with some rote language</option>
+                                    <option>1-2 word verbalizations</option>
+
+                                </Input>
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                <FormGroup check >
+                    <Label check>
+                        <Input type="checkbox" />
+                        Pointing/Grabbing
+                    </Label>
+                </FormGroup>
+                <div>
+                    <FormGroup check >
+                        <Label check onChange={this.toggleCommunication.bind(this)}>
+
+                            <Input type="checkbox"/>
+                            Communication Device
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.state.collapseCommunication}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                            <FormGroup >
+                                    <Label>Name of Device and Software Used</Label>
+                                    <Input
+                                        type="text"
+                                        ref="nameOfDevice"
+                                        value={this.state.fields["nameOfDevice"] || ""}
+                                        onChange={this.handleChange.bind(this, "nameOfDevice")}
+                                        className="error"
+                                        invalid={this.state.errors["nameOfDevice"] != null}/>
+                                    <FormFeedback
+                                        invalid={this.state.errors["nameOfDevice"] }>{this.state.errors["nameOfDevice"]}
+                                    </FormFeedback>
+                                </FormGroup>
+                                <FormGroup>
+                                <Input
+                                    type = "select">
+                                    <option>Select Current Independent Level</option>
+                                    <option>Fully Independent</option>
+                                    <option>Emerging Independence</option>
+                                    <option>Heavy Prompting Required</option>
+
+                                </Input>
+                            </FormGroup>
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
             </fieldset>
 
         );
