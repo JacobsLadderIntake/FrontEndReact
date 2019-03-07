@@ -3,6 +3,9 @@ import Header from '../Header/Header';
 import './formFormatting.css';
 import {
     Col,
+    Card,
+    CardBody,
+    Collapse,
     Button,
     ButtonToolbar,
     FormGroup,
@@ -791,15 +794,25 @@ class ClientHistoryAndInformation extends Component{
             }],
 
 
-            epilepsy: false
+            epilepsy: false,
+            collapseVerbal:false,
+            collapseCommunication:false
         };
+
 
         this.goBack = this.goBack.bind(this);
         this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
+
     }
 
     goBack(event) {
         window.location.reload();
+    }
+    toggleVerbal() {
+        this.setState(state => ({ collapseVerbal: !state.collapseVerbal }));
+    }
+    toggleCommunication() {
+        this.setState(state => ({ collapseCommunication: !state.collapseCommunication }));
     }
 
     handleChange(field, e) {
@@ -1868,6 +1881,7 @@ class ClientHistoryAndInformation extends Component{
                         invalid={this.state.errors["academicGoal"] }>{this.state.errors["academicGoal"]}
                     </FormFeedback>
                 </FormGroup>
+
             </fieldset>
 
         );
@@ -1877,6 +1891,74 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 8: Communication</div>
+                <div>
+                    <FormGroup check >
+                        <Label check onChange={this.toggleVerbal.bind(this)}>
+
+                    <Input type="checkbox"/>
+                    Verbal
+                    </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.state.collapseVerbal}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Input
+                                type = "select"
+                                placeholder = "why">
+                                <option>Select Current Independent Level</option>
+                                    <option>fully conversational with original thought language</option>
+                                    <option>sentences with some rote language</option>
+                                    <option>1-2 word verbalizations</option>
+
+                                </Input>
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                <FormGroup check >
+                    <Label check>
+                        <Input type="checkbox" />
+                        Pointing/Grabbing
+                    </Label>
+                </FormGroup>
+                <div>
+                    <FormGroup check >
+                        <Label check onChange={this.toggleCommunication.bind(this)}>
+
+                            <Input type="checkbox"/>
+                            Communication Device
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.state.collapseCommunication}>
+                        <Card className={"toggle-card"}>
+                            <CardBody>
+                            <FormGroup className={"toggle-card-body"}>
+                                    <Label>Name of Device and Software Used</Label>
+                                    <Input
+                                        type="text"
+                                        ref="nameOfDevice"
+                                        value={this.state.fields["nameOfDevice"] || ""}
+                                        onChange={this.handleChange.bind(this, "nameOfDevice")}
+                                        className="error"
+                                        invalid={this.state.errors["nameOfDevice"] != null}/>
+                                    <FormFeedback
+                                        invalid={this.state.errors["nameOfDevice"] }>{this.state.errors["nameOfDevice"]}
+                                    </FormFeedback>
+                                </FormGroup>
+                                <FormGroup>
+                                <Input
+                                    type = "select">
+                                    <option>Select Current Independent Level</option>
+                                    <option>Fully Independent</option>
+                                    <option>Emerging Independence</option>
+                                    <option>Heavy Prompting Required</option>
+
+                                </Input>
+                            </FormGroup>
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
             </fieldset>
 
         );
