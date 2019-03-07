@@ -621,6 +621,290 @@ class ClientHistoryAndInformation extends Component{
                     <option>No</option>
                 </Input>
             }],
+            medicalConditionsColumns:[{
+                Header: 'Medical Condition',
+                accessor: 'mc'
+            }, {
+                Header: 'Select Yes or No',
+                accessor: 'yn'
+            }],
+            medicalConditionsData: [{
+                mc: 'Epilepsy/Seizures',
+                yn: <Input type="select"
+                           name="epilepsy"
+                           id="epilepsy">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                mc: 'Diabetes',
+                yn: <Input type="select"
+                           name="diabetes"
+                           id="diabetes">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                mc: 'Asthma',
+                yn: <Input type="select"
+                           name="asthma"
+                           id="asthma">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                mc: 'Uses an Epi-Pen',
+                yn: <Input type="select"
+                           name="epipen"
+                           id="epipen">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                mc: 'Other (please list in the box below)',
+                yn: <Input type="select"
+                           name="other"
+                           id="other">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }],
+            suppliesColumns: [{
+                Header: 'Supplies/Equipment',
+                accessor: 'supplies'
+            }, {
+                Header: 'Select Yes or No',
+                accessor: 'yn'
+            }],
+            suppliesData: [{
+                supplies: 'Braces/Splints',
+                yn: <Input type="select"
+                           name="brace"
+                           id="brace">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                supplies: 'Feeding Support & Supplies',
+                yn: <Input type="select"
+                           name="feedSupport"
+                           id="feedSupport">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                supplies: 'Toileting Equipment',
+                yn: <Input type="select"
+                           name="toiletEquip"
+                           id="toiletEquip">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                supplies: 'Mobility Equipment',
+                yn: <Input type="select"
+                           name="mobilityEquip"
+                           id="mobilityEquip">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                supplies: 'Communication Equipment',
+                yn: <Input type="select"
+                           name="commEquip"
+                           id="commEquip">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                supplies: 'Oxygen Tank',
+                yn: <Input type="select"
+                           name="oxygenTank"
+                           id="oxygenTank">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                supplies: 'Hearing Device',
+                yn: <Input type="select"
+                           name="hearingDevice"
+                           id="hearingDevice">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                supplies: 'Other',
+                yn: <Input type="select"
+                           name="otherSupply"
+                           id="otherSupply">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }],
+            medsColumns: [{
+                Header: 'Name',
+                accessor: 'medsName'
+            }, {
+                Header: 'Dosage',
+                accessor: 'dosage'
+            }, {
+                Header: 'Time(s) Given',
+                accessor: 'timeGiven'
+            }, {
+                Header: 'Frequency',
+                accessor: 'frequency'
+            }, {
+                Header: 'Purpose',
+                accessor: 'purpose'
+            }, {
+                Header: 'Potential Side Effects',
+                accessor: 'sideEffects'
+            }],
+            medsData: [{
+                medsName: <input type="text" name="med1Name"/>,
+                dosage: <input type="text" name="med1Dosage"/>,
+                timeGiven: <input type="text" name="med1TimeGiven"/>,
+                frequency: <input type="text" name="med1Frequency"/>,
+                purpose: <input type="text" name="med1Purpose"/>,
+                sideEffects: <input type="text" name="med1SideEffects"/>
+            }, {
+                medsName: <input type="text" name="med2Name"/>,
+                dosage: <input type="text" name="med2Dosage"/>,
+                timeGiven: <input type="text" name="med2TimeGiven"/>,
+                frequency: <input type="text" name="med2Frequency"/>,
+                purpose: <input type="text" name="med2Purpose"/>,
+                sideEffects: <input type="text" name="med2SideEffects"/>
+            }, {
+                medsName: <input type="text" name="med3Name"/>,
+                dosage: <input type="text" name="med3Dosage"/>,
+                timeGiven: <input type="text" name="med3TimeGiven"/>,
+                frequency: <input type="text" name="med3Frequency"/>,
+                purpose: <input type="text" name="med3Purpose"/>,
+                sideEffects: <input type="text" name="med3SideEffects"/>
+            }, {
+                medsName: <input type="text" name="med4Name"/>,
+                dosage: <input type="text" name="med4Dosage"/>,
+                timeGiven: <input type="text" name="med4TimeGiven"/>,
+                frequency: <input type="text" name="med4Frequency"/>,
+                purpose: <input type="text" name="med4Purpose"/>,
+                sideEffects: <input type="text" name="med4SideEffects"/>
+            }, {
+                medsName: <input type="text" name="med5Name"/>,
+                dosage: <input type="text" name="med5Dosage"/>,
+                timeGiven: <input type="text" name="med5TimeGiven"/>,
+                frequency: <input type="text" name="med5Frequency"/>,
+                purpose: <input type="text" name="med5Purpose"/>,
+                sideEffects: <input type="text" name="med5SideEffects"/>
+            }, {
+                medsName: <input type="text" name="med6Name"/>,
+                dosage: <input type="text" name="med6Dosage"/>,
+                timeGiven: <input type="text" name="med6TimeGiven"/>,
+                frequency: <input type="text" name="med6Frequency"/>,
+                purpose: <input type="text" name="med6Purpose"/>,
+                sideEffects: <input type="text" name="med6SideEffects"/>
+            }],
+            testingColumns: [{
+                Header: 'Date',
+                accessor: 'testDate'
+            }, {
+                Header: 'Examined by',
+                accessor: 'examiner'
+            }, {
+                Header: 'Diagnosis',
+                accessor: 'diagnosis'
+            }, {
+                Header: 'Recommendations',
+                accessor: 'testReco'
+            }, {
+                Header: 'Report Included (Please select Yes or No',
+                accessor: 'testReport'
+            }],
+            testingData: [{
+                testDate: <input type="date" name="test1Date"/>,
+                examiner: <input type="text" name="test1Examiner"/>,
+                diagnosis: <input type="text" name="test1Diagnosis"/>,
+                testReco: <input type="text" name="test1Reco"/>,
+                testReport: <Input type="select"
+                                   name="test1Report"
+                                   id="test1Report">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                testDate: <input type="date" name="test2Date"/>,
+                examiner: <input type="text" name="test2Examiner"/>,
+                diagnosis: <input type="text" name="test2Diagnosis"/>,
+                testReco: <input type="text" name="test2Reco"/>,
+                testReport: <Input type="select"
+                                   name="test2Report"
+                                   id="test2Report">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                testDate: <input type="date" name="test3Date"/>,
+                examiner: <input type="text" name="test3Examiner"/>,
+                diagnosis: <input type="text" name="test3Diagnosis"/>,
+                testReco: <input type="text" name="test3Reco"/>,
+                testReport: <Input type="select"
+                                   name="test3Report"
+                                   id="test3Report">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                testDate: <input type="date" name="test4Date"/>,
+                examiner: <input type="text" name="test4Examiner"/>,
+                diagnosis: <input type="text" name="test4Diagnosis"/>,
+                testReco: <input type="text" name="test4Reco"/>,
+                testReport: <Input type="select"
+                                   name="test4Report"
+                                   id="test4Report">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                testDate: <input type="date" name="test5Date"/>,
+                examiner: <input type="text" name="test5Examiner"/>,
+                diagnosis: <input type="text" name="test5Diagnosis"/>,
+                testReco: <input type="text" name="test5Reco"/>,
+                testReport: <Input type="select"
+                                   name="test5Report"
+                                   id="test5Report">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                testDate: <input type="date" name="test6Date"/>,
+                examiner: <input type="text" name="test6Examiner"/>,
+                diagnosis: <input type="text" name="test6Diagnosis"/>,
+                testReco: <input type="text" name="test6Reco"/>,
+                testReport: <Input type="select"
+                                   name="test6Report"
+                                   id="test6Report">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }],
             handPreferenceColumns:[{
                 Header: 'Activity',
                 accessor: 'activityHandPreference'
@@ -701,9 +985,6 @@ class ClientHistoryAndInformation extends Component{
 
 
             }],
-
-
-            epilepsy: false
         };
 
         this.goBack = this.goBack.bind(this);
@@ -1621,22 +1902,135 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                 </Row>
                 <Row>
+                    <div>Please indicate whether the following apply to the client.</div>
+                </Row>
+                <ReactTable
+                    className={"medicalConditionsTable -striped -highlight"}
+                    data={this.state.medicalConditionsData}
+                    columns={this.state.medicalConditionsColumns}
+                    defaultPageSize={5}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please check all of the following that apply to the client</Label>
-                            <Row>
-                                <Label>Epilepsy/Seizures
-                                    <Input
-                                        name="epilepsy"
-                                        type="checkbox"
-                                        checked={this.state.epilepsy}
-                                        onChange={this.handleCheckBoxChange}
-                                    />
-                                </Label>
-                            </Row>
+                            <Label className="control-label required">Please list other medical conditions here.</Label>
+                            <Input
+                                type="text"
+                                ref="hospital"
+                                value={this.state.fields["hospital"] || ""}
+                                onChange={this.handleChange.bind(this, "hospital")}
+                                className="error"
+                                invalid={this.state.errors["hospital"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["hospital"] }>{this.state.errors["hospital"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
                 </Row>
+                <Row>
+                    <div>Please indicate if the client uses any of the following supplies/equipment.</div>
+                </Row>
+                <ReactTable
+                    className={"suppliesTable -striped -highlight"}
+                    data={this.state.suppliesData}
+                    columns={this.state.suppliesColumns}
+                    defaultPageSize={8}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Please list other supplies/equipment here.</Label>
+                            <Input
+                                type="text"
+                                ref="hospital"
+                                value={this.state.fields["hospital"] || ""}
+                                onChange={this.handleChange.bind(this, "hospital")}
+                                className="error"
+                                invalid={this.state.errors["hospital"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["hospital"] }>{this.state.errors["hospital"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <div>Please list all current medications, dietary supplement, and vitamins.</div>
+                </Row>
+                <ReactTable
+                    className={"medsTable -striped -highlight"}
+                    data={this.state.medsData}
+                    columns={this.state.medsColumns}
+                    defaultPageSize={6}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                <Row>
+                    <div>Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.</div>
+                </Row>
+                <ReactTable
+                    className={"testingTable -striped -highlight"}
+                    data={this.state.testingData}
+                    columns={this.state.testingColumns}
+                    defaultPageSize={6}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
             </fieldset>
         );
     }
