@@ -1931,8 +1931,8 @@ class ClientHistoryAndInformation extends Component{
                     </FormGroup>
                     <Collapse isOpen={this.state.collapseCommunication}>
                         <Card className={"toggle-card"}>
-                            <CardBody>
-                            <FormGroup className={"toggle-card-body"}>
+                            <CardBody className={"toggle-card-body"}>
+                            <FormGroup >
                                     <Label>Name of Device and Software Used</Label>
                                     <Input
                                         type="text"
