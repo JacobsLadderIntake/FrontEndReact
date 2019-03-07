@@ -27,20 +27,20 @@ class ClientHistoryAndInformation extends Component{
             saveButtonPressed:false,
             devHistoryColumns:[{
                 Header: 'Activity',
-                accessor: 'activity'
+                accessor: 'devHistoryActivity'
             }, {
                 Header: 'Years',
-                accessor: 'years'
+                accessor: 'devHistoryyears'
             }, {
                 Header: 'Months',
-                accessor: 'months'
+                accessor: 'devHistorymonths'
             }, {
                 Header: 'Not Yet Developed',
-                accessor: 'na'
+                accessor: 'devHistoryNa'
             }],
             devHistoryData:[{
-                activity: 'Crawled on stomach',
-                years: <Input type="select"
+                devHistoryActivity: 'Crawled on stomach',
+                devHistoryYears: <Input type="select"
                               name="crawlYears"
                               id="crawlYears">
                     <option>0</option>
@@ -64,7 +64,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="crawlMonths"
                                id="crawlMonths">
                     <option>0</option>
@@ -81,15 +81,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNA: <Input type="select"
                            name="crawlNa"
                            id="crawlNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: 'Crept on hands and knees',
-                years: <Input type="select"
+                devHistoryActivity: 'Crept on hands and knees',
+                devHistoryYears: <Input type="select"
                               name="creptYears"
                               id="creptYears">
                     <option>0</option>
@@ -113,7 +114,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="creptMmonths"
                                id="creptMonths">
                     <option>0</option>
@@ -130,15 +131,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="creptNa"
                            id="creptNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: 'Walked',
-                years: <Input type="select"
+                devHistoryActivity: 'Walked',
+                devHistoryYears: <Input type="select"
                               name="walkYears"
                               id="walkYears">
                     <option>0</option>
@@ -162,7 +164,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="walkMonths"
                                id="walkMonths">
                     <option>0</option>
@@ -179,15 +181,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="walkNa"
                            id="walkNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: 'Toilet trained',
-                years: <Input type="select"
+                devHistoryActivity: 'Toilet trained',
+                devHistoryYears: <Input type="select"
                               name="toiletYears"
                               id="toiletYears">
                     <option>0</option>
@@ -211,7 +214,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="toiletMonths"
                                id="toiletMonths">
                     <option>0</option>
@@ -228,15 +231,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="toiletNa"
                            id="toiletNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: 'First word',
-                years: <Input type="select"
+                devHistoryActivity: 'First word',
+                devHistoryYears: <Input type="select"
                               name="wordYears"
                               id="wordYears">
                     <option>0</option>
@@ -277,15 +281,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="wordNa"
                            id="wordNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: 'Use of couplets (2 words together)',
-                years: <Input type="select"
+                devHistoryActivity: 'Use of couplets (2 words together)',
+                devHistoryYears: <Input type="select"
                               name="coupletYears"
                               id="coupletYears">
                     <option>0</option>
@@ -309,7 +314,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="coupletMonths"
                                id="coupletMonths">
                     <option>0</option>
@@ -326,15 +331,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="coupletNa"
                            id="coupletNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: '3-4 word phrases',
-                years: <Input type="select"
+                devHistoryActivity: '3-4 word phrases',
+                devHistoryYears: <Input type="select"
                               name="phraseYears"
                               id="phraseYears">
                     <option>0</option>
@@ -358,7 +364,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="phraseMonths"
                                id="phraseMonths">
                     <option>0</option>
@@ -375,15 +381,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="phraseNa"
                            id="phraseNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: 'Sentences',
-                years: <Input type="select"
+                devHistoryActivity: 'Sentences',
+                devHistoryYears: <Input type="select"
                               name="sentenceYears"
                               id="sentenceYears">
                     <option>0</option>
@@ -407,7 +414,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="sentenceMonths"
                                id="sentenceMonths">
                     <option>0</option>
@@ -424,15 +431,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="sentenceNa"
                            id="sentenceNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: 'Conversational language',
-                years: <Input type="select"
+                devHistoryActivity: 'Conversational language',
+                devHistoryYears: <Input type="select"
                               name="conversationYears"
                               id="conversationYears">
                     <option>0</option>
@@ -456,7 +464,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="conversationMonths"
                                id="conversationMonths">
                     <option>0</option>
@@ -473,15 +481,16 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="conversationNa"
                            id="conversationNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }, {
-                activity: 'Reading',
-                years:<Input type="select"
+                devHistoryActivity: 'Reading',
+                devHistoryYears:<Input type="select"
                              name="readYears"
                              id="readYears">
                     <option>0</option>
@@ -505,7 +514,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="readMonths"
                                id="readMonths">
                     <option>0</option>
@@ -522,46 +531,47 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                na: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="readNa"
                            id="readNa">
+                    <option></option>
                     <option>true</option>
                     <option>false</option>
                 </Input>
             }],
             otherDoctorsColumns:[{
                 Header: 'Name',
-                accessor: 'name'
+                accessor: 'otherDrName'
             }, {
                 Header: 'Specialty',
-                accessor: 'specialty'
+                accessor: 'otherDrSpecialty'
             }, {
                 Header: 'Phone Number',
-                accessor: 'phone'
+                accessor: 'otherDrPhone'
             }, {
                 Header: 'Schedule of Service',
-                accessor: 'sched'
+                accessor: 'otherDrSched'
             }],
             otherDoctorsData:[{
-                name: <input type="text" name="doc1Name"/>,
-                specialty: <input type="text" name="doc1Specialty"/>,
-                phone: <input type="text" name="doc1Phone"/>,
-                sched: <input type="text" name="doc1Sched"/>
+                otherDrName: <input type="text" name="doc1Name"/>,
+                otherDrSpecialty: <input type="text" name="doc1Specialty"/>,
+                otherDrPhone: <input type="text" name="doc1Phone"/>,
+                otherDrSched: <input type="text" name="doc1Sched"/>
             }, {
-                name: <input type="text" name="doc2Name"/>,
-                specialty: <input type="text" name="doc2Specialty"/>,
-                phone: <input type="text" name="doc2Phone"/>,
-                sched: <input type="text" name="doc2Sched"/>
+                otherDrName: <input type="text" name="doc2Name"/>,
+                otherDrSpecialty: <input type="text" name="doc2Specialty"/>,
+                otherDrPhone: <input type="text" name="doc2Phone"/>,
+                otherDrSched: <input type="text" name="doc2Sched"/>
             }, {
-                name: <input type="text" name="doc3Name"/>,
-                specialty: <input type="text" name="doc3Specialty"/>,
-                phone: <input type="text" name="doc3Phone"/>,
-                sched: <input type="text" name="doc3Sched"/>
+                otherDrName: <input type="text" name="doc3Name"/>,
+                otherDrSpecialty: <input type="text" name="doc3Specialty"/>,
+                otherDrPhone: <input type="text" name="doc3Phone"/>,
+                otherDrSched: <input type="text" name="doc3Sched"/>
             }, {
-                name: <input type="text" name="doc4Name" />,
-                specialty: <input type="text" name="doc4Specialty" />,
-                phone: <input type="text" name="doc4Phone" />,
-                sched: <input type="text" name="doc4Sched" />
+                otherDrName: <input type="text" name="doc4Name" />,
+                otherDrSpecialty: <input type="text" name="doc4Specialty" />,
+                otherDrPhone: <input type="text" name="doc4Phone" />,
+                otherDrSched: <input type="text" name="doc4Sched" />
             }],
             otherProgramsColumns:[{
                 Header: 'School/Program Name',
@@ -626,14 +636,14 @@ class ClientHistoryAndInformation extends Component{
             }],
             medicalConditionsColumns:[{
                 Header: 'Medical Condition',
-                accessor: 'mc'
+                accessor: 'medCondition'
             }, {
                 Header: 'Select Yes or No',
-                accessor: 'yn'
+                accessor: 'medConditionYN'
             }],
             medicalConditionsData: [{
-                mc: 'Epilepsy/Seizures',
-                yn: <Input type="select"
+                medCondition: 'Epilepsy/Seizures',
+                medConditionYN: <Input type="select"
                            name="epilepsy"
                            id="epilepsy">
                     <option></option>
@@ -641,8 +651,8 @@ class ClientHistoryAndInformation extends Component{
                     <option>No</option>
                 </Input>
             }, {
-                mc: 'Diabetes',
-                yn: <Input type="select"
+                medCondition: 'Diabetes',
+                medConditionYN: <Input type="select"
                            name="diabetes"
                            id="diabetes">
                     <option></option>
@@ -650,8 +660,8 @@ class ClientHistoryAndInformation extends Component{
                     <option>No</option>
                 </Input>
             }, {
-                mc: 'Asthma',
-                yn: <Input type="select"
+                medCondition: 'Asthma',
+                medConditionYN: <Input type="select"
                            name="asthma"
                            id="asthma">
                     <option></option>
@@ -659,8 +669,8 @@ class ClientHistoryAndInformation extends Component{
                     <option>No</option>
                 </Input>
             }, {
-                mc: 'Uses an Epi-Pen',
-                yn: <Input type="select"
+                medCondition: 'Uses an Epi-Pen',
+                medConditionYN: <Input type="select"
                            name="epipen"
                            id="epipen">
                     <option></option>
@@ -668,10 +678,10 @@ class ClientHistoryAndInformation extends Component{
                     <option>No</option>
                 </Input>
             }, {
-                mc: 'Other (please list in the box below)',
+                medCondition: 'Other (please list in the box below)',
                 yn: <Input type="select"
-                           name="other"
-                           id="other">
+                           name="medConditionOther"
+                           id="medConditionOther">
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -682,11 +692,11 @@ class ClientHistoryAndInformation extends Component{
                 accessor: 'supplies'
             }, {
                 Header: 'Select Yes or No',
-                accessor: 'yn'
+                accessor: 'suppliesYN'
             }],
             suppliesData: [{
                 supplies: 'Braces/Splints',
-                yn: <Input type="select"
+                suppliesYN: <Input type="select"
                            name="brace"
                            id="brace">
                     <option></option>
@@ -695,7 +705,7 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 supplies: 'Feeding Support & Supplies',
-                yn: <Input type="select"
+                suppliesYN: <Input type="select"
                            name="feedSupport"
                            id="feedSupport">
                     <option></option>
@@ -704,7 +714,7 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 supplies: 'Toileting Equipment',
-                yn: <Input type="select"
+                suppliesYN: <Input type="select"
                            name="toiletEquip"
                            id="toiletEquip">
                     <option></option>
@@ -713,7 +723,7 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 supplies: 'Mobility Equipment',
-                yn: <Input type="select"
+                suppliesYN: <Input type="select"
                            name="mobilityEquip"
                            id="mobilityEquip">
                     <option></option>
@@ -722,16 +732,16 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 supplies: 'Communication Equipment',
-                yn: <Input type="select"
-                           name="commEquip"
-                           id="commEquip">
+                suppliesYN: <Input type="select"
+                           name="communicationEquip"
+                           id="communicationEquip">
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
                 </Input>
             }, {
                 supplies: 'Oxygen Tank',
-                yn: <Input type="select"
+                suppliesYN: <Input type="select"
                            name="oxygenTank"
                            id="oxygenTank">
                     <option></option>
@@ -740,7 +750,7 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 supplies: 'Hearing Device',
-                yn: <Input type="select"
+                suppliesYN: <Input type="select"
                            name="hearingDevice"
                            id="hearingDevice">
                     <option></option>
@@ -749,7 +759,7 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 supplies: 'Other',
-                yn: <Input type="select"
+                suppliesYN: <Input type="select"
                            name="otherSupply"
                            id="otherSupply">
                     <option></option>
@@ -762,62 +772,62 @@ class ClientHistoryAndInformation extends Component{
                 accessor: 'medsName'
             }, {
                 Header: 'Dosage',
-                accessor: 'dosage'
+                accessor: 'medsDosage'
             }, {
                 Header: 'Time(s) Given',
-                accessor: 'timeGiven'
+                accessor: 'medsTimeGiven'
             }, {
                 Header: 'Frequency',
-                accessor: 'frequency'
+                accessor: 'medsFrequency'
             }, {
                 Header: 'Purpose',
-                accessor: 'purpose'
+                accessor: 'medsPurpose'
             }, {
                 Header: 'Potential Side Effects',
-                accessor: 'sideEffects'
+                accessor: 'medsSideEffects'
             }],
             medsData: [{
                 medsName: <input type="text" name="med1Name"/>,
-                dosage: <input type="text" name="med1Dosage"/>,
-                timeGiven: <input type="text" name="med1TimeGiven"/>,
-                frequency: <input type="text" name="med1Frequency"/>,
-                purpose: <input type="text" name="med1Purpose"/>,
-                sideEffects: <input type="text" name="med1SideEffects"/>
+                medsDosage: <input type="text" name="med1Dosage"/>,
+                medsTimeGiven: <input type="text" name="med1TimeGiven"/>,
+                medsFrequency: <input type="text" name="med1Frequency"/>,
+                medsPurpose: <input type="text" name="med1Purpose"/>,
+                medsSideEffects: <input type="text" name="med1SideEffects"/>
             }, {
                 medsName: <input type="text" name="med2Name"/>,
-                dosage: <input type="text" name="med2Dosage"/>,
-                timeGiven: <input type="text" name="med2TimeGiven"/>,
-                frequency: <input type="text" name="med2Frequency"/>,
-                purpose: <input type="text" name="med2Purpose"/>,
-                sideEffects: <input type="text" name="med2SideEffects"/>
+                medsDosage: <input type="text" name="med2Dosage"/>,
+                medsTimeGiven: <input type="text" name="med2TimeGiven"/>,
+                medsFrequency: <input type="text" name="med2Frequency"/>,
+                medsPurpose: <input type="text" name="med2Purpose"/>,
+                medsSideEffects: <input type="text" name="med2SideEffects"/>
             }, {
                 medsName: <input type="text" name="med3Name"/>,
-                dosage: <input type="text" name="med3Dosage"/>,
-                timeGiven: <input type="text" name="med3TimeGiven"/>,
-                frequency: <input type="text" name="med3Frequency"/>,
-                purpose: <input type="text" name="med3Purpose"/>,
-                sideEffects: <input type="text" name="med3SideEffects"/>
+                medsDosage: <input type="text" name="med3Dosage"/>,
+                medsTimeGiven: <input type="text" name="med3TimeGiven"/>,
+                medsFrequency: <input type="text" name="med3Frequency"/>,
+                medsPurpose: <input type="text" name="med3Purpose"/>,
+                medsSideEffects: <input type="text" name="med3SideEffects"/>
             }, {
                 medsName: <input type="text" name="med4Name"/>,
-                dosage: <input type="text" name="med4Dosage"/>,
-                timeGiven: <input type="text" name="med4TimeGiven"/>,
-                frequency: <input type="text" name="med4Frequency"/>,
-                purpose: <input type="text" name="med4Purpose"/>,
-                sideEffects: <input type="text" name="med4SideEffects"/>
+                medsDosage: <input type="text" name="med4Dosage"/>,
+                medsTimeGiven: <input type="text" name="med4TimeGiven"/>,
+                medsFrequency: <input type="text" name="med4Frequency"/>,
+                medsPurpose: <input type="text" name="med4Purpose"/>,
+                medsSideEffects: <input type="text" name="med4SideEffects"/>
             }, {
                 medsName: <input type="text" name="med5Name"/>,
-                dosage: <input type="text" name="med5Dosage"/>,
-                timeGiven: <input type="text" name="med5TimeGiven"/>,
-                frequency: <input type="text" name="med5Frequency"/>,
-                purpose: <input type="text" name="med5Purpose"/>,
-                sideEffects: <input type="text" name="med5SideEffects"/>
+                medsDosage: <input type="text" name="med5Dosage"/>,
+                medsTimeGiven: <input type="text" name="med5TimeGiven"/>,
+                medsFrequency: <input type="text" name="med5Frequency"/>,
+                medsPurpose: <input type="text" name="med5Purpose"/>,
+                medsSideEffects: <input type="text" name="med5SideEffects"/>
             }, {
                 medsName: <input type="text" name="med6Name"/>,
-                dosage: <input type="text" name="med6Dosage"/>,
-                timeGiven: <input type="text" name="med6TimeGiven"/>,
-                frequency: <input type="text" name="med6Frequency"/>,
-                purpose: <input type="text" name="med6Purpose"/>,
-                sideEffects: <input type="text" name="med6SideEffects"/>
+                medsDosage: <input type="text" name="med6Dosage"/>,
+                medsTimeGiven: <input type="text" name="med6TimeGiven"/>,
+                medsFrequency: <input type="text" name="med6Frequency"/>,
+                medsPurpose: <input type="text" name="med6Purpose"/>,
+                medsSideEffects: <input type="text" name="med6SideEffects"/>
             }],
             testingColumns: [{
                 Header: 'Date',
@@ -837,8 +847,8 @@ class ClientHistoryAndInformation extends Component{
             }],
             testingData: [{
                 testDate: <input type="date" name="test1Date"/>,
-                examiner: <input type="text" name="test1Examiner"/>,
-                diagnosis: <input type="text" name="test1Diagnosis"/>,
+                testExaminer: <input type="text" name="test1Examiner"/>,
+                testDiagnosis: <input type="text" name="test1Diagnosis"/>,
                 testReco: <input type="text" name="test1Reco"/>,
                 testReport: <Input type="select"
                                    name="test1Report"
@@ -849,8 +859,8 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 testDate: <input type="date" name="test2Date"/>,
-                examiner: <input type="text" name="test2Examiner"/>,
-                diagnosis: <input type="text" name="test2Diagnosis"/>,
+                testExaminer: <input type="text" name="test2Examiner"/>,
+                testDiagnosis: <input type="text" name="test2Diagnosis"/>,
                 testReco: <input type="text" name="test2Reco"/>,
                 testReport: <Input type="select"
                                    name="test2Report"
@@ -861,8 +871,8 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 testDate: <input type="date" name="test3Date"/>,
-                examiner: <input type="text" name="test3Examiner"/>,
-                diagnosis: <input type="text" name="test3Diagnosis"/>,
+                testExaminer: <input type="text" name="test3Examiner"/>,
+                testDiagnosis: <input type="text" name="test3Diagnosis"/>,
                 testReco: <input type="text" name="test3Reco"/>,
                 testReport: <Input type="select"
                                    name="test3Report"
@@ -873,8 +883,8 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 testDate: <input type="date" name="test4Date"/>,
-                examiner: <input type="text" name="test4Examiner"/>,
-                diagnosis: <input type="text" name="test4Diagnosis"/>,
+                testExaminer: <input type="text" name="test4Examiner"/>,
+                testDiagnosis: <input type="text" name="test4Diagnosis"/>,
                 testReco: <input type="text" name="test4Reco"/>,
                 testReport: <Input type="select"
                                    name="test4Report"
@@ -885,8 +895,8 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 testDate: <input type="date" name="test5Date"/>,
-                examiner: <input type="text" name="test5Examiner"/>,
-                diagnosis: <input type="text" name="test5Diagnosis"/>,
+                testExaminer: <input type="text" name="test5Examiner"/>,
+                testDiagnosis: <input type="text" name="test5Diagnosis"/>,
                 testReco: <input type="text" name="test5Reco"/>,
                 testReport: <Input type="select"
                                    name="test5Report"
@@ -897,12 +907,205 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 testDate: <input type="date" name="test6Date"/>,
-                examiner: <input type="text" name="test6Examiner"/>,
-                diagnosis: <input type="text" name="test6Diagnosis"/>,
+                testExaminer: <input type="text" name="test6Examiner"/>,
+                testDiagnosis: <input type="text" name="test6Diagnosis"/>,
                 testReco: <input type="text" name="test6Reco"/>,
                 testReport: <Input type="select"
                                    name="test6Report"
                                    id="test6Report">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }],
+            foodGroupColumns: [{
+                Header: 'Food Group',
+                accessor: 'foodGroup'
+            }, {
+                Header: '',
+                accessor: 'excessive'
+            }, {
+                Header: '',
+                accessor: 'daily'
+            }, {
+                Header: '',
+                accessor: 'weekly'
+            }, {
+                Header: '',
+                accessor: 'rarely'
+            }, {
+                Header: '',
+                accessor: 'never'
+            }],
+            foodGroupData:[{
+                foodGroup: 'Vegetables',
+                foodExcessive: <Label check> <Input type="checkbox" name="vegetableExcess" id="vegetableExcess"/> Excessive </Label>,
+                foodDaily: <Label check> <Input type="checkbox" name="vegetableDaily" id="vegetableDaily"/> Daily </Label>,
+                foodWeekly: <Label check> <Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly"/> Weekly </Label>,
+                foodRarely: <Label check> <Input type="checkbox" name="vegetableRarely" id="vegetableRarely"/> Rarely </Label>,
+                foodNever: <Label check> <Input type="checkbox" name="vegetableNever" id="vegetableNever"/> Never </Label>
+            }, {
+                foodGroup: 'Fruits',
+                foodExcessive: <Label check> <Input type="checkbox" name="fruitExcess" id="fruitExcess"/> Excessive </Label>,
+                foodDaily: <Label check> <Input type="checkbox" name="fruitDaily" id="fruitDaily"/> Daily </Label>,
+                foodWeekly: <Label check> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly"/> Weekly </Label>,
+                foodRarely: <Label check> <Input type="checkbox" name="fruitRarely" id="fruitRarely"/> Rarely </Label>,
+                foodNever: <Label check> <Input type="checkbox" name="fruitNever" id="fruitNever"/> Never </Label>
+            }, {
+                foodGroup: 'Meats',
+                foodExcessive: <Label check> <Input type="checkbox" name="meatExcess" id="meatExcess"/> Excessive </Label>,
+                foodDaily: <Label check> <Input type="checkbox" name="meatDaily" id="meatDaily"/> Daily </Label>,
+                foodWeekly: <Label check> <Input type="checkbox" name="meatWeekly" id="meatWeekly"/> Weekly </Label>,
+                foodRarely: <Label check> <Input type="checkbox" name="meatRarely" id="meatRarely"/> Rarely </Label>,
+                foodNever: <Label check> <Input type="checkbox" name="meatNever" id="meatNever"/> Never </Label>
+            }, {
+                foodGroup: 'Sugar',
+                foodExcessive: <Label check> <Input type="checkbox" name="sugarExcess" id="sugarExcess"/> Excessive </Label>,
+                foodDaily: <Label check> <Input type="checkbox" name="sugarDaily" id="sugarDaily"/> Daily </Label>,
+                foodWeekly: <Label check> <Input type="checkbox" name="sugarWeekly" id="sugarWeekly"/> Weekly </Label>,
+                foodRarely: <Label check> <Input type="checkbox" name="sugarRarely" id="sugarRarely"/> Rarely </Label>,
+                foodNever: <Label check> <Input type="checkbox" name="sugarNever" id="sugarNever"/> Never </Label>
+            }, {
+                foodGroup: 'Artificial Sweetener',
+                foodExcessive: <Label check> <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess"/> Excessive </Label>,
+                foodDaily: <Label check> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily"/> Daily </Label>,
+                foodWeekly: <Label check> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly"/> Weekly </Label>,
+                foodRarely: <Label check> <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely"/> Rarely </Label>,
+                foodNever: <Label check> <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever"/> Never </Label>
+            }, {
+                foodGroup: 'Artificial Products',
+                foodExcessive: <Label check> <Input type="checkbox" name="artProductsExcess" id="artProductsExcess"/> Excessive </Label>,
+                foodDaily: <Label check> <Input type="checkbox" name="artProductsDaily" id="artProductsDaily"/> Daily </Label>,
+                foodWeekly: <Label check> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly"/> Weekly </Label>,
+                foodRarely: <Label check> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely"/> Rarely </Label>,
+                foodNever: <Label check> <Input type="checkbox" name="artProductsNever" id="artProductsNever"/> Never </Label>
+            }, {
+                foodGroup: 'Dairy Products',
+                foodExcessive: <Label check> <Input type="checkbox" name="dairyExcess" id="dairyExcess"/> Excessive </Label>,
+                foodDaily: <Label check> <Input type="checkbox" name="dairyDaily" id="dairyDaily"/> Daily </Label>,
+                foodWeekly: <Label check> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly"/> Weekly </Label>,
+                foodRarely: <Label check> <Input type="checkbox" name="dairyRarely" id="dairyRarely"/> Rarely </Label>,
+                foodNever: <Label check> <Input type="checkbox" name="dairyNever" id="dairyNever"/> Never </Label>
+            }, {
+                foodGroup: 'White Flour',
+                foodExcessive: <Label check> <Input type="checkbox" name="flourExcess" id="flourExcess"/> Excessive </Label>,
+                foodDaily: <Label check> <Input type="checkbox" name="flourDaily" id="flourDaily"/> Daily </Label>,
+                foodWeekly: <Label check> <Input type="checkbox" name="flourWeekly" id="flourWeekly"/> Weekly </Label>,
+                foodRarely: <Label check> <Input type="checkbox" name="flourRarely" id="flourRarely"/> Rarely </Label>,
+                foodNever: <Label check> <Input type="checkbox" name="flourNever" id="flourNever"/> Never </Label>
+            }],
+            physicalMotorColumns: [{
+                Header: '',
+                accessor: 'physicalMotor'
+            }, {
+                Header: 'Select Yes or No',
+                accessor: 'physicalMotorYN'
+            }],
+            physicalMotorData: [{
+                physicalMotor: 'Low muscle tone',
+                physicalMotorYN: <Input type="select"
+                                        name="lowMuscleTone"
+                                        id="lowMuscleTone">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'High muscle tone',
+                physicalMotorYN: <Input type="select"
+                                        name="highMuscleTone"
+                                        id="highMuscleTone">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Coordination challenges',
+                physicalMotorYN: <Input type="select"
+                                        name="coordination"
+                                        id="coordination">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Crawling challenges',
+                physicalMotorYN: <Input type="select"
+                                        name="crawling"
+                                        id="crawling">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Walking challenges',
+                physicalMotorYN: <Input type="select"
+                                        name="walking"
+                                        id="walking">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Running challenges',
+                physicalMotorYN: <Input type="select"
+                                        name="running"
+                                        id="running">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Athetoid movement',
+                physicalMotorYN: <Input type="select"
+                                        name="athetoid"
+                                        id="athetoid">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Ataxic',
+                physicalMotorYN: <Input type="select"
+                                        name="ataxic"
+                                        id="ataxic">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Weak',
+                physicalMotorYN: <Input type="select"
+                                        name="weak"
+                                        id="weak">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Balance challenges',
+                physicalMotorYN: <Input type="select"
+                                        name="balance"
+                                        id="balance">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                    <option>Not Sure</option>
+                </Input>
+            }, {
+                physicalMotor: 'Other',
+                physicalMotorYN: <Input type="select"
+                                        name="otherPhysicalMotor"
+                                        id="otherPhysicalMotor">
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -986,8 +1189,6 @@ class ClientHistoryAndInformation extends Component{
                     <option>No</option>
                     <option>Not Sure</option>
                 </Input>
-
-
             },{
                 skill: "Sloppy Writing",
                 checkApplied: <Input type="select"
@@ -1965,9 +2166,6 @@ class ClientHistoryAndInformation extends Component{
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}*/}
-                            {/*</FormFeedback>*/}
                         </FormGroup>
                     </Col>
                 </Row>
@@ -2010,7 +2208,7 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                 </Row>
                 <Row>
-                    <div>Please indicate whether the following apply to the client.</div>
+                    <Label className="control-label required">Please indicate whether the following apply to the client.</Label>
                 </Row>
                 <ReactTable
                     className={"medicalConditionsTable -striped -highlight"}
@@ -2051,7 +2249,7 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                 </Row>
                 <Row>
-                    <div>Please indicate if the client uses any of the following supplies/equipment.</div>
+                    <Label className="control-label required">Please indicate if the client uses any of the following supplies/equipment.</Label>
                 </Row>
                 <ReactTable
                     className={"suppliesTable -striped -highlight"}
@@ -2092,7 +2290,7 @@ class ClientHistoryAndInformation extends Component{
                     </Col>
                 </Row>
                 <Row>
-                    <div>Please list all current medications, dietary supplement, and vitamins.</div>
+                    <Label className="control-label required">Please list all current medications, dietary supplement, and vitamins.</Label>
                 </Row>
                 <ReactTable
                     className={"medsTable -striped -highlight"}
@@ -2116,7 +2314,7 @@ class ClientHistoryAndInformation extends Component{
                     }}
                 />
                 <Row>
-                    <div>Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.</div>
+                    <Label className="control-label required">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.</Label>
                 </Row>
                 <ReactTable
                     className={"testingTable -striped -highlight"}
@@ -2147,6 +2345,275 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 6: General Health</div>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Please describe the client's diet.</Label>
+                            <Input
+                                type="text"
+                                ref="diet"
+                                value={this.state.fields["diet"] || ""}
+                                onChange={this.handleChange.bind(this, "diet")}
+                                className="error"
+                                invalid={this.state.errors["diet"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["diet"] }>{this.state.errors["diet"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Label className="control-label required">Please check all that apply:</Label>
+                </Row>
+                <ReactTable
+                    className={"foodGroupTable -striped -highlight"}
+                    data={this.state.foodGroupData}
+                    columns={this.state.foodGroupColumns}
+                    defaultPageSize={8}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                <Row>
+                    <Col sm={6}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Does the client have any allergies?</Label>
+                            <Input type="select"
+                                   name="allergies"
+                                   id="allergies">
+                                <option></option>
+                                <option>Yes</option>
+                                <option>None Known</option>
+                            </Input>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">If yes, please describe.</Label>
+                            <Input
+                                type="text"
+                                ref="describeAllergies"
+                                value={this.state.fields["describeAllergies"] || ""}
+                                onChange={this.handleChange.bind(this, "describeAllergies")}
+                                className="error"
+                                invalid={this.state.errors["describeAllergies"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["describeAllergies"] }>{this.state.errors["describeAllergies"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <div className={"sub-section"}>Daily Meal Schedule</div>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Approximate Breakfast Time</Label>
+                            <Input
+                                type="text"
+                                ref="breakfastTime"
+                                value={this.state.fields["breakfastTime"] || ""}
+                                onChange={this.handleChange.bind(this, "breakfastTime")}
+                                className="error"
+                                invalid={this.state.errors["breakfastTime"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["breakfastTime"] }>{this.state.errors["breakfastTime"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Approximate Lunch Time</Label>
+                            <Input
+                                type="text"
+                                ref="lunchTime"
+                                value={this.state.fields["lunchTime"] || ""}
+                                onChange={this.handleChange.bind(this, "lunchTime")}
+                                className="error"
+                                invalid={this.state.errors["lunchTime"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["lunchTime"] }>{this.state.errors["lunchTime"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Approximate Dinner Time</Label>
+                            <Input
+                                type="text"
+                                ref="dinnerTime"
+                                value={this.state.fields["dinnerTime"] || ""}
+                                onChange={this.handleChange.bind(this, "dinnerTime")}
+                                className="error"
+                                invalid={this.state.errors["dinnerTime"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["dinnerTime"] }>{this.state.errors["dinnerTime"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Approximate Snack Times</Label>
+                            <Input
+                                type="text"
+                                ref="snackTime"
+                                value={this.state.fields["snackTime"] || ""}
+                                onChange={this.handleChange.bind(this, "snackTime")}
+                                className="error"
+                                invalid={this.state.errors["snackTime"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["snackTime"] }>{this.state.errors["snackTime"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <div className={"sub-section"}>Sleep</div>
+                <Row>
+                    <Col sm={6}>
+                        <FormGroup>
+                            <Label className="control-label required">Approximately how many hours of sleep does the client get each night?</Label>
+                            <Input
+                                type="text"
+                                ref="hoursOfSleep"
+                                value={this.state.fields["hoursOfSleep"] || ""}
+                                onChange={this.handleChange.bind(this, "hoursOfSleep")}
+                                className="error"
+                                invalid={this.state.errors["hoursOfSleep"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["hoursOfSleep"] }>{this.state.errors["hoursOfSleep"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Typical bedtime</Label>
+                            <Input
+                                type="text"
+                                ref="bedTime"
+                                value={this.state.fields["bedTime"] || ""}
+                                onChange={this.handleChange.bind(this, "bedTime")}
+                                className="error"
+                                invalid={this.state.errors["bedTime"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["bedTime"] }>{this.state.errors["bedTime"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Typical morning wake time</Label>
+                            <Input
+                                type="text"
+                                ref="wakeTime"
+                                value={this.state.fields["wakeTime"] || ""}
+                                onChange={this.handleChange.bind(this, "wakeTime")}
+                                className="error"
+                                invalid={this.state.errors["wakeTime"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["wakeTime"] }>{this.state.errors["wakeTime"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Label>Does the client experience any of the following?</Label>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Trouble falling asleep</Label>
+                            <Input type="select"
+                                   name="troubleFallingAsleep"
+                                   id="troubleFallingAsleep">
+                                <option></option>
+                                <option>Yes</option>
+                                <option>No</option>
+                                <option>Not Sure</option>
+                            </Input>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={4}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Trouble staying asleep/wakes frequently</Label>
+                            <Input type="select"
+                                   name="troubleStayingAsleep"
+                                   id="troubleStayingAsleep">
+                                <option></option>
+                                <option>Yes</option>
+                                <option>No</option>
+                                <option>Not Sure</option>
+                            </Input>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={4}>
+                        <FormGroup >
+                            <Label className="control-label required pr-2">Wakes Early</Label>
+                            <Input type="select"
+                                   name="wakesEarly"
+                                   id="wakesEarly">
+                                <option></option>
+                                <option>Yes</option>
+                                <option>No</option>
+                                <option>Not Sure</option>
+                            </Input>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <div className={"sub-section"}>Physical Motor</div>
+                <Row>
+                    <Label className="control-label required">Please select whether the follow apply.</Label>
+                </Row>
+                <ReactTable
+                    className={"physicalMotorTable -striped -highlight"}
+                    data={this.state.physicalMotorData}
+                    columns={this.state.physicalMotorColumns}
+                    defaultPageSize={11}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Please list other physical motor challenges here.</Label>
+                            <Input
+                                type="text"
+                                ref="otherPhysicalMotor"
+                                value={this.state.fields["otherPhysicalMotor"] || ""}
+                                onChange={this.handleChange.bind(this, "otherPhysicalMotor")}
+                                className="error"
+                                invalid={this.state.errors["otherPhysicalMotor"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["otherPhysicalMotor"] }>{this.state.errors["otherPhysicalMotor"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
