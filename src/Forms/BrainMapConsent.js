@@ -111,7 +111,7 @@ class BrainMapConsent extends Component{
                       </Col>
                   </FormGroup>
                   <FormGroup>
-                      <Label className="control-label required" sm={12}>Parent/Guardian First Name</Label>
+                      <Label className="control-label required" sm={12}>Parent/Guardian  Name</Label>
                       <Col sm={12}>
                           <Input
                               type="text"
