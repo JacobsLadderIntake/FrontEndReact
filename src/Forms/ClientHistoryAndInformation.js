@@ -1889,8 +1889,6 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["amountOfRestroomUse"] = "Cannot be empty";
             }
-
-
             if (!fields["restroomTerminology"]) {
                 formIsValid = false;
                 errors["restroomTerminology"] = "Cannot be empty";
@@ -1924,8 +1922,11 @@ class ClientHistoryAndInformation extends Component {
                 errors["allergicReaction"] = "Cannot be empty";
             }
 
-
-            //SECTION 14
+            // SECTION 13
+            if (!fields["consentCheck"]) {
+                formIsValid = false;
+                errors["consentCheck"] = "Cannot be empty";
+            }
             if (!fields["studentName"]) {
                 formIsValid = false;
                 errors["studentName"] = "Cannot be empty";
@@ -1937,6 +1938,24 @@ class ClientHistoryAndInformation extends Component {
             if (!fields["date"]) {
                 formIsValid = false;
                 errors["date"] = "Cannot be empty";
+            }
+
+            //SECTION 14
+            if (!fields["hearAboutJL"]) {
+                formIsValid = false;
+                errors["hearAboutJL"] = "Cannot be empty";
+            }
+            if (!fields["goalsAndExpectations"]) {
+                formIsValid = false;
+                errors["goalsAndExpectations"] = "Cannot be empty";
+            }
+            if (!fields["enrollmentAfterEval"]) {
+                formIsValid = false;
+                errors["enrollmentAfterEval"] = "Cannot be empty";
+            }
+            if (!fields["additionalInfoAboutChild"]) {
+                formIsValid = false;
+                errors["additionalInfoAboutChild"] = "Cannot be empty";
             }
 
         }
@@ -2343,6 +2362,7 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="maritalStatus"
                                    id="maritalStatus">
+                                <option></option>
                                 <option>Single</option>
                                 <option>Married</option>
                                 <option>Divorced</option>
@@ -2489,6 +2509,7 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="isAdopted"
                                    id="isAdopted">
+                                <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
@@ -2607,6 +2628,7 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="deliveryType"
                                    id="deliveryType">
+                                <option></option>
                                 <option>Vaginal</option>
                                 <option>Cesarean</option>
                             </Input>
@@ -2624,6 +2646,7 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="pregComplications"
                                    id="pregComplications">
+                                <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
@@ -2653,6 +2676,7 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="hospitaliedAfterBirth"
                                    id="hospitaliedAfterBirth">
+                                <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
@@ -4614,6 +4638,84 @@ Problems With Authority
         return (
             <fieldset>
                 <div className={"section"}>Section 13: Goals and Additional Information</div>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                How did you hear about us?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="hearAboutJL"
+                                value={this.state.fields["hearAboutJL"] || ""}
+                                onChange={this.handleChange.bind(this, "hearAboutJL")}
+                                className="error"
+                                invalid={this.state.errors["hearAboutJL"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["hearAboutJL"] }>{this.state.errors["hearAboutJL"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                What are your goals and expectations at Jacob’s Ladder?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="goalsAndExpectations"
+                                value={this.state.fields["goalsAndExpectations"] || ""}
+                                onChange={this.handleChange.bind(this, "goalsAndExpectations")}
+                                className="error"
+                                invalid={this.state.errors["goalsAndExpectations"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["goalsAndExpectations"] }>{this.state.errors["goalsAndExpectations"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                What placement or enrollment in therapy services are you interested in after completing
+                                your evaluation? Include preferred start date and preferred schedule
+                                (refer to the registration forms for specific schedule options).
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="enrollmentAfterEval"
+                                value={this.state.fields["enrollmentAfterEval"] || ""}
+                                onChange={this.handleChange.bind(this, "enrollmentAfterEval")}
+                                className="error"
+                                invalid={this.state.errors["enrollmentAfterEval"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["enrollmentAfterEval"] }>{this.state.errors["enrollmentAfterEval"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Anything else you would like to tell us about your family and/or child?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="additionalInfoAboutChild"
+                                value={this.state.fields["additionalInfoAboutChild"] || ""}
+                                onChange={this.handleChange.bind(this, "additionalInfoAboutChild")}
+                                className="error"
+                                invalid={this.state.errors["additionalInfoAboutChild"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["additionalInfoAboutChild"] }>{this.state.errors["additionalInfoAboutChild"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -4636,10 +4738,17 @@ Problems With Authority
                         <FormGroup className={"pl-4"}>
                             <Input type="checkbox"
                                    ref="consentCheck"
-                                   className="error"/>
-                            <Label className={"checkBox"}>
+                                   value={this.state.fields["consentCheck"] || ""}
+                                   onChange={this.handleChange.bind(this, "consentCheck")}
+                                   className="error"
+                                   invalid={this.state.errors["consentCheck"] != null}/>
+                            {/*<FormFeedback*/}
+                                {/*invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}*/}
+                            {/*</FormFeedback>*/}
+                            <Label className={"checkBox control-label required"}>
                                 I acknowledge that I have read and completed this information to the best of my knowledge and ability.
                             </Label>
+
                         </FormGroup>
                     </Col>
                 </Row>
@@ -4654,8 +4763,8 @@ Problems With Authority
                                 onChange={this.handleChange.bind(this, "studentName")}
                                 className="error"
                                 invalid={this.state.errors["studentName"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["studentName"]}>{this.state.errors["studentName"]}
+                            <FormFeedback invalid={this.state.errors["studentName"]}>
+                                {this.state.errors["studentName"]}
                             </FormFeedback>
                         </FormGroup>
                     </Col>
