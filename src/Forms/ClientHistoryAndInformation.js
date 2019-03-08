@@ -7,7 +7,6 @@ import {
     CardBody,
     Collapse,
     Button,
-    ButtonToolbar,
     FormGroup,
     FormFeedback,
     Input,
@@ -1467,6 +1466,67 @@ class ClientHistoryAndInformation extends Component{
                 errors["skill1"] = "Cannot be empty";
             }
 
+            //SECTION 12
+            if (!fields["challengesWithUnknownProvider"]) {
+                formIsValid = false;
+                errors["challengesWithUnknownProvider"] = "Cannot be empty";
+            }
+            if (!fields["concernsWithRoom"]) {
+                formIsValid = false;
+                errors["concernsWithRoom"] = "Cannot be empty";
+            }
+            if (!fields["challengesWithUnknownProvider"]) {
+                formIsValid = false;
+                errors["challengesWithUnknownProvider"] = "Cannot be empty";
+            }
+            if (!fields["concernsWithCubbies"]) {
+                formIsValid = false;
+                errors["concernsWithCubbies"] = "Cannot be empty";
+            }
+            if (!fields["signsOfToilet"]) {
+                formIsValid = false;
+                errors["signsOfToilet"] = "Cannot be empty";
+            }
+            if (!fields["amountOfRestroomUse"]) {
+                formIsValid = false;
+                errors["amountOfRestroomUse"] = "Cannot be empty";
+            }
+
+
+            if (!fields["restroomTerminology"]) {
+                formIsValid = false;
+                errors["restroomTerminology"] = "Cannot be empty";
+            }
+            if (!fields["restroomIndependence"]) {
+                formIsValid = false;
+                errors["restroomIndependence"] = "Cannot be empty";
+            }
+            if (!fields["snackDuringEval"]) {
+                formIsValid = false;
+                errors["snackDuringEval"] = "Cannot be empty";
+            }
+            if (!fields["techniquesDuringEating"]) {
+                formIsValid = false;
+                errors["techniquesDuringEating"] = "Cannot be empty";
+            }
+            if (!fields["eatingIndependence"]) {
+                formIsValid = false;
+                errors["eatingIndependence"] = "Cannot be empty";
+            }
+            if (!fields["medicationDuringEval"]) {
+                formIsValid = false;
+                errors["medicationDuringEval"] = "Cannot be empty";
+            }
+            if (!fields["conditionsWithRescueMedication"]) {
+                formIsValid = false;
+                errors["conditionsWithRescueMedication"] = "Cannot be empty";
+            }
+            if (!fields["allergicReaction"]) {
+                formIsValid = false;
+                errors["allergicReaction"] = "Cannot be empty";
+            }
+
+
             //SECTION 14
             if (!fields["studentName"]) {
                 formIsValid = false;
@@ -1688,8 +1748,20 @@ class ClientHistoryAndInformation extends Component{
                         </FormGroup>
                     </Col>
                 </Row>
-
-
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 1: Client Information?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="section1Comments"
+                                value={this.state.fields["section1Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section1Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
 
@@ -2072,6 +2144,20 @@ class ClientHistoryAndInformation extends Component{
                         }
                     }}
                 />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 2: Family Information?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="section2Comments"
+                                value={this.state.fields["section2Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section2Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
 
             </fieldset>
 
@@ -2183,6 +2269,20 @@ class ClientHistoryAndInformation extends Component{
                                 ref="hospitaliedAfterBirthDescription"
                                 value={this.state.fields["hospitaliedAfterBirthDescription"] || ""}
                                 onChange={this.handleChange.bind(this, "hospitaliedAfterBirthDescription")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 3: Prenatal and Birth History?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="section3Comments"
+                                value={this.state.fields["section3Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section3Comments")}/>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -3035,6 +3135,402 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 12: Additional Information for Evaluation Day</div>
+                <Row>
+                    <Col>
+                        <Label>
+                            On the day of your evaluation, your child will complete a variety of assessments with a Jacob’s Ladder
+                            Evaluator in our designated testing area. Parent(s) will complete an interview for collection of
+                            pertinent information in a separate room. Children may transition between buildings with the
+                            facilitation of the Evaluator to complete all components of the assessment.
+                        </Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Does your child demonstrate challenges when working with an unknown provider?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="challengesWithUnknownProvider"
+                                value={this.state.fields["challengesWithUnknownProvider"] || ""}
+                                onChange={this.handleChange.bind(this, "challengesWithUnknownProvider")}
+                                className="error"
+                                invalid={this.state.errors["challengesWithUnknownProvider"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["challengesWithUnknownProvider"] }>{this.state.errors["challengesWithUnknownProvider"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Our Evaluation space is a large room with designated areas for desk work and mat work.
+                                Do you have any concerns with your student in this type of room?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="concernsWithRoom"
+                                value={this.state.fields["concernsWithRoom"] || ""}
+                                onChange={this.handleChange.bind(this, "concernsWithRoom")}
+                                className="error"
+                                invalid={this.state.errors["concernsWithRoom"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["concernsWithRoom"] }>{this.state.errors["concernsWithRoom"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Our individual student workspaces are smaller cubbies with space for a desk and chairs,
+                                allowing the student to focus on the task presented.
+                                Do you have any concerns with your student in this type of room?
+
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="concernsWithCubbies"
+                                value={this.state.fields["concernsWithCubbies"] || ""}
+                                onChange={this.handleChange.bind(this, "concernsWithCubbies")}
+                                className="error"
+                                invalid={this.state.errors["concernsWithCubbies"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["concernsWithCubbies"] }>{this.state.errors["concernsWithCubbies"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label className={"sub-section"}>Toileting Information</Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Does your child initiate the restroom? If not, what are the signs?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="signsOfToilet"
+                                value={this.state.fields["signsOfToilet"] || ""}
+                                onChange={this.handleChange.bind(this, "signsOfToilet")}
+                                className="error"
+                                invalid={this.state.errors["signsOfToilet"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["signsOfToilet"] }>{this.state.errors["signsOfToilet"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                How often do you take your child to the restroom?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="amountOfRestroomUse"
+                                value={this.state.fields["amountOfRestroomUse"] || ""}
+                                onChange={this.handleChange.bind(this, "amountOfRestroomUse")}
+                                className="error"
+                                invalid={this.state.errors["amountOfRestroomUse"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["amountOfRestroomUse"] }>{this.state.errors["amountOfRestroomUse"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                What is the terminology in your home for going to the restroom? (“pee-pee”, “pooh-pooh,” etc.)
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="restroomTerminology"
+                                value={this.state.fields["restroomTerminology"] || ""}
+                                onChange={this.handleChange.bind(this, "restroomTerminology")}
+                                className="error"
+                                invalid={this.state.errors["restroomTerminology"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["restroomTerminology"] }>{this.state.errors["restroomTerminology"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                How independent is your child in the restroom? What needs to be prompted?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="restroomIndependence"
+                                value={this.state.fields["restroomIndependence"] || ""}
+                                onChange={this.handleChange.bind(this, "restroomIndependence")}
+                                className="error"
+                                invalid={this.state.errors["restroomIndependence"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["restroomIndependence"] }>{this.state.errors["restroomIndependence"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label className={"sub-section"}>Feeding Information</Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Will your child require a snack during the evaluation?
+                                If so, provide a snack, time, and preparation instructions (i.e. temperature of food)
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="snackDuringEval"
+                                value={this.state.fields["snackDuringEval"] || ""}
+                                onChange={this.handleChange.bind(this, "snackDuringEval")}
+                                className="error"
+                                invalid={this.state.errors["snackDuringEval"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["snackDuringEval"] }>{this.state.errors["snackDuringEval"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Are there any helpful techniques to use when serving your child’s food?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="techniquesDuringEating"
+                                value={this.state.fields["techniquesDuringEating"] || ""}
+                                onChange={this.handleChange.bind(this, "techniquesDuringEating")}
+                                className="error"
+                                invalid={this.state.errors["techniquesDuringEating"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["techniquesDuringEating"] }>{this.state.errors["techniquesDuringEating"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Is your child independent with eating? If not, how much assistance is needed?
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="eatingIndependence"
+                                value={this.state.fields["eatingIndependence"] || ""}
+                                onChange={this.handleChange.bind(this, "eatingIndependence")}
+                                className="error"
+                                invalid={this.state.errors["eatingIndependence"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["eatingIndependence"] }>{this.state.errors["eatingIndependence"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+
+                </Row>
+
+                <Row>
+                    <Col>
+                        <Label className={"sub-section"}>Medical Information</Label>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Will your child require the administration of medication during the evaluation?
+                                If so, provide detailed instructions below and bring the medication with you on the day of the evaluation.
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="medicationDuringEval"
+                                value={this.state.fields["medicationDuringEval"] || ""}
+                                onChange={this.handleChange.bind(this, "medicationDuringEval")}
+                                className="error"
+                                invalid={this.state.errors["medicationDuringEval"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["medicationDuringEval"] }>{this.state.errors["medicationDuringEval"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label className={"sub-section"}>Medical Protocol</Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label>
+                            The following information will assist the Jacob’s Ladder staff in caring for your child’s medical needs.
+                            Please complete the following questions for each condition.
+                        </Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label className={"sub-section"}>Rescue Medication / Epi-Pen</Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                List any condition(s) that would require the use of rescue medications,
+                                as well as any additional information that would be helpful for the Jacob’s
+                                Ladder Team to be aware of during the evaluation time.
+                                Include name of medication, frequency, and how to administer.
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="conditionsWithRescueMedication"
+                                value={this.state.fields["conditionsWithRescueMedication"] || ""}
+                                onChange={this.handleChange.bind(this, "conditionsWithRescueMedication")}
+                                className="error"
+                                invalid={this.state.errors["conditionsWithRescueMedication"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["conditionsWithRescueMedication"] }>{this.state.errors["conditionsWithRescueMedication"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">
+                                Should any particular allergic reaction be watch for?
+                                (i.e. swelling, hives, redness, rapid breathing, etc?)
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="allergicReaction"
+                                value={this.state.fields["allergicReaction"] || ""}
+                                onChange={this.handleChange.bind(this, "allergicReaction")}
+                                className="error"
+                                invalid={this.state.errors["allergicReaction"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["allergicReaction"] }>{this.state.errors["allergicReaction"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label className={"sub-section"}>Seizure History/Protocol</Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label>
+                            Jacob’s Ladder seizure protocols are our standard operating procedure and are only
+                            superseded by written protocols from a qualified medical professional or a qualified
+                            medical profession on site (i.e EMS).
+                        </Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label className={"important"}>
+                            The Jacob’s Ladder seizure protocol is as follows: <br/>
+                            1. Roll to side and ensure airway is clear <br/>
+                            2. If seizure activity is persistent for 5 minutes, then administer rescue medication. <br/>
+                            3. If seizure has not stopped within 5 minutes of administering rescue medication, call 911.
+                        </Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Label className={"additional-note"}>If your child has a history of seizures, please complete the following:</Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>History of Condition</Label>
+                            <Input
+                                type="text"
+                                ref="seizureHistory"
+                                value={this.state.fields["seizureHistory"] || ""}
+                                onChange={this.handleChange.bind(this, "seizureHistory")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>What to look for/Precursor signs of a seizure</Label>
+                            <Input
+                                type="text"
+                                ref="signsOfSeizure"
+                                value={this.state.fields["signsOfSeizure"] || ""}
+                                onChange={this.handleChange.bind(this, "signsOfSeizure")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>Protocol to follow </Label>
+                            <Label className={"additional-note"}>
+                                If this varies greatly from the protocol stated above, provide a written approval
+                                from a qualified medical professional.
+                            </Label>
+                            <Input
+                                type="text"
+                                ref="otherSeizureProtocol"
+                                value={this.state.fields["otherSeizureProtocol"] || ""}
+                                onChange={this.handleChange.bind(this, "otherSeizureProtocol")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>Last seizure occurrence</Label>
+                            <Input
+                                type="text"
+                                ref="lastSeizure"
+                                value={this.state.fields["lastSeizure"] || ""}
+                                onChange={this.handleChange.bind(this, "lastSeizure")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>Frequency of seizure occurrence</Label>
+                            <Input
+                                type="text"
+                                ref="seizureFrequency"
+                                value={this.state.fields["seizureFrequency"] || ""}
+                                onChange={this.handleChange.bind(this, "seizureFrequency")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -3053,21 +3549,32 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 14: Signature</div>
-                <div>
-                    <FormGroup>
-                        <Col sm={12}>
-                            <Label sm={12} className={"checkBox"}>
-                                <Input type="checkbox"
-                                       ref="consentCheck"
-                                       className="error"/>
+                <Row>
+                    <Col>
+                        <Label>In addition to completing this form, submit a copy of all past evaluations (Psych, OT,
+                            SLP, Educational, Behavioral, etc.). The additional sections of the enrollment
+                            paperwork must also be completed
+                        </Label>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup className={"pl-4"}>
+                            <Input type="checkbox"
+                                   ref="consentCheck"
+                                   className="error"/>
+                            <Label className={"checkBox"}>
                                 I acknowledge that I have read and completed this information to the best of my knowledge and ability.
                             </Label>
-                        </Col>
 
-                    </FormGroup>
-                    <FormGroup>
-                        <Label className="control-label required" sm={12}>Student Name</Label>
-                        <Col sm={12}>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required" sm={12}>Student Name</Label>
                             <Input
                                 type="text"
                                 ref="studentName"
@@ -3078,11 +3585,13 @@ class ClientHistoryAndInformation extends Component{
                             <FormFeedback
                                 invalid={this.state.errors["studentName"] }>{this.state.errors["studentName"]}
                             </FormFeedback>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label className="control-label required" sm={12}>Parent/Guardian First Name</Label>
-                        <Col sm={12}>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required" sm={12}>Parent/Guardian Name</Label>
                             <Input
                                 type="text"
                                 ref="parentName"
@@ -3093,11 +3602,13 @@ class ClientHistoryAndInformation extends Component{
                             <FormFeedback
                                 invalid={this.state.errors["parentName"]}>{this.state.errors["parentName"]}
                             </FormFeedback>
-                        </Col>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label className="control-label required" sm={12}>Date</Label>
-                        <Col sm={12}>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required" sm={12}>Date</Label>
                             <Input
                                 type="text"
                                 ref="date"
@@ -3108,9 +3619,9 @@ class ClientHistoryAndInformation extends Component{
                             <FormFeedback
                                 invalid={this.state.errors["date"]}>{this.state.errors["date"]}
                             </FormFeedback>
-                        </Col>
-                    </FormGroup>
-                </div>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
