@@ -58,10 +58,10 @@ class ClientHistoryAndInformation extends Component{
                 accessor: 'devHistoryActivity'
             }, {
                 Header: 'Years',
-                accessor: 'devHistoryyears'
+                accessor: 'devHistoryYears'
             }, {
                 Header: 'Months',
-                accessor: 'devHistorymonths'
+                accessor: 'devHistoryMonths'
             }, {
                 Header: 'Not Yet Developed',
                 accessor: 'devHistoryNa'
@@ -109,7 +109,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>11</option>
                     <option>12</option>
                 </Input>,
-                devHistoryNA: <Input type="select"
+                devHistoryNa: <Input type="select"
                            name="crawlNa"
                            id="crawlNa">
                     <option></option>
@@ -292,7 +292,7 @@ class ClientHistoryAndInformation extends Component{
                     <option>18</option>
                     <option>19+</option>
                 </Input>,
-                months: <Input type="select"
+                devHistoryMonths: <Input type="select"
                                name="wordMonths"
                                id="wordMonths">
                     <option>0</option>
@@ -707,7 +707,7 @@ class ClientHistoryAndInformation extends Component{
                 </Input>
             }, {
                 medCondition: 'Other (please list in the box below)',
-                yn: <Input type="select"
+                medConditionYN: <Input type="select"
                            name="medConditionOther"
                            id="medConditionOther">
                     <option></option>
@@ -862,10 +862,10 @@ class ClientHistoryAndInformation extends Component{
                 accessor: 'testDate'
             }, {
                 Header: 'Examined by',
-                accessor: 'examiner'
+                accessor: 'testExaminer'
             }, {
                 Header: 'Diagnosis',
-                accessor: 'diagnosis'
+                accessor: 'testDiagnosis'
             }, {
                 Header: 'Recommendations',
                 accessor: 'testReco'
@@ -951,19 +951,19 @@ class ClientHistoryAndInformation extends Component{
                 accessor: 'foodGroup'
             }, {
                 Header: '',
-                accessor: 'excessive'
+                accessor: 'foodExcessive'
             }, {
                 Header: '',
-                accessor: 'daily'
+                accessor: 'foodDaily'
             }, {
                 Header: '',
-                accessor: 'weekly'
+                accessor: 'foodWeekly'
             }, {
                 Header: '',
-                accessor: 'rarely'
+                accessor: 'foodRarely'
             }, {
                 Header: '',
-                accessor: 'never'
+                accessor: 'foodNever'
             }],
             foodGroupData:[{
                 foodGroup: 'Vegetables',
@@ -1390,7 +1390,6 @@ class ClientHistoryAndInformation extends Component{
                 formIsValid = false;
                 errors["country"] = "Cannot be empty";
             }
-
             if (!fields["homeNumber"]) {
                 formIsValid = false;
                 errors["homeNumber"] = "Cannot be empty";
@@ -2190,7 +2189,6 @@ class ClientHistoryAndInformation extends Component{
 
         );
     }
-
 
     renderSection4() {
         return(
@@ -3026,6 +3024,10 @@ class ClientHistoryAndInformation extends Component{
         return(
             <fieldset>
                 <div className={"section"}>Section 11: Independent Skill</div>
+                <div>As part of the daily program at Jacob’s Ladder, our clients/students are learning and developing skills needed to successfully transition into adulthood.  Our goal is to assist you your family throughout your time at Jacob’s Ladder with meeting these skills by reinforcing them at school and home. In order for us to maintain cohesion across providers within their expectations, we ask that you complete the following questionnaire to better equip the JL Clinical Team with a thorough understanding of the client’s abilities.</div>
+                <div className={"sub-section"}>Level One Goals:</div>
+
+                <div className={"sub-section"}>Level Two Goals:</div>
             </fieldset>
 
         );
