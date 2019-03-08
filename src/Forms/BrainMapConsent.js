@@ -145,14 +145,7 @@ class BrainMapConsent extends Component{
     callApi = async () => {
         // infoObj = JSON.stringify(this.infoObj);
         // console.log(infoObj);
-        const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: infoObj
-        });
+        const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm')
         const body = await response.json();
         console.log(body);
         console.log(body[0].StudentFirstName)
