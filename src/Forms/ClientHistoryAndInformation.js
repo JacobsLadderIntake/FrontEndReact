@@ -1349,6 +1349,333 @@ class ClientHistoryAndInformation extends Component {
 
                 </Input>
             }],
+            level1GoalsColumns: [{
+                Header: 'Level of Completion',
+                accessor: 'goal1Category'
+            }, {
+                Header: '',
+                accessor: 'goal1NA',
+                width: 100
+            }, {
+                Header: '',
+                accessor: 'goal1Physical',
+                width: 250
+            }, {
+                Header: '',
+                accessor: 'goal1Verbal',
+                width: 250
+            }, {
+                Header: '',
+                accessor: 'goal1Initiates',
+                width: 250
+            }],
+            level1GoalsData: [{
+                goal1Category: 'Attending Skills',
+                goal1NA: '',
+                goal1Physical: '',
+                goal1Verbal: '',
+                goal1Initiates: ''
+            }, {
+                goal1Category: 'Sits in chair independently',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SitNA" id="g1SitNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SitPhysical" id="g1SitPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1SitVerbal" id="g1SitVerbal"/> Verbal Prompt</Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1SitInitiates" id="g1SitInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Attends to a task >5 minutes',
+                goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskLongNA" id="g1AttendTaskLongNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskLongPhysical" id="g1AttendTaskLongPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskLongVerbal" id="g1AttendTaskLongVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskLongInitiates" id="g1AttendTaskLongInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Attends to a task <5 minutes',
+                goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskShortNA" id="g1AttendTaskShortNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskShortPhysical" id="g1AttendTaskShortPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskShortVerbal" id="g1AttendTaskShortVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskShortInitiates" id="g1AttendTaskShortInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Makes eye contact',
+                goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNA" id="g1EyeContactNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactPhysical" id="g1EyeContactPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactVerbal" id="g1EyeContactVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactInitiates" id="g1EyeContactInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Sustains eye contact in response to name',
+                goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNameNA" id="g1EyeContactNameNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactNamePhysical" id="g1EyeContactNamePhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactNameVerbal" id="g1EyeContactNameVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactNameInitiates" id="g1EyeContactNameInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Makes eye contact during group instruction',
+                goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactGroupNA" id="g1EyeContactGroupNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactGroupPhysical" id="g1EyeContactGroupPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactGroupVerbal" id="g1EyeContactGroupVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactGroupInitiates" id="g1EyeContactGroupInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Communication Skills',
+                goal1NA: '',
+                goal1Physical: '',
+                goal1Verbal: '',
+                goal1Initiates: ''
+            }, {
+                goal1Category: 'Communicates wants and needs',
+                goal1NA: <Label check> <Input type="checkbox" name="g1WantsNeedsNA" id="g1WantsNeedsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1WantsNeedsPhysical" id="g1WantsNeedsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1WantsNeedsVerbal" id="g1WantsNeedsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1WantsNeedsInitiates" id="g1WantsNeedsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Answers simple social questions',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SocialQsNA" id="g1socialQsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SocialQsPhysical" id="g1SocialQsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1SocialQsVerbal" id="g1SocialQsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1SocialQsInitiates" id="g1SocialQsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Answers simple interference-based questions',
+                goal1NA: <Label check> <Input type="checkbox" name="g1InterferenceQsNA" id="g1InterferenceQsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1InterferenceQsPhysical" id="g1InterferenceQsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1InterferenceQsVerbal" id="g1InterferenceQsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1InterferenceQsInitiates" id="g1InterferenceQsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Reciprocates conversation',
+                goal1NA: <Label check> <Input type="checkbox" name="g1ReciprocateConversationNA" id="g1ReciprocateConversationNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1ReciprocateConversationPhysical" id="g1ReciprocateConversationPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1ReciprocateConversationVerbal" id="g1ReciprocateConversationVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1ReciprocateConversationInitiates" id="g1ReciprocateConversationInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Maintains conversation',
+                goal1NA: <Label check> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1MaintainConversationPhysical" id="g1MaintainConversationPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1MaintainConversationVerbal" id="g1MaintainConversationVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1MaintainConversationInitiates" id="g1MaintainConversationInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Has conversations using original thought',
+                goal1NA: <Label check> <Input type="checkbox" name="g1OriginalConversationNA" id="g1OriginalConversationNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1OriginalConversationPhysical" id="g1OriginalConversationPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1OriginalConversationVerbal" id="g1OriginalConversationVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1OriginalConversationInitiates" id="g1OriginalConversationInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Independent Skills',
+                goal1NA: '',
+                goal1Physical: '',
+                goal1Verbal: '',
+                goal1Initiates: ''
+            }, {
+                goal1Category: 'Goes to designated person/place within the room',
+                goal1NA: <Label check> <Input type="checkbox" name="g1WithinRoomNA" id="g1WithinRoomNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1WithinRoomPhysical" id="g1WithinRoomPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1WithinRoomVerbal" id="g1WithinRoomVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1WithinRoomInitiates" id="g1WithinRoomInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Goes to designated person/place in another room',
+                goal1NA: <Label check> <Input type="checkbox" name="g1AnotherRoomNA" id="g1AnotherRoomNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1AnotherRoomPhysical" id="g1AnotherRoomPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1AnotherRoomVerbal" id="g1AnotherRoomVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1AnotherRoomInitiates" id="g1AnotherRoomInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Able to complete task independently >5 minutes',
+                goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskLongNA" id="g1IndTaskLongNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskLongPhysical" id="g1IndTaskLongPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskLongVerbal" id="g1IndTaskLongVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskLongInitiates" id="g1IndTaskLongInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Able to complete task independently <5 minutes',
+                goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskShortNA" id="g1IndTaskShortNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskShortPhysical" id="g1IndTaskShortPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskShortVerbal" id="g1IndTaskShortVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskShortInitiates" id="g1IndTaskShortInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Able to organize materials within and for simple tasks and execute them independently',
+                goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsNA" id="g1OrganizeMaterialsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsPhysical" id="g1OrganizeMaterialsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsVerbal" id="g1OrganizeMaterialsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsInitiates" id="g1OrganizeMaterialsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Able to organize/prioritize simple progression of tasks (ex. Prioritizing homework with different due dates- doing what is due first, then second, etc.)',
+                goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeTasksNA" id="g1OrganizeTasksNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeTasksPhysical" id="g1OrganizeTasksPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeTasksVerbal" id="g1OrganizeTasksVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeTasksInitiates" id="g1OrganizeTasksInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Self-Care Skills',
+                goal1NA: '',
+                goal1Physical: '',
+                goal1Verbal: '',
+                goal1Initiates: ''
+            }, {
+                goal1Category: 'Put shoes on and off',
+                goal1NA: <Label check> <Input type="checkbox" name="g1ShoesOnOffNA" id="g1ShoesOnOffNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1ShoesOnOffPhysical" id="g1ShoesOnOffPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1ShoesOnOffVerbal" id="g1ShoesOnOffVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1ShoesOnOffInitiates" id="g1ShoesOnOffInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Discriminates right and left',
+                goal1NA: <Label check> <Input type="checkbox" name="g1RightLeftNA" id="g1RightLeftNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1RightLeftPhysical" id="g1RightLeftPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1RightLeftVerbal" id="g1RightLeftVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1RightLeftInitiates" id="g1RightLeftInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Unties and ties shoes',
+                goal1NA: <Label check> <Input type="checkbox" name="g1TieShoesNA" id="g1TieShoesNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1TieShoesPhysical" id="g1TieShoesPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1TieShoesVerbal" id="g1TieShoesVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1TieShoesInitiates" id="g1TieShoesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Pulls up/down pants',
+                goal1NA: <Label check> <Input type="checkbox" name="g1PantsNA" id="g1PantsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1PantsPhysical" id="g1PantsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1PantsVerbal" id="g1PantsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1PantsInitiates" id="g1PantsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Buttons and unbuttons',
+                goal1NA: <Label check> <Input type="checkbox" name="g1ButtonsNA" id="g1ButtonsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1ButtonsPhysical" id="g1ButtonsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1ButtonsVerbal" id="g1ButtonsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1ButtonsInitiates" id="g1ButtonsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Adjusts clothes',
+                goal1NA: <Label check> <Input type="checkbox" name="g1AdjustClothesNA" id="g1AdjustClothesNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1AdjustClothesPhysical" id="g1AdjustClothesPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1AdjustClothesVerbal" id="g1AdjustClothesVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1AdjustClothesInitiates" id="g1AdjustClothesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Dresses and undresses',
+                goal1NA: <Label check> <Input type="checkbox" name="g1DressesNA" id="g1DressesNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1DressesPhysical" id="g1DressesPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1DressesVerbal" id="g1DressesVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1DressesInitiates" id="g1DressesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Sorts clothes for washing',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SortsClothesNA" id="g1SortsClothesNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SortsClothesPhysical" id="g1SortsClothesPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1SortsClothesVerbal" id="g1SortsClothesVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1SortsClothesInitiates" id="g1SortsClothesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Identifies clothes based on the weather',
+                goal1NA: <Label check> <Input type="checkbox" name="g1ClothesWeatherNA" id="g1ClothesWeatherNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1ClothesWeatherPhysical" id="g1ClothesWeatherPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1ClothesWeatherVerbal" id="g1ClothesWeatherVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1ClothesWeatherInitiates" id="g1ClothesWeatherInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Goes to the bathroom independently',
+                goal1NA: <Label check> <Input type="checkbox" name="g1BathroomNA" id="g1BathroomNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1BathroomPhysical" id="g1BathroomPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1BathroomVerbal" id="g1BathroomVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1BathroomInitiates" id="g1BathroomInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Washes hands',
+                goal1NA: <Label check> <Input type="checkbox" name="g1WashesHandsNA" id="g1WashesHandsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1WashesHandsPhysical" id="g1WashesHandsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1WashesHandsVerbal" id="g1WashesHandsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1WashesHandsInitiates" id="g1WashesHandsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Completes shower/bathing sequence',
+                goal1NA: <Label check> <Input type="checkbox" name="g1ShowerNA" id="g1ShowerNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1ShowerPhysical" id="g1ShowerPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1ShowerVerbal" id="g1ShowerVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1ShowerInitiates" id="g1ShowerInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Uses utensils properly when eating',
+                goal1NA: <Label check> <Input type="checkbox" name="g1UtensilsNA" id="g1UtensilsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1UtensilsPhysical" id="g1UtensilsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1UtensilsVerbal" id="g1UtensilsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1UtensilsInitiates" id="g1UtensilsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Opens food containers/wrappers',
+                goal1NA: <Label check> <Input type="checkbox" name="g1OpensContainersNA" id="g1OpensContainersNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1OpensContainersPhysical" id="g1OpensContainersPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1OpensContainersVerbal" id="g1OpensContainersVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1OpensContainersInitiates" id="g1OpensContainersInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Cleans up eating area after eating',
+                goal1NA: <Label check> <Input type="checkbox" name="g1CleansEatingAreaNA" id="g1CleansEatingAreaNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1CleansEatingAreaPhysical" id="g1CleansEatingAreaPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1CleansEatingAreaVerbal" id="g1CleansEatingAreaVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1CleansEatingAreaInitiates" id="g1CleansEatingAreaInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Uses caution with hot items',
+                goal1NA: <Label check> <Input type="checkbox" name="g1HotCautionNA" id="g1HotCautionNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1HotCautionPhysical" id="g1HotCautionPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1HotCautionVerbal" id="g1HotCautionVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1HotCautionInitiates" id="g1HotCautionInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Social Skills',
+                goal1NA: '',
+                goal1Physical: '',
+                goal1Verbal: '',
+                goal1Initiates: ''
+            }, {
+                goal1Category: 'Appropriate with near peers',
+                goal1NA: <Label check> <Input type="checkbox" name="g1NearPeersNA" id="g1NearPeersNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1NearPeersPhysical" id="g1NearPeersPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1NearPeersVerbal" id="g1NearPeersVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1NearPeersInitiates" id="g1NearPeersInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Shows interest in others',
+                goal1NA: <Label check> <Input type="checkbox" name="g1InterestInOthersNA" id="g1InterestInOthersNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1InterestInOthersPhysical" id="g1InterestInOthersPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1InterestInOthersVerbal" id="g1InterestInOthersVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1InterestInOthersInitiates" id="g1InterestInOthersInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Sits appropriately in small groups (3-5)',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SitSmallGroupNA" id="g1SitSmallGroupNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SitSmallGroupPhysical" id="g1SitSmallGroupPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1SitSmallGroupVerbal" id="g1SitSmallGroupVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1SitSmallGroupInitiates" id="g1SitSmallGroupInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Attends to instructor in small groups (3-5)',
+                goal1NA: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupNA" id="g1InstructorSmallGroupNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupPhysical" id="g1InstructorSmallGroupPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupVerbal" id="g1InstructorSmallGroupVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupInitiates" id="g1InstructorSmallGroupInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Follows instruction',
+                goal1NA: <Label check> <Input type="checkbox" name="g1InstructionNA" id="g1InstructionNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructionPhysical" id="g1InstructionPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructionVerbal" id="g1InstructionVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructionInitiates" id="g1InstructionInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Takes turns',
+                goal1NA: <Label check> <Input type="checkbox" name="g1TakesTurnsNA" id="g1TakesTurnsNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1TakesTurnsPhysical" id="g1TakesTurnsPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1TakesTurnsVerbal" id="g1TakesTurnsVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1TakesTurnsInitiates" id="g1TakesTurnsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Shares',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SharesNA" id="g1SharesNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SharesPhysical" id="g1SharesPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1SharesVerbal" id="g1SharesVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1SharesInitiates" id="g1SharesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Converses with others',
+                goal1NA: <Label check> <Input type="checkbox" name="g1ConverseOthersNA" id="g1ConverseOthersNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1ConverseOthersPhysical" id="g1ConverseOthersPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1ConverseOthersVerbal" id="g1ConverseOthersVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1ConverseOthersInitiates" id="g1ConverseOthersInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Sits appropriately in large groups (3-5)',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SitLargeGroupNA" id="g1SitLargeGroupNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SitLargeGroupPhysical" id="g1SitLargeGroupPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1SitLargeGroupVerbal" id="g1SitLargeGroupVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1SitLargeGroupInitiates" id="g1SitLargeGroupInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Attends to instructor in large groups (3-5)',
+                goal1NA: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupNA" id="g1InstructorLargeGroupNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupPhysical" id="g1InstructorLargeGroupPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupVerbal" id="g1InstructorLargeGroupVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupInitiates" id="g1InstructorLargeGroupInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Stands and waits independently during transitions',
+                goal1NA: <Label check> <Input type="checkbox" name="g1StandWaitNA" id="g1StandWaitNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1StandWaitPhysical" id="g1StandWaitPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1StandWaitVerbal" id="g1StandWaitVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1StandWaitInitiates" id="g1StandWaitInitiates"/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Understands simple rules of the classroom',
+                goal1NA: <Label check> <Input type="checkbox" name="g1UnderstandsRulesNA" id="g1UnderstandsRulesNA"/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1UnderstandsRulesPhysical" id="g1UnderstandsRulesPhysical"/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1UnderstandsRulesVerbal" id="g1UnderstandsRulesVerbal"/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1UnderstandsRulesInitiates" id="g1UnderstandsRulesInitiates"/> Initiates Independently </Label>
+            }],
 
 
             collapseVerbal: false,
@@ -3838,7 +4165,40 @@ Problems With Authority
                 <div className={"section"}>Section 11: Independent Skill</div>
                 <div>As part of the daily program at Jacob’s Ladder, our clients/students are learning and developing skills needed to successfully transition into adulthood.  Our goal is to assist you your family throughout your time at Jacob’s Ladder with meeting these skills by reinforcing them at school and home. In order for us to maintain cohesion across providers within their expectations, we ask that you complete the following questionnaire to better equip the JL Clinical Team with a thorough understanding of the client’s abilities.</div>
                 <div className={"sub-section"}>Level One Goals:</div>
-
+                <ReactTable
+                    className={"level1GoalsTable -striped -highlight"}
+                    data={this.state.level1GoalsData}
+                    columns={this.state.level1GoalsColumns}
+                    defaultPageSize={51}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                <FormGroup>
+                    <Label className="control-label required">Additional comments/goals:</Label>
+                    <Input
+                        type="text"
+                        ref="g1Comments"
+                        value={this.state.fields["g1Comments"] || ""}
+                        onChange={this.handleChange.bind(this, "g1Comments")}
+                        className="error"
+                        invalid={this.state.errors["g1Comments"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["g1Comments"]}>{this.state.errors["g1Comments"]}
+                    </FormFeedback>
+                </FormGroup>
                 <div className={"sub-section"}>Level Two Goals:</div>
             </fieldset>
 
