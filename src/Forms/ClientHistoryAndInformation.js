@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Header from '../Header/Header';
 import './formFormatting.css';
 import {
@@ -1692,6 +1692,7 @@ class ClientHistoryAndInformation extends Component {
     goBack(event) {
         window.location.reload();
     }
+
     toggleVerbal() {
         this.setState(state => ({collapseVerbal: !state.collapseVerbal}));
     }
@@ -1703,7 +1704,6 @@ class ClientHistoryAndInformation extends Component {
     toggleCommunicationBinder() {
         this.setState(state => ({collapseCommunicationBinder: !state.collapseCommunicationBinder}));
     }
-
     toggleCommunicationOther() {
         this.setState(state => ({collapseCommunicationOther: !state.collapseCommunicationOther}));
     }
@@ -1788,6 +1788,7 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["country"] = "Cannot be empty";
             }
+
             if (!fields["homeNumber"]) {
                 formIsValid = false;
                 errors["homeNumber"] = "Cannot be empty";
@@ -3654,6 +3655,11 @@ class ClientHistoryAndInformation extends Component {
         return (
             <fieldset>
                 <div className={"section"}>Section 9: Emotional/Behavioral History</div>
+                <p>Please indicate if your child is experiencing any of the following emotional or behavioral difficulties on a 0-10 scale, with 0=Does Not Apply and 10=Extreme/Severe
+                    For any behaviors that were rated at a 1 or above, answer the following questions for each behavior experienced, using the most extreme behavior as the example.
+                </p>
+                <Row>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"schoolConcentration")}>
@@ -3662,6 +3668,7 @@ class ClientHistoryAndInformation extends Component {
                                    ref="languageAtHome"
                                    value={this.state.fields["schoolConcentration"] || ""}
                                    onChange={this.handleChange.bind(this, "schoolConcentration")}>
+                                <option></option>
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -3681,25 +3688,35 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                     <Label> Behaviors (past and current) seen at home/school</Label>
                                     <Input
-                                        type="text"
+                                        type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"socialAnxiety")}>
@@ -3708,6 +3725,7 @@ class ClientHistoryAndInformation extends Component {
                                    ref="socialAnxiety"
                                    value={this.state.fields["socialAnxiety"] || ""}
                                    onChange={this.handleChange.bind(this, "socialAnxiety")}>
+                                <option></option>
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -3727,25 +3745,27 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"lowGrades")}>
@@ -3754,6 +3774,7 @@ class ClientHistoryAndInformation extends Component {
                                    ref="lowGrades"
                                    value={this.state.fields["lowGrades"] || ""}
                                    onChange={this.handleChange.bind(this, "lowGrades")}>
+                                <option></option>
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -3773,25 +3794,29 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"makingFriends")}>
@@ -3800,6 +3825,7 @@ class ClientHistoryAndInformation extends Component {
                                    ref="makingFriends"
                                    value={this.state.fields["makingFriends"] || ""}
                                    onChange={this.handleChange.bind(this, "makingFriends")}>
+                                <option></option>
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -3838,6 +3864,8 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"oppositionalBehavior")}>
@@ -3866,25 +3894,27 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"problemsWithAuthority")}>
@@ -3913,25 +3943,29 @@ Problems With Authority
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"sociallyIsolated")}>
@@ -3960,25 +3994,27 @@ Problems With Authority
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"aggressiveBehavior")}>
@@ -4007,25 +4043,78 @@ Problems With Authority
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"stressFamily")}>
+                            Stress from conflicts within family
+                            <Input type="select"
+                                   ref="stressFamily"
+                                   value={this.state.fields["stressFamily"] || ""}
+                                   onChange={this.handleChange.bind(this, "stressFamily")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("stressFamily")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                <Col sm={6}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
@@ -4054,25 +4143,29 @@ Problems With Authority
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"hyperactive")}>
@@ -4101,25 +4194,27 @@ Problems With Authority
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  onChange={this.handleChange.bind(this,"sensoryProblems")}>
@@ -4148,26 +4243,822 @@ Problems With Authority
                             <CardBody className={"toggle-card-body"}>
                                 <Label> Behaviors (past and current) seen at home/school</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Description of the Behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical duration of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
                                 <Label> Typical location of the behavior</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"problemsEating")}>
+                            Problems with eating
+                            <Input type="select"
+                                   ref="problemsEating"
+                                   value={this.state.fields["problemsEating"] || ""}
+                                   onChange={this.handleChange.bind(this, "problemsEating")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("problemsEating")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
 
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"wettingAccidents")}>
+                            Wetting/Soiling accidents
+                            <Input type="select"
+                                   ref="wettingAccidents"
+                                   value={this.state.fields["wettingAccidents"] || ""}
+                                   onChange={this.handleChange.bind(this, "wettingAccidents")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("wettingAccidents")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"vocalTics")}>
+                            Vocal or motor tics
+                            <Input type="select"
+                                   ref="vocalTics"
+                                   value={this.state.fields["vocalTics"] || ""}
+                                   onChange={this.handleChange.bind(this, "vocalTics")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("vocalTics")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"wakingUp")}>
+                            Trouble waking up
+                            <Input type="select"
+                                   ref="wakingUp"
+                                   value={this.state.fields["wakingUp"] || ""}
+                                   onChange={this.handleChange.bind(this, "wakingUp")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("wakingUp")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"nightmares")}>
+                            Nightmares
+                            <Input type="select"
+                                   ref="nightmares"
+                                   value={this.state.fields["nightmares"] || ""}
+                                   onChange={this.handleChange.bind(this, "nightmares")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("nightmares")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"problemsSleeping")}>
+                            Problems Sleeping
+                            <Input type="select"
+                                   ref="problemsSleeping"
+                                   value={this.state.fields["problemsSleeping"] || ""}
+                                   onChange={this.handleChange.bind(this, "problemsSleeping")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("problemsSleeping")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"tiredness")}>
+                            Fatigue/Tiredness
+                            <Input type="select"
+                                   ref="tiredness"
+                                   value={this.state.fields["tiredness"] || ""}
+                                   onChange={this.handleChange.bind(this, "tiredness")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("tiredness")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"sadness")}>
+                            Sadness or Depression
+                            <Input type="select"
+                                   ref="sadness"
+                                   value={this.state.fields["sadness"] || ""}
+                                   onChange={this.handleChange.bind(this, "sadness")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("sadness")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"impulsive")}>
+                            Impulsive,doesn't think before acting
+                            <Input type="select"
+                                   ref="impulsive"
+                                   value={this.state.fields["impulsive"] || ""}
+                                   onChange={this.handleChange.bind(this, "impulsive")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("impulsive")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"noncompliant")}>
+                            Non-compliant
+                            <Input type="select"
+                                   ref="noncompliant"
+                                   value={this.state.fields["noncompliant"] || ""}
+                                   onChange={this.handleChange.bind(this, "noncompliant")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("noncompliant")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"tantrums")}>
+                            Tantrums/"meltdowns"
+                            <Input type="select"
+                                   ref="tantrums"
+                                   value={this.state.fields["tantrums"] || ""}
+                                   onChange={this.handleChange.bind(this, "tantrums")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("tantrums")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"injuryBehavior")}>
+                            Self-injurious behavior
+                            <Input type="select"
+                                   ref="injuryBehavior"
+                                   value={this.state.fields["injuryBehavior"] || ""}
+                                   onChange={this.handleChange.bind(this, "injuryBehavior")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("injuryBehavior")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"temperProblem")}>
+                            Problems controlling temper
+                            <Input type="select"
+                                   ref="temperProblem"
+                                   value={this.state.fields["temperProblem"] || ""}
+                                   onChange={this.handleChange.bind(this, "temperProblem")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("temperProblem")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"darting")}>
+                            Darting/Elopement
+                            <Input type="select"
+                                   ref="darting"
+                                   value={this.state.fields["darting"] || ""}
+                                   onChange={this.handleChange.bind(this, "darting")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("darting")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"rigid")}>
+                            Rigid Behavior Patterns
+                            <Input type="select"
+                                   ref="ridid"
+                                   value={this.state.fields["rigid"] || ""}
+                                   onChange={this.handleChange.bind(this, "rigid")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("rigid")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  onChange={this.handleChange.bind(this,"abuse")}>
+                            History of abuse (emotional,physical,sexual)
+                            <Input type="select"
+                                   ref="abuse"
+                                   value={this.state.fields["abuse"] || ""}
+                                   onChange={this.handleChange.bind(this, "abuse")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("abuse")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Description of the Behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical duration of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label> Typical location of the behavior</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
 
 
 
