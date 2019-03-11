@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Header from '../Header/Header';
 import './formFormatting.css';
 import {
@@ -624,6 +624,7 @@ class ClientHistoryAndInformation extends Component {
                 contactPermission: <Input type="select"
                                           name="contactpermission1"
                                           id="contactpermission1">
+                    <option></option>
                     <option>Yes</option>
                     <option>No</option>
                 </Input>
@@ -635,6 +636,7 @@ class ClientHistoryAndInformation extends Component {
                 contactPermission: <Input type="select"
                                           name="contactpermission2"
                                           id="contactpermission2">
+                    <option></option>
                     <option>Yes</option>
                     <option>No</option>
                 </Input>
@@ -646,6 +648,7 @@ class ClientHistoryAndInformation extends Component {
                 contactPermission: <Input type="select"
                                           name="contactpermission3"
                                           id="contactpermission3">
+                    <option></option>
                     <option>Yes</option>
                     <option>No</option>
                 </Input>
@@ -657,6 +660,7 @@ class ClientHistoryAndInformation extends Component {
                 contactPermission: <Input type="select"
                                           name="contactpermission4"
                                           id="contactpermission4">
+                    <option></option>
                     <option>Yes</option>
                     <option>No</option>
                 </Input>
@@ -2250,7 +2254,10 @@ class ClientHistoryAndInformation extends Component {
             collapseCommunication: false,
             collapseCommunicationBinder: false,
             collapseSignLanguage: false,
-            collapseCommunicationOther:false
+            collapseCommunicationOther:false,
+            physicalAssistance:false,
+            verbalDirectives:false,
+            behavioralGoals:false
         };
 
         this.goBack = this.goBack.bind(this);
@@ -2260,6 +2267,7 @@ class ClientHistoryAndInformation extends Component {
     goBack(event) {
         window.location.reload();
     }
+
     toggleVerbal() {
         this.setState(state => ({collapseVerbal: !state.collapseVerbal}));
     }
@@ -2271,13 +2279,21 @@ class ClientHistoryAndInformation extends Component {
     toggleCommunicationBinder() {
         this.setState(state => ({collapseCommunicationBinder: !state.collapseCommunicationBinder}));
     }
-
     toggleCommunicationOther() {
         this.setState(state => ({collapseCommunicationOther: !state.collapseCommunicationOther}));
     }
 
     toggleSignLanguage() {
         this.setState(state => ({collapseSignLanguage: !state.collapseSignLanguage}));
+    }
+    togglePhysicalAssistance(){
+        this.setState(state=>({physicalAssistance:!state.physicalAssistance}));
+    }
+    toggleVerbalDirectives(){
+        this.setState(state=>({verbalDirectives:!state.verbalDirectives}));
+    }
+    toggleBehavioralGoals(){
+        this.setState(state=>({behavioralGoals: !state.behavioralGoals}));
     }
 
     handleChange(field, e) {
@@ -2356,6 +2372,7 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["country"] = "Cannot be empty";
             }
+
             if (!fields["homeNumber"]) {
                 formIsValid = false;
                 errors["homeNumber"] = "Cannot be empty";
@@ -2430,6 +2447,52 @@ class ClientHistoryAndInformation extends Component {
             if (!fields["skill1"]) {
                 formIsValid = false;
                 errors["skill1"] = "Cannot be empty";
+            }
+            //SECTION 9
+            if (!fields["soothing"]) {
+                formIsValid = false;
+                errors["soothing"] = "Cannot be empty";
+            }
+            if (!fields["assistanceRequired"]) {
+                formIsValid = false;
+                errors["assistanceRequired"] = "Cannot be empty";
+            }
+            if (!fields["positiveBehavior"]) {
+                formIsValid = false;
+                errors["positiveBehavior"] = "Cannot be empty";
+            }
+            //SECTION 10
+            if (!fields["morning"]) {
+                formIsValid = false;
+                errors["morning"] = "Cannot be empty";
+            }
+            if (!fields["evening"]) {
+                formIsValid = false;
+                errors["evening"] = "Cannot be empty";
+            }
+            if (!fields["afternoon"]) {
+                formIsValid = false;
+                errors["afternoon"] = "Cannot be empty";
+            }
+            if (!fields["downtime"]) {
+                formIsValid = false;
+                errors["downtime"] = "Cannot be empty";
+            }
+            if (!fields["screentime"]) {
+                formIsValid = false;
+                errors["screentime"] = "Cannot be empty";
+            }
+            if (!fields["homeExpectation"]) {
+                formIsValid = false;
+                errors["homeExpectation"] = "Cannot be empty";
+            }
+            if (!fields["chores"]) {
+                formIsValid = false;
+                errors["chores"] = "Cannot be empty";
+            }
+            if (!fields["physicalActivity"]) {
+                formIsValid = false;
+                errors["physicalActivity"] = "Cannot be empty";
             }
 
             //SECTION 12
@@ -3899,7 +3962,7 @@ class ClientHistoryAndInformation extends Component {
         return (
             <fieldset>
                 <div className={"section"}>Section 7: Educational History</div>
-                <p>List current and past educational and/or treatment placement(s).</p>
+                <p className="control-label required">List current and past educational and/or treatment placement(s).</p>
                 <ReactTable
                     className={"otherSchoolTable -striped -highlight"}
                     data={this.state.otherProgramsData}
@@ -3949,18 +4012,20 @@ class ClientHistoryAndInformation extends Component {
                 </FormGroup>
 
                 <FormGroup>
-                    <Label className="control-label required">Does your child have a current Individualized Education Plan (IEP)?</Label>
+                    <Label className="control-label required">Does your child have a current Individualized Education Plan (IEP)?
+                        <b> If “yes” please include current IEP with “Client History & Information Form”</b></Label>
                     <Col sm ={2}>
                         <Input type="select"
                                name="iepPlan"
                                id="iepPlan">
+                            <option></option>
                             <option>Yes</option>
                             <option>No</option>
                         </Input>
                     </Col>
 
                 </FormGroup>
-                <p>Indicate your child’s hand preference for each activity: Right/Left/Mixed/Not Applicable.</p>
+                <p className="control-label required">Indicate your child’s hand preference for each activity: Right/Left/Mixed/Not Applicable.</p>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.handPreferenceData}
@@ -3982,7 +4047,7 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
-                <p>Please check all that apply.</p>
+                <p className="control-label required">Please check all that apply.</p>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.skillsData}
@@ -4028,6 +4093,7 @@ class ClientHistoryAndInformation extends Component {
             <fieldset>
                 <div className={"section"}>Section 8: Communication</div>
                 <div>
+                    <p className="control-label required" >Please indicate the client’s primary mode of communication and current independence level:</p>
                     <FormGroup check>
                         <Label check onChange={this.toggleVerbal.bind(this)}>
 
@@ -4221,14 +4287,50 @@ class ClientHistoryAndInformation extends Component {
         return (
             <fieldset>
                 <div className={"section"}>Section 9: Emotional/Behavioral History</div>
+                <p className="word-section">In order for Jacob’s Ladder to best serve your family and design the optimal program for the client, please share as much specific and detailed information as possible regarding the client’s past and/or current behavioral needs.
+                    This information will not prohibit admissions but will allow Jacob’s Ladder to best prepare for the client’s evaluation and program design</p>
+                <u>Current Behavior and Behavior Management</u>
+                <div>
+                    <p className={"control-label required"} >Do you have a specific behavioral goal for the client? If "Yes",please describe: </p>
+                    <FormGroup check>
+                        <Label check onChange={this.toggleBehavioralGoals.bind(this)}>
+
+                            <Input type="checkbox"/>
+                            Yes
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.state.behavioralGoals}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Input
+                                    type="textarea"/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                    <FormGroup check>
+                        <Label check>
+
+                            <Input type="checkbox"/>
+                            No
+                        </Label>
+                    </FormGroup>
+                </div>
+                <p>Please indicate if your child is experiencing any of the following emotional or behavioral difficulties on a 0-10 scale, with 0=Does Not Apply and 10=Extreme/Severe.
+                    For any behaviors that were rated at a 1 or above, answer the following questions for each behavior experienced, using the most extreme behavior as the example.
+                </p>
+                <p><b>School/Social</b></p>
+                <Row>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"schoolConcentration")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"schoolConcentration")}>
                             School Concentration Difficulties
                             <Input type="select"
                                    ref="languageAtHome"
                                    value={this.state.fields["schoolConcentration"] || ""}
                                    onChange={this.handleChange.bind(this, "schoolConcentration")}>
+                                <option></option>
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -4246,35 +4348,47 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("schoolConcentration")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                    <Label> Behaviors (past and current) seen at home/school</Label>
+                                    <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                     <Input
-                                        type="text"
+                                        type="textarea"
                                     className={"required"}/>
-                                <Label> Description of the Behavior</Label>
-                            <Input
-                                type="text"
-                                className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
-                            <Input
-                                type="text"
-                                className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
+                                type="textarea"
+                                className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                            <Input
+                                type="textarea"
+                                className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"socialAnxiety")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"socialAnxiety")}>
                             Social Anxiety
                             <Input type="select"
                                    ref="socialAnxiety"
                                    value={this.state.fields["socialAnxiety"] || ""}
                                    onChange={this.handleChange.bind(this, "socialAnxiety")}>
+                                <option></option>
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -4292,35 +4406,45 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("socialAnxiety")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                    type="textarea"/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                    type="textarea"/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                />
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"lowGrades")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"lowGrades")}>
                             Grades dropping or consistently low
                             <Input type="select"
                                    ref="lowGrades"
                                    value={this.state.fields["lowGrades"] || ""}
                                    onChange={this.handleChange.bind(this, "lowGrades")}>
+                                <option></option>
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -4338,35 +4462,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("lowGrades")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                />
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"makingFriends")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"makingFriends")}>
                             Problems Making or Keeping Friends
                             <Input type="select"
                                    ref="makingFriends"
                                    value={this.state.fields["makingFriends"] || ""}
                                    onChange={this.handleChange.bind(this, "makingFriends")}>
+                                <option></option>
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -4384,30 +4522,40 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("makingFriends")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                    type="textarea"/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                />
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"oppositionalBehavior")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"oppositionalBehavior")}>
                             Oppositional, defiant behavior
                             <Input type="select"
                                    ref="oppositionalBehavior"
@@ -4431,30 +4579,41 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("oppositionalBehavior")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
-                                    className={"required"}/>
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                />
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                />
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"problemsWithAuthority")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"problemsWithAuthority")}>
 Problems With Authority
                             <Input type="select"
                                    ref="problemsWithAuthority"
@@ -4478,30 +4637,43 @@ Problems With Authority
                     <Collapse isOpen={this.checkValue("problemsAuthority")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"sociallyIsolated")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"sociallyIsolated")}>
                             Isolated socially from peers
                             <Input type="select"
                                    ref="sociallyIsolated"
@@ -4525,31 +4697,42 @@ Problems With Authority
                     <Collapse isOpen={this.checkValue("sociallyIsolated")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"aggressiveBehavior")}>
-                            Agressive Behavior towards others
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"aggressiveBehavior")}>
+                            Aggressive Behavior towards others
                             <Input type="select"
                                    ref="aggressiveBehavior"
                                    value={this.state.fields["aggressiveBehavior"] || ""}
@@ -4572,30 +4755,101 @@ Problems With Authority
                     <Collapse isOpen={this.checkValue("aggressiveBehavior")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"stressFamily")}>
+                            Stress from conflicts within family
+                            <Input type="select"
+                                   ref="stressFamily"
+                                   value={this.state.fields["stressFamily"] || ""}
+                                   onChange={this.handleChange.bind(this, "stressFamily")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("stressFamily")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                <Col sm={6}>
+                <div>
+                    <FormGroup>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
                             Genralized Anxiety (across many situations)
                             <Input type="select"
                                    ref="generalizedAnxiety"
@@ -4619,30 +4873,105 @@ Problems With Authority
                     <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                </Col>
+                    <div>
+                        <FormGroup>
+                            <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
+                                Specific fears/ phobias (list):
+                                <Input type="select"
+                                       ref="generalizedAnxiety"
+                                       value={this.state.fields["generalizedAnxiety"] || ""}
+                                       onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
+                                    <option></option>
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                </Input>
+                                <Input
+                                    type="texr"
+                                placeholde="Please List"/>
+                            </Label>
+                        </FormGroup>
+                        <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
+                            <Card className={"toggle-card"}>
+                                <CardBody className={"toggle-card-body"}>
+                                    <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> How long do they generally last?</Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+
+                                </CardBody>
+                            </Card>
+                        </Collapse>
+                    </div>
+                </Row>
+
+                <p><b>Sensory/Physiological</b></p>
+                <Row>
+                    <Col sm={4}>
                 <div>
+
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"hyperactive")}>
+                        <Label className="control-label required" onChange={this.handleChange.bind(this,"hyperactive")}>
                             Hyperactive, difficulty being still
                             <Input type="select"
                                    ref="hyperactive"
@@ -4666,30 +4995,41 @@ Problems With Authority
                     <Collapse isOpen={this.checkValue("hyperactive")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
                 <div>
                     <FormGroup>
-                        <Label  onChange={this.handleChange.bind(this,"sensoryProblems")}>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"sensoryProblems")}>
                             Sensory problems
                             <Input type="select"
                                    ref="sensoryProblems"
@@ -4713,32 +5053,1099 @@ Problems With Authority
                     <Collapse isOpen={this.checkValue("sensoryProblems")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label> Behaviors (past and current) seen at home/school</Label>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Description of the Behavior</Label>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical duration of the behavior</Label>
+                                <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
                                     className={"required"}/>
-                                <Label> Typical location of the behavior</Label>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="text"
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
                                     className={"required"}/>
 
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsEating")}>
+                            Problems with eating
+                            <Input type="select"
+                                   ref="problemsEating"
+                                   value={this.state.fields["problemsEating"] || ""}
+                                   onChange={this.handleChange.bind(this, "problemsEating")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("problemsEating")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
 
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required" onChange={this.handleChange.bind(this,"wettingAccidents")}>
+                            Wetting/Soiling accidents
+                            <Input type="select"
+                                   ref="wettingAccidents"
+                                   value={this.state.fields["wettingAccidents"] || ""}
+                                   onChange={this.handleChange.bind(this, "wettingAccidents")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("wettingAccidents")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
 
-            </fieldset>
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"vocalTics")}>
+                            Vocal or motor tics
+                            <Input type="select"
+                                   ref="vocalTics"
+                                   value={this.state.fields["vocalTics"] || ""}
+                                   onChange={this.handleChange.bind(this, "vocalTics")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("vocalTics")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"wakingUp")}>
+                            Trouble waking up
+                            <Input type="select"
+                                   ref="wakingUp"
+                                   value={this.state.fields["wakingUp"] || ""}
+                                   onChange={this.handleChange.bind(this, "wakingUp")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("wakingUp")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"nightmares")}>
+                            Nightmares
+                            <Input type="select"
+                                   ref="nightmares"
+                                   value={this.state.fields["nightmares"] || ""}
+                                   onChange={this.handleChange.bind(this, "nightmares")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("nightmares")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsSleeping")}>
+                            Problems Sleeping
+                            <Input type="select"
+                                   ref="problemsSleeping"
+                                   value={this.state.fields["problemsSleeping"] || ""}
+                                   onChange={this.handleChange.bind(this, "problemsSleeping")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("problemsSleeping")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required" onChange={this.handleChange.bind(this,"tiredness")}>
+                            Fatigue/Tiredness
+                            <Input type="select"
+                                   ref="tiredness"
+                                   value={this.state.fields["tiredness"] || ""}
+                                   onChange={this.handleChange.bind(this, "tiredness")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("tiredness")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <p><b>Emotional</b></p>
+
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"sadness")}>
+                            Sadness or Depression
+                            <Input type="select"
+                                   ref="sadness"
+                                   value={this.state.fields["sadness"] || ""}
+                                   onChange={this.handleChange.bind(this, "sadness")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("sadness")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"impulsive")}>
+                            Impulsive,doesn't think before acting
+                            <Input type="select"
+                                   ref="impulsive"
+                                   value={this.state.fields["impulsive"] || ""}
+                                   onChange={this.handleChange.bind(this, "impulsive")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("impulsive")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required"  onChange={this.handleChange.bind(this,"noncompliant")}>
+                            Non-compliant
+                            <Input type="select"
+                                   ref="noncompliant"
+                                   value={this.state.fields["noncompliant"] || ""}
+                                   onChange={this.handleChange.bind(this, "noncompliant")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("noncompliant")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"tantrums")}>
+                            Tantrums/"meltdowns"
+                            <Input type="select"
+                                   ref="tantrums"
+                                   value={this.state.fields["tantrums"] || ""}
+                                   onChange={this.handleChange.bind(this, "tantrums")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("tantrums")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required" onChange={this.handleChange.bind(this,"injuryBehavior")}>
+                            Self-injurious behavior
+                            <Input type="select"
+                                   ref="injuryBehavior"
+                                   value={this.state.fields["injuryBehavior"] || ""}
+                                   onChange={this.handleChange.bind(this, "injuryBehavior")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("injuryBehavior")}>
+                            <Card className={"toggle-card"}>
+                                <CardBody className={"toggle-card-body"}>
+                                    <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> How long do they generally last?</Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+                                    <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    <Input
+                                        type="textarea"
+                                        className={"required"}/>
+
+                                </CardBody>
+                            </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required" onChange={this.handleChange.bind(this,"temperProblem")}>
+                            Problems controlling temper
+                            <Input type="select"
+                                   ref="temperProblem"
+                                   value={this.state.fields["temperProblem"] || ""}
+                                   onChange={this.handleChange.bind(this, "temperProblem")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("temperProblem")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required" onChange={this.handleChange.bind(this,"darting")}>
+                            Darting/Elopement
+                            <Input type="select"
+                                   ref="darting"
+                                   value={this.state.fields["darting"] || ""}
+                                   onChange={this.handleChange.bind(this, "darting")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("darting")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required" onChange={this.handleChange.bind(this,"rigid")}>
+                            Rigid Behavior Patterns
+                            <Input type="select"
+                                   ref="ridid"
+                                   value={this.state.fields["rigid"] || ""}
+                                   onChange={this.handleChange.bind(this, "rigid")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("rigid")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                    <Col sm={4}>
+                <div>
+                    <FormGroup>
+                        <Label className="control-label required" onChange={this.handleChange.bind(this,"abuse")}>
+                            History of abuse (emotional,physical,sexual)
+                            <Input type="select"
+                                   ref="abuse"
+                                   value={this.state.fields["abuse"] || ""}
+                                   onChange={this.handleChange.bind(this, "abuse")}>
+                                <option></option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </Input>
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.checkValue("abuse")}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                <Input
+                                    type="textarea"
+                                    className={"required"}/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                </div>
+                    </Col>
+                </Row>
+                <div>
+                    <p> During a behavioral moment, does the client appear to become more heightened or dysregulated when:</p>
+                    <p className={"control-label required"} >Provided physical assistance? If yes, please describe:</p>
+                    <FormGroup check>
+                        <Label check onChange={this.togglePhysicalAssistance.bind(this)}>
+
+                            <Input type="checkbox"/>
+                            Yes
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.state.physicalAssistance}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Input
+                                    type="textarea"/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                    <FormGroup check>
+                        <Label check>
+
+                            <Input type="checkbox"/>
+                            No
+                        </Label>
+                    </FormGroup>
+                </div>
+                <div>
+                    <p className={"control-label required"} >When provided verbal directives? If yes, please describe: </p>
+                    <FormGroup check>
+                        <Label check onChange={this.toggleVerbalDirectives.bind(this)}>
+
+                            <Input type="checkbox"/>
+                            Yes
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.state.verbalDirectives}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Input
+                                    type="textarea"/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                    <FormGroup check>
+                        <Label check>
+
+                            <Input type="checkbox"/>
+                            No
+                        </Label>
+                    </FormGroup>
+                </div>
+                <div>
+                    <p className={"control-label required"} >Are there any events, which may be currently affecting the client adversely?  If “Yes”, please describe:   </p>
+                    <FormGroup check>
+                        <Label check onChange={this.toggleVerbalDirectives.bind(this)}>
+
+                            <Input type="checkbox"/>
+                            Yes
+                        </Label>
+                    </FormGroup>
+                    <Collapse isOpen={this.state.verbalDirectives}>
+                        <Card className={"toggle-card"}>
+                            <CardBody className={"toggle-card-body"}>
+                                <Input
+                                    type="textarea"/>
+
+                            </CardBody>
+                        </Card>
+                    </Collapse>
+                    <FormGroup check>
+                        <Label check>
+
+                            <Input type="checkbox"/>
+                            No
+                        </Label>
+                    </FormGroup>
+                </div>
+                <FormGroup>
+                    <Label className="control-label required">Please list the client’s specific positive behaviors: </Label>
+                    <Input
+                        type="textarea"
+                        ref="positiveBehavior"
+                        value={this.state.fields["positiveBehavior"] || ""}
+                        onChange={this.handleChange.bind(this, "positiveBehavior")}
+                        className="error"
+                        invalid={this.state.errors["positiveBehavior"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["positiveBehavior"]}>{this.state.errors["positiveBehavior"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required">Does the client require assistance to complete tasks?  What level of assistance is required?
+                        Please identify verbal or physical prompts that are needed, and specific language and level of physicality is required for completion.   </Label>
+                    <Input
+                        type="textarea"
+                        ref="assistanceRequired"
+                        value={this.state.fields["assistanceRequired"] || ""}
+                        onChange={this.handleChange.bind(this, "assistanceRequired")}
+                        className="error"
+                        invalid={this.state.errors["assistanceRequired"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["assistanceRequired"]}>{this.state.errors["assistanceRequired"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required">Please list the client’s reinforcing items and specific activities that help soothe/calm the client.   </Label>
+                    <Input
+                        type="textarea"
+                        ref="soothing"
+                        value={this.state.fields["soothing"] || ""}
+                        onChange={this.handleChange.bind(this, "soothing")}
+                        className="error"
+                        invalid={this.state.errors["soothing"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["soothing"]}>{this.state.errors["soothing"]}
+                    </FormFeedback>
+                </FormGroup>
+
+           </fieldset>
         );
     }
 
@@ -4746,6 +6153,113 @@ Problems With Authority
         return (
             <fieldset>
                 <div className={"section"}>Section 10: Current Schedule and Typical Day</div>
+                <p>What does the client’s current full-time educational/therapeutic daily routine look like?  Please include environment, setting, expectations, schedule, provider, etc.</p>
+                <FormGroup>
+                    <Label className="control-label required"><u>Morning:</u></Label>
+                    <Input
+                        type="textarea"
+                        ref="morning"
+                        value={this.state.fields["morning"] || ""}
+                        onChange={this.handleChange.bind(this, "morning")}
+                        className="error"
+                        invalid={this.state.errors["morning"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["morning"]}>{this.state.errors["morning"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required"><u>Afternoon:</u> </Label>
+                    <Input
+                        type="textarea"
+                        ref="afternoon"
+                        value={this.state.fields["afternoon"] || ""}
+                        onChange={this.handleChange.bind(this, "afternoon")}
+                        className="error"
+                        invalid={this.state.errors["afternoon"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["afternoon"]}>{this.state.errors["afternoon"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required"><u>Evening:</u> </Label>
+                    <Input
+                        type="textarea"
+                        ref="evening"
+                        value={this.state.fields["evening"] || ""}
+                        onChange={this.handleChange.bind(this, "evening")}
+                        className="error"
+                        invalid={this.state.errors["evening"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["evening"]}>{this.state.errors["evening"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required">What does the client’s “at-home” and “downtime” look like on a typical day, as well as weekend, for both morning and evening routines? </Label>
+                    <Input
+                        type="textarea"
+                        ref="downtime"
+                        value={this.state.fields["downtime"] || ""}
+                        onChange={this.handleChange.bind(this, "downtime")}
+                        className="error"
+                        invalid={this.state.errors["downtime"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["downtime"]}>{this.state.errors["downtime"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required">What is your level of expectation at home? </Label>
+                    <Input
+                        type="textarea"
+                        ref="homeExpectation"
+                        value={this.state.fields["homeExpectation"] || ""}
+                        onChange={this.handleChange.bind(this, "homeExpectation")}
+                        className="error"
+                        invalid={this.state.errors["homeExpectation"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["homeExpectation"]}>{this.state.errors["homeExpectation"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required">How much screen time (iPad, cell phone, television, computer) is allotted at home?  What programs and devices does the client have access to?
+                        Is screen time required, and or helpful for any task completion?   </Label>
+                    <Input
+                        type="textarea"
+                        ref="screentime"
+                        value={this.state.fields["screentime"] || ""}
+                        onChange={this.handleChange.bind(this, "screentime")}
+                        className="error"
+                        invalid={this.state.errors["screentime"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["screentime"]}>{this.state.errors["screentime"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required">What responsibilities/chores does the client complete at home?   </Label>
+                    <Input
+                        type="textarea"
+                        ref="chores"
+                        value={this.state.fields["chores"] || ""}
+                        onChange={this.handleChange.bind(this, "chores")}
+                        className="error"
+                        invalid={this.state.errors["chores"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["chores"]}>{this.state.errors["chores"]}
+                    </FormFeedback>
+                </FormGroup>
+                <FormGroup>
+                    <Label className="control-label required">Please comment on the client’s physical activity level: </Label>
+                    <Input
+                        type="textarea"
+                        ref="physicalActivity"
+                        value={this.state.fields["physicalActivity"] || ""}
+                        onChange={this.handleChange.bind(this, "physicalActivity")}
+                        className="error"
+                        invalid={this.state.errors["physicalActivity"] != null}/>
+                    <FormFeedback
+                        invalid={this.state.errors["physicalActivity"]}>{this.state.errors["physicalActivity"]}
+                    </FormFeedback>
+                </FormGroup>
+
             </fieldset>
         );
     }

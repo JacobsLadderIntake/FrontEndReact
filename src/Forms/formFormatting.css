@@ -26,6 +26,9 @@
     padding-left:600px;
     bottom: 45px;/*and to the left of the window.*/
 }
+.word-section {
+    color:red;
+}
 
 .body-of-text{
     padding:20px;
