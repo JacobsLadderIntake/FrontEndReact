@@ -1359,18 +1359,18 @@ class ClientHistoryAndInformation extends Component {
             }, {
                 Header: '',
                 accessor: 'goal1Physical',
-                width: 250
+                width: 175
             }, {
                 Header: '',
                 accessor: 'goal1Verbal',
-                width: 250
+                width: 175
             }, {
                 Header: '',
                 accessor: 'goal1Initiates',
-                width: 250
+                width: 175
             }],
             level1GoalsData: [{
-                goal1Category: 'Attending Skills',
+                goal1Category: <div className={"sub-section"}>Attending Skills</div>,
                 goal1NA: '',
                 goal1Physical: '',
                 goal1Verbal: '',
@@ -1412,7 +1412,7 @@ class ClientHistoryAndInformation extends Component {
                 goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactGroupVerbal" id="g1EyeContactGroupVerbal"/> Verbal Prompt </Label>,
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactGroupInitiates" id="g1EyeContactGroupInitiates"/> Initiates Independently </Label>
             }, {
-                goal1Category: 'Communication Skills',
+                goal1Category: <div className={"sub-section"}>Communication Skills</div>,
                 goal1NA: '',
                 goal1Physical: '',
                 goal1Verbal: '',
@@ -1454,7 +1454,7 @@ class ClientHistoryAndInformation extends Component {
                 goal1Verbal: <Label check> <Input type="checkbox" name="g1OriginalConversationVerbal" id="g1OriginalConversationVerbal"/> Verbal Prompt </Label>,
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1OriginalConversationInitiates" id="g1OriginalConversationInitiates"/> Initiates Independently </Label>
             }, {
-                goal1Category: 'Independent Skills',
+                goal1Category: <div className={"sub-section"}>Independent Skills</div>,
                 goal1NA: '',
                 goal1Physical: '',
                 goal1Verbal: '',
@@ -1496,7 +1496,7 @@ class ClientHistoryAndInformation extends Component {
                 goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeTasksVerbal" id="g1OrganizeTasksVerbal"/> Verbal Prompt </Label>,
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeTasksInitiates" id="g1OrganizeTasksInitiates"/> Initiates Independently </Label>
             }, {
-                goal1Category: 'Self-Care Skills',
+                goal1Category: <div className={"sub-section"}>Self-Care Skills</div>,
                 goal1NA: '',
                 goal1Physical: '',
                 goal1Verbal: '',
@@ -1598,7 +1598,7 @@ class ClientHistoryAndInformation extends Component {
                 goal1Verbal: <Label check> <Input type="checkbox" name="g1HotCautionVerbal" id="g1HotCautionVerbal"/> Verbal Prompt </Label>,
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1HotCautionInitiates" id="g1HotCautionInitiates"/> Initiates Independently </Label>
             }, {
-                goal1Category: 'Social Skills',
+                goal1Category: <div className={"sub-section"}>Social Skills</div>,
                 goal1NA: '',
                 goal1Physical: '',
                 goal1Verbal: '',
@@ -1675,6 +1675,574 @@ class ClientHistoryAndInformation extends Component {
                 goal1Physical: <Label check> <Input type="checkbox" name="g1UnderstandsRulesPhysical" id="g1UnderstandsRulesPhysical"/> Physical Prompt </Label>,
                 goal1Verbal: <Label check> <Input type="checkbox" name="g1UnderstandsRulesVerbal" id="g1UnderstandsRulesVerbal"/> Verbal Prompt </Label>,
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1UnderstandsRulesInitiates" id="g1UnderstandsRulesInitiates"/> Initiates Independently </Label>
+            }],
+            level2GoalsColumns: [{
+                Header: 'Level of Completion',
+                accessor: 'goal2Category'
+            }, {
+                Header: '',
+                accessor: 'goal2NA',
+                width: 100
+            }, {
+                Header: '',
+                accessor: 'goal2Physical',
+                width: 175
+            }, {
+                Header: '',
+                accessor: 'goal2Verbal',
+                width: 175
+            }, {
+                Header: '',
+                accessor: 'goal2Initiates',
+                width: 175
+            }],
+            level2GoalsData: [{
+                goal2Category: <div className={"sub-section"}>Communication</div>,
+                goal2NA: '',
+                goal2Physical: '',
+                goal2Verbal: '',
+                goal2Initiates: ''
+            }, {
+                goal2Category: 'Gets help if his/her feelings bother him/her',
+                goal2NA: <Label check> <Input type="checkbox" name="g2FeelingsHelpNA" id="g2FeelingsHelpNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2FeelingsHelpPhysical" id="g2FeelingsHelpPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2FeelingsHelpVerbal" id="g2FeelingsHelpVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2FeelingsHelpInitiates" id="g2FeelingsHelpInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how he/she is feeling (angry, happy, etc.)',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ExplainFeelingsNA" id="g2ExplainFeelingsNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ExplainFeelingsPhysical" id="g2ExplainFeelingsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ExplainFeelingsVerbal" id="g2ExplainFeelingsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ExplainFeelingsInitiates" id="g2ExplainFeelingsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Asks for help when he/she needs it',
+                goal2NA: <Label check> <Input type="checkbox" name="g2AsksHelpNA" id="g2AsksHelpNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2AsksHelpPhysical" id="g2AsksHelpPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2AsksHelpVerbal" id="g2AsksHelpVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2AsksHelpInitiates" id="g2AsksHelpInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Talks with an adult he/she feels close to',
+                goal2NA: <Label check> <Input type="checkbox" name="g2TalksToAdultNA" id="g2TalksToAdultNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2TalksToAdultPhysical" id="g2TalksToAdultPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2TalksToAdultVerbal" id="g2TalksToAdultVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2TalksToAdultInitiates" id="g2TalksToAdultInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Talks over problems with a friend',
+                goal2NA: <Label check> <Input type="checkbox" name="g2TalksToFriendNA" id="g2TalksToFriendNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2TalksToFriendPhysical" id="g2TalksToFriendPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2TalksToFriendVerbal" id="g2TalksToFriendVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2TalksToFriendInitiates" id="g2TalksToFriendInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Accepts compliments or praise without feeling embarrassed',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ComplimentNA" id="g2ComplimentNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ComplimentPhysical" id="g2ComplimentPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ComplimentVerbal" id="g2ComplimentVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ComplimentInitiates" id="g2ComplimentInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Clearly presents his/her ideas to others',
+                goal2NA: <Label check> <Input type="checkbox" name="g2PresentsIdeasNA" id="g2PresentsIdeasNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2PresentsIdeasPhysical" id="g2PresentsIdeasPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2PresentsIdeasVerbal" id="g2PresentsIdeasVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2PresentsIdeasInitiates" id="g2PresentsIdeasInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Asks questions to make sure he/she understands something someone has said',
+                goal2NA: <Label check> <Input type="checkbox" name="g2AsksQuestionsNA" id="g2AsksQuestionsNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2AsksQuestionsPhysical" id="g2AsksQuestionsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2AsksQuestionsVerbal" id="g2AsksQuestionsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2AsksQuestionsInitiates" id="g2AsksQuestionsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Tries to find a compromise when he/she disagrees with someone',
+                goal2NA: <Label check> <Input type="checkbox" name="g2CompromiseNA" id="g2CompromiseNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2CompromisePhysical" id="g2CompromisePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2CompromiseVerbal" id="g2CompromiseVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2CompromiseInitiates" id="g2CompromiseInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Accepts constructive feedback with regards to assigned tasks',
+                goal2NA: <Label check> <Input type="checkbox" name="g2FeedbackNA" id="g2FeedbackNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2FeedbackPhysical" id="g2FeedbackPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2FeedbackVerbal" id="g2FeedbackVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2FeedbackInitiates" id="g2FeedbackInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: <div className={"sub-section"}>Daily Living</div>,
+                goal2NA: '',
+                goal2Physical: '',
+                goal2Verbal: '',
+                goal2Initiates: ''
+            }, {
+                goal2Category: 'Uses the microwave',
+                goal2NA: <Label check> <Input type="checkbox" name="g2MicrowaveNA" id="g2MicrowaveNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2MicrowavePhysical" id="g2MicrowavePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2MicrowaveVerbal" id="g2MicrowaveHelpVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2MicrowaveInitiates" id="g2MicrowaveInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Uses the stove top',
+                goal2NA: <Label check> <Input type="checkbox" name="g2StoveTopNA" id="g2StoveTopNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2StoveTopPhysical" id="g2StoveTopPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2StoveTopVerbal" id="g2StoveTopVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2StoveTopInitiates" id="g2StoveTopInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Uses the oven',
+                goal2NA: <Label check> <Input type="checkbox" name="g2OvenNA" id="g2OvenNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2OvenPhysical" id="g2OvenPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2OvenVerbal" id="g2OvenVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2OvenInitiates" id="g2OvenInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Stores food so it doesn\'t spoil or go bad',
+                goal2NA: <Label check> <Input type="checkbox" name="g2StoresFoodNA" id="g2StoresFoodNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2StoresFoodPhysical" id="g2StoresFoodPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2StoresFoodVerbal" id="g2StoresFoodVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2StoresFoodInitiates" id="g2StoresFoodInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can fix simple meals for himself/herself',
+                goal2NA: <Label check> <Input type="checkbox" name="g2SimpleMealsNA" id="g2SimpleMealsNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2SimpleMealsPhysical" id="g2SimpleMealsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2SimpleMealsVerbal" id="g2SimpleMealsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2SimpleMealsInitiates" id="g2SimpleMealsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can fix more complex meals by gathering ingredients\nand following box instructions or recipes',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ComplexMealsNA" id="g2ComplexMealsNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ComplexMealsPhysical" id="g2ComplexMealsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ComplexMealsVerbal" id="g2ComplexMealsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ComplexMealsInitiates" id="g2ComplexMealsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can load/unload dishwasher',
+                goal2NA: <Label check> <Input type="checkbox" name="g2DishwasherNA" id="g2DishwasherNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2DishwasherPhysical" id="g2DishwasherPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2DishwasherVerbal" id="g2DishwasherVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2DishwasherInitiates" id="g2DishwasherInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can hand wash/dry/put away dishes',
+                goal2NA: <Label check> <Input type="checkbox" name="g2WashDishesNA" id="g2WashDishesNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2WashDishesPhysical" id="g2WashDishesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2WashDishesVerbal" id="g2WashDishesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2WashDishesInitiates" id="g2WashDishesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can communicate meal preferences in a restaurant or other settings away from home',
+                goal2NA: <Label check> <Input type="checkbox" name="g2OrderMealsNA" id="g2OrderMealsNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2OrderMealsPhysical" id="g2OrderMealsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2OrderMealsVerbal" id="g2OrderMealsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2OrderMealsInitiates" id="g2OrderMealsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Keeps his/her living space clean',
+                goal2NA: <Label check> <Input type="checkbox" name="g2CleanSpaceNA" id="g2CleanSpaceNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2CleanSpacePhysical" id="g2CleanSpacePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2CleanSpaceVerbal" id="g2CleanSpaceVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2CleanSpaceInitiates" id="g2CleanSpaceInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Knows how to wash clothes according to the label (hand wash, dry clean, cold water, etc.)',
+                goal2NA: <Label check> <Input type="checkbox" name="g2WashClothesNA" id="g2WashClothesNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2WashClothesPhysical" id="g2WashClothesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2WashClothesVerbal" id="g2WashClothesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2WashClothesInitiates" id="g2WashClothesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Dresses and appropriately for season/occasion/destination',
+                goal2NA: <Label check> <Input type="checkbox" name="g2DressAppropriatelyNA" id="g2DressAppropriatelyNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2DressAppropriatelyPhysical" id="g2DressAppropriatelyPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2DressAppropriatelyVerbal" id="g2DressAppropriatelyVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2DressAppropriatelyInitiates" id="g2DressAppropriatelyInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Fixes his/her clothes when needed, like sewing on a button',
+                goal2NA: <Label check> <Input type="checkbox" name="g2FixClothesNA" id="g2FixClothesNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2FixClothesPhysical" id="g2FixClothesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2FixClothesVerbal" id="g2FixClothesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2FixClothesInitiates" id="g2FixClothesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Follows the basic fire prevention and safety rules for where he/she lives',
+                goal2NA: <Label check> <Input type="checkbox" name="g2FireRulesNA" id="g2FireRulesNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2FireRulesPhysical" id="g2FireRulesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2FireRulesVerbal" id="g2FireRulesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2FireRulesInitiates" id="g2FireRulesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can self-monitor time management activities',
+                goal2NA: <Label check> <Input type="checkbox" name="g2TimeMgmtNA" id="g2TimeMgmtNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2TimeMgmtPhysical" id="g2TimeMgmtPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2TimeMgmtVerbal" id="g2TimeMgmtVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2TimeMgmtInitiates" id="g2TimeMgmtInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can monitor own sleep schedule (bedtime and setting an alarm to get up)',
+                goal2NA: <Label check> <Input type="checkbox" name="g2SleepSchedNA" id="g2SleepSchedNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2SleepSchedPhysical" id="g2SleepSchedPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2SleepSchedVerbal" id="g2SleepSchedVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2SleepSchedInitiates" id="g2SleepSchedInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: <div className={"sub-section"}>Housing and Money Management</div>,
+                goal2NA: '',
+                goal2Physical: '',
+                goal2Verbal: '',
+                goal2Initiates: ''
+            }, {
+                goal2Category: 'Can complete a rental or lease agreement',
+                goal2NA: <Label check> <Input type="checkbox" name="g2RentAgreementNA" id="g2RentAgreementNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2RentAgreementPhysical" id="g2RentAgreementPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2RentAgreementVerbal" id="g2RentAgreementVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2RentAgreementInitiates" id="g2RentAgreementInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can arrange for new telephone services and utilities',
+                goal2NA: <Label check> <Input type="checkbox" name="g2PhoneServicesNA" id="g2PhoneServicesNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2PhoneServicesPhysical" id="g2PhoneServicesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2PhoneServicesVerbal" id="g2PhoneServicesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2PhoneServicesInitiates" id="g2PhoneServicesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can calculate the start-up costs for new living arrangements (rental deposits, rent, utilities, etc.)',
+                goal2NA: <Label check> <Input type="checkbox" name="g2LivingCostsNA" id="g2LivingCostsNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2LivingCostsPhysical" id="g2LivingCostsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2LivingCostsVerbal" id="g2LivingCostsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2LivingCostsInitiates" id="g2LivingCostsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how to get car insurance',
+                goal2NA: <Label check> <Input type="checkbox" name="g2CarInsuranceNA" id="g2CarInsuranceNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2CarInsurancePhysical" id="g2CarInsurancePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2CarInsuranceVerbal" id="g2CarInsuranceVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2CarInsuranceInitiates" id="g2CarInsuranceInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how to establish and maintain good credit',
+                goal2NA: <Label check> <Input type="checkbox" name="g2GoodCreditNA" id="g2GoodCreditNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2GoodCreditPhysical" id="g2GoodCreditPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2GoodCreditVerbal" id="g2GoodCreditVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2GoodCreditInitiates" id="g2GoodCreditInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can interpret pay stub information',
+                goal2NA: <Label check> <Input type="checkbox" name="g2PayStubNA" id="g2PayStubNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2PayStubPhysical" id="g2PayStubPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2PayStubVerbal" id="g2PayStubVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2PayStubInitiates" id="g2PayStubInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can understand billing information (such as phone bill)',
+                goal2NA: <Label check> <Input type="checkbox" name="g2BillingInfoNA" id="g2BillingInfoNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2BillingInfoPhysical" id="g2BillingInfoPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2BillingInfoVerbal" id="g2BillingInfoVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2BillingInfoInitiates" id="g2BillingInfoInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can develop a monthly budget for living on his/her own',
+                goal2NA: <Label check> <Input type="checkbox" name="g2BudgetNA" id="g2BudgetNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2BudgetPhysical" id="g2BudgetPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2BudgetVerbal" id="g2BudgetVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2BudgetInitiates" id="g2BudgetInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain the pros and cons of buying on credit',
+                goal2NA: <Label check> <Input type="checkbox" name="g2CreditNA" id="g2CreditNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2CreditPhysical" id="g2CreditPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2CreditVerbal" id="g2CreditVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2CreditInitiates" id="g2CreditInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how to get and revew a driver\'s licence',
+                goal2NA: <Label check> <Input type="checkbox" name="g2DriversLicenseNA" id="g2DriversLicenseNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2DriversLicensePhysical" id="g2DriversLicensePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2DriversLicenseVerbal" id="g2DriversLicenseVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2DriversLicenseInitiates" id="g2DriversLicenseInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can use transportation independently (MARTA, bus, train)',
+                goal2NA: <Label check> <Input type="checkbox" name="g2TransportationNA" id="g2TransportationNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2TransportationPhysical" id="g2TransportationPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2TransportationVerbal" id="g2TransportationVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2TransportationInitiates" id="g2TransportationInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can follow directions to navigate by car, bike, or on foot to other/new destinations',
+                goal2NA: <Label check> <Input type="checkbox" name="g2FollowNavigationNA" id="g2FollowNavigationNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2FollowNavigationPhysical" id="g2FollowNavigationPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2FollowNavigationVerbal" id="g2FollowNavigationVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2FollowNavigationInitiates" id="g2FollowNavigationInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can contact places around where he/she lives to get financial advice',
+                goal2NA: <Label check> <Input type="checkbox" name="g2FinancialAdviceNA" id="g2FinancialAdviceNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2FinancialAdvicePhysical" id="g2FinancialAdvicePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2FinancialAdviceVerbal" id="g2FinancialAdviceVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2FinancialAdviceInitiates" id="g2FinancialAdviceInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how to write checks',
+                goal2NA: <Label check> <Input type="checkbox" name="g2WriteChecksNA" id="g2WriteChecksNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2WriteChecksPhysical" id="g2WriteChecksPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2WriteChecksVerbal" id="g2WriteChecksVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2WriteChecksInitiates" id="g2WriteChecksInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how to make deposits and ATM transactions',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ATMTransactionsNA" id="g2ATMTransactionsNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ATMTransactionsPhysical" id="g2ATMTransactionsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ATMTransactionsVerbal" id="g2ATMTransactionsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ATMTransactionsInitiates" id="g2ATMTransactionsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how to balance a checking/savings account',
+                goal2NA: <Label check> <Input type="checkbox" name="g2BalanceBankAccountNA" id="g2BalanceBankAccountNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2BalanceBankAccountPhysical" id="g2BalanceBankAccountPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2BalanceBankAccountVerbal" id="g2BalanceBankAccountVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2BalanceBankAccountInitiates" id="g2BalanceBankAccountInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can understand and respond to ads for housing',
+                goal2NA: <Label check> <Input type="checkbox" name="g2HousingAdsNA" id="g2HousingAdsNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2HousingAdsPhysical" id="g2HousingAdsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2HousingAdsVerbal" id="g2HousingAdsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2HousingAdsInitiates" id="g2HousingAdsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain where to get information about financial aid for education',
+                goal2NA: <Label check> <Input type="checkbox" name="g2EduFinancialAidNA" id="g2EduFinancialAidNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2EduFinancialAidPhysical" id="g2EduFinancialAidPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2EduFinancialAidVerbal" id="g2EduFinancialAidVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2EduFinancialAidInitiates" id="g2EduFinancialAidInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Cna name ways to save money on things he/she buys',
+                goal2NA: <Label check> <Input type="checkbox" name="g2SaveMoneyNA" id="g2SaveMoneyNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2SaveMoneyPhysical" id="g2SaveMoneyPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2SaveMoneyVerbal" id="g2SaveMoneyVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2SaveMoneyInitiates" id="g2SaveMoneyInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Knows how to research and find local social service agencies (like employment and counseling services)',
+                goal2NA: <Label check> <Input type="checkbox" name="g2SocialServicesNA" id="g2SocialServicesNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2SocialServicesPhysical" id="g2SocialServicesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2SocialServicesVerbal" id="g2SocialServicesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2SocialServicesInitiates" id="g2SocialServicesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain the education or training needed for his/her career options',
+                goal2NA: <Label check> <Input type="checkbox" name="g2CareerEduNA" id="g2CareerEduNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2CareerEduPhysical" id="g2CareerEduPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2CareerEduVerbal" id="g2CareerEduVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2CareerEduInitiates" id="g2CareerEduInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: <div className={"sub-section"}>Self-care</div>,
+                goal2NA: '',
+                goal2Physical: '',
+                goal2Verbal: '',
+                goal2Initiates: ''
+            }, {
+                goal2Category: 'Can perform oral care',
+                goal2NA: <Label check> <Input type="checkbox" name="g2OralCareNA" id="g2OralCareNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2OralCarePhysical" id="g2OralCarePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2OralCareVerbal" id="g2OralCareVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2OralCareInitiates" id="g2OralCareInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can brush/comb/style hair',
+                goal2NA: <Label check> <Input type="checkbox" name="g2HairNA" id="g2HairNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2HairPhysical" id="g2HairPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2HairVerbal" id="g2HairVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2HairInitiates" id="g2HairInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can perform skin care',
+                goal2NA: <Label check> <Input type="checkbox" name="g2SkinCareNA" id="g2SkinCareNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2SkinCarePhysical" id="g2SkinCarePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2SkinCareVerbal" id="g2SkinCareVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2SkinCareInitiates" id="g2SkinCareInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can maintain eye glasses/contacts',
+                goal2NA: <Label check> <Input type="checkbox" name="g2EyeGlassesNA" id="g2EyeGlassesNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2EyeGlassesPhysical" id="g2EyeGlassesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2EyeGlassesVerbal" id="g2EyeGlassesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2EyeGlassesInitiates" id="g2EyeGlassesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can maintain a well groomed appearance',
+                goal2NA: <Label check> <Input type="checkbox" name="g2WellGroomedNA" id="g2WellGroomedNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2WellGroomedPhysical" id="g2WellGroomedPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2WellGroomedVerbal" id="g2WellGroomedVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2WellGroomedInitiates" id="g2WellGroomedInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can manage toilet needs',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ToiletNeedsNA" id="g2ToiletNeedsNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ToiletNeedsPhysical" id="g2ToiletNeedsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ToiletNeedsVerbal" id="g2ToiletNeedsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ToiletNeedsInitiates" id="g2ToiletNeedsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can manage washing hands to control germs',
+                goal2NA: <Label check> <Input type="checkbox" name="g2WashHandsNA" id="g2WashHandsNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2WashHandsPhysical" id="g2WashHandsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2WashHandsVerbal" id="g2WashHandsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2WashHandsInitiates" id="g2WashHandsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can bathe/shower/shampoo',
+                goal2NA: <Label check> <Input type="checkbox" name="g2BatheNA" id="g2BatheNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2BathePhysical" id="g2BathePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2BatheVerbal" id="g2BatheVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2BatheInitiates" id="g2BatheInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can manage shaving needs',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ShavingNeedsNA" id="g2ShavingNeedsNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ShavingNeedsPhysical" id="g2ShavingNeedsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ShavingNeedsVerbal" id="g2ShavingNeedsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ShavingNeedsInitiates" id="g2ShavingNeedsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can use deodorant',
+                goal2NA: <Label check> <Input type="checkbox" name="g2DeodorantNA" id="g2DeodorantNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2DeodorantPhysical" id="g2DeodorantPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2DeodorantVerbal" id="g2DeodorantVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2DeodorantInitiates" id="g2DeodorantInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Closes door for bathing/toileting/dressing/etc.',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ClosesDoorNA" id="g2ClosesDoorNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ClosesDoorPhysical" id="g2ClosesDoorPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ClosesDoorVerbal" id="g2ClosesDoorVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ClosesDoorInitiates" id="g2ClosesDoorInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can take care of minor injuries and illnesses',
+                goal2NA: <Label check> <Input type="checkbox" name="g2MinorInjuriesNA" id="g2MinorInjuriesNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2MinorInjuriesPhysical" id="g2MinorInjuriesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2MinorInjuriesVerbal" id="g2MinorInjuriesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2MinorInjuriesInitiates" id="g2MinorInjuriesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'If needed medical help quickly, knows how to get it',
+                goal2NA: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpNA" id="g2GetsMedicalHelpNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpPhysical" id="g2GetsMedicalHelpPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpVerbal" id="g2GetsMedicalHelpVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpInitiates" id="g2GetsMedicalHelpInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Knows how and when to call 911',
+                goal2NA: <Label check> <Input type="checkbox" name="g2Call911NA" id="g2Call911NA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2Call911Physical" id="g2Call911Physical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2Call911Verbal" id="g2Call911Verbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2Call911Initiates" id="g2Call911Initiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can name two or more places to get help if he/she feels unsafe',
+                goal2NA: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeNA" id="g2HelpIfUnsafeNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2HelpIfUnsafePhysical" id="g2HelpIfUnsafePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeVerbal" id="g2HelpIfUnsafeVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeInitiates" id="g2HelpIfUnsafeInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can readily identify who is a stranger and knows appropriate types of interactions with stranger',
+                goal2NA: <Label check> <Input type="checkbox" name="g2IDStrangerNA" id="g2IDStrangerNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2IDStrangerPhysical" id="g2IDStrangerPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2IDStrangerVerbal" id="g2IDStrangerVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2IDStrangerInitiates" id="g2IDStrangerInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: <div className={"sub-section"}>Social Relationships</div>,
+                goal2NA: '',
+                goal2Physical: '',
+                goal2Verbal: '',
+                goal2Initiates: ''
+            }, {
+                goal2Category: 'Is polite to others',
+                goal2NA: <Label check> <Input type="checkbox" name="g2PoliteNA" id="g2PoliteNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2PolitePhysical" id="g2PolitePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2PoliteVerbal" id="g2PoliteVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2PoliteInitiates" id="g2PoliteInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Respects other people\'s things',
+                goal2NA: <Label check> <Input type="checkbox" name="g2RespectOthersThingsNA" id="g2RespectOthersThingsNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2RespectOthersThingsPhysical" id="g2RespectOthersThingsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2RespectOthersThingsVerbal" id="g2RespectOthersThingsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2RespectOthersThingsInitiates" id="g2RespectOthersThingsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Respects other people\'s way of looking at things, their lifestyle, and their attitudes',
+                goal2NA: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasNA" id="g2RespectOthersIdeasNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasPhysical" id="g2RespectOthersIdeasPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasVerbal" id="g2RespectOthersIdeasVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasInitiates" id="g2RespectOthersIdeasInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Shows appreciation for things others do for him/her',
+                goal2NA: <Label check> <Input type="checkbox" name="g2AppreciationNA" id="g2AppreciationNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2AppreciationPhysical" id="g2AppreciationPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2AppreciationVerbal" id="g2AppreciationVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2AppreciationInitiates" id="g2AppreciationInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Deals with anger without using violence',
+                goal2NA: <Label check> <Input type="checkbox" name="g2NonviolentAngerNA" id="g2NonviolentAngerNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2NonviolentAngerPhysical" id="g2NonviolentAngerPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2NonviolentAngerVerbal" id="g2NonviolentAngerVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2NonviolentAngerInitiates" id="g2NonviolentAngerInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Thinks about how his/her choices affect others',
+                goal2NA: <Label check> <Input type="checkbox" name="g2EffectOfChoicesNA" id="g2EffectOfChoicesNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2EffectOfChoicesPhysical" id="g2EffectOfChoicesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2EffectOfChoicesVerbal" id="g2EffectOfChoicesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2EffectOfChoicesInitiates" id="g2EffectOfChoicesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can safely interact with others on the internet',
+                goal2NA: <Label check> <Input type="checkbox" name="g2InternetSafetyNA" id="g2InternetSafetyNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2InternetSafetyPhysical" id="g2InternetSafetyPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2InternetSafetyVerbal" id="g2InternetSafetyVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2InternetSafetyInitiates" id="g2InternetSafetyInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Understands public vs. private activities',
+                goal2NA: <Label check> <Input type="checkbox" name="g2PublicPrivateNA" id="g2PublicPrivateNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2PublicPrivatePhysical" id="g2PublicPrivatePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2PublicPrivateVerbal" id="g2PublicPrivateVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2PublicPrivateInitiates" id="g2PublicPrivateInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: <div className={"sub-section"}>Work and Study Skills</div>,
+                goal2NA: '',
+                goal2Physical: '',
+                goal2Verbal: '',
+                goal2Initiates: ''
+            }, {
+                goal2Category: 'Gets his/her work done on time',
+                goal2NA: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeNA" id="g2WorkDoneOnTimeNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimePhysical" id="g2WorkDoneOnTimePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeVerbal" id="g2WorkDoneOnTimeVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeInitiates" id="g2WorkDoneOnTimeInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Gets to school or work on time',
+                goal2NA: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolNA" id="g2OnTimeToSchoolNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolPhysical" id="g2OnTimeToSchoolPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolVerbal" id="g2OnTimeToSchoolVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolInitiates" id="g2OnTimeToSchoolInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Knows how and where to get help outside of school',
+                goal2NA: <Label check> <Input type="checkbox" name="g2SchoolHelpNA" id="g2SchoolHelpNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2SchoolHelpPhysical" id="g2SchoolHelpPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2SchoolHelpVerbal" id="g2SchoolHelpVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2SchoolHelpInitiates" id="g2SchoolHelpInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Prepares for exams and presentations',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ExamPrepNA" id="g2ExamPrepNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ExamPrepPhysical" id="g2ExamPrepPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ExamPrepVerbal" id="g2ExamPrepVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ExamPrepInitiates" id="g2ExamPrepInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Looks over his/her work for mistakes',
+                goal2NA: <Label check> <Input type="checkbox" name="g2LooksForMistakesNA" id="g2LooksForMistakesNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2LooksForMistakesPhysical" id="g2LooksForMistakesPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2LooksForMistakesVerbal" id="g2LooksForMistakesVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2LooksForMistakesInitiates" id="g2LooksForMistakesInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Uses the library, newspaper, computer/internet, or other resources to get information',
+                goal2NA: <Label check> <Input type="checkbox" name="g2GetsInformationNA" id="g2GetsInformationNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2GetsInformationPhysical" id="g2GetsInformationPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2GetsInformationVerbal" id="g2GetsInformationVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2GetsInformationInitiates" id="g2GetsInformationInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Knows how to access the internet to do homework',
+                goal2NA: <Label check> <Input type="checkbox" name="g2InternetForHomeworkNA" id="g2InternetForHomeworkNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2InternetForHomeworkPhysical" id="g2InternetForHomeworkPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2InternetForHomeworkVerbal" id="g2InternetForHomeworkVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2InternetForHomeworkInitiates" id="g2InternetForHomeworkInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Knows how to use a search engine',
+                goal2NA: <Label check> <Input type="checkbox" name="g2SearchEngineNA" id="g2SearchEngineNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2SearchEnginePhysical" id="g2SearchEnginePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2SearchEngineVerbal" id="g2SearchEngineVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2SearchEngineInitiates" id="g2SearchEngineInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can create, save, open, retrieve, and print documents on the computer',
+                goal2NA: <Label check> <Input type="checkbox" name="g2ComputerDocumentsNA" id="g2ComputerDocumentsNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2ComputerDocumentsPhysical" id="g2ComputerDocumentsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2ComputerDocumentsVerbal" id="g2ComputerDocumentsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2ComputerDocumentsInitiates" id="g2ComputerDocumentsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: <div className={"sub-section"}>Extra Items</div>,
+                goal2NA: '',
+                goal2Physical: '',
+                goal2Verbal: '',
+                goal2Initiates: ''
+            }, {
+                goal2Category: 'Can make appointments with his/her doctor, dentist, or clinic when needed',
+                goal2NA: <Label check> <Input type="checkbox" name="g2MakeAppointmentsNA" id="g2MakeAppointmentsNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2MakeAppointmentsPhysical" id="g2MakeAppointmentsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2MakeAppointmentsVerbal" id="g2MakeAppointmentsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2MakeAppointmentsInitiates" id="g2MakeAppointmentsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Avoids relationships that hurt or are dangerous',
+                goal2NA: <Label check> <Input type="checkbox" name="g2HurtRelationshipsNA" id="g2HurtRelationshipsNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2HurtRelationshipsPhysical" id="g2HurtRelationshipsPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2HurtRelationshipsVerbal" id="g2HurtRelationshipsVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2HurtRelationshipsInitiates" id="g2HurtRelationshipsInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how to get a copy of his/her birth certificate',
+                goal2NA: <Label check> <Input type="checkbox" name="g2BirthCertificateNA" id="g2BirthCertificateNA"/> N/A </Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2BirthCertificatePhysical" id="g2BirthCertificatePhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2BirthCertificateVerbal" id="g2BirthCertificateVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2BirthCertificateInitiates" id="g2BirthCertificateInitiates"/> Initiates Independently </Label>
+            }, {
+                goal2Category: 'Can explain how to get a copy of his/her Social Security card',
+                goal2NA: <Label check> <Input type="checkbox" name="g2SocialSecurityCardNA" id="g2SocialSecurityCardNA"/> N/A</Label>,
+                goal2Physical: <Label check> <Input type="checkbox" name="g2SocialSecurityCardPhysical" id="g2SocialSecurityCardPhysical"/> Physical Prompt </Label>,
+                goal2Verbal: <Label check> <Input type="checkbox" name="g2SocialSecurityCardVerbal" id="g2SocialSecurityCardVerbal"/> Verbal Prompt</Label>,
+                goal2Initiates: <Label check> <Input type="checkbox" name="g2SocialSecurityCardInitiates" id="g2SocialSecurityCardInitiates"/> Initiates Independently
+                </Label>
             }],
 
 
@@ -2716,7 +3284,6 @@ class ClientHistoryAndInformation extends Component {
 
         );
     }
-
 
     renderSection4() {
         return (
@@ -4224,6 +4791,30 @@ Problems With Authority
                     </FormFeedback>
                 </FormGroup>
                 <div className={"sub-section"}>Level Two Goals:</div>
+                <Row>
+                    <Label className={"important"}>Only complete Level 2 Goals if 75% of the above Life Skills are completed independently.</Label>
+                </Row>
+                <ReactTable
+                    className={"level1GoalsTable -striped -highlight"}
+                    data={this.state.level2GoalsData}
+                    columns={this.state.level2GoalsColumns}
+                    defaultPageSize={91}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
             </fieldset>
 
         );
