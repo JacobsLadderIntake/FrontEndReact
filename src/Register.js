@@ -22,7 +22,7 @@ class Register extends Component {
             fields: [],
             isAdminChecked: false,
             startsHidden: true,
-            confirmationCode:1234,
+            confirmationCode:'1234',
             confirmationCodeValid: false,
             submitButtonPressed: false,
             confirmButtonPressed:false
@@ -122,8 +122,14 @@ class Register extends Component {
         return formIsValid
     }
     handleConfirmButtonHit(){
-        this.state.confirmButtonPressed.setState(true);
-        this.validateConfirmationForm()
+        this.setState({ confirmButtonPressed: true }, () => {
+            console.log(this.state.confirmButtonPressed, 'yikes');
+            this.validateConfirmationForm();
+        });
+        // this.setState({confirmButtonPressed:true});
+        // console.log("yikes")
+        // console.log(this.state.confirmButtonPressed)
+
     }
 
     checkEmailExists() {
@@ -134,9 +140,12 @@ class Register extends Component {
     validateConfirmationForm() {
         let fields = this.state.fields
         let errors = {};
+        console.log("wowzers")
         if (this.state.confirmButtonPressed) {
+            console.log("wowzersIn")
             if (this.state.confirmationCode === fields["confirmationCode"]) {
                 this.setState({confirmationCodeValid: true})
+                console.log("sjshskdhjkshksdhsj")
             } else {
                 errors["confirmationCode"] = "The code entered is incorrect";
             }
@@ -189,7 +198,8 @@ class Register extends Component {
                 </div>
                 <div className={"confirmationCode"}>
                     <FormGroup>
-                        <Col sm={12}>
+
+
 
                         <Label>If you are signing in as a member of the admission team, please submit the code provided
                             by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
@@ -197,7 +207,7 @@ class Register extends Component {
                         <Input
                             autoFocus
                             type="password"
-                            value={this.state.fields["confirmationCode"]}
+                            value={this.state.fields["confirmationCode"] || ""}
                             ref="confirmationCode"
                             onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
                             invalid= {this.state.errors["confirmationCode"] != null}
@@ -205,17 +215,6 @@ class Register extends Component {
 
                     />
                         <FormFeedback invalid = {this.state.errors["confirmationCode"]}>{this.state.errors["confirmationCode"]}</FormFeedback>
-                            <Label>If you are signing in as a member of the admission team, please submit the code provided
-                                by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
-                                parent.</Label>
-                            <Input
-                                type="tel"
-                                value={this.state.fields["confirmationCode"]}
-                                ref="confirmationCode"
-                                onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
-                                invalid= {this.state.errors["confirmationCode"]}/>
-                            <FormFeedback invalid = {this.state.errors["confirmationCode"]}>{this.state.errors["confirmationCode"]}</FormFeedback>
-                        </Col>
 
                     </FormGroup>
                     <div className={" confirmation_buttons_div"}>
