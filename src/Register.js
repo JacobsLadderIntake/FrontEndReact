@@ -123,29 +123,22 @@ class Register extends Component {
     }
     handleConfirmButtonHit(){
         this.setState({ confirmButtonPressed: true }, () => {
-            console.log(this.state.confirmButtonPressed, 'yikes');
             this.validateConfirmationForm();
         });
-        // this.setState({confirmButtonPressed:true});
-        // console.log("yikes")
-        // console.log(this.state.confirmButtonPressed)
+
 
     }
 
     checkEmailExists() {
-        console.log("yeet")
         return true
     }
 
     validateConfirmationForm() {
         let fields = this.state.fields
         let errors = {};
-        console.log("wowzers")
         if (this.state.confirmButtonPressed) {
-            console.log("wowzersIn")
             if (this.state.confirmationCode === fields["confirmationCode"]) {
                 this.setState({confirmationCodeValid: true})
-                console.log("sjshskdhjkshksdhsj")
             } else {
                 errors["confirmationCode"] = "The code entered is incorrect";
             }
