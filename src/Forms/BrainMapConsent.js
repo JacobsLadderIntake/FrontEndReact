@@ -4,7 +4,6 @@ import './formFormatting.css';
 import {
     Col,
     Button,
-    ButtonToolbar,
     FormGroup,
     FormFeedback,
     Input,
@@ -82,7 +81,6 @@ class BrainMapConsent extends Component{
     }
 
     renderFields() {
-        const {errors} = this.state.errors;
         return (
           <fieldset>
               <div>
@@ -113,7 +111,7 @@ class BrainMapConsent extends Component{
                       </Col>
                   </FormGroup>
                   <FormGroup>
-                      <Label className="control-label required" sm={12}>Parent/Guardian First Name</Label>
+                      <Label className="control-label required" sm={12}>Parent/Guardian  Name</Label>
                       <Col sm={12}>
                           <Input
                               type="text"
@@ -180,9 +178,9 @@ class BrainMapConsent extends Component{
                 <Header loggedIn = {true}/>
                 <div className="form-title">
                     <Row >
-                        <a className = "parent-top col-9">
+                        <div className = "parent-top col-9">
                             <h2>Brain Map Consent Form</h2>
-                        </a>
+                        </div>
                     </Row>
                 </div>
 

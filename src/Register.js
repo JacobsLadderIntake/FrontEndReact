@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom'
 import './register.css'
 
 
@@ -52,7 +51,7 @@ class Register extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-        let substring ="@";
+        // let substring ="@";
         if(this.state.submitButtonPressed ||this.state.confirmButtonPressed) {
             if (!this.state.isAdminChecked) {
                 if (!fields["studentFirstName"]) {
@@ -123,7 +122,7 @@ class Register extends Component {
         return formIsValid
     }
     handleConfirmButtonHit(){
-        this.state.confirmButtonPressed = true
+        this.state.confirmButtonPressed.setState(true);
         this.validateConfirmationForm()
     }
 
@@ -239,7 +238,6 @@ class Register extends Component {
     }
 
     renderForm() {
-        const {errors} = this.state;
         var isAdminChecked = {
             display: this.state.isAdminChecked ? "none" : "flex",
         };

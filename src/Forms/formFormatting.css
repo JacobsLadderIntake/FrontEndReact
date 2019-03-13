@@ -26,6 +26,9 @@
     padding-left:600px;
     bottom: 45px;/*and to the left of the window.*/
 }
+.word-section {
+    color:red;
+}
 
 .body-of-text{
     padding:20px;
@@ -69,4 +72,16 @@
     margin: 5px;
     color: white;
     border: thin #5DA3C7;
+}
+.card-body.toggle-card-body {
+    background-color: #DEDEDE;
+    padding: 0rem;
+}
+.card.toggle-card{
+    border: 0px #DEDEDE;
+
+}
+
+.important {
+    color: red;
 }
