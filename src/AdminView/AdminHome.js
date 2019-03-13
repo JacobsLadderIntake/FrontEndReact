@@ -33,7 +33,7 @@ class AdminHome extends Component {
     createCards() {
         let cards = [];
         for (let i = 0; i < 10; i++) {
-            cards.push(<Col className={"col-4 p-2"}> <StudentCard/> </Col>)
+            cards.push(<Col className={"col-3 p-2"}> <StudentCard/> </Col>)
         }
         return cards;
     }
