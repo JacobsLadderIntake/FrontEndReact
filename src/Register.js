@@ -128,7 +128,7 @@ class Register extends Component {
 
 
     }
-
+    // uncommentlater
     checkEmailExists() {
         return true
     }
