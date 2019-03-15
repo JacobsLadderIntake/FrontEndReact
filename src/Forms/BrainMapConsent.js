@@ -27,7 +27,7 @@ class BrainMapConsent extends Component{
         this.goBack = this.goBack.bind(this);
 
     }
-    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
+    infoObj = {values: {"StudentName":"ChaseMaggio", "ParentName":"Heidi", "Date":"Feb"}}; //, "ConsentCheck":""};
 
     goBack(event) {
         window.location.reload();
@@ -114,11 +114,12 @@ class BrainMapConsent extends Component{
     postToDB() {
       infoObj = JSON.stringify(this.infoObj);
         // console.log(infoObj);
-        const response = fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm', {
+        const response = fetch('api/children/1234/forms/BrainMapConsentForm', {
             method: 'POST',
             headers: {
+                'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyIwIjp7IlVzZXJJRCI6Ijk4NzYiLCJIYXNoIjpudWxsLCJJc0FkbWluIjowLCJVc2VyRmlyc3ROYW1lIjoiIiwiVXNlckxhc3ROYW1lIjoiIiwiUGFzc3dvcmQiOiJmODY5Y2UxYzg0MTRhMjY0YmIxMWUxNGEyYzg4NTBlZCIsIkVtYWlsIjoiYWJpZ2FpbEBnbWFpbC5jb20ifSwiaWF0IjoxNTUyNjYyODY4LCJleHAiOjE1NTI2ODA4Njh9.2j_MnJ6oMvQFqD8V3578ZNusrZYv2wfN3ss25csyK54',
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: infoObj
         });
@@ -127,13 +128,21 @@ class BrainMapConsent extends Component{
     callApi = async () => {
         // infoObj = JSON.stringify(this.infoObj);
         // console.log(infoObj);
-        const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm')
+        const response = await fetch('api/children/1234/forms/BrainMapConsentForm',{
+                      method: 'GET',
+            headers: {
+                'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyIwIjp7IlVzZXJJRCI6Ijk4NzYiLCJIYXNoIjpudWxsLCJJc0FkbWluIjowLCJVc2VyRmlyc3ROYW1lIjoiIiwiVXNlckxhc3ROYW1lIjoiIiwiUGFzc3dvcmQiOiJmODY5Y2UxYzg0MTRhMjY0YmIxMWUxNGEyYzg4NTBlZCIsIkVtYWlsIjoiYWJpZ2FpbEBnbWFpbC5jb20ifSwiaWF0IjoxNTUyNjYyODY4LCJleHAiOjE1NTI2ODA4Njh9.2j_MnJ6oMvQFqD8V3578ZNusrZYv2wfN3ss25csyK54',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            // body: infoObj
+        });
         const body = await response.json();
         console.log(body);
         if (response.status !== 200) throw Error(body.message);
-        this.state.fields["studentName"] = body[0].StudentName;
-        this.state.fields["parentName"] = body[0].ParentName;
-        this.state.fields["date"] = body[0].Date;
+        this.state.fields["studentName"] = body.Form[0].StudentName;
+        this.state.fields["parentName"] = body.Form[0].ParentName;
+        this.state.fields["date"] = body.Form[0].Date;
         // this.state.fields["consentCheck"] = body[0].ConsentCheck;
         console.log(this.state.fields)
         return body;
