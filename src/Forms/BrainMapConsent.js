@@ -11,6 +11,8 @@ import {
     Row
 } from "reactstrap";
 
+var infoObj;
+
 class BrainMapConsent extends Component{
     constructor(props) {
         super(props);
@@ -25,6 +27,9 @@ class BrainMapConsent extends Component{
         this.goBack = this.goBack.bind(this);
 
     }
+    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentFirstName":"", "StudentLastName":"",
+      "ParentFirstName":"", "ParentSignature":"","Date":""}
+    // infoObj = JSON.parse('{"info":[{"token": "", "values": [{"childID": "", "studentFirstName": "", "studentLastName": "", "parentFirstName": "", "parentLastName": "", "parentSignature": "", "date": ""}]}]}');
 
     goBack(event) {
         window.location.reload();
@@ -35,6 +40,22 @@ class BrainMapConsent extends Component{
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields: fields});
+    }
+
+    updateFields() {
+        let fields = this.state.fields;
+        let infoObj = this.infoObj;
+        // console.log(fields["studentFirstName"] === null)
+        infoObj.StudentFirstName = fields["studentFirstName"];
+        infoObj.StudentLastName = fields["studentLastName"];
+        infoObj.ParentFirstName = fields["parentFirstName"];
+        infoObj.ParentLastName = fields["parentLastName"];
+        infoObj.ParentSignature = fields["parentSignature"];
+        infoObj.Date = fields["date"];
+    }
+
+    populateFields() {
+      let fields = this.state.fields;
     }
 
     validate() {
@@ -65,9 +86,13 @@ class BrainMapConsent extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        this.updateFields();
+        this.postToDB();
+        // this.componentDidMount();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
                 //NEED TO UPDATE DATABASE
+                console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
         });
@@ -75,10 +100,52 @@ class BrainMapConsent extends Component{
 
     handleSaveAndQuit(event) {
         event.preventDefault();
+        this.updateFields();
         this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
-        this.props.history.push("/parenthome")
+        this.postToDB();
+        // this.componentDidMount();
+        console.log("saved and quit");
+        //back to homepage
+        this.props.history.push("/parenthome");
     }
+
+    componentDidMount() {
+        this.callApi()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    postToDB() {
+      infoObj = JSON.stringify(this.infoObj);
+        // console.log(infoObj);
+        const response = fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: infoObj
+        });
+    }
+
+    callApi = async () => {
+        // infoObj = JSON.stringify(this.infoObj);
+        // console.log(infoObj);
+        const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm')
+        const body = await response.json();
+        console.log(body);
+        console.log(body[0].StudentFirstName)
+        if (response.status !== 200) throw Error(body.message);
+        this.state.fields["studentFirstName"] = body[0].StudentFirstName;
+        this.state.fields["studentLastName"] = body[0].StudentLastName;
+        this.state.fields["parentFirstName"] = body[0].ParentFirstName;
+        this.state.fields["parentLastName"] = body[0].ParentLastName;
+        this.state.fields["parentSignature"] = body[0].ParentSignature;
+        this.state.fields["date"] = body[0].Date;
+        console.log(this.state.fields)
+        return body;
+    };
 
     renderFields() {
         return (
