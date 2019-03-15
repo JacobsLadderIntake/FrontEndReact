@@ -27,9 +27,7 @@ class BrainMapConsent extends Component{
         this.goBack = this.goBack.bind(this);
 
     }
-    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentFirstName":"", "StudentLastName":"",
-      "ParentFirstName":"", "ParentSignature":"","Date":""}
-    // infoObj = JSON.parse('{"info":[{"token": "", "values": [{"childID": "", "studentFirstName": "", "studentLastName": "", "parentFirstName": "", "parentLastName": "", "parentSignature": "", "date": ""}]}]}');
+    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
 
     goBack(event) {
         window.location.reload();
@@ -45,13 +43,10 @@ class BrainMapConsent extends Component{
     updateFields() {
         let fields = this.state.fields;
         let infoObj = this.infoObj;
-        // console.log(fields["studentFirstName"] === null)
-        infoObj.StudentFirstName = fields["studentFirstName"];
-        infoObj.StudentLastName = fields["studentLastName"];
-        infoObj.ParentFirstName = fields["parentFirstName"];
-        infoObj.ParentLastName = fields["parentLastName"];
-        infoObj.ParentSignature = fields["parentSignature"];
+        infoObj.StudentName = fields["studentName"];
+        infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
+        // infoObj.ConsentCheck = fields["consentCheck"];
     }
 
     populateFields() {
@@ -135,14 +130,11 @@ class BrainMapConsent extends Component{
         const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm')
         const body = await response.json();
         console.log(body);
-        console.log(body[0].StudentFirstName)
         if (response.status !== 200) throw Error(body.message);
-        this.state.fields["studentFirstName"] = body[0].StudentFirstName;
-        this.state.fields["studentLastName"] = body[0].StudentLastName;
-        this.state.fields["parentFirstName"] = body[0].ParentFirstName;
-        this.state.fields["parentLastName"] = body[0].ParentLastName;
-        this.state.fields["parentSignature"] = body[0].ParentSignature;
+        this.state.fields["studentName"] = body[0].StudentName;
+        this.state.fields["parentName"] = body[0].ParentName;
         this.state.fields["date"] = body[0].Date;
+        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
         console.log(this.state.fields)
         return body;
     };
