@@ -11,7 +11,8 @@ class ParentTable extends Component {
             data: [{
                 name: 'Client History and Information Form',
                 progress: 'Not Started',
-                flag: 'No'
+                flag: 'No',
+                color: 'white'
             }, {
                 name: 'Medical Protocol Form',
                 progress: 'Not Started',
@@ -67,10 +68,13 @@ class ParentTable extends Component {
             this.props.history.push("/ep");
         } else if (row.name === "Consent and Medical Release Form") {
             this.props.history.push("/cmr");
+        } else if (row.name === "Client History and Information Form") {
+            this.props.history.push("/chai");
         }
         // console.log(this.state.data.name);
         // need to figure out how to access the row that has been clicked on, not sure how to do that though
     }
+
 
     render() {
 
@@ -78,22 +82,39 @@ class ParentTable extends Component {
         const studentName = "susie lou";//getChildren("emma@gmail.com");
 
         return (
-            <div className={"parentTable p-4"}>
+            <div className={"p-4"}>
                 <Header loggedIn = {true}/>
                 <Row className="parent-table-header">
-                    <h2 className = "parent-top col-9">Intake Profile Checklist: {studentName}</h2>
+                    <h2 className = "parent-top col-9 pb-4">Intake Profile Checklist: {studentName}</h2>
                 </Row>
                 <ReactTable
+                    className={"parentTable -striped -highlight"}
                     data={this.state.data}
                     columns={this.state.columns}
                     defaultPageSize={9}
                     showPagination={false}
                     getTdProps={(state, rowInfo) => {
                         return {
-                            //style: {background rowInfo.progress === "In Progress" ? #DEDEDD : #DEDEDE}
                             onClick: (e) => {
                                 console.log(rowInfo);
-                                this.handleClick(rowInfo.original, e);}
+                                this.handleClick(rowInfo.original, e);},
+                            // style: {background: (rowInfo.progress == "In Progress") ? "grey" : "white"}
+
+
+                        }
+                    }}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
                         }
                     }}
                 />

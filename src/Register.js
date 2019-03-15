@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom'
 import './register.css'
 
 
@@ -23,7 +22,7 @@ class Register extends Component {
             fields: [],
             isAdminChecked: false,
             startsHidden: true,
-            confirmationCode:1234,
+            confirmationCode:'1234',
             confirmationCodeValid: false,
             submitButtonPressed: false,
             confirmButtonPressed:false
@@ -52,7 +51,7 @@ class Register extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-        let substring ="@";
+        // let substring ="@";
         if(this.state.submitButtonPressed ||this.state.confirmButtonPressed) {
             if (!this.state.isAdminChecked) {
                 if (!fields["studentFirstName"]) {
@@ -123,12 +122,14 @@ class Register extends Component {
         return formIsValid
     }
     handleConfirmButtonHit(){
-        this.state.confirmButtonPressed = true
-        this.validateConfirmationForm()
-    }
+        this.setState({ confirmButtonPressed: true }, () => {
+            this.validateConfirmationForm();
+        });
 
+
+    }
+    // uncommentlater
     checkEmailExists() {
-        console.log("yeet")
         return true
     }
 
@@ -190,7 +191,8 @@ class Register extends Component {
                 </div>
                 <div className={"confirmationCode"}>
                     <FormGroup>
-                        <Col sm={12}>
+
+
 
                         <Label>If you are signing in as a member of the admission team, please submit the code provided
                             by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
@@ -198,7 +200,7 @@ class Register extends Component {
                         <Input
                             autoFocus
                             type="password"
-                            value={this.state.fields["confirmationCode"]}
+                            value={this.state.fields["confirmationCode"] || ""}
                             ref="confirmationCode"
                             onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
                             invalid= {this.state.errors["confirmationCode"] != null}
@@ -206,17 +208,6 @@ class Register extends Component {
 
                     />
                         <FormFeedback invalid = {this.state.errors["confirmationCode"]}>{this.state.errors["confirmationCode"]}</FormFeedback>
-                            <Label>If you are signing in as a member of the admission team, please submit the code provided
-                                by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
-                                parent.</Label>
-                            <Input
-                                type="tel"
-                                value={this.state.fields["confirmationCode"]}
-                                ref="confirmationCode"
-                                onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
-                                invalid= {this.state.errors["confirmationCode"]}/>
-                            <FormFeedback invalid = {this.state.errors["confirmationCode"]}>{this.state.errors["confirmationCode"]}</FormFeedback>
-                        </Col>
 
                     </FormGroup>
                     <div className={" confirmation_buttons_div"}>
@@ -239,7 +230,6 @@ class Register extends Component {
     }
 
     renderForm() {
-        const {errors} = this.state;
         var isAdminChecked = {
             display: this.state.isAdminChecked ? "none" : "flex",
         };
