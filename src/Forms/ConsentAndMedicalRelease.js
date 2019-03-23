@@ -11,7 +11,13 @@ import {
     Row
 } from "reactstrap";
 
-class ConsentAndMedicalRelease extends Component{
+var infoObj;
+// ID 1234 will need to be replaced
+var url = 'api/children/1234/forms/ConsentMedicalReleaseForm';
+var token = '';
+
+class ConsentAndMedicalRelease extends Component {
+
     constructor(props) {
         super(props);
 
@@ -66,6 +72,8 @@ class ConsentAndMedicalRelease extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        this.updateFields();
+        this.postToDB();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
                 //NEED TO UPDATE DATABASE
@@ -74,8 +82,64 @@ class ConsentAndMedicalRelease extends Component{
         });
     }
 
+    infoObj = {values: {"StudentName":"ChaseMaggio", "ParentName":"Heidi", "Date":"Feb", "Comments":""}};
+
+    updateFields() {
+        let fields = this.state.fields;
+        let infoObj = this.infoObj;
+        infoObj.StudentName = fields["studentName"];
+        infoObj.ParentName = fields["parentName"];
+        infoObj.Date = fields["date"];
+        infoObj.Comments = fields["consideration"];
+        // infoObj.ConsentCheck = fields["consentCheck"];
+    }
+
+    componentDidMount() {
+        this.fetchFromDB()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    postToDB() {
+      infoObj = JSON.stringify(this.infoObj);
+        // console.log(infoObj);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: infoObj
+        });
+    }
+
+    fetchFromDB = async () => {
+        // infoObj = JSON.stringify(this.infoObj);
+        // console.log(infoObj);
+        const response = await fetch(url, {
+                      method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        if (response.status !== 200) throw Error(body.message);
+        this.state.fields["studentName"] = body.Form[0].StudentName;
+        this.state.fields["parentName"] = body.Form[0].ParentName;
+        this.state.fields["date"] = body.Form[0].Date;
+        this.state.fields["consideration"] = body.Form[0].Comments;
+        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
+        console.log(this.state.fields)
+        return body;
+    };
+
     handleSaveAndQuit(event) {
         event.preventDefault();
+        this.updateFields();
+        this.postToDB();
         this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
         this.props.history.push("/parenthome")

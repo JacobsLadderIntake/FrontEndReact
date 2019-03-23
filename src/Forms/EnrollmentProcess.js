@@ -11,6 +11,11 @@ import {
     Row
 } from "reactstrap";
 
+var infoObj;
+// ID 1234 will need to be replaced
+var url = 'api/children/1234/forms/EnrollmentForm';
+var token = '';
+
 class EnrollmentProcess extends Component{
     constructor(props) {
         super(props);
@@ -34,6 +39,15 @@ class EnrollmentProcess extends Component{
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields: fields});
+    }
+
+    updateFields() {
+        let fields = this.state.fields;
+        let infoObj = this.infoObj;
+        infoObj.StudentName = fields["studentName"];
+        infoObj.ParentName = fields["parentName"];
+        infoObj.Date = fields["date"];
+        // infoObj.ConsentCheck = fields["consentCheck"];
     }
 
     validate() {
@@ -64,6 +78,8 @@ class EnrollmentProcess extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        this.updateFields();
+        this.postToDB();
         this.setState({submitButtonPressed: true}, () => {
             if (this.validate()) {
                 //NEED TO UPDATE DATABASE
@@ -74,10 +90,52 @@ class EnrollmentProcess extends Component{
 
     handleSaveAndQuit(event) {
         event.preventDefault();
+        this.updateFields();
+        this.postToDB();
         this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
         this.props.history.push("/parenthome")
     }
+
+    infoObj = {values: {"StudentName":"ChaseMaggio", "ParentName":"Heidi", "Date":"Feb"}};
+
+    componentDidMount() {
+        this.fetchFromDB()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    postToDB() {
+      infoObj = JSON.stringify(this.infoObj);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: infoObj
+        });
+    }
+
+    fetchFromDB = async () => {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        if (response.status !== 200) throw Error(body.message);
+        this.state.fields["studentName"] = body.Form[0].StudentName;
+        this.state.fields["parentName"] = body.Form[0].ParentName;
+        this.state.fields["date"] = body.Form[0].Date;
+        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
+        console.log(this.state.fields)
+        return body;
+    };
 
     renderFields() {
         return (
