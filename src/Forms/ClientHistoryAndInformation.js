@@ -35,21 +35,21 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'gender'
             }],
             siblingData: [{
-                name: <input type="text" name="sib1Name"/>,
-                age: <input type="text" name="sib1Age"/>,
-                gender: <input type="text" name="sib1Gender"/>,
+                name: <input type="text" name="sib1Name" className={"tableInputField"}/>,
+                age: <input type="text" name="sib1Age" className={"tableInputField"}/>,
+                gender: <input type="text" name="sib1Gender"className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib2Name"/>,
-                age: <input type="text" name="sib2Age"/>,
-                gender: <input type="text" name="sib2Gender"/>,
+                name: <input type="text" name="sib2Name"className={"tableInputField"}/>,
+                age: <input type="text" name="sib2Age"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib2Gender"className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib3Name"/>,
-                age: <input type="text" name="sib3Age"/>,
-                gender: <input type="text" name="sib3Gender"/>,
+                name: <input type="text" name="sib3Name"className={"tableInputField"}/>,
+                age: <input type="text" name="sib3Age"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib3Gender"className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib4Name"/>,
-                age: <input type="text" name="sib4Age"/>,
-                gender: <input type="text" name="sib4Gender"/>,
+                name: <input type="text" name="sib4Name"className={"tableInputField"}/>,
+                age: <input type="text" name="sib4Age"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib4Gender"className={"tableInputField"}/>,
             }],
 
             devHistoryColumns: [{
@@ -66,10 +66,11 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'devHistoryNa'
             }],
             devHistoryData: [{
-                devHistoryActivity: 'Crawled on stomach',
+                devHistoryActivity:'Crawled on stomach',
                 devHistoryYears: <Input type="select"
                                         name="crawlYears"
-                                        id="crawlYears">
+                                        id="crawlYears"
+                                        >
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -580,25 +581,25 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'otherDrSched'
             }],
             otherDoctorsData: [{
-                otherDrName: <input type="text" name="doc1Name"/>,
-                otherDrSpecialty: <input type="text" name="doc1Specialty"/>,
-                otherDrPhone: <input type="text" name="doc1Phone"/>,
-                otherDrSched: <input type="text" name="doc1Sched"/>
+                otherDrName: <input type="text" name="doc1Name" className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc1Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc1Phone"className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc1Sched"className={"tableInputField"}/>
             }, {
-                otherDrName: <input type="text" name="doc2Name"/>,
-                otherDrSpecialty: <input type="text" name="doc2Specialty"/>,
-                otherDrPhone: <input type="text" name="doc2Phone"/>,
-                otherDrSched: <input type="text" name="doc2Sched"/>
+                otherDrName: <input type="text" name="doc2Name"className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc2Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc2Phone" className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc2Sched"className={"tableInputField"}/>
             }, {
-                otherDrName: <input type="text" name="doc3Name"/>,
-                otherDrSpecialty: <input type="text" name="doc3Specialty"/>,
-                otherDrPhone: <input type="text" name="doc3Phone"/>,
-                otherDrSched: <input type="text" name="doc3Sched"/>
+                otherDrName: <input type="text" name="doc3Name"className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc3Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc3Phone"className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc3Sched"className={"tableInputField"}/>
             }, {
-                otherDrName: <input type="text" name="doc4Name"/>,
-                otherDrSpecialty: <input type="text" name="doc4Specialty"/>,
-                otherDrPhone: <input type="text" name="doc4Phone"/>,
-                otherDrSched: <input type="text" name="doc4Sched"/>
+                otherDrName: <input type="text" name="doc4Name"className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc4Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc4Phone"className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc4Sched"className={"tableInputField"}/>
             }],
             otherProgramsColumns: [{
                 Header: 'School/Program Name',
@@ -617,10 +618,10 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'contactPermission'
             }],
             otherProgramsData: [{
-                programName: <input type="text" name="program1name"/>,
-                startDate: <input type="date" name="startdate1"/>,
-                provider: <input type="text" name="provider1"/>,
-                programPhoneNumber: <input type="tel" name="phonenumber1"/>,
+                programName: <input type="text" name="program1name"className={"tableInputField"}/>,
+                startDate: <input type="date" name="startdate1"className={"tableInputField"}/>,
+                provider: <input type="text" name="provider1"className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber1"className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
                                           name="contactpermission1"
                                           id="contactpermission1">
@@ -629,10 +630,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                programName: <input type="text" name="program2name"/>,
-                startDate: <input type="date" name="startdate2"/>,
-                provider: <input type="text" name="provider2"/>,
-                programPhoneNumber: <input type="tel" name="phonenumber2"/>,
+                programName: <input type="text" name="program2name"className={"tableInputField"}/>,
+                startDate: <input type="date" name="startdate2"className={"tableInputField"}/>,
+                provider: <input type="text" name="provider2"className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber2"className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
                                           name="contactpermission2"
                                           id="contactpermission2">
@@ -641,10 +642,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                programName: <input type="text" name="program3name"/>,
-                startDate: <input type="date" name="startdate3"/>,
-                provider: <input type="text" name="provider3"/>,
-                programPhoneNumber: <input type="tel" name="phonenumber3"/>,
+                programName: <input type="text" name="program3name"className={"tableInputField"}/>,
+                startDate: <input type="date" name="startdate3"className={"tableInputField"}/>,
+                provider: <input type="text" name="provider3" className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber3" className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
                                           name="contactpermission3"
                                           id="contactpermission3">
@@ -653,10 +654,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                programName: <input type="text" name="program4name"/>,
-                startDate: <input type="date" name="startdate4"/>,
-                provider: <input type="text" name="provider4"/>,
-                programPhoneNumber: <input type="tel" name="phonenumber4"/>,
+                programName: <input type="text" name="program4name" className={"tableInputField"}/>,
+                startDate: <input type="date" name="startdate4" className={"tableInputField"}/>,
+                provider: <input type="text" name="provider4" className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber4" className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
                                           name="contactpermission4"
                                           id="contactpermission4">
@@ -818,47 +819,47 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'medsSideEffects'
             }],
             medsData: [{
-                medsName: <input type="text" name="med1Name"/>,
-                medsDosage: <input type="text" name="med1Dosage"/>,
-                medsTimeGiven: <input type="text" name="med1TimeGiven"/>,
-                medsFrequency: <input type="text" name="med1Frequency"/>,
-                medsPurpose: <input type="text" name="med1Purpose"/>,
-                medsSideEffects: <input type="text" name="med1SideEffects"/>
+                medsName: <input type="text" name="med1Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med1Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med1TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med1Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med1Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med1SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med2Name"/>,
-                medsDosage: <input type="text" name="med2Dosage"/>,
-                medsTimeGiven: <input type="text" name="med2TimeGiven"/>,
-                medsFrequency: <input type="text" name="med2Frequency"/>,
-                medsPurpose: <input type="text" name="med2Purpose"/>,
-                medsSideEffects: <input type="text" name="med2SideEffects"/>
+                medsName: <input type="text" name="med2Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med2Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med2TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med2Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med2Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med2SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med3Name"/>,
-                medsDosage: <input type="text" name="med3Dosage"/>,
-                medsTimeGiven: <input type="text" name="med3TimeGiven"/>,
-                medsFrequency: <input type="text" name="med3Frequency"/>,
-                medsPurpose: <input type="text" name="med3Purpose"/>,
-                medsSideEffects: <input type="text" name="med3SideEffects"/>
+                medsName: <input type="text" name="med3Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med3Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med3TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med3Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med3Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med3SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med4Name"/>,
-                medsDosage: <input type="text" name="med4Dosage"/>,
-                medsTimeGiven: <input type="text" name="med4TimeGiven"/>,
-                medsFrequency: <input type="text" name="med4Frequency"/>,
-                medsPurpose: <input type="text" name="med4Purpose"/>,
-                medsSideEffects: <input type="text" name="med4SideEffects"/>
+                medsName: <input type="text" name="med4Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med4Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med4TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med4Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med4Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med4SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med5Name"/>,
-                medsDosage: <input type="text" name="med5Dosage"/>,
-                medsTimeGiven: <input type="text" name="med5TimeGiven"/>,
-                medsFrequency: <input type="text" name="med5Frequency"/>,
-                medsPurpose: <input type="text" name="med5Purpose"/>,
-                medsSideEffects: <input type="text" name="med5SideEffects"/>
+                medsName: <input type="text" name="med5Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med5Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med5TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med6Name"/>,
-                medsDosage: <input type="text" name="med6Dosage"/>,
-                medsTimeGiven: <input type="text" name="med6TimeGiven"/>,
-                medsFrequency: <input type="text" name="med6Frequency"/>,
-                medsPurpose: <input type="text" name="med6Purpose"/>,
-                medsSideEffects: <input type="text" name="med6SideEffects"/>
+                medsName: <input type="text" name="med6Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med6Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med6TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med6Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med6Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med6SideEffects" className={"tableInputField"}/>
             }],
             testingColumns: [{
                 Header: 'Date',
@@ -877,10 +878,10 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'testReport'
             }],
             testingData: [{
-                testDate: <input type="date" name="test1Date"/>,
-                testExaminer: <input type="text" name="test1Examiner"/>,
-                testDiagnosis: <input type="text" name="test1Diagnosis"/>,
-                testReco: <input type="text" name="test1Reco"/>,
+                testDate: <input type="date" name="test1Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test1Examiner"className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test1Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test1Reco" className={"tableInputField"}/>,
                 testReport: <Input type="select"
                                    name="test1Report"
                                    id="test1Report">
@@ -889,10 +890,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                testDate: <input type="date" name="test2Date"/>,
-                testExaminer: <input type="text" name="test2Examiner"/>,
-                testDiagnosis: <input type="text" name="test2Diagnosis"/>,
-                testReco: <input type="text" name="test2Reco"/>,
+                testDate: <input type="date" name="test2Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test2Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test2Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test2Reco" className={"tableInputField"}/>,
                 testReport: <Input type="select"
                                    name="test2Report"
                                    id="test2Report">
@@ -901,10 +902,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                testDate: <input type="date" name="test3Date"/>,
-                testExaminer: <input type="text" name="test3Examiner"/>,
-                testDiagnosis: <input type="text" name="test3Diagnosis"/>,
-                testReco: <input type="text" name="test3Reco"/>,
+                testDate: <input type="date" name="test3Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test3Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test3Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test3Reco" className={"tableInputField"}/>,
                 testReport: <Input type="select"
                                    name="test3Report"
                                    id="test3Report">
@@ -913,10 +914,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                testDate: <input type="date" name="test4Date"/>,
-                testExaminer: <input type="text" name="test4Examiner"/>,
-                testDiagnosis: <input type="text" name="test4Diagnosis"/>,
-                testReco: <input type="text" name="test4Reco"/>,
+                testDate: <input type="date" name="test4Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test4Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test4Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test4Reco" className={"tableInputField"}/>,
                 testReport: <Input type="select"
                                    name="test4Report"
                                    id="test4Report">
@@ -925,10 +926,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                testDate: <input type="date" name="test5Date"/>,
-                testExaminer: <input type="text" name="test5Examiner"/>,
-                testDiagnosis: <input type="text" name="test5Diagnosis"/>,
-                testReco: <input type="text" name="test5Reco"/>,
+                testDate: <input type="date" name="test5Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test5Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test5Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test5Reco" className={"tableInputField"}/>,
                 testReport: <Input type="select"
                                    name="test5Report"
                                    id="test5Report">
@@ -937,10 +938,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                testDate: <input type="date" name="test6Date"/>,
-                testExaminer: <input type="text" name="test6Examiner"/>,
-                testDiagnosis: <input type="text" name="test6Diagnosis"/>,
-                testReco: <input type="text" name="test6Reco"/>,
+                testDate: <input type="date" name="test6Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test6Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test6Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test6Reco" className={"tableInputField"}/>,
                 testReport: <Input type="select"
                                    name="test6Report"
                                    id="test6Report">
@@ -970,7 +971,7 @@ class ClientHistoryAndInformation extends Component {
             }],
             foodGroupData: [{
                 foodGroup: 'Vegetables',
-                foodExcessive: <Label check> <Input type="checkbox" name="vegetableExcess" id="vegetableExcess"/> Excessive </Label>,
+                foodExcessive: <Label check> <Input type="checkbox" name="vegetableExcess" id="vegetableExcess"/> Excessive  </Label>,
                 foodDaily: <Label check> <Input type="checkbox" name="vegetableDaily" id="vegetableDaily"/> Daily </Label>,
                 foodWeekly: <Label check> <Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly"/> Weekly </Label>,
                 foodRarely: <Label check> <Input type="checkbox" name="vegetableRarely" id="vegetableRarely"/> Rarely </Label>,
@@ -2308,7 +2309,6 @@ class ClientHistoryAndInformation extends Component {
             console.log("greater")
             return true;
         } else {
-            console.log("nope")
             return false;
         }
     }
@@ -2332,8 +2332,8 @@ class ClientHistoryAndInformation extends Component {
 
         if (this.state.submitButtonPressed) {
             //SECTION ONE
-            if (!fields["dob"]) {
-                formIsValid = false;
+            if(!fields["dob"]) {
+                formIsValid =false;
                 errors["dob"] = "Cannot be empty";
             }
             if (!fields["age"]) {
@@ -2378,6 +2378,10 @@ class ClientHistoryAndInformation extends Component {
                 errors["homeNumber"] = "Cannot be empty";
             }
             //SECTION TWO
+            if (!fields["maritalStatus"]) {
+                formIsValid = false;
+                errors["maritalStatus"] = "Cannot be empty";
+            }
             if (!fields["motherName"]) {
                 formIsValid = false;
                 errors["motherName"] = "Cannot be empty";
@@ -2418,6 +2422,10 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["fatherOccupation"] = "Cannot be empty";
             }
+            if (!fields["isAdopted"]) {
+                formIsValid = false;
+                errors["isAdopted"] = "Cannot be empty";
+            }
             // Section 3
             if (!fields["birthWeek"]) {
                 formIsValid = false;
@@ -2426,6 +2434,18 @@ class ClientHistoryAndInformation extends Component {
             if (!fields["birthWeight"]) {
                 formIsValid = false;
                 errors["birthWeight"] = "Cannot be empty";
+            }
+            if (!fields["deliveryType"]) {
+                formIsValid = false;
+                errors["deliveryType"] = "Cannot be empty";
+            }
+            if (!fields["pregComplications"]) {
+                formIsValid = false;
+                errors["pregComplications"] = "Cannot be empty";
+            }
+            if (!fields["hospitalizedAfterBirth"]) {
+                formIsValid = false;
+                errors["hospitalizedAfterBirth"] = "Cannot be empty";
             }
 
 
@@ -2992,7 +3012,9 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Marital Status</Label>
                             <Input type="select"
                                    name="maritalStatus"
-                                   id="maritalStatus">
+                                   id="maritalStatus"
+                                   onChange={this.handleChange.bind(this, "maritalStatus")}
+                            invalid={this.state.errors["maritalStatus"]}>
                                 <option></option>
                                 <option>Single</option>
                                 <option>Married</option>
@@ -3000,9 +3022,9 @@ class ClientHistoryAndInformation extends Component {
                                 <option>Separated</option>
                                 <option>Widowed</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                            invalid={this.state.errors["martialStatus"]}> Cannot be Empty
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -3139,14 +3161,18 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Is your child adopted?</Label>
                             <Input type="select"
                                    name="isAdopted"
-                                   id="isAdopted">
+                                   id="isAdopted"
+                                   ref = "isAdopted"
+                                   onChange={this.handleChange.bind(this, "isAdopted")}
+                                   invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
+                            >
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                            invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
                     <Col sm={1} className={"text-right align-bottom"}>
@@ -3258,14 +3284,19 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Delivery Type:</Label>
                             <Input type="select"
                                    name="deliveryType"
-                                   id="deliveryType">
+                                   id="deliveryType"
+                                   ref ="deliveryType"
+                                   invalid={this.state.errors["deliveryType"]}
+                                   onChange={this.handleChange.bind(this, "deliveryType")}
+
+                            >
                                 <option></option>
                                 <option>Vaginal</option>
                                 <option>Cesarean</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                            invalid={this.state.errors["deliveryType"] }>{this.state.errors["deliveryType"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -3276,14 +3307,18 @@ class ClientHistoryAndInformation extends Component {
                                 pregnancy or delivery?</Label>
                             <Input type="select"
                                    name="pregComplications"
-                                   id="pregComplications">
+                                   id="pregComplications"
+                                   ref="pregComplications"
+                                   invalid={this.state.errors["pregComplications"]}
+                                   onChange={this.handleChange.bind(this, "pregComplications")}
+                            >
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                            invalid={this.state.errors["pregComplications"] }>{this.state.errors["pregComplications"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -3306,14 +3341,19 @@ class ClientHistoryAndInformation extends Component {
                                 birth?</Label>
                             <Input type="select"
                                    name="hospitaliedAfterBirth"
-                                   id="hospitaliedAfterBirth">
+                                   id="hospitaliedAfterBirth"
+                                   ref = "hospitalizedAfterBirth"
+                                   value={this.state.fields["hospitalizedAfterBirth"] || ""}
+                                   invalid={this.state.errors["hospitalizedAfterBirth"]}
+                                   onChange={this.handleChange.bind(this, "hospitalizedAfterBirth")}
+                            >
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                            invalid={this.state.errors["hospitaliedAfterBirth"] }>{this.state.errors["hospitalizedAfterBirth"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
                 </Row>
