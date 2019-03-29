@@ -85,3 +85,9 @@
 .important {
     color: red;
 }
+.tableInputField {
+    width: 100%;
+}
+.form-control.testing {
+    border:1px solid red;
+}

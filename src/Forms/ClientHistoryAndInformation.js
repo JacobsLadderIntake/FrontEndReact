@@ -70,6 +70,7 @@ class ClientHistoryAndInformation extends Component {
                 devHistoryYears: <Input type="select"
                                         name="crawlYears"
                                         id="crawlYears"
+                                        onChange={this.handleChange.bind(this, "crawlYears")}
                                         >
                     <option>0</option>
                     <option>1</option>
@@ -2329,6 +2330,7 @@ class ClientHistoryAndInformation extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
+        console.log(fields["crawlYears"])
 
         if (this.state.submitButtonPressed) {
             //SECTION ONE
@@ -2450,6 +2452,13 @@ class ClientHistoryAndInformation extends Component {
 
 
             //SECTION FOUR
+            if ((!fields["crawlYears"] || fields["crawlYears"] == 0) && (!fields["crawlMonths"] || fields["crawlMonths"] == 0)) {
+                document.getElementById("crawlYears").setAttribute("class", "form-control testing")
+                document.getElementById("crawlMonths").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("crawlYears").setAttribute("class", "form-control")
+                document.getElementById("crawlMonths").setAttribute("class", "form-control")
+            }
 
             //SECTION SEVEN
             if (!fields["educationalChallenges"]) {
