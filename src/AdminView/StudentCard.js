@@ -10,15 +10,12 @@ class StudentCard extends Component {
         super(props);
 
         this.state = {
-            studentFirstName: "Susie",
-            studentLastName: "Loo",
             parentFirstName: "Bill",
             parentLastName: "Loo",
             percentCompletion: "",
             formDueDate: "01/01/2020",
             evalDate: "01/10/2020",
             evaluator: "Rachel Smith",
-            reviewers: "Nancy"
         };
         this.handleNameClick = this.handleNameClick.bind(this);
     }
@@ -32,22 +29,22 @@ class StudentCard extends Component {
 
 
     renderCard() {
-        return <div>
-            <Card className="card"
-                  onClick={this.handleNameClick}>
-                <CardHeader
-                    className="title"
-                    >{this.state.studentFirstName + " " + this.state.studentLastName}</CardHeader>
-                <CardBody >
-                    <CardText className="text">
-                        Parents: {this.state.parentFirstName + " " + this.state.parentLastName}<br/>
-                        Forms due: {this.state.formDueDate}<br/>
-                        Evaluation on {this.state.formDueDate} with {this.state.evaluator}<br/>
-                        Reviewed by: {this.state.reviewers}
-                    </CardText>
-                </CardBody>
-            </Card>
-        </div>;
+        return  <div>
+                    <Card className="card"
+                          onClick={this.handleNameClick}>
+                        <CardHeader
+                            className="title"
+                            >{this.props.child.ChildFirstName + " " + this.props.child.ChildLastName}</CardHeader>
+                        <CardBody >
+                            <CardText className="text">
+                                Parents: <br/>
+                                Forms due: {this.props.child.ProfileDueDate}<br/>
+                                Evaluation on {this.props.child.EvaluationDate} with {this.props.child.Evaluator}<br/>
+                                Reviewed by: {this.state.reviewers}
+                            </CardText>
+                        </CardBody>
+                    </Card>
+                </div>;
     };
 
 
