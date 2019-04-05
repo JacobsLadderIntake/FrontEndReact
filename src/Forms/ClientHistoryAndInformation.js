@@ -66,7 +66,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Months',
                 accessor: 'devHistoryMonths'
             }, {
-                Header: 'Not Yet Developed',
+                Header: 'Developed?',
                 accessor: 'devHistoryNa'
             }],
             devHistoryData: [{
@@ -117,16 +117,20 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                            name="crawlNa"
-                           id="crawlNa">
+                           id="crawlNa"
+                                     onChange={this.handleChange.bind(this, "crawlNa")}
+                >
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Developed</option>
+                    <option>Unknown</option>
                 </Input>
             }, {
                 devHistoryActivity: 'Crept on hands and knees',
                 devHistoryYears: <Input type="select"
                                         name="creptYears"
-                                        id="creptYears">
+                                        id="creptYears"
+                                        onChange={this.handleChange.bind(this, "creptYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -150,7 +154,9 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                name="creptMonths"
-                               id="creptMonths">
+                               id="creptMonths"
+                                         onChange={this.handleChange.bind(this, "creptMonths")}
+                >
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -167,16 +173,19 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="creptNa"
-                                     id="creptNa">
+                                     id="creptNa"
+                                     onChange={this.handleChange.bind(this, "creptNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Developed</option>
+                    <option>Unknown</option>
                 </Input>
             }, {
                 devHistoryActivity: 'Walked',
                 devHistoryYears: <Input type="select"
                                         name="walkYears"
-                                        id="walkYears">
+                                        id="walkYears"
+                                        onChange={this.handleChange.bind(this, "walkYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -200,7 +209,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="walkMonths"
-                                         id="walkMonths">
+                                         id="walkMonths"
+                                         onChange={this.handleChange.bind(this, "walkMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -217,16 +227,21 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="walkNa"
-                                     id="walkNa">
+                                     id="walkNa"
+                                     onChange={this.handleChange.bind(this, "walkNa")}
+                >
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Toilet trained',
                 devHistoryYears: <Input type="select"
                                         name="toiletYears"
-                                        id="toiletYears">
+                                        id="toiletYears"
+                                        onChange={this.handleChange.bind(this, "toiletYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -250,7 +265,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="toiletMonths"
-                                         id="toiletMonths">
+                                         id="toiletMonths"
+                                         onChange={this.handleChange.bind(this, "toiletMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -267,16 +283,21 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="toiletNa"
-                                     id="toiletNa">
+                                     id="toiletNa"
+                                     onChange={this.handleChange.bind(this, "toiletNa")}
+                >
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'First word',
                 devHistoryYears: <Input type="select"
                                         name="wordYears"
-                                        id="wordYears">
+                                        id="wordYears"
+                                        onChange={this.handleChange.bind(this, "wordYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -300,7 +321,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="wordMonths"
-                                         id="wordMonths">
+                                         id="wordMonths"
+                                         onChange={this.handleChange.bind(this, "wordMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -317,16 +339,20 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="wordNa"
-                                     id="wordNa">
+                                     id="wordNa"
+                                     onChange={this.handleChange.bind(this, "wordNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Use of couplets (2 words together)',
                 devHistoryYears: <Input type="select"
                                         name="coupletYears"
-                                        id="coupletYears">
+                                        id="coupletYears"
+                                        onChange={this.handleChange.bind(this, "coupletYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -350,7 +376,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="coupletMonths"
-                                         id="coupletMonths">
+                                         id="coupletMonths"
+                                         onChange={this.handleChange.bind(this, "coupletMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -367,16 +394,19 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="coupletNa"
-                                     id="coupletNa">
+                                     id="coupletNa"
+                                     onChange={this.handleChange.bind(this, "coupletNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                        <option>Unknown</option>
                 </Input>
             }, {
                 devHistoryActivity: '3-4 word phrases',
                 devHistoryYears: <Input type="select"
                                         name="phraseYears"
-                                        id="phraseYears">
+                                        id="phraseYears"
+                                        onChange={this.handleChange.bind(this, "phraseYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -400,7 +430,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="phraseMonths"
-                                         id="phraseMonths">
+                                         id="phraseMonths"
+                                         onChange={this.handleChange.bind(this, "phraseMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -417,16 +448,20 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="phraseNa"
-                                     id="phraseNa">
+                                     id="phraseNa"
+                                     onChange={this.handleChange.bind(this, "phraseNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Sentences',
                 devHistoryYears: <Input type="select"
                                         name="sentenceYears"
-                                        id="sentenceYears">
+                                        id="sentenceYears"
+                                        onChange={this.handleChange.bind(this, "sentenceYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -450,7 +485,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="sentenceMonths"
-                                         id="sentenceMonths">
+                                         id="sentenceMonths"
+                                         onChange={this.handleChange.bind(this, "sentenceMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -467,16 +503,20 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="sentenceNa"
-                                     id="sentenceNa">
+                                     id="sentenceNa"
+                                     onChange={this.handleChange.bind(this, "sentenceNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Conversational language',
                 devHistoryYears: <Input type="select"
                                         name="conversationYears"
-                                        id="conversationYears">
+                                        id="conversationYears"
+                                        onChange={this.handleChange.bind(this, "conversationYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -500,7 +540,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="conversationMonths"
-                                         id="conversationMonths">
+                                         id="conversationMonths"
+                                         onChange={this.handleChange.bind(this, "conversationMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -517,16 +558,21 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="conversationNa"
-                                     id="conversationNa">
+                                     id="conversationNa"
+                                     onChange={this.handleChange.bind(this, "conversationNa")}
+                >
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Reading',
                 devHistoryYears: <Input type="select"
                                         name="readYears"
-                                        id="readYears">
+                                        id="readYears"
+                                        onChange={this.handleChange.bind(this, "readYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -550,7 +596,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="readMonths"
-                                         id="readMonths">
+                                         id="readMonths"
+                                         onChange={this.handleChange.bind(this, "readMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -567,10 +614,13 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="readNa"
-                                     id="readNa">
+                                     id="readNa"
+                                     onChange={this.handleChange.bind(this, "readNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }],
             otherDoctorsColumns: [{
@@ -2474,15 +2524,89 @@ class ClientHistoryAndInformation extends Component {
 
 
             //SECTION FOUR
-            if ((!fields["crawlYears"] || fields["crawlYears"] == 0) && (!fields["crawlMonths"] || fields["crawlMonths"] == 0)) {
+            if ((!fields["crawlYears"] || fields["crawlYears"] == 0) && (!fields["crawlMonths"] || fields["crawlMonths"] == 0) &&(fields["crawlNa"] == "Yes") || !fields["crawlNa"]){
                 document.getElementById("crawlYears").setAttribute("class", "form-control testing")
                 document.getElementById("crawlMonths").setAttribute("class", "form-control testing")
-                console.log("yeet")
-                console.log(fields["crawlMonths"])
+                document.getElementById("crawlNa").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("crawlYears").setAttribute("class", "form-control")
                 document.getElementById("crawlMonths").setAttribute("class", "form-control")
+                document.getElementById("crawlNa").setAttribute("class", "form-control")
+
             }
+            if ((!fields["creptYears"] || fields["creptYears"] == 0) && (!fields["creptMonths"] || fields["creptMonths"] == 0) &&(fields["creptNa"] == "Yes") || !fields["creptNa"]){
+                document.getElementById("creptYears").setAttribute("class", "form-control testing")
+                document.getElementById("creptMonths").setAttribute("class", "form-control testing")
+                document.getElementById("creptNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("creptYears").setAttribute("class", "form-control")
+                document.getElementById("creptMonths").setAttribute("class", "form-control")
+                document.getElementById("creptNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["walkYears"] || fields["walkYears"] == 0) && (!fields["walkMonths"] || fields["walkMonths"] == 0) &&(fields["walkNa"] == "Yes") || !fields["walkNa"]){
+                document.getElementById("walkYears").setAttribute("class", "form-control testing")
+                document.getElementById("walkMonths").setAttribute("class", "form-control testing")
+                document.getElementById("walkNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("walkYears").setAttribute("class", "form-control")
+                document.getElementById("walkMonths").setAttribute("class", "form-control")
+                document.getElementById("walkNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["toiletYears"] || fields["toiletYears"] == 0) && (!fields["toiletMonths"] || fields["toiletMonths"] == 0) &&(fields["toiletNa"] == "Yes") || !fields["toiletNa"]){
+                document.getElementById("toiletYears").setAttribute("class", "form-control testing")
+                document.getElementById("toiletMonths").setAttribute("class", "form-control testing")
+                document.getElementById("toiletNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("toiletYears").setAttribute("class", "form-control")
+                document.getElementById("toiletMonths").setAttribute("class", "form-control")
+                document.getElementById("toiletNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["wordYears"] || fields["wordYears"] == 0) && (!fields["wordMonths"] || fields["wordMonths"] == 0) &&(fields["wordNa"] == "Yes") || !fields["wordNa"]){
+                document.getElementById("wordYears").setAttribute("class", "form-control testing")
+                document.getElementById("wordMonths").setAttribute("class", "form-control testing")
+                document.getElementById("wordNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("wordYears").setAttribute("class", "form-control")
+                document.getElementById("wordMonths").setAttribute("class", "form-control")
+                document.getElementById("wordNa").setAttribute("class", "form-control")
+            }if ((!fields["coupletYears"] || fields["coupletYears"] == 0) && (!fields["coupletMonths"] || fields["coupletMonths"] == 0) &&(fields["coupletNa"] == "Yes") || !fields["coupletNa"]){
+                document.getElementById("coupletYears").setAttribute("class", "form-control testing")
+                document.getElementById("coupletMonths").setAttribute("class", "form-control testing")
+                document.getElementById("coupletNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("coupletYears").setAttribute("class", "form-control")
+                document.getElementById("coupletMonths").setAttribute("class", "form-control")
+                document.getElementById("coupletNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["phraseYears"] || fields["phraseYears"] == 0) && (!fields["phraseMonths"] || fields["phraseMonths"] == 0) &&(fields["phraseNa"] == "Yes") || !fields["phraseNa"]){
+                document.getElementById("phraseYears").setAttribute("class", "form-control testing")
+                document.getElementById("phraseMonths").setAttribute("class", "form-control testing")
+                document.getElementById("phraseNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("phraseYears").setAttribute("class", "form-control")
+                document.getElementById("phraseMonths").setAttribute("class", "form-control")
+                document.getElementById("phraseNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["sentenceYears"] || fields["sentenceYears"] == 0) && (!fields["sentenceMonths"] || fields["sentenceMonths"] == 0) &&(fields["sentenceNa"] == "Yes") || !fields["sentenceNa"]){
+                document.getElementById("sentenceYears").setAttribute("class", "form-control testing")
+                document.getElementById("sentenceMonths").setAttribute("class", "form-control testing")
+                document.getElementById("sentenceNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("sentenceYears").setAttribute("class", "form-control")
+                document.getElementById("sentenceMonths").setAttribute("class", "form-control")
+                document.getElementById("sentenceNa").setAttribute("class", "form-control")
+            }if ((!fields["conversationYears"] || fields["conversationYears"] == 0) && (!fields["conversationMonths"] || fields["conversationMonths"] == 0) &&(fields["conversationNa"] == "Yes") || !fields["conversationNa"]){
+                document.getElementById("conversationYears").setAttribute("class", "form-control testing")
+                document.getElementById("conversationMonths").setAttribute("class", "form-control testing")
+                document.getElementById("conversationNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("conversationYears").setAttribute("class", "form-control")
+                document.getElementById("conversationMonths").setAttribute("class", "form-control")
+                document.getElementById("conversationNa").setAttribute("class", "form-control")
+            }
+
+
+
 
             //SECTION SEVEN
             if (!fields["educationalChallenges"]) {
@@ -3422,7 +3546,7 @@ class ClientHistoryAndInformation extends Component {
         return (
             <fieldset>
                 <div className={"section"}>Section 4: Developmental History</div>
-                <div className={"sub-section"}>Please mark what is known.</div>
+                <div className={"sub-section"}>Please complete the table below</div>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.devHistoryData}
