@@ -94,3 +94,10 @@
 .form-control.increased-height {
     height: calc(4.25rem + 2px);
 }
+.form-check-input.checkbox-style {
+    margin-left: auto;
+}
+.checkbox-div {
+    width: 200px;
+    padding-left: 110px;
+}

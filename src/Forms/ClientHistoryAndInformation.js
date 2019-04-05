@@ -719,7 +719,7 @@ class ClientHistoryAndInformation extends Component {
             }],
             otherProgramsData: [{
                 programName: <input type="text" name="program1name"className={"tableInputField"}/>,
-                startDate: <input type="date" name="startdate1"className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate1"className={"tableInputField"}/>,
                 provider: <input type="text" name="provider1"className={"tableInputField"}/>,
                 programPhoneNumber: <input type="tel" name="phonenumber1"className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
@@ -731,7 +731,7 @@ class ClientHistoryAndInformation extends Component {
                 </Input>
             }, {
                 programName: <input type="text" name="program2name"className={"tableInputField"}/>,
-                startDate: <input type="date" name="startdate2"className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate2"className={"tableInputField"}/>,
                 provider: <input type="text" name="provider2"className={"tableInputField"}/>,
                 programPhoneNumber: <input type="tel" name="phonenumber2"className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
@@ -743,7 +743,7 @@ class ClientHistoryAndInformation extends Component {
                 </Input>
             }, {
                 programName: <input type="text" name="program3name"className={"tableInputField"}/>,
-                startDate: <input type="date" name="startdate3"className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate3"className={"tableInputField"}/>,
                 provider: <input type="text" name="provider3" className={"tableInputField"}/>,
                 programPhoneNumber: <input type="tel" name="phonenumber3" className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
@@ -755,7 +755,7 @@ class ClientHistoryAndInformation extends Component {
                 </Input>
             }, {
                 programName: <input type="text" name="program4name" className={"tableInputField"}/>,
-                startDate: <input type="date" name="startdate4" className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate4" className={"tableInputField"}/>,
                 provider: <input type="text" name="provider4" className={"tableInputField"}/>,
                 programPhoneNumber: <input type="tel" name="phonenumber4" className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
@@ -767,7 +767,7 @@ class ClientHistoryAndInformation extends Component {
                 </Input>
             }, {
                 programName: <input type="text" name="program5name" className={"tableInputField"}/>,
-                startDate: <input type="date" name="startdate5" className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate5" className={"tableInputField"}/>,
                 provider: <input type="text" name="provider5" className={"tableInputField"}/>,
                 programPhoneNumber: <input type="tel" name="phonenumber5" className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
@@ -1026,90 +1026,91 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Food Group',
                 accessor: 'foodGroup'
             }, {
-                Header: '',
+                Header: 'Excessive',
                 accessor: 'foodExcessive'
             }, {
-                Header: '',
+                Header: 'Daily',
                 accessor: 'foodDaily'
             }, {
-                Header: '',
+                Header: 'Weekly',
                 accessor: 'foodWeekly'
             }, {
-                Header: '',
+                Header: 'Rarely',
                 accessor: 'foodRarely'
             }, {
-                Header: '',
+                Header: 'Never',
                 accessor: 'foodNever'
             }],
             foodGroupData: [{
                 foodGroup: 'Vegetables',
-                foodExcessive: <Label check> <Input type="checkbox" name="vegetableExcess" id="vegetableExcess"/> Excessive  </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="vegetableDaily" id="vegetableDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="vegetableRarely" id="vegetableRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="vegetableNever" id="vegetableNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableExcess" id="vegetableExcess" className={"checkbox-style"}/></div>,
+                foodDaily: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableDaily" id="vegetableDaily" className={"checkbox-style"}/></div>,
+                foodWeekly: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly" className={"checkbox-style"}/></div>,
+                foodRarely: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableRarely" id="vegetableRarely" className={"checkbox-style"}/></div>,
+                foodNever: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableNever" id="vegetableNever" className={"checkbox-style"}/></div>
             }, {
                 foodGroup: 'Fruits',
-                foodExcessive: <Label check> <Input type="checkbox" name="fruitExcess" id="fruitExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="fruitDaily" id="fruitDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="fruitRarely" id="fruitRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="fruitNever" id="fruitNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitExcess" id="fruitExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitDaily" id="fruitDaily"className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitRarely" id="fruitRarely"className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitNever" id="fruitNever"className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Meats',
-                foodExcessive: <Label check> <Input type="checkbox" name="meatExcess" id="meatExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="meatDaily" id="meatDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="meatWeekly" id="meatWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="meatRarely" id="meatRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="meatNever" id="meatNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatExcess" id="meatExcess" className={"checkbox-style"}/></div> ,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="meatDaily" id="meatDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatWeekly" id="meatWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatRarely" id="meatRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatNever" id="meatNever" className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Sugar',
-                foodExcessive: <Label check> <Input type="checkbox" name="sugarExcess" id="sugarExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="sugarDaily" id="sugarDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="sugarWeekly" id="sugarWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="sugarRarely" id="sugarRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="sugarNever" id="sugarNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarExcess" id="sugarExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarDaily" id="sugarDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarWeekly" id="sugarWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarRarely" id="sugarRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarNever" id="sugarNever" className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Artificial Sweetener',
-                foodExcessive: <Label check> <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever" className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Artificial Products',
-                foodExcessive: <Label check> <Input type="checkbox" name="artProductsExcess" id="artProductsExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="artProductsDaily" id="artProductsDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="artProductsNever" id="artProductsNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsExcess" id="artProductsExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsDaily" id="artProductsDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsNever" id="artProductsNever" className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Dairy Products',
-                foodExcessive: <Label check> <Input type="checkbox" name="dairyExcess" id="dairyExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="dairyDaily" id="dairyDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="dairyRarely" id="dairyRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="dairyNever" id="dairyNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyExcess" id="dairyExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyDaily" id="dairyDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly:<div className={"checkbox-div"}> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyRarely" id="dairyRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="dairyNever" id="dairyNever"className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'White Flour',
-                foodExcessive: <Label check> <Input type="checkbox" name="flourExcess" id="flourExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="flourDaily" id="flourDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="flourWeekly" id="flourWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="flourRarely" id="flourRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="flourNever" id="flourNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourExcess" id="flourExcess"className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="flourDaily" id="flourDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="flourWeekly" id="flourWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourRarely" id="flourRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourNever" id="flourNever" className={"checkbox-style"}/>  </div>
             }],
             physicalMotorColumns: [{
                 Header: '',
                 accessor: 'physicalMotor'
             }, {
-                Header: 'Select Yes or No',
+                Header: '',
                 accessor: 'physicalMotorYN'
             }],
             physicalMotorData: [{
                 physicalMotor: 'Low muscle tone',
                 physicalMotorYN: <Input type="select"
                                         name="lowMuscleTone"
-                                        id="lowMuscleTone">
+                                        id="lowMuscleTone"
+                                        onChange={this.handleChange.bind(this, "lowMuscleTone")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1119,7 +1120,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'High muscle tone',
                 physicalMotorYN: <Input type="select"
                                         name="highMuscleTone"
-                                        id="highMuscleTone">
+                                        id="highMuscleTone"
+                                        onChange={this.handleChange.bind(this, "highMuscleTone")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1129,7 +1131,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Coordination challenges',
                 physicalMotorYN: <Input type="select"
                                         name="coordination"
-                                        id="coordination">
+                                        id="coordination"
+                                        onChange={this.handleChange.bind(this, "coordination")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1139,7 +1142,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Crawling challenges',
                 physicalMotorYN: <Input type="select"
                                         name="crawling"
-                                        id="crawling">
+                                        id="crawling"
+                                        onChange={this.handleChange.bind(this, "crawling")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1149,7 +1153,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Walking challenges',
                 physicalMotorYN: <Input type="select"
                                         name="walking"
-                                        id="walking">
+                                        id="walking"
+                                        onChange={this.handleChange.bind(this, "walking")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1159,7 +1164,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Running challenges',
                 physicalMotorYN: <Input type="select"
                                         name="running"
-                                        id="running">
+                                        id="running"
+                                        onChange={this.handleChange.bind(this, "running")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1169,7 +1175,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Athetoid movement',
                 physicalMotorYN: <Input type="select"
                                         name="athetoid"
-                                        id="athetoid">
+                                        id="athetoid"
+                                        onChange={this.handleChange.bind(this, "athetoid")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1179,7 +1186,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Ataxic',
                 physicalMotorYN: <Input type="select"
                                         name="ataxic"
-                                        id="ataxic">
+                                        id="ataxic"
+                                        onChange={this.handleChange.bind(this, "ataxic")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1189,7 +1197,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Weak',
                 physicalMotorYN: <Input type="select"
                                         name="weak"
-                                        id="weak">
+                                        id="weak"
+                                        onChange={this.handleChange.bind(this, "weak")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1199,20 +1208,12 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Balance challenges',
                 physicalMotorYN: <Input type="select"
                                         name="balance"
-                                        id="balance">
+                                        id="balance"
+                                        onChange={this.handleChange.bind(this, "balance")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
                     <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Other',
-                physicalMotorYN: <Input type="select"
-                                        name="otherPhysicalMotor"
-                                        id="otherPhysicalMotor">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
                 </Input>
             }],
             handPreferenceColumns: [{
@@ -1226,8 +1227,10 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Writing",
                 handPreference: <Input type="select"
                                        name="handPreference1"
-                                       id="handPreference1">
-                    <option>N/A</option>
+                                       id="handPreference1"
+                                       onChange={this.handleChange.bind(this, "handPreference1")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
@@ -1236,8 +1239,10 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Eating",
                 handPreference: <Input type="select"
                                        name="handPreference2"
-                                       id="handPreference2">
-                    <option>N/A</option>
+                                       id="handPreference2"
+                                       onChange={this.handleChange.bind(this, "handPreference2")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
@@ -1246,8 +1251,10 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Throwing",
                 handPreference: <Input type="select"
                                        name="handPreference3"
-                                       id="handPreference3">
-                    <option>N/A</option>
+                                       id="handPreference3"
+                                       onChange={this.handleChange.bind(this, "handPreference3")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
@@ -1256,8 +1263,10 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Brushing Teeth",
                 handPreference: <Input type="select"
                                        name="handPreference4"
-                                       id="handPreference4">
-                    <option>N/A</option>
+                                       id="handPreference4"
+                                       onChange={this.handleChange.bind(this, "handPreference4")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
@@ -1266,26 +1275,20 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Combing Hair",
                 handPreference: <Input type="select"
                                        name="handPreference5"
-                                       id="handPreference5">
-                    <option>N/A</option>
+                                       id="handPreference5"
+                                       onChange={this.handleChange.bind(this, "handPreference5")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
                 </Input>
-            }, {
-                activityHandPreference: "Other",
-                handPreference: <Input type="text"
-                                       placeholder="If other, please explain"
-                                       name="handPreference6"
-                                       id="handPreference6">
-
-                </Input>
             }],
             skillsColumns: [{
-                Header: 'Skill',
+                Header: '',
                 accessor: 'skill'
             }, {
-                Header: 'Check all that apply',
+                Header: '',
                 accessor: 'checkApplied'
             }],
             skillsData: [{
@@ -1387,10 +1390,10 @@ class ClientHistoryAndInformation extends Component {
                 </Input>
             }],
             communicationProblemsColumns: [{
-                Header: 'Issue',
+                Header: 'Other Communication Issues',
                 accessor: 'communicationIssue'
             }, {
-                Header: 'Yes/No/Not Sure',
+                Header: '',
                 accessor: 'communicationResponse'
             }],
             communicationProblemsData: [{
@@ -2340,25 +2343,6 @@ class ClientHistoryAndInformation extends Component {
     goBack(event) {
         window.location.reload();
     }
-
-    toggleVerbal() {
-        this.setState(state => ({collapseVerbal: !state.collapseVerbal}));
-    }
-
-    toggleCommunication() {
-        this.setState(state => ({collapseCommunication: !state.collapseCommunication}));
-    }
-
-    toggleCommunicationBinder() {
-        this.setState(state => ({collapseCommunicationBinder: !state.collapseCommunicationBinder}));
-    }
-    toggleCommunicationOther() {
-        this.setState(state => ({collapseCommunicationOther: !state.collapseCommunicationOther}));
-    }
-
-    toggleSignLanguage() {
-        this.setState(state => ({collapseSignLanguage: !state.collapseSignLanguage}));
-    }
     togglePhysicalAssistance(){
         this.setState(state=>({physicalAssistance:!state.physicalAssistance}));
     }
@@ -2368,7 +2352,6 @@ class ClientHistoryAndInformation extends Component {
     toggleBehavioralGoals(){
         this.setState(state=>({behavioralGoals: !state.behavioralGoals}));
     }
-
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
@@ -2603,7 +2586,57 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("conversationMonths").setAttribute("class", "form-control")
                 document.getElementById("conversationNa").setAttribute("class", "form-control")
             }
-
+            // SECTION SIX
+            if (!fields["lowMuscleTone"]){
+                document.getElementById("lowMuscleTone").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("lowMuscleTone").setAttribute("class", "form-control")
+            }
+            if (!fields["highMuscleTone"]){
+                document.getElementById("highMuscleTone").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("highMuscleTone").setAttribute("class", "form-control")
+            }
+            if (!fields["coordination"]){
+                document.getElementById("coordination").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("coordination").setAttribute("class", "form-control")
+            }
+            if (!fields["crawling"]){
+                document.getElementById("crawling").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("crawling").setAttribute("class", "form-control")
+            }
+            if (!fields["walking"]){
+                document.getElementById("walking").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("walking").setAttribute("class", "form-control")
+            }
+            if (!fields["running"]){
+                document.getElementById("running").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("running").setAttribute("class", "form-control")
+            }
+            if (!fields["athetoid"]){
+                document.getElementById("athetoid").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("athetoid").setAttribute("class", "form-control")
+            }
+            if (!fields["ataxic"]){
+                document.getElementById("ataxic").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("ataxic").setAttribute("class", "form-control")
+            }
+            if (!fields["weak"]){
+                document.getElementById("weak").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("weak").setAttribute("class", "form-control")
+            }
+            if (!fields["balance"]){
+                document.getElementById("balance").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("balance").setAttribute("class", "form-control")
+            }
 
 
 
@@ -2623,6 +2656,31 @@ class ClientHistoryAndInformation extends Component {
             if (!fields["skill1"]) {
                 formIsValid = false;
                 errors["skill1"] = "Cannot be empty";
+            }
+            if (!fields["handPreference1"]){
+                document.getElementById("handPreference1").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference1").setAttribute("class", "form-control")
+            }
+            if (!fields["handPreference2"]){
+                document.getElementById("handPreference2").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference2").setAttribute("class", "form-control")
+            }
+            if (!fields["handPreference3"]){
+                document.getElementById("handPreference3").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference3").setAttribute("class", "form-control")
+            }
+            if (!fields["handPreference4"]){
+                document.getElementById("handPreference4").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference4").setAttribute("class", "form-control")
+            }
+            if (!fields["handPreference5"]){
+                document.getElementById("handPreference5").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference5").setAttribute("class", "form-control")
             }
             //SECTION 9
             if (!fields["soothing"]) {
@@ -3859,7 +3917,8 @@ class ClientHistoryAndInformation extends Component {
                     }}
                 />
                 <Row>
-                    <Label className="control-label">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.</Label>
+                    <Label className="control-label">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.
+                        Please send any supporting documents or reports to Jacob's Ladder via email.</Label>
                 </Row>
                 <ReactTable
                     className={"testingTable -striped -highlight"}
@@ -4036,7 +4095,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label className="control-label required">Please describe the client's diet.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="diet"
                                 value={this.state.fields["diet"] || ""}
                                 onChange={this.handleChange.bind(this, "diet")}
@@ -4073,7 +4132,7 @@ class ClientHistoryAndInformation extends Component {
                     }}
                 />
                 <Row>
-                    <Col sm={5}>
+                    <Col sm={3}>
                         <FormGroup>
                             <Label className="control-label required pr-2">Does the client have any allergies?</Label>
                             <Input type="select"
@@ -4086,7 +4145,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
 
-                    <Col sm ={7}>
+                    <Col sm ={9}>
                         <FormGroup>
                             <Label className="control-label required">If yes, please describe.</Label>
                             <Input
@@ -4167,7 +4226,7 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
                 <div className={"sub-section"}>Sleep</div>
                 <Row>
-                    <Col sm={6}>
+                    <Col sm={4}>
                         <FormGroup>
                             <Label className="control-label required">Approximately how many hours of sleep does the client get each night?</Label>
                             <Input
@@ -4184,7 +4243,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={3}>
+                    <Col sm={4}>
                         <FormGroup>
                             <Label className="control-label required">Typical bedtime</Label>
                             <Input
@@ -4199,7 +4258,7 @@ class ClientHistoryAndInformation extends Component {
                             </FormFeedback>
                         </FormGroup>
                     </Col>
-                    <Col sm={3}>
+                    <Col sm={4}>
                         <FormGroup>
                             <Label className="control-label required">Typical morning wake time</Label>
                             <Input
@@ -4260,13 +4319,13 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
                 <div className={"sub-section"}>Physical Motor</div>
                 <Row>
-                    <Label className="control-label required">Please select whether the follow apply.</Label>
+                    <Label className="control-label required">Please select whether the following apply.</Label>
                 </Row>
                 <ReactTable
                     className={"physicalMotorTable -striped -highlight"}
                     data={this.state.physicalMotorData}
                     columns={this.state.physicalMotorColumns}
-                    defaultPageSize={11}
+                    defaultPageSize={10}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4286,7 +4345,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list other physical motor challenges here.</Label>
+                            <Label className="control-label required">Please list other physical motor challenges.</Label>
                             <Input
                                 type="text"
                                 ref="otherPhysicalMotor"
@@ -4374,7 +4433,7 @@ class ClientHistoryAndInformation extends Component {
 
                 <FormGroup>
                     <Label className="control-label required">Does your child have a current Individualized Education Plan (IEP)?
-                        <b> If “yes” please include current IEP with “Client History & Information Form”</b></Label>
+                        <b> If “yes” please email the current IEP to Jacob's Ladder.</b></Label>
                     <Col sm ={2}>
                         <Input type="select"
                                name="iepPlan"
@@ -4391,7 +4450,7 @@ class ClientHistoryAndInformation extends Component {
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.handPreferenceData}
                     columns={this.state.handPreferenceColumns}
-                    defaultPageSize={6}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4408,12 +4467,12 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
-                <p className="control-label required">Please check all that apply.</p>
+                <p className="control-label required">Check all of the following that apply.</p>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.skillsData}
                     columns={this.state.skillsColumns}
-                    defaultPageSize={11}
+                    defaultPageSize={10}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4467,145 +4526,144 @@ class ClientHistoryAndInformation extends Component {
         return (
             <fieldset>
                 <div className={"section"}>Section 8: Communication</div>
-                <div>
                     <p className="control-label required" >Please indicate the client’s primary mode of communication and current independence level:</p>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleVerbal.bind(this)}>
-
+                <Row>
+                    <Col sm={"2"}>
+                        <FormGroup check>
                             <Input type="checkbox"/>
-                            Verbal
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseVerbal}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    type="select"
-                                    placeholder="why">
-                                    <option>Select Current Independent Level</option>
-                                    <option>fully conversational with original thought language</option>
-                                    <option>sentences with some rote language</option>
-                                    <option>1-2 word verbalizations</option>
+                            <Label>
+                                Verbal
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={"6"}>
+                        <Input
+                            type="select"
+                            placeholder="why">
+                            <option>Select Current Independent Level</option>
+                            <option>fully conversational with original thought language</option>
+                            <option>sentences with some rote language</option>
+                            <option>1-2 word verbalizations</option>
 
-                                </Input>
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
+                        </Input>
+                    </Col>
+                </Row>
+
                 <FormGroup check>
                     <Label check>
                         <Input type="checkbox"/>
                         Pointing/Grabbing
                     </Label>
                 </FormGroup>
-                <div>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleSignLanguage.bind(this)}>
+                <Row>
+                    <Col sm={2}>
+                        <FormGroup check>
+                            <Label check>
 
-                            <Input type="checkbox"/>
-                            Sign Language
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseSignLanguage}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <FormGroup>
-                                    <Label> Types of signs used (i.e.ALS or modified):</Label>
-                                    <Input
-                                        type="text"/>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label> Number of signs known:</Label>
-                                    <Input
-                                        type="text"/>
-                                </FormGroup>
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
-                <div>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleCommunication.bind(this)}>
+                                <Input type="checkbox"/>
+                                Sign Language
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
+                        <FormGroup>
+                            <Label> Types of signs used (i.e.ALS or modified):</Label>
+                            <Input
+                                type="text"/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
+                        <FormGroup>
+                            <Label> Number of signs known:</Label>
+                            <Input
+                                type="text"/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={2}>
+                        <FormGroup check>
+                            <Label check>
 
-                            <Input type="checkbox"/>
-                            Communication Device
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseCommunication}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <FormGroup>
-                                    <Label>Name of Device and Software Used</Label>
-                                    <Input
-                                        type="text"
-                                        ref="nameOfDevice"
-                                        value={this.state.fields["nameOfDevice"] || ""}
-                                        onChange={this.handleChange.bind(this, "nameOfDevice")}
-                                        className="error"
-                                        invalid={this.state.errors["nameOfDevice"] != null}/>
-                                    <FormFeedback
-                                        invalid={this.state.errors["nameOfDevice"]}>{this.state.errors["nameOfDevice"]}
-                                    </FormFeedback>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Input
-                                        type="select">
-                                        <option>Select Current Independent Level</option>
-                                        <option>Fully Independent</option>
-                                        <option>Emerging Independence</option>
-                                        <option>Heavy Prompting Required</option>
-                                    </Input>
-                                </FormGroup>
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
-                <div>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleCommunicationBinder.bind(this)}>
+                                <Input type="checkbox"/>
+                                Communication Device
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
+                        <FormGroup>
+                            <Label>Name of Device and Software Used</Label>
+                            <Input
+                                type="text"
+                                ref="nameOfDevice"
+                                value={this.state.fields["nameOfDevice"] || ""}
+                                onChange={this.handleChange.bind(this, "nameOfDevice")}
+                                className="error"
+                                invalid={this.state.errors["nameOfDevice"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["nameOfDevice"]}>{this.state.errors["nameOfDevice"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
+                        <FormGroup>
+                            <Label>Select Current Independent Level</Label>
+                            <Input
+                                type="select">
+                                <option></option>
+                                <option>Fully Independent</option>
+                                <option>Emerging Independence</option>
+                                <option>Heavy Prompting Required</option>
+                            </Input>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={2}>
+                        <FormGroup check>
+                            <Label check>
 
-                            <Input type="checkbox"/>
-                            Communication Binder
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseCommunicationBinder}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <FormGroup>
-                                    <Input
-                                        type="select">
-                                        <option>Select Current Independent Level</option>
-                                        <option>Fully Independent</option>
-                                        <option>Emerging Independence</option>
-                                        <option>Heavy Prompting Required</option>
+                                <Input type="checkbox"/>
+                                Communication Binder
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
 
-                                    </Input>
-                                </FormGroup>
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
-                <div>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleCommunicationOther.bind(this)}>
+                        <FormGroup>
+                            <Input
+                                type="select">
+                                <option>Select Current Independent Level</option>
+                                <option>Fully Independent</option>
+                                <option>Emerging Independence</option>
+                                <option>Heavy Prompting Required</option>
 
-                            <Input type="checkbox"/>
-                            Other
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseCommunicationOther}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <FormGroup>
-                                    <Label> Please Explain</Label>
-                                    <Input
-                                        type="text"/>
-                                </FormGroup>
+                            </Input>
+                        </FormGroup>
+                    </Col>
 
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
+                </Row>
+                <Row>
+                        <Col sm={2}>
+                            <FormGroup check>
+                                <Label check>
+
+                                    <Input type="checkbox"/>
+                                    Other
+                                </Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={5}>
+
+                            <FormGroup>
+                                <Label> Please Explain</Label>
+                                <Input
+                                    type="textarea"/>
+                            </FormGroup>
+                        </Col>
+
+
+                </Row>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.communicationProblemsData}
@@ -4628,7 +4686,7 @@ class ClientHistoryAndInformation extends Component {
                     }}
                 />
                 <FormGroup>
-                    <Label className="control-label required">Primary language Spoken at home</Label>
+                    <Label className="control-label required">Primary language spoken at home</Label>
                     <Input
                         type="text"
                         ref="languageAtHome"
