@@ -633,7 +633,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Phone Number',
                 accessor: 'otherDrPhone'
             }, {
-                Header: 'Schedule of Service',
+                Header: 'Schedule of Service (Date and Time)',
                 accessor: 'otherDrSched'
             }],
             otherDoctorsData: [{
@@ -662,6 +662,45 @@ class ClientHistoryAndInformation extends Component {
                 otherDrPhone: <input type="text" name="doc5Phone"className={"tableInputField"}/>,
                 otherDrSched: <input type="text" name="doc5Sched"className={"tableInputField"}/>
             }],
+            otherSpecialistsColumns: [{
+            Header: 'Name',
+            accessor: 'specialDrName'
+        }, {
+            Header: 'Specialty',
+            accessor: 'specialDrSpecialty'
+        }, {
+            Header: 'Phone Number',
+            accessor: 'specialDrPhone'
+        }, {
+            Header: 'Diagnosis',
+            accessor: 'specialDrSched'
+        }],
+            specialDoctorsData: [{
+            specialDrName: <input type="text" name="specialDoc1Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc1Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc1Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc1Sched"className={"tableInputField"}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc2Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc2Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc2Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc2Sched"className={"tableInputField"}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc3Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc3Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc3Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc3Sched"className={"tableInputField"}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc4Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc4Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc4Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc4Sched"className={"tableInputField"}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc5Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc5Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc5Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc5Sched"className={"tableInputField"}/>
+        }],
             otherProgramsColumns: [{
                 Header: 'School/Program Name',
                 accessor: 'programName'
@@ -946,82 +985,42 @@ class ClientHistoryAndInformation extends Component {
             }, {
                 Header: 'Recommendations',
                 accessor: 'testReco'
-            }, {
-                Header: 'Report Included (Please select Yes or No',
-                accessor: 'testReport'
             }],
             testingData: [{
-                testDate: <input type="date" name="test1Date" className={"tableInputField"}/>,
+                testDate: <input type="text" name="test1Date" className={"tableInputField"}/>,
                 testExaminer: <input type="text" name="test1Examiner"className={"tableInputField"}/>,
                 testDiagnosis: <input type="text" name="test1Diagnosis" className={"tableInputField"}/>,
                 testReco: <input type="text" name="test1Reco" className={"tableInputField"}/>,
-                testReport: <Input type="select"
-                                   name="test1Report"
-                                   id="test1Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+
             }, {
-                testDate: <input type="date" name="test2Date" className={"tableInputField"}/>,
+                testDate: <input type="text" name="test2Date" className={"tableInputField"}/>,
                 testExaminer: <input type="text" name="test2Examiner" className={"tableInputField"}/>,
                 testDiagnosis: <input type="text" name="test2Diagnosis" className={"tableInputField"}/>,
                 testReco: <input type="text" name="test2Reco" className={"tableInputField"}/>,
-                testReport: <Input type="select"
-                                   name="test2Report"
-                                   id="test2Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+
             }, {
-                testDate: <input type="date" name="test3Date" className={"tableInputField"}/>,
+                testDate: <input type="text" name="test3Date" className={"tableInputField"}/>,
                 testExaminer: <input type="text" name="test3Examiner" className={"tableInputField"}/>,
                 testDiagnosis: <input type="text" name="test3Diagnosis" className={"tableInputField"}/>,
                 testReco: <input type="text" name="test3Reco" className={"tableInputField"}/>,
-                testReport: <Input type="select"
-                                   name="test3Report"
-                                   id="test3Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
             }, {
-                testDate: <input type="date" name="test4Date" className={"tableInputField"}/>,
+                testDate: <input type="text" name="test4Date" className={"tableInputField"}/>,
                 testExaminer: <input type="text" name="test4Examiner" className={"tableInputField"}/>,
                 testDiagnosis: <input type="text" name="test4Diagnosis" className={"tableInputField"}/>,
                 testReco: <input type="text" name="test4Reco" className={"tableInputField"}/>,
-                testReport: <Input type="select"
-                                   name="test4Report"
-                                   id="test4Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+
             }, {
-                testDate: <input type="date" name="test5Date" className={"tableInputField"}/>,
+                testDate: <input type="text" name="test5Date" className={"tableInputField"}/>,
                 testExaminer: <input type="text" name="test5Examiner" className={"tableInputField"}/>,
                 testDiagnosis: <input type="text" name="test5Diagnosis" className={"tableInputField"}/>,
                 testReco: <input type="text" name="test5Reco" className={"tableInputField"}/>,
-                testReport: <Input type="select"
-                                   name="test5Report"
-                                   id="test5Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+
             }, {
-                testDate: <input type="date" name="test6Date" className={"tableInputField"}/>,
+                testDate: <input type="text" name="test6Date" className={"tableInputField"}/>,
                 testExaminer: <input type="text" name="test6Examiner" className={"tableInputField"}/>,
                 testDiagnosis: <input type="text" name="test6Diagnosis" className={"tableInputField"}/>,
                 testReco: <input type="text" name="test6Reco" className={"tableInputField"}/>,
-                testReport: <Input type="select"
-                                   name="test6Report"
-                                   id="test6Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+                
             }],
             foodGroupColumns: [{
                 Header: 'Food Group',
@@ -3576,10 +3575,11 @@ class ClientHistoryAndInformation extends Component {
         return (
             <fieldset>
                 <div className={"section"}>Section 5: Medical History/Past Therapies</div>
+                <div className={"sub-section"}>Primary Physician's Information</div>
                 <Row>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Primary Physician's Name</Label>
+                            <Label className="control-label required">Name</Label>
                             <Input
                                 type="text"
                                 ref="drName"
@@ -3594,7 +3594,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Primary Physician's Phone Number</Label>
+                            <Label className="control-label required">Phone Number</Label>
                             <Input
                                 type="text"
                                 ref="drPhone"
@@ -3611,7 +3611,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Primary Physician's Address</Label>
+                            <Label className="control-label required">Address</Label>
                             <Input
                                 type="text"
                                 ref="drStreet"
@@ -3687,6 +3687,119 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
+                <div className={"sub-section"}>Secondary Physician's Information</div>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Name</Label>
+                            <Input
+                                type="text"
+                                ref="drName2"
+                                value={this.state.fields["drName2"] || ""}
+                                onChange={this.handleChange.bind(this, "drName2")}
+                                className="error"
+                                invalid={this.state.errors["drName2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drName2"]}>{this.state.errors["drName2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Phone Number</Label>
+                            <Input
+                                type="text"
+                                ref="drPhone2"
+                                value={this.state.fields["drPhone2"] || ""}
+                                onChange={this.handleChange.bind(this, "drPhone2")}
+                                className="error"
+                                invalid={this.state.errors["drPhone2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drPhone2"]}>{this.state.errors["drPhone2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Address</Label>
+                            <Input
+                                type="text"
+                                ref="drStreet2"
+                                value={this.state.fields["drStreet2"] || ""}
+                                onChange={this.handleChange.bind(this, "drStreet2")}
+                                className="error"
+                                invalid={this.state.errors["drStreet2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drStreet2"]}>{this.state.errors["drStreet2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required">City</Label>
+                            <Input
+                                type="text"
+                                ref="drCity2"
+                                value={this.state.fields["drCity2"] || ""}
+                                onChange={this.handleChange.bind(this, "drCity2")}
+                                className="error"
+                                invalid={this.state.errors["drCity2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drCity2"]}>{this.state.errors["drCity2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={2}>
+                        <FormGroup>
+                            <Label className="control-label required">State</Label>
+                            <Input
+                                type="text"
+                                ref="drState2"
+                                value={this.state.fields["drState2"] || ""}
+                                onChange={this.handleChange.bind(this, "drState2")}
+                                className="error"
+                                invalid={this.state.errors["drState2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drState2"]}>{this.state.errors["drState2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Zip Code</Label>
+                            <Input
+                                type="text"
+                                ref="drZip2"
+                                value={this.state.fields["drZip2"] || ""}
+                                onChange={this.handleChange.bind(this, "drZip2")}
+                                className="error"
+                                invalid={this.state.errors["drZip2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drZip2"]}>{this.state.errors["drZip2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Country</Label>
+                            <Input
+                                type="text"
+                                ref="drCountry2"
+                                value={this.state.fields["drCountry2"] || ""}
+                                onChange={this.handleChange.bind(this, "drCountry2")}
+                                className="error"
+                                invalid={this.state.errors["drCountry2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drCountry2"]}>{this.state.errors["drCountry2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <div className={"sub-section"}>Additional Services</div>
                 <Row>
                     <Col sm={6}>
                         <FormGroup >
@@ -3694,12 +3807,14 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="outsideTherapy"
                                    id="outsideTherapy">
+                                <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
                         </FormGroup>
                     </Col>
                 </Row>
+                <div>If yes, please fill out the following table</div>
                 <ReactTable
                     className={"otherDoctorsTable -striped -highlight"}
                     data={this.state.otherDoctorsData}
@@ -3721,13 +3836,60 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
+                <div>Please list any additonal specialists the client sees (psychologists, OT, etc)</div>
+                <ReactTable
+                    className={" otherDoctorsTable -striped -highlight"}
+                    data={this.state.specialDoctorsData}
+                    columns={this.state.otherSpecialistsColumns}
+                    defaultPageSize={5}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                <Row>
+                    <Label className="control-label">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.</Label>
+                </Row>
+                <ReactTable
+                    className={"testingTable -striped -highlight"}
+                    data={this.state.testingData}
+                    columns={this.state.testingColumns}
+                    defaultPageSize={6}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+
                 <Row>
                     <Col>
                         <FormGroup>
                             <Label className="control-label required">Please list any hospitalizations and/or medical
                                 procedures the client has received.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="hospital"
                                 value={this.state.fields["hospital"] || ""}
                                 onChange={this.handleChange.bind(this, "hospital")}
@@ -3821,6 +3983,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
+                <div className={"sub-section"}>Current Medications</div>
                 <Row>
                     <Label className="control-label required">Please list all current medications, dietary supplement, and vitamins.</Label>
                 </Row>
@@ -3845,30 +4008,7 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
-                <Row>
-                    <Label className="control-label required">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.</Label>
-                </Row>
-                <ReactTable
-                    className={"testingTable -striped -highlight"}
-                    data={this.state.testingData}
-                    columns={this.state.testingColumns}
-                    defaultPageSize={6}
-                    showPagination={false}
-                    getTheadProps={(state, rowInfo) => {
-                        return {
-                            style: {
-                                background: "#E9E9E9",
-                            }
-                        }
-                    }}
-                    getTableProps={() => {
-                        return {
-                            style: {
-                                background: "white",
-                            }
-                        }
-                    }}
-                />
+
                 <Row>
                     <Col>
                         <FormGroup>
