@@ -27,6 +27,7 @@ class Login extends Component {
         };
 
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleForgotPassword = this.handleForgotPassword.bind(this);
     }
 
     handleLogin(e) {
@@ -43,6 +44,11 @@ class Login extends Component {
         } else {
             return
         }
+    }
+
+    handleForgotPassword(e) {
+        e.preventDefault();
+        this.props.history.push("/resetpassword");
     }
 
     handleChange(field, e) {
@@ -114,6 +120,9 @@ class Login extends Component {
                         invalid={this.state.errors["password"]}/>
                     <FormFeedback invalid = {this.state.errors["password"]}>{this.state.errors["password"]}</FormFeedback>
                 </FormGroup>
+                <div className={"p-2 justify-content-center"} onClick = {this.handleForgotPassword} style = {{fontWeight: 'bold'}}>
+                    Forgot password? Click here.
+                    </div>
                 <div className="button-div">
                     <Button onClick={this.validForm}
                             color="success"
