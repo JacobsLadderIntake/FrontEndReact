@@ -50,6 +50,10 @@ class ClientHistoryAndInformation extends Component {
                 name: <input type="text" name="sib4Name"className={"tableInputField"}/>,
                 age: <input type="text" name="sib4Age"className={"tableInputField"}/>,
                 gender: <input type="text" name="sib4Gender"className={"tableInputField"}/>,
+            }, {
+                name: <input type="text" name="sib5Name"className={"tableInputField"}/>,
+                age: <input type="text" name="sib5Age"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib5Gender"className={"tableInputField"}/>,
             }],
 
             devHistoryColumns: [{
@@ -95,7 +99,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="crawlMonths"
-                                         id="crawlMonths">
+                                         id="crawlMonths"
+                                         onChange={this.handleChange.bind(this, "crawlMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -601,6 +606,11 @@ class ClientHistoryAndInformation extends Component {
                 otherDrSpecialty: <input type="text" name="doc4Specialty"className={"tableInputField"}/>,
                 otherDrPhone: <input type="text" name="doc4Phone"className={"tableInputField"}/>,
                 otherDrSched: <input type="text" name="doc4Sched"className={"tableInputField"}/>
+            }, {
+                otherDrName: <input type="text" name="doc5Name"className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc5Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc5Phone"className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc5Sched"className={"tableInputField"}/>
             }],
             otherProgramsColumns: [{
                 Header: 'School/Program Name',
@@ -662,6 +672,18 @@ class ClientHistoryAndInformation extends Component {
                 contactPermission: <Input type="select"
                                           name="contactpermission4"
                                           id="contactpermission4">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                programName: <input type="text" name="program5name" className={"tableInputField"}/>,
+                startDate: <input type="date" name="startdate5" className={"tableInputField"}/>,
+                provider: <input type="text" name="provider5" className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber5" className={"tableInputField"}/>,
+                contactPermission: <Input type="select"
+                                          name="contactpermission5"
+                                          id="contactpermission5">
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -2455,6 +2477,8 @@ class ClientHistoryAndInformation extends Component {
             if ((!fields["crawlYears"] || fields["crawlYears"] == 0) && (!fields["crawlMonths"] || fields["crawlMonths"] == 0)) {
                 document.getElementById("crawlYears").setAttribute("class", "form-control testing")
                 document.getElementById("crawlMonths").setAttribute("class", "form-control testing")
+                console.log("yeet")
+                console.log(fields["crawlMonths"])
             } else {
                 document.getElementById("crawlYears").setAttribute("class", "form-control")
                 document.getElementById("crawlMonths").setAttribute("class", "form-control")
@@ -2680,13 +2704,12 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Referring Diagnosis</Label>
+                            <Label className="control-label required ">Referring Diagnosis</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="diagnosis"
                                 value={this.state.fields["diagnosis"] || ""}
                                 onChange={this.handleChange.bind(this, "diagnosis")}
-                                className="error"
                                 invalid={this.state.errors["diagnosis"] != null}/>
                             <FormFeedback
                                 invalid={this.state.errors["diagnosis"]}>{this.state.errors["diagnosis"]}
@@ -2850,11 +2873,56 @@ class ClientHistoryAndInformation extends Component {
         return (
             <fieldset>
                 <div className={"section"}>Section 2: Family Information</div>
+                <div className={"sub-section"}>Student's Information</div>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required pr-2">Is your child adopted?</Label>
+                            <Input type="select"
+                                   name="isAdopted"
+                                   id="isAdopted"
+                                   ref = "isAdopted"
+                                   onChange={this.handleChange.bind(this, "isAdopted")}
+                                   invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
+                                >
+                                <option></option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </Input>
+                            <FormFeedback
+                                invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={1} className={"text-right align-bottom"}>
+                        <Label>If yes:</Label>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label>What Age?</Label>
+                            <Input type="text"
+                                   name="isAdopted"
+                                   id="isAdopted">
+                            </Input>
+
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label>Country of Birth?</Label>
+                            <Input type="text"
+                                   name="birthCountry"
+                                   id="birthCountry">
+                            </Input>
+
+                        </FormGroup>
+                    </Col>
+                </Row>
                 <div className={"sub-section"}>Mother's Information</div>
                 <Row>
                     <Col sm={9}>
                         <FormGroup>
-                            <Label className="control-label required">Mother's Name</Label>
+                            <Label className="control-label required">Name (First and Last)</Label>
                             <Input
                                 type="text"
                                 ref="motherName"
@@ -2869,7 +2937,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Mother's Age</Label>
+                            <Label className="control-label required">Age</Label>
                             <Input
                                 type="text"
                                 ref="motherAge"
@@ -2886,7 +2954,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={4}>
                         <FormGroup>
-                            <Label className="control-label required">Mother's Cell Phone #</Label>
+                            <Label className="control-label required">Cell Phone #</Label>
                             <Input
                                 type="text"
                                 ref="motherCell"
@@ -2901,7 +2969,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={8}>
                         <FormGroup>
-                            <Label className="control-label required">Mother's Email</Label>
+                            <Label className="control-label required">Email</Label>
                             <Input
                                 type="text"
                                 ref="motherEmail"
@@ -2918,7 +2986,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Mother's Occupation</Label>
+                            <Label className="control-label required">Occupation</Label>
                             <Input
                                 type="text"
                                 ref="motherOccupation"
@@ -2937,7 +3005,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={9}>
                         <FormGroup>
-                            <Label className="control-label required">Father's Name</Label>
+                            <Label className="control-label required">Name (First and Last)</Label>
                             <Input
                                 type="text"
                                 ref="fatherName"
@@ -2952,7 +3020,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Father's Age</Label>
+                            <Label className="control-label required">Age</Label>
                             <Input
                                 type="text"
                                 ref="fatherAge"
@@ -2969,7 +3037,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={4}>
                         <FormGroup>
-                            <Label className="control-label required">Father's Cell Phone #</Label>
+                            <Label className="control-label required">Cell Phone #</Label>
                             <Input
                                 type="text"
                                 ref="fatherCell"
@@ -2984,7 +3052,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={8}>
                         <FormGroup>
-                            <Label className="control-label required">Father's Email</Label>
+                            <Label className="control-label required">Email</Label>
                             <Input
                                 type="text"
                                 ref="fatherEmail"
@@ -3001,7 +3069,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Father's Occupation</Label>
+                            <Label className="control-label required">Occupation</Label>
                             <Input
                                 type="text"
                                 ref="fatherOccupation"
@@ -3036,11 +3104,10 @@ class ClientHistoryAndInformation extends Component {
                             </FormFeedback>
                         </FormGroup>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
+
+                    <Col sm={9}>
                         <FormGroup>
-                            <Label className={"pt-3"}>If Divorced or Separated, who is the legal guardian?</Label>
+                            <Label className={"pt-2"}>If Divorced or Separated, who is the legal guardian?</Label>
                             <Input type="text"
                                    ref="legalGuardian"
                                    value={this.state.fields["legalGuardian"] || ""}
@@ -3053,7 +3120,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={9}>
                         <FormGroup>
-                            <Label>Step Mother's Name</Label>
+                            <Label>Name (First and Last)</Label>
                             <Input
                                 type="text"
                                 ref="sMotherName"
@@ -3063,7 +3130,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label>Step Mother's Age</Label>
+                            <Label>Age</Label>
                             <Input
                                 type="text"
                                 ref="sMotherAge"
@@ -3075,7 +3142,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={4}>
                         <FormGroup>
-                            <Label>Step Mother's Cell Phone #</Label>
+                            <Label>Cell Phone #</Label>
                             <Input
                                 type="text"
                                 ref="sMotherCell"
@@ -3085,7 +3152,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={8}>
                         <FormGroup>
-                            <Label>Step Mother's Email</Label>
+                            <Label>Email</Label>
                             <Input
                                 type="text"
                                 ref="sMotherEmail"
@@ -3097,7 +3164,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label>Step Mother's Occupation</Label>
+                            <Label>Occupation</Label>
                             <Input
                                 type="text"
                                 ref="sMotherOccupation"
@@ -3111,7 +3178,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={9}>
                         <FormGroup>
-                            <Label>Step Father's Name</Label>
+                            <Label>Name (First and Last)</Label>
                             <Input
                                 type="text"
                                 ref="sFatherName"
@@ -3121,7 +3188,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label>Step Father's Age</Label>
+                            <Label>Age</Label>
                             <Input
                                 type="text"
                                 ref="sFatherAge"
@@ -3133,7 +3200,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={4}>
                         <FormGroup>
-                            <Label>Step Father's Cell Phone #</Label>
+                            <Label>Cell Phone #</Label>
                             <Input
                                 type="text"
                                 ref="sFatherCell"
@@ -3143,7 +3210,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={8}>
                         <FormGroup>
-                            <Label>Step Father's Email</Label>
+                            <Label>Email</Label>
                             <Input
                                 type="text"
                                 ref="sFatherEmail"
@@ -3155,7 +3222,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label>Step Father's Occupation</Label>
+                            <Label>Occupation</Label>
                             <Input
                                 type="text"
                                 ref="sFatherOccupation"
@@ -3164,56 +3231,13 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
-                    <Col sm={3}>
-                        <FormGroup>
-                            <Label className="control-label required pr-2">Is your child adopted?</Label>
-                            <Input type="select"
-                                   name="isAdopted"
-                                   id="isAdopted"
-                                   ref = "isAdopted"
-                                   onChange={this.handleChange.bind(this, "isAdopted")}
-                                   invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
-                            >
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
-                            </Input>
-                            <FormFeedback
-                            invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={1} className={"text-right align-bottom"}>
-                        <Label>If yes:</Label>
-                    </Col>
-                    <Col sm={3}>
-                        <FormGroup>
-                            <Label>What Age?</Label>
-                            <Input type="text"
-                                   name="isAdopted"
-                                   id="isAdopted">
-                            </Input>
 
-                        </FormGroup>
-                    </Col>
-                    <Col sm={3}>
-                        <FormGroup>
-                            <Label>Country of Birth?</Label>
-                            <Input type="text"
-                                   name="birthCountry"
-                                   id="birthCountry">
-                            </Input>
-
-                        </FormGroup>
-                    </Col>
-                </Row>
                 <Label className="pr-2">Please list siblings in the table below. </Label>
                 <ReactTable
                     className={"-striped -highlight"}
                     data={this.state.siblingData}
                     columns={this.state.siblingColumns}
-                    defaultPageSize={4}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -3310,7 +3334,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={4}>
+                    <Col sm={5}>
                         <FormGroup>
                             <Label className="control-label required pr-2">Were there any complications during the
                                 pregnancy or delivery?</Label>
@@ -3330,13 +3354,11 @@ class ClientHistoryAndInformation extends Component {
                             </FormFeedback>
                         </FormGroup>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
+                    <Col sm = {7}>
                         <FormGroup>
-                            <Label>If yes, please describe</Label>
+                            <Label className="pr-2">If yes, please describe</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="pregComplicationDescription"
                                 value={this.state.fields["pregComplicationDescription"] || ""}
                                 onChange={this.handleChange.bind(this, "pregComplicationDescription")}/>
@@ -3344,7 +3366,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={4}>
+                    <Col sm={5}>
                         <FormGroup>
                             <Label className="control-label required pr-2">Was your child hospitalized after
                                 birth?</Label>
@@ -3365,13 +3387,12 @@ class ClientHistoryAndInformation extends Component {
                             </FormFeedback>
                         </FormGroup>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
+
+                    <Col sm={7}>
                         <FormGroup>
                             <Label>If yes, please describe</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="hospitaliedAfterBirthDescription"
                                 value={this.state.fields["hospitaliedAfterBirthDescription"] || ""}
                                 onChange={this.handleChange.bind(this, "hospitaliedAfterBirthDescription")}/>
@@ -3401,7 +3422,7 @@ class ClientHistoryAndInformation extends Component {
         return (
             <fieldset>
                 <div className={"section"}>Section 4: Developmental History</div>
-                <div className={"sub-section"}>If your child is over 18 years of age, please mark what is known.</div>
+                <div className={"sub-section"}>Please mark what is known.</div>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.devHistoryData}
@@ -3559,7 +3580,7 @@ class ClientHistoryAndInformation extends Component {
                     className={"otherDoctorsTable -striped -highlight"}
                     data={this.state.otherDoctorsData}
                     columns={this.state.otherDoctorsColumns}
-                    defaultPageSize={4}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -3724,6 +3745,20 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 5: Medical History/Past Therapies?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section5Comments"
+                                value={this.state.fields["section5Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section5Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
         );
     }
@@ -3774,7 +3809,7 @@ class ClientHistoryAndInformation extends Component {
                     }}
                 />
                 <Row>
-                    <Col sm={6}>
+                    <Col sm={5}>
                         <FormGroup>
                             <Label className="control-label required pr-2">Does the client have any allergies?</Label>
                             <Input type="select"
@@ -3786,13 +3821,12 @@ class ClientHistoryAndInformation extends Component {
                             </Input>
                         </FormGroup>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
+
+                    <Col sm ={7}>
                         <FormGroup>
                             <Label className="control-label required">If yes, please describe.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="describeAllergies"
                                 value={this.state.fields["describeAllergies"] || ""}
                                 onChange={this.handleChange.bind(this, "describeAllergies")}
@@ -4002,6 +4036,20 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 6: General Health?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section6Comments"
+                                value={this.state.fields["section6Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section6Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -4016,7 +4064,7 @@ class ClientHistoryAndInformation extends Component {
                     className={"otherSchoolTable -striped -highlight"}
                     data={this.state.otherProgramsData}
                     columns={this.state.otherProgramsColumns}
-                    defaultPageSize={4}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4131,6 +4179,20 @@ class ClientHistoryAndInformation extends Component {
                         invalid={this.state.errors["academicGoal"]}>{this.state.errors["academicGoal"]}
                     </FormFeedback>
                 </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 7: Educational History?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section7Comments"
+                                value={this.state.fields["section7Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section7Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
 
             </fieldset>
 
@@ -4327,6 +4389,20 @@ class ClientHistoryAndInformation extends Component {
                         invalid={this.state.errors["otherLanguages"]}>{this.state.errors["otherLanguages"]}
                     </FormFeedback>
                 </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 8: Communication?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section8Comments"
+                                value={this.state.fields["section8Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section8Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -6193,6 +6269,20 @@ Problems With Authority
                         invalid={this.state.errors["soothing"]}>{this.state.errors["soothing"]}
                     </FormFeedback>
                 </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 9: Family Information?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section9Comments"
+                                value={this.state.fields["section9Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section9Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
 
            </fieldset>
         );
@@ -6308,6 +6398,20 @@ Problems With Authority
                         invalid={this.state.errors["physicalActivity"]}>{this.state.errors["physicalActivity"]}
                     </FormFeedback>
                 </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 10: Current Schedule and Typical Day?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section10Comments"
+                                value={this.state.fields["section10Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section10Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
 
             </fieldset>
         );
@@ -6316,7 +6420,7 @@ Problems With Authority
     renderSection11() {
         return (
             <fieldset>
-                <div className={"section"}>Section 11: Independent Skill</div>
+                <div className={"section"}>Section 11: Independent Skills</div>
                 <div>As part of the daily program at Jacob’s Ladder, our clients/students are learning and developing skills needed to successfully transition into adulthood.  Our goal is to assist you your family throughout your time at Jacob’s Ladder with meeting these skills by reinforcing them at school and home. In order for us to maintain cohesion across providers within their expectations, we ask that you complete the following questionnaire to better equip the JL Clinical Team with a thorough understanding of the client’s abilities.</div>
                 <div className={"sub-section"}>Level One Goals:</div>
                 <ReactTable
@@ -6378,6 +6482,20 @@ Problems With Authority
                         }
                     }}
                 />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 11: Independent Skills?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section11Comments"
+                                value={this.state.fields["section11Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section11Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -6783,6 +6901,20 @@ Problems With Authority
                         </FormGroup>
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 12: Additional Information for Evaluation Day?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section12Comments"
+                                value={this.state.fields["section12Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section12Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -6870,6 +7002,7 @@ Problems With Authority
                         </FormGroup>
                     </Col>
                 </Row>
+
             </fieldset>
 
         );
