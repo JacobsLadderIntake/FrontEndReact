@@ -1431,23 +1431,23 @@ class ClientHistoryAndInformation extends Component {
             }],
             level1GoalsColumns: [{
                 Header: 'Level of Completion',
-                accessor: 'goal1Category'
+                accessor: 'goal1Category',
             }, {
                 Header: '',
                 accessor: 'goal1NA',
-                width: 100
+                width: 95
             }, {
                 Header: '',
                 accessor: 'goal1Physical',
-                width: 175
+                width: 170
             }, {
                 Header: '',
                 accessor: 'goal1Verbal',
-                width: 175
+                width: 170
             }, {
                 Header: '',
                 accessor: 'goal1Initiates',
-                width: 175
+                width: 190
             }],
             level1GoalsData: [{
                 goal1Category: <div className={"sub-section"}>Attending Skills</div>,
@@ -2351,6 +2351,9 @@ class ClientHistoryAndInformation extends Component {
     }
     toggleBehavioralGoals(){
         this.setState(state=>({behavioralGoals: !state.behavioralGoals}));
+    }
+    toggleCurrentEvents() {
+        this.setState(state=>({currentEvents: !state.currentEvents}));
     }
     handleChange(field, e) {
         let fields = this.state.fields;
@@ -4767,8 +4770,6 @@ class ClientHistoryAndInformation extends Component {
                     For any behaviors that were rated at a 1 or above, answer the following questions for each behavior experienced, using the most extreme behavior as the example.
                 </p>
                 <p><b>School/Social</b></p>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"schoolConcentration")}>
@@ -4825,8 +4826,6 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"socialAnxiety")}>
@@ -4881,8 +4880,6 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"lowGrades")}>
@@ -4939,10 +4936,6 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"makingFriends")}>
@@ -4998,8 +4991,6 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"oppositionalBehavior")}>
@@ -5056,8 +5047,6 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"problemsWithAuthority")}>
@@ -5065,7 +5054,7 @@ Problems With Authority
                             <Input type="select"
                                    ref="problemsWithAuthority"
                                    value={this.state.fields["problemsWithAuthority"] || ""}
-                                   onChange={this.handleChange.bind(this, "provlemsWithAuthority")}>
+                                   onChange={this.handleChange.bind(this, "problemsWithAuthority")}>
                                 <option></option>
                                 <option>0</option>
                                 <option>1</option>
@@ -5081,7 +5070,7 @@ Problems With Authority
                             </Input>
                         </Label>
                     </FormGroup>
-                    <Collapse isOpen={this.checkValue("problemsAuthority")}>
+                    <Collapse isOpen={this.checkValue("problemsWithAuthority")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
@@ -5114,10 +5103,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sociallyIsolated")}>
@@ -5174,8 +5159,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"aggressiveBehavior")}>
@@ -5232,8 +5215,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"stressFamily")}>
@@ -5290,14 +5271,10 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                <Col sm={6}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
-                            Genralized Anxiety (across many situations)
+                            Generalized Anxiety (across many situations)
                             <Input type="select"
                                    ref="generalizedAnxiety"
                                    value={this.state.fields["generalizedAnxiety"] || ""}
@@ -5350,11 +5327,12 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                </Col>
-                    <div>
                         <FormGroup>
                             <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
                                 Specific fears/ phobias (list):
+                            </Label>
+                            <Row>
+                            <Col sm={2}>
                                 <Input type="select"
                                        ref="generalizedAnxiety"
                                        value={this.state.fields["generalizedAnxiety"] || ""}
@@ -5372,11 +5350,16 @@ Problems With Authority
                                     <option>9</option>
                                     <option>10</option>
                                 </Input>
+                            </Col>
+                            <Col sm={10}>
+
                                 <Input
-                                    type="texr"
+                                    type="textarea"
                                 placeholde="Please List"/>
-                            </Label>
+                            </Col>
+                            </Row>
                         </FormGroup>
+
                         <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
                             <Card className={"toggle-card"}>
                                 <CardBody className={"toggle-card-body"}>
@@ -5409,12 +5392,8 @@ Problems With Authority
                                 </CardBody>
                             </Card>
                         </Collapse>
-                    </div>
-                </Row>
 
                 <p><b>Sensory/Physiological</b></p>
-                <Row>
-                    <Col sm={4}>
                 <div>
 
                     <FormGroup>
@@ -5472,8 +5451,7 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
+
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sensoryProblems")}>
@@ -5530,8 +5508,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsEating")}>
@@ -5588,10 +5564,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"wettingAccidents")}>
@@ -5648,8 +5620,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"vocalTics")}>
@@ -5706,8 +5676,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"wakingUp")}>
@@ -5764,10 +5732,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"nightmares")}>
@@ -5824,8 +5788,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsSleeping")}>
@@ -5882,8 +5844,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"tiredness")}>
@@ -5940,12 +5900,7 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
                 <p><b>Emotional</b></p>
-
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sadness")}>
@@ -6002,8 +5957,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"impulsive")}>
@@ -6060,8 +6013,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"noncompliant")}>
@@ -6118,10 +6069,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"tantrums")}>
@@ -6178,8 +6125,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"injuryBehavior")}>
@@ -6236,8 +6181,6 @@ Problems With Authority
                             </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"temperProblem")}>
@@ -6294,10 +6237,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"darting")}>
@@ -6354,8 +6293,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"rigid")}>
@@ -6412,8 +6349,6 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"abuse")}>
@@ -6470,27 +6405,31 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
                 <div>
                     <p> During a behavioral moment, does the client appear to become more heightened or dysregulated when:</p>
                     <p className={"control-label required"} >Provided physical assistance? If yes, please describe:</p>
-                    <FormGroup check>
-                        <Label check onChange={this.togglePhysicalAssistance.bind(this)}>
+                    <Row>
+                        <Col sm={1}>
+                            <FormGroup check>
+                                <Label check onChange={this.togglePhysicalAssistance.bind(this)}>
 
-                            <Input type="checkbox"/>
-                            Yes
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.physicalAssistance}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    type="textarea"/>
+                                    <Input type="checkbox"/>
+                                    Yes
+                                </Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={11}>
+                            <Collapse isOpen={this.state.physicalAssistance}>
+                                <Card className={"toggle-card"}>
+                                    <CardBody className={"toggle-card-body"}>
+                                        <Input
+                                            type="textarea"/>
 
-                            </CardBody>
-                        </Card>
-                    </Collapse>
+                                    </CardBody>
+                                </Card>
+                            </Collapse>
+                        </Col>
+                    </Row>
                     <FormGroup check>
                         <Label check>
 
@@ -6498,25 +6437,32 @@ Problems With Authority
                             No
                         </Label>
                     </FormGroup>
+
                 </div>
                 <div>
                     <p className={"control-label required"} >When provided verbal directives? If yes, please describe: </p>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleVerbalDirectives.bind(this)}>
+                    <Row>
+                        <Col sm={1}>
+                            <FormGroup check>
+                                <Label check onChange={this.toggleVerbalDirectives.bind(this)}>
 
-                            <Input type="checkbox"/>
-                            Yes
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.verbalDirectives}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    type="textarea"/>
+                                    <Input type="checkbox"/>
+                                    Yes
+                                </Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={11}>
+                            <Collapse isOpen={this.state.verbalDirectives}>
+                                <Card className={"toggle-card"}>
+                                    <CardBody className={"toggle-card-body"}>
+                                        <Input
+                                            type="textarea"/>
 
-                            </CardBody>
-                        </Card>
-                    </Collapse>
+                                    </CardBody>
+                                </Card>
+                            </Collapse>
+                        </Col>
+                    </Row>
                     <FormGroup check>
                         <Label check>
 
@@ -6527,22 +6473,28 @@ Problems With Authority
                 </div>
                 <div>
                     <p className={"control-label required"} >Are there any events, which may be currently affecting the client adversely?  If “Yes”, please describe:   </p>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleVerbalDirectives.bind(this)}>
+                    <Row>
+                        <Col sm={1}>
+                            <FormGroup check>
+                                <Label check onChange={this.toggleCurrentEvents.bind(this)}>
 
-                            <Input type="checkbox"/>
-                            Yes
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.verbalDirectives}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    type="textarea"/>
+                                    <Input type="checkbox"/>
+                                    Yes
+                                </Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={11}>
+                            <Collapse isOpen={this.state.currentEvents}>
+                                <Card className={"toggle-card"}>
+                                    <CardBody className={"toggle-card-body"}>
+                                        <Input
+                                            type="textarea"/>
 
-                            </CardBody>
-                        </Card>
-                    </Collapse>
+                                    </CardBody>
+                                </Card>
+                            </Collapse>
+                        </Col>
+                    </Row>
                     <FormGroup check>
                         <Label check>
 
@@ -6844,7 +6796,7 @@ Problems With Authority
                                 Does your child demonstrate challenges when working with an unknown provider?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="challengesWithUnknownProvider"
                                 value={this.state.fields["challengesWithUnknownProvider"] || ""}
                                 onChange={this.handleChange.bind(this, "challengesWithUnknownProvider")}
@@ -6864,7 +6816,7 @@ Problems With Authority
                                 Do you have any concerns with your student in this type of room?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="concernsWithRoom"
                                 value={this.state.fields["concernsWithRoom"] || ""}
                                 onChange={this.handleChange.bind(this, "concernsWithRoom")}
@@ -6886,7 +6838,7 @@ Problems With Authority
 
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="concernsWithCubbies"
                                 value={this.state.fields["concernsWithCubbies"] || ""}
                                 onChange={this.handleChange.bind(this, "concernsWithCubbies")}
@@ -6910,7 +6862,7 @@ Problems With Authority
                                 Does your child initiate the restroom? If not, what are the signs?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="signsOfToilet"
                                 value={this.state.fields["signsOfToilet"] || ""}
                                 onChange={this.handleChange.bind(this, "signsOfToilet")}
@@ -6929,7 +6881,7 @@ Problems With Authority
                                 How often do you take your child to the restroom?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="amountOfRestroomUse"
                                 value={this.state.fields["amountOfRestroomUse"] || ""}
                                 onChange={this.handleChange.bind(this, "amountOfRestroomUse")}
@@ -6948,7 +6900,7 @@ Problems With Authority
                                 What is the terminology in your home for going to the restroom? (“pee-pee”, “pooh-pooh,” etc.)
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="restroomTerminology"
                                 value={this.state.fields["restroomTerminology"] || ""}
                                 onChange={this.handleChange.bind(this, "restroomTerminology")}
@@ -6967,7 +6919,7 @@ Problems With Authority
                                 How independent is your child in the restroom? What needs to be prompted?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="restroomIndependence"
                                 value={this.state.fields["restroomIndependence"] || ""}
                                 onChange={this.handleChange.bind(this, "restroomIndependence")}
@@ -6992,7 +6944,7 @@ Problems With Authority
                                 If so, provide a snack, time, and preparation instructions (i.e. temperature of food)
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="snackDuringEval"
                                 value={this.state.fields["snackDuringEval"] || ""}
                                 onChange={this.handleChange.bind(this, "snackDuringEval")}
@@ -7011,7 +6963,7 @@ Problems With Authority
                                 Are there any helpful techniques to use when serving your child’s food?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="techniquesDuringEating"
                                 value={this.state.fields["techniquesDuringEating"] || ""}
                                 onChange={this.handleChange.bind(this, "techniquesDuringEating")}
@@ -7030,7 +6982,7 @@ Problems With Authority
                                 Is your child independent with eating? If not, how much assistance is needed?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="eatingIndependence"
                                 value={this.state.fields["eatingIndependence"] || ""}
                                 onChange={this.handleChange.bind(this, "eatingIndependence")}
@@ -7118,7 +7070,7 @@ Problems With Authority
                                 (i.e. swelling, hives, redness, rapid breathing, etc?)
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="allergicReaction"
                                 value={this.state.fields["allergicReaction"] || ""}
                                 onChange={this.handleChange.bind(this, "allergicReaction")}
@@ -7164,7 +7116,7 @@ Problems With Authority
                         <FormGroup>
                             <Label>History of Condition</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="seizureHistory"
                                 value={this.state.fields["seizureHistory"] || ""}
                                 onChange={this.handleChange.bind(this, "seizureHistory")}/>
@@ -7176,7 +7128,7 @@ Problems With Authority
                         <FormGroup>
                             <Label>What to look for/Precursor signs of a seizure</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="signsOfSeizure"
                                 value={this.state.fields["signsOfSeizure"] || ""}
                                 onChange={this.handleChange.bind(this, "signsOfSeizure")}/>
@@ -7192,7 +7144,7 @@ Problems With Authority
                                 from a qualified medical professional.
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="otherSeizureProtocol"
                                 value={this.state.fields["otherSeizureProtocol"] || ""}
                                 onChange={this.handleChange.bind(this, "otherSeizureProtocol")}/>
@@ -7204,7 +7156,7 @@ Problems With Authority
                         <FormGroup>
                             <Label>Last seizure occurrence</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="lastSeizure"
                                 value={this.state.fields["lastSeizure"] || ""}
                                 onChange={this.handleChange.bind(this, "lastSeizure")}/>
@@ -7216,7 +7168,7 @@ Problems With Authority
                         <FormGroup>
                             <Label>Frequency of seizure occurrence</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="seizureFrequency"
                                 value={this.state.fields["seizureFrequency"] || ""}
                                 onChange={this.handleChange.bind(this, "seizureFrequency")}/>
