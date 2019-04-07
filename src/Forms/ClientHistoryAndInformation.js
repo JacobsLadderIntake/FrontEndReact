@@ -782,7 +782,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Medical Condition',
                 accessor: 'medCondition'
             }, {
-                Header: 'Select Yes or No',
+                Header: ' ',
                 accessor: 'medConditionYN'
             }],
             medicalConditionsData: [{
@@ -835,14 +835,15 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Supplies/Equipment',
                 accessor: 'supplies'
             }, {
-                Header: 'Select Yes or No',
+                Header: '',
                 accessor: 'suppliesYN'
             }],
             suppliesData: [{
                 supplies: 'Braces/Splints',
                 suppliesYN: <Input type="select"
                                    name="brace"
-                                   id="brace">
+                                   id="brace"
+                                   onChange={this.handleChange.bind(this, "brace")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -851,7 +852,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Feeding Support & Supplies',
                 suppliesYN: <Input type="select"
                                    name="feedSupport"
-                                   id="feedSupport">
+                                   id="feedSupport"
+                                   onChange={this.handleChange.bind(this, "feedSupport")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -860,7 +862,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Toileting Equipment',
                 suppliesYN: <Input type="select"
                                    name="toiletEquip"
-                                   id="toiletEquip">
+                                   id="toiletEquip"
+                                   onChange={this.handleChange.bind(this, "toiletEquip")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -869,7 +872,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Mobility Equipment',
                 suppliesYN: <Input type="select"
                                    name="mobilityEquip"
-                                   id="mobilityEquip">
+                                   id="mobilityEquip"
+                                   onChange={this.handleChange.bind(this, "mobilityEquip")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -878,7 +882,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Communication Equipment',
                 suppliesYN: <Input type="select"
                                    name="communicationEquip"
-                                   id="communicationEquip">
+                                   id="communicationEquip"
+                                   onChange={this.handleChange.bind(this, "communicationEquip")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -887,7 +892,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Oxygen Tank',
                 suppliesYN: <Input type="select"
                                    name="oxygenTank"
-                                   id="oxygenTank">
+                                   id="oxygenTank"
+                                   onChange={this.handleChange.bind(this, "oxygenTank")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -896,7 +902,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Hearing Device',
                 suppliesYN: <Input type="select"
                                    name="hearingDevice"
-                                   id="hearingDevice">
+                                   id="hearingDevice"
+                                   onChange={this.handleChange.bind(this, "hearingDevice")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -905,7 +912,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Other',
                 suppliesYN: <Input type="select"
                                    name="otherSupply"
-                                   id="otherSupply">
+                                   id="otherSupply"
+                                   onChange={this.handleChange.bind(this, "otherSupply")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1435,19 +1443,15 @@ class ClientHistoryAndInformation extends Component {
             }, {
                 Header: '',
                 accessor: 'goal1NA',
-                width: 95
             }, {
                 Header: '',
                 accessor: 'goal1Physical',
-                width: 170
             }, {
                 Header: '',
                 accessor: 'goal1Verbal',
-                width: 170
             }, {
                 Header: '',
                 accessor: 'goal1Initiates',
-                width: 190
             }],
             level1GoalsData: [{
                 goal1Category: <div className={"sub-section"}>Attending Skills</div>,
@@ -1523,7 +1527,7 @@ class ClientHistoryAndInformation extends Component {
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1ReciprocateConversationInitiates" id="g1ReciprocateConversationInitiates"/> Initiates Independently </Label>
             }, {
                 goal1Category: 'Maintains conversation',
-                goal1NA: <Label check> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA"/> N/A </Label>,
+                goal1NA: <FormGroup> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA"/><Label check>  N/A </Label></FormGroup>,
                 goal1Physical: <Label check> <Input type="checkbox" name="g1MaintainConversationPhysical" id="g1MaintainConversationPhysical"/> Physical Prompt </Label>,
                 goal1Verbal: <Label check> <Input type="checkbox" name="g1MaintainConversationVerbal" id="g1MaintainConversationVerbal"/> Verbal Prompt </Label>,
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1MaintainConversationInitiates" id="g1MaintainConversationInitiates"/> Initiates Independently </Label>
@@ -2333,7 +2337,9 @@ class ClientHistoryAndInformation extends Component {
             collapseCommunicationOther:false,
             physicalAssistance:false,
             verbalDirectives:false,
-            behavioralGoals:false
+            behavioralGoals:false,
+            epipen:false,
+            seizure:false
         };
 
         this.goBack = this.goBack.bind(this);
@@ -2354,6 +2360,12 @@ class ClientHistoryAndInformation extends Component {
     }
     toggleCurrentEvents() {
         this.setState(state=>({currentEvents: !state.currentEvents}));
+    }
+    toggleEpipen() {
+        this.setState(state=>({epipen: !state.epipen}));
+    }
+    toggleSeizures() {
+        this.setState(state=>({seizures: !state.seizures}));
     }
     handleChange(field, e) {
         let fields = this.state.fields;
@@ -2589,6 +2601,52 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("conversationMonths").setAttribute("class", "form-control")
                 document.getElementById("conversationNa").setAttribute("class", "form-control")
             }
+            //SECTION FIVE
+            if (!fields["outsideTherapy"]){
+                document.getElementById("outsideTherapy").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("outsideTherapy").setAttribute("class", "form-control")
+            }
+            if (!fields["brace"]){
+                document.getElementById("brace").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("brace").setAttribute("class", "form-control")
+            }
+            if (!fields["feedSupport"]){
+                document.getElementById("feedSupport").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("feedSupport").setAttribute("class", "form-control")
+            }
+            if (!fields["toiletEquip"]){
+                document.getElementById("toiletEquip").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("toiletEquip").setAttribute("class", "form-control")
+            }
+            if (!fields["mobilityEquip"]){
+                document.getElementById("mobilityEquip").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("mobilityEquip").setAttribute("class", "form-control")
+            }
+            if (!fields["communicationEquip"]){
+                document.getElementById("communicationEquip").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("communicationEquip").setAttribute("class", "form-control")
+            }
+            if (!fields["oxygenTank"]){
+                document.getElementById("oxygenTank").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("oxygenTank").setAttribute("class", "form-control")
+            }
+            if (!fields["hearingDevice"]){
+                document.getElementById("hearingDevice").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("hearingDevice").setAttribute("class", "form-control")
+            }
+            if (!fields["otherSupply"]){
+                document.getElementById("otherSupply").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("otherSupply").setAttribute("class", "form-control")
+            }
             // SECTION SIX
             if (!fields["lowMuscleTone"]){
                 document.getElementById("lowMuscleTone").setAttribute("class", "form-control testing")
@@ -2639,6 +2697,69 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("balance").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("balance").setAttribute("class", "form-control")
+            }
+            //SECTION 5
+            if (!fields["drName"]) {
+                formIsValid = false;
+                errors["drName"] = "Cannot be empty";
+            }
+            if (!fields["drPhone"]) {
+                formIsValid = false;
+                errors["drPhone"] = "Cannot be empty";
+            }
+            if (!fields["drStreet"]) {
+                formIsValid = false;
+                errors["drStreet"] = "Cannot be empty";
+            }
+            if (!fields["drCity"]) {
+                formIsValid = false;
+                errors["drCity"] = "Cannot be empty";
+            }
+            if (!fields["drState"]) {
+                formIsValid = false;
+                errors["drState"] = "Cannot be empty";
+            }
+            if (!fields["drCountry"]) {
+                formIsValid = false;
+                errors["drCountry"] = "Cannot be empty";
+            }
+            if (!fields["drZip"]) {
+                formIsValid = false;
+                errors["drZip"] = "Cannot be empty";
+            }
+            if (!fields["hospital"]) {
+                formIsValid = false;
+                errors["hospital"] = "Cannot be empty";
+            }
+            //SECTION 6
+            if (!fields["diet"]) {
+                formIsValid = false;
+                errors["diet"] = "Cannot be empty";
+            }
+            if (!fields["allergies"]){
+                document.getElementById("allergies").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("allergies").setAttribute("class", "form-control")
+            }
+            if (!fields["breakfastTime"]) {
+                formIsValid = false;
+                errors["breakfastTime"] = "Cannot be empty";
+            }
+            if (!fields["lunchTime"]) {
+                formIsValid = false;
+                errors["lunchTime"] = "Cannot be empty";
+            }
+            if (!fields["dinnerTime"]) {
+                formIsValid = false;
+                errors["dinnerTime"] = "Cannot be empty";
+            }
+            if (!fields["snackTime"]) {
+                formIsValid = false;
+                errors["snackTime"] = "Cannot be empty";
+            }
+            if (!fields["hoursOfSleep"]) {
+                formIsValid = false;
+                errors["hoursOfSleep"] = "Cannot be empty";
             }
 
 
@@ -3441,11 +3562,11 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label>
+                            <Label className={"space-between"}>
                                 Any additional notes or comments about Section 2: Family Information?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="section2Comments"
                                 value={this.state.fields["section2Comments"] || ""}
                                 onChange={this.handleChange.bind(this, "section2Comments")}/>
@@ -3590,7 +3711,7 @@ class ClientHistoryAndInformation extends Component {
                                 Any additional notes or comments about Section 3: Prenatal and Birth History?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="section3Comments"
                                 value={this.state.fields["section3Comments"] || ""}
                                 onChange={this.handleChange.bind(this, "section3Comments")}/>
@@ -3752,7 +3873,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Name</Label>
+                            <Label className="control-label">Name</Label>
                             <Input
                                 type="text"
                                 ref="drName2"
@@ -3767,7 +3888,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Phone Number</Label>
+                            <Label className="control-label">Phone Number</Label>
                             <Input
                                 type="text"
                                 ref="drPhone2"
@@ -3784,7 +3905,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Address</Label>
+                            <Label className="control-label">Address</Label>
                             <Input
                                 type="text"
                                 ref="drStreet2"
@@ -3801,7 +3922,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={4}>
                         <FormGroup>
-                            <Label className="control-label required">City</Label>
+                            <Label className="control-label">City</Label>
                             <Input
                                 type="text"
                                 ref="drCity2"
@@ -3816,7 +3937,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={2}>
                         <FormGroup>
-                            <Label className="control-label required">State</Label>
+                            <Label className="control-label">State</Label>
                             <Input
                                 type="text"
                                 ref="drState2"
@@ -3831,7 +3952,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Zip Code</Label>
+                            <Label className="control-label">Zip Code</Label>
                             <Input
                                 type="text"
                                 ref="drZip2"
@@ -3846,7 +3967,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Country</Label>
+                            <Label className="control-label">Country</Label>
                             <Input
                                 type="text"
                                 ref="drCountry2"
@@ -3867,7 +3988,8 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Does the client currently receive therapy services outside of Jacob's Ladder?</Label>
                             <Input type="select"
                                    name="outsideTherapy"
-                                   id="outsideTherapy">
+                                   id="outsideTherapy"
+                                   onChange={this.handleChange.bind(this, "outsideTherapy")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -3875,7 +3997,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <div>If yes, please fill out the following table</div>
+                <div className={"space-between"}>If yes, please fill out the following table</div>
                 <ReactTable
                     className={"otherDoctorsTable -striped -highlight"}
                     data={this.state.otherDoctorsData}
@@ -3897,7 +4019,7 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
-                <div>Please list any additonal specialists the client sees (psychologists, OT, etc)</div>
+                <div className={"space-between"}>Please list any additional specialists the client sees (psychologists, OT, etc)</div>
                 <ReactTable
                     className={" otherDoctorsTable -striped -highlight"}
                     data={this.state.specialDoctorsData}
@@ -3919,10 +4041,8 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
-                <Row>
-                    <Label className="control-label">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.
+                    <Label className="control-label space-between">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.
                         Please send any supporting documents or reports to Jacob's Ladder via email.</Label>
-                </Row>
                 <ReactTable
                     className={"testingTable -striped -highlight"}
                     data={this.state.testingData}
@@ -3948,7 +4068,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list any hospitalizations and/or medical
+                            <Label className="control-label required space-between">Please list any hospitalizations and/or medical
                                 procedures the client has received.</Label>
                             <Input
                                 type="textarea"
@@ -3963,9 +4083,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
                     <Label className="control-label required">Please indicate whether the following apply to the client.</Label>
-                </Row>
                 <ReactTable
                     className={"medicalConditionsTable -striped -highlight"}
                     data={this.state.medicalConditionsData}
@@ -3990,9 +4108,9 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list other medical conditions here.</Label>
+                            <Label className="control-label  space-between">Please list other medical conditions here.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="hospital"
                                 value={this.state.fields["hospital"] || ""}
                                 onChange={this.handleChange.bind(this, "hospital")}
@@ -4004,9 +4122,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
-                    <Label className="control-label required">Please indicate if the client uses any of the following supplies/equipment.</Label>
-                </Row>
+                    <Label className="control-label required space-between">Please indicate if the client uses any of the following supplies/equipment.</Label>
                 <ReactTable
                     className={"suppliesTable -striped -highlight"}
                     data={this.state.suppliesData}
@@ -4031,7 +4147,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list other supplies/equipment here.</Label>
+                            <Label className="control-label  space-between">Please list other supplies/equipment here.</Label>
                             <Input
                                 type="text"
                                 ref="hospital"
@@ -4110,9 +4226,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
                     <Label className="control-label required">Please check all that apply:</Label>
-                </Row>
                 <ReactTable
                     className={"foodGroupTable -striped -highlight"}
                     data={this.state.foodGroupData}
@@ -4137,10 +4251,11 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required pr-2">Does the client have any allergies?</Label>
+                            <Label className="control-label required pr-2 space-between">Does the client have any allergies?</Label>
                             <Input type="select"
                                    name="allergies"
-                                   id="allergies">
+                                   id="allergies"
+                                   onChange={this.handleChange.bind(this, "allergies")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>None Known</option>
@@ -4150,7 +4265,7 @@ class ClientHistoryAndInformation extends Component {
 
                     <Col sm ={9}>
                         <FormGroup>
-                            <Label className="control-label required">If yes, please describe.</Label>
+                            <Label className="control-label required space-between">If yes, please describe.</Label>
                             <Input
                                 type="textarea"
                                 ref="describeAllergies"
@@ -6759,7 +6874,7 @@ Problems With Authority
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label>
+                            <Label className={"space-between"}>
                                 Any additional notes or comments about Section 11: Independent Skills?
                             </Label>
                             <Input
@@ -7096,6 +7211,7 @@ Problems With Authority
                         </Label>
                     </Col>
                 </Row>
+
                 <Row>
                     <Col>
                         <Label className={"important"}>
@@ -7106,11 +7222,28 @@ Problems With Authority
                         </Label>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <Label className={"additional-note"}>If your child has a history of seizures, please complete the following:</Label>
-                    </Col>
-                </Row>
+
+                <div>
+                    <p className={"control-label required"} >Does your child have a history of seizures? If "Yes", please complete the questions below. </p>
+                    <FormGroup check>
+                        <Label check onChange={this.toggleSeizures.bind(this)}>
+
+                            <Input type="checkbox"/>
+                            Yes
+                        </Label>
+                    </FormGroup>
+
+                    <FormGroup check>
+                        <Label check>
+
+                            <Input type="checkbox"/>
+                            No
+                        </Label>
+                    </FormGroup>
+                </div>
+                <Collapse isOpen={this.state.seizures}>
+                    <Card className={"toggle-card"}>
+                        <CardBody className={"toggle-card-body"}>
                 <Row>
                     <Col>
                         <FormGroup>
@@ -7175,6 +7308,9 @@ Problems With Authority
                         </FormGroup>
                     </Col>
                 </Row>
+                        </CardBody>
+                    </Card>
+                </Collapse>
                 <Row>
                     <Col>
                         <FormGroup>
@@ -7285,6 +7421,7 @@ Problems With Authority
     renderSection14() {
         return (
             <fieldset>
+                <hr></hr>
                 <div className={"section"}>Section 14: Signature</div>
                 <Row>
                     <Col>
