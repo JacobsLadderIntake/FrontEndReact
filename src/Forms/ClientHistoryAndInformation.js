@@ -4408,9 +4408,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                 </Row>
                 <div className={"sub-section"}>Current Medications</div>
-                <Row>
                     <Label className="control-label required">Please list all current medications, dietary supplement, and vitamins.</Label>
-                </Row>
                 <ReactTable
                     className={"medsTable -striped -highlight"}
                     data={this.state.medsData}
