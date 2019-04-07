@@ -1303,7 +1303,8 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Poor Pencil Grip",
                 checkApplied: <Input type="select"
                                      name="skill1"
-                                     id="skill1">
+                                     id="skill1"
+                                     onChange={this.handleChange.bind(this, "skill1")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1313,7 +1314,8 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Sloppy Writing",
                 checkApplied: <Input type="select"
                                      name="skill2"
-                                     id="skill2">
+                                     id="skill2"
+                                     onChange={this.handleChange.bind(this, "skill2")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1323,7 +1325,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Letter Reversals",
                 checkApplied: <Input type="select"
                                      name="skill3"
-                                     id="skill3">
+                                     id="skill3"
+                                     onChange={this.handleChange.bind(this, "skill3")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1333,7 +1337,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Right/Left Confusion",
                 checkApplied: <Input type="select"
                                      name="skill4"
-                                     id="skill4">
+                                     id="skill4"
+                                     onChange={this.handleChange.bind(this, "skill4")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1343,7 +1349,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Poor reading ability",
                 checkApplied: <Input type="select"
                                      name="skill5"
-                                     id="skill5">
+                                     id="skill5"
+                                     onChange={this.handleChange.bind(this, "skill5")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1353,7 +1361,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Math Computation Challenges",
                 checkApplied: <Input type="select"
                                      name="skill6"
-                                     id="skill6">
+                                     id="skill6"
+                                     onChange={this.handleChange.bind(this, "skill6")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1363,7 +1373,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Math Concept Challenges",
                 checkApplied: <Input type="select"
                                      name="skill7"
-                                     id="skill7">
+                                     id="skill7"
+                                     onChange={this.handleChange.bind(this, "skill7")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1373,7 +1385,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Math Word Problem Challenges",
                 checkApplied: <Input type="select"
                                      name="skill8"
-                                     id="skill8">
+                                     id="skill8"
+                                     onChange={this.handleChange.bind(this, "skill8")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1383,7 +1397,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Math Logic Challenges",
                 checkApplied: <Input type="select"
                                      name="skill9"
-                                     id="skill9">
+                                     id="skill9"
+                                     onChange={this.handleChange.bind(this, "skill9")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -2349,17 +2365,22 @@ class ClientHistoryAndInformation extends Component {
     goBack(event) {
         window.location.reload();
     }
-    togglePhysicalAssistance(){
+    togglePhysicalAssistance(field,e){
         this.setState(state=>({physicalAssistance:!state.physicalAssistance}));
+        this.handleChange(field,e);
     }
-    toggleVerbalDirectives(){
+    toggleVerbalDirectives(field,e){
         this.setState(state=>({verbalDirectives:!state.verbalDirectives}));
+        this.handleChange(field,e);
+
     }
     toggleBehavioralGoals(){
         this.setState(state=>({behavioralGoals: !state.behavioralGoals}));
     }
-    toggleCurrentEvents() {
+    toggleCurrentEvents(field,e) {
         this.setState(state=>({currentEvents: !state.currentEvents}));
+        this.handleChange(field,e);
+
     }
     toggleEpipen() {
         this.setState(state=>({epipen: !state.epipen}));
@@ -2761,6 +2782,29 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["hoursOfSleep"] = "Cannot be empty";
             }
+            if (!fields["bedTime"]) {
+                formIsValid = false;
+                errors["bedTime"] = "Cannot be empty";
+            }
+            if (!fields["wakeTime"]) {
+                formIsValid = false;
+                errors["wakeTime"] = "Cannot be empty";
+            }
+            if (!fields["troubleStayingAsleep"]){
+                document.getElementById("troubleStayingAsleep").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("troubleStayingAsleep").setAttribute("class", "form-control")
+            }
+            if (!fields["troubleFallingAsleep"]){
+                document.getElementById("troubleFallingAsleep").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("troubleFallingAsleep").setAttribute("class", "form-control")
+            }
+            if (!fields["wakesEarly"]){
+                document.getElementById("wakesEarly").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("wakesEarly").setAttribute("class", "form-control")
+            }
 
 
 
@@ -2806,6 +2850,56 @@ class ClientHistoryAndInformation extends Component {
             } else {
                 document.getElementById("handPreference5").setAttribute("class", "form-control")
             }
+            if (!fields["iepPlan"]){
+                document.getElementById("iepPlan").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("iepPlan").setAttribute("class", "form-control")
+            }
+            if (!fields["skill1"]){
+                document.getElementById("skill1").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill1").setAttribute("class", "form-control")
+            }
+            if (!fields["skill2"]){
+                document.getElementById("skill2").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill2").setAttribute("class", "form-control")
+            }
+            if (!fields["skill3"]){
+                document.getElementById("skill3").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill3").setAttribute("class", "form-control")
+            }
+            if (!fields["skill4"]){
+                document.getElementById("skill4").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill4").setAttribute("class", "form-control")
+            }
+            if (!fields["skill5"]){
+                document.getElementById("skill5").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill5").setAttribute("class", "form-control")
+            }
+            if (!fields["skill6"]){
+                document.getElementById("skill6").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill6").setAttribute("class", "form-control")
+            }
+            if (!fields["skill7"]){
+                document.getElementById("skill7").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill7").setAttribute("class", "form-control")
+            }
+            if (!fields["skill8"]){
+                document.getElementById("skill8").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill8").setAttribute("class", "form-control")
+            }
+            if (!fields["skill9"]){
+                document.getElementById("skill9").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill9").setAttribute("class", "form-control")
+            }
             //SECTION 9
             if (!fields["soothing"]) {
                 formIsValid = false;
@@ -2818,6 +2912,158 @@ class ClientHistoryAndInformation extends Component {
             if (!fields["positiveBehavior"]) {
                 formIsValid = false;
                 errors["positiveBehavior"] = "Cannot be empty";
+            }
+            //SECTION NINE
+            if (!fields["schoolConcentration"]){
+                document.getElementById("schoolConcentration").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("schoolConcentration").setAttribute("class", "form-control")
+            }
+            if (!fields["socialAnxiety"]){
+                document.getElementById("socialAnxiety").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("socialAnxiety").setAttribute("class", "form-control")
+            }
+            if (!fields["lowGrades"]){
+                document.getElementById("lowGrades").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("lowGrades").setAttribute("class", "form-control")
+            }
+            if (!fields["makingFriends"]){
+                document.getElementById("makingFriends").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("makingFriends").setAttribute("class", "form-control")
+            }
+            if (!fields["oppositionalBehavior"]){
+                document.getElementById("oppositionalBehavior").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("oppositionalBehavior").setAttribute("class", "form-control")
+            }
+            if (!fields["sociallyIsolated"]){
+                document.getElementById("sociallyIsolated").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("sociallyIsolated").setAttribute("class", "form-control")
+            }
+            if (!fields["agressiveBehavior"]){
+                document.getElementById("aggressiveBehavior").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("aggressiveBehavior").setAttribute("class", "form-control")
+            }
+            if (!fields["stressFamily"]){
+                document.getElementById("stressFamily").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("stressFamily").setAttribute("class", "form-control")
+            }
+            if (!fields["generalizedAnxiety"]){
+                document.getElementById("generalizedAnxiety").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("generalizedAnxiety").setAttribute("class", "form-control")
+            }
+            if (!fields["phobias"]){
+                document.getElementById("phobias").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("phobias").setAttribute("class", "form-control")
+            }
+            if (!fields["temperProblem"]){
+                document.getElementById("temperProblem").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("temperProblem").setAttribute("class", "form-control")
+            }
+            if (!fields["hyperactive"]){
+                document.getElementById("hyperactive").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("hyperactive").setAttribute("class", "form-control")
+            }
+            if (!fields["sensoryProblems"]){
+                document.getElementById("sensoryProblems").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("sensoryProblems").setAttribute("class", "form-control")
+            }
+            if (!fields["problemsEating"]){
+                document.getElementById("problemsEating").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("problemsEating").setAttribute("class", "form-control")
+            }
+            if (!fields["wettingAccidents"]){
+                document.getElementById("wettingAccidents").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("wettingAccidents").setAttribute("class", "form-control")
+            }
+            if (!fields["vocalTics"]){
+                document.getElementById("vocalTics").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("vocalTics").setAttribute("class", "form-control")
+            }
+            if (!fields["wakingUp"]){
+                document.getElementById("wakingUp").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("wakingUp").setAttribute("class", "form-control")
+            }
+            if (!fields["nightmares"]){
+                document.getElementById("nightmares").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("nightmares").setAttribute("class", "form-control")
+            }
+            if (!fields["problemsSleeping"]){
+                document.getElementById("problemsSleeping").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("problemsSleeping").setAttribute("class", "form-control")
+            }
+            if (!fields["tiredness"]){
+                document.getElementById("tiredness").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("tiredness").setAttribute("class", "form-control")
+            }
+            if (!fields["sadness"]){
+                document.getElementById("sadness").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("sadness").setAttribute("class", "form-control")
+            }
+            if (!fields["impulsive"]){
+                document.getElementById("impulsive").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("impulsive").setAttribute("class", "form-control")
+            }
+            if (!fields["npncompliant"]){
+                document.getElementById("noncompliant").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("noncompliant").setAttribute("class", "form-control")
+            }
+            if (!fields["injuryBehavior"]){
+                document.getElementById("injuryBehavior").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("injuryBehavior").setAttribute("class", "form-control")
+            }
+            if (!fields["darting"]){
+                document.getElementById("darting").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("darting").setAttribute("class", "form-control")
+            }
+            if (!fields["abuse"]){
+                document.getElementById("abuse").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("abuse").setAttribute("class", "form-control")
+            }
+            if (!fields["rigid"]){
+                document.getElementById("rigid").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("rigid").setAttribute("class", "form-control")
+            }
+
+            if (!fields["physicalAssistanceYes"] && !fields["physicalAssistanceNo"]){
+                document.getElementById("physicalAssistanceQuestion").setAttribute("class", "control-label required error")
+            } else {
+                document.getElementById("physicalAssistanceQuestion").setAttribute("class", "control-label required")
+            }
+            if (!fields["verbalDirectivesYes"] && !fields["verbalDirectivesNo"]){
+                document.getElementById("verbalDirectivesQuestion").setAttribute("class", "control-label required error")
+            } else {
+                document.getElementById("verbalDirectivesQuestion").setAttribute("class", "control-label required")
+            }
+            if (!fields["currentEventsYes"] && !fields["currentEventsNo"]){
+                document.getElementById("currentEventsQuestion").setAttribute("class", "control-label required error")
+            } else {
+                document.getElementById("currentEventsQuestion").setAttribute("class", "control-label required")
             }
             //SECTION 10
             if (!fields["morning"]) {
@@ -4399,7 +4645,8 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Trouble falling asleep</Label>
                             <Input type="select"
                                    name="troubleFallingAsleep"
-                                   id="troubleFallingAsleep">
+                                   id="troubleFallingAsleep"
+                                   onChange={this.handleChange.bind(this, "troubleFallingAsleep")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -4413,7 +4660,8 @@ class ClientHistoryAndInformation extends Component {
                                 frequently</Label>
                             <Input type="select"
                                    name="troubleStayingAsleep"
-                                   id="troubleStayingAsleep">
+                                   id="troubleStayingAsleep"
+                                   onChange={this.handleChange.bind(this, "troubleStayingAsleep")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -4426,7 +4674,8 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Wakes Early</Label>
                             <Input type="select"
                                    name="wakesEarly"
-                                   id="wakesEarly">
+                                   id="wakesEarly"
+                                   onChange={this.handleChange.bind(this, "wakesEarly")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -4463,7 +4712,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list other physical motor challenges.</Label>
+                            <Label className="control-label space-between">Please list other physical motor challenges.</Label>
                             <Input
                                 type="text"
                                 ref="otherPhysicalMotor"
@@ -4555,7 +4804,8 @@ class ClientHistoryAndInformation extends Component {
                     <Col sm ={2}>
                         <Input type="select"
                                name="iepPlan"
-                               id="iepPlan">
+                               id="iepPlan"
+                               onChange={this.handleChange.bind(this, "iepPlan")}>
                             <option></option>
                             <option>Yes</option>
                             <option>No</option>
@@ -4890,7 +5140,8 @@ class ClientHistoryAndInformation extends Component {
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"schoolConcentration")}>
                             School Concentration Difficulties
                             <Input type="select"
-                                   ref="languageAtHome"
+                                   ref="schoolConcentration"
+                                   id="schoolConcentration"
                                    value={this.state.fields["schoolConcentration"] || ""}
                                    onChange={this.handleChange.bind(this, "schoolConcentration")}>
                                 <option></option>
@@ -4947,6 +5198,7 @@ class ClientHistoryAndInformation extends Component {
                             Social Anxiety
                             <Input type="select"
                                    ref="socialAnxiety"
+                                   id = "socialAnxiety"
                                    value={this.state.fields["socialAnxiety"] || ""}
                                    onChange={this.handleChange.bind(this, "socialAnxiety")}>
                                 <option></option>
@@ -5001,6 +5253,7 @@ class ClientHistoryAndInformation extends Component {
                             Grades dropping or consistently low
                             <Input type="select"
                                    ref="lowGrades"
+                                   id = "lowGrades"
                                    value={this.state.fields["lowGrades"] || ""}
                                    onChange={this.handleChange.bind(this, "lowGrades")}>
                                 <option></option>
@@ -5057,6 +5310,7 @@ class ClientHistoryAndInformation extends Component {
                             Problems Making or Keeping Friends
                             <Input type="select"
                                    ref="makingFriends"
+                                   id = "makingFriends"
                                    value={this.state.fields["makingFriends"] || ""}
                                    onChange={this.handleChange.bind(this, "makingFriends")}>
                                 <option></option>
@@ -5112,6 +5366,7 @@ class ClientHistoryAndInformation extends Component {
                             Oppositional, defiant behavior
                             <Input type="select"
                                    ref="oppositionalBehavior"
+                                   id = "oppositionalBehavior"
                                    value={this.state.fields["oppositionalBehavior"] || ""}
                                    onChange={this.handleChange.bind(this, "oppositionalBehavior")}>
                                 <option></option>
@@ -5168,6 +5423,7 @@ class ClientHistoryAndInformation extends Component {
 Problems With Authority
                             <Input type="select"
                                    ref="problemsWithAuthority"
+                                   id = "problemsWithAuthority"
                                    value={this.state.fields["problemsWithAuthority"] || ""}
                                    onChange={this.handleChange.bind(this, "problemsWithAuthority")}>
                                 <option></option>
@@ -5224,6 +5480,7 @@ Problems With Authority
                             Isolated socially from peers
                             <Input type="select"
                                    ref="sociallyIsolated"
+                                   id = "sociallyIsolated"
                                    value={this.state.fields["sociallyIsolated"] || ""}
                                    onChange={this.handleChange.bind(this, "sociallyIsolated")}>
                                 <option></option>
@@ -5280,6 +5537,7 @@ Problems With Authority
                             Aggressive Behavior towards others
                             <Input type="select"
                                    ref="aggressiveBehavior"
+                                   id = "aggressiveBehavior"
                                    value={this.state.fields["aggressiveBehavior"] || ""}
                                    onChange={this.handleChange.bind(this, "aggressiveBehavior")}>
                                 <option></option>
@@ -5336,6 +5594,7 @@ Problems With Authority
                             Stress from conflicts within family
                             <Input type="select"
                                    ref="stressFamily"
+                                   id = "stressFamily"
                                    value={this.state.fields["stressFamily"] || ""}
                                    onChange={this.handleChange.bind(this, "stressFamily")}>
                                 <option></option>
@@ -5392,6 +5651,7 @@ Problems With Authority
                             Generalized Anxiety (across many situations)
                             <Input type="select"
                                    ref="generalizedAnxiety"
+                                   id = "generalizedAnxiety"
                                    value={this.state.fields["generalizedAnxiety"] || ""}
                                    onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
                                 <option></option>
@@ -5449,9 +5709,10 @@ Problems With Authority
                             <Row>
                             <Col sm={2}>
                                 <Input type="select"
-                                       ref="generalizedAnxiety"
-                                       value={this.state.fields["generalizedAnxiety"] || ""}
-                                       onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
+                                       ref="phobias"
+                                       id = "phobias"
+                                       value={this.state.fields["phobias"] || ""}
+                                       onChange={this.handleChange.bind(this, "phobias")}>
                                     <option></option>
                                     <option>0</option>
                                     <option>1</option>
@@ -5516,6 +5777,7 @@ Problems With Authority
                             Hyperactive, difficulty being still
                             <Input type="select"
                                    ref="hyperactive"
+                                   id = "hyperactive"
                                    value={this.state.fields["hyperactive"] || ""}
                                    onChange={this.handleChange.bind(this, "hyperactive")}>
                                 <option></option>
@@ -5573,6 +5835,7 @@ Problems With Authority
                             Sensory problems
                             <Input type="select"
                                    ref="sensoryProblems"
+                                   id ="sensoryProblems"
                                    value={this.state.fields["sensoryProblems"] || ""}
                                    onChange={this.handleChange.bind(this, "sensoryProblems")}>
                                 <option></option>
@@ -5629,6 +5892,7 @@ Problems With Authority
                             Problems with eating
                             <Input type="select"
                                    ref="problemsEating"
+                                   id = "problemsEating"
                                    value={this.state.fields["problemsEating"] || ""}
                                    onChange={this.handleChange.bind(this, "problemsEating")}>
                                 <option></option>
@@ -5685,6 +5949,7 @@ Problems With Authority
                             Wetting/Soiling accidents
                             <Input type="select"
                                    ref="wettingAccidents"
+                                   id = "wettingAccidents"
                                    value={this.state.fields["wettingAccidents"] || ""}
                                    onChange={this.handleChange.bind(this, "wettingAccidents")}>
                                 <option></option>
@@ -5741,6 +6006,7 @@ Problems With Authority
                             Vocal or motor tics
                             <Input type="select"
                                    ref="vocalTics"
+                                   id = "vocalTics"
                                    value={this.state.fields["vocalTics"] || ""}
                                    onChange={this.handleChange.bind(this, "vocalTics")}>
                                 <option></option>
@@ -5797,6 +6063,7 @@ Problems With Authority
                             Trouble waking up
                             <Input type="select"
                                    ref="wakingUp"
+                                   id = "wakingUp"
                                    value={this.state.fields["wakingUp"] || ""}
                                    onChange={this.handleChange.bind(this, "wakingUp")}>
                                 <option></option>
@@ -5853,6 +6120,7 @@ Problems With Authority
                             Nightmares
                             <Input type="select"
                                    ref="nightmares"
+                                   id = "nightmares"
                                    value={this.state.fields["nightmares"] || ""}
                                    onChange={this.handleChange.bind(this, "nightmares")}>
                                 <option></option>
@@ -5909,6 +6177,7 @@ Problems With Authority
                             Problems Sleeping
                             <Input type="select"
                                    ref="problemsSleeping"
+                                   id = "problemsSleeping"
                                    value={this.state.fields["problemsSleeping"] || ""}
                                    onChange={this.handleChange.bind(this, "problemsSleeping")}>
                                 <option></option>
@@ -5965,6 +6234,7 @@ Problems With Authority
                             Fatigue/Tiredness
                             <Input type="select"
                                    ref="tiredness"
+                                   id = "tiredness"
                                    value={this.state.fields["tiredness"] || ""}
                                    onChange={this.handleChange.bind(this, "tiredness")}>
                                 <option></option>
@@ -6022,6 +6292,7 @@ Problems With Authority
                             Sadness or Depression
                             <Input type="select"
                                    ref="sadness"
+                                   id ="sadness"
                                    value={this.state.fields["sadness"] || ""}
                                    onChange={this.handleChange.bind(this, "sadness")}>
                                 <option></option>
@@ -6078,6 +6349,7 @@ Problems With Authority
                             Impulsive,doesn't think before acting
                             <Input type="select"
                                    ref="impulsive"
+                                   id = "impulsive"
                                    value={this.state.fields["impulsive"] || ""}
                                    onChange={this.handleChange.bind(this, "impulsive")}>
                                 <option></option>
@@ -6134,6 +6406,7 @@ Problems With Authority
                             Non-compliant
                             <Input type="select"
                                    ref="noncompliant"
+                                   id = "noncompliant"
                                    value={this.state.fields["noncompliant"] || ""}
                                    onChange={this.handleChange.bind(this, "noncompliant")}>
                                 <option></option>
@@ -6190,6 +6463,7 @@ Problems With Authority
                             Tantrums/"meltdowns"
                             <Input type="select"
                                    ref="tantrums"
+                                   id = "tantrums"
                                    value={this.state.fields["tantrums"] || ""}
                                    onChange={this.handleChange.bind(this, "tantrums")}>
                                 <option></option>
@@ -6246,6 +6520,7 @@ Problems With Authority
                             Self-injurious behavior
                             <Input type="select"
                                    ref="injuryBehavior"
+                                   id = "injuryBehavior"
                                    value={this.state.fields["injuryBehavior"] || ""}
                                    onChange={this.handleChange.bind(this, "injuryBehavior")}>
                                 <option></option>
@@ -6302,6 +6577,7 @@ Problems With Authority
                             Problems controlling temper
                             <Input type="select"
                                    ref="temperProblem"
+                                   id = "temperProblem"
                                    value={this.state.fields["temperProblem"] || ""}
                                    onChange={this.handleChange.bind(this, "temperProblem")}>
                                 <option></option>
@@ -6358,6 +6634,7 @@ Problems With Authority
                             Darting/Elopement
                             <Input type="select"
                                    ref="darting"
+                                   id = "darting"
                                    value={this.state.fields["darting"] || ""}
                                    onChange={this.handleChange.bind(this, "darting")}>
                                 <option></option>
@@ -6413,7 +6690,8 @@ Problems With Authority
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"rigid")}>
                             Rigid Behavior Patterns
                             <Input type="select"
-                                   ref="ridid"
+                                   ref="rigid"
+                                   id = "rigid"
                                    value={this.state.fields["rigid"] || ""}
                                    onChange={this.handleChange.bind(this, "rigid")}>
                                 <option></option>
@@ -6470,6 +6748,7 @@ Problems With Authority
                             History of abuse (emotional,physical,sexual)
                             <Input type="select"
                                    ref="abuse"
+                                   id = "abuse"
                                    value={this.state.fields["abuse"] || ""}
                                    onChange={this.handleChange.bind(this, "abuse")}>
                                 <option></option>
@@ -6521,12 +6800,12 @@ Problems With Authority
                     </Collapse>
                 </div>
                 <div>
-                    <p> During a behavioral moment, does the client appear to become more heightened or dysregulated when:</p>
-                    <p className={"control-label required"} >Provided physical assistance? If yes, please describe:</p>
+                    <p > During a behavioral moment, does the client appear to become more heightened or dysregulated when:</p>
+                    <p className={"control-label required"}id={"physicalAssistanceQuestion"} >Provided physical assistance? If yes, please describe:</p>
                     <Row>
                         <Col sm={1}>
                             <FormGroup check>
-                                <Label check onChange={this.togglePhysicalAssistance.bind(this)}>
+                                <Label check onChange={this.togglePhysicalAssistance.bind(this,"physicalAssistanceYes")}>
 
                                     <Input type="checkbox"/>
                                     Yes
@@ -6546,7 +6825,7 @@ Problems With Authority
                         </Col>
                     </Row>
                     <FormGroup check>
-                        <Label check>
+                        <Label check onChange={this.handleChange.bind(this,"physicalAssistanceYes")}>
 
                             <Input type="checkbox"/>
                             No
@@ -6555,11 +6834,11 @@ Problems With Authority
 
                 </div>
                 <div>
-                    <p className={"control-label required"} >When provided verbal directives? If yes, please describe: </p>
+                    <p className={"control-label required"} id ={"verbalDirectivesQuestion"}>When provided verbal directives? If yes, please describe: </p>
                     <Row>
                         <Col sm={1}>
                             <FormGroup check>
-                                <Label check onChange={this.toggleVerbalDirectives.bind(this)}>
+                                <Label check id ={"verbalDirectivesYes"} onChange={this.toggleVerbalDirectives.bind(this,"verbalDirectivesYes")}>
 
                                     <Input type="checkbox"/>
                                     Yes
@@ -6579,7 +6858,7 @@ Problems With Authority
                         </Col>
                     </Row>
                     <FormGroup check>
-                        <Label check>
+                        <Label check id ={"verbalDirectivesNo"} onChange={this.handleChange.bind(this,"verbalDirectivesNo")}>
 
                             <Input type="checkbox"/>
                             No
@@ -6587,11 +6866,11 @@ Problems With Authority
                     </FormGroup>
                 </div>
                 <div>
-                    <p className={"control-label required"} >Are there any events, which may be currently affecting the client adversely?  If “Yes”, please describe:   </p>
+                    <p className={"control-label required"} id ={"currentEventsQuestion"}  >Are there any events, which may be currently affecting the client adversely?  If “Yes”, please describe:   </p>
                     <Row>
                         <Col sm={1}>
                             <FormGroup check>
-                                <Label check onChange={this.toggleCurrentEvents.bind(this)}>
+                                <Label check  id ={"currentEventsYes"} onChange={this.toggleCurrentEvents.bind(this,"currentEventsYes")}>
 
                                     <Input type="checkbox"/>
                                     Yes
@@ -6611,7 +6890,7 @@ Problems With Authority
                         </Col>
                     </Row>
                     <FormGroup check>
-                        <Label check>
+                        <Label check  id ={"currentEventsQuestion"} onChange={this.handleChange.bind(this,"currentEventsNo")} >
 
                             <Input type="checkbox"/>
                             No
@@ -6834,7 +7113,7 @@ Problems With Authority
                     }}
                 />
                 <FormGroup>
-                    <Label className="control-label required">Additional comments/goals:</Label>
+                    <Label className="control-label space-between">Additional comments/goals:</Label>
                     <Input
                         type="text"
                         ref="g1Comments"

@@ -91,6 +91,9 @@
 .form-control.testing {
     border:1px solid red;
 }
+.control-label.required.error {
+    border:1px solid red;
+}
 .form-control.increased-height {
     height: calc(4.25rem + 2px);
 }
