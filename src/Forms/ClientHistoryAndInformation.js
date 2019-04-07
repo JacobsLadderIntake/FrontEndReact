@@ -4265,7 +4265,7 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
-                <div className={"space-between"}>Please list any additional specialists the client sees (psychologists, OT, etc)</div>
+                <div className={"space-between"}>Please list any additional specialists the client sees (psychologists, OT, SLP,Educational,Behavioral,etc.)</div>
                 <ReactTable
                     className={" otherDoctorsTable -striped -highlight"}
                     data={this.state.specialDoctorsData}
