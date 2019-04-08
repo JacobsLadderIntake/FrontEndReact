@@ -3216,11 +3216,32 @@ class ClientHistoryAndInformation extends Component {
         this.props.history.push("/parenthome")
     }
 
+    renderNavbar() {
+        return (
+            <div data-spy="scroll" id="list-example" className="list-group frame">
+                <a class="list-group-item list-group-item-action" href="#section1">Section 1: Client Information</a>
+                <a class="list-group-item list-group-item-action" href="#section2">Section 2: Family Information</a>
+                <a class="list-group-item list-group-item-action" href="#section3">Section 3: Prenatal and Birth History</a>
+                <a class="list-group-item list-group-item-action" href="#section4">Section 4: Developmental History</a>
+                <a class="list-group-item list-group-item-action" href="#section5">Section 5: Medical History/Past Therapies</a>
+                <a class="list-group-item list-group-item-action" href="#section6">Section 6: General Health</a>
+                <a class="list-group-item list-group-item-action" href="#section7">Section 7: Educational History</a>
+                <a class="list-group-item list-group-item-action" href="#section8">Section 8: Communication</a>
+                <a class="list-group-item list-group-item-action" href="#section9">Section 9: Emotional/Behavioral History</a>
+                <a class="list-group-item list-group-item-action" href="#section10">Section 10: Current Schedule and Typical Day</a>
+                <a class="list-group-item list-group-item-action" href="#section11">Section 11: Independent Skills</a>
+                <a class="list-group-item list-group-item-action" href="#section12">Section 12: Additional Information for Evaluation Day</a>
+                <a class="list-group-item list-group-item-action" href="#section13">Section 13: Goals and Additional Information</a>
+                <a class="list-group-item list-group-item-action" href="#section14">Section 14: Signature</a>
+            </div>
+        )
+    }
+
     renderSection1() {
         return (
-            <fieldset>
+            <fieldset id="section1">
                 <div className={"section"}>Section 1: Client Information</div>
-                <Row>
+                <Row >
                     <Col sm={3}>
                         <FormGroup>
                             <Label className="control-label required">Date of Birth</Label>
@@ -3422,7 +3443,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection2() {
         return (
-            <fieldset>
+            <fieldset id="section2">
                 <div className={"section"}>Section 2: Family Information</div>
                 <div className={"sub-section"}>Student's Information</div>
                 <Row>
@@ -3827,7 +3848,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection3() {
         return (
-            <fieldset>
+            <fieldset id="section3">
                 <div className={"section"}>Section 3: Prenatal and Birth History</div>
                 <Row>
                     <Col sm={4}>
@@ -3971,7 +3992,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection4() {
         return (
-            <fieldset>
+            <fieldset id="section4">
                 <div className={"section"}>Section 4: Developmental History</div>
                 <div className={"sub-section"}>Please complete the table below</div>
                 <ReactTable
@@ -4001,7 +4022,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection5() {
         return (
-            <fieldset>
+            <fieldset id="section5">
                 <div className={"section"}>Section 5: Medical History/Past Therapies</div>
                 <div className={"sub-section"}>Primary Physician's Information</div>
                 <Row>
@@ -4451,7 +4472,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection6() {
         return (
-            <fieldset>
+            <fieldset id="section6">
                 <div className={"section"}>Section 6: General Health</div>
                 <Row>
                     <Col>
@@ -4745,7 +4766,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection7() {
         return (
-            <fieldset>
+            <fieldset id="section7">
                 <div className={"section"}>Section 7: Educational History</div>
                 <p className="control-label required">List current and past educational and/or treatment placement(s).</p>
                 <ReactTable
@@ -4890,7 +4911,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection8() {
         return (
-            <fieldset>
+            <fieldset id="section8">
                 <div className={"section"}>Section 8: Communication</div>
                     <p className="control-label required" >Please indicate the client’s primary mode of communication and current independence level:</p>
                 <Row>
@@ -5098,7 +5119,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection9() {
         return (
-            <fieldset>
+            <fieldset id="section9">
                 <div className={"section"}>Section 9: Emotional/Behavioral History</div>
                 <p className="word-section">In order for Jacob’s Ladder to best serve your family and design the optimal program for the client, please share as much specific and detailed information as possible regarding the client’s past and/or current behavioral needs.
                     This information will not prohibit admissions but will allow Jacob’s Ladder to best prepare for the client’s evaluation and program design</p>
@@ -6956,7 +6977,7 @@ Problems With Authority
 
     renderSection10() {
         return (
-            <fieldset>
+            <fieldset id="section10">
                 <div className={"section"}>Section 10: Current Schedule and Typical Day</div>
                 <p>What does the client’s current full-time educational/therapeutic daily routine look like?  Please include environment, setting, expectations, schedule, provider, etc.</p>
                 <FormGroup>
@@ -7085,7 +7106,7 @@ Problems With Authority
 
     renderSection11() {
         return (
-            <fieldset>
+            <fieldset id="section11">
                 <div className={"section"}>Section 11: Independent Skills</div>
                 <div>As part of the daily program at Jacob’s Ladder, our clients/students are learning and developing skills needed to successfully transition into adulthood.  Our goal is to assist you your family throughout your time at Jacob’s Ladder with meeting these skills by reinforcing them at school and home. In order for us to maintain cohesion across providers within their expectations, we ask that you complete the following questionnaire to better equip the JL Clinical Team with a thorough understanding of the client’s abilities.</div>
                 <div className={"sub-section"}>Level One Goals:</div>
@@ -7169,7 +7190,7 @@ Problems With Authority
 
     renderSection12() {
         return (
-            <fieldset>
+            <fieldset id="section12">
                 <div className={"section"}>Section 12: Additional Information for Evaluation Day</div>
                 <Row>
                     <Col>
@@ -7609,7 +7630,7 @@ Problems With Authority
 
     renderSection13() {
         return (
-            <fieldset>
+            <fieldset id="section13">
                 <div className={"section"}>Section 13: Goals and Additional Information</div>
                 <Row>
                     <Col>
@@ -7697,7 +7718,7 @@ Problems With Authority
 
     renderSection14() {
         return (
-            <fieldset>
+            <fieldset id="section14">
                 <hr></hr>
                 <div className={"section"}>Section 14: Signature</div>
                 <Row>
@@ -7795,26 +7816,36 @@ Problems With Authority
                         </a>
                     </div>
                 </div>
-                <div className={"frame p-4"} data-spy="scroll">
-                    <div> {this.renderSection1()} </div>
-                    <div> {this.renderSection2()} </div>
-                    <div> {this.renderSection3()} </div>
-                    <div> {this.renderSection4()} </div>
-                    <div> {this.renderSection5()} </div>
-                    <div> {this.renderSection6()} </div>
-                    <div> {this.renderSection7()} </div>
-                    <div> {this.renderSection8()} </div>
-                    <div> {this.renderSection9()} </div>
-                    <div> {this.renderSection10()} </div>
-                    <div> {this.renderSection11()} </div>
-                    <div> {this.renderSection12()} </div>
-                    <div> {this.renderSection13()} </div>
-                    <div> {this.renderSection14()} </div>
+                <Row>
+                    <Col className={"col-2"}>
+                        <div > {this.renderNavbar()} </div>
+                    </Col>
+                    <Col>
+                        <div className={"frame p-4"} >
+                            <div> {this.renderSection1()} </div>
+                            <div> {this.renderSection2()} </div>
+                            <div> {this.renderSection3()} </div>
+                            <div> {this.renderSection4()} </div>
+                            <div> {this.renderSection5()} </div>
+                            <div> {this.renderSection6()} </div>
+                            <div> {this.renderSection7()} </div>
+                            <div> {this.renderSection8()} </div>
+                            <div> {this.renderSection9()} </div>
+                            <div> {this.renderSection10()} </div>
+                            <div> {this.renderSection11()} </div>
+                            <div> {this.renderSection12()} </div>
+                            <div> {this.renderSection13()} </div>
+                            <div> {this.renderSection14()} </div>
 
-                </div>
+                        </div>
+                    </Col>
+
+                </Row>
+
+
                 <Row className={"p-2 justify-content-center"}>
                     <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
-                        Save and Quit
+                        Save and Return
                     </Button>
 
                     <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
