@@ -22,8 +22,8 @@ class Login extends Component {
         this.state = {
           errors: [],
           fields: [],
-          email: "test@test.com",
-          password: "test",
+          email: "",
+          password: "",
           startsHidden:true,
           loginButtonPressed:false
         };
@@ -31,14 +31,13 @@ class Login extends Component {
         this.handleForgotPassword = this.handleForgotPassword.bind(this);
     }
 
-    infoObj = {email:"default", password:"default"};
+    infoObj = {email:"", password:""};
 
     handleLogin(e) {
         e.preventDefault();
-        console.log(infoObj)
         this.setState({loginButtonPressed:true})
-        infoObj.password = ReactDOM.findDOMNode(this.password).value;
-        infoObj.email = ReactDOM.findDOMNode(this.email).value;
+        this.infoObj.password = ReactDOM.findDOMNode(this.password).value;
+        this.infoObj.email = ReactDOM.findDOMNode(this.email).value;
         this.doLogin();
     }
 
