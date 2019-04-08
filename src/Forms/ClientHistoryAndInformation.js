@@ -3428,7 +3428,7 @@ class ClientHistoryAndInformation extends Component {
                                 Any additional notes or comments about Section 1: Client Information?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="section1Comments"
                                 value={this.state.fields["section1Comments"] || ""}
                                 onChange={this.handleChange.bind(this, "section1Comments")}/>
@@ -4016,6 +4016,20 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 4: Developmental History?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section4Comments"
+                                value={this.state.fields["section4Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section4Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
         );
     }
@@ -4705,7 +4719,7 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
                 <div className={"sub-section"}>Physical Motor</div>
                 <Row>
-                    <Label className="control-label required">Please select whether the following apply.</Label>
+                    <Label className="control-label required pl-3">Please select whether the following apply.</Label>
                 </Row>
                 <ReactTable
                     className={"physicalMotorTable -striped -highlight"}
@@ -5158,25 +5172,26 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"schoolConcentration")}>
                             School Concentration Difficulties
-                            <Input type="select"
-                                   ref="schoolConcentration"
-                                   id="schoolConcentration"
-                                   value={this.state.fields["schoolConcentration"] || ""}
-                                   onChange={this.handleChange.bind(this, "schoolConcentration")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="schoolConcentration"
+                               id="schoolConcentration"
+                               value={this.state.fields["schoolConcentration"] || ""}
+                               onChange={this.handleChange.bind(this, "schoolConcentration")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("schoolConcentration")}>
                         <Card className={"toggle-card"}>
@@ -5214,26 +5229,27 @@ class ClientHistoryAndInformation extends Component {
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"socialAnxiety")}>
-                            Social Anxiety
-                            <Input type="select"
-                                   ref="socialAnxiety"
-                                   id = "socialAnxiety"
-                                   value={this.state.fields["socialAnxiety"] || ""}
-                                   onChange={this.handleChange.bind(this, "socialAnxiety")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
-                        </Label>
+                            Social Anxiety</Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="socialAnxiety"
+                               id = "socialAnxiety"
+                               value={this.state.fields["socialAnxiety"] || ""}
+                               onChange={this.handleChange.bind(this, "socialAnxiety")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
+
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("socialAnxiety")}>
                         <Card className={"toggle-card"}>
@@ -5270,25 +5286,27 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"lowGrades")}>
                             Grades dropping or consistently low
-                            <Input type="select"
-                                   ref="lowGrades"
-                                   id = "lowGrades"
-                                   value={this.state.fields["lowGrades"] || ""}
-                                   onChange={this.handleChange.bind(this, "lowGrades")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="lowGrades"
+                               id = "lowGrades"
+                               value={this.state.fields["lowGrades"] || ""}
+                               onChange={this.handleChange.bind(this, "lowGrades")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("lowGrades")}>
                         <Card className={"toggle-card"}>
@@ -5327,7 +5345,9 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"makingFriends")}>
                             Problems Making or Keeping Friends
-                            <Input type="select"
+                        </Label>
+                        <Input type="select"
+                                   className={"col-4"}
                                    ref="makingFriends"
                                    id = "makingFriends"
                                    value={this.state.fields["makingFriends"] || ""}
@@ -5345,7 +5365,6 @@ class ClientHistoryAndInformation extends Component {
                                 <option>9</option>
                                 <option>10</option>
                             </Input>
-                        </Label>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("makingFriends")}>
                         <Card className={"toggle-card"}>
@@ -5383,25 +5402,26 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"oppositionalBehavior")}>
                             Oppositional, defiant behavior
-                            <Input type="select"
-                                   ref="oppositionalBehavior"
-                                   id = "oppositionalBehavior"
-                                   value={this.state.fields["oppositionalBehavior"] || ""}
-                                   onChange={this.handleChange.bind(this, "oppositionalBehavior")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="oppositionalBehavior"
+                               id = "oppositionalBehavior"
+                               value={this.state.fields["oppositionalBehavior"] || ""}
+                               onChange={this.handleChange.bind(this, "oppositionalBehavior")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("oppositionalBehavior")}>
                         <Card className={"toggle-card"}>
@@ -5439,26 +5459,28 @@ class ClientHistoryAndInformation extends Component {
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"problemsWithAuthority")}>
-Problems With Authority
-                            <Input type="select"
-                                   ref="problemsWithAuthority"
-                                   id = "problemsWithAuthority"
-                                   value={this.state.fields["problemsWithAuthority"] || ""}
-                                   onChange={this.handleChange.bind(this, "problemsWithAuthority")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
+                            Problems With Authority
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="problemsWithAuthority"
+                               id = "problemsWithAuthority"
+                               value={this.state.fields["problemsWithAuthority"] || ""}
+                               onChange={this.handleChange.bind(this, "problemsWithAuthority")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("problemsWithAuthority")}>
                         <Card className={"toggle-card"}>
@@ -5497,25 +5519,27 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sociallyIsolated")}>
                             Isolated socially from peers
-                            <Input type="select"
-                                   ref="sociallyIsolated"
-                                   id = "sociallyIsolated"
-                                   value={this.state.fields["sociallyIsolated"] || ""}
-                                   onChange={this.handleChange.bind(this, "sociallyIsolated")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="sociallyIsolated"
+                               id = "sociallyIsolated"
+                               value={this.state.fields["sociallyIsolated"] || ""}
+                               onChange={this.handleChange.bind(this, "sociallyIsolated")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sociallyIsolated")}>
                         <Card className={"toggle-card"}>
@@ -5554,25 +5578,27 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"aggressiveBehavior")}>
                             Aggressive Behavior towards others
-                            <Input type="select"
-                                   ref="aggressiveBehavior"
-                                   id = "aggressiveBehavior"
-                                   value={this.state.fields["aggressiveBehavior"] || ""}
-                                   onChange={this.handleChange.bind(this, "aggressiveBehavior")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="aggressiveBehavior"
+                               id = "aggressiveBehavior"
+                               value={this.state.fields["aggressiveBehavior"] || ""}
+                               onChange={this.handleChange.bind(this, "aggressiveBehavior")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("aggressiveBehavior")}>
                         <Card className={"toggle-card"}>
@@ -5611,25 +5637,26 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"stressFamily")}>
                             Stress from conflicts within family
-                            <Input type="select"
-                                   ref="stressFamily"
-                                   id = "stressFamily"
-                                   value={this.state.fields["stressFamily"] || ""}
-                                   onChange={this.handleChange.bind(this, "stressFamily")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="stressFamily"
+                               id = "stressFamily"
+                               value={this.state.fields["stressFamily"] || ""}
+                               onChange={this.handleChange.bind(this, "stressFamily")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("stressFamily")}>
                         <Card className={"toggle-card"}>
@@ -5668,25 +5695,26 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
                             Generalized Anxiety (across many situations)
-                            <Input type="select"
-                                   ref="generalizedAnxiety"
-                                   id = "generalizedAnxiety"
-                                   value={this.state.fields["generalizedAnxiety"] || ""}
-                                   onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="generalizedAnxiety"
+                               id = "generalizedAnxiety"
+                               value={this.state.fields["generalizedAnxiety"] || ""}
+                               onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
                         <Card className={"toggle-card"}>
@@ -5726,7 +5754,7 @@ Problems With Authority
                                 Specific fears/ phobias (list):
                             </Label>
                             <Row>
-                            <Col sm={2}>
+                            <Col sm={4}>
                                 <Input type="select"
                                        ref="phobias"
                                        id = "phobias"
@@ -5746,7 +5774,7 @@ Problems With Authority
                                     <option>10</option>
                                 </Input>
                             </Col>
-                            <Col sm={10}>
+                            <Col sm={8}>
 
                                 <Input
                                     type="textarea"
@@ -5794,7 +5822,10 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"hyperactive")}>
                             Hyperactive, difficulty being still
-                            <Input type="select"
+                        </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
                                    ref="hyperactive"
                                    id = "hyperactive"
                                    value={this.state.fields["hyperactive"] || ""}
@@ -5812,7 +5843,6 @@ Problems With Authority
                                 <option>9</option>
                                 <option>10</option>
                             </Input>
-                        </Label>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("hyperactive")}>
                         <Card className={"toggle-card"}>
@@ -5852,25 +5882,26 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sensoryProblems")}>
                             Sensory problems
-                            <Input type="select"
-                                   ref="sensoryProblems"
-                                   id ="sensoryProblems"
-                                   value={this.state.fields["sensoryProblems"] || ""}
-                                   onChange={this.handleChange.bind(this, "sensoryProblems")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="sensoryProblems"
+                               id ="sensoryProblems"
+                               value={this.state.fields["sensoryProblems"] || ""}
+                               onChange={this.handleChange.bind(this, "sensoryProblems")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sensoryProblems")}>
                         <Card className={"toggle-card"}>
@@ -5909,25 +5940,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsEating")}>
                             Problems with eating
-                            <Input type="select"
-                                   ref="problemsEating"
-                                   id = "problemsEating"
-                                   value={this.state.fields["problemsEating"] || ""}
-                                   onChange={this.handleChange.bind(this, "problemsEating")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="problemsEating"
+                               id = "problemsEating"
+                               value={this.state.fields["problemsEating"] || ""}
+                               onChange={this.handleChange.bind(this, "problemsEating")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("problemsEating")}>
                         <Card className={"toggle-card"}>
@@ -5966,25 +5998,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"wettingAccidents")}>
                             Wetting/Soiling accidents
-                            <Input type="select"
-                                   ref="wettingAccidents"
-                                   id = "wettingAccidents"
-                                   value={this.state.fields["wettingAccidents"] || ""}
-                                   onChange={this.handleChange.bind(this, "wettingAccidents")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="wettingAccidents"
+                               id = "wettingAccidents"
+                               value={this.state.fields["wettingAccidents"] || ""}
+                               onChange={this.handleChange.bind(this, "wettingAccidents")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("wettingAccidents")}>
                         <Card className={"toggle-card"}>
@@ -6023,25 +6056,26 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"vocalTics")}>
                             Vocal or motor tics
-                            <Input type="select"
-                                   ref="vocalTics"
-                                   id = "vocalTics"
-                                   value={this.state.fields["vocalTics"] || ""}
-                                   onChange={this.handleChange.bind(this, "vocalTics")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="vocalTics"
+                               id = "vocalTics"
+                               value={this.state.fields["vocalTics"] || ""}
+                               onChange={this.handleChange.bind(this, "vocalTics")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("vocalTics")}>
                         <Card className={"toggle-card"}>
@@ -6080,25 +6114,26 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"wakingUp")}>
                             Trouble waking up
-                            <Input type="select"
-                                   ref="wakingUp"
-                                   id = "wakingUp"
-                                   value={this.state.fields["wakingUp"] || ""}
-                                   onChange={this.handleChange.bind(this, "wakingUp")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="wakingUp"
+                               id = "wakingUp"
+                               value={this.state.fields["wakingUp"] || ""}
+                               onChange={this.handleChange.bind(this, "wakingUp")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("wakingUp")}>
                         <Card className={"toggle-card"}>
@@ -6137,25 +6172,27 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"nightmares")}>
                             Nightmares
-                            <Input type="select"
-                                   ref="nightmares"
-                                   id = "nightmares"
-                                   value={this.state.fields["nightmares"] || ""}
-                                   onChange={this.handleChange.bind(this, "nightmares")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="nightmares"
+                               id = "nightmares"
+                               value={this.state.fields["nightmares"] || ""}
+                               onChange={this.handleChange.bind(this, "nightmares")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("nightmares")}>
                         <Card className={"toggle-card"}>
@@ -6194,25 +6231,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsSleeping")}>
                             Problems Sleeping
-                            <Input type="select"
-                                   ref="problemsSleeping"
-                                   id = "problemsSleeping"
-                                   value={this.state.fields["problemsSleeping"] || ""}
-                                   onChange={this.handleChange.bind(this, "problemsSleeping")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="problemsSleeping"
+                               id = "problemsSleeping"
+                               value={this.state.fields["problemsSleeping"] || ""}
+                               onChange={this.handleChange.bind(this, "problemsSleeping")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("problemsSleeping")}>
                         <Card className={"toggle-card"}>
@@ -6251,25 +6289,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"tiredness")}>
                             Fatigue/Tiredness
-                            <Input type="select"
-                                   ref="tiredness"
-                                   id = "tiredness"
-                                   value={this.state.fields["tiredness"] || ""}
-                                   onChange={this.handleChange.bind(this, "tiredness")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="tiredness"
+                               id = "tiredness"
+                               value={this.state.fields["tiredness"] || ""}
+                               onChange={this.handleChange.bind(this, "tiredness")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("tiredness")}>
                         <Card className={"toggle-card"}>
@@ -6309,25 +6348,26 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sadness")}>
                             Sadness or Depression
-                            <Input type="select"
-                                   ref="sadness"
-                                   id ="sadness"
-                                   value={this.state.fields["sadness"] || ""}
-                                   onChange={this.handleChange.bind(this, "sadness")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="sadness"
+                               id ="sadness"
+                               value={this.state.fields["sadness"] || ""}
+                               onChange={this.handleChange.bind(this, "sadness")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sadness")}>
                         <Card className={"toggle-card"}>
@@ -6366,25 +6406,26 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"impulsive")}>
                             Impulsive,doesn't think before acting
-                            <Input type="select"
-                                   ref="impulsive"
-                                   id = "impulsive"
-                                   value={this.state.fields["impulsive"] || ""}
-                                   onChange={this.handleChange.bind(this, "impulsive")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="impulsive"
+                               id = "impulsive"
+                               value={this.state.fields["impulsive"] || ""}
+                               onChange={this.handleChange.bind(this, "impulsive")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("impulsive")}>
                         <Card className={"toggle-card"}>
@@ -6423,25 +6464,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"noncompliant")}>
                             Non-compliant
-                            <Input type="select"
-                                   ref="noncompliant"
-                                   id = "noncompliant"
-                                   value={this.state.fields["noncompliant"] || ""}
-                                   onChange={this.handleChange.bind(this, "noncompliant")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="noncompliant"
+                               id = "noncompliant"
+                               value={this.state.fields["noncompliant"] || ""}
+                               onChange={this.handleChange.bind(this, "noncompliant")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("noncompliant")}>
                         <Card className={"toggle-card"}>
@@ -6480,25 +6522,26 @@ Problems With Authority
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"tantrums")}>
                             Tantrums/"meltdowns"
-                            <Input type="select"
-                                   ref="tantrums"
-                                   id = "tantrums"
-                                   value={this.state.fields["tantrums"] || ""}
-                                   onChange={this.handleChange.bind(this, "tantrums")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="tantrums"
+                               id = "tantrums"
+                               value={this.state.fields["tantrums"] || ""}
+                               onChange={this.handleChange.bind(this, "tantrums")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("tantrums")}>
                         <Card className={"toggle-card"}>
@@ -6537,25 +6580,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"injuryBehavior")}>
                             Self-injurious behavior
-                            <Input type="select"
-                                   ref="injuryBehavior"
-                                   id = "injuryBehavior"
-                                   value={this.state.fields["injuryBehavior"] || ""}
-                                   onChange={this.handleChange.bind(this, "injuryBehavior")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="injuryBehavior"
+                               id = "injuryBehavior"
+                               value={this.state.fields["injuryBehavior"] || ""}
+                               onChange={this.handleChange.bind(this, "injuryBehavior")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("injuryBehavior")}>
                             <Card className={"toggle-card"}>
@@ -6594,25 +6638,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"temperProblem")}>
                             Problems controlling temper
-                            <Input type="select"
-                                   ref="temperProblem"
-                                   id = "temperProblem"
-                                   value={this.state.fields["temperProblem"] || ""}
-                                   onChange={this.handleChange.bind(this, "temperProblem")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="temperProblem"
+                               id = "temperProblem"
+                               value={this.state.fields["temperProblem"] || ""}
+                               onChange={this.handleChange.bind(this, "temperProblem")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("temperProblem")}>
                         <Card className={"toggle-card"}>
@@ -6651,25 +6696,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"darting")}>
                             Darting/Elopement
-                            <Input type="select"
-                                   ref="darting"
-                                   id = "darting"
-                                   value={this.state.fields["darting"] || ""}
-                                   onChange={this.handleChange.bind(this, "darting")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="darting"
+                               id = "darting"
+                               value={this.state.fields["darting"] || ""}
+                               onChange={this.handleChange.bind(this, "darting")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("darting")}>
                         <Card className={"toggle-card"}>
@@ -6708,25 +6754,26 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"rigid")}>
                             Rigid Behavior Patterns
-                            <Input type="select"
-                                   ref="rigid"
-                                   id = "rigid"
-                                   value={this.state.fields["rigid"] || ""}
-                                   onChange={this.handleChange.bind(this, "rigid")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="rigid"
+                               id = "rigid"
+                               value={this.state.fields["rigid"] || ""}
+                               onChange={this.handleChange.bind(this, "rigid")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("rigid")}>
                         <Card className={"toggle-card"}>
@@ -6765,25 +6812,27 @@ Problems With Authority
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"abuse")}>
                             History of abuse (emotional,physical,sexual)
-                            <Input type="select"
-                                   ref="abuse"
-                                   id = "abuse"
-                                   value={this.state.fields["abuse"] || ""}
-                                   onChange={this.handleChange.bind(this, "abuse")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="abuse"
+                               id = "abuse"
+                               value={this.state.fields["abuse"] || ""}
+                               onChange={this.handleChange.bind(this, "abuse")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("abuse")}>
                         <Card className={"toggle-card"}>
@@ -6960,7 +7009,7 @@ Problems With Authority
                     <Col>
                         <FormGroup>
                             <Label>
-                                Any additional notes or comments about Section 9: Family Information?
+                                Any additional notes or comments about Section 9: Emotional/Behavioral History?
                             </Label>
                             <Input
                                 type="textarea"
@@ -7146,7 +7195,7 @@ Problems With Authority
                 </FormGroup>
                 <div className={"sub-section"}>Level Two Goals:</div>
                 <Row>
-                    <Label className={"important"}>Only complete Level 2 Goals if 75% of the above Life Skills are completed independently.</Label>
+                    <Label className={"important pl-3"}>Only complete Level 2 Goals if 75% of the above Life Skills are completed independently.</Label>
                 </Row>
                 <ReactTable
                     className={"level1GoalsTable -striped -highlight"}
