@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import './login.css'
-
-
 import {
   Button,
   FormGroup,
@@ -12,6 +10,10 @@ import {
 } from "reactstrap";
 import Header from "./Header/Header";
 
+var url = '/userlogin';
+var infoObj = {};
+var token = '';
+var userID = '';
 
 class Login extends Component {
 
@@ -25,32 +27,57 @@ class Login extends Component {
           startsHidden:true,
           loginButtonPressed:false
         };
-
         this.handleLogin = this.handleLogin.bind(this);
     }
 
+    infoObj = {email:"default", password:"default"};
+
     handleLogin(e) {
         e.preventDefault();
-        this.state.loginButtonPressed.setState(true);
-
-        const password = ReactDOM.findDOMNode(this.password).value;
-        const email = ReactDOM.findDOMNode(this.email).value;
-
-        if(this.validate(email, password) && this.isAdmin()) {
-            this.props.history.push("/adminhome");
-        } else if (this.validate()){
-
-        } else {
-            return
-        }
+        console.log(infoObj)
+        this.setState({loginButtonPressed:true})
+        infoObj.password = ReactDOM.findDOMNode(this.password).value;
+        infoObj.email = ReactDOM.findDOMNode(this.email).value;
+        this.doLogin();
     }
 
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
         this.validate()
+        this.updateFields();
         this.setState({fields});
     }
+
+    updateFields() {
+        let fields = this.state.fields;
+        let infoObj = this.infoObj;
+        infoObj.email = fields["email"];
+        infoObj.password = fields["password"];
+    }
+
+    doLogin = async () => {
+        infoObj = JSON.stringify(this.infoObj);
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: infoObj
+        });
+        const body = await response.json();
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Error) {
+            console.log("wrong email/pass");
+            console.log(infoObj)
+        } else {
+            token = body.token;
+            userID = this.state.fields["email"].split("@")[0];
+            this.props.history.push("/parenthome");
+        }
+        console.log(body);
+    };
 
     validate(email, password) {
         // we are going to store errors for all fields
@@ -59,24 +86,15 @@ class Login extends Component {
         let errors = {};
         let formIsValid = true;
         if(this.state.loginButtonPressed) {
-            if (email !== this.state.email && password !== this.state.password ) {
-                errors["email"] = "Email or password is incorrect"
-                errors["password"] = "Email or password is incorrect"
-                formIsValid = false;
-            }
             if (!fields["email"]) {
                 formIsValid = false;
                 errors["email"] = "Cannot be empty";
-
             }
-
             if (!fields["password"]) {
                 formIsValid = false;
                 errors["password"] = "Cannot be empty";
             }
-
         }
-
         this.setState({errors: errors})
         return formIsValid
     }
@@ -86,7 +104,6 @@ class Login extends Component {
   }
 
   renderForm() {
-
     return (
         <form className="form-style" onSubmit={this.handleLogin}>
             <Header loggedIn = {false}/>
@@ -133,3 +150,4 @@ class Login extends Component {
   }
 }
 export default Login;
+export {token, userID};

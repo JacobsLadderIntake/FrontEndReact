@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import './register.css'
-
-
 import {
     Col,
     Button,
@@ -12,11 +10,13 @@ import {
 } from "reactstrap";
 import Header from "./Header/Header";
 
+var infoObj = {"studentFirstName":"", "studentLastName":"", "parentFirstName":"", "parentLastName":"",
+                    "Relationship":"", "Email":"", "Password":""}
+var url = '/';
 
 class Register extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             errors: [],
             fields: [],
@@ -27,7 +27,6 @@ class Register extends Component {
             submitButtonPressed: false,
             confirmButtonPressed:false
             // emailAlreadyExists:false,
-
         };
         this.goBack = this.goBack.bind(this)
     }
@@ -41,9 +40,7 @@ class Register extends Component {
         fields[field] = e.target.value;
         this.validate()
         this.setState({fields});
-
     }
-
 
     validate() {
         // we are going to store errors for all fields
@@ -181,6 +178,17 @@ class Register extends Component {
         this.props.history.push("/")
     }
 
+    postToDB() {
+      infoObj = JSON.stringify(this.infoObj);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: infoObj
+        });
+    }
 
     renderConfirmationForm() {
         return (

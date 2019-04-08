@@ -10,11 +10,10 @@ import {
     Label,
     Row
 } from "reactstrap";
+import { token, userID } from '../Login';
 
 var infoObj;
-// ID 1234 will need to be replaced
-var url = 'api/children/1234/forms/EnrollmentForm';
-var token = '';
+var url = 'api/children/' + userID + '/forms/BrainMapConsentForm';
 
 class EnrollmentProcess extends Component{
     constructor(props) {

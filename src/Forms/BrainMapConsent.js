@@ -10,27 +10,25 @@ import {
     Label,
     Row
 } from "reactstrap";
+import { token, userID } from '../Login';
 
-var infoObj;
-// ID 1234 will need to be replaced
-var url = 'api/children/1234/forms/BrainMapConsentForm';
-var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyIwIjp7IlVzZXJJRCI6Ijk4NzYiLCJIYXNoIjpudWxsLCJJc0FkbWluIjowLCJVc2VyRmlyc3ROYW1lIjoiIiwiVXNlckxhc3ROYW1lIjoiIiwiUGFzc3dvcmQiOiJmODY5Y2UxYzg0MTRhMjY0YmIxMWUxNGEyYzg4NTBlZCIsIkVtYWlsIjoiYWJpZ2FpbEBnbWFpbC5jb20ifSwiaWF0IjoxNTUyNjYyODY4LCJleHAiOjE1NTI2ODA4Njh9.2j_MnJ6oMvQFqD8V3578ZNusrZYv2wfN3ss25csyK54';
+var infoObj = {};
+var childID = "child"
+var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
 
 class BrainMapConsent extends Component{
     constructor(props) {
         super(props);
-
         this.state = {
             errors: [],
             fields: [],
             submitButtonPressed: false,
             saveButtonPressed:false
         };
-
         this.goBack = this.goBack.bind(this);
-
     }
-    infoObj = {values: {"StudentName":"ChaseMaggio", "ParentName":"Heidi", "Date":"Feb"}}; //, "ConsentCheck":""};
+
+    infoObj = {"ChildID":childID,"StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
 
     goBack(event) {
         window.location.reload();
@@ -45,15 +43,10 @@ class BrainMapConsent extends Component{
 
     updateFields() {
         let fields = this.state.fields;
-        let infoObj = this.infoObj;
-        infoObj.StudentName = fields["studentName"];
-        infoObj.ParentName = fields["parentName"];
-        infoObj.Date = fields["date"];
+        this.infoObj.StudentName = fields["studentName"];
+        this.infoObj.ParentName = fields["parentName"];
+        this.infoObj.Date = fields["date"];
         // infoObj.ConsentCheck = fields["consentCheck"];
-    }
-
-    populateFields() {
-      let fields = this.state.fields;
     }
 
     validate() {
@@ -62,7 +55,6 @@ class BrainMapConsent extends Component{
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-
         if (this.state.submitButtonPressed) {
             if (!fields["studentName"]) {
                 formIsValid = false;
@@ -77,7 +69,6 @@ class BrainMapConsent extends Component{
                 errors["date"] = "Cannot be empty";
             }
         }
-
         this.setState({errors: errors});
         return formIsValid;
     }
@@ -86,10 +77,8 @@ class BrainMapConsent extends Component{
         event.preventDefault();
         this.updateFields();
         this.postToDB();
-        // this.componentDidMount();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                //NEED TO UPDATE DATABASE
                 console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
@@ -97,14 +86,12 @@ class BrainMapConsent extends Component{
     }
 
     handleSaveAndQuit(event) {
-        event.preventDefault();
-        this.updateFields();
-        this.setState({saveButtonPressed: true});
-        //UPDATE DATABASE
-        this.postToDB();
-        // this.componentDidMount();
-        //back to homepage
-        this.props.history.push("/parenthome");
+      event.preventDefault();
+      this.updateFields();
+      this.setState({saveButtonPressed: true});
+      this.postToDB();
+      //back to homepage
+      this.props.history.push("/parenthome");
     }
 
     componentDidMount() {
@@ -115,7 +102,8 @@ class BrainMapConsent extends Component{
 
     postToDB() {
       infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
+      console.log(infoObj)
+      console.log(url)
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -128,10 +116,9 @@ class BrainMapConsent extends Component{
     }
 
     fetchFromDB = async () => {
-        // infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
+      console.log(url)
         const response = await fetch(url, {
-                      method: 'GET',
+            method: 'GET',
             headers: {
                 'token': token,
                 'Accept': 'application/json',
@@ -139,11 +126,13 @@ class BrainMapConsent extends Component{
             },
         });
         const body = await response.json();
+        console.log(body)
         if (response.status !== 200) throw Error(body.message);
-        this.state.fields["studentName"] = body.Form[0].StudentName;
-        this.state.fields["parentName"] = body.Form[0].ParentName;
-        this.state.fields["date"] = body.Form[0].Date;
-        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
+        if (body.Form.length > 0) {
+          this.state.fields["studentName"] = body.Form[0].StudentName;
+          this.state.fields["parentName"] = body.Form[0].ParentName;
+          this.state.fields["date"] = body.Form[0].Date;
+        }
         console.log(this.state.fields)
         return body;
     };
