@@ -39,7 +39,7 @@ class Register extends Component {
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        this.validate()
+        this.validate();
         this.setState({fields});
 
     }
@@ -116,10 +116,20 @@ class Register extends Component {
                 formIsValid = false;
                 errors["email"] = "Email should be at least 5 characters long";
             }
+
+            if (!fields["securityQuestion"]) {
+                formIsValid = false;
+                errors["securityQuestion"] = "Must select a question";
+            }
+
+            if (!fields["securityAnswer"]) {
+                formIsValid = false;
+                errors["securityAnswer"] = "Cannot be empty";
+            }
         }
 
-        this.setState({errors: errors})
-        return formIsValid
+        this.setState({errors: errors});
+        return formIsValid;
     }
     handleConfirmButtonHit(){
         this.setState({ confirmButtonPressed: true }, () => {
@@ -134,7 +144,7 @@ class Register extends Component {
     }
 
     validateConfirmationForm() {
-        let fields = this.state.fields
+        let fields = this.state.fields;
         let errors = {};
         if (this.state.confirmButtonPressed) {
             if (this.state.confirmationCode === fields["confirmationCode"]) {
@@ -406,6 +416,40 @@ class Register extends Component {
                                 />
                                 <FormFeedback
                                     invalid={this.state.errors["confirmPassword"]}>{this.state.errors["confirmPassword"]}</FormFeedback>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="control-label required" sm={6}>Select a Security Question</Label>
+                            <Col sm={12}>
+                                <Input
+                                    ref="securityQuestion"
+                                    value={this.state.fields["securityQuestion"] || ""}
+                                    onChange={this.handleChange.bind(this, "securityQuestion")}
+                                    type="select"
+                                    invalid={this.state.errors["securityQuestion"] != null}>
+                                <option></option>
+                                <option>What is your mother's maiden name?</option>
+                                <option>What is the name of your first pet?</option>
+                                <option>What elementary school did you go to?</option>
+                                <option>Where would you travel on your dream vacation?</option>
+                                </Input>
+                                <FormFeedback
+                                    invalid={this.state.errors["securityQuestion"]}>{this.state.errors["securityQuestion"]}</FormFeedback>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup row>
+                            <Label className="control-label required" sm={6}>Security Question Answer</Label>
+                            <Col sm={12}>
+                                <Input
+                                    ref="securityAnswer"
+                                    value={this.state.fields["securityAnswer"] || ""}
+                                    onChange={this.handleChange.bind(this, "securityAnswer")}
+                                    type="password"
+                                    invalid={this.state.errors["securityAnswer"] != null}
+
+                                />
+                                <FormFeedback
+                                    invalid={this.state.errors["securityAnswer"]}>{this.state.errors["securityAnswer"]}</FormFeedback>
                             </Col>
                         </FormGroup>
                         <div className="button-div">
