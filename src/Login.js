@@ -132,10 +132,10 @@ class Login extends Component {
                             type="submit"> Login </Button>
                 </div>
                 <br/>
-                <div className={"p-2 justify-content-center"} onClick = {this.handleForgotPassword} style = {{fontWeight: 'bold'}}>
+                <div className={"p-2 justify-content-center"} onClick = {this.handleForgotPassword} style = {{color: 'blue', textDecoration: 'underline'}}>
                     Forgot password? Click here to reset.
                     </div>
-                <div className={"p-2 justify-content-center"} onClick = {this.handleRegister} style = {{fontWeight: 'bold'}}>
+                <div className={"p-2 justify-content-center"} onClick = {this.handleRegister} style = {{color: 'blue', textDecoration: 'underline'}}>
                     Not registered? Click here to create an account.
                 </div>
             </div>
