@@ -28,6 +28,7 @@ class Login extends Component {
 
         this.handleLogin = this.handleLogin.bind(this);
         this.handleForgotPassword = this.handleForgotPassword.bind(this);
+        this.handleRegister = this.handleRegister.bind(this);
     }
 
     handleLogin(e) {
@@ -51,10 +52,15 @@ class Login extends Component {
         this.props.history.push("/resetpassword");
     }
 
+    handleRegister(e) {
+        e.preventDefault();
+        this.props.history.push("/register");
+    }
+
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        this.validate()
+        this.validate();
         this.setState({fields});
     }
 
@@ -66,8 +72,8 @@ class Login extends Component {
         let formIsValid = true;
         if(this.state.loginButtonPressed) {
             if (email !== this.state.email && password !== this.state.password ) {
-                errors["email"] = "Email or password is incorrect"
-                errors["password"] = "Email or password is incorrect"
+                errors["email"] = "Email or password is incorrect";
+                errors["password"] = "Email or password is incorrect";
                 formIsValid = false;
             }
             if (!fields["email"]) {
@@ -83,8 +89,8 @@ class Login extends Component {
 
         }
 
-        this.setState({errors: errors})
-        return formIsValid
+        this.setState({errors: errors});
+        return formIsValid;
     }
 
   isAdmin(email) {
@@ -120,13 +126,17 @@ class Login extends Component {
                         invalid={this.state.errors["password"]}/>
                     <FormFeedback invalid = {this.state.errors["password"]}>{this.state.errors["password"]}</FormFeedback>
                 </FormGroup>
-                <div className={"p-2 justify-content-center"} onClick = {this.handleForgotPassword} style = {{fontWeight: 'bold'}}>
-                    Forgot password? Click here.
-                    </div>
                 <div className="button-div">
                     <Button onClick={this.validForm}
                             color="success"
                             type="submit"> Login </Button>
+                </div>
+                <br/>
+                <div className={"p-2 justify-content-center"} onClick = {this.handleForgotPassword} style = {{fontWeight: 'bold'}}>
+                    Forgot password? Click here to reset.
+                    </div>
+                <div className={"p-2 justify-content-center"} onClick = {this.handleRegister} style = {{fontWeight: 'bold'}}>
+                    Not registered? Click here to create an account.
                 </div>
             </div>
         </form>
