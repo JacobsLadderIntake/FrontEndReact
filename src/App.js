@@ -10,6 +10,7 @@ import ConsentAndMedicalRelease from './Forms/ConsentAndMedicalRelease';
 import ClientHistoryAndInformation from "./Forms/ClientHistoryAndInformation";
 import PermissionExchangeInformation from './Forms/PermissionExchangeInformation';
 import CreditCardAuthorization from './Forms/CreditCardAuthorization';
+import InsuranceFinancialInformation from './Forms/InsuranceFinancialInformation';
 import ResetPassword from './ResetPassword';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -38,6 +39,7 @@ class App extends Component {
             <Route path = "/chai" component = {ClientHistoryAndInformation}/>
             <Route path = "/pei" component = {PermissionExchangeInformation}/>
             <Route path = "/cca" component = {CreditCardAuthorization}/>
+            <Route path = "/ifi" component = {InsuranceFinancialInformation}/>
             <Route path = "/resetpassword" component = {ResetPassword}/>
         </div>
         </Router>
