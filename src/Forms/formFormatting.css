@@ -85,3 +85,33 @@
 .important {
     color: red;
 }
+.tableInputField {
+    width: 100%;
+}
+.form-control.testing {
+    border:1px solid red;
+}
+.control-label.required.error {
+    border:1px solid red;
+}
+.form-control.increased-height {
+    height: calc(4.25rem + 2px);
+}
+.form-check-input.checkbox-style {
+    margin-left: auto;
+}
+.checkbox-div {
+    width: 200px;
+    padding-left: 110px;
+}
+.label-padding {
+    padding-left:0.85rem;
+}
+.level1GoalsTable .rt-td {
+     white-space: normal;
+     text-overflow: revert;
+     margin-right: 1.5rem;
+ }
+ .space-between {
+     padding: 1rem 0rem;
+ }

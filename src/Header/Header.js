@@ -31,7 +31,7 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap'
                             {/*<NavLink className="header" href="">Alert</NavLink>*/}
                         {/*</NavItem>*/}
                         <NavItem>
-                            <NavLink className="header" href="/login">Logout</NavLink>
+                            <NavLink className="header" href="/">Logout</NavLink>
                         </NavItem>
                     </Nav>
             </Navbar>
