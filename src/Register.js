@@ -26,11 +26,15 @@ class Register extends Component {
             confirmationCodeValid: false,
             submitButtonPressed: false,
             confirmButtonPressed:false
+
             // emailAlreadyExists:false,
 
         };
-        this.goBack = this.goBack.bind(this)
+        this.goBack = this.goBack.bind(this);
+
     }
+    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
+
 
     goBack(event) {
         window.location.reload()
@@ -158,6 +162,7 @@ class Register extends Component {
 
     }
 
+
     handleChangeConfirmationCode(field,e) {
 
         let fields = this.state.fields;
@@ -180,12 +185,26 @@ class Register extends Component {
         event.preventDefault();
         this.setState({submitButtonPressed: true},()=> {
             if (this.validate() && this.state.isAdminChecked) {
+                this.postToDB();
                 this.props.history.push("/adminhome");
             } else if (this.validate()) {
                 this.props.history.push("/parenthome")
+                this.postToDB();
             }
         });
     }
+    // postToDB() {
+    //     infoObj = JSON.stringify(this.infoObj);
+    //     // console.log(infoObj);
+    //     const response = fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: infoObj
+    //     });
+    // }
     handleCancel(event) {
         event.preventDefault();
         this.props.history.push("/")
