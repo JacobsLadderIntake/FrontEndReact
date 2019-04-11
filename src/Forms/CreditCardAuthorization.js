@@ -27,7 +27,7 @@ class CreditCardAuthorization extends Component {
         this.goBack = this.goBack.bind(this);
 
     }
-    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
+    infoObj = {"ChildID":"EmmaChild@gmail.com","Name":"", "Address":"", "City":"", "State":"", "ZipCode":"", "Country":"", "CardNumber":"", "Date":"", "SecurityCode":""}; //, "ConsentCheck":""};
 
     goBack(event) {
         window.location.reload();
@@ -43,9 +43,15 @@ class CreditCardAuthorization extends Component {
     updateFields() {
         let fields = this.state.fields;
         let infoObj = this.infoObj;
-        infoObj.StudentName = fields["studentName"];
-        infoObj.ParentName = fields["parentName"];
+        infoObj.Name = fields["name"];
+        infoObj.Address = fields["address"];
+        infoObj.City = fields["city"];
+        infoObj.State = fields["state"];
+        infoObj.ZipCode = fields["zip"];
+        infoObj.Country = fields["country"];
+        infoObj.CardNumber = fields["cardNumber"];
         infoObj.Date = fields["date"];
+        infoObj.SecurityCode = fields["securityCode"];
         // infoObj.ConsentCheck = fields["consentCheck"];
     }
 
@@ -134,7 +140,7 @@ class CreditCardAuthorization extends Component {
     postToDB() {
         infoObj = JSON.stringify(this.infoObj);
         // console.log(infoObj);
-        const response = fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm', {
+        const response = fetch('/children/EmmaChild@gmail.com/forms/CreditCardAuthorizationForm', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -147,13 +153,19 @@ class CreditCardAuthorization extends Component {
     callApi = async () => {
         // infoObj = JSON.stringify(this.infoObj);
         // console.log(infoObj);
-        const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm');
+        const response = await fetch('/children/EmmaChild@gmail.com/forms/CreditCardAuthorizationForm');
         const body = await response.json();
         console.log(body);
         if (response.status !== 200) throw Error(body.message);
-        this.state.fields["studentName"] = body[0].StudentName;
-        this.state.fields["parentName"] = body[0].ParentName;
+        this.state.fields["name"] = body[0].Name;
+        this.state.fields["address"] = body[0].Address;
+        this.state.fields["city"] = body[0].City;
+        this.state.fields["state"] = body[0].State;
+        this.state.fields["zip"] = body[0].ZipCode;
+        this.state.fields["country"] = body[0].Country;
+        this.state.fields["cardNumber"] = body[0].CardNumber;
         this.state.fields["date"] = body[0].Date;
+        this.state.fields["securityCode"] = body[0].securityCode;
         // this.state.fields["consentCheck"] = body[0].ConsentCheck;
         console.log(this.state.fields);
         return body;

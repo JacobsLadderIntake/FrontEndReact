@@ -114,7 +114,7 @@ class PermissionExchangeInformation extends Component {
     postToDB() {
         infoObj = JSON.stringify(this.infoObj);
         // console.log(infoObj);
-        const response = fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm', {
+        const response = fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -127,7 +127,7 @@ class PermissionExchangeInformation extends Component {
     callApi = async () => {
         // infoObj = JSON.stringify(this.infoObj);
         // console.log(infoObj);
-        const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm');
+        const response = await fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm');
         const body = await response.json();
         console.log(body);
         if (response.status !== 200) throw Error(body.message);
