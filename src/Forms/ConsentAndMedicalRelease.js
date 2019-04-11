@@ -103,7 +103,7 @@ class ConsentAndMedicalRelease extends Component{
                                 <Input type="checkbox"
                                        ref="consentCheck"
                                        className="error"/>
-                                I hereby give release to complete a brain map as part of the Jacob’s Ladder initial evaluation process.
+                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.”
                             </Label>
                         </Col>
 

@@ -63,6 +63,8 @@ class ParentTable extends Component {
             this.props.history.push("/chai");
         } else if (row.name === "Permission for Exchange of Information Form") {
             this.props.history.push("/pei");
+        } else if (row.name === "Credit Card Authorization Form") {
+            this.props.history.push("/cca");
         }
         // console.log(this.state.data.name);
         // need to figure out how to access the row that has been clicked on, not sure how to do that though

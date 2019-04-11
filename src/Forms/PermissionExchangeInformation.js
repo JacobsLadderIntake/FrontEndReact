@@ -127,7 +127,7 @@ class PermissionExchangeInformation extends Component {
     callApi = async () => {
         // infoObj = JSON.stringify(this.infoObj);
         // console.log(infoObj);
-        const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm')
+        const response = await fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm');
         const body = await response.json();
         console.log(body);
         if (response.status !== 200) throw Error(body.message);
@@ -135,7 +135,7 @@ class PermissionExchangeInformation extends Component {
         this.state.fields["parentName"] = body[0].ParentName;
         this.state.fields["date"] = body[0].Date;
         // this.state.fields["consentCheck"] = body[0].ConsentCheck;
-        console.log(this.state.fields)
+        console.log(this.state.fields);
         return body;
     };
 
@@ -149,7 +149,7 @@ class PermissionExchangeInformation extends Component {
                                 <Input type="checkbox"
                                        ref="consentCheck"
                                        className="error"/>
-                                I hereby give release to complete a brain map as part of the Jacob’s Ladder initial evaluation process.
+                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.”
                             </Label>
                         </Col>
 
@@ -242,7 +242,7 @@ class PermissionExchangeInformation extends Component {
                 <div className="form-title">
                     <Row >
                         <div className = "parent-top col-9">
-                            <h2>Brain Map Consent Form</h2>
+                            <h2>Permission for Exchange of Information Form</h2>
                         </div>
                     </Row>
                 </div>
