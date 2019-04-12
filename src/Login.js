@@ -33,7 +33,7 @@ class Login extends Component {
 
     handleLogin(e) {
         e.preventDefault();
-        this.state.loginButtonPressed.setState(true);
+        this.setState({loginButtonPressed:true});
 
         const password = ReactDOM.findDOMNode(this.password).value;
         const email = ReactDOM.findDOMNode(this.email).value;
