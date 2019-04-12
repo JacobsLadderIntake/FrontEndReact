@@ -33,7 +33,7 @@ class ParentTable extends Component {
                 name: 'Consent and Medical Release Form',
                 progress: 'Not Started'
             }, {
-                name: 'JL Permission for Exchange of Information Form',
+                name: 'Permission for Exchange of Information Form',
                 progress: 'Not Started'
             }, {
                 name: 'Enrollment Process Form',
@@ -61,6 +61,12 @@ class ParentTable extends Component {
             this.props.history.push("/cmr");
         } else if (row.name === "Client History and Information Form") {
             this.props.history.push("/chai");
+        } else if (row.name === "Permission for Exchange of Information Form") {
+            this.props.history.push("/pei");
+        } else if (row.name === "Credit Card Authorization Form") {
+            this.props.history.push("/cca");
+        } else if (row.name === "Insurance and Financial Information Form") {
+            this.props.history.push("/ifi");
         }
         // console.log(this.state.data.name);
         // need to figure out how to access the row that has been clicked on, not sure how to do that though
