@@ -16,6 +16,8 @@ import ResetPassword from './ResetPassword';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
+import {HashRouter,Route,Link,Switch} from "react-router-dom";
+
 library.add(faPlus, faPlusCircle);
 
 class App extends Component {
@@ -27,7 +29,7 @@ class App extends Component {
   render() {
     return (
         <div>
-        <Router>
+        <HashRouter>
         <div>
             <Route exact path = "/" component = {Login}/>
             <Route path = "/register" component = {Register}/>
@@ -42,7 +44,7 @@ class App extends Component {
             <Route path = "/ifi" component = {InsuranceFinancialInformation}/>
             <Route path = "/resetpassword" component = {ResetPassword}/>
         </div>
-        </Router>
+        </HashRouter>
         </div>
 
 
