@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Register from './Register';
 import Login from './Login'
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import AdminHome from "./AdminView/AdminHome";
 import ParentTable from "./Parent-Home/ParentTable";
 import BrainMapConsent from './Forms/BrainMapConsent';
@@ -16,7 +15,7 @@ import ResetPassword from './ResetPassword';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
-import {HashRouter,Route,Link,Switch} from "react-router-dom";
+import {HashRouter, Route, Link,Switch} from "react-router-dom";
 
 library.add(faPlus, faPlusCircle);
 
