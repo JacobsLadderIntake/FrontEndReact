@@ -176,8 +176,10 @@ class CreditCardAuthorization extends Component {
             <fieldset>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required" sm={12}>Name of Card Holder</Label>
+                        <Row>
                         <Col sm={12}>
+                        <Label className="control-label required" sm={12}>Name of Card Holder</Label>
+
                             <Input
                                 type="text"
                                 ref="name"
@@ -189,8 +191,10 @@ class CreditCardAuthorization extends Component {
                                 invalid={this.state.errors["name"] }>{this.state.errors["name"]}
                             </FormFeedback>
                         </Col>
+                        </Row>
                     </FormGroup>
                     <FormGroup>
+                        <Row>
                         <Col sm={12}>
                             <Label className="control-label required">Billing Address</Label>
                             <Input
@@ -204,66 +208,68 @@ class CreditCardAuthorization extends Component {
                                 invalid={this.state.errors["address"]}>{this.state.errors["address"]}
                             </FormFeedback>
                         </Col>
+                        </Row>
                     </FormGroup>
                     <FormGroup>
                         <Row>
                             <Col sm={3}>
-                                    <Label className="control-label required">City</Label>
-                                    <Input
-                                        type="text"
-                                        ref="city"
-                                        value={this.state.fields["city"] || ""}
-                                        onChange={this.handleChange.bind(this, "city")}
-                                        className="error"
-                                        invalid={this.state.errors["city"] != null}/>
-                                    <FormFeedback
-                                        invalid={this.state.errors["city"]}>{this.state.errors["city"]}
-                                    </FormFeedback>
+                                <Label className="control-label required">City</Label>
+                                <Input
+                                    type="text"
+                                    ref="city"
+                                    value={this.state.fields["city"] || ""}
+                                    onChange={this.handleChange.bind(this, "city")}
+                                    className="error"
+                                    invalid={this.state.errors["city"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["city"]}>{this.state.errors["city"]}
+                                </FormFeedback>
                             </Col>
                             <Col sm={2}>
-                                    <Label className="control-label required">State</Label>
-                                    <Input
-                                        type="text"
-                                        ref="state"
-                                        value={this.state.fields["state"] || ""}
-                                        onChange={this.handleChange.bind(this, "state")}
-                                        className="error"
-                                        invalid={this.state.errors["state"] != null}/>
-                                    <FormFeedback
-                                        invalid={this.state.errors["state"]}>{this.state.errors["state"]}
-                                    </FormFeedback>
+                                <Label className="control-label required">State</Label>
+                                <Input
+                                    type="text"
+                                    ref="state"
+                                    value={this.state.fields["state"] || ""}
+                                    onChange={this.handleChange.bind(this, "state")}
+                                    className="error"
+                                    invalid={this.state.errors["state"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["state"]}>{this.state.errors["state"]}
+                                </FormFeedback>
                             </Col>
                             <Col sm={2}>
-                                    <Label className="control-label required">Zip Code</Label>
-                                    <Input
-                                        type="text"
-                                        ref="zip"
-                                        value={this.state.fields["zip"] || ""}
-                                        onChange={this.handleChange.bind(this, "zip")}
-                                        className="error"
-                                        invalid={this.state.errors["zip"] != null}/>
-                                    <FormFeedback
-                                        invalid={this.state.errors["zip"]}>{this.state.errors["zip"]}
-                                    </FormFeedback>
+                                <Label className="control-label required">Zip Code</Label>
+                                <Input
+                                    type="text"
+                                    ref="zip"
+                                    value={this.state.fields["zip"] || ""}
+                                    onChange={this.handleChange.bind(this, "zip")}
+                                    className="error"
+                                    invalid={this.state.errors["zip"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["zip"]}>{this.state.errors["zip"]}
+                                </FormFeedback>
                             </Col>
                             <Col sm={3}>
-                                    <Label className="control-label required">Country</Label>
-                                    <Input
-                                        type="text"
-                                        ref="country"
-                                        value={this.state.fields["country"] || ""}
-                                        onChange={this.handleChange.bind(this, "country")}
-                                        className="error"
-                                        invalid={this.state.errors["country"] != null}/>
-                                    <FormFeedback
-                                        invalid={this.state.errors["country"]}>{this.state.errors["country"]}
-                                    </FormFeedback>
+                                <Label className="control-label required">Country</Label>
+                                <Input
+                                    type="text"
+                                    ref="country"
+                                    value={this.state.fields["country"] || ""}
+                                    onChange={this.handleChange.bind(this, "country")}
+                                    className="error"
+                                    invalid={this.state.errors["country"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["country"]}>{this.state.errors["country"]}
+                                </FormFeedback>
                             </Col>
                         </Row>
                     </FormGroup>
                     <FormGroup>
+                        <Row>
+                        <Col sm={4}>
                         <Label className="control-label required" sm={12}>Credit Card Number</Label>
-                        <Col sm={12}>
                             <Input
                                 type="text"
                                 ref="cardNumber"
@@ -275,35 +281,32 @@ class CreditCardAuthorization extends Component {
                                 invalid={this.state.errors["cardNumber"]}>{this.state.errors["cardNumber"]}
                             </FormFeedback>
                         </Col>
-                    </FormGroup>
-                    <FormGroup>
-                        <Row>
-                            <Col sm={5}>
-                                <Label className="control-label required" sm={5}>Expiration Date</Label>
-                                <Input
-                                    type="text"
-                                    ref="date"
-                                    value={this.state.fields["date"] || ""}
-                                    onChange={this.handleChange.bind(this, "date")}
-                                    className="error"
-                                    invalid={this.state.errors["date"] != null}/>
-                                <FormFeedback
-                                    invalid={this.state.errors["date"]}>{this.state.errors["date"]}
-                                </FormFeedback>
-                            </Col>
-                            <Col sm={5}>
-                                <Label className="control-label required" sm={5}>Security Code</Label>
-                                <Input
-                                    type="text"
-                                    ref="securityCode"
-                                    value={this.state.fields["securityCode"] || ""}
-                                    onChange={this.handleChange.bind(this, "securityCode")}
-                                    className="error"
-                                    invalid={this.state.errors["securityCode"] != null}/>
-                                <FormFeedback
-                                    invalid={this.state.errors["securityCode"]}>{this.state.errors["securityCode"]}
-                                </FormFeedback>
-                            </Col>
+                        <Col sm={4}>
+                            <Label className="control-label required" sm={5}>Expiration Date</Label>
+                            <Input
+                                type="text"
+                                ref="date"
+                                value={this.state.fields["date"] || ""}
+                                onChange={this.handleChange.bind(this, "date")}
+                                className="error"
+                                invalid={this.state.errors["date"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["date"]}>{this.state.errors["date"]}
+                            </FormFeedback>
+                        </Col>
+                        <Col sm={4}>
+                            <Label className="control-label required" sm={5}>Security Code</Label>
+                            <Input
+                                type="text"
+                                ref="securityCode"
+                                value={this.state.fields["securityCode"] || ""}
+                                onChange={this.handleChange.bind(this, "securityCode")}
+                                className="error"
+                                invalid={this.state.errors["securityCode"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["securityCode"]}>{this.state.errors["securityCode"]}
+                            </FormFeedback>
+                        </Col>
                         </Row>
                     </FormGroup>
                 </div>

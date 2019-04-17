@@ -8,8 +8,9 @@ import {
     FormFeedback,
     Input,
     Label,
-    Row
+    Row, Collapse, Card, CardBody
 } from "reactstrap";
+import ReactTable from 'react-table';
 
 class InsuranceFinancialInformation extends Component{
     constructor(props) {
@@ -18,6 +19,105 @@ class InsuranceFinancialInformation extends Component{
         this.state = {
             errors: [],
             fields: [],
+            outsideTherapyServices: false,
+            therapyServicesColumns: [{
+                Header: 'Therapy',
+                accessor: 'therapy'
+            }, {
+                Header: 'Provider Name',
+                accessor: 'provider'
+            }, {
+                Header: 'Schedule of Service (day of the week)',
+                accessor: 'schedule'
+            }, {
+                Header: 'Do you have a current assessment on file for this year?',
+                accessor: 'assessment'
+            }],
+            therapyServicesData: [{
+                therapy: 'Occupational Therapy',
+                provider: <input type="text" name="providerOT" className={"tableInputField"}/>,
+                schedule: <input type="text" name="scheduleOT" className={"tableInputField"}/>,
+                assessment: <Input type="select"
+                                   name="assessmentOT"
+                                   id="assessmentOT"
+                                   onChange={this.handleChange.bind(this)}>
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                therapy: 'Physical Therapy',
+                provider: <input type="text" name="providerPT" className={"tableInputField"}/>,
+                schedule: <input type="text" name="schedulePT" className={"tableInputField"}/>,
+                assessment: <Input type="select"
+                                   name="assessmentPT"
+                                   id="assessmentPT"
+                                   onChange={this.handleChange.bind(this)}>
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                therapy: 'Speech Therapy',
+                provider: <input type="text" name="providerST" className={"tableInputField"}/>,
+                schedule: <input type="text" name="scheduleST" className={"tableInputField"}/>,
+                assessment: <Input type="select"
+                                   name="assessmentST"
+                                   id="assessmentST"
+                                   onChange={this.handleChange.bind(this)}>
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                therapy: 'Mental and Behavioral Health',
+                provider: <input type="text" name="providerMBH" className={"tableInputField"}/>,
+                schedule: <input type="text" name="scheduleMBH" className={"tableInputField"}/>,
+                assessment: <Input type="select"
+                                   name="assessmentMBH"
+                                   id="assessmentMBH"
+                                   onChange={this.handleChange.bind(this)}>
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                therapy: <input type="text" name="otherTherapy1" className={"tableInputField"} placeholder={" Other"}/>,
+                provider: <input type="text" name="providerOther1" className={"tableInputField"}/>,
+                schedule: <input type="text" name="scheduleOther1" className={"tableInputField"}/>,
+                assessment: <Input type="select"
+                                   name="assessmentOther1"
+                                   id="assessmentOther1"
+                                   onChange={this.handleChange.bind(this)}>
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                therapy: <input type="text" name="otherTherapy2" className={"tableInputField"} placeholder={" Other"}/>,
+                provider: <input type="text" name="providerOther2" className={"tableInputField"}/>,
+                schedule: <input type="text" name="scheduleOther2" className={"tableInputField"}/>,
+                assessment: <Input type="select"
+                                   name="assessmentOther2"
+                                   id="assessmentOther2"
+                                   onChange={this.handleChange.bind(this)}>
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                therapy: <input type="text" name="otherTherapy3" className={"tableInputField"} placeholder={" Other"}/>,
+                provider: <input type="text" name="providerOther3" className={"tableInputField"}/>,
+                schedule: <input type="text" name="scheduleOther3" className={"tableInputField"}/>,
+                assessment: <Input type="select"
+                                   name="assessmentOther3"
+                                   id="assessmentOther3"
+                                   onChange={this.handleChange.bind(this)}>
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }],
             submitButtonPressed: false,
             saveButtonPressed:false
         };
@@ -28,6 +128,15 @@ class InsuranceFinancialInformation extends Component{
 
     goBack(event) {
         window.location.reload();
+    }
+
+    toggleOutsideTherapyServices(e){
+        e.preventDefault();
+        if ((e.target.value)===('Yes')) {
+            this.setState(state=>({outsideTherapyServices: true}));
+        } else {
+            this.setState(state => ({outsideTherapyServices: false}));
+        }
     }
 
     handleChange(field, e) {
@@ -45,6 +154,187 @@ class InsuranceFinancialInformation extends Component{
         let formIsValid = true;
 
         if (this.state.submitButtonPressed) {
+            //INSURANCE SECTION
+            if (!fields["clientName"]) {
+                formIsValid = false;
+                errors["clientName"] = "Cannot be empty";
+            }
+            if (!fields["dob"]) {
+                formIsValid = false;
+                errors["dob"] = "Cannot be empty";
+            }
+            if (!fields["parentName1"]) {
+                formIsValid = false;
+                errors["parentName1"] = "Cannot be empty";
+            }
+            if (!fields["parentPhoneNumber"]) {
+                formIsValid = false;
+                errors["parentPhoneNumber"] = "Cannot be empty";
+            }
+            if (!fields["parentEmail"]) {
+                formIsValid = false;
+                errors["parentEmail"] = "Cannot be empty";
+            }
+            if (!fields["physicianName"]) {
+                formIsValid = false;
+                errors["physicianName"] = "Cannot be empty";
+            }
+            if (!fields["physicianPhoneNumber"]) {
+                formIsValid = false;
+                errors["physicianPhoneNumber"] = "Cannot be empty";
+            }
+            if (!fields["physicianFaxNumber"]) {
+                formIsValid = false;
+                errors["physicianFaxNumber"] = "Cannot be empty";
+            }
+            if (!fields["address"]) {
+                formIsValid = false;
+                errors["address"] = "Cannot be empty";
+            }
+            if (!fields["city"]) {
+                formIsValid = false;
+                errors["city"] = "Cannot be empty";
+            }
+            if (!fields["state"]) {
+                formIsValid = false;
+                errors["state"] = "Cannot be empty";
+            }
+            if (!fields["zip"]) {
+                formIsValid = false;
+                errors["zip"] = "Cannot be empty";
+            }
+            if (!fields["country"]) {
+                formIsValid = false;
+                errors["country"] = "Cannot be empty";
+            }
+            if (!fields["diagnosis"]) {
+                formIsValid = false;
+                errors["diagnosis"] = "Cannot be empty";
+            }
+            if (!fields["primaryInsurance"]) {
+                formIsValid = false;
+                errors["primaryInsurance"] = "Cannot be empty";
+            }
+            if (!fields["primaryInsuranceName"]) {
+                formIsValid = false;
+                errors["primaryInsuranceName"] = "Cannot be empty";
+            }
+            if (!fields["insuranceSsn1"]) {
+                formIsValid = false;
+                errors["insuranceSsn1"] = "Cannot be empty";
+            }
+            if (!fields["insuranceDob1"]) {
+                formIsValid = false;
+                errors["insuranceDob1"] = "Cannot be empty";
+            }
+            if (!fields["employer1"]) {
+                formIsValid = false;
+                errors["employer1"] = "Cannot be empty";
+            }
+            if (!fields["memberID1"]) {
+                formIsValid = false;
+                errors["memberID1"] = "Cannot be empty";
+            }
+            if (!fields["groupNumber1"]) {
+                formIsValid = false;
+                errors["groupNumber1"] = "Cannot be empty";
+            }
+            if (!fields["customerService1"]) {
+                formIsValid = false;
+                errors["customerService1"] = "Cannot be empty";
+            }
+            if (!fields["secondaryInsurance"]) {
+                formIsValid = false;
+                errors["secondaryInsurance"] = "Cannot be empty";
+            }
+            if (!fields["secondaryInsuranceName"]) {
+                formIsValid = false;
+                errors["secondaryInsuranceName"] = "Cannot be empty";
+            }
+            if (!fields["insuranceSsn2"]) {
+                formIsValid = false;
+                errors["insuranceSsn2"] = "Cannot be empty";
+            }
+            if (!fields["insuranceDob2"]) {
+                formIsValid = false;
+                errors["insuranceDob2"] = "Cannot be empty";
+            }
+            if (!fields["employer2"]) {
+                formIsValid = false;
+                errors["employer2"] = "Cannot be empty";
+            }
+            if (!fields["memberID2"]) {
+                formIsValid = false;
+                errors["memberID2"] = "Cannot be empty";
+            }
+            if (!fields["groupNumber2"]) {
+                formIsValid = false;
+                errors["groupNumber2"] = "Cannot be empty";
+            }
+            if (!fields["customerService2"]) {
+                formIsValid = false;
+                errors["customerService2"] = "Cannot be empty";
+            }
+            if (!fields["gncWaiver"]){
+                document.getElementById("gncWaiver").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("gncWaiver").setAttribute("class", "form-control")
+            }
+            if (!fields["kbdWaiver"]){
+                document.getElementById("kbdWaiver").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("kbdWaiver").setAttribute("class", "form-control")
+            }
+            //need to be conditional depending on if they want services
+            // if (!fields["wantOT"]) {
+            //     formIsValid = false;
+            //     errors["wantOT"] = "Cannot be empty";
+            // }
+            // if (!fields["wantPT"]) {
+            //     formIsValid = false;
+            //     errors["wantPT"] = "Cannot be empty";
+            // }
+            // if (!fields["wantST"]) {
+            //     formIsValid = false;
+            //     errors["wantST"] = "Cannot be empty";
+            // }
+            // if (!fields["wantMBH"]) {
+            //     formIsValid = false;
+            //     errors["wantMBH"] = "Cannot be empty";
+            // }
+            // if (!fields["wantMonday"]) {
+            //     formIsValid = false;
+            //     errors["wantMonday"] = "Cannot be empty";
+            // }
+            // if (!fields["wantTuesday"]) {
+            //     formIsValid = false;
+            //     errors["wantTuesday"] = "Cannot be empty";
+            // }
+            // if (!fields["wantWednesday"]) {
+            //     formIsValid = false;
+            //     errors["wantWednesday"] = "Cannot be empty";
+            // }
+            // if (!fields["wantThursday"]) {
+            //     formIsValid = false;
+            //     errors["wantThursday"] = "Cannot be empty";
+            // }
+            // if (!fields["wantFriday"]) {
+            //     formIsValid = false;
+            //     errors["wantFriday"] = "Cannot be empty";
+            // }
+            // if (!fields["wantTime"]) {
+            //     formIsValid = false;
+            //     errors["wantTime"] = "Cannot be empty";
+            // }
+            // if (!fields["payWithInsurance"]) {
+            //     formIsValid = false;
+            //     errors["payWithInsurance"] = "Cannot be empty";
+            // }
+            // if (!fields["payWithSelfPay"]) {
+            //     formIsValid = false;
+            //     errors["payWithSelfPay"] = "Cannot be empty";
+            // }
+            //POLICY SECTION
             if (!fields["initial1"]) {
                 formIsValid = false;
                 errors["initial1"] = "Cannot be empty";
@@ -77,13 +367,14 @@ class InsuranceFinancialInformation extends Component{
                 formIsValid = false;
                 errors["initial8"] = "Cannot be empty";
             }
+            //SIGNATURE SECTION
             if (!fields["studentName"]) {
                 formIsValid = false;
                 errors["studentName"] = "Cannot be empty";
             }
-            if (!fields["parentName"]) {
+            if (!fields["parentName2"]) {
                 formIsValid = false;
-                errors["parentName"] = "Cannot be empty";
+                errors["parentName2"] = "Cannot be empty";
             }
             if (!fields["date"]) {
                 formIsValid = false;
@@ -114,7 +405,648 @@ class InsuranceFinancialInformation extends Component{
     }
 
     renderInsurance() {
-
+        return(
+            <fieldset>
+                <div>
+                    <div className={"section"}>Insurance Information</div>
+                    <div className={"sub-section"}>Client Information</div>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={6}>
+                                <Label className="control-label required">Client's Name (First and Last)</Label>
+                                <Input
+                                    type="text"
+                                    ref="clientName"
+                                    value={this.state.fields["clientName"] || ""}
+                                    onChange={this.handleChange.bind(this, "clientName")}
+                                    className="error"
+                                    invalid={this.state.errors["clientName"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["clientName"]}>{this.state.errors["clientName"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={3}>
+                                <Label className="control-label required">Date of Birth</Label>
+                                <Input
+                                    type="text"
+                                    ref="dob"
+                                    value={this.state.fields["dob"] || ""}
+                                    onChange={this.handleChange.bind(this, "dob")}
+                                    className="error"
+                                    invalid={this.state.errors["dob"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["dob"]}>{this.state.errors["dob"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={6}>
+                                <Label className="control-label required">Parent Contact's Name (First and Last)</Label>
+                                <Input
+                                    type="text"
+                                    ref="parentName1"
+                                    value={this.state.fields["parentName1"] || ""}
+                                    onChange={this.handleChange.bind(this, "parentName1")}
+                                    className="error"
+                                    invalid={this.state.errors["parentName1"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["parentName1"]}>{this.state.errors["parentName1"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={3}>
+                                <Label className="control-label required">Phone Number</Label>
+                                <Input
+                                    type="text"
+                                    ref="parentPhoneNumber"
+                                    value={this.state.fields["parentPhoneNumber"] || ""}
+                                    onChange={this.handleChange.bind(this, "parentPhoneNumber")}
+                                    className="error"
+                                    invalid={this.state.errors["parentPhoneNumber"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["parentPhoneNumber"]}>{this.state.errors["parentPhoneNumber"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row>
+                            <Col>
+                                <Label className="control-label required">Parent's Email Address</Label>
+                                <Input
+                                    type="text"
+                                    ref="parentEmail"
+                                    value={this.state.fields["parentEmail"] || ""}
+                                    onChange={this.handleChange.bind(this, "parentEmail")}
+                                    className="error"
+                                    invalid={this.state.errors["parentEmail"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["parentEmail"]}>{this.state.errors["parentEmail"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <div className={"sub-section"}>Primary Care Physician</div>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={6}>
+                                <Label className="control-label required">Client's Primary Care Physician's Name</Label>
+                                <Input
+                                    type="text"
+                                    ref="physicianName"
+                                    value={this.state.fields["physicianName"] || ""}
+                                    onChange={this.handleChange.bind(this, "physicianName")}
+                                    className="error"
+                                    invalid={this.state.errors["physicianName"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["physicianName"]}>{this.state.errors["physicianName"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={3}>
+                                <Label className="control-label required">Phone Number</Label>
+                                <Input
+                                    type="text"
+                                    ref="physicianPhoneNumber"
+                                    value={this.state.fields["physicianPhoneNumber"] || ""}
+                                    onChange={this.handleChange.bind(this, "physicianPhoneNumber")}
+                                    className="error"
+                                    invalid={this.state.errors["physicianPhoneNumber"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["physicianPhoneNumber"]}>{this.state.errors["physicianPhoneNumber"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={3}>
+                                <Label className="control-label required">Fax Number</Label>
+                                <Input
+                                    type="text"
+                                    ref="physicianFaxNumber"
+                                    value={this.state.fields["physicianFaxNumber"] || ""}
+                                    onChange={this.handleChange.bind(this, "physicianFaxNumber")}
+                                    className="error"
+                                    invalid={this.state.errors["physicianFaxNumber"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["physicianFaxNumber"]}>{this.state.errors["physicianFaxNumber"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row>
+                            <Col>
+                                <Label className="control-label required">Physician's Street Address</Label>
+                                <Input
+                                    type="text"
+                                    ref="street"
+                                    value={this.state.fields["street"] || ""}
+                                    onChange={this.handleChange.bind(this, "street")}
+                                    className="error"
+                                    invalid={this.state.errors["street"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["street"]}>{this.state.errors["street"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row>
+                            <Col sm={4}>
+                                <Label className="control-label required">City</Label>
+                                <Input
+                                    type="text"
+                                    ref="city"
+                                    value={this.state.fields["city"] || ""}
+                                    onChange={this.handleChange.bind(this, "city")}
+                                    className="error"
+                                    invalid={this.state.errors["city"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["city"]}>{this.state.errors["city"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={2}>
+                                <Label className="control-label required">State</Label>
+                                <Input
+                                    type="text"
+                                    ref="state"
+                                    value={this.state.fields["state"] || ""}
+                                    onChange={this.handleChange.bind(this, "state")}
+                                    className="error"
+                                    invalid={this.state.errors["state"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["state"]}>{this.state.errors["state"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={3}>
+                                <Label className="control-label required">Zip Code</Label>
+                                <Input
+                                    type="text"
+                                    ref="zip"
+                                    value={this.state.fields["zip"] || ""}
+                                    onChange={this.handleChange.bind(this, "zip")}
+                                    className="error"
+                                    invalid={this.state.errors["zip"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["zip"]}>{this.state.errors["zip"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={3}>
+                                <Label className="control-label required">Country</Label>
+                                <Input
+                                    type="text"
+                                    ref="country"
+                                    value={this.state.fields["country"] || ""}
+                                    onChange={this.handleChange.bind(this, "country")}
+                                    className="error"
+                                    invalid={this.state.errors["country"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["country"]}>{this.state.errors["country"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row>
+                            <Col>
+                                <Label className="control-label required ">Client's Current Diagnosis</Label>
+                                <Input
+                                    type="textarea"
+                                    ref="diagnosis"
+                                    value={this.state.fields["diagnosis"] || ""}
+                                    onChange={this.handleChange.bind(this, "diagnosis")}
+                                    invalid={this.state.errors["diagnosis"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["diagnosis"]}>{this.state.errors["diagnosis"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <div className={"sub-section"}>Primary Insurance</div>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={6}>
+                                <Label className="control-label required">Primary Insurance</Label>
+                                <Input
+                                    type="text"
+                                    ref="primaryInsurance"
+                                    value={this.state.fields["primaryInsurance"] || ""}
+                                    onChange={this.handleChange.bind(this, "primaryInsurance")}
+                                    className="error"
+                                    invalid={this.state.errors["primaryInsurance"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["primaryInsurance"]}>{this.state.errors["primaryInsurance"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={6}>
+                                <Label className="control-label required">Name of Insured</Label>
+                                <Input
+                                    type="text"
+                                    ref="primaryInsuranceName"
+                                    value={this.state.fields["primaryInsuranceName"] || ""}
+                                    onChange={this.handleChange.bind(this, "primaryInsuranceName")}
+                                    className="error"
+                                    invalid={this.state.errors["primaryInsuranceName"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["primaryInsuranceName"]}>{this.state.errors["primaryInsuranceName"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={3}>
+                                <Label className="control-label required">Insured's SSN</Label>
+                                <Input
+                                    type="text"
+                                    ref="insuranceSsn1"
+                                    value={this.state.fields["insuranceSsn1"] || ""}
+                                    onChange={this.handleChange.bind(this, "insuranceSsn1")}
+                                    className="error"
+                                    invalid={this.state.errors["insuranceSsn1"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["insuranceSsn1"]}>{this.state.errors["insuranceSsn1"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={3}>
+                                <Label className="control-label required">Insured's DOB</Label>
+                                <Input
+                                    type="text"
+                                    ref="insuranceDob1"
+                                    value={this.state.fields["insuranceDob1"] || ""}
+                                    onChange={this.handleChange.bind(this, "insuranceDob1")}
+                                    className="error"
+                                    invalid={this.state.errors["insuranceDob1"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["insuranceDob1"]}>{this.state.errors["insuranceDob1"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={6}>
+                                <Label className="control-label required">Employer's Name</Label>
+                                <Input
+                                    type="text"
+                                    ref="employer1"
+                                    value={this.state.fields["employer1"] || ""}
+                                    onChange={this.handleChange.bind(this, "employer1")}
+                                    className="error"
+                                    invalid={this.state.errors["employer1"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["employer1"]}>{this.state.errors["employer1"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={4}>
+                                <Label className="control-label required">Member ID</Label>
+                                <Input
+                                    type="text"
+                                    ref="memberID1"
+                                    value={this.state.fields["memberID1"] || ""}
+                                    onChange={this.handleChange.bind(this, "memberID1")}
+                                    className="error"
+                                    invalid={this.state.errors["memberID1"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["memberID1"]}>{this.state.errors["memberID1"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={4}>
+                                <Label className="control-label required">Group Number</Label>
+                                <Input
+                                    type="text"
+                                    ref="groupNumber1"
+                                    value={this.state.fields["groupNumber1"] || ""}
+                                    onChange={this.handleChange.bind(this, "groupNumber1")}
+                                    className="error"
+                                    invalid={this.state.errors["groupNumber1"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["groupNumber1"]}>{this.state.errors["groupNumber1"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={4}>
+                                <Label className="control-label required">Customer Service Number</Label>
+                                <Input
+                                    type="text"
+                                    ref="customerService1"
+                                    value={this.state.fields["customerService1"] || ""}
+                                    onChange={this.handleChange.bind(this, "customerService1")}
+                                    className="error"
+                                    invalid={this.state.errors["customerService1"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["customerService1"]}>{this.state.errors["customerService1"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <div className={"sub-section"}>Secondary Insurance</div>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={6}>
+                                <Label className="control-label required">Secondary Insurance</Label>
+                                <Input
+                                    type="text"
+                                    ref="secondaryInsurance"
+                                    value={this.state.fields["secondaryInsurance"] || ""}
+                                    onChange={this.handleChange.bind(this, "secondaryInsurance")}
+                                    className="error"
+                                    invalid={this.state.errors["secondaryInsurance"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["secondaryInsurance"]}>{this.state.errors["secondaryInsurance"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={6}>
+                                <Label className="control-label required">Name of Insured</Label>
+                                <Input
+                                    type="text"
+                                    ref="secondaryInsuranceName"
+                                    value={this.state.fields["secondaryInsuranceName"] || ""}
+                                    onChange={this.handleChange.bind(this, "secondaryInsuranceName")}
+                                    className="error"
+                                    invalid={this.state.errors["secondaryInsuranceName"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["secondaryInsuranceName"]}>{this.state.errors["secondaryInsuranceName"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={3}>
+                                <Label className="control-label required">Insured's SSN</Label>
+                                <Input
+                                    type="text"
+                                    ref="insuranceSsn2"
+                                    value={this.state.fields["insuranceSsn2"] || ""}
+                                    onChange={this.handleChange.bind(this, "insuranceSsn2")}
+                                    className="error"
+                                    invalid={this.state.errors["insuranceSsn2"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["insuranceSsn2"]}>{this.state.errors["insuranceSsn2"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={3}>
+                                <Label className="control-label required">Insured's DOB</Label>
+                                <Input
+                                    type="text"
+                                    ref="insuranceDob2"
+                                    value={this.state.fields["insuranceDob2"] || ""}
+                                    onChange={this.handleChange.bind(this, "insuranceDob2")}
+                                    className="error"
+                                    invalid={this.state.errors["insuranceDob2"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["insuranceDob2"]}>{this.state.errors["insuranceDob2"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={6}>
+                                <Label className="control-label required">Employer's Name</Label>
+                                <Input
+                                    type="text"
+                                    ref="employer2"
+                                    value={this.state.fields["employer2"] || ""}
+                                    onChange={this.handleChange.bind(this, "employer2")}
+                                    className="error"
+                                    invalid={this.state.errors["employer2"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["employer2"]}>{this.state.errors["employer2"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row >
+                            <Col sm={4}>
+                                <Label className="control-label required">Member ID</Label>
+                                <Input
+                                    type="text"
+                                    ref="memberID2"
+                                    value={this.state.fields["memberID2"] || ""}
+                                    onChange={this.handleChange.bind(this, "memberID2")}
+                                    className="error"
+                                    invalid={this.state.errors["memberID2"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["memberID2"]}>{this.state.errors["memberID2"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={4}>
+                                <Label className="control-label required">Group Number</Label>
+                                <Input
+                                    type="text"
+                                    ref="groupNumber2"
+                                    value={this.state.fields["groupNumber2"] || ""}
+                                    onChange={this.handleChange.bind(this, "groupNumber2")}
+                                    className="error"
+                                    invalid={this.state.errors["groupNumber2"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["groupNumber2"]}>{this.state.errors["groupNumber2"]}
+                                </FormFeedback>
+                            </Col>
+                            <Col sm={4}>
+                                <Label className="control-label required">Customer Service Number</Label>
+                                <Input
+                                    type="text"
+                                    ref="customerService2"
+                                    value={this.state.fields["customerService2"] || ""}
+                                    onChange={this.handleChange.bind(this, "customerService2")}
+                                    className="error"
+                                    invalid={this.state.errors["customerService2"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["customerService2"]}>{this.state.errors["customerService2"]}
+                                </FormFeedback>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                    <div className={"sub-section"}>Waivers</div>
+                    <FormGroup>
+                        <Label className="control-label required">Has the client been approved for the Georgia NOW/COMP Waiver?</Label>
+                        <Col sm ={2}>
+                            <Input type="select"
+                                   name="gncWaiver"
+                                   id="gncWaiver"
+                                   onChange={this.handleChange.bind(this, "gncWaiver")}>
+                                <option></option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </Input>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="control-label required">Does the client have Katie Beckett/Deeming Waiver?</Label>
+                        <Col sm ={2}>
+                            <Input type="select"
+                                   name="kbdWaiver"
+                                   id="kbdWaiver"
+                                   onChange={this.handleChange.bind(this, "kbdWaiver")}>
+                                <option></option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </Input>
+                        </Col>
+                    </FormGroup>
+                    <div className={"sub-section"}>Therapy Services</div>
+                    <FormGroup>
+                        <p className={"control-label required"} >Please indicate which direct service(s) you are interested in
+                        having the client receive in addition to the Jacob's Ladder Neurodevelopmental Programming (sessions can
+                        be completed during or outside of program time) and we will begin the insurance determination process:</p>
+                        <FormGroup check>
+                            <Label check style={{marginLeft:20}}>
+                                <Input
+                                    type="checkbox"
+                                    name="wantOT"
+                                    id="wantOT"
+                                    onChange={this.handleChange.bind(this, "wantOT")}/>
+                                    Occupational Therapy
+                            </Label>
+                            <br/>
+                            <Label check style={{marginLeft:20}}>
+                                <Input
+                                    type="checkbox"
+                                    name="wantPT"
+                                    id="wantPT"
+                                    onChange={this.handleChange.bind(this, "wantPT")}/>
+                                    Physical Therapy
+                            </Label>
+                            <br/>
+                            <Label check style={{marginLeft:20}}>
+                                <Input
+                                    type="checkbox"
+                                    name="wantST"
+                                    id="wantST"
+                                    onChange={this.handleChange.bind(this, "wantST")}/>
+                                    Speech Therapy
+                            </Label>
+                            <br/>
+                            <Label check style={{marginLeft:20}}>
+                                <Input
+                                    type="checkbox"
+                                    name="wantMBH"
+                                    id="wantMBH"
+                                    onChange={this.handleChange.bind(this, "wantMBH")}/>
+                                    Mental and Behavioral Health
+                            </Label>
+                        </FormGroup>
+                    </FormGroup>
+                    <FormGroup>
+                        <p className={"control-label required"} >Preferred schedule:</p>
+                        <FormGroup check>
+                            <Row>
+                                <Label check style={{marginLeft:40}}>
+                                    <Input
+                                        type="checkbox"
+                                        name="wantMonday"
+                                        id="wantMonday"
+                                        onChange={this.handleChange.bind(this, "wantMonday")}/>
+                                    Monday
+                                </Label>
+                                <Label check style={{marginLeft:40}}>
+                                    <Input
+                                        type="checkbox"
+                                        name="wantTuesday"
+                                        id="wantTuesday"
+                                        onChange={this.handleChange.bind(this, "wantTuesday")}/>
+                                    Tuesday
+                                </Label>
+                                <Label check style={{marginLeft:40}}>
+                                    <Input
+                                        type="checkbox"
+                                        name="wantWednesday"
+                                        id="wantWednesday"
+                                        onChange={this.handleChange.bind(this, "wantWednesday")}/>
+                                    Wednesday
+                                </Label>
+                                <Label check style={{marginLeft:40}}>
+                                    <Input
+                                        type="checkbox"
+                                        name="wantThursday"
+                                        id="wantThursday"
+                                        onChange={this.handleChange.bind(this, "wantThursday")}/>
+                                    Thursday
+                                </Label>
+                                <Label check style={{marginLeft:40}}>
+                                    <Input
+                                        type="checkbox"
+                                        name="wantFriday"
+                                        id="wantFriday"
+                                        onChange={this.handleChange.bind(this, "wantFriday")}/>
+                                    Friday
+                                </Label>
+                            </Row>
+                            <br/>
+                            <Row>
+                                <Label className="control-label required" style={{marginLeft:20}}>Time:</Label>
+                                <Input
+                                    style={{width:400, marginLeft:20}}
+                                    type="text"
+                                    ref="wantTime"
+                                    value={this.state.fields["wantTime"] || ""}
+                                    onChange={this.handleChange.bind(this, "wantTime")}
+                                    className="wantTime"
+                                    invalid={this.state.errors["wantTime"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["wantTime"]}>{this.state.errors["wantTime"]}
+                                </FormFeedback>
+                            </Row>
+                        </FormGroup>
+                    </FormGroup>
+                    <FormGroup>
+                        <Row>
+                            <p className={"control-label required"} style={{marginLeft:20}}>How would you like to pay for LSP services?</p>
+                            <FormGroup check>
+                                <Label check style={{marginLeft:20}}>
+                                    <Input
+                                        type="checkbox"
+                                        name="payWithInsurance"
+                                        id="payWithInsurance"
+                                        onChange={this.handleChange.bind(this, "payWithInsurance")}/>
+                                    Insurance
+                                </Label>
+                                <Label check style={{marginLeft:40}}>
+                                    <Input
+                                        type="checkbox"
+                                        name="payWithSelfPay"
+                                        id="payWithSelfPay"
+                                        onChange={this.handleChange.bind(this, "payWithSelfPay")}/>
+                                    Self-Pay
+                                </Label>
+                            </FormGroup>
+                        </Row>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className="control-label required">Does the client currently receive therapy services outside of Jacob's Ladder?</Label>
+                            <Col sm ={2}>
+                                <Input type="select"
+                                       name="gncWaiver"
+                                       id="gncWaiver"
+                                       onChange={this.toggleOutsideTherapyServices.bind(this)}>
+                                    <option></option>
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                </Input>
+                        </Col>
+                        <Collapse isOpen={this.state.outsideTherapyServices}>
+                            <Card className={"toggle-card"}>
+                                <CardBody className={"toggle-card-body"}>
+                                    <br/>
+                                    <Label>Please complete the below information, as we are unable to complete therapies
+                                    on same days for insurance purposes.</Label>
+                                    <ReactTable
+                                        className={"therapyServicesTable -striped -highlight"}
+                                        data={this.state.therapyServicesData}
+                                        columns={this.state.therapyServicesColumns}
+                                        defaultPageSize={7}
+                                        showPagination={false}
+                                        getTheadProps={(state, rowInfo) => {
+                                            return {style: {background: "#E9E9E9"}}
+                                        }}
+                                        getTableProps={() => {
+                                            return {style: {background: "white"}}
+                                        }}
+                                    />
+                                </CardBody>
+                            </Card>
+                        </Collapse>
+                    </FormGroup>
+                </div>
+            </fieldset>
+        );
     }
 
     renderAgreement() {
@@ -131,7 +1063,6 @@ class InsuranceFinancialInformation extends Component{
                                 I acknowledge that I have read and completed this information to the best of my knowledge and ability.”
                             </Label>
                         </Col>
-
                     </FormGroup>
                     <FormGroup>
                         <Label className="control-label required" sm={12}>Student Name</Label>
@@ -153,13 +1084,13 @@ class InsuranceFinancialInformation extends Component{
                         <Col sm={12}>
                             <Input
                                 type="text"
-                                ref="parentName"
-                                value={this.state.fields["parentName"] || ""}
-                                onChange={this.handleChange.bind(this, "parentName")}
+                                ref="parentName2"
+                                value={this.state.fields["parentName2"] || ""}
+                                onChange={this.handleChange.bind(this, "parentName2")}
                                 className="error"
-                                invalid={this.state.errors["parentName"] != null}/>
+                                invalid={this.state.errors["parentName2"] != null}/>
                             <FormFeedback
-                                invalid={this.state.errors["parentName"]}>{this.state.errors["parentName"]}
+                                invalid={this.state.errors["parentName2"]}>{this.state.errors["parentName2"]}
                             </FormFeedback>
                         </Col>
                     </FormGroup>
@@ -182,7 +1113,6 @@ class InsuranceFinancialInformation extends Component{
             </fieldset>
         );
     }
-
 
     renderPolicy() {
         return(
