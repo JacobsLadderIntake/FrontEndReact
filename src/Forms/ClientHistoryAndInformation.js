@@ -1,5 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component,useRef } from 'react';
+import ReactToPrint from "react-to-print";
+import PropTypes from "prop-types";
 import Header from '../Header/Header';
+
 import './formFormatting.css';
 import {
     Col,
@@ -3216,6 +3219,12 @@ class ClientHistoryAndInformation extends Component {
         this.props.history.push("/parenthome")
     }
 
+    componentDidMount() {
+
+        console.log('PrintThisComponent mounted!');
+
+    }
+
     renderNavbar() {
         return (
             <div data-spy="scroll" id="list-example" className="list-group frame">
@@ -3234,7 +3243,7 @@ class ClientHistoryAndInformation extends Component {
                 <a class="list-group-item list-group-item-action" href="#section13">Section 13: Goals and Additional Information</a>
                 <a class="list-group-item list-group-item-action" href="#section14">Section 14: Signature</a>
             </div>
-        )
+        );
     }
 
     renderSection1() {
@@ -7858,19 +7867,29 @@ class ClientHistoryAndInformation extends Component {
         return (
             <div>
                 <Header loggedIn={true}/>
-                <div className="form-title">
+
+                <div className="form-title" id={"form-title"}>
                     <div className="row">
                         <a className="parent-top col-9">
                             <h2>Client History and Information</h2>
                         </a>
+                        <div className={"col-3"}>
+
+                            <button className="print-button" onClick={() => window.print()}>Print</button>
+
+                        </div>
+
                     </div>
+
+
                 </div>
                 <Row>
                     <Col className={"col-2"}>
-                        <div > {this.renderNavbar()} </div>
+                        <div id={"navbar"}> {this.renderNavbar()} </div>
                     </Col>
                     <Col>
-                        <div className={"frame p-4"} >
+                        <div className={"frame p-4"} id={"form-frame"}>
+
                             <div> {this.renderSection1()} </div>
                             <div> {this.renderSection2()} </div>
                             <div> {this.renderSection3()} </div>
@@ -7907,5 +7926,6 @@ class ClientHistoryAndInformation extends Component {
         );
     };
 }
+
 
 export default ClientHistoryAndInformation;
