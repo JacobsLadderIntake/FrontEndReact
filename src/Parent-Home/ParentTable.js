@@ -20,9 +20,9 @@ class ParentTable extends Component {
             }],
 
             data: [{
-                name: 'Client History and Information Form',
+                name: <div id="chai" style={{color: 'blue', textDecoration: 'underline'}}>Client History and Information Form</div>,
                 progress: 'Not Started',
-                color: 'white'
+                color: 'white',
             }, {
                 name: 'Medical Protocol Form',
                 progress: 'Not Started'
@@ -30,16 +30,16 @@ class ParentTable extends Component {
                 name: 'Independent Life Transition Parent/Guardian Form',
                 progress: 'Not Started'
             }, {
-                name: 'Consent and Medical Release Form',
+                name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>,
                 progress: 'Not Started'
             }, {
                 name: 'Permission for Exchange of Information Form',
                 progress: 'Not Started'
             }, {
-                name: 'Enrollment Process Form',
+                name: <div id="ep" style={{color: 'blue', textDecoration: 'underline'}}>Enrollment Process Form</div>,
                 progress: 'Not Started'
             }, {
-                name: 'Brain Map Consent Form',
+                name: <div id="bmc" style={{color: 'blue', textDecoration: 'underline'}}>Brain Map Consent Form</div>,
                 progress: 'Not Started'
             }, {
                 name: 'Credit Card Authorization Form',
@@ -53,13 +53,13 @@ class ParentTable extends Component {
 
     handleClick(row, event) {
         event.preventDefault();
-        if (row.name === "Brain Map Consent Form") {
+        if (row.name.props.id === "bmc") {
             this.props.history.push("/bmc");
-        } else if (row.name === "Enrollment Process Form") {
+        } else if (row.name.props.id === "ep") {
             this.props.history.push("/ep");
-        } else if (row.name === "Consent and Medical Release Form") {
+        } else if (row.name.props.id === "cmr") {
             this.props.history.push("/cmr");
-        } else if (row.name === "Client History and Information Form") {
+        } else if (row.name.props.id === "chai") {
             this.props.history.push("/chai");
         } else if (row.name === "Permission for Exchange of Information Form") {
             this.props.history.push("/pei");
