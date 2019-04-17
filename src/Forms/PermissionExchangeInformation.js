@@ -11,7 +11,9 @@ import {
     Row
 } from "reactstrap";
 
-class EnrollmentProcess extends Component{
+var infoObj;
+
+class PermissionExchangeInformation extends Component {
     constructor(props) {
         super(props);
 
@@ -23,7 +25,9 @@ class EnrollmentProcess extends Component{
         };
 
         this.goBack = this.goBack.bind(this);
+
     }
+    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
 
     goBack(event) {
         window.location.reload();
@@ -34,6 +38,19 @@ class EnrollmentProcess extends Component{
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields: fields});
+    }
+
+    updateFields() {
+        let fields = this.state.fields;
+        let infoObj = this.infoObj;
+        infoObj.StudentName = fields["studentName"];
+        infoObj.ParentName = fields["parentName"];
+        infoObj.Date = fields["date"];
+        // infoObj.ConsentCheck = fields["consentCheck"];
+    }
+
+    populateFields() {
+        let fields = this.state.fields;
     }
 
     validate() {
@@ -64,9 +81,13 @@ class EnrollmentProcess extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({submitButtonPressed: true}, () => {
+        this.updateFields();
+        this.postToDB();
+        // this.componentDidMount();
+        this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
                 //NEED TO UPDATE DATABASE
+                console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
         });
@@ -74,10 +95,49 @@ class EnrollmentProcess extends Component{
 
     handleSaveAndQuit(event) {
         event.preventDefault();
+        this.updateFields();
         this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
-        this.props.history.push("/parenthome")
+        this.postToDB();
+        // this.componentDidMount();
+        console.log("saved and quit");
+        //back to homepage
+        this.props.history.push("/parenthome");
     }
+
+    componentDidMount() {
+        this.callApi()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    postToDB() {
+        infoObj = JSON.stringify(this.infoObj);
+        // console.log(infoObj);
+        const response = fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: infoObj
+        });
+    }
+
+    callApi = async () => {
+        // infoObj = JSON.stringify(this.infoObj);
+        // console.log(infoObj);
+        const response = await fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm');
+        const body = await response.json();
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        this.state.fields["studentName"] = body[0].StudentName;
+        this.state.fields["parentName"] = body[0].ParentName;
+        this.state.fields["date"] = body[0].Date;
+        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
+        console.log(this.state.fields);
+        return body;
+    };
 
     renderFields() {
         return (
@@ -89,7 +149,7 @@ class EnrollmentProcess extends Component{
                                 <Input type="checkbox"
                                        ref="consentCheck"
                                        className="error"/>
-                                By signing, I acknowledge that I am aware and understand the enrollment process and financial responsibilities.
+                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.”
                             </Label>
                         </Col>
 
@@ -110,7 +170,7 @@ class EnrollmentProcess extends Component{
                         </Col>
                     </FormGroup>
                     <FormGroup>
-                        <Label className="control-label required" sm={12}>Parent/Guardian Name</Label>
+                        <Label className="control-label required" sm={12}>Parent/Guardian  Name</Label>
                         <Col sm={12}>
                             <Input
                                 type="text"
@@ -150,29 +210,24 @@ class EnrollmentProcess extends Component{
             <div>
                 <div className="body-of-text">
                     <div>
-                        If you are interested in enrolling the client at Jacob’s Ladder, please carefully review the following information and sign to acknowledge that you understand the Enrollment Process:
+                        I, the undersigned parent/guardian of the client named below, authorize Jacob's Ladder Neurodevelopmental School
+                        & Therapy Center to exchange necessary and pertinent medical information to physicians, case managers, and insurance
+                        companies as needed for the client. I understand that if the client is on any psychotropic medication, a permission
+                        to exchange information form must be on file to allow the Clinical Team to be in communication with their physician.
+                    </div>
+                    <div>
+                        Approved information, verbal and written documents, may be exchanged with the following people directly related to
+                        the client's care:
                     </div>
                     <div className="closer-body-of-text">
                         <div>
-                            -All client’s must receive an initial evaluation prior to beginning programming at Jacob’s Ladder.
+                            -Therapists
                         </div>
                         <div>
-                            -Prior to the client’s first day of programming at Jacob’s Ladder, a retainer of one month’s tuition is required. Once fully enrolled, monthly tuition is due on the last business day of the prior month.  If the client starts mid-month, the pro-rated tuition that is due for that month is due prior to the client’s first day.
+                            -Physicians
                         </div>
                         <div>
-                            -There is an Annual Re-Evaluation and Case Load Management fee based on the hours enrolled. Please see our registration forms for further information regarding this.
-                        </div>
-                        <div>
-                            -The Annual Re-Evaluation fee is only applicable if your initial evaluation has not taken place within the past 12 months.
-                        </div>
-                        <div>
-                            -Jacob’s Ladder offers various financial assistance options, such as private insurance, SB-10, SSO’s etc. All services are pre-paid and your account will be credited upon receipt of payment.
-                        </div>
-                        <div>
-                            -If you are interested in enrollment, please submit your Registration Form with your preferred schedule and the Admissions Coordinator will be in contact with you upon receipt.
-                        </div>
-                        <div>
-                            -Due to our unique staffing requirements, Jacob’s Ladder often works from a waitlist. If you are placed on the waitlist, Jacob’s Ladder requests a holding deposit in the form of a check for one month’s tuition. This check will not be processed and is used to reserve your priority on the waiting list. Should placement become available, you will be contacted and your deposit will be processed, along with one month’s tuition.
+                            -Schools
                         </div>
                     </div>
                 </div>
@@ -185,16 +240,18 @@ class EnrollmentProcess extends Component{
             <div>
                 <Header loggedIn = {true}/>
                 <div className="form-title">
-                    <div className = "row" >
+                    <Row >
                         <div className = "parent-top col-9">
-                            <h2>Enrollment Process Form</h2>
+                            <h2>Permission for Exchange of Information Form</h2>
                         </div>
-                    </div>
+                    </Row>
                 </div>
+
                 <div className={"frame p-4"} data-spy="scroll">
                     <div> {this.renderText()} </div>
                     <div> {this.renderFields()} </div>
                 </div>
+
                 <Row className={"p-2 justify-content-center"}>
                     <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
                         Save and Quit
@@ -203,11 +260,10 @@ class EnrollmentProcess extends Component{
                     <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
                         Submit
                     </Button>
-
                 </Row>
             </div>
         );
     };
 }
 
-export default EnrollmentProcess;
+export default PermissionExchangeInformation;
