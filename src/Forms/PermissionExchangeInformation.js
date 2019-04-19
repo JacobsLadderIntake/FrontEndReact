@@ -10,14 +10,10 @@ import {
     Label,
     Row
 } from "reactstrap";
-import { token, userID } from '../Login';
 
-infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
-var childID = "child";
-var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
+var infoObj;
 
-class ConsentAndMedicalRelease extends Component {
-
+class PermissionExchangeInformation extends Component {
     constructor(props) {
         super(props);
 
@@ -31,6 +27,7 @@ class ConsentAndMedicalRelease extends Component {
         this.goBack = this.goBack.bind(this);
 
     }
+    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
 
     goBack(event) {
         window.location.reload();
@@ -41,6 +38,19 @@ class ConsentAndMedicalRelease extends Component {
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields: fields});
+    }
+
+    updateFields() {
+        let fields = this.state.fields;
+        let infoObj = this.infoObj;
+        infoObj.StudentName = fields["studentName"];
+        infoObj.ParentName = fields["parentName"];
+        infoObj.Date = fields["date"];
+        // infoObj.ConsentCheck = fields["consentCheck"];
+    }
+
+    populateFields() {
+        let fields = this.state.fields;
     }
 
     validate() {
@@ -66,72 +76,17 @@ class ConsentAndMedicalRelease extends Component {
         }
 
         this.setState({errors: errors});
-        console.log(formIsValid)
         return formIsValid;
     }
-
-    updateFields() {
-        let fields = this.state.fields;
-        let infoObj = this.infoObj;
-        infoObj.StudentName = fields["studentName"];
-        infoObj.ParentName = fields["parentName"];
-        infoObj.Date = fields["date"];
-        infoObj.Comments = fields["consideration"];
-        // infoObj.ConsentCheck = fields["consentCheck"];
-    }
-
-    componentDidMount() {
-        this.fetchFromDB()
-            .then(res => this.setState({ response: res.express }))
-            .catch(err => console.log(err));
-    }
-
-    postToDB() {
-        infoObj = JSON.stringify(this.infoObj);
-        console.log(this.url);
-        const response = fetch(this.url, {
-            method: 'POST',
-            headers: {
-                'token': token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: infoObj
-        });
-    }
-
-    fetchFromDB = async () => {
-        // infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
-        console.log(this.url)
-        const response = await fetch(this.url, {
-            method: 'GET',
-            headers: {
-                'token': token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-        const body = await response.json();
-        console.log(body);
-        if (response.status !== 200) throw Error(body.message);
-        if (body.Form.length > 0) {
-            this.state.fields["studentName"] = body.Form[0].StudentName;
-            this.state.fields["parentName"] = body.Form[0].ParentName;
-            this.state.fields["date"] = body.Form[0].Date;
-            this.state.fields["consideration"] = body.Form[0].Comments;
-            // this.state.fields["consentCheck"] = body[0].ConsentCheck;
-        }
-        // console.log(this.state.fields)
-        return body;
-    };
 
     handleSubmit(event) {
         event.preventDefault();
         this.updateFields();
         this.postToDB();
+        // this.componentDidMount();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
+                //NEED TO UPDATE DATABASE
                 console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
@@ -139,29 +94,54 @@ class ConsentAndMedicalRelease extends Component {
     }
 
     handleSaveAndQuit(event) {
-      event.preventDefault();
-      this.updateFields();
-      this.setState({saveButtonPressed: true});
-      this.postToDB();
-      //back to homepage
-      this.props.history.push("/parenthome");
+        event.preventDefault();
+        this.updateFields();
+        this.setState({saveButtonPressed: true});
+        //UPDATE DATABASE
+        this.postToDB();
+        // this.componentDidMount();
+        console.log("saved and quit");
+        //back to homepage
+        this.props.history.push("/parenthome");
     }
+
+    componentDidMount() {
+        this.callApi()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    postToDB() {
+        infoObj = JSON.stringify(this.infoObj);
+        // console.log(infoObj);
+        const response = fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: infoObj
+        });
+    }
+
+    callApi = async () => {
+        // infoObj = JSON.stringify(this.infoObj);
+        // console.log(infoObj);
+        const response = await fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm');
+        const body = await response.json();
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        this.state.fields["studentName"] = body[0].StudentName;
+        this.state.fields["parentName"] = body[0].ParentName;
+        this.state.fields["date"] = body[0].Date;
+        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
+        console.log(this.state.fields);
+        return body;
+    };
 
     renderFields() {
         return (
             <fieldset>
-                <div>
-                    <FormGroup>
-                        <Label sm={6}>List any special considerations or requests below.</Label>
-                        <Col sm={12}>
-                            <Input
-                                type="text"
-                                ref="considerations"
-                                value={this.state.fields["consideration"] || ""}
-                                onChange={this.handleChange.bind(this, "consideration")}/>
-                        </Col>
-                    </FormGroup>
-                </div>
                 <div>
                     <FormGroup>
                         <Col sm={12}>
@@ -190,7 +170,7 @@ class ConsentAndMedicalRelease extends Component {
                         </Col>
                     </FormGroup>
                     <FormGroup>
-                        <Label className="control-label required" sm={12}>Parent/Guardian Name</Label>
+                        <Label className="control-label required" sm={12}>Parent/Guardian  Name</Label>
                         <Col sm={12}>
                             <Input
                                 type="text"
@@ -230,13 +210,25 @@ class ConsentAndMedicalRelease extends Component {
             <div>
                 <div className="body-of-text">
                     <div>
-                        I, the undersigned parent/guardian of the child named below have voluntarily submitted my child for registration as a participant in the Jacob’s Ladder Neurodevelopmental School and Therapy Center program, a non-profit corporation (“Jacob’s Ladder”) and all programs associated therewith. I consent to my child participating in the Jacob’s Ladder Neurodevelopmental Evaluation which includes a Brain Map, Parent/Guardian Interview (preferably with both parents/guardians), and Jacob’s Ladder Neurodevelopmental Testing as well as utilizing Jacob’s Ladder facilities and amenities such as playground, trampoline, animals, and golf cart transportation, as needed. I have indicated below if I prefer for my child not to participate in any of the aforementioned facilities and amenities.
+                        I, the undersigned parent/guardian of the client named below, authorize Jacob's Ladder Neurodevelopmental School
+                        & Therapy Center to exchange necessary and pertinent medical information to physicians, case managers, and insurance
+                        companies as needed for the client. I understand that if the client is on any psychotropic medication, a permission
+                        to exchange information form must be on file to allow the Clinical Team to be in communication with their physician.
                     </div>
                     <div>
-                        I consent to my child participating in the Jacob’s Ladder program as written by Amy O’Dell, M.Ed, LPC, CTRS, CNC and the Jacob’s Ladder evaluation team. I give permission for Jacob’s Ladder and all individuals representing Jacob’s Ladder to implement all activities as outlined on my child’s program. I, the undersigned parent/guardian of the child named below have been trained to implement my child’s program at home and understand that any changes in programming and implementation will be sent home in writing. I understand that it is my responsibility to communicate any questions or concerns I may have with my child’s program.
+                        Approved information, verbal and written documents, may be exchanged with the following people directly related to
+                        the client's care:
                     </div>
-                    <div>
-                        I give consent for Jacob’s Ladder to provide my child with Therapy services. I consent to care and treatment falling under the practice guideline of the American Counseling Association (ACA), American Therapeutic Recreation Association (ATRA), American Psychological Association (APA), American Music Therapy Association (AMTA), American Occupational Therapy Association (AOTA), American Physical Therapy Association (APTA), American Speech-Language-Hearing Association (ASHA), and the State of Georgia. I acknowledge that there is always a risk of injury with any therapy involving physical activities.
+                    <div className="closer-body-of-text">
+                        <div>
+                            -Therapists
+                        </div>
+                        <div>
+                            -Physicians
+                        </div>
+                        <div>
+                            -Schools
+                        </div>
                     </div>
                 </div>
             </div>
@@ -248,30 +240,30 @@ class ConsentAndMedicalRelease extends Component {
             <div>
                 <Header loggedIn = {true}/>
                 <div className="form-title">
-                    <div className = "row" >
+                    <Row >
                         <div className = "parent-top col-9">
-                            <h2>Consent and Medical Release Form</h2>
+                            <h2>Permission for Exchange of Information Form</h2>
                         </div>
-                    </div>
+                    </Row>
                 </div>
+
                 <div className={"frame p-4"} data-spy="scroll">
                     <div> {this.renderText()} </div>
                     <div> {this.renderFields()} </div>
                 </div>
 
                 <Row className={"p-2 justify-content-center"}>
-                        <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
-                            Save and Quit
-                        </Button>
+                    <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
+                        Save and Quit
+                    </Button>
 
-                        <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
-                            Submit
-                        </Button>
-
+                    <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
+                        Submit
+                    </Button>
                 </Row>
             </div>
         );
     };
 }
 
-export default ConsentAndMedicalRelease;
+export default PermissionExchangeInformation;

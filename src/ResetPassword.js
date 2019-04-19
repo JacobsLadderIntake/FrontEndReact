@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Button, FormFeedback, FormGroup, Input, Label} from "reactstrap";
 import './register.css';
+import Header from "./Header/Header";
 
 class ResetPassword extends Component {
     constructor(props) {
@@ -18,7 +19,8 @@ class ResetPassword extends Component {
     }
 
     goBack(event) {
-        window.location.reload()
+        event.preventDefault();
+        this.props.history.push("/");
     }
 
     handleChange(field, e) {
@@ -71,9 +73,12 @@ class ResetPassword extends Component {
     render() {
         return (
             <div className="confirmation-code-background">
-                <div className="reset-password-title">
+                <Header loggedIn = {false}/>
+                <br/>
+                <br/>
+                <br/>
+                <div className="registration-page-title">
                     <h1>Reset Password</h1>
-                    <h2></h2>
                 </div>
                 <div className={"confirmationCode"}>
                     <FormGroup>
