@@ -146,7 +146,7 @@ class EnrollmentProcess extends Component{
                                 <Input type="checkbox"
                                        ref="consentCheck"
                                        className="error"/>
-                                I hereby give release to complete a brain map as part of the Jacob’s Ladder initial evaluation process.
+                                By signing, I acknowledge that I am aware and understand the enrollment process and financial responsibilities.
                             </Label>
                         </Col>
 

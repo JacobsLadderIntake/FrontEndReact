@@ -29,12 +29,20 @@ class Login extends Component {
         };
         this.handleLogin = this.handleLogin.bind(this);
         this.handleForgotPassword = this.handleForgotPassword.bind(this);
+        this.handleRegister = this.handleRegister.bind(this);
     }
 
     infoObj = {email:"", password:""};
 
     handleLogin(e) {
         e.preventDefault();
+        /*if(this.validate(email, password) && this.isAdmin()) {
+            this.props.history.push("/adminhome");
+        } else if (this.validate()){
+
+        } else {
+            return
+        }*/ // not quite how login works
         this.setState({loginButtonPressed:true})
         this.infoObj.password = ReactDOM.findDOMNode(this.password).value;
         this.infoObj.email = ReactDOM.findDOMNode(this.email).value;
@@ -44,6 +52,11 @@ class Login extends Component {
     handleForgotPassword(e) {
         e.preventDefault();
         this.props.history.push("/resetpassword");
+    }
+
+    handleRegister(e) {
+        e.preventDefault();
+        this.props.history.push("/register");
     }
 
     handleChange(field, e) {
@@ -91,6 +104,11 @@ class Login extends Component {
         let errors = {};
         let formIsValid = true;
         if(this.state.loginButtonPressed) {
+            /*if (email !== this.state.email && password !== this.state.password ) {
+                errors["email"] = "Email or password is incorrect";
+                errors["password"] = "Email or password is incorrect";
+                formIsValid = false;
+            }*/ // not quite how login works
             if (!fields["email"]) {
                 formIsValid = false;
                 errors["email"] = "Cannot be empty";
@@ -136,13 +154,17 @@ class Login extends Component {
                         invalid={this.state.errors["password"]}/>
                     <FormFeedback invalid = {this.state.errors["password"]}>{this.state.errors["password"]}</FormFeedback>
                 </FormGroup>
-                <div className={"p-2 justify-content-center"} onClick = {this.handleForgotPassword} style = {{fontWeight: 'bold'}}>
-                    Forgot password? Click here.
-                    </div>
                 <div className="button-div">
                     <Button onClick={this.validForm}
                             color="success"
                             type="submit"> Login </Button>
+                </div>
+                <br/>
+                <div className={"p-2 justify-content-center"} onClick = {this.handleForgotPassword} style = {{color: 'blue', textDecoration: 'underline'}}>
+                    Forgot password? Click here to reset.
+                    </div>
+                <div className={"p-2 justify-content-center"} onClick = {this.handleRegister} style = {{color: 'blue', textDecoration: 'underline'}}>
+                    Not registered? Click here to create an account.
                 </div>
             </div>
         </form>

@@ -39,21 +39,25 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'gender'
             }],
             siblingData: [{
-                name: <input type="text" name="sib1Name"/>,
-                age: <input type="text" name="sib1Age"/>,
-                gender: <input type="text" name="sib1Gender"/>,
+                name: <input type="text" name="sib1Name" className={"tableInputField"}/>,
+                age: <input type="text" name="sib1Age" className={"tableInputField"}/>,
+                gender: <input type="text" name="sib1Gender"className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib2Name"/>,
-                age: <input type="text" name="sib2Age"/>,
-                gender: <input type="text" name="sib2Gender"/>,
+                name: <input type="text" name="sib2Name"className={"tableInputField"}/>,
+                age: <input type="text" name="sib2Age"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib2Gender"className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib3Name"/>,
-                age: <input type="text" name="sib3Age"/>,
-                gender: <input type="text" name="sib3Gender"/>,
+                name: <input type="text" name="sib3Name"className={"tableInputField"}/>,
+                age: <input type="text" name="sib3Age"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib3Gender"className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib4Name"/>,
-                age: <input type="text" name="sib4Age"/>,
-                gender: <input type="text" name="sib4Gender"/>,
+                name: <input type="text" name="sib4Name"className={"tableInputField"}/>,
+                age: <input type="text" name="sib4Age"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib4Gender"className={"tableInputField"}/>,
+            }, {
+                name: <input type="text" name="sib5Name"className={"tableInputField"}/>,
+                age: <input type="text" name="sib5Age"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib5Gender"className={"tableInputField"}/>,
             }],
 
             devHistoryColumns: [{
@@ -66,14 +70,16 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Months',
                 accessor: 'devHistoryMonths'
             }, {
-                Header: 'Not Yet Developed',
+                Header: 'Developed?',
                 accessor: 'devHistoryNa'
             }],
             devHistoryData: [{
-                devHistoryActivity: 'Crawled on stomach',
+                devHistoryActivity:'Crawled on stomach',
                 devHistoryYears: <Input type="select"
                                         name="crawlYears"
-                                        id="crawlYears">
+                                        id="crawlYears"
+                                        onChange={this.handleChange.bind(this, "crawlYears")}
+                                        >
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -97,7 +103,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="crawlMonths"
-                                         id="crawlMonths">
+                                         id="crawlMonths"
+                                         onChange={this.handleChange.bind(this, "crawlMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -114,16 +121,20 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                            name="crawlNa"
-                           id="crawlNa">
+                           id="crawlNa"
+                                     onChange={this.handleChange.bind(this, "crawlNa")}
+                >
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Developed</option>
+                    <option>Unknown</option>
                 </Input>
             }, {
                 devHistoryActivity: 'Crept on hands and knees',
                 devHistoryYears: <Input type="select"
                                         name="creptYears"
-                                        id="creptYears">
+                                        id="creptYears"
+                                        onChange={this.handleChange.bind(this, "creptYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -147,7 +158,9 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                name="creptMonths"
-                               id="creptMonths">
+                               id="creptMonths"
+                                         onChange={this.handleChange.bind(this, "creptMonths")}
+                >
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -164,16 +177,19 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="creptNa"
-                                     id="creptNa">
+                                     id="creptNa"
+                                     onChange={this.handleChange.bind(this, "creptNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Developed</option>
+                    <option>Unknown</option>
                 </Input>
             }, {
                 devHistoryActivity: 'Walked',
                 devHistoryYears: <Input type="select"
                                         name="walkYears"
-                                        id="walkYears">
+                                        id="walkYears"
+                                        onChange={this.handleChange.bind(this, "walkYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -197,7 +213,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="walkMonths"
-                                         id="walkMonths">
+                                         id="walkMonths"
+                                         onChange={this.handleChange.bind(this, "walkMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -214,16 +231,21 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="walkNa"
-                                     id="walkNa">
+                                     id="walkNa"
+                                     onChange={this.handleChange.bind(this, "walkNa")}
+                >
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Toilet trained',
                 devHistoryYears: <Input type="select"
                                         name="toiletYears"
-                                        id="toiletYears">
+                                        id="toiletYears"
+                                        onChange={this.handleChange.bind(this, "toiletYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -247,7 +269,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="toiletMonths"
-                                         id="toiletMonths">
+                                         id="toiletMonths"
+                                         onChange={this.handleChange.bind(this, "toiletMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -264,16 +287,21 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="toiletNa"
-                                     id="toiletNa">
+                                     id="toiletNa"
+                                     onChange={this.handleChange.bind(this, "toiletNa")}
+                >
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'First word',
                 devHistoryYears: <Input type="select"
                                         name="wordYears"
-                                        id="wordYears">
+                                        id="wordYears"
+                                        onChange={this.handleChange.bind(this, "wordYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -297,7 +325,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="wordMonths"
-                                         id="wordMonths">
+                                         id="wordMonths"
+                                         onChange={this.handleChange.bind(this, "wordMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -314,16 +343,20 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="wordNa"
-                                     id="wordNa">
+                                     id="wordNa"
+                                     onChange={this.handleChange.bind(this, "wordNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Use of couplets (2 words together)',
                 devHistoryYears: <Input type="select"
                                         name="coupletYears"
-                                        id="coupletYears">
+                                        id="coupletYears"
+                                        onChange={this.handleChange.bind(this, "coupletYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -347,7 +380,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="coupletMonths"
-                                         id="coupletMonths">
+                                         id="coupletMonths"
+                                         onChange={this.handleChange.bind(this, "coupletMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -364,16 +398,19 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="coupletNa"
-                                     id="coupletNa">
+                                     id="coupletNa"
+                                     onChange={this.handleChange.bind(this, "coupletNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                        <option>Unknown</option>
                 </Input>
             }, {
                 devHistoryActivity: '3-4 word phrases',
                 devHistoryYears: <Input type="select"
                                         name="phraseYears"
-                                        id="phraseYears">
+                                        id="phraseYears"
+                                        onChange={this.handleChange.bind(this, "phraseYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -397,7 +434,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="phraseMonths"
-                                         id="phraseMonths">
+                                         id="phraseMonths"
+                                         onChange={this.handleChange.bind(this, "phraseMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -414,16 +452,20 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="phraseNa"
-                                     id="phraseNa">
+                                     id="phraseNa"
+                                     onChange={this.handleChange.bind(this, "phraseNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Sentences',
                 devHistoryYears: <Input type="select"
                                         name="sentenceYears"
-                                        id="sentenceYears">
+                                        id="sentenceYears"
+                                        onChange={this.handleChange.bind(this, "sentenceYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -447,7 +489,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="sentenceMonths"
-                                         id="sentenceMonths">
+                                         id="sentenceMonths"
+                                         onChange={this.handleChange.bind(this, "sentenceMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -464,16 +507,20 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="sentenceNa"
-                                     id="sentenceNa">
+                                     id="sentenceNa"
+                                     onChange={this.handleChange.bind(this, "sentenceNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Conversational language',
                 devHistoryYears: <Input type="select"
                                         name="conversationYears"
-                                        id="conversationYears">
+                                        id="conversationYears"
+                                        onChange={this.handleChange.bind(this, "conversationYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -497,7 +544,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="conversationMonths"
-                                         id="conversationMonths">
+                                         id="conversationMonths"
+                                         onChange={this.handleChange.bind(this, "conversationMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -514,16 +562,21 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="conversationNa"
-                                     id="conversationNa">
+                                     id="conversationNa"
+                                     onChange={this.handleChange.bind(this, "conversationNa")}
+                >
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }, {
                 devHistoryActivity: 'Reading',
                 devHistoryYears: <Input type="select"
                                         name="readYears"
-                                        id="readYears">
+                                        id="readYears"
+                                        onChange={this.handleChange.bind(this, "readYears")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -547,7 +600,8 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryMonths: <Input type="select"
                                          name="readMonths"
-                                         id="readMonths">
+                                         id="readMonths"
+                                         onChange={this.handleChange.bind(this, "readMonths")}>
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -564,10 +618,13 @@ class ClientHistoryAndInformation extends Component {
                 </Input>,
                 devHistoryNa: <Input type="select"
                                      name="readNa"
-                                     id="readNa">
+                                     id="readNa"
+                                     onChange={this.handleChange.bind(this, "readNa")}>
                     <option></option>
-                    <option>true</option>
-                    <option>false</option>
+                    <option>Yes</option>
+                    <option>Not Yet Developed</option>
+                    <option>Unknown</option>
+
                 </Input>
             }],
             otherDoctorsColumns: [{
@@ -580,30 +637,74 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Phone Number',
                 accessor: 'otherDrPhone'
             }, {
-                Header: 'Schedule of Service',
+                Header: 'Schedule of Service (Date and Time)',
                 accessor: 'otherDrSched'
             }],
             otherDoctorsData: [{
-                otherDrName: <input type="text" name="doc1Name"/>,
-                otherDrSpecialty: <input type="text" name="doc1Specialty"/>,
-                otherDrPhone: <input type="text" name="doc1Phone"/>,
-                otherDrSched: <input type="text" name="doc1Sched"/>
+                otherDrName: <input type="text" name="doc1Name" className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc1Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc1Phone"className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc1Sched"className={"tableInputField"}/>
             }, {
-                otherDrName: <input type="text" name="doc2Name"/>,
-                otherDrSpecialty: <input type="text" name="doc2Specialty"/>,
-                otherDrPhone: <input type="text" name="doc2Phone"/>,
-                otherDrSched: <input type="text" name="doc2Sched"/>
+                otherDrName: <input type="text" name="doc2Name"className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc2Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc2Phone" className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc2Sched"className={"tableInputField"}/>
             }, {
-                otherDrName: <input type="text" name="doc3Name"/>,
-                otherDrSpecialty: <input type="text" name="doc3Specialty"/>,
-                otherDrPhone: <input type="text" name="doc3Phone"/>,
-                otherDrSched: <input type="text" name="doc3Sched"/>
+                otherDrName: <input type="text" name="doc3Name"className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc3Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc3Phone"className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc3Sched"className={"tableInputField"}/>
             }, {
-                otherDrName: <input type="text" name="doc4Name"/>,
-                otherDrSpecialty: <input type="text" name="doc4Specialty"/>,
-                otherDrPhone: <input type="text" name="doc4Phone"/>,
-                otherDrSched: <input type="text" name="doc4Sched"/>
+                otherDrName: <input type="text" name="doc4Name"className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc4Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc4Phone"className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc4Sched"className={"tableInputField"}/>
+            }, {
+                otherDrName: <input type="text" name="doc5Name"className={"tableInputField"}/>,
+                otherDrSpecialty: <input type="text" name="doc5Specialty"className={"tableInputField"}/>,
+                otherDrPhone: <input type="text" name="doc5Phone"className={"tableInputField"}/>,
+                otherDrSched: <input type="text" name="doc5Sched"className={"tableInputField"}/>
             }],
+            otherSpecialistsColumns: [{
+            Header: 'Name',
+            accessor: 'specialDrName'
+        }, {
+            Header: 'Specialty',
+            accessor: 'specialDrSpecialty'
+        }, {
+            Header: 'Phone Number',
+            accessor: 'specialDrPhone'
+        }, {
+            Header: 'Diagnosis',
+            accessor: 'specialDrSched'
+        }],
+            specialDoctorsData: [{
+            specialDrName: <input type="text" name="specialDoc1Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc1Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc1Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc1Sched"className={"tableInputField"}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc2Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc2Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc2Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc2Sched"className={"tableInputField"}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc3Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc3Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc3Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc3Sched"className={"tableInputField"}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc4Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc4Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc4Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc4Sched"className={"tableInputField"}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc5Name" className={"tableInputField"}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc5Specialty"className={"tableInputField"}/>,
+            specialDrPhone: <input type="text" name="specialDoc5Phone"className={"tableInputField"}/>,
+            specialDrSched: <input type="text" name="specialDoc5Sched"className={"tableInputField"}/>
+        }],
             otherProgramsColumns: [{
                 Header: 'School/Program Name',
                 accessor: 'programName'
@@ -621,10 +722,10 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'contactPermission'
             }],
             otherProgramsData: [{
-                programName: <input type="text" name="program1name"/>,
-                startDate: <input type="date" name="startdate1"/>,
-                provider: <input type="text" name="provider1"/>,
-                programPhoneNumber: <input type="tel" name="phonenumber1"/>,
+                programName: <input type="text" name="program1name"className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate1"className={"tableInputField"}/>,
+                provider: <input type="text" name="provider1"className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber1"className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
                                           name="contactpermission1"
                                           id="contactpermission1">
@@ -633,10 +734,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                programName: <input type="text" name="program2name"/>,
-                startDate: <input type="date" name="startdate2"/>,
-                provider: <input type="text" name="provider2"/>,
-                programPhoneNumber: <input type="tel" name="phonenumber2"/>,
+                programName: <input type="text" name="program2name"className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate2"className={"tableInputField"}/>,
+                provider: <input type="text" name="provider2"className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber2"className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
                                           name="contactpermission2"
                                           id="contactpermission2">
@@ -645,10 +746,10 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                programName: <input type="text" name="program3name"/>,
-                startDate: <input type="date" name="startdate3"/>,
-                provider: <input type="text" name="provider3"/>,
-                programPhoneNumber: <input type="tel" name="phonenumber3"/>,
+                programName: <input type="text" name="program3name"className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate3"className={"tableInputField"}/>,
+                provider: <input type="text" name="provider3" className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber3" className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
                                           name="contactpermission3"
                                           id="contactpermission3">
@@ -657,13 +758,25 @@ class ClientHistoryAndInformation extends Component {
                     <option>No</option>
                 </Input>
             }, {
-                programName: <input type="text" name="program4name"/>,
-                startDate: <input type="date" name="startdate4"/>,
-                provider: <input type="text" name="provider4"/>,
-                programPhoneNumber: <input type="tel" name="phonenumber4"/>,
+                programName: <input type="text" name="program4name" className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate4" className={"tableInputField"}/>,
+                provider: <input type="text" name="provider4" className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber4" className={"tableInputField"}/>,
                 contactPermission: <Input type="select"
                                           name="contactpermission4"
                                           id="contactpermission4">
+                    <option></option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </Input>
+            }, {
+                programName: <input type="text" name="program5name" className={"tableInputField"}/>,
+                startDate: <input type="text" name="startdate5" className={"tableInputField"}/>,
+                provider: <input type="text" name="provider5" className={"tableInputField"}/>,
+                programPhoneNumber: <input type="tel" name="phonenumber5" className={"tableInputField"}/>,
+                contactPermission: <Input type="select"
+                                          name="contactpermission5"
+                                          id="contactpermission5">
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -673,7 +786,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Medical Condition',
                 accessor: 'medCondition'
             }, {
-                Header: 'Select Yes or No',
+                Header: ' ',
                 accessor: 'medConditionYN'
             }],
             medicalConditionsData: [{
@@ -726,14 +839,15 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Supplies/Equipment',
                 accessor: 'supplies'
             }, {
-                Header: 'Select Yes or No',
+                Header: '',
                 accessor: 'suppliesYN'
             }],
             suppliesData: [{
                 supplies: 'Braces/Splints',
                 suppliesYN: <Input type="select"
                                    name="brace"
-                                   id="brace">
+                                   id="brace"
+                                   onChange={this.handleChange.bind(this, "brace")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -742,7 +856,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Feeding Support & Supplies',
                 suppliesYN: <Input type="select"
                                    name="feedSupport"
-                                   id="feedSupport">
+                                   id="feedSupport"
+                                   onChange={this.handleChange.bind(this, "feedSupport")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -751,7 +866,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Toileting Equipment',
                 suppliesYN: <Input type="select"
                                    name="toiletEquip"
-                                   id="toiletEquip">
+                                   id="toiletEquip"
+                                   onChange={this.handleChange.bind(this, "toiletEquip")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -760,7 +876,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Mobility Equipment',
                 suppliesYN: <Input type="select"
                                    name="mobilityEquip"
-                                   id="mobilityEquip">
+                                   id="mobilityEquip"
+                                   onChange={this.handleChange.bind(this, "mobilityEquip")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -769,7 +886,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Communication Equipment',
                 suppliesYN: <Input type="select"
                                    name="communicationEquip"
-                                   id="communicationEquip">
+                                   id="communicationEquip"
+                                   onChange={this.handleChange.bind(this, "communicationEquip")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -778,7 +896,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Oxygen Tank',
                 suppliesYN: <Input type="select"
                                    name="oxygenTank"
-                                   id="oxygenTank">
+                                   id="oxygenTank"
+                                   onChange={this.handleChange.bind(this, "oxygenTank")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -787,7 +906,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Hearing Device',
                 suppliesYN: <Input type="select"
                                    name="hearingDevice"
-                                   id="hearingDevice">
+                                   id="hearingDevice"
+                                   onChange={this.handleChange.bind(this, "hearingDevice")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -796,7 +916,8 @@ class ClientHistoryAndInformation extends Component {
                 supplies: 'Other',
                 suppliesYN: <Input type="select"
                                    name="otherSupply"
-                                   id="otherSupply">
+                                   id="otherSupply"
+                                   onChange={this.handleChange.bind(this, "otherSupply")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -822,47 +943,47 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'medsSideEffects'
             }],
             medsData: [{
-                medsName: <input type="text" name="med1Name"/>,
-                medsDosage: <input type="text" name="med1Dosage"/>,
-                medsTimeGiven: <input type="text" name="med1TimeGiven"/>,
-                medsFrequency: <input type="text" name="med1Frequency"/>,
-                medsPurpose: <input type="text" name="med1Purpose"/>,
-                medsSideEffects: <input type="text" name="med1SideEffects"/>
+                medsName: <input type="text" name="med1Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med1Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med1TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med1Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med1Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med1SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med2Name"/>,
-                medsDosage: <input type="text" name="med2Dosage"/>,
-                medsTimeGiven: <input type="text" name="med2TimeGiven"/>,
-                medsFrequency: <input type="text" name="med2Frequency"/>,
-                medsPurpose: <input type="text" name="med2Purpose"/>,
-                medsSideEffects: <input type="text" name="med2SideEffects"/>
+                medsName: <input type="text" name="med2Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med2Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med2TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med2Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med2Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med2SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med3Name"/>,
-                medsDosage: <input type="text" name="med3Dosage"/>,
-                medsTimeGiven: <input type="text" name="med3TimeGiven"/>,
-                medsFrequency: <input type="text" name="med3Frequency"/>,
-                medsPurpose: <input type="text" name="med3Purpose"/>,
-                medsSideEffects: <input type="text" name="med3SideEffects"/>
+                medsName: <input type="text" name="med3Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med3Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med3TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med3Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med3Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med3SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med4Name"/>,
-                medsDosage: <input type="text" name="med4Dosage"/>,
-                medsTimeGiven: <input type="text" name="med4TimeGiven"/>,
-                medsFrequency: <input type="text" name="med4Frequency"/>,
-                medsPurpose: <input type="text" name="med4Purpose"/>,
-                medsSideEffects: <input type="text" name="med4SideEffects"/>
+                medsName: <input type="text" name="med4Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med4Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med4TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med4Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med4Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med4SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med5Name"/>,
-                medsDosage: <input type="text" name="med5Dosage"/>,
-                medsTimeGiven: <input type="text" name="med5TimeGiven"/>,
-                medsFrequency: <input type="text" name="med5Frequency"/>,
-                medsPurpose: <input type="text" name="med5Purpose"/>,
-                medsSideEffects: <input type="text" name="med5SideEffects"/>
+                medsName: <input type="text" name="med5Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med5Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med5TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"}/>
             }, {
-                medsName: <input type="text" name="med6Name"/>,
-                medsDosage: <input type="text" name="med6Dosage"/>,
-                medsTimeGiven: <input type="text" name="med6TimeGiven"/>,
-                medsFrequency: <input type="text" name="med6Frequency"/>,
-                medsPurpose: <input type="text" name="med6Purpose"/>,
-                medsSideEffects: <input type="text" name="med6SideEffects"/>
+                medsName: <input type="text" name="med6Name" className={"tableInputField"}/>,
+                medsDosage: <input type="text" name="med6Dosage" className={"tableInputField"}/>,
+                medsTimeGiven: <input type="text" name="med6TimeGiven" className={"tableInputField"}/>,
+                medsFrequency: <input type="text" name="med6Frequency" className={"tableInputField"}/>,
+                medsPurpose: <input type="text" name="med6Purpose" className={"tableInputField"}/>,
+                medsSideEffects: <input type="text" name="med6SideEffects" className={"tableInputField"}/>
             }],
             testingColumns: [{
                 Header: 'Date',
@@ -876,171 +997,132 @@ class ClientHistoryAndInformation extends Component {
             }, {
                 Header: 'Recommendations',
                 accessor: 'testReco'
-            }, {
-                Header: 'Report Included (Please select Yes or No',
-                accessor: 'testReport'
             }],
             testingData: [{
-                testDate: <input type="date" name="test1Date"/>,
-                testExaminer: <input type="text" name="test1Examiner"/>,
-                testDiagnosis: <input type="text" name="test1Diagnosis"/>,
-                testReco: <input type="text" name="test1Reco"/>,
-                testReport: <Input type="select"
-                                   name="test1Report"
-                                   id="test1Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+                testDate: <input type="text" name="test1Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test1Examiner"className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test1Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test1Reco" className={"tableInputField"}/>,
+
             }, {
-                testDate: <input type="date" name="test2Date"/>,
-                testExaminer: <input type="text" name="test2Examiner"/>,
-                testDiagnosis: <input type="text" name="test2Diagnosis"/>,
-                testReco: <input type="text" name="test2Reco"/>,
-                testReport: <Input type="select"
-                                   name="test2Report"
-                                   id="test2Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+                testDate: <input type="text" name="test2Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test2Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test2Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test2Reco" className={"tableInputField"}/>,
+
             }, {
-                testDate: <input type="date" name="test3Date"/>,
-                testExaminer: <input type="text" name="test3Examiner"/>,
-                testDiagnosis: <input type="text" name="test3Diagnosis"/>,
-                testReco: <input type="text" name="test3Reco"/>,
-                testReport: <Input type="select"
-                                   name="test3Report"
-                                   id="test3Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+                testDate: <input type="text" name="test3Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test3Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test3Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test3Reco" className={"tableInputField"}/>,
             }, {
-                testDate: <input type="date" name="test4Date"/>,
-                testExaminer: <input type="text" name="test4Examiner"/>,
-                testDiagnosis: <input type="text" name="test4Diagnosis"/>,
-                testReco: <input type="text" name="test4Reco"/>,
-                testReport: <Input type="select"
-                                   name="test4Report"
-                                   id="test4Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+                testDate: <input type="text" name="test4Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test4Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test4Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test4Reco" className={"tableInputField"}/>,
+
             }, {
-                testDate: <input type="date" name="test5Date"/>,
-                testExaminer: <input type="text" name="test5Examiner"/>,
-                testDiagnosis: <input type="text" name="test5Diagnosis"/>,
-                testReco: <input type="text" name="test5Reco"/>,
-                testReport: <Input type="select"
-                                   name="test5Report"
-                                   id="test5Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+                testDate: <input type="text" name="test5Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test5Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test5Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test5Reco" className={"tableInputField"}/>,
+
             }, {
-                testDate: <input type="date" name="test6Date"/>,
-                testExaminer: <input type="text" name="test6Examiner"/>,
-                testDiagnosis: <input type="text" name="test6Diagnosis"/>,
-                testReco: <input type="text" name="test6Reco"/>,
-                testReport: <Input type="select"
-                                   name="test6Report"
-                                   id="test6Report">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
+                testDate: <input type="text" name="test6Date" className={"tableInputField"}/>,
+                testExaminer: <input type="text" name="test6Examiner" className={"tableInputField"}/>,
+                testDiagnosis: <input type="text" name="test6Diagnosis" className={"tableInputField"}/>,
+                testReco: <input type="text" name="test6Reco" className={"tableInputField"}/>,
+                
             }],
             foodGroupColumns: [{
                 Header: 'Food Group',
                 accessor: 'foodGroup'
             }, {
-                Header: '',
+                Header: 'Excessive',
                 accessor: 'foodExcessive'
             }, {
-                Header: '',
+                Header: 'Daily',
                 accessor: 'foodDaily'
             }, {
-                Header: '',
+                Header: 'Weekly',
                 accessor: 'foodWeekly'
             }, {
-                Header: '',
+                Header: 'Rarely',
                 accessor: 'foodRarely'
             }, {
-                Header: '',
+                Header: 'Never',
                 accessor: 'foodNever'
             }],
             foodGroupData: [{
                 foodGroup: 'Vegetables',
-                foodExcessive: <Label check> <Input type="checkbox" name="vegetableExcess" id="vegetableExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="vegetableDaily" id="vegetableDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="vegetableRarely" id="vegetableRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="vegetableNever" id="vegetableNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableExcess" id="vegetableExcess" className={"checkbox-style"}/></div>,
+                foodDaily: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableDaily" id="vegetableDaily" className={"checkbox-style"}/></div>,
+                foodWeekly: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly" className={"checkbox-style"}/></div>,
+                foodRarely: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableRarely" id="vegetableRarely" className={"checkbox-style"}/></div>,
+                foodNever: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableNever" id="vegetableNever" className={"checkbox-style"}/></div>
             }, {
                 foodGroup: 'Fruits',
-                foodExcessive: <Label check> <Input type="checkbox" name="fruitExcess" id="fruitExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="fruitDaily" id="fruitDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="fruitRarely" id="fruitRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="fruitNever" id="fruitNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitExcess" id="fruitExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitDaily" id="fruitDaily"className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitRarely" id="fruitRarely"className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitNever" id="fruitNever"className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Meats',
-                foodExcessive: <Label check> <Input type="checkbox" name="meatExcess" id="meatExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="meatDaily" id="meatDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="meatWeekly" id="meatWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="meatRarely" id="meatRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="meatNever" id="meatNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatExcess" id="meatExcess" className={"checkbox-style"}/></div> ,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="meatDaily" id="meatDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatWeekly" id="meatWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatRarely" id="meatRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatNever" id="meatNever" className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Sugar',
-                foodExcessive: <Label check> <Input type="checkbox" name="sugarExcess" id="sugarExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="sugarDaily" id="sugarDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="sugarWeekly" id="sugarWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="sugarRarely" id="sugarRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="sugarNever" id="sugarNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarExcess" id="sugarExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarDaily" id="sugarDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarWeekly" id="sugarWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarRarely" id="sugarRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarNever" id="sugarNever" className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Artificial Sweetener',
-                foodExcessive: <Label check> <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever" className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Artificial Products',
-                foodExcessive: <Label check> <Input type="checkbox" name="artProductsExcess" id="artProductsExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="artProductsDaily" id="artProductsDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="artProductsNever" id="artProductsNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsExcess" id="artProductsExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsDaily" id="artProductsDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsNever" id="artProductsNever" className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'Dairy Products',
-                foodExcessive: <Label check> <Input type="checkbox" name="dairyExcess" id="dairyExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="dairyDaily" id="dairyDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="dairyRarely" id="dairyRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="dairyNever" id="dairyNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyExcess" id="dairyExcess" className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyDaily" id="dairyDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly:<div className={"checkbox-div"}> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyRarely" id="dairyRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="dairyNever" id="dairyNever"className={"checkbox-style"}/>  </div>
             }, {
                 foodGroup: 'White Flour',
-                foodExcessive: <Label check> <Input type="checkbox" name="flourExcess" id="flourExcess"/> Excessive </Label>,
-                foodDaily: <Label check> <Input type="checkbox" name="flourDaily" id="flourDaily"/> Daily </Label>,
-                foodWeekly: <Label check> <Input type="checkbox" name="flourWeekly" id="flourWeekly"/> Weekly </Label>,
-                foodRarely: <Label check> <Input type="checkbox" name="flourRarely" id="flourRarely"/> Rarely </Label>,
-                foodNever: <Label check> <Input type="checkbox" name="flourNever" id="flourNever"/> Never </Label>
+                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourExcess" id="flourExcess"className={"checkbox-style"}/>  </div>,
+                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="flourDaily" id="flourDaily" className={"checkbox-style"}/>  </div>,
+                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="flourWeekly" id="flourWeekly" className={"checkbox-style"}/>  </div>,
+                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourRarely" id="flourRarely" className={"checkbox-style"}/>  </div>,
+                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourNever" id="flourNever" className={"checkbox-style"}/>  </div>
             }],
             physicalMotorColumns: [{
                 Header: '',
                 accessor: 'physicalMotor'
             }, {
-                Header: 'Select Yes or No',
+                Header: '',
                 accessor: 'physicalMotorYN'
             }],
             physicalMotorData: [{
                 physicalMotor: 'Low muscle tone',
                 physicalMotorYN: <Input type="select"
                                         name="lowMuscleTone"
-                                        id="lowMuscleTone">
+                                        id="lowMuscleTone"
+                                        onChange={this.handleChange.bind(this, "lowMuscleTone")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1050,7 +1132,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'High muscle tone',
                 physicalMotorYN: <Input type="select"
                                         name="highMuscleTone"
-                                        id="highMuscleTone">
+                                        id="highMuscleTone"
+                                        onChange={this.handleChange.bind(this, "highMuscleTone")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1060,7 +1143,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Coordination challenges',
                 physicalMotorYN: <Input type="select"
                                         name="coordination"
-                                        id="coordination">
+                                        id="coordination"
+                                        onChange={this.handleChange.bind(this, "coordination")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1070,7 +1154,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Crawling challenges',
                 physicalMotorYN: <Input type="select"
                                         name="crawling"
-                                        id="crawling">
+                                        id="crawling"
+                                        onChange={this.handleChange.bind(this, "crawling")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1080,7 +1165,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Walking challenges',
                 physicalMotorYN: <Input type="select"
                                         name="walking"
-                                        id="walking">
+                                        id="walking"
+                                        onChange={this.handleChange.bind(this, "walking")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1090,7 +1176,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Running challenges',
                 physicalMotorYN: <Input type="select"
                                         name="running"
-                                        id="running">
+                                        id="running"
+                                        onChange={this.handleChange.bind(this, "running")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1100,7 +1187,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Athetoid movement',
                 physicalMotorYN: <Input type="select"
                                         name="athetoid"
-                                        id="athetoid">
+                                        id="athetoid"
+                                        onChange={this.handleChange.bind(this, "athetoid")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1110,7 +1198,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Ataxic',
                 physicalMotorYN: <Input type="select"
                                         name="ataxic"
-                                        id="ataxic">
+                                        id="ataxic"
+                                        onChange={this.handleChange.bind(this, "ataxic")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1120,7 +1209,8 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Weak',
                 physicalMotorYN: <Input type="select"
                                         name="weak"
-                                        id="weak">
+                                        id="weak"
+                                        onChange={this.handleChange.bind(this, "weak")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1130,20 +1220,12 @@ class ClientHistoryAndInformation extends Component {
                 physicalMotor: 'Balance challenges',
                 physicalMotorYN: <Input type="select"
                                         name="balance"
-                                        id="balance">
+                                        id="balance"
+                                        onChange={this.handleChange.bind(this, "balance")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
                     <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Other',
-                physicalMotorYN: <Input type="select"
-                                        name="otherPhysicalMotor"
-                                        id="otherPhysicalMotor">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
                 </Input>
             }],
             handPreferenceColumns: [{
@@ -1157,8 +1239,10 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Writing",
                 handPreference: <Input type="select"
                                        name="handPreference1"
-                                       id="handPreference1">
-                    <option>N/A</option>
+                                       id="handPreference1"
+                                       onChange={this.handleChange.bind(this, "handPreference1")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
@@ -1167,8 +1251,10 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Eating",
                 handPreference: <Input type="select"
                                        name="handPreference2"
-                                       id="handPreference2">
-                    <option>N/A</option>
+                                       id="handPreference2"
+                                       onChange={this.handleChange.bind(this, "handPreference2")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
@@ -1177,8 +1263,10 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Throwing",
                 handPreference: <Input type="select"
                                        name="handPreference3"
-                                       id="handPreference3">
-                    <option>N/A</option>
+                                       id="handPreference3"
+                                       onChange={this.handleChange.bind(this, "handPreference3")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
@@ -1187,8 +1275,10 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Brushing Teeth",
                 handPreference: <Input type="select"
                                        name="handPreference4"
-                                       id="handPreference4">
-                    <option>N/A</option>
+                                       id="handPreference4"
+                                       onChange={this.handleChange.bind(this, "handPreference4")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
@@ -1197,33 +1287,28 @@ class ClientHistoryAndInformation extends Component {
                 activityHandPreference: "Combing Hair",
                 handPreference: <Input type="select"
                                        name="handPreference5"
-                                       id="handPreference5">
-                    <option>N/A</option>
+                                       id="handPreference5"
+                                       onChange={this.handleChange.bind(this, "handPreference5")}>
+                    <option></option>
+                    <option>Unknown</option>
                     <option>Right</option>
                     <option>Left</option>
                     <option>Mixed</option>
                 </Input>
-            }, {
-                activityHandPreference: "Other",
-                handPreference: <Input type="text"
-                                       placeholder="If other, please explain"
-                                       name="handPreference6"
-                                       id="handPreference6">
-
-                </Input>
             }],
             skillsColumns: [{
-                Header: 'Skill',
+                Header: '',
                 accessor: 'skill'
             }, {
-                Header: 'Check all that apply',
+                Header: '',
                 accessor: 'checkApplied'
             }],
             skillsData: [{
                 skill: "Poor Pencil Grip",
                 checkApplied: <Input type="select"
                                      name="skill1"
-                                     id="skill1">
+                                     id="skill1"
+                                     onChange={this.handleChange.bind(this, "skill1")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1233,7 +1318,8 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Sloppy Writing",
                 checkApplied: <Input type="select"
                                      name="skill2"
-                                     id="skill2">
+                                     id="skill2"
+                                     onChange={this.handleChange.bind(this, "skill2")}>
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1243,7 +1329,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Letter Reversals",
                 checkApplied: <Input type="select"
                                      name="skill3"
-                                     id="skill3">
+                                     id="skill3"
+                                     onChange={this.handleChange.bind(this, "skill3")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1253,7 +1341,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Right/Left Confusion",
                 checkApplied: <Input type="select"
                                      name="skill4"
-                                     id="skill4">
+                                     id="skill4"
+                                     onChange={this.handleChange.bind(this, "skill4")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1263,7 +1353,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Poor reading ability",
                 checkApplied: <Input type="select"
                                      name="skill5"
-                                     id="skill5">
+                                     id="skill5"
+                                     onChange={this.handleChange.bind(this, "skill5")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1273,7 +1365,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Math Computation Challenges",
                 checkApplied: <Input type="select"
                                      name="skill6"
-                                     id="skill6">
+                                     id="skill6"
+                                     onChange={this.handleChange.bind(this, "skill6")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1283,7 +1377,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Math Concept Challenges",
                 checkApplied: <Input type="select"
                                      name="skill7"
-                                     id="skill7">
+                                     id="skill7"
+                                     onChange={this.handleChange.bind(this, "skill7")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1293,7 +1389,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Math Word Problem Challenges",
                 checkApplied: <Input type="select"
                                      name="skill8"
-                                     id="skill8">
+                                     id="skill8"
+                                     onChange={this.handleChange.bind(this, "skill8")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1303,7 +1401,9 @@ class ClientHistoryAndInformation extends Component {
                 skill: "Math Logic Challenges",
                 checkApplied: <Input type="select"
                                      name="skill9"
-                                     id="skill9">
+                                     id="skill9"
+                                     onChange={this.handleChange.bind(this, "skill9")}>
+                    >
                     <option></option>
                     <option>Yes</option>
                     <option>No</option>
@@ -1318,10 +1418,10 @@ class ClientHistoryAndInformation extends Component {
                 </Input>
             }],
             communicationProblemsColumns: [{
-                Header: 'Issue',
+                Header: 'Other Communication Issues',
                 accessor: 'communicationIssue'
             }, {
-                Header: 'Yes/No/Not Sure',
+                Header: '',
                 accessor: 'communicationResponse'
             }],
             communicationProblemsData: [{
@@ -1359,23 +1459,19 @@ class ClientHistoryAndInformation extends Component {
             }],
             level1GoalsColumns: [{
                 Header: 'Level of Completion',
-                accessor: 'goal1Category'
+                accessor: 'goal1Category',
             }, {
                 Header: '',
                 accessor: 'goal1NA',
-                width: 100
             }, {
                 Header: '',
                 accessor: 'goal1Physical',
-                width: 175
             }, {
                 Header: '',
                 accessor: 'goal1Verbal',
-                width: 175
             }, {
                 Header: '',
                 accessor: 'goal1Initiates',
-                width: 175
             }],
             level1GoalsData: [{
                 goal1Category: <div className={"sub-section"}>Attending Skills</div>,
@@ -1451,7 +1547,7 @@ class ClientHistoryAndInformation extends Component {
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1ReciprocateConversationInitiates" id="g1ReciprocateConversationInitiates"/> Initiates Independently </Label>
             }, {
                 goal1Category: 'Maintains conversation',
-                goal1NA: <Label check> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA"/> N/A </Label>,
+                goal1NA: <FormGroup> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA"/><Label check>  N/A </Label></FormGroup>,
                 goal1Physical: <Label check> <Input type="checkbox" name="g1MaintainConversationPhysical" id="g1MaintainConversationPhysical"/> Physical Prompt </Label>,
                 goal1Verbal: <Label check> <Input type="checkbox" name="g1MaintainConversationVerbal" id="g1MaintainConversationVerbal"/> Verbal Prompt </Label>,
                 goal1Initiates: <Label check> <Input type="checkbox" name="g1MaintainConversationInitiates" id="g1MaintainConversationInitiates"/> Initiates Independently </Label>
@@ -2261,7 +2357,9 @@ class ClientHistoryAndInformation extends Component {
             collapseCommunicationOther:false,
             physicalAssistance:false,
             verbalDirectives:false,
-            behavioralGoals:false
+            behavioralGoals:false,
+            epipen:false,
+            seizure:false
         };
 
         this.goBack = this.goBack.bind(this);
@@ -2271,35 +2369,29 @@ class ClientHistoryAndInformation extends Component {
     goBack(event) {
         window.location.reload();
     }
-
-    toggleVerbal() {
-        this.setState(state => ({collapseVerbal: !state.collapseVerbal}));
-    }
-
-    toggleCommunication() {
-        this.setState(state => ({collapseCommunication: !state.collapseCommunication}));
-    }
-
-    toggleCommunicationBinder() {
-        this.setState(state => ({collapseCommunicationBinder: !state.collapseCommunicationBinder}));
-    }
-    toggleCommunicationOther() {
-        this.setState(state => ({collapseCommunicationOther: !state.collapseCommunicationOther}));
-    }
-
-    toggleSignLanguage() {
-        this.setState(state => ({collapseSignLanguage: !state.collapseSignLanguage}));
-    }
-    togglePhysicalAssistance(){
+    togglePhysicalAssistance(field,e){
         this.setState(state=>({physicalAssistance:!state.physicalAssistance}));
+        this.handleChange(field,e);
     }
-    toggleVerbalDirectives(){
+    toggleVerbalDirectives(field,e){
         this.setState(state=>({verbalDirectives:!state.verbalDirectives}));
+        this.handleChange(field,e);
+
     }
     toggleBehavioralGoals(){
         this.setState(state=>({behavioralGoals: !state.behavioralGoals}));
     }
+    toggleCurrentEvents(field,e) {
+        this.setState(state=>({currentEvents: !state.currentEvents}));
+        this.handleChange(field,e);
 
+    }
+    toggleEpipen() {
+        this.setState(state=>({epipen: !state.epipen}));
+    }
+    toggleSeizures() {
+        this.setState(state=>({seizures: !state.seizures}));
+    }
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
@@ -2312,7 +2404,6 @@ class ClientHistoryAndInformation extends Component {
             console.log("greater")
             return true;
         } else {
-            console.log("nope")
             return false;
         }
     }
@@ -2333,11 +2424,12 @@ class ClientHistoryAndInformation extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
+        console.log(fields["crawlYears"])
 
         if (this.state.submitButtonPressed) {
             //SECTION ONE
-            if (!fields["dob"]) {
-                formIsValid = false;
+            if(!fields["dob"]) {
+                formIsValid =false;
                 errors["dob"] = "Cannot be empty";
             }
             if (!fields["age"]) {
@@ -2382,6 +2474,10 @@ class ClientHistoryAndInformation extends Component {
                 errors["homeNumber"] = "Cannot be empty";
             }
             //SECTION TWO
+            if (!fields["maritalStatus"]) {
+                formIsValid = false;
+                errors["maritalStatus"] = "Cannot be empty";
+            }
             if (!fields["motherName"]) {
                 formIsValid = false;
                 errors["motherName"] = "Cannot be empty";
@@ -2422,6 +2518,10 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["fatherOccupation"] = "Cannot be empty";
             }
+            if (!fields["isAdopted"]) {
+                formIsValid = false;
+                errors["isAdopted"] = "Cannot be empty";
+            }
             // Section 3
             if (!fields["birthWeek"]) {
                 formIsValid = false;
@@ -2431,9 +2531,286 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["birthWeight"] = "Cannot be empty";
             }
+            if (!fields["deliveryType"]) {
+                formIsValid = false;
+                errors["deliveryType"] = "Cannot be empty";
+            }
+            if (!fields["pregComplications"]) {
+                formIsValid = false;
+                errors["pregComplications"] = "Cannot be empty";
+            }
+            if (!fields["hospitalizedAfterBirth"]) {
+                formIsValid = false;
+                errors["hospitalizedAfterBirth"] = "Cannot be empty";
+            }
 
 
             //SECTION FOUR
+            if ((!fields["crawlYears"] || fields["crawlYears"] == 0) && (!fields["crawlMonths"] || fields["crawlMonths"] == 0) &&(fields["crawlNa"] == "Yes") || !fields["crawlNa"]){
+                document.getElementById("crawlYears").setAttribute("class", "form-control testing")
+                document.getElementById("crawlMonths").setAttribute("class", "form-control testing")
+                document.getElementById("crawlNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("crawlYears").setAttribute("class", "form-control")
+                document.getElementById("crawlMonths").setAttribute("class", "form-control")
+                document.getElementById("crawlNa").setAttribute("class", "form-control")
+
+            }
+            if ((!fields["creptYears"] || fields["creptYears"] == 0) && (!fields["creptMonths"] || fields["creptMonths"] == 0) &&(fields["creptNa"] == "Yes") || !fields["creptNa"]){
+                document.getElementById("creptYears").setAttribute("class", "form-control testing")
+                document.getElementById("creptMonths").setAttribute("class", "form-control testing")
+                document.getElementById("creptNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("creptYears").setAttribute("class", "form-control")
+                document.getElementById("creptMonths").setAttribute("class", "form-control")
+                document.getElementById("creptNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["walkYears"] || fields["walkYears"] == 0) && (!fields["walkMonths"] || fields["walkMonths"] == 0) &&(fields["walkNa"] == "Yes") || !fields["walkNa"]){
+                document.getElementById("walkYears").setAttribute("class", "form-control testing")
+                document.getElementById("walkMonths").setAttribute("class", "form-control testing")
+                document.getElementById("walkNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("walkYears").setAttribute("class", "form-control")
+                document.getElementById("walkMonths").setAttribute("class", "form-control")
+                document.getElementById("walkNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["toiletYears"] || fields["toiletYears"] == 0) && (!fields["toiletMonths"] || fields["toiletMonths"] == 0) &&(fields["toiletNa"] == "Yes") || !fields["toiletNa"]){
+                document.getElementById("toiletYears").setAttribute("class", "form-control testing")
+                document.getElementById("toiletMonths").setAttribute("class", "form-control testing")
+                document.getElementById("toiletNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("toiletYears").setAttribute("class", "form-control")
+                document.getElementById("toiletMonths").setAttribute("class", "form-control")
+                document.getElementById("toiletNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["wordYears"] || fields["wordYears"] == 0) && (!fields["wordMonths"] || fields["wordMonths"] == 0) &&(fields["wordNa"] == "Yes") || !fields["wordNa"]){
+                document.getElementById("wordYears").setAttribute("class", "form-control testing")
+                document.getElementById("wordMonths").setAttribute("class", "form-control testing")
+                document.getElementById("wordNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("wordYears").setAttribute("class", "form-control")
+                document.getElementById("wordMonths").setAttribute("class", "form-control")
+                document.getElementById("wordNa").setAttribute("class", "form-control")
+            }if ((!fields["coupletYears"] || fields["coupletYears"] == 0) && (!fields["coupletMonths"] || fields["coupletMonths"] == 0) &&(fields["coupletNa"] == "Yes") || !fields["coupletNa"]){
+                document.getElementById("coupletYears").setAttribute("class", "form-control testing")
+                document.getElementById("coupletMonths").setAttribute("class", "form-control testing")
+                document.getElementById("coupletNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("coupletYears").setAttribute("class", "form-control")
+                document.getElementById("coupletMonths").setAttribute("class", "form-control")
+                document.getElementById("coupletNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["phraseYears"] || fields["phraseYears"] == 0) && (!fields["phraseMonths"] || fields["phraseMonths"] == 0) &&(fields["phraseNa"] == "Yes") || !fields["phraseNa"]){
+                document.getElementById("phraseYears").setAttribute("class", "form-control testing")
+                document.getElementById("phraseMonths").setAttribute("class", "form-control testing")
+                document.getElementById("phraseNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("phraseYears").setAttribute("class", "form-control")
+                document.getElementById("phraseMonths").setAttribute("class", "form-control")
+                document.getElementById("phraseNa").setAttribute("class", "form-control")
+            }
+            if ((!fields["sentenceYears"] || fields["sentenceYears"] == 0) && (!fields["sentenceMonths"] || fields["sentenceMonths"] == 0) &&(fields["sentenceNa"] == "Yes") || !fields["sentenceNa"]){
+                document.getElementById("sentenceYears").setAttribute("class", "form-control testing")
+                document.getElementById("sentenceMonths").setAttribute("class", "form-control testing")
+                document.getElementById("sentenceNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("sentenceYears").setAttribute("class", "form-control")
+                document.getElementById("sentenceMonths").setAttribute("class", "form-control")
+                document.getElementById("sentenceNa").setAttribute("class", "form-control")
+            }if ((!fields["conversationYears"] || fields["conversationYears"] == 0) && (!fields["conversationMonths"] || fields["conversationMonths"] == 0) &&(fields["conversationNa"] == "Yes") || !fields["conversationNa"]){
+                document.getElementById("conversationYears").setAttribute("class", "form-control testing")
+                document.getElementById("conversationMonths").setAttribute("class", "form-control testing")
+                document.getElementById("conversationNa").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("conversationYears").setAttribute("class", "form-control")
+                document.getElementById("conversationMonths").setAttribute("class", "form-control")
+                document.getElementById("conversationNa").setAttribute("class", "form-control")
+            }
+            //SECTION FIVE
+            if (!fields["outsideTherapy"]){
+                document.getElementById("outsideTherapy").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("outsideTherapy").setAttribute("class", "form-control")
+            }
+            if (!fields["brace"]){
+                document.getElementById("brace").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("brace").setAttribute("class", "form-control")
+            }
+            if (!fields["feedSupport"]){
+                document.getElementById("feedSupport").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("feedSupport").setAttribute("class", "form-control")
+            }
+            if (!fields["toiletEquip"]){
+                document.getElementById("toiletEquip").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("toiletEquip").setAttribute("class", "form-control")
+            }
+            if (!fields["mobilityEquip"]){
+                document.getElementById("mobilityEquip").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("mobilityEquip").setAttribute("class", "form-control")
+            }
+            if (!fields["communicationEquip"]){
+                document.getElementById("communicationEquip").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("communicationEquip").setAttribute("class", "form-control")
+            }
+            if (!fields["oxygenTank"]){
+                document.getElementById("oxygenTank").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("oxygenTank").setAttribute("class", "form-control")
+            }
+            if (!fields["hearingDevice"]){
+                document.getElementById("hearingDevice").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("hearingDevice").setAttribute("class", "form-control")
+            }
+            if (!fields["otherSupply"]){
+                document.getElementById("otherSupply").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("otherSupply").setAttribute("class", "form-control")
+            }
+            // SECTION SIX
+            if (!fields["lowMuscleTone"]){
+                document.getElementById("lowMuscleTone").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("lowMuscleTone").setAttribute("class", "form-control")
+            }
+            if (!fields["highMuscleTone"]){
+                document.getElementById("highMuscleTone").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("highMuscleTone").setAttribute("class", "form-control")
+            }
+            if (!fields["coordination"]){
+                document.getElementById("coordination").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("coordination").setAttribute("class", "form-control")
+            }
+            if (!fields["crawling"]){
+                document.getElementById("crawling").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("crawling").setAttribute("class", "form-control")
+            }
+            if (!fields["walking"]){
+                document.getElementById("walking").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("walking").setAttribute("class", "form-control")
+            }
+            if (!fields["running"]){
+                document.getElementById("running").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("running").setAttribute("class", "form-control")
+            }
+            if (!fields["athetoid"]){
+                document.getElementById("athetoid").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("athetoid").setAttribute("class", "form-control")
+            }
+            if (!fields["ataxic"]){
+                document.getElementById("ataxic").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("ataxic").setAttribute("class", "form-control")
+            }
+            if (!fields["weak"]){
+                document.getElementById("weak").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("weak").setAttribute("class", "form-control")
+            }
+            if (!fields["balance"]){
+                document.getElementById("balance").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("balance").setAttribute("class", "form-control")
+            }
+            //SECTION 5
+            if (!fields["drName"]) {
+                formIsValid = false;
+                errors["drName"] = "Cannot be empty";
+            }
+            if (!fields["drPhone"]) {
+                formIsValid = false;
+                errors["drPhone"] = "Cannot be empty";
+            }
+            if (!fields["drStreet"]) {
+                formIsValid = false;
+                errors["drStreet"] = "Cannot be empty";
+            }
+            if (!fields["drCity"]) {
+                formIsValid = false;
+                errors["drCity"] = "Cannot be empty";
+            }
+            if (!fields["drState"]) {
+                formIsValid = false;
+                errors["drState"] = "Cannot be empty";
+            }
+            if (!fields["drCountry"]) {
+                formIsValid = false;
+                errors["drCountry"] = "Cannot be empty";
+            }
+            if (!fields["drZip"]) {
+                formIsValid = false;
+                errors["drZip"] = "Cannot be empty";
+            }
+            if (!fields["hospital"]) {
+                formIsValid = false;
+                errors["hospital"] = "Cannot be empty";
+            }
+            //SECTION 6
+            if (!fields["diet"]) {
+                formIsValid = false;
+                errors["diet"] = "Cannot be empty";
+            }
+            if (!fields["allergies"]){
+                document.getElementById("allergies").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("allergies").setAttribute("class", "form-control")
+            }
+            if (!fields["breakfastTime"]) {
+                formIsValid = false;
+                errors["breakfastTime"] = "Cannot be empty";
+            }
+            if (!fields["lunchTime"]) {
+                formIsValid = false;
+                errors["lunchTime"] = "Cannot be empty";
+            }
+            if (!fields["dinnerTime"]) {
+                formIsValid = false;
+                errors["dinnerTime"] = "Cannot be empty";
+            }
+            if (!fields["snackTime"]) {
+                formIsValid = false;
+                errors["snackTime"] = "Cannot be empty";
+            }
+            if (!fields["hoursOfSleep"]) {
+                formIsValid = false;
+                errors["hoursOfSleep"] = "Cannot be empty";
+            }
+            if (!fields["bedTime"]) {
+                formIsValid = false;
+                errors["bedTime"] = "Cannot be empty";
+            }
+            if (!fields["wakeTime"]) {
+                formIsValid = false;
+                errors["wakeTime"] = "Cannot be empty";
+            }
+            if (!fields["troubleStayingAsleep"]){
+                document.getElementById("troubleStayingAsleep").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("troubleStayingAsleep").setAttribute("class", "form-control")
+            }
+            if (!fields["troubleFallingAsleep"]){
+                document.getElementById("troubleFallingAsleep").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("troubleFallingAsleep").setAttribute("class", "form-control")
+            }
+            if (!fields["wakesEarly"]){
+                document.getElementById("wakesEarly").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("wakesEarly").setAttribute("class", "form-control")
+            }
+
+
 
             //SECTION SEVEN
             if (!fields["educationalChallenges"]) {
@@ -2452,6 +2829,81 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["skill1"] = "Cannot be empty";
             }
+            if (!fields["handPreference1"]){
+                document.getElementById("handPreference1").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference1").setAttribute("class", "form-control")
+            }
+            if (!fields["handPreference2"]){
+                document.getElementById("handPreference2").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference2").setAttribute("class", "form-control")
+            }
+            if (!fields["handPreference3"]){
+                document.getElementById("handPreference3").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference3").setAttribute("class", "form-control")
+            }
+            if (!fields["handPreference4"]){
+                document.getElementById("handPreference4").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference4").setAttribute("class", "form-control")
+            }
+            if (!fields["handPreference5"]){
+                document.getElementById("handPreference5").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("handPreference5").setAttribute("class", "form-control")
+            }
+            if (!fields["iepPlan"]){
+                document.getElementById("iepPlan").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("iepPlan").setAttribute("class", "form-control")
+            }
+            if (!fields["skill1"]){
+                document.getElementById("skill1").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill1").setAttribute("class", "form-control")
+            }
+            if (!fields["skill2"]){
+                document.getElementById("skill2").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill2").setAttribute("class", "form-control")
+            }
+            if (!fields["skill3"]){
+                document.getElementById("skill3").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill3").setAttribute("class", "form-control")
+            }
+            if (!fields["skill4"]){
+                document.getElementById("skill4").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill4").setAttribute("class", "form-control")
+            }
+            if (!fields["skill5"]){
+                document.getElementById("skill5").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill5").setAttribute("class", "form-control")
+            }
+            if (!fields["skill6"]){
+                document.getElementById("skill6").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill6").setAttribute("class", "form-control")
+            }
+            if (!fields["skill7"]){
+                document.getElementById("skill7").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill7").setAttribute("class", "form-control")
+            }
+            if (!fields["skill8"]){
+                document.getElementById("skill8").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill8").setAttribute("class", "form-control")
+            }
+            if (!fields["skill9"]){
+                document.getElementById("skill9").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("skill9").setAttribute("class", "form-control")
+            }
             //SECTION 9
             if (!fields["soothing"]) {
                 formIsValid = false;
@@ -2464,6 +2916,158 @@ class ClientHistoryAndInformation extends Component {
             if (!fields["positiveBehavior"]) {
                 formIsValid = false;
                 errors["positiveBehavior"] = "Cannot be empty";
+            }
+            //SECTION NINE
+            if (!fields["schoolConcentration"]){
+                document.getElementById("schoolConcentration").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("schoolConcentration").setAttribute("class", "form-control")
+            }
+            if (!fields["socialAnxiety"]){
+                document.getElementById("socialAnxiety").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("socialAnxiety").setAttribute("class", "form-control")
+            }
+            if (!fields["lowGrades"]){
+                document.getElementById("lowGrades").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("lowGrades").setAttribute("class", "form-control")
+            }
+            if (!fields["makingFriends"]){
+                document.getElementById("makingFriends").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("makingFriends").setAttribute("class", "form-control")
+            }
+            if (!fields["oppositionalBehavior"]){
+                document.getElementById("oppositionalBehavior").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("oppositionalBehavior").setAttribute("class", "form-control")
+            }
+            if (!fields["sociallyIsolated"]){
+                document.getElementById("sociallyIsolated").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("sociallyIsolated").setAttribute("class", "form-control")
+            }
+            if (!fields["agressiveBehavior"]){
+                document.getElementById("aggressiveBehavior").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("aggressiveBehavior").setAttribute("class", "form-control")
+            }
+            if (!fields["stressFamily"]){
+                document.getElementById("stressFamily").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("stressFamily").setAttribute("class", "form-control")
+            }
+            if (!fields["generalizedAnxiety"]){
+                document.getElementById("generalizedAnxiety").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("generalizedAnxiety").setAttribute("class", "form-control")
+            }
+            if (!fields["phobias"]){
+                document.getElementById("phobias").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("phobias").setAttribute("class", "form-control")
+            }
+            if (!fields["temperProblem"]){
+                document.getElementById("temperProblem").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("temperProblem").setAttribute("class", "form-control")
+            }
+            if (!fields["hyperactive"]){
+                document.getElementById("hyperactive").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("hyperactive").setAttribute("class", "form-control")
+            }
+            if (!fields["sensoryProblems"]){
+                document.getElementById("sensoryProblems").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("sensoryProblems").setAttribute("class", "form-control")
+            }
+            if (!fields["problemsEating"]){
+                document.getElementById("problemsEating").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("problemsEating").setAttribute("class", "form-control")
+            }
+            if (!fields["wettingAccidents"]){
+                document.getElementById("wettingAccidents").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("wettingAccidents").setAttribute("class", "form-control")
+            }
+            if (!fields["vocalTics"]){
+                document.getElementById("vocalTics").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("vocalTics").setAttribute("class", "form-control")
+            }
+            if (!fields["wakingUp"]){
+                document.getElementById("wakingUp").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("wakingUp").setAttribute("class", "form-control")
+            }
+            if (!fields["nightmares"]){
+                document.getElementById("nightmares").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("nightmares").setAttribute("class", "form-control")
+            }
+            if (!fields["problemsSleeping"]){
+                document.getElementById("problemsSleeping").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("problemsSleeping").setAttribute("class", "form-control")
+            }
+            if (!fields["tiredness"]){
+                document.getElementById("tiredness").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("tiredness").setAttribute("class", "form-control")
+            }
+            if (!fields["sadness"]){
+                document.getElementById("sadness").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("sadness").setAttribute("class", "form-control")
+            }
+            if (!fields["impulsive"]){
+                document.getElementById("impulsive").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("impulsive").setAttribute("class", "form-control")
+            }
+            if (!fields["npncompliant"]){
+                document.getElementById("noncompliant").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("noncompliant").setAttribute("class", "form-control")
+            }
+            if (!fields["injuryBehavior"]){
+                document.getElementById("injuryBehavior").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("injuryBehavior").setAttribute("class", "form-control")
+            }
+            if (!fields["darting"]){
+                document.getElementById("darting").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("darting").setAttribute("class", "form-control")
+            }
+            if (!fields["abuse"]){
+                document.getElementById("abuse").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("abuse").setAttribute("class", "form-control")
+            }
+            if (!fields["rigid"]){
+                document.getElementById("rigid").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("rigid").setAttribute("class", "form-control")
+            }
+
+            if (!fields["physicalAssistanceYes"] && !fields["physicalAssistanceNo"]){
+                document.getElementById("physicalAssistanceQuestion").setAttribute("class", "control-label required error")
+            } else {
+                document.getElementById("physicalAssistanceQuestion").setAttribute("class", "control-label required")
+            }
+            if (!fields["verbalDirectivesYes"] && !fields["verbalDirectivesNo"]){
+                document.getElementById("verbalDirectivesQuestion").setAttribute("class", "control-label required error")
+            } else {
+                document.getElementById("verbalDirectivesQuestion").setAttribute("class", "control-label required")
+            }
+            if (!fields["currentEventsYes"] && !fields["currentEventsNo"]){
+                document.getElementById("currentEventsQuestion").setAttribute("class", "control-label required error")
+            } else {
+                document.getElementById("currentEventsQuestion").setAttribute("class", "control-label required")
             }
             //SECTION 10
             if (!fields["morning"]) {
@@ -2616,11 +3220,32 @@ class ClientHistoryAndInformation extends Component {
         this.props.history.push("/parenthome")
     }
 
+    renderNavbar() {
+        return (
+            <div data-spy="scroll" id="list-example" className="list-group frame">
+                <a class="list-group-item list-group-item-action" href="#section1">Section 1: Client Information</a>
+                <a class="list-group-item list-group-item-action" href="#section2">Section 2: Family Information</a>
+                <a class="list-group-item list-group-item-action" href="#section3">Section 3: Prenatal and Birth History</a>
+                <a class="list-group-item list-group-item-action" href="#section4">Section 4: Developmental History</a>
+                <a class="list-group-item list-group-item-action" href="#section5">Section 5: Medical History/Past Therapies</a>
+                <a class="list-group-item list-group-item-action" href="#section6">Section 6: General Health</a>
+                <a class="list-group-item list-group-item-action" href="#section7">Section 7: Educational History</a>
+                <a class="list-group-item list-group-item-action" href="#section8">Section 8: Communication</a>
+                <a class="list-group-item list-group-item-action" href="#section9">Section 9: Emotional/Behavioral History</a>
+                <a class="list-group-item list-group-item-action" href="#section10">Section 10: Current Schedule and Typical Day</a>
+                <a class="list-group-item list-group-item-action" href="#section11">Section 11: Independent Skills</a>
+                <a class="list-group-item list-group-item-action" href="#section12">Section 12: Additional Information for Evaluation Day</a>
+                <a class="list-group-item list-group-item-action" href="#section13">Section 13: Goals and Additional Information</a>
+                <a class="list-group-item list-group-item-action" href="#section14">Section 14: Signature</a>
+            </div>
+        )
+    }
+
     renderSection1() {
         return (
-            <fieldset>
+            <fieldset id="section1">
                 <div className={"section"}>Section 1: Client Information</div>
-                <Row>
+                <Row >
                     <Col sm={3}>
                         <FormGroup>
                             <Label className="control-label required">Date of Birth</Label>
@@ -2655,13 +3280,12 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Referring Diagnosis</Label>
+                            <Label className="control-label required ">Referring Diagnosis</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="diagnosis"
                                 value={this.state.fields["diagnosis"] || ""}
                                 onChange={this.handleChange.bind(this, "diagnosis")}
-                                className="error"
                                 invalid={this.state.errors["diagnosis"] != null}/>
                             <FormFeedback
                                 invalid={this.state.errors["diagnosis"]}>{this.state.errors["diagnosis"]}
@@ -2808,7 +3432,7 @@ class ClientHistoryAndInformation extends Component {
                                 Any additional notes or comments about Section 1: Client Information?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="section1Comments"
                                 value={this.state.fields["section1Comments"] || ""}
                                 onChange={this.handleChange.bind(this, "section1Comments")}/>
@@ -2823,334 +3447,27 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection2() {
         return (
-            <fieldset>
+            <fieldset id="section2">
                 <div className={"section"}>Section 2: Family Information</div>
-                <div className={"sub-section"}>Mother's Information</div>
-                <Row>
-                    <Col sm={9}>
-                        <FormGroup>
-                            <Label className="control-label required">Mother's Name</Label>
-                            <Input
-                                type="text"
-                                ref="motherName"
-                                value={this.state.fields["motherName"] || ""}
-                                onChange={this.handleChange.bind(this, "motherName")}
-                                className="error"
-                                invalid={this.state.errors["motherName"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["motherName"]}>{this.state.errors["motherName"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={3}>
-                        <FormGroup>
-                            <Label className="control-label required">Mother's Age</Label>
-                            <Input
-                                type="text"
-                                ref="motherAge"
-                                value={this.state.fields["motherAge"] || ""}
-                                onChange={this.handleChange.bind(this, "motherAge")}
-                                className="error"
-                                invalid={this.state.errors["motherAge"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["motherAge"]}>{this.state.errors["motherAge"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
-                        <FormGroup>
-                            <Label className="control-label required">Mother's Cell Phone #</Label>
-                            <Input
-                                type="text"
-                                ref="motherCell"
-                                value={this.state.fields["motherCell"] || ""}
-                                onChange={this.handleChange.bind(this, "motherCell")}
-                                className="error"
-                                invalid={this.state.errors["motherCell"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["motherCell"]}>{this.state.errors["motherCell"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={8}>
-                        <FormGroup>
-                            <Label className="control-label required">Mother's Email</Label>
-                            <Input
-                                type="text"
-                                ref="motherEmail"
-                                value={this.state.fields["motherEmail"] || ""}
-                                onChange={this.handleChange.bind(this, "motherEmail")}
-                                className="error"
-                                invalid={this.state.errors["motherEmail"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["motherEmail"]}>{this.state.errors["motherEmail"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                            <Label className="control-label required">Mother's Occupation</Label>
-                            <Input
-                                type="text"
-                                ref="motherOccupation"
-                                value={this.state.fields["motherOccupation"] || ""}
-                                onChange={this.handleChange.bind(this, "motherOccupation")}
-                                className="error"
-                                invalid={this.state.errors["motherOccupation"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["motherOccupation"]}>{this.state.errors["motherOccupation"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                </Row>
-
-                <div className={"sub-section"}>Father's Information</div>
-                <Row>
-                    <Col sm={9}>
-                        <FormGroup>
-                            <Label className="control-label required">Father's Name</Label>
-                            <Input
-                                type="text"
-                                ref="fatherName"
-                                value={this.state.fields["fatherName"] || ""}
-                                onChange={this.handleChange.bind(this, "fatherName")}
-                                className="error"
-                                invalid={this.state.errors["fatherName"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["fatherName"]}>{this.state.errors["fatherName"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={3}>
-                        <FormGroup>
-                            <Label className="control-label required">Father's Age</Label>
-                            <Input
-                                type="text"
-                                ref="fatherAge"
-                                value={this.state.fields["fatherAge"] || ""}
-                                onChange={this.handleChange.bind(this, "fatherAge")}
-                                className="error"
-                                invalid={this.state.errors["fatherAge"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["fatherAge"]}>{this.state.errors["fatherAge"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
-                        <FormGroup>
-                            <Label className="control-label required">Father's Cell Phone #</Label>
-                            <Input
-                                type="text"
-                                ref="fatherCell"
-                                value={this.state.fields["fatherCell"] || ""}
-                                onChange={this.handleChange.bind(this, "fatherCell")}
-                                className="error"
-                                invalid={this.state.errors["fatherCell"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["fatherCell"]}>{this.state.errors["fatherCell"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={8}>
-                        <FormGroup>
-                            <Label className="control-label required">Father's Email</Label>
-                            <Input
-                                type="text"
-                                ref="fatherEmail"
-                                value={this.state.fields["fatherEmail"] || ""}
-                                onChange={this.handleChange.bind(this, "fatherEmail")}
-                                className="error"
-                                invalid={this.state.errors["fatherEmail"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["fatherEmail"]}>{this.state.errors["fatherEmail"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                            <Label className="control-label required">Father's Occupation</Label>
-                            <Input
-                                type="text"
-                                ref="fatherOccupation"
-                                value={this.state.fields["fatherOccupation"] || ""}
-                                onChange={this.handleChange.bind(this, "fatherOccupation")}
-                                className="error"
-                                invalid={this.state.errors["fatherOccupation"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["fatherOccupation"]}>{this.state.errors["fatherOccupation"]}
-                            </FormFeedback>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={3}>
-                        <FormGroup>
-                            <Label className="control-label required pr-2">Marital Status</Label>
-                            <Input type="select"
-                                   name="maritalStatus"
-                                   id="maritalStatus">
-                                <option></option>
-                                <option>Single</option>
-                                <option>Married</option>
-                                <option>Divorced</option>
-                                <option>Separated</option>
-                                <option>Widowed</option>
-                            </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}*/}
-                            {/*</FormFeedback>*/}
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                            <Label className={"pt-3"}>If Divorced or Separated, who is the legal guardian?</Label>
-                            <Input type="text"
-                                   ref="legalGuardian"
-                                   value={this.state.fields["legalGuardian"] || ""}
-                                   onChange={this.handleChange.bind(this, "legalGuardian")}/>
-                        </FormGroup>
-                    </Col>
-                </Row>
-
-                <div className={"sub-section"}>Step Mother's Information (if applicable)</div>
-                <Row>
-                    <Col sm={9}>
-                        <FormGroup>
-                            <Label>Step Mother's Name</Label>
-                            <Input
-                                type="text"
-                                ref="sMotherName"
-                                value={this.state.fields["sMotherName"] || ""}
-                                onChange={this.handleChange.bind(this, "sMotherName")}/>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={3}>
-                        <FormGroup>
-                            <Label>Step Mother's Age</Label>
-                            <Input
-                                type="text"
-                                ref="sMotherAge"
-                                value={this.state.fields["sMotherAge"] || ""}
-                                onChange={this.handleChange.bind(this, "sMotherAge")}/>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
-                        <FormGroup>
-                            <Label>Step Mother's Cell Phone #</Label>
-                            <Input
-                                type="text"
-                                ref="sMotherCell"
-                                value={this.state.fields["sMotherCell"] || ""}
-                                onChange={this.handleChange.bind(this, "sMotherCell")}/>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={8}>
-                        <FormGroup>
-                            <Label>Step Mother's Email</Label>
-                            <Input
-                                type="text"
-                                ref="sMotherEmail"
-                                value={this.state.fields["sMotherEmail"] || ""}
-                                onChange={this.handleChange.bind(this, "sMotherEmail")}/>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                            <Label>Step Mother's Occupation</Label>
-                            <Input
-                                type="text"
-                                ref="sMotherOccupation"
-                                value={this.state.fields["sMotherOccupation"] || ""}
-                                onChange={this.handleChange.bind(this, "sMotherOccupation")}/>
-                        </FormGroup>
-                    </Col>
-                </Row>
-
-                <div className={"sub-section"}>Step Father's Information (if applicable)</div>
-                <Row>
-                    <Col sm={9}>
-                        <FormGroup>
-                            <Label>Step Father's Name</Label>
-                            <Input
-                                type="text"
-                                ref="sFatherName"
-                                value={this.state.fields["sFatherName"] || ""}
-                                onChange={this.handleChange.bind(this, "sFatherName")}/>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={3}>
-                        <FormGroup>
-                            <Label>Step Father's Age</Label>
-                            <Input
-                                type="text"
-                                ref="sFatherAge"
-                                value={this.state.fields["sFatherAge"] || ""}
-                                onChange={this.handleChange.bind(this, "sFatherAge")}/>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
-                        <FormGroup>
-                            <Label>Step Father's Cell Phone #</Label>
-                            <Input
-                                type="text"
-                                ref="sFatherCell"
-                                value={this.state.fields["sFatherCell"] || ""}
-                                onChange={this.handleChange.bind(this, "sFatherCell")}/>
-                        </FormGroup>
-                    </Col>
-                    <Col sm={8}>
-                        <FormGroup>
-                            <Label>Step Father's Email</Label>
-                            <Input
-                                type="text"
-                                ref="sFatherEmail"
-                                value={this.state.fields["sFatherEmail"] || ""}
-                                onChange={this.handleChange.bind(this, "sFatherEmail")}/>
-                        </FormGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <FormGroup>
-                            <Label>Step Father's Occupation</Label>
-                            <Input
-                                type="text"
-                                ref="sFatherOccupation"
-                                value={this.state.fields["sFatherOccupation"] || ""}
-                                onChange={this.handleChange.bind(this, "sFatherOccupation")}/>
-                        </FormGroup>
-                    </Col>
-                </Row>
+                <div className={"sub-section"}>Student's Information</div>
                 <Row>
                     <Col sm={3}>
                         <FormGroup>
                             <Label className="control-label required pr-2">Is your child adopted?</Label>
                             <Input type="select"
                                    name="isAdopted"
-                                   id="isAdopted">
+                                   id="isAdopted"
+                                   ref = "isAdopted"
+                                   onChange={this.handleChange.bind(this, "isAdopted")}
+                                   invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
+                                >
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["fatherOccupation"] }>{this.state.errors["fatherOccupation"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                                invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
                     <Col sm={1} className={"text-right align-bottom"}>
@@ -3177,12 +3494,326 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
+                <div className={"sub-section"}>Mother's Information</div>
+                <Row>
+                    <Col sm={9}>
+                        <FormGroup>
+                            <Label className="control-label required">Name (First and Last)</Label>
+                            <Input
+                                type="text"
+                                ref="motherName"
+                                value={this.state.fields["motherName"] || ""}
+                                onChange={this.handleChange.bind(this, "motherName")}
+                                className="error"
+                                invalid={this.state.errors["motherName"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["motherName"]}>{this.state.errors["motherName"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Age</Label>
+                            <Input
+                                type="text"
+                                ref="motherAge"
+                                value={this.state.fields["motherAge"] || ""}
+                                onChange={this.handleChange.bind(this, "motherAge")}
+                                className="error"
+                                invalid={this.state.errors["motherAge"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["motherAge"]}>{this.state.errors["motherAge"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required">Cell Phone #</Label>
+                            <Input
+                                type="text"
+                                ref="motherCell"
+                                value={this.state.fields["motherCell"] || ""}
+                                onChange={this.handleChange.bind(this, "motherCell")}
+                                className="error"
+                                invalid={this.state.errors["motherCell"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["motherCell"]}>{this.state.errors["motherCell"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup>
+                            <Label className="control-label required">Email</Label>
+                            <Input
+                                type="text"
+                                ref="motherEmail"
+                                value={this.state.fields["motherEmail"] || ""}
+                                onChange={this.handleChange.bind(this, "motherEmail")}
+                                className="error"
+                                invalid={this.state.errors["motherEmail"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["motherEmail"]}>{this.state.errors["motherEmail"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Occupation</Label>
+                            <Input
+                                type="text"
+                                ref="motherOccupation"
+                                value={this.state.fields["motherOccupation"] || ""}
+                                onChange={this.handleChange.bind(this, "motherOccupation")}
+                                className="error"
+                                invalid={this.state.errors["motherOccupation"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["motherOccupation"]}>{this.state.errors["motherOccupation"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                <div className={"sub-section"}>Father's Information</div>
+                <Row>
+                    <Col sm={9}>
+                        <FormGroup>
+                            <Label className="control-label required">Name (First and Last)</Label>
+                            <Input
+                                type="text"
+                                ref="fatherName"
+                                value={this.state.fields["fatherName"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherName")}
+                                className="error"
+                                invalid={this.state.errors["fatherName"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherName"]}>{this.state.errors["fatherName"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required">Age</Label>
+                            <Input
+                                type="text"
+                                ref="fatherAge"
+                                value={this.state.fields["fatherAge"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherAge")}
+                                className="error"
+                                invalid={this.state.errors["fatherAge"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherAge"]}>{this.state.errors["fatherAge"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label required">Cell Phone #</Label>
+                            <Input
+                                type="text"
+                                ref="fatherCell"
+                                value={this.state.fields["fatherCell"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherCell")}
+                                className="error"
+                                invalid={this.state.errors["fatherCell"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherCell"]}>{this.state.errors["fatherCell"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup>
+                            <Label className="control-label required">Email</Label>
+                            <Input
+                                type="text"
+                                ref="fatherEmail"
+                                value={this.state.fields["fatherEmail"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherEmail")}
+                                className="error"
+                                invalid={this.state.errors["fatherEmail"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherEmail"]}>{this.state.errors["fatherEmail"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label required">Occupation</Label>
+                            <Input
+                                type="text"
+                                ref="fatherOccupation"
+                                value={this.state.fields["fatherOccupation"] || ""}
+                                onChange={this.handleChange.bind(this, "fatherOccupation")}
+                                className="error"
+                                invalid={this.state.errors["fatherOccupation"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["fatherOccupation"]}>{this.state.errors["fatherOccupation"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label required pr-2">Marital Status</Label>
+                            <Input type="select"
+                                   name="maritalStatus"
+                                   id="maritalStatus"
+                                   onChange={this.handleChange.bind(this, "maritalStatus")}
+                            invalid={this.state.errors["maritalStatus"]}>
+                                <option></option>
+                                <option>Single</option>
+                                <option>Married</option>
+                                <option>Divorced</option>
+                                <option>Separated</option>
+                                <option>Widowed</option>
+                            </Input>
+                            <FormFeedback
+                            invalid={this.state.errors["martialStatus"]}> Cannot be Empty
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+
+                    <Col sm={9}>
+                        <FormGroup>
+                            <Label className={"pt-2"}>If Divorced or Separated, who is the legal guardian?</Label>
+                            <Input type="text"
+                                   ref="legalGuardian"
+                                   value={this.state.fields["legalGuardian"] || ""}
+                                   onChange={this.handleChange.bind(this, "legalGuardian")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                <div className={"sub-section"}>Step Mother's Information (if applicable)</div>
+                <Row>
+                    <Col sm={9}>
+                        <FormGroup>
+                            <Label>Name (First and Last)</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherName"
+                                value={this.state.fields["sMotherName"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherName")}/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label>Age</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherAge"
+                                value={this.state.fields["sMotherAge"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherAge")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label>Cell Phone #</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherCell"
+                                value={this.state.fields["sMotherCell"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherCell")}/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup>
+                            <Label>Email</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherEmail"
+                                value={this.state.fields["sMotherEmail"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherEmail")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>Occupation</Label>
+                            <Input
+                                type="text"
+                                ref="sMotherOccupation"
+                                value={this.state.fields["sMotherOccupation"] || ""}
+                                onChange={this.handleChange.bind(this, "sMotherOccupation")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                <div className={"sub-section"}>Step Father's Information (if applicable)</div>
+                <Row>
+                    <Col sm={9}>
+                        <FormGroup>
+                            <Label>Name (First and Last)</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherName"
+                                value={this.state.fields["sFatherName"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherName")}/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label>Age</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherAge"
+                                value={this.state.fields["sFatherAge"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherAge")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label>Cell Phone #</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherCell"
+                                value={this.state.fields["sFatherCell"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherCell")}/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={8}>
+                        <FormGroup>
+                            <Label>Email</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherEmail"
+                                value={this.state.fields["sFatherEmail"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherEmail")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>Occupation</Label>
+                            <Input
+                                type="text"
+                                ref="sFatherOccupation"
+                                value={this.state.fields["sFatherOccupation"] || ""}
+                                onChange={this.handleChange.bind(this, "sFatherOccupation")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
                 <Label className="pr-2">Please list siblings in the table below. </Label>
                 <ReactTable
                     className={"-striped -highlight"}
                     data={this.state.siblingData}
                     columns={this.state.siblingColumns}
-                    defaultPageSize={4}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -3202,11 +3833,11 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label>
+                            <Label className={"space-between"}>
                                 Any additional notes or comments about Section 2: Family Information?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="section2Comments"
                                 value={this.state.fields["section2Comments"] || ""}
                                 onChange={this.handleChange.bind(this, "section2Comments")}/>
@@ -3221,7 +3852,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection3() {
         return (
-            <fieldset>
+            <fieldset id="section3">
                 <div className={"section"}>Section 3: Prenatal and Birth History</div>
                 <Row>
                     <Col sm={4}>
@@ -3262,41 +3893,48 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Delivery Type:</Label>
                             <Input type="select"
                                    name="deliveryType"
-                                   id="deliveryType">
+                                   id="deliveryType"
+                                   ref ="deliveryType"
+                                   invalid={this.state.errors["deliveryType"]}
+                                   onChange={this.handleChange.bind(this, "deliveryType")}
+
+                            >
                                 <option></option>
                                 <option>Vaginal</option>
                                 <option>Cesarean</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                            invalid={this.state.errors["deliveryType"] }>{this.state.errors["deliveryType"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={4}>
+                    <Col sm={5}>
                         <FormGroup>
                             <Label className="control-label required pr-2">Were there any complications during the
                                 pregnancy or delivery?</Label>
                             <Input type="select"
                                    name="pregComplications"
-                                   id="pregComplications">
+                                   id="pregComplications"
+                                   ref="pregComplications"
+                                   invalid={this.state.errors["pregComplications"]}
+                                   onChange={this.handleChange.bind(this, "pregComplications")}
+                            >
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                            invalid={this.state.errors["pregComplications"] }>{this.state.errors["pregComplications"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
+                    <Col sm = {7}>
                         <FormGroup>
-                            <Label>If yes, please describe</Label>
+                            <Label className="pr-2">If yes, please describe</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="pregComplicationDescription"
                                 value={this.state.fields["pregComplicationDescription"] || ""}
                                 onChange={this.handleChange.bind(this, "pregComplicationDescription")}/>
@@ -3304,29 +3942,33 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={4}>
+                    <Col sm={5}>
                         <FormGroup>
                             <Label className="control-label required pr-2">Was your child hospitalized after
                                 birth?</Label>
                             <Input type="select"
                                    name="hospitaliedAfterBirth"
-                                   id="hospitaliedAfterBirth">
+                                   id="hospitaliedAfterBirth"
+                                   ref = "hospitalizedAfterBirth"
+                                   value={this.state.fields["hospitalizedAfterBirth"] || ""}
+                                   invalid={this.state.errors["hospitalizedAfterBirth"]}
+                                   onChange={this.handleChange.bind(this, "hospitalizedAfterBirth")}
+                            >
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
-                            {/*<FormFeedback*/}
-                            {/*invalid={this.state.errors["maritalStatus"] }>{this.state.errors["maritalStatus"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                            invalid={this.state.errors["hospitaliedAfterBirth"] }>{this.state.errors["hospitalizedAfterBirth"]}
+                            </FormFeedback>
                         </FormGroup>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
+
+                    <Col sm={7}>
                         <FormGroup>
                             <Label>If yes, please describe</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="hospitaliedAfterBirthDescription"
                                 value={this.state.fields["hospitaliedAfterBirthDescription"] || ""}
                                 onChange={this.handleChange.bind(this, "hospitaliedAfterBirthDescription")}/>
@@ -3340,7 +3982,7 @@ class ClientHistoryAndInformation extends Component {
                                 Any additional notes or comments about Section 3: Prenatal and Birth History?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="section3Comments"
                                 value={this.state.fields["section3Comments"] || ""}
                                 onChange={this.handleChange.bind(this, "section3Comments")}/>
@@ -3354,9 +3996,9 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection4() {
         return (
-            <fieldset>
+            <fieldset id="section4">
                 <div className={"section"}>Section 4: Developmental History</div>
-                <div className={"sub-section"}>If your child is over 18 years of age, please mark what is known.</div>
+                <div className={"sub-section"}>Please complete the table below</div>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.devHistoryData}
@@ -3378,18 +4020,33 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 4: Developmental History?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section4Comments"
+                                value={this.state.fields["section4Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section4Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
         );
     }
 
     renderSection5() {
         return (
-            <fieldset>
+            <fieldset id="section5">
                 <div className={"section"}>Section 5: Medical History/Past Therapies</div>
+                <div className={"sub-section"}>Primary Physician's Information</div>
                 <Row>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Primary Physician's Name</Label>
+                            <Label className="control-label required">Name</Label>
                             <Input
                                 type="text"
                                 ref="drName"
@@ -3404,7 +4061,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required">Primary Physician's Phone Number</Label>
+                            <Label className="control-label required">Phone Number</Label>
                             <Input
                                 type="text"
                                 ref="drPhone"
@@ -3421,7 +4078,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Primary Physician's Address</Label>
+                            <Label className="control-label required">Address</Label>
                             <Input
                                 type="text"
                                 ref="drStreet"
@@ -3497,24 +4154,140 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
+                <div className={"sub-section"}>Secondary Physician's Information</div>
+                <Row>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label">Name</Label>
+                            <Input
+                                type="text"
+                                ref="drName2"
+                                value={this.state.fields["drName2"] || ""}
+                                onChange={this.handleChange.bind(this, "drName2")}
+                                className="error"
+                                invalid={this.state.errors["drName2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drName2"]}>{this.state.errors["drName2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label">Phone Number</Label>
+                            <Input
+                                type="text"
+                                ref="drPhone2"
+                                value={this.state.fields["drPhone2"] || ""}
+                                onChange={this.handleChange.bind(this, "drPhone2")}
+                                className="error"
+                                invalid={this.state.errors["drPhone2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drPhone2"]}>{this.state.errors["drPhone2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className="control-label">Address</Label>
+                            <Input
+                                type="text"
+                                ref="drStreet2"
+                                value={this.state.fields["drStreet2"] || ""}
+                                onChange={this.handleChange.bind(this, "drStreet2")}
+                                className="error"
+                                invalid={this.state.errors["drStreet2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drStreet2"]}>{this.state.errors["drStreet2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <FormGroup>
+                            <Label className="control-label">City</Label>
+                            <Input
+                                type="text"
+                                ref="drCity2"
+                                value={this.state.fields["drCity2"] || ""}
+                                onChange={this.handleChange.bind(this, "drCity2")}
+                                className="error"
+                                invalid={this.state.errors["drCity2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drCity2"]}>{this.state.errors["drCity2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={2}>
+                        <FormGroup>
+                            <Label className="control-label">State</Label>
+                            <Input
+                                type="text"
+                                ref="drState2"
+                                value={this.state.fields["drState2"] || ""}
+                                onChange={this.handleChange.bind(this, "drState2")}
+                                className="error"
+                                invalid={this.state.errors["drState2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drState2"]}>{this.state.errors["drState2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label">Zip Code</Label>
+                            <Input
+                                type="text"
+                                ref="drZip2"
+                                value={this.state.fields["drZip2"] || ""}
+                                onChange={this.handleChange.bind(this, "drZip2")}
+                                className="error"
+                                invalid={this.state.errors["drZip2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drZip2"]}>{this.state.errors["drZip2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={3}>
+                        <FormGroup>
+                            <Label className="control-label">Country</Label>
+                            <Input
+                                type="text"
+                                ref="drCountry2"
+                                value={this.state.fields["drCountry2"] || ""}
+                                onChange={this.handleChange.bind(this, "drCountry2")}
+                                className="error"
+                                invalid={this.state.errors["drCountry2"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["drCountry2"]}>{this.state.errors["drCountry2"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <div className={"sub-section"}>Additional Services</div>
                 <Row>
                     <Col sm={6}>
                         <FormGroup >
                             <Label className="control-label required pr-2">Does the client currently receive therapy services outside of Jacob's Ladder?</Label>
                             <Input type="select"
                                    name="outsideTherapy"
-                                   id="outsideTherapy">
+                                   id="outsideTherapy"
+                                   onChange={this.handleChange.bind(this, "outsideTherapy")}>
+                                <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
                             </Input>
                         </FormGroup>
                     </Col>
                 </Row>
+                <div className={"space-between"}>If yes, please fill out the following table</div>
                 <ReactTable
                     className={"otherDoctorsTable -striped -highlight"}
                     data={this.state.otherDoctorsData}
                     columns={this.state.otherDoctorsColumns}
-                    defaultPageSize={4}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -3531,13 +4304,59 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
+                <div className={"space-between"}>Please list any additional specialists the client sees (psychologists, OT, SLP,Educational,Behavioral,etc.)</div>
+                <ReactTable
+                    className={" otherDoctorsTable -striped -highlight"}
+                    data={this.state.specialDoctorsData}
+                    columns={this.state.otherSpecialistsColumns}
+                    defaultPageSize={5}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+                    <Label className="control-label space-between">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.
+                        Please send any supporting documents or reports to Jacob's Ladder via email.</Label>
+                <ReactTable
+                    className={"testingTable -striped -highlight"}
+                    data={this.state.testingData}
+                    columns={this.state.testingColumns}
+                    defaultPageSize={6}
+                    showPagination={false}
+                    getTheadProps={(state, rowInfo) => {
+                        return {
+                            style: {
+                                background: "#E9E9E9",
+                            }
+                        }
+                    }}
+                    getTableProps={() => {
+                        return {
+                            style: {
+                                background: "white",
+                            }
+                        }
+                    }}
+                />
+
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list any hospitalizations and/or medical
+                            <Label className="control-label required space-between">Please list any hospitalizations and/or medical
                                 procedures the client has received.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="hospital"
                                 value={this.state.fields["hospital"] || ""}
                                 onChange={this.handleChange.bind(this, "hospital")}
@@ -3549,9 +4368,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
                     <Label className="control-label required">Please indicate whether the following apply to the client.</Label>
-                </Row>
                 <ReactTable
                     className={"medicalConditionsTable -striped -highlight"}
                     data={this.state.medicalConditionsData}
@@ -3576,9 +4393,9 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list other medical conditions here.</Label>
+                            <Label className="control-label  space-between">Please list other medical conditions here.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="hospital"
                                 value={this.state.fields["hospital"] || ""}
                                 onChange={this.handleChange.bind(this, "hospital")}
@@ -3590,9 +4407,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
-                    <Label className="control-label required">Please indicate if the client uses any of the following supplies/equipment.</Label>
-                </Row>
+                    <Label className="control-label required space-between">Please indicate if the client uses any of the following supplies/equipment.</Label>
                 <ReactTable
                     className={"suppliesTable -striped -highlight"}
                     data={this.state.suppliesData}
@@ -3617,7 +4432,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list other supplies/equipment here.</Label>
+                            <Label className="control-label  space-between">Please list other supplies/equipment here.</Label>
                             <Input
                                 type="text"
                                 ref="hospital"
@@ -3631,9 +4446,8 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
+                <div className={"sub-section"}>Current Medications</div>
                     <Label className="control-label required">Please list all current medications, dietary supplement, and vitamins.</Label>
-                </Row>
                 <ReactTable
                     className={"medsTable -striped -highlight"}
                     data={this.state.medsData}
@@ -3655,44 +4469,35 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
+
                 <Row>
-                    <Label className="control-label required">Please list any pertinent medical, neurological, visual, hearing, therapeutic, psychological, and/or educational testing.</Label>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 5: Medical History/Past Therapies?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section5Comments"
+                                value={this.state.fields["section5Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section5Comments")}/>
+                        </FormGroup>
+                    </Col>
                 </Row>
-                <ReactTable
-                    className={"testingTable -striped -highlight"}
-                    data={this.state.testingData}
-                    columns={this.state.testingColumns}
-                    defaultPageSize={6}
-                    showPagination={false}
-                    getTheadProps={(state, rowInfo) => {
-                        return {
-                            style: {
-                                background: "#E9E9E9",
-                            }
-                        }
-                    }}
-                    getTableProps={() => {
-                        return {
-                            style: {
-                                background: "white",
-                            }
-                        }
-                    }}
-                />
             </fieldset>
         );
     }
 
     renderSection6() {
         return (
-            <fieldset>
+            <fieldset id="section6">
                 <div className={"section"}>Section 6: General Health</div>
                 <Row>
                     <Col>
                         <FormGroup>
                             <Label className="control-label required">Please describe the client's diet.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="diet"
                                 value={this.state.fields["diet"] || ""}
                                 onChange={this.handleChange.bind(this, "diet")}
@@ -3704,9 +4509,7 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
-                <Row>
                     <Label className="control-label required">Please check all that apply:</Label>
-                </Row>
                 <ReactTable
                     className={"foodGroupTable -striped -highlight"}
                     data={this.state.foodGroupData}
@@ -3729,25 +4532,25 @@ class ClientHistoryAndInformation extends Component {
                     }}
                 />
                 <Row>
-                    <Col sm={6}>
+                    <Col sm={3}>
                         <FormGroup>
-                            <Label className="control-label required pr-2">Does the client have any allergies?</Label>
+                            <Label className="control-label required pr-2 space-between">Does the client have any allergies?</Label>
                             <Input type="select"
                                    name="allergies"
-                                   id="allergies">
+                                   id="allergies"
+                                   onChange={this.handleChange.bind(this, "allergies")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>None Known</option>
                             </Input>
                         </FormGroup>
                     </Col>
-                </Row>
-                <Row>
-                    <Col>
+
+                    <Col sm ={9}>
                         <FormGroup>
-                            <Label className="control-label required">If yes, please describe.</Label>
+                            <Label className="control-label required space-between">If yes, please describe.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="describeAllergies"
                                 value={this.state.fields["describeAllergies"] || ""}
                                 onChange={this.handleChange.bind(this, "describeAllergies")}
@@ -3824,7 +4627,7 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
                 <div className={"sub-section"}>Sleep</div>
                 <Row>
-                    <Col sm={6}>
+                    <Col sm={4}>
                         <FormGroup>
                             <Label className="control-label required">Approximately how many hours of sleep does the client get each night?</Label>
                             <Input
@@ -3841,7 +4644,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col sm={3}>
+                    <Col sm={4}>
                         <FormGroup>
                             <Label className="control-label required">Typical bedtime</Label>
                             <Input
@@ -3856,7 +4659,7 @@ class ClientHistoryAndInformation extends Component {
                             </FormFeedback>
                         </FormGroup>
                     </Col>
-                    <Col sm={3}>
+                    <Col sm={4}>
                         <FormGroup>
                             <Label className="control-label required">Typical morning wake time</Label>
                             <Input
@@ -3879,7 +4682,8 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Trouble falling asleep</Label>
                             <Input type="select"
                                    name="troubleFallingAsleep"
-                                   id="troubleFallingAsleep">
+                                   id="troubleFallingAsleep"
+                                   onChange={this.handleChange.bind(this, "troubleFallingAsleep")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -3893,7 +4697,8 @@ class ClientHistoryAndInformation extends Component {
                                 frequently</Label>
                             <Input type="select"
                                    name="troubleStayingAsleep"
-                                   id="troubleStayingAsleep">
+                                   id="troubleStayingAsleep"
+                                   onChange={this.handleChange.bind(this, "troubleStayingAsleep")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -3906,7 +4711,8 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label required pr-2">Wakes Early</Label>
                             <Input type="select"
                                    name="wakesEarly"
-                                   id="wakesEarly">
+                                   id="wakesEarly"
+                                   onChange={this.handleChange.bind(this, "wakesEarly")}>
                                 <option></option>
                                 <option>Yes</option>
                                 <option>No</option>
@@ -3917,13 +4723,13 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
                 <div className={"sub-section"}>Physical Motor</div>
                 <Row>
-                    <Label className="control-label required">Please select whether the follow apply.</Label>
+                    <Label className="control-label required pl-3">Please select whether the following apply.</Label>
                 </Row>
                 <ReactTable
                     className={"physicalMotorTable -striped -highlight"}
                     data={this.state.physicalMotorData}
                     columns={this.state.physicalMotorColumns}
-                    defaultPageSize={11}
+                    defaultPageSize={10}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -3943,7 +4749,7 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label className="control-label required">Please list other physical motor challenges here.</Label>
+                            <Label className="control-label space-between">Please list other physical motor challenges.</Label>
                             <Input
                                 type="text"
                                 ref="otherPhysicalMotor"
@@ -3957,6 +4763,20 @@ class ClientHistoryAndInformation extends Component {
                         </FormGroup>
                     </Col>
                 </Row>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 6: General Health?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section6Comments"
+                                value={this.state.fields["section6Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section6Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -3964,14 +4784,14 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection7() {
         return (
-            <fieldset>
+            <fieldset id="section7">
                 <div className={"section"}>Section 7: Educational History</div>
                 <p className="control-label required">List current and past educational and/or treatment placement(s).</p>
                 <ReactTable
                     className={"otherSchoolTable -striped -highlight"}
                     data={this.state.otherProgramsData}
                     columns={this.state.otherProgramsColumns}
-                    defaultPageSize={4}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4017,11 +4837,12 @@ class ClientHistoryAndInformation extends Component {
 
                 <FormGroup>
                     <Label className="control-label required">Does your child have a current Individualized Education Plan (IEP)?
-                        <b> If “yes” please include current IEP with “Client History & Information Form”</b></Label>
+                        <b> If “yes” please email the current IEP to Jacob's Ladder.</b></Label>
                     <Col sm ={2}>
                         <Input type="select"
                                name="iepPlan"
-                               id="iepPlan">
+                               id="iepPlan"
+                               onChange={this.handleChange.bind(this, "iepPlan")}>
                             <option></option>
                             <option>Yes</option>
                             <option>No</option>
@@ -4034,7 +4855,7 @@ class ClientHistoryAndInformation extends Component {
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.handPreferenceData}
                     columns={this.state.handPreferenceColumns}
-                    defaultPageSize={6}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4051,12 +4872,12 @@ class ClientHistoryAndInformation extends Component {
                         }
                     }}
                 />
-                <p className="control-label required">Please check all that apply.</p>
+                <p className="control-label required">Check all of the following that apply.</p>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.skillsData}
                     columns={this.state.skillsColumns}
-                    defaultPageSize={11}
+                    defaultPageSize={10}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4086,6 +4907,20 @@ class ClientHistoryAndInformation extends Component {
                         invalid={this.state.errors["academicGoal"]}>{this.state.errors["academicGoal"]}
                     </FormFeedback>
                 </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 7: Educational History?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section7Comments"
+                                value={this.state.fields["section7Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section7Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
 
             </fieldset>
 
@@ -4094,147 +4929,146 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection8() {
         return (
-            <fieldset>
+            <fieldset id="section8">
                 <div className={"section"}>Section 8: Communication</div>
-                <div>
                     <p className="control-label required" >Please indicate the client’s primary mode of communication and current independence level:</p>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleVerbal.bind(this)}>
-
+                <Row>
+                    <Col sm={"2"}>
+                        <FormGroup check>
                             <Input type="checkbox"/>
-                            Verbal
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseVerbal}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    type="select"
-                                    placeholder="why">
-                                    <option>Select Current Independent Level</option>
-                                    <option>fully conversational with original thought language</option>
-                                    <option>sentences with some rote language</option>
-                                    <option>1-2 word verbalizations</option>
+                            <Label>
+                                Verbal
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={"6"}>
+                        <Input
+                            type="select"
+                            placeholder="why">
+                            <option>Select Current Independent Level</option>
+                            <option>fully conversational with original thought language</option>
+                            <option>sentences with some rote language</option>
+                            <option>1-2 word verbalizations</option>
 
-                                </Input>
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
+                        </Input>
+                    </Col>
+                </Row>
+
                 <FormGroup check>
                     <Label check>
                         <Input type="checkbox"/>
                         Pointing/Grabbing
                     </Label>
                 </FormGroup>
-                <div>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleSignLanguage.bind(this)}>
+                <Row>
+                    <Col sm={2}>
+                        <FormGroup check>
+                            <Label check>
 
-                            <Input type="checkbox"/>
-                            Sign Language
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseSignLanguage}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <FormGroup>
-                                    <Label> Types of signs used (i.e.ALS or modified):</Label>
-                                    <Input
-                                        type="text"/>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Label> Number of signs known:</Label>
-                                    <Input
-                                        type="text"/>
-                                </FormGroup>
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
-                <div>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleCommunication.bind(this)}>
+                                <Input type="checkbox"/>
+                                Sign Language
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
+                        <FormGroup>
+                            <Label> Types of signs used (i.e.ALS or modified):</Label>
+                            <Input
+                                type="text"/>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
+                        <FormGroup>
+                            <Label> Number of signs known:</Label>
+                            <Input
+                                type="text"/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={2}>
+                        <FormGroup check>
+                            <Label check>
 
-                            <Input type="checkbox"/>
-                            Communication Device
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseCommunication}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <FormGroup>
-                                    <Label>Name of Device and Software Used</Label>
-                                    <Input
-                                        type="text"
-                                        ref="nameOfDevice"
-                                        value={this.state.fields["nameOfDevice"] || ""}
-                                        onChange={this.handleChange.bind(this, "nameOfDevice")}
-                                        className="error"
-                                        invalid={this.state.errors["nameOfDevice"] != null}/>
-                                    <FormFeedback
-                                        invalid={this.state.errors["nameOfDevice"]}>{this.state.errors["nameOfDevice"]}
-                                    </FormFeedback>
-                                </FormGroup>
-                                <FormGroup>
-                                    <Input
-                                        type="select">
-                                        <option>Select Current Independent Level</option>
-                                        <option>Fully Independent</option>
-                                        <option>Emerging Independence</option>
-                                        <option>Heavy Prompting Required</option>
-                                    </Input>
-                                </FormGroup>
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
-                <div>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleCommunicationBinder.bind(this)}>
+                                <Input type="checkbox"/>
+                                Communication Device
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
+                        <FormGroup>
+                            <Label>Name of Device and Software Used</Label>
+                            <Input
+                                type="text"
+                                ref="nameOfDevice"
+                                value={this.state.fields["nameOfDevice"] || ""}
+                                onChange={this.handleChange.bind(this, "nameOfDevice")}
+                                className="error"
+                                invalid={this.state.errors["nameOfDevice"] != null}/>
+                            <FormFeedback
+                                invalid={this.state.errors["nameOfDevice"]}>{this.state.errors["nameOfDevice"]}
+                            </FormFeedback>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
+                        <FormGroup>
+                            <Label>Select Current Independent Level</Label>
+                            <Input
+                                type="select">
+                                <option></option>
+                                <option>Fully Independent</option>
+                                <option>Emerging Independence</option>
+                                <option>Heavy Prompting Required</option>
+                            </Input>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={2}>
+                        <FormGroup check>
+                            <Label check>
 
-                            <Input type="checkbox"/>
-                            Communication Binder
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseCommunicationBinder}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <FormGroup>
-                                    <Input
-                                        type="select">
-                                        <option>Select Current Independent Level</option>
-                                        <option>Fully Independent</option>
-                                        <option>Emerging Independence</option>
-                                        <option>Heavy Prompting Required</option>
+                                <Input type="checkbox"/>
+                                Communication Binder
+                            </Label>
+                        </FormGroup>
+                    </Col>
+                    <Col sm={5}>
 
-                                    </Input>
-                                </FormGroup>
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
-                <div>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleCommunicationOther.bind(this)}>
+                        <FormGroup>
+                            <Input
+                                type="select">
+                                <option>Select Current Independent Level</option>
+                                <option>Fully Independent</option>
+                                <option>Emerging Independence</option>
+                                <option>Heavy Prompting Required</option>
 
-                            <Input type="checkbox"/>
-                            Other
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.collapseCommunicationOther}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <FormGroup>
-                                    <Label> Please Explain</Label>
-                                    <Input
-                                        type="text"/>
-                                </FormGroup>
+                            </Input>
+                        </FormGroup>
+                    </Col>
 
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                </div>
+                </Row>
+                <Row>
+                        <Col sm={2}>
+                            <FormGroup check>
+                                <Label check>
+
+                                    <Input type="checkbox"/>
+                                    Other
+                                </Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={5}>
+
+                            <FormGroup>
+                                <Label> Please Explain</Label>
+                                <Input
+                                    type="textarea"/>
+                            </FormGroup>
+                        </Col>
+
+
+                </Row>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
                     data={this.state.communicationProblemsData}
@@ -4257,7 +5091,7 @@ class ClientHistoryAndInformation extends Component {
                     }}
                 />
                 <FormGroup>
-                    <Label className="control-label required">Primary language Spoken at home</Label>
+                    <Label className="control-label required">Primary language spoken at home</Label>
                     <Input
                         type="text"
                         ref="languageAtHome"
@@ -4282,6 +5116,20 @@ class ClientHistoryAndInformation extends Component {
                         invalid={this.state.errors["otherLanguages"]}>{this.state.errors["otherLanguages"]}
                     </FormFeedback>
                 </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 8: Communication?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section8Comments"
+                                value={this.state.fields["section8Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section8Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -4289,7 +5137,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection9() {
         return (
-            <fieldset>
+            <fieldset id="section9">
                 <div className={"section"}>Section 9: Emotional/Behavioral History</div>
                 <p className="word-section">In order for Jacob’s Ladder to best serve your family and design the optimal program for the client, please share as much specific and detailed information as possible regarding the client’s past and/or current behavioral needs.
                     This information will not prohibit admissions but will allow Jacob’s Ladder to best prepare for the client’s evaluation and program design</p>
@@ -4324,30 +5172,30 @@ class ClientHistoryAndInformation extends Component {
                     For any behaviors that were rated at a 1 or above, answer the following questions for each behavior experienced, using the most extreme behavior as the example.
                 </p>
                 <p><b>School/Social</b></p>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"schoolConcentration")}>
                             School Concentration Difficulties
-                            <Input type="select"
-                                   ref="languageAtHome"
-                                   value={this.state.fields["schoolConcentration"] || ""}
-                                   onChange={this.handleChange.bind(this, "schoolConcentration")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="schoolConcentration"
+                               id="schoolConcentration"
+                               value={this.state.fields["schoolConcentration"] || ""}
+                               onChange={this.handleChange.bind(this, "schoolConcentration")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("schoolConcentration")}>
                         <Card className={"toggle-card"}>
@@ -4382,30 +5230,30 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"socialAnxiety")}>
-                            Social Anxiety
-                            <Input type="select"
-                                   ref="socialAnxiety"
-                                   value={this.state.fields["socialAnxiety"] || ""}
-                                   onChange={this.handleChange.bind(this, "socialAnxiety")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
-                        </Label>
+                            Social Anxiety</Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="socialAnxiety"
+                               id = "socialAnxiety"
+                               value={this.state.fields["socialAnxiety"] || ""}
+                               onChange={this.handleChange.bind(this, "socialAnxiety")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
+
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("socialAnxiety")}>
                         <Card className={"toggle-card"}>
@@ -4438,30 +5286,31 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"lowGrades")}>
                             Grades dropping or consistently low
-                            <Input type="select"
-                                   ref="lowGrades"
-                                   value={this.state.fields["lowGrades"] || ""}
-                                   onChange={this.handleChange.bind(this, "lowGrades")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="lowGrades"
+                               id = "lowGrades"
+                               value={this.state.fields["lowGrades"] || ""}
+                               onChange={this.handleChange.bind(this, "lowGrades")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("lowGrades")}>
                         <Card className={"toggle-card"}>
@@ -4496,16 +5345,15 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"makingFriends")}>
                             Problems Making or Keeping Friends
-                            <Input type="select"
+                        </Label>
+                        <Input type="select"
+                                   className={"col-4"}
                                    ref="makingFriends"
+                                   id = "makingFriends"
                                    value={this.state.fields["makingFriends"] || ""}
                                    onChange={this.handleChange.bind(this, "makingFriends")}>
                                 <option></option>
@@ -4521,7 +5369,6 @@ class ClientHistoryAndInformation extends Component {
                                 <option>9</option>
                                 <option>10</option>
                             </Input>
-                        </Label>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("makingFriends")}>
                         <Card className={"toggle-card"}>
@@ -4555,30 +5402,30 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"oppositionalBehavior")}>
                             Oppositional, defiant behavior
-                            <Input type="select"
-                                   ref="oppositionalBehavior"
-                                   value={this.state.fields["oppositionalBehavior"] || ""}
-                                   onChange={this.handleChange.bind(this, "oppositionalBehavior")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="oppositionalBehavior"
+                               id = "oppositionalBehavior"
+                               value={this.state.fields["oppositionalBehavior"] || ""}
+                               onChange={this.handleChange.bind(this, "oppositionalBehavior")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("oppositionalBehavior")}>
                         <Card className={"toggle-card"}>
@@ -4613,32 +5460,33 @@ class ClientHistoryAndInformation extends Component {
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"problemsWithAuthority")}>
-Problems With Authority
-                            <Input type="select"
-                                   ref="problemsWithAuthority"
-                                   value={this.state.fields["problemsWithAuthority"] || ""}
-                                   onChange={this.handleChange.bind(this, "provlemsWithAuthority")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
+                            Problems With Authority
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="problemsWithAuthority"
+                               id = "problemsWithAuthority"
+                               value={this.state.fields["problemsWithAuthority"] || ""}
+                               onChange={this.handleChange.bind(this, "problemsWithAuthority")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
-                    <Collapse isOpen={this.checkValue("problemsAuthority")}>
+                    <Collapse isOpen={this.checkValue("problemsWithAuthority")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
@@ -4671,32 +5519,31 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sociallyIsolated")}>
                             Isolated socially from peers
-                            <Input type="select"
-                                   ref="sociallyIsolated"
-                                   value={this.state.fields["sociallyIsolated"] || ""}
-                                   onChange={this.handleChange.bind(this, "sociallyIsolated")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="sociallyIsolated"
+                               id = "sociallyIsolated"
+                               value={this.state.fields["sociallyIsolated"] || ""}
+                               onChange={this.handleChange.bind(this, "sociallyIsolated")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sociallyIsolated")}>
                         <Card className={"toggle-card"}>
@@ -4731,30 +5578,31 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"aggressiveBehavior")}>
                             Aggressive Behavior towards others
-                            <Input type="select"
-                                   ref="aggressiveBehavior"
-                                   value={this.state.fields["aggressiveBehavior"] || ""}
-                                   onChange={this.handleChange.bind(this, "aggressiveBehavior")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="aggressiveBehavior"
+                               id = "aggressiveBehavior"
+                               value={this.state.fields["aggressiveBehavior"] || ""}
+                               onChange={this.handleChange.bind(this, "aggressiveBehavior")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("aggressiveBehavior")}>
                         <Card className={"toggle-card"}>
@@ -4789,30 +5637,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"stressFamily")}>
                             Stress from conflicts within family
-                            <Input type="select"
-                                   ref="stressFamily"
-                                   value={this.state.fields["stressFamily"] || ""}
-                                   onChange={this.handleChange.bind(this, "stressFamily")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="stressFamily"
+                               id = "stressFamily"
+                               value={this.state.fields["stressFamily"] || ""}
+                               onChange={this.handleChange.bind(this, "stressFamily")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("stressFamily")}>
                         <Card className={"toggle-card"}>
@@ -4847,32 +5695,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                <Col sm={6}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
-                            Genralized Anxiety (across many situations)
-                            <Input type="select"
-                                   ref="generalizedAnxiety"
-                                   value={this.state.fields["generalizedAnxiety"] || ""}
-                                   onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
+                            Generalized Anxiety (across many situations)
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="generalizedAnxiety"
+                               id = "generalizedAnxiety"
+                               value={this.state.fields["generalizedAnxiety"] || ""}
+                               onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
                         <Card className={"toggle-card"}>
@@ -4907,15 +5753,17 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                </Col>
-                    <div>
                         <FormGroup>
                             <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
                                 Specific fears/ phobias (list):
+                            </Label>
+                            <Row>
+                            <Col sm={4}>
                                 <Input type="select"
-                                       ref="generalizedAnxiety"
-                                       value={this.state.fields["generalizedAnxiety"] || ""}
-                                       onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
+                                       ref="phobias"
+                                       id = "phobias"
+                                       value={this.state.fields["phobias"] || ""}
+                                       onChange={this.handleChange.bind(this, "phobias")}>
                                     <option></option>
                                     <option>0</option>
                                     <option>1</option>
@@ -4929,11 +5777,16 @@ Problems With Authority
                                     <option>9</option>
                                     <option>10</option>
                                 </Input>
+                            </Col>
+                            <Col sm={8}>
+
                                 <Input
-                                    type="texr"
+                                    type="textarea"
                                 placeholde="Please List"/>
-                            </Label>
+                            </Col>
+                            </Row>
                         </FormGroup>
+
                         <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
                             <Card className={"toggle-card"}>
                                 <CardBody className={"toggle-card-body"}>
@@ -4966,19 +5819,19 @@ Problems With Authority
                                 </CardBody>
                             </Card>
                         </Collapse>
-                    </div>
-                </Row>
 
                 <p><b>Sensory/Physiological</b></p>
-                <Row>
-                    <Col sm={4}>
                 <div>
 
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"hyperactive")}>
                             Hyperactive, difficulty being still
-                            <Input type="select"
+                        </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
                                    ref="hyperactive"
+                                   id = "hyperactive"
                                    value={this.state.fields["hyperactive"] || ""}
                                    onChange={this.handleChange.bind(this, "hyperactive")}>
                                 <option></option>
@@ -4994,7 +5847,6 @@ Problems With Authority
                                 <option>9</option>
                                 <option>10</option>
                             </Input>
-                        </Label>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("hyperactive")}>
                         <Card className={"toggle-card"}>
@@ -5029,30 +5881,31 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
+
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sensoryProblems")}>
                             Sensory problems
-                            <Input type="select"
-                                   ref="sensoryProblems"
-                                   value={this.state.fields["sensoryProblems"] || ""}
-                                   onChange={this.handleChange.bind(this, "sensoryProblems")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="sensoryProblems"
+                               id ="sensoryProblems"
+                               value={this.state.fields["sensoryProblems"] || ""}
+                               onChange={this.handleChange.bind(this, "sensoryProblems")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sensoryProblems")}>
                         <Card className={"toggle-card"}>
@@ -5087,30 +5940,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsEating")}>
                             Problems with eating
-                            <Input type="select"
-                                   ref="problemsEating"
-                                   value={this.state.fields["problemsEating"] || ""}
-                                   onChange={this.handleChange.bind(this, "problemsEating")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="problemsEating"
+                               id = "problemsEating"
+                               value={this.state.fields["problemsEating"] || ""}
+                               onChange={this.handleChange.bind(this, "problemsEating")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("problemsEating")}>
                         <Card className={"toggle-card"}>
@@ -5145,32 +5998,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"wettingAccidents")}>
                             Wetting/Soiling accidents
-                            <Input type="select"
-                                   ref="wettingAccidents"
-                                   value={this.state.fields["wettingAccidents"] || ""}
-                                   onChange={this.handleChange.bind(this, "wettingAccidents")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="wettingAccidents"
+                               id = "wettingAccidents"
+                               value={this.state.fields["wettingAccidents"] || ""}
+                               onChange={this.handleChange.bind(this, "wettingAccidents")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("wettingAccidents")}>
                         <Card className={"toggle-card"}>
@@ -5205,30 +6056,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"vocalTics")}>
                             Vocal or motor tics
-                            <Input type="select"
-                                   ref="vocalTics"
-                                   value={this.state.fields["vocalTics"] || ""}
-                                   onChange={this.handleChange.bind(this, "vocalTics")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="vocalTics"
+                               id = "vocalTics"
+                               value={this.state.fields["vocalTics"] || ""}
+                               onChange={this.handleChange.bind(this, "vocalTics")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("vocalTics")}>
                         <Card className={"toggle-card"}>
@@ -5263,30 +6114,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"wakingUp")}>
                             Trouble waking up
-                            <Input type="select"
-                                   ref="wakingUp"
-                                   value={this.state.fields["wakingUp"] || ""}
-                                   onChange={this.handleChange.bind(this, "wakingUp")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="wakingUp"
+                               id = "wakingUp"
+                               value={this.state.fields["wakingUp"] || ""}
+                               onChange={this.handleChange.bind(this, "wakingUp")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("wakingUp")}>
                         <Card className={"toggle-card"}>
@@ -5321,32 +6172,31 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"nightmares")}>
                             Nightmares
-                            <Input type="select"
-                                   ref="nightmares"
-                                   value={this.state.fields["nightmares"] || ""}
-                                   onChange={this.handleChange.bind(this, "nightmares")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="nightmares"
+                               id = "nightmares"
+                               value={this.state.fields["nightmares"] || ""}
+                               onChange={this.handleChange.bind(this, "nightmares")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("nightmares")}>
                         <Card className={"toggle-card"}>
@@ -5381,30 +6231,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsSleeping")}>
                             Problems Sleeping
-                            <Input type="select"
-                                   ref="problemsSleeping"
-                                   value={this.state.fields["problemsSleeping"] || ""}
-                                   onChange={this.handleChange.bind(this, "problemsSleeping")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="problemsSleeping"
+                               id = "problemsSleeping"
+                               value={this.state.fields["problemsSleeping"] || ""}
+                               onChange={this.handleChange.bind(this, "problemsSleeping")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("problemsSleeping")}>
                         <Card className={"toggle-card"}>
@@ -5439,30 +6289,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"tiredness")}>
                             Fatigue/Tiredness
-                            <Input type="select"
-                                   ref="tiredness"
-                                   value={this.state.fields["tiredness"] || ""}
-                                   onChange={this.handleChange.bind(this, "tiredness")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="tiredness"
+                               id = "tiredness"
+                               value={this.state.fields["tiredness"] || ""}
+                               onChange={this.handleChange.bind(this, "tiredness")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("tiredness")}>
                         <Card className={"toggle-card"}>
@@ -5497,34 +6347,31 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
                 <p><b>Emotional</b></p>
-
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"sadness")}>
                             Sadness or Depression
-                            <Input type="select"
-                                   ref="sadness"
-                                   value={this.state.fields["sadness"] || ""}
-                                   onChange={this.handleChange.bind(this, "sadness")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="sadness"
+                               id ="sadness"
+                               value={this.state.fields["sadness"] || ""}
+                               onChange={this.handleChange.bind(this, "sadness")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sadness")}>
                         <Card className={"toggle-card"}>
@@ -5559,30 +6406,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"impulsive")}>
                             Impulsive,doesn't think before acting
-                            <Input type="select"
-                                   ref="impulsive"
-                                   value={this.state.fields["impulsive"] || ""}
-                                   onChange={this.handleChange.bind(this, "impulsive")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="impulsive"
+                               id = "impulsive"
+                               value={this.state.fields["impulsive"] || ""}
+                               onChange={this.handleChange.bind(this, "impulsive")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("impulsive")}>
                         <Card className={"toggle-card"}>
@@ -5617,30 +6464,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required"  onChange={this.handleChange.bind(this,"noncompliant")}>
                             Non-compliant
-                            <Input type="select"
-                                   ref="noncompliant"
-                                   value={this.state.fields["noncompliant"] || ""}
-                                   onChange={this.handleChange.bind(this, "noncompliant")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="noncompliant"
+                               id = "noncompliant"
+                               value={this.state.fields["noncompliant"] || ""}
+                               onChange={this.handleChange.bind(this, "noncompliant")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("noncompliant")}>
                         <Card className={"toggle-card"}>
@@ -5675,32 +6522,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label  className="control-label required" onChange={this.handleChange.bind(this,"tantrums")}>
                             Tantrums/"meltdowns"
-                            <Input type="select"
-                                   ref="tantrums"
-                                   value={this.state.fields["tantrums"] || ""}
-                                   onChange={this.handleChange.bind(this, "tantrums")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="tantrums"
+                               id = "tantrums"
+                               value={this.state.fields["tantrums"] || ""}
+                               onChange={this.handleChange.bind(this, "tantrums")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("tantrums")}>
                         <Card className={"toggle-card"}>
@@ -5735,30 +6580,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"injuryBehavior")}>
                             Self-injurious behavior
-                            <Input type="select"
-                                   ref="injuryBehavior"
-                                   value={this.state.fields["injuryBehavior"] || ""}
-                                   onChange={this.handleChange.bind(this, "injuryBehavior")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="injuryBehavior"
+                               id = "injuryBehavior"
+                               value={this.state.fields["injuryBehavior"] || ""}
+                               onChange={this.handleChange.bind(this, "injuryBehavior")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("injuryBehavior")}>
                             <Card className={"toggle-card"}>
@@ -5793,30 +6638,30 @@ Problems With Authority
                             </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"temperProblem")}>
                             Problems controlling temper
-                            <Input type="select"
-                                   ref="temperProblem"
-                                   value={this.state.fields["temperProblem"] || ""}
-                                   onChange={this.handleChange.bind(this, "temperProblem")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="temperProblem"
+                               id = "temperProblem"
+                               value={this.state.fields["temperProblem"] || ""}
+                               onChange={this.handleChange.bind(this, "temperProblem")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("temperProblem")}>
                         <Card className={"toggle-card"}>
@@ -5851,32 +6696,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"darting")}>
                             Darting/Elopement
-                            <Input type="select"
-                                   ref="darting"
-                                   value={this.state.fields["darting"] || ""}
-                                   onChange={this.handleChange.bind(this, "darting")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="darting"
+                               id = "darting"
+                               value={this.state.fields["darting"] || ""}
+                               onChange={this.handleChange.bind(this, "darting")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("darting")}>
                         <Card className={"toggle-card"}>
@@ -5911,30 +6754,30 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"rigid")}>
                             Rigid Behavior Patterns
-                            <Input type="select"
-                                   ref="ridid"
-                                   value={this.state.fields["rigid"] || ""}
-                                   onChange={this.handleChange.bind(this, "rigid")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="rigid"
+                               id = "rigid"
+                               value={this.state.fields["rigid"] || ""}
+                               onChange={this.handleChange.bind(this, "rigid")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("rigid")}>
                         <Card className={"toggle-card"}>
@@ -5969,30 +6812,31 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                    <Col sm={4}>
                 <div>
                     <FormGroup>
                         <Label className="control-label required" onChange={this.handleChange.bind(this,"abuse")}>
                             History of abuse (emotional,physical,sexual)
-                            <Input type="select"
-                                   ref="abuse"
-                                   value={this.state.fields["abuse"] || ""}
-                                   onChange={this.handleChange.bind(this, "abuse")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
-                            </Input>
                         </Label>
+
+                        <Input type="select"
+                               className={"col-4"}
+                               ref="abuse"
+                               id = "abuse"
+                               value={this.state.fields["abuse"] || ""}
+                               onChange={this.handleChange.bind(this, "abuse")}>
+                            <option></option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("abuse")}>
                         <Card className={"toggle-card"}>
@@ -6027,29 +6871,66 @@ Problems With Authority
                         </Card>
                     </Collapse>
                 </div>
-                    </Col>
-                </Row>
                 <div>
-                    <p> During a behavioral moment, does the client appear to become more heightened or dysregulated when:</p>
-                    <p className={"control-label required"} >Provided physical assistance? If yes, please describe:</p>
+                    <p > During a behavioral moment, does the client appear to become more heightened or dysregulated when:</p>
+                    <p className={"control-label required"}id={"physicalAssistanceQuestion"} >Provided physical assistance? If yes, please describe:</p>
+                    <Row>
+                        <Col sm={1}>
+                            <FormGroup check>
+                                <Label check onChange={this.togglePhysicalAssistance.bind(this,"physicalAssistanceYes")}>
+
+                                    <Input type="checkbox"/>
+                                    Yes
+                                </Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={11}>
+                            <Collapse isOpen={this.state.physicalAssistance}>
+                                <Card className={"toggle-card"}>
+                                    <CardBody className={"toggle-card-body"}>
+                                        <Input
+                                            type="textarea"/>
+
+                                    </CardBody>
+                                </Card>
+                            </Collapse>
+                        </Col>
+                    </Row>
                     <FormGroup check>
-                        <Label check onChange={this.togglePhysicalAssistance.bind(this)}>
+                        <Label check onChange={this.handleChange.bind(this,"physicalAssistanceYes")}>
 
                             <Input type="checkbox"/>
-                            Yes
+                            No
                         </Label>
                     </FormGroup>
-                    <Collapse isOpen={this.state.physicalAssistance}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    type="textarea"/>
 
-                            </CardBody>
-                        </Card>
-                    </Collapse>
+                </div>
+                <div>
+                    <p className={"control-label required"} id ={"verbalDirectivesQuestion"}>When provided verbal directives? If yes, please describe: </p>
+                    <Row>
+                        <Col sm={1}>
+                            <FormGroup check>
+                                <Label check id ={"verbalDirectivesYes"} onChange={this.toggleVerbalDirectives.bind(this,"verbalDirectivesYes")}>
+
+                                    <Input type="checkbox"/>
+                                    Yes
+                                </Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={11}>
+                            <Collapse isOpen={this.state.verbalDirectives}>
+                                <Card className={"toggle-card"}>
+                                    <CardBody className={"toggle-card-body"}>
+                                        <Input
+                                            type="textarea"/>
+
+                                    </CardBody>
+                                </Card>
+                            </Collapse>
+                        </Col>
+                    </Row>
                     <FormGroup check>
-                        <Label check>
+                        <Label check id ={"verbalDirectivesNo"} onChange={this.handleChange.bind(this,"verbalDirectivesNo")}>
 
                             <Input type="checkbox"/>
                             No
@@ -6057,51 +6938,31 @@ Problems With Authority
                     </FormGroup>
                 </div>
                 <div>
-                    <p className={"control-label required"} >When provided verbal directives? If yes, please describe: </p>
+                    <p className={"control-label required"} id ={"currentEventsQuestion"}  >Are there any events, which may be currently affecting the client adversely?  If “Yes”, please describe:   </p>
+                    <Row>
+                        <Col sm={1}>
+                            <FormGroup check>
+                                <Label check  id ={"currentEventsYes"} onChange={this.toggleCurrentEvents.bind(this,"currentEventsYes")}>
+
+                                    <Input type="checkbox"/>
+                                    Yes
+                                </Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={11}>
+                            <Collapse isOpen={this.state.currentEvents}>
+                                <Card className={"toggle-card"}>
+                                    <CardBody className={"toggle-card-body"}>
+                                        <Input
+                                            type="textarea"/>
+
+                                    </CardBody>
+                                </Card>
+                            </Collapse>
+                        </Col>
+                    </Row>
                     <FormGroup check>
-                        <Label check onChange={this.toggleVerbalDirectives.bind(this)}>
-
-                            <Input type="checkbox"/>
-                            Yes
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.verbalDirectives}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    type="textarea"/>
-
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                    <FormGroup check>
-                        <Label check>
-
-                            <Input type="checkbox"/>
-                            No
-                        </Label>
-                    </FormGroup>
-                </div>
-                <div>
-                    <p className={"control-label required"} >Are there any events, which may be currently affecting the client adversely?  If “Yes”, please describe:   </p>
-                    <FormGroup check>
-                        <Label check onChange={this.toggleVerbalDirectives.bind(this)}>
-
-                            <Input type="checkbox"/>
-                            Yes
-                        </Label>
-                    </FormGroup>
-                    <Collapse isOpen={this.state.verbalDirectives}>
-                        <Card className={"toggle-card"}>
-                            <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    type="textarea"/>
-
-                            </CardBody>
-                        </Card>
-                    </Collapse>
-                    <FormGroup check>
-                        <Label check>
+                        <Label check  id ={"currentEventsQuestion"} onChange={this.handleChange.bind(this,"currentEventsNo")} >
 
                             <Input type="checkbox"/>
                             No
@@ -6148,6 +7009,20 @@ Problems With Authority
                         invalid={this.state.errors["soothing"]}>{this.state.errors["soothing"]}
                     </FormFeedback>
                 </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 9: Emotional/Behavioral History?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section9Comments"
+                                value={this.state.fields["section9Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section9Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
 
            </fieldset>
         );
@@ -6155,7 +7030,7 @@ Problems With Authority
 
     renderSection10() {
         return (
-            <fieldset>
+            <fieldset id="section10">
                 <div className={"section"}>Section 10: Current Schedule and Typical Day</div>
                 <p>What does the client’s current full-time educational/therapeutic daily routine look like?  Please include environment, setting, expectations, schedule, provider, etc.</p>
                 <FormGroup>
@@ -6263,6 +7138,20 @@ Problems With Authority
                         invalid={this.state.errors["physicalActivity"]}>{this.state.errors["physicalActivity"]}
                     </FormFeedback>
                 </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 10: Current Schedule and Typical Day?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section10Comments"
+                                value={this.state.fields["section10Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section10Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
 
             </fieldset>
         );
@@ -6270,8 +7159,8 @@ Problems With Authority
 
     renderSection11() {
         return (
-            <fieldset>
-                <div className={"section"}>Section 11: Independent Skill</div>
+            <fieldset id="section11">
+                <div className={"section"}>Section 11: Independent Skills</div>
                 <div>As part of the daily program at Jacob’s Ladder, our clients/students are learning and developing skills needed to successfully transition into adulthood.  Our goal is to assist you your family throughout your time at Jacob’s Ladder with meeting these skills by reinforcing them at school and home. In order for us to maintain cohesion across providers within their expectations, we ask that you complete the following questionnaire to better equip the JL Clinical Team with a thorough understanding of the client’s abilities.</div>
                 <div className={"sub-section"}>Level One Goals:</div>
                 <ReactTable
@@ -6296,7 +7185,7 @@ Problems With Authority
                     }}
                 />
                 <FormGroup>
-                    <Label className="control-label required">Additional comments/goals:</Label>
+                    <Label className="control-label space-between">Additional comments/goals:</Label>
                     <Input
                         type="text"
                         ref="g1Comments"
@@ -6310,7 +7199,7 @@ Problems With Authority
                 </FormGroup>
                 <div className={"sub-section"}>Level Two Goals:</div>
                 <Row>
-                    <Label className={"important"}>Only complete Level 2 Goals if 75% of the above Life Skills are completed independently.</Label>
+                    <Label className={"important pl-3"}>Only complete Level 2 Goals if 75% of the above Life Skills are completed independently.</Label>
                 </Row>
                 <ReactTable
                     className={"level1GoalsTable -striped -highlight"}
@@ -6333,6 +7222,20 @@ Problems With Authority
                         }
                     }}
                 />
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label className={"space-between"}>
+                                Any additional notes or comments about Section 11: Independent Skills?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section11Comments"
+                                value={this.state.fields["section11Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section11Comments")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
             </fieldset>
 
         );
@@ -6340,7 +7243,7 @@ Problems With Authority
 
     renderSection12() {
         return (
-            <fieldset>
+            <fieldset id="section12">
                 <div className={"section"}>Section 12: Additional Information for Evaluation Day</div>
                 <Row>
                     <Col>
@@ -6359,7 +7262,7 @@ Problems With Authority
                                 Does your child demonstrate challenges when working with an unknown provider?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="challengesWithUnknownProvider"
                                 value={this.state.fields["challengesWithUnknownProvider"] || ""}
                                 onChange={this.handleChange.bind(this, "challengesWithUnknownProvider")}
@@ -6379,7 +7282,7 @@ Problems With Authority
                                 Do you have any concerns with your student in this type of room?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="concernsWithRoom"
                                 value={this.state.fields["concernsWithRoom"] || ""}
                                 onChange={this.handleChange.bind(this, "concernsWithRoom")}
@@ -6401,7 +7304,7 @@ Problems With Authority
 
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="concernsWithCubbies"
                                 value={this.state.fields["concernsWithCubbies"] || ""}
                                 onChange={this.handleChange.bind(this, "concernsWithCubbies")}
@@ -6425,7 +7328,7 @@ Problems With Authority
                                 Does your child initiate the restroom? If not, what are the signs?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="signsOfToilet"
                                 value={this.state.fields["signsOfToilet"] || ""}
                                 onChange={this.handleChange.bind(this, "signsOfToilet")}
@@ -6444,7 +7347,7 @@ Problems With Authority
                                 How often do you take your child to the restroom?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="amountOfRestroomUse"
                                 value={this.state.fields["amountOfRestroomUse"] || ""}
                                 onChange={this.handleChange.bind(this, "amountOfRestroomUse")}
@@ -6463,7 +7366,7 @@ Problems With Authority
                                 What is the terminology in your home for going to the restroom? (“pee-pee”, “pooh-pooh,” etc.)
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="restroomTerminology"
                                 value={this.state.fields["restroomTerminology"] || ""}
                                 onChange={this.handleChange.bind(this, "restroomTerminology")}
@@ -6482,7 +7385,7 @@ Problems With Authority
                                 How independent is your child in the restroom? What needs to be prompted?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="restroomIndependence"
                                 value={this.state.fields["restroomIndependence"] || ""}
                                 onChange={this.handleChange.bind(this, "restroomIndependence")}
@@ -6507,7 +7410,7 @@ Problems With Authority
                                 If so, provide a snack, time, and preparation instructions (i.e. temperature of food)
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="snackDuringEval"
                                 value={this.state.fields["snackDuringEval"] || ""}
                                 onChange={this.handleChange.bind(this, "snackDuringEval")}
@@ -6526,7 +7429,7 @@ Problems With Authority
                                 Are there any helpful techniques to use when serving your child’s food?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="techniquesDuringEating"
                                 value={this.state.fields["techniquesDuringEating"] || ""}
                                 onChange={this.handleChange.bind(this, "techniquesDuringEating")}
@@ -6545,7 +7448,7 @@ Problems With Authority
                                 Is your child independent with eating? If not, how much assistance is needed?
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="eatingIndependence"
                                 value={this.state.fields["eatingIndependence"] || ""}
                                 onChange={this.handleChange.bind(this, "eatingIndependence")}
@@ -6633,7 +7536,7 @@ Problems With Authority
                                 (i.e. swelling, hives, redness, rapid breathing, etc?)
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="allergicReaction"
                                 value={this.state.fields["allergicReaction"] || ""}
                                 onChange={this.handleChange.bind(this, "allergicReaction")}
@@ -6659,6 +7562,7 @@ Problems With Authority
                         </Label>
                     </Col>
                 </Row>
+
                 <Row>
                     <Col>
                         <Label className={"important"}>
@@ -6669,17 +7573,34 @@ Problems With Authority
                         </Label>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <Label className={"additional-note"}>If your child has a history of seizures, please complete the following:</Label>
-                    </Col>
-                </Row>
+
+                <div>
+                    <p className={"control-label required"} >Does your child have a history of seizures? If "Yes", please complete the questions below. </p>
+                    <FormGroup check>
+                        <Label check onChange={this.toggleSeizures.bind(this)}>
+
+                            <Input type="checkbox"/>
+                            Yes
+                        </Label>
+                    </FormGroup>
+
+                    <FormGroup check>
+                        <Label check>
+
+                            <Input type="checkbox"/>
+                            No
+                        </Label>
+                    </FormGroup>
+                </div>
+                <Collapse isOpen={this.state.seizures}>
+                    <Card className={"toggle-card"}>
+                        <CardBody className={"toggle-card-body"}>
                 <Row>
                     <Col>
                         <FormGroup>
                             <Label>History of Condition</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="seizureHistory"
                                 value={this.state.fields["seizureHistory"] || ""}
                                 onChange={this.handleChange.bind(this, "seizureHistory")}/>
@@ -6691,7 +7612,7 @@ Problems With Authority
                         <FormGroup>
                             <Label>What to look for/Precursor signs of a seizure</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="signsOfSeizure"
                                 value={this.state.fields["signsOfSeizure"] || ""}
                                 onChange={this.handleChange.bind(this, "signsOfSeizure")}/>
@@ -6707,7 +7628,7 @@ Problems With Authority
                                 from a qualified medical professional.
                             </Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="otherSeizureProtocol"
                                 value={this.state.fields["otherSeizureProtocol"] || ""}
                                 onChange={this.handleChange.bind(this, "otherSeizureProtocol")}/>
@@ -6719,7 +7640,7 @@ Problems With Authority
                         <FormGroup>
                             <Label>Last seizure occurrence</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="lastSeizure"
                                 value={this.state.fields["lastSeizure"] || ""}
                                 onChange={this.handleChange.bind(this, "lastSeizure")}/>
@@ -6731,10 +7652,27 @@ Problems With Authority
                         <FormGroup>
                             <Label>Frequency of seizure occurrence</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="seizureFrequency"
                                 value={this.state.fields["seizureFrequency"] || ""}
                                 onChange={this.handleChange.bind(this, "seizureFrequency")}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+                        </CardBody>
+                    </Card>
+                </Collapse>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>
+                                Any additional notes or comments about Section 12: Additional Information for Evaluation Day?
+                            </Label>
+                            <Input
+                                type="textarea"
+                                ref="section12Comments"
+                                value={this.state.fields["section12Comments"] || ""}
+                                onChange={this.handleChange.bind(this, "section12Comments")}/>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -6745,7 +7683,7 @@ Problems With Authority
 
     renderSection13() {
         return (
-            <fieldset>
+            <fieldset id="section13">
                 <div className={"section"}>Section 13: Goals and Additional Information</div>
                 <Row>
                     <Col>
@@ -6825,6 +7763,7 @@ Problems With Authority
                         </FormGroup>
                     </Col>
                 </Row>
+
             </fieldset>
 
         );
@@ -6832,7 +7771,8 @@ Problems With Authority
 
     renderSection14() {
         return (
-            <fieldset>
+            <fieldset id="section14">
+                <hr></hr>
                 <div className={"section"}>Section 14: Signature</div>
                 <Row>
                     <Col>
@@ -6929,26 +7869,36 @@ Problems With Authority
                         </a>
                     </div>
                 </div>
-                <div className={"frame p-4"} data-spy="scroll">
-                    <div> {this.renderSection1()} </div>
-                    <div> {this.renderSection2()} </div>
-                    <div> {this.renderSection3()} </div>
-                    <div> {this.renderSection4()} </div>
-                    <div> {this.renderSection5()} </div>
-                    <div> {this.renderSection6()} </div>
-                    <div> {this.renderSection7()} </div>
-                    <div> {this.renderSection8()} </div>
-                    <div> {this.renderSection9()} </div>
-                    <div> {this.renderSection10()} </div>
-                    <div> {this.renderSection11()} </div>
-                    <div> {this.renderSection12()} </div>
-                    <div> {this.renderSection13()} </div>
-                    <div> {this.renderSection14()} </div>
+                <Row>
+                    <Col className={"col-2"}>
+                        <div > {this.renderNavbar()} </div>
+                    </Col>
+                    <Col>
+                        <div className={"frame p-4"} >
+                            <div> {this.renderSection1()} </div>
+                            <div> {this.renderSection2()} </div>
+                            <div> {this.renderSection3()} </div>
+                            <div> {this.renderSection4()} </div>
+                            <div> {this.renderSection5()} </div>
+                            <div> {this.renderSection6()} </div>
+                            <div> {this.renderSection7()} </div>
+                            <div> {this.renderSection8()} </div>
+                            <div> {this.renderSection9()} </div>
+                            <div> {this.renderSection10()} </div>
+                            <div> {this.renderSection11()} </div>
+                            <div> {this.renderSection12()} </div>
+                            <div> {this.renderSection13()} </div>
+                            <div> {this.renderSection14()} </div>
 
-                </div>
+                        </div>
+                    </Col>
+
+                </Row>
+
+
                 <Row className={"p-2 justify-content-center"}>
                     <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
-                        Save and Quit
+                        Save and Return
                     </Button>
 
                     <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
