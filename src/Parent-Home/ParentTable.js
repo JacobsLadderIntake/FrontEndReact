@@ -3,6 +3,10 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {Row} from "react-bootstrap";
 import Header from "../Header/Header";
+import userID from '../Login';
+
+const studentName = '';
+var url = 'api/findUsersChildren';
 
 class ParentTable extends Component {
     constructor (props) {
@@ -18,7 +22,6 @@ class ParentTable extends Component {
                 accessor: 'progress',
                 width: 200
             }],
-
             data: [{
                 name: <div id="chai" style={{color: 'blue', textDecoration: 'underline'}}>Client History and Information Form</div>,
                 progress: 'Not Started',
@@ -49,6 +52,7 @@ class ParentTable extends Component {
                 progress: 'Not Started'
             }]
         };
+        // this.getChild();
     }
 
     handleClick(row, event) {
@@ -72,14 +76,31 @@ class ParentTable extends Component {
         // need to figure out how to access the row that has been clicked on, not sure how to do that though
     }
 
+    getChild = async () => {
+      var infoObj = JSON.stringify(this.userID);
+      console.log(infoObj)
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: infoObj
+        });
+        const body = await response.json();
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Error) {
+            console.log(body.Message);
+        } else {
+            console.log(body.rows);
+            this.studentName = body.rows[0];
+        }
+    }
 
     render() {
-
-
-        const studentName = "susie lou";//getChildren("emma@gmail.com");
+      const studentName = "susie lou";//getChildren("emma@gmail.com");
 
         var ifAdmin = this.state.isAdmin ? <input type="date"></input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
-
         return (
             <div className={"p-4"}>
                 <Header loggedIn = {true}/>
@@ -102,7 +123,7 @@ class ParentTable extends Component {
                     getTdProps={(state, rowInfo) => {
                         return {
                             onClick: (e) => {
-                                console.log(rowInfo);
+                                // console.log(rowInfo);
                                 this.handleClick(rowInfo.original, e);},
                             // style: {background: (rowInfo.progress == "In Progress") ? "grey" : "white"}
 

@@ -14,6 +14,10 @@ import {
     Row
 } from "reactstrap";
 import ReactTable from "react-table";
+import { token, userID } from '../Login';
+
+var infoObj;
+var url = 'api/children/' + userID + '/forms/BrainMapConsentForm';
 
 class ClientHistoryAndInformation extends Component {
     constructor(props) {

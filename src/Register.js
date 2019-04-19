@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import './register.css'
-
-
 import {
     Col,
     Button,
@@ -12,11 +10,13 @@ import {
 } from "reactstrap";
 import Header from "./Header/Header";
 
+var infoObj = {"studentFirstName":"", "studentLastName":"", "parentFirstName":"", "parentLastName":"",
+                    "Relationship":"", "Email":"", "Password":""}
+var url = '/';
 
 class Register extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             errors: [],
             fields: [],
@@ -28,7 +28,6 @@ class Register extends Component {
             confirmButtonPressed:false
 
             // emailAlreadyExists:false,
-
         };
         this.goBack = this.goBack.bind(this);
 
@@ -45,9 +44,7 @@ class Register extends Component {
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields});
-
     }
-
 
     validate() {
         // we are going to store errors for all fields
@@ -87,10 +84,7 @@ class Register extends Component {
                     formIsValid = false;
                     errors["lastName"] = "Cannot be empty";
                 }
-
-
             }
-
             if (!fields["email"]) {
                 formIsValid = false;
                 errors["email"] = "Cannot be empty";
@@ -210,6 +204,17 @@ class Register extends Component {
         this.props.history.push("/")
     }
 
+    postToDB() {
+      infoObj = JSON.stringify(this.infoObj);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: infoObj
+        });
+    }
 
     renderConfirmationForm() {
         return (
@@ -220,9 +225,6 @@ class Register extends Component {
                 </div>
                 <div className={"confirmationCode"}>
                     <FormGroup>
-
-
-
                         <Label>If you are signing in as a member of the admission team, please submit the code provided
                             by Jacob's Ladder. If this was a mistake hit "Back" to continue registering as a
                             parent.</Label>
@@ -233,11 +235,8 @@ class Register extends Component {
                             ref="confirmationCode"
                             onChange={this.handleChangeConfirmationCode.bind(this,"confirmationCode")}
                             invalid= {this.state.errors["confirmationCode"] != null}
-
-
                     />
                         <FormFeedback invalid = {this.state.errors["confirmationCode"]}>{this.state.errors["confirmationCode"]}</FormFeedback>
-
                     </FormGroup>
                     <div className={" confirmation_buttons_div"}>
                         <Button
