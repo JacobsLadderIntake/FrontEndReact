@@ -187,11 +187,14 @@ class EnrollmentProcess extends Component{
                 <div className="form-title">
                     <div className = "row" >
                         <div className = "parent-top col-9">
-                            <h2>Enrollment Process Form</h2>
+                            <h2 className={"header-print"}>Enrollment Process Form</h2>
+                        </div>
+                        <div className={"col-3"}>
+                            <button className="print-button" onClick={() => window.print()}>Print</button>
                         </div>
                     </div>
                 </div>
-                <div className={"frame p-4"} data-spy="scroll">
+                <div className={"frame p-4 print-form"} data-spy="scroll">
                     <div> {this.renderText()} </div>
                     <div> {this.renderFields()} </div>
                 </div>

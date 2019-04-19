@@ -1,5 +1,4 @@
 import React, {Component,useRef } from 'react';
-import ReactToPrint from "react-to-print";
 import PropTypes from "prop-types";
 import Header from '../Header/Header';
 
@@ -3217,12 +3216,6 @@ class ClientHistoryAndInformation extends Component {
         this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
         this.props.history.push("/parenthome")
-    }
-
-    componentDidMount() {
-
-        console.log('PrintThisComponent mounted!');
-
     }
 
     renderNavbar() {
@@ -7868,10 +7861,10 @@ class ClientHistoryAndInformation extends Component {
             <div>
                 <Header loggedIn={true}/>
 
-                <div className="form-title" id={"form-title"}>
+                <div className="form-title" >
                     <div className="row">
                         <a className="parent-top col-9">
-                            <h2>Client History and Information</h2>
+                            <h2 className={"header-print"}>Client History and Information</h2>
                         </a>
                         <div className={"col-3"}>
 
@@ -7888,7 +7881,7 @@ class ClientHistoryAndInformation extends Component {
                         <div id={"navbar"}> {this.renderNavbar()} </div>
                     </Col>
                     <Col>
-                        <div className={"frame p-4"} id={"form-frame"}>
+                        <div className={"frame p-4 print-form"}>
 
                             <div> {this.renderSection1()} </div>
                             <div> {this.renderSection2()} </div>
