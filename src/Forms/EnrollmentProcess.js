@@ -12,8 +12,9 @@ import {
 } from "reactstrap";
 import { token, userID } from '../Login';
 
-var infoObj;
-var url = 'api/children/' + userID + '/forms/BrainMapConsentForm';
+var infoObj = {"StudentName":"", "ParentName":"", "Date":""};
+var childID = "child"
+var url = 'api/children/' + childID + '/forms/EnrollmentProcessForm';
 
 class EnrollmentProcess extends Component{
     constructor(props) {
@@ -95,8 +96,6 @@ class EnrollmentProcess extends Component{
         //UPDATE DATABASE
         this.props.history.push("/parenthome")
     }
-
-    infoObj = {values: {"StudentName":"ChaseMaggio", "ParentName":"Heidi", "Date":"Feb"}};
 
     componentDidMount() {
         this.fetchFromDB()

@@ -12,9 +12,9 @@ import {
 } from "reactstrap";
 import { token, userID } from '../Login';
 
-var infoObj = {};
+var infoObj = {"ChildID":childID,"StudentName":"", "ParentName":"", "Date":""};
 var childID = "child"
-var url = "";
+var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
 
 class BrainMapConsent extends Component{
     constructor(props) {
@@ -27,9 +27,6 @@ class BrainMapConsent extends Component{
         };
         this.goBack = this.goBack.bind(this);
     }
-
-    infoObj = {"ChildID":childID,"StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
-    url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
 
     goBack(event) {
         window.location.reload();

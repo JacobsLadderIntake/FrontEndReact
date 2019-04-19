@@ -12,9 +12,9 @@ import {
 } from "reactstrap";
 import { token, userID } from '../Login';
 
-var infoObj = {};
+infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
 var childID = "child";
-var url = "";
+var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
 
 class ConsentAndMedicalRelease extends Component {
 
@@ -69,9 +69,6 @@ class ConsentAndMedicalRelease extends Component {
         console.log(formIsValid)
         return formIsValid;
     }
-
-    infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
-    url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
 
     updateFields() {
         let fields = this.state.fields;
