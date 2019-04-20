@@ -3,7 +3,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {Row} from "react-bootstrap";
 import Header from "../Header/Header";
-import { token, userID } from '../Login';
+import {token, userID, user} from '../Login';
 
 // FUTURE WORK: hardcoded indexing at 0 (getChild) will need to be dynamic based on selected student,
 // such that one parent can have multiple children (a need specified by Jacob's Ladder)
@@ -28,12 +28,6 @@ class ParentTable extends Component {
                 name: <div id="chai" style={{color: 'blue', textDecoration: 'underline'}}>Client History and Information Form</div>,
                 progress: 'Not Started',
                 color: 'white',
-            }, {
-                name: 'Medical Protocol Form',
-                progress: 'Not Started'
-            }, {
-                name: 'Independent Life Transition Parent/Guardian Form',
-                progress: 'Not Started'
             }, {
                 name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>,
                 progress: 'Not Started'
@@ -103,7 +97,7 @@ class ParentTable extends Component {
     };
 
     render() {
-        var ifAdmin = this.state.isAdmin ? <input type="date"></input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+        var ifAdmin = user.IsAdmin === 1 ? <input type="date"></input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
         return (
             <div className={"p-4"}>
                 <Header loggedIn = {true}/>
@@ -121,7 +115,7 @@ class ParentTable extends Component {
                     className={"parentTable -striped -highlight"}
                     data={this.state.data}
                     columns={this.state.columns}
-                    defaultPageSize={9}
+                    defaultPageSize={7}
                     showPagination={false}
                     getTdProps={(state, rowInfo) => {
                         return {

@@ -1312,11 +1312,14 @@ class InsuranceFinancialInformation extends Component{
                 <div className="form-title">
                     <div className = "row" >
                         <div className = "parent-top col-9">
-                            <h2>Insurance and Financial Information Form</h2>
+                            <h2 className={"header-print"}>Insurance and Financial Information Form</h2>
+                        </div>
+                        <div className={"col-3"}>
+                            <button className="print-button" onClick={() => window.print()}>Print</button>
                         </div>
                     </div>
                 </div>
-                <div className={"frame p-4"} data-spy="scroll">
+                <div className={"frame p-4 print-form"} data-spy="scroll">
                     <div> {this.renderInsurance()} </div>
                     <div> {this.renderPolicy()} </div>
                     <div> {this.renderAgreement()} </div>
