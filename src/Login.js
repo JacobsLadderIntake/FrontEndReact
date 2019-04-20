@@ -14,6 +14,8 @@ var url = '/userlogin';
 var infoObj = {};
 var token = '';
 var userID = '';
+var userUrl ='';
+let user = '';
 
 class Login extends Component {
 
@@ -62,7 +64,7 @@ class Login extends Component {
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        this.validate()
+        this.errorDisplay()
         this.updateFields();
         this.setState({fields});
     }
@@ -87,44 +89,67 @@ class Login extends Component {
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         if (body.Error) {
+            this.errorDisplay()
             console.log("wrong email/pass");
             console.log(infoObj)
         } else {
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
-            this.props.history.push("/parenthome");
+            this.getUser();
+            // this.props.history.push("/adminhome");
         }
         console.log(body);
     };
 
-    validate(email, password) {
+    getUser = async () => {
+        // infoObj = JSON.stringify(this.infoObj);
+        userUrl = "/api/users/" + userID;
+        console.log(userUrl);
+        const userResponse = await fetch(userUrl, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const userBody = await userResponse.json();
+        if (userResponse.status !== 200) throw Error(userBody.message);
+        console.log(userBody);
+        const userObj = userBody.User[0]
+        if (userBody.Error) {
+            console.log(userResponse);
+        } else {
+            if (userObj.IsAdmin === 1) {
+                this.props.history.push("/adminhome");
+            } else {
+                this.props.history.push("/parenthome");
+            }
+            user = userObj;
+            console.log(userResponse);
+        }
+    };
+
+    errorDisplay() {
         // we are going to store errors for all fields
         // in a single array
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
         if(this.state.loginButtonPressed) {
-            /*if (email !== this.state.email && password !== this.state.password ) {
+            if (!fields["email"] || !fields["password"]) {
                 errors["email"] = "Email or password is incorrect";
                 errors["password"] = "Email or password is incorrect";
-                formIsValid = false;
-            }*/ // not quite how login works
-            if (!fields["email"]) {
-                formIsValid = false;
-                errors["email"] = "Cannot be empty";
             }
-            if (!fields["password"]) {
-                formIsValid = false;
-                errors["password"] = "Cannot be empty";
-            }
+
         }
         this.setState({errors: errors})
         return formIsValid
     }
 
-  isAdmin(email) {
-    return true;
-  }
+  // isAdmin(email) {
+  //   return true;
+  // }
 
   renderForm() {
     return (
@@ -178,6 +203,7 @@ class Login extends Component {
       </div>
     );
   }
+
 }
 export default Login;
-export {token, userID};
+export {token, userID, user};
