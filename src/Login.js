@@ -14,6 +14,7 @@ var url = '/userlogin';
 var infoObj = {};
 var token = '';
 var userID = '';
+var userUrl ='';
 
 class Login extends Component {
 
@@ -92,9 +93,38 @@ class Login extends Component {
         } else {
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
-            this.props.history.push("/parenthome");
+            this.getUser();
+            // this.props.history.push("/adminhome");
         }
         console.log(body);
+    };
+
+    getUser = async () => {
+        // infoObj = JSON.stringify(this.infoObj);
+        userUrl = "/api/users/" + userID;
+        console.log(userUrl);
+        const userResponse = await fetch(userUrl, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const userBody = await userResponse.json();
+        if (userResponse.status !== 200) throw Error(userBody.message);
+        console.log(userBody);
+        const userObj = userBody.User[0]
+        if (userBody.Error) {
+            console.log(userResponse);
+        } else {
+            if (userObj.IsAdmin === 1) {
+                this.props.history.push("/adminhome");
+            } else {
+                this.props.history.push("/parenthome");
+            }
+            console.log(userResponse);
+        }
     };
 
     validate(email, password) {
@@ -122,9 +152,9 @@ class Login extends Component {
         return formIsValid
     }
 
-  isAdmin(email) {
-    return true;
-  }
+  // isAdmin(email) {
+  //   return true;
+  // }
 
   renderForm() {
     return (
@@ -178,6 +208,7 @@ class Login extends Component {
       </div>
     );
   }
+
 }
 export default Login;
 export {token, userID};

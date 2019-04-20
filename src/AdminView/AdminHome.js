@@ -5,6 +5,8 @@ import '../custom-style.css'
 import StudentCard from './StudentCard'
 import {Button, Input, Row, Col} from 'reactstrap'
 import Header from "../Header/Header";
+import { token, userID } from '../Login';
+
 
 class AdminHome extends Component {
     constructor(props) {
@@ -45,7 +47,7 @@ class AdminHome extends Component {
         const response = await fetch('/api/children', {
             method: 'GET',
             headers: {
-                'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyIwIjp7IlVzZXJJRCI6Ijk4NzYiLCJJc0FkbWluIjowLCJVc2VyRmlyc3ROYW1lIjoiIiwiVXNlckxhc3ROYW1lIjoiIiwiUGFzc3dvcmQiOiJmODY5Y2UxYzg0MTRhMjY0YmIxMWUxNGEyYzg4NTBlZCIsIkVtYWlsIjoiYWJpZ2FpbEBnbWFpbC5jb20ifSwiaWF0IjoxNTU0NzU5MTU2LCJleHAiOjE1NTQ3NzcxNTZ9.u6zT4kvZX-zbZ7JpaCj8oRY4jEHZG0n0noOSi3TX7MI",
+                'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
@@ -54,7 +56,7 @@ class AdminHome extends Component {
         console.log(body);
         // this.state.user = body.UserFirstName;
         if (response.status !== 200) throw Error(body.message);
-        // console.log(body);
+        console.log(body);
         this.state.children = body.Users;
         // console.log(this.state.children);
         return body;

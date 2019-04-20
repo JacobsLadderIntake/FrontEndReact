@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import './StudentCard.css'
 import {Card, CardBody, CardHeader, CardText} from "reactstrap";
-
+import { token } from '../Login';
 
 class StudentCard extends Component {
     constructor(props) {
@@ -36,7 +36,7 @@ class StudentCard extends Component {
         const response = await fetch('/api/parent/' + this.props.child.ParentID, {
             method: 'GET',
             headers: {
-                'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyIwIjp7IlVzZXJJRCI6Ijk4NzYiLCJJc0FkbWluIjowLCJVc2VyRmlyc3ROYW1lIjoiIiwiVXNlckxhc3ROYW1lIjoiIiwiUGFzc3dvcmQiOiJmODY5Y2UxYzg0MTRhMjY0YmIxMWUxNGEyYzg4NTBlZCIsIkVtYWlsIjoiYWJpZ2FpbEBnbWFpbC5jb20ifSwiaWF0IjoxNTU0NzU5MTU2LCJleHAiOjE1NTQ3NzcxNTZ9.u6zT4kvZX-zbZ7JpaCj8oRY4jEHZG0n0noOSi3TX7MI",
+                'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },

@@ -3,7 +3,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {Row} from "react-bootstrap";
 import Header from "../Header/Header";
-import userID from '../Login';
+import {token, userID} from '../Login';
 
 const studentName = '';
 var url = 'api/findUsersChildren';
