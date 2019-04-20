@@ -3,7 +3,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {Row} from "react-bootstrap";
 import Header from "../Header/Header";
-import userID from '../Login';
+import {token, userID, user} from '../Login';
 
 const studentName = '';
 var url = 'api/findUsersChildren';
@@ -93,8 +93,8 @@ class ParentTable extends Component {
 
     render() {
       const studentName = "susie lou";//getChildren("emma@gmail.com");
-
-        var ifAdmin = this.state.isAdmin ? <input type="date"></input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+        console.log(user);
+        var ifAdmin = user.IsAdmin === 1 ? <input type="date"></input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
         return (
             <div className={"p-4"}>
                 <Header loggedIn = {true}/>

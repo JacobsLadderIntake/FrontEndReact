@@ -5,12 +5,14 @@ import '../custom-style.css'
 import StudentCard from './StudentCard'
 import {Button, Input, Row, Col} from 'reactstrap'
 import Header from "../Header/Header";
+import { token, user } from '../Login';
+
 
 class AdminHome extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: "",
+            userName: user.UserFirstName,
             children: null,
         };
 
@@ -45,7 +47,7 @@ class AdminHome extends Component {
         const response = await fetch('/api/children', {
             method: 'GET',
             headers: {
-                'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyIwIjp7IlVzZXJJRCI6Ijk4NzYiLCJJc0FkbWluIjowLCJVc2VyRmlyc3ROYW1lIjoiIiwiVXNlckxhc3ROYW1lIjoiIiwiUGFzc3dvcmQiOiJmODY5Y2UxYzg0MTRhMjY0YmIxMWUxNGEyYzg4NTBlZCIsIkVtYWlsIjoiYWJpZ2FpbEBnbWFpbC5jb20ifSwiaWF0IjoxNTU0NzU5MTU2LCJleHAiOjE1NTQ3NzcxNTZ9.u6zT4kvZX-zbZ7JpaCj8oRY4jEHZG0n0noOSi3TX7MI",
+                'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
@@ -54,7 +56,7 @@ class AdminHome extends Component {
         console.log(body);
         // this.state.user = body.UserFirstName;
         if (response.status !== 200) throw Error(body.message);
-        // console.log(body);
+        console.log(body);
         this.state.children = body.Users;
         // console.log(this.state.children);
         return body;
@@ -85,7 +87,7 @@ class AdminHome extends Component {
                 <div className = "adminHome container-fluid" >
                     <div className = "row" >
                         <div className = "admin-top col-9">
-                            <h1 className="">Admission Team Board: { this.state.user }</h1>
+                            <h1 className="">Admission Team Board: { user.UserFirstName }</h1>
                         </div>
                     </div>
                     <div className="row pl-3 pr-3 align-items-center">
