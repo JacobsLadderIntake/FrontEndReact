@@ -63,7 +63,7 @@ class Login extends Component {
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        this.validate()
+        this.errorDisplay()
         this.updateFields();
         this.setState({fields});
     }
