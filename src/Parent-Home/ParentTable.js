@@ -94,7 +94,9 @@ class ParentTable extends Component {
     render() {
       const studentName = "susie lou";//getChildren("emma@gmail.com");
         console.log(user);
-        var ifAdmin = user.IsAdmin === 1 ? <input type="date"></input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+        var dueDate = user.IsAdmin === 1 ? <input id={"dueDateInput"} type="date"> </input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+        var evalDate = user.IsAdmin === 1 ? <input id={"evalDateInput"}type="date"> </input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+
         return (
             <div className={"p-4"}>
                 <Header loggedIn = {true}/>
@@ -102,10 +104,10 @@ class ParentTable extends Component {
                     <h2 className = "parent-top col-9 pb-4">Intake Profile Checklist: {studentName}</h2>
                 </Row>
                 <Row>
-                    <div style={{fontWeight: 'bold', marginLeft: 35}}> Intake Profile Due Date: {ifAdmin} </div>
+                    <div style={{fontWeight: 'bold', marginLeft: 35}}> Intake Profile Due Date: {dueDate} </div>
                 </Row>
                 <Row>
-                    <div style={{fontWeight: 'bold', marginLeft: 35}}> Evaluation Date: {ifAdmin} </div>
+                    <div style={{fontWeight: 'bold', marginLeft: 35}}> Evaluation Date: {evalDate} </div>
                 </Row>
                 <br/>
                 <ReactTable
