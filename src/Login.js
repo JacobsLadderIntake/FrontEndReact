@@ -88,6 +88,7 @@ class Login extends Component {
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         if (body.Error) {
+            this.errorDisplay()
             console.log("wrong email/pass");
             console.log(infoObj)
         } else {
@@ -127,26 +128,18 @@ class Login extends Component {
         }
     };
 
-    validate(email, password) {
+    errorDisplay() {
         // we are going to store errors for all fields
         // in a single array
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
         if(this.state.loginButtonPressed) {
-            /*if (email !== this.state.email && password !== this.state.password ) {
+            if (!fields["email"] || !fields["password"]) {
                 errors["email"] = "Email or password is incorrect";
                 errors["password"] = "Email or password is incorrect";
-                formIsValid = false;
-            }*/ // not quite how login works
-            if (!fields["email"]) {
-                formIsValid = false;
-                errors["email"] = "Cannot be empty";
             }
-            if (!fields["password"]) {
-                formIsValid = false;
-                errors["password"] = "Cannot be empty";
-            }
+
         }
         this.setState({errors: errors})
         return formIsValid
