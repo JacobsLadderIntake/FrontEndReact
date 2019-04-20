@@ -28,9 +28,6 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap'
                         <NavItem>
                             <NavLink className="header" href="/">Logout</NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink onClick={() => window.print()}>Print</NavLink>
-                        </NavItem>
                     </Nav>
             </Navbar>
         )
