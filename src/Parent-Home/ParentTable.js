@@ -27,12 +27,6 @@ class ParentTable extends Component {
                 progress: 'Not Started',
                 color: 'white',
             }, {
-                name: 'Medical Protocol Form',
-                progress: 'Not Started'
-            }, {
-                name: 'Independent Life Transition Parent/Guardian Form',
-                progress: 'Not Started'
-            }, {
                 name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>,
                 progress: 'Not Started'
             }, {
@@ -118,7 +112,7 @@ class ParentTable extends Component {
                     className={"parentTable -striped -highlight"}
                     data={this.state.data}
                     columns={this.state.columns}
-                    defaultPageSize={9}
+                    defaultPageSize={7}
                     showPagination={false}
                     getTdProps={(state, rowInfo) => {
                         return {
