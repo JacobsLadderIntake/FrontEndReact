@@ -10,9 +10,9 @@ import {
     Label,
     Row
 } from "reactstrap";
-import { token, userID } from '../Login';
+import token from '../Login';
 
-infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
+var infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
 var childID = "child";
 var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
 

@@ -77,7 +77,6 @@ class BrainMapConsent extends Component{
         this.postToDB();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
         });
@@ -100,9 +99,7 @@ class BrainMapConsent extends Component{
 
     postToDB() {
       infoObj = JSON.stringify(this.infoObj);
-      // console.log(infoObj)
-      // console.log(this.url)
-        const response = fetch(this.url, {
+      const response = fetch(this.url, {
             method: 'POST',
             headers: {
                 'token': token,

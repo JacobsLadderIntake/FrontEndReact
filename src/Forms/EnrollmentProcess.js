@@ -80,9 +80,8 @@ class EnrollmentProcess extends Component{
         event.preventDefault();
         this.updateFields();
         this.postToDB();
-        this.setState({submitButtonPressed: true}, () => {
+        this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                //NEED TO UPDATE DATABASE
                 this.props.history.push("/parenthome")
             }
         });
@@ -91,10 +90,10 @@ class EnrollmentProcess extends Component{
     handleSaveAndQuit(event) {
         event.preventDefault();
         this.updateFields();
-        this.postToDB();
         this.setState({saveButtonPressed: true});
-        //UPDATE DATABASE
-        this.props.history.push("/parenthome")
+        this.postToDB();
+        //back to homepage
+        this.props.history.push("/parenthome");
     }
 
     componentDidMount() {
@@ -104,8 +103,8 @@ class EnrollmentProcess extends Component{
     }
 
     postToDB() {
-      infoObj = JSON.stringify(this.infoObj);
-        const response = fetch(url, {
+        infoObj = JSON.stringify(this.infoObj);
+        const response = fetch(this.url, {
             method: 'POST',
             headers: {
                 'token': token,
@@ -117,7 +116,7 @@ class EnrollmentProcess extends Component{
     }
 
     fetchFromDB = async () => {
-        const response = await fetch(url, {
+        const response = await fetch(this.url, {
             method: 'GET',
             headers: {
                 'token': token,
@@ -126,12 +125,13 @@ class EnrollmentProcess extends Component{
             },
         });
         const body = await response.json();
+        console.log(body)
         if (response.status !== 200) throw Error(body.message);
-        this.state.fields["studentName"] = body.Form[0].StudentName;
-        this.state.fields["parentName"] = body.Form[0].ParentName;
-        this.state.fields["date"] = body.Form[0].Date;
-        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
-        console.log(this.state.fields)
+        if (body.Form.length > 0) {
+          this.state.fields["studentName"] = body.Form[0].StudentName;
+          this.state.fields["parentName"] = body.Form[0].ParentName;
+          this.state.fields["date"] = body.Form[0].Date;
+        }
         return body;
     };
 
