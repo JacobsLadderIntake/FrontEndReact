@@ -15,6 +15,7 @@ var infoObj = {};
 var token = '';
 var userID = '';
 var userUrl ='';
+let user = '';
 
 class Login extends Component {
 
@@ -124,6 +125,7 @@ class Login extends Component {
             } else {
                 this.props.history.push("/parenthome");
             }
+            user = userObj;
             console.log(userResponse);
         }
     };
@@ -204,4 +206,4 @@ class Login extends Component {
 
 }
 export default Login;
-export {token, userID};
+export {token, userID, user};

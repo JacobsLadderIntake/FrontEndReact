@@ -5,14 +5,14 @@ import '../custom-style.css'
 import StudentCard from './StudentCard'
 import {Button, Input, Row, Col} from 'reactstrap'
 import Header from "../Header/Header";
-import { token, userID } from '../Login';
+import { token, user } from '../Login';
 
 
 class AdminHome extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: "",
+            userName: user.UserFirstName,
             children: null,
         };
 
@@ -87,7 +87,7 @@ class AdminHome extends Component {
                 <div className = "adminHome container-fluid" >
                     <div className = "row" >
                         <div className = "admin-top col-9">
-                            <h1 className="">Admission Team Board: { this.state.user }</h1>
+                            <h1 className="">Admission Team Board: { user.UserFirstName }</h1>
                         </div>
                     </div>
                     <div className="row pl-3 pr-3 align-items-center">
