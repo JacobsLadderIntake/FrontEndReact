@@ -115,3 +115,57 @@
  .space-between {
      padding: 1rem 0rem;
  }
+ .print-button {
+     float: right;
+     width: 5rem;
+     height:2.5rem;
+ }
+@media print {
+    @page
+    {
+        size:  auto;   /* auto is the initial value */
+        margin: 5rem;  /* this affects the margin in the printer settings */
+    }
+    body * {
+        visibility: hidden;
+
+    }
+    html
+    {
+        background-color: #FFFFFF;
+        margin: 0mm;  /* this affects the margin on the html before sending to printer */
+    }
+
+    .print-form,
+    .header-print,
+    .print-form * {
+        visibility: visible;
+    }
+    .header-print {
+        border-bottom: 2px solid black;
+    }
+
+    .print-form {
+        border: none;
+        position: unset;
+        height: 100%;
+        width:100%;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px;
+        font-size: 14px;
+        line-height: 18px;
+        overflow: visible;
+    }
+
+    #section1,#section2,#section3,#section4,#section5,#section6,#section7,#section8,#section9,#section10,#section11,#section12,#section13,#section14 {
+        page-break-before: always;
+
+    }
+    #navbar,#form-title {
+        display: none;
+    }
+}
+
+/*#section1,#section2,#section3,#section4,#section5,#section6,#section7,#section8,#section9,#section10,#section11,#section12,#section13,#section14*/
