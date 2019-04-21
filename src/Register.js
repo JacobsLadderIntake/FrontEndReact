@@ -13,7 +13,7 @@ import Header from "./Header/Header";
 var parentObj = {};
 var childObj = {};
 var urlUser = '/signup';
-var urlChild = 'api/children/'
+var urlChild = '/children/'
 var token = '';
 
 class Register extends Component {
@@ -172,27 +172,28 @@ class Register extends Component {
 
     updateFields() {
         let fields = this.state.fields;
-        parentObj.IsAdmin = fields["isAdmin"] ? 1 : 0;
-        parentObj.UserFirstName = fields["studentFirstName"];
-        parentObj.UserLastName = fields["studentLastName"];
-        parentObj.Password = fields["password"];
-        parentObj.Email = fields["email"];
-        parentObj.SecurityQuestion = fields["securityQuestion"];
-        parentObj.SecurityQuestionAnswer = fields["securityAnswer"];
-        childObj.ChildFirstName = this.state.fields["studentFirstName"];
-        childObj.ChildLastName = this.state.fields["studentLastName"];
+        parentObj.isAdmin = fields["isAdmin"] ? 1 : 0;
+        parentObj.userFirstName = fields["studentFirstName"];
+        parentObj.userLastName = fields["studentLastName"];
+        parentObj.password = fields["password"];
+        parentObj.email = fields["email"];
+        parentObj.securityQuestion = fields["securityQuestion"];
+        parentObj.securityQuestionAnswer = fields["securityAnswer"];
+        childObj.childFirstName = this.state.fields["studentFirstName"];
+        childObj.childLastName = this.state.fields["studentLastName"];
     }
 
     handleSubmit(event) {
         event.preventDefault();
         this.setState({submitButtonPressed: true},()=> {
-            this.createUser();
-            this.createChild();
         });
+        this.createUser();
+        this.createChild();
+        this.props.history.push("/");
     }
 
     createUser = async () => {
-        parentObj.UserID = this.state.fields["email"].split("@")[0];
+        parentObj.userID = this.state.fields["email"].split("@")[0];
         var update = JSON.stringify(parentObj);
         console.log(update)
         const response = fetch(urlUser, {
@@ -203,21 +204,21 @@ class Register extends Component {
             },
             body: update
         });
-        //const body = response;
-        //console.log(body)
+        const body = await response.json;
+        console.log(body)
         /*if (response.status !== 200) throw Error(body.message);
         if (body.Error) {
             this.errorDisplay()
         } else {
-            ///token = body.token;
+            //token = body.token;
         }*/
     }
 
     createChild = async () => {
-        childObj.ParentID = parentObj.UserID;
+        childObj.parentID = parentObj.userID;
         // semi-unique childID generation. relies on no parentID being the same
         // and no parent naming two children the same thing
-        childObj.ChildID = childObj.ChildFirstName + parentObj.UserID;
+        childObj.childID = childObj.childFirstName + parentObj.userID;
         var update = JSON.stringify(childObj);
         console.log(update);
         const response = fetch(urlChild, {

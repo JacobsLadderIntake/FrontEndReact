@@ -96,7 +96,7 @@ class Login extends Component {
         } else {
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
-            // this.props.history.push("/adminhome");
+            console.log(userID)
         }
         console.log(body);
     };
