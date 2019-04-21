@@ -49,6 +49,7 @@ class Login extends Component {
         this.infoObj.password = ReactDOM.findDOMNode(this.password).value;
         this.infoObj.email = ReactDOM.findDOMNode(this.email).value;
         this.doLogin();
+        this.getUser();
     }
 
     handleForgotPassword(e) {
@@ -91,11 +92,10 @@ class Login extends Component {
         if (body.Error) {
             this.errorDisplay()
             console.log("wrong email/pass");
-            console.log(infoObj)
+            // console.log(infoObj)
         } else {
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
-            this.getUser();
             // this.props.history.push("/adminhome");
         }
         console.log(body);
@@ -115,7 +115,7 @@ class Login extends Component {
         });
         const userBody = await userResponse.json();
         if (userResponse.status !== 200) throw Error(userBody.message);
-        console.log(userBody);
+        // console.log(userBody);
         const userObj = userBody.User[0]
         if (userBody.Error) {
             console.log(userResponse);

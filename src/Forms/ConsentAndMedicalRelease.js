@@ -12,24 +12,20 @@ import {
 } from "reactstrap";
 import token from '../Login';
 
-var infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
 var childID = "child";
+var infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
 var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
 
 class ConsentAndMedicalRelease extends Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             errors: [],
             fields: [],
             submitButtonPressed: false,
             saveButtonPressed:false
-        };
-
+        }
         this.goBack = this.goBack.bind(this);
-
     }
 
     goBack(event) {
@@ -49,7 +45,6 @@ class ConsentAndMedicalRelease extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-
         if (this.state.submitButtonPressed) {
             if (!fields["studentName"]) {
                 formIsValid = false;
@@ -64,15 +59,12 @@ class ConsentAndMedicalRelease extends Component {
                 errors["date"] = "Cannot be empty";
             }
         }
-
         this.setState({errors: errors});
-        console.log(formIsValid)
         return formIsValid;
     }
 
     updateFields() {
         let fields = this.state.fields;
-        let infoObj = this.infoObj;
         infoObj.StudentName = fields["studentName"];
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
@@ -87,24 +79,22 @@ class ConsentAndMedicalRelease extends Component {
     }
 
     postToDB() {
-        infoObj = JSON.stringify(this.infoObj);
-        console.log(this.url);
-        const response = fetch(this.url, {
+        var update = JSON.stringify(infoObj);
+        console.log(update)
+        const response = fetch(url, {
             method: 'POST',
             headers: {
                 'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: infoObj
+            body: update
         });
     }
 
     fetchFromDB = async () => {
-        // infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
-        console.log(this.url)
-        const response = await fetch(this.url, {
+        console.log(url)
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'token': token,
@@ -113,16 +103,15 @@ class ConsentAndMedicalRelease extends Component {
             },
         });
         const body = await response.json();
-        console.log(body);
-        if (response.status !== 200) throw Error(body.message);
-        if (body.Form.length > 0) {
+        console.log(body)
+        if (response.status !== 200) {
+            throw Error(body.message);
+        } else if (body.Form.length > 0) {
             this.state.fields["studentName"] = body.Form[0].StudentName;
             this.state.fields["parentName"] = body.Form[0].ParentName;
             this.state.fields["date"] = body.Form[0].Date;
             this.state.fields["consideration"] = body.Form[0].Comments;
-            // this.state.fields["consentCheck"] = body[0].ConsentCheck;
         }
-        // console.log(this.state.fields)
         return body;
     };
 

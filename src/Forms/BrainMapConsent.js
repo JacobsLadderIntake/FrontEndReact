@@ -12,8 +12,8 @@ import {
 } from "reactstrap";
 import { token, userID } from '../Login';
 
-var infoObj = {"ChildID":childID,"StudentName":"", "ParentName":"", "Date":""};
 var childID = "child"
+var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
 var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
 
 class BrainMapConsent extends Component{
@@ -41,9 +41,9 @@ class BrainMapConsent extends Component{
 
     updateFields() {
         let fields = this.state.fields;
-        this.infoObj.StudentName = fields["studentName"];
-        this.infoObj.ParentName = fields["parentName"];
-        this.infoObj.Date = fields["date"];
+        infoObj.StudentName = fields["studentName"];
+        infoObj.ParentName = fields["parentName"];
+        infoObj.Date = fields["date"];
         // infoObj.ConsentCheck = fields["consentCheck"];
     }
 
@@ -98,21 +98,21 @@ class BrainMapConsent extends Component{
     }
 
     postToDB() {
-      infoObj = JSON.stringify(this.infoObj);
-      const response = fetch(this.url, {
+      var update = JSON.stringify(infoObj);
+      const response = fetch(url, {
             method: 'POST',
             headers: {
                 'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: infoObj
+            body: update
         });
     }
 
     fetchFromDB = async () => {
-      console.log(this.url)
-        const response = await fetch(this.url, {
+      console.log(url)
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'token': token,
@@ -121,14 +121,12 @@ class BrainMapConsent extends Component{
             },
         });
         const body = await response.json();
-        console.log(body)
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
           this.state.fields["studentName"] = body.Form[0].StudentName;
           this.state.fields["parentName"] = body.Form[0].ParentName;
           this.state.fields["date"] = body.Form[0].Date;
         }
-        // console.log(this.state.fields)
         return body;
     };
 
