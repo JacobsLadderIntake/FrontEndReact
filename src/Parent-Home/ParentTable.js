@@ -57,6 +57,7 @@ class ParentTable extends Component {
         console.log(this.state.studentName)
     }
 
+
     handleClick(row, event) {
         event.preventDefault();
         if (row.name.props.id === "bmc") {
