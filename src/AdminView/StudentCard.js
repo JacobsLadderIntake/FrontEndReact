@@ -5,24 +5,22 @@ import './StudentCard.css'
 import {Card, CardBody, CardHeader, CardText} from "reactstrap";
 import { token } from '../Login';
 
+
+let childID = '';
+
 class StudentCard extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            parentFirstName: "Bill",
-            parentLastName: "Loo",
-            percentCompletion: "",
-            formDueDate: "01/01/2020",
-            evalDate: "01/10/2020",
-            evaluator: "Rachel Smith",
+            parentFirstName: "",
+            parentLastName: "",
         };
         this.handleNameClick = this.handleNameClick.bind(this);
     }
 
     handleNameClick() {
-        // event.preventDefault();
-        console.log("card clicked!!");
+        childID = this.props.child.ChildID;
         this.props.history.push("/parenthome");
     };
 
@@ -33,7 +31,7 @@ class StudentCard extends Component {
     }
 
     getParentName = async () => {
-        const response = await fetch('/api/parent/' + this.props.child.ParentID, {
+        const response = await fetch('/api/users/' + this.props.child.ParentID, {
             method: 'GET',
             headers: {
                 'token': token,
@@ -42,12 +40,12 @@ class StudentCard extends Component {
             },
         });
         const body = await response.json();
-        console.log(body);
+        let userObj = body.User[0];
         if (response.status !== 200) throw Error(body.message);
+        this.state.parentFirstName = userObj.UserFirstName;
+        this.state.parentLastName = userObj.UserLastName;
         return body;
     };
-
-
 
     renderCard() {
         return  <div>
@@ -58,10 +56,9 @@ class StudentCard extends Component {
                             >{this.props.child.ChildFirstName + " " + this.props.child.ChildLastName}</CardHeader>
                         <CardBody >
                             <CardText className="text">
-                                Parents: <br/>
+                                Parent: {this.state.parentFirstName + " " + this.state.parentLastName}<br/>
                                 Forms due: {this.props.child.ProfileDueDate}<br/>
-                                Evaluation on {this.props.child.EvaluationDate} with {this.props.child.Evaluator}<br/>
-                                Reviewed by: {this.state.reviewers}
+                                Evaluation date: {this.props.child.EvaluationDate} <br/>
                             </CardText>
                         </CardBody>
                     </Card>
@@ -78,4 +75,5 @@ class StudentCard extends Component {
     };
 }
 
+export {childID};
 export default withRouter(StudentCard)
