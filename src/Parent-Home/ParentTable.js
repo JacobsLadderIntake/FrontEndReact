@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {Row} from "react-bootstrap";
+import {Row, Input} from "reactstrap";
 import Header from "../Header/Header";
-import {token, userID, user} from '../Login';
+import {token, userID, isAdmin} from '../Login';
 
 const studentName = '';
 var url = 'api/findUsersChildren';
@@ -46,7 +46,6 @@ class ParentTable extends Component {
                 progress: 'Not Started'
             }]
         };
-        // this.getChild();
     }
 
     handleClick(row, event) {
@@ -89,13 +88,13 @@ class ParentTable extends Component {
             console.log(body.rows);
             this.studentName = body.rows[0];
         }
-    }
+    };
 
     render() {
       const studentName = "susie lou";//getChildren("emma@gmail.com");
-        console.log(user);
-        var dueDate = user.IsAdmin === 1 ? <input id={"dueDateInput"} type="date"> </input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
-        var evalDate = user.IsAdmin === 1 ? <input id={"evalDateInput"}type="date"> </input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+        console.log(isAdmin);
+        var dueDate = isAdmin ? <Input id={"dueDateInput"} type="date"> </Input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+        var evalDate = isAdmin ? <Input id={"evalDateInput"} type="date"> </Input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
 
         return (
             <div className={"p-4"}>

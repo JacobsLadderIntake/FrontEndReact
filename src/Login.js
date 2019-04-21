@@ -14,8 +14,7 @@ var url = '/userlogin';
 var infoObj = {};
 var token = '';
 var userID = '';
-var userUrl ='';
-let user = '';
+let isAdmin = false;
 
 class Login extends Component {
 
@@ -38,13 +37,6 @@ class Login extends Component {
 
     handleLogin(e) {
         e.preventDefault();
-        /*if(this.validate(email, password) && this.isAdmin()) {
-            this.props.history.push("/adminhome");
-        } else if (this.validate()){
-
-        } else {
-            return
-        }*/ // not quite how login works
         this.setState({loginButtonPressed:true})
         this.infoObj.password = ReactDOM.findDOMNode(this.password).value;
         this.infoObj.email = ReactDOM.findDOMNode(this.email).value;
@@ -87,48 +79,56 @@ class Login extends Component {
             body: infoObj
         });
         const body = await response.json();
+
+
         if (response.status !== 200) throw Error(body.message);
         if (body.Error) {
-            this.errorDisplay()
+            this.errorDisplay();
             console.log("wrong email/pass");
             console.log(infoObj)
         } else {
+            // console.log(body);
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
-            this.getUser();
-            // this.props.history.push("/adminhome");
+            if (body.isAdmin === 1) {
+                this.props.history.push("/adminhome");
+                isAdmin = true;
+            } else {
+                this.props.history.push("/parenthome");
+                isAdmin = false;
+            }
         }
         console.log(body);
     };
 
-    getUser = async () => {
-        // infoObj = JSON.stringify(this.infoObj);
-        userUrl = "/api/users/" + userID;
-        console.log(userUrl);
-        const userResponse = await fetch(userUrl, {
-            method: 'GET',
-            headers: {
-                'token': token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-        const userBody = await userResponse.json();
-        if (userResponse.status !== 200) throw Error(userBody.message);
-        console.log(userBody);
-        const userObj = userBody.User[0]
-        if (userBody.Error) {
-            console.log(userResponse);
-        } else {
-            if (userObj.IsAdmin === 1) {
-                this.props.history.push("/adminhome");
-            } else {
-                this.props.history.push("/parenthome");
-            }
-            user = userObj;
-            console.log(userResponse);
-        }
-    };
+    // getUser = async () => {
+    //     // infoObj = JSON.stringify(this.infoObj);
+    //     userUrl = "/api/users/" + userID;
+    //     console.log(userUrl);
+    //     const userResponse = await fetch(userUrl, {
+    //         method: 'GET',
+    //         headers: {
+    //             'token': token,
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //         },
+    //     });
+    //     const userBody = await userResponse.json();
+    //     if (userResponse.status !== 200) throw Error(userBody.message);
+    //     console.log(userBody);
+    //     const userObj = userBody.User[0]
+    //     if (userBody.Error) {
+    //         console.log(userResponse);
+    //     } else {
+    //         if (userObj.IsAdmin === 1) {
+    //             this.props.history.push("/adminhome");
+    //         } else {
+    //             this.props.history.push("/parenthome");
+    //         }
+    //         user = userObj;
+    //         console.log(userResponse);
+    //     }
+    // };
 
     errorDisplay() {
         // we are going to store errors for all fields
@@ -206,4 +206,4 @@ class Login extends Component {
 
 }
 export default Login;
-export {token, userID, user};
+export {token, userID, isAdmin};
