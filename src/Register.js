@@ -33,7 +33,6 @@ class Register extends Component {
         this.goBack = this.goBack.bind(this);
     }
 
-
     goBack(event) {
         window.location.reload()
     }
