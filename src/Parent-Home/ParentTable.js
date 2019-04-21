@@ -5,15 +5,17 @@ import {Row} from "react-bootstrap";
 import Header from "../Header/Header";
 import {token, userID, user} from '../Login';
 
-const studentName = '';
-var url = 'api/findUsersChildren';
+// FUTURE WORK: hardcoded indexing at 0 (getChild) will need to be dynamic based on selected student,
+// such that one parent can have multiple children (a need specified by Jacob's Ladder)
 
 class ParentTable extends Component {
     constructor (props) {
         super(props);
         this.state = {
             isAdmin: false,
-
+            studentName: "",
+            evalDate: "",
+            dueDate: "",
             columns: [{
                 Header: 'Form Name',
                 accessor: 'name',
@@ -46,7 +48,13 @@ class ParentTable extends Component {
                 progress: 'Not Started'
             }]
         };
-        // this.getChild();
+    }
+
+    componentDidMount() {
+        this.getChild()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+        console.log(this.state.studentName)
     }
 
     handleClick(row, event) {
@@ -71,35 +79,30 @@ class ParentTable extends Component {
     }
 
     getChild = async () => {
-      var infoObj = JSON.stringify(this.userID);
-      console.log(infoObj)
-        const response = fetch(url, {
-            method: 'POST',
+        const response = await fetch("api/users/" + userID + "/children", {
+            method: 'GET',
             headers: {
+                'token': token,
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: infoObj
         });
         const body = await response.json();
+        console.log(body)
         if (response.status !== 200) throw Error(body.message);
-        if (body.Error) {
-            console.log(body.Message);
-        } else {
-            console.log(body.rows);
-            this.studentName = body.rows[0];
-        }
-    }
+        this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
+        this.state.evalDate = body.UsersChildren[0].EvaluationDate;
+        this.state.dueDate = body.UsersChildren[0].ProfileDueDate;
+        return body;
+    };
 
     render() {
-      const studentName = "susie lou";//getChildren("emma@gmail.com");
-        console.log(user);
         var ifAdmin = user.IsAdmin === 1 ? <input type="date"></input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
         return (
             <div className={"p-4"}>
                 <Header loggedIn = {true}/>
                 <Row className="parent-table-header">
-                    <h2 className = "parent-top col-9 pb-4">Intake Profile Checklist: {studentName}</h2>
+                    <h2 className = "parent-top col-9 pb-4">Intake Profile Checklist: {this.state.studentName}</h2>
                 </Row>
                 <Row>
                     <div style={{fontWeight: 'bold', marginLeft: 35}}> Intake Profile Due Date: {ifAdmin} </div>
