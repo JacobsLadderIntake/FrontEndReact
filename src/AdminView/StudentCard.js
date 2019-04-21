@@ -7,6 +7,7 @@ import { token } from '../Login';
 
 let parentFirstName = '';
 let parentLastName = '';
+let childID = '';
 
 class StudentCard extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ class StudentCard extends Component {
 
     handleNameClick() {
         // event.preventDefault();
+        childID = this.props.child.ChildID;
         this.props.history.push("/parenthome");
     };
 
@@ -82,4 +84,5 @@ class StudentCard extends Component {
     };
 }
 
+export {childID};
 export default withRouter(StudentCard)
