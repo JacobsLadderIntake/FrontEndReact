@@ -11,10 +11,9 @@ import {
     Row
 } from "reactstrap";
 import token from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var childID = "child";
 var infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
-var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
 
 class ConsentAndMedicalRelease extends Component {
     constructor(props) {
@@ -37,6 +36,16 @@ class ConsentAndMedicalRelease extends Component {
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields: fields});
+    }
+
+    updateFields() {
+        let fields = this.state.fields;
+        infoObj.ChildID = childID;
+        infoObj.StudentName = fields["studentName"];
+        infoObj.ParentName = fields["parentName"];
+        infoObj.Date = fields["date"];
+        infoObj.Comments = fields["consideration"];
+        // infoObj.ConsentCheck = fields["consentCheck"];
     }
 
     validate() {
@@ -63,58 +72,6 @@ class ConsentAndMedicalRelease extends Component {
         return formIsValid;
     }
 
-    updateFields() {
-        let fields = this.state.fields;
-        infoObj.StudentName = fields["studentName"];
-        infoObj.ParentName = fields["parentName"];
-        infoObj.Date = fields["date"];
-        infoObj.Comments = fields["consideration"];
-        // infoObj.ConsentCheck = fields["consentCheck"];
-    }
-
-    componentDidMount() {
-        this.fetchFromDB()
-            .then(res => this.setState({ response: res.express }))
-            .catch(err => console.log(err));
-    }
-
-    postToDB() {
-        var update = JSON.stringify(infoObj);
-        console.log(update)
-        const response = fetch(url, {
-            method: 'POST',
-            headers: {
-                'token': token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: update
-        });
-    }
-
-    fetchFromDB = async () => {
-        console.log(url)
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'token': token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-        const body = await response.json();
-        console.log(body)
-        if (response.status !== 200) {
-            throw Error(body.message);
-        } else if (body.Form.length > 0) {
-            this.state.fields["studentName"] = body.Form[0].StudentName;
-            this.state.fields["parentName"] = body.Form[0].ParentName;
-            this.state.fields["date"] = body.Form[0].Date;
-            this.state.fields["consideration"] = body.Form[0].Comments;
-        }
-        return body;
-    };
-
     handleSubmit(event) {
         event.preventDefault();
         this.updateFields();
@@ -128,13 +85,64 @@ class ConsentAndMedicalRelease extends Component {
     }
 
     handleSaveAndQuit(event) {
-      event.preventDefault();
-      this.updateFields();
-      this.setState({saveButtonPressed: true});
-      this.postToDB();
-      //back to homepage
-      this.props.history.push("/parenthome");
+        event.preventDefault();
+        this.updateFields();
+        this.setState({saveButtonPressed: true});
+        this.postToDB();
+        //back to homepage
+        this.props.history.push("/parenthome");
     }
+
+    componentDidMount() {
+        this.fetchFromDB()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    postToDB() {
+        var update = JSON.stringify(infoObj);
+        var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
+        console.log("post url" + url);
+        console.log("updated JSON");
+        console.log(update);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: update
+        });
+        console.log("response");
+        console.log(response);
+    }
+
+    fetchFromDB = async () => {
+        var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
+        console.log("get url " + url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log("fetch from db response");
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Form.length > 0) {
+            this.state.fields["studentName"] = body.Form[0].StudentName;
+            this.state.fields["parentName"] = body.Form[0].ParentName;
+            this.state.fields["date"] = body.Form[0].Date;
+            this.state.fields["consideration"] = body.Form[0].Comments;
+        }
+        return body;
+    };
+
+
 
     renderFields() {
         return (

@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import './login.css'
-import {
-  Button,
-  FormGroup,
-  Input,
-  Label,
-  FormFeedback
-} from "reactstrap";
+import {Button, FormGroup, Input, Label, FormFeedback} from "reactstrap";
 import Header from "./Header/Header";
 
 var url = '/userlogin';
@@ -82,10 +76,7 @@ class Login extends Component {
         if (response.status !== 200) throw Error(body.message);
         if (body.Error) {
             this.errorDisplay();
-            console.log("wrong email/pass");
-            // console.log(infoObj)
         } else {
-            // console.log(body);
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
             if (body.isAdmin === 1) {
@@ -96,7 +87,6 @@ class Login extends Component {
                 isAdmin = false;
             }
         }
-        console.log(body);
     };
 
     errorDisplay() {

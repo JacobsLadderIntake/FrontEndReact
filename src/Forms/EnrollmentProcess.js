@@ -11,10 +11,10 @@ import {
     Row
 } from "reactstrap";
 import { token, userID } from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var childID = "child"
+// var childID = "child"
 var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
-var url = 'api/children/' + childID + '/forms/EnrollmentForm';
 
 class EnrollmentProcess extends Component{
     constructor(props) {
@@ -41,6 +41,7 @@ class EnrollmentProcess extends Component{
 
     updateFields() {
         let fields = this.state.fields;
+        infoObj.ChildID = childID;
         infoObj.StudentName = fields["studentName"];
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
@@ -98,8 +99,9 @@ class EnrollmentProcess extends Component{
     }
 
     postToDB() {
-      var update = JSON.stringify(infoObj);
-      const response = fetch(url, {
+        var url = 'api/children/' + childID + '/forms/EnrollmentForm';
+        var update = JSON.stringify(infoObj);
+        const response = fetch(url, {
             method: 'POST',
             headers: {
                 'token': token,
@@ -111,6 +113,7 @@ class EnrollmentProcess extends Component{
     }
 
     fetchFromDB = async () => {
+        var url = 'api/children/' + childID + '/forms/EnrollmentForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {

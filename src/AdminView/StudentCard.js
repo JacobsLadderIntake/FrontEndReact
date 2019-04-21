@@ -6,7 +6,7 @@ import {Card, CardBody, CardHeader, CardText} from "reactstrap";
 import { token } from '../Login';
 
 
-let childID = '';
+let childParentID = '';
 
 class StudentCard extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class StudentCard extends Component {
     }
 
     handleNameClick() {
-        childID = this.props.child.ChildID;
+        childParentID = this.props.child.ParentID;
         this.props.history.push("/parenthome");
     };
 
@@ -41,6 +41,7 @@ class StudentCard extends Component {
         });
         const body = await response.json();
         let userObj = body.User[0];
+        console.log(userObj);
         if (response.status !== 200) throw Error(body.message);
         this.state.parentFirstName = userObj.UserFirstName;
         this.state.parentLastName = userObj.UserLastName;
@@ -75,5 +76,5 @@ class StudentCard extends Component {
     };
 }
 
-export {childID};
+export {childParentID};
 export default withRouter(StudentCard)

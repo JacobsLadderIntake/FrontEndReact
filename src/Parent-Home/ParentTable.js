@@ -4,9 +4,12 @@ import 'react-table/react-table.css';
 import {Row, Input} from "reactstrap";
 import Header from "../Header/Header";
 import {token, userID, isAdmin} from '../Login';
+import {childParentID} from "../AdminView/StudentCard";
 
 // FUTURE WORK: hardcoded indexing at 0 (getChild) will need to be dynamic based on selected student,
 // such that one parent can have multiple children (a need specified by Jacob's Ladder)
+
+let childID = '';
 
 class ParentTable extends Component {
     constructor (props) {
@@ -51,10 +54,16 @@ class ParentTable extends Component {
     }
 
     componentDidMount() {
-        this.getChild()
-            .then(res => this.setState({ response: res.express }))
-            .catch(err => console.log(err));
-        console.log(this.state.studentName)
+        if (!isAdmin) {
+            this.getChild()
+                .then(res => this.setState({ response: res.express }))
+                .catch(err => console.log(err));
+        } else {
+            this.getChildFromID()
+                .then(res => this.setState({ response: res.express }))
+                .catch(err => console.log(err));
+        }
+
     }
 
 
@@ -89,19 +98,38 @@ class ParentTable extends Component {
             },
         });
         const body = await response.json();
-        console.log(body)
+        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
         this.state.evalDate = body.UsersChildren[0].EvaluationDate;
         this.state.dueDate = body.UsersChildren[0].ProfileDueDate;
+        childID = body.UsersChildren[0].ChildID;
+        return body;
+    };
+
+    getChildFromID = async () =>{
+        const response = await fetch("api/users/" + childParentID + "/children", {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
+        this.state.evalDate = body.UsersChildren[0].EvaluationDate;
+        this.state.dueDate = body.UsersChildren[0].ProfileDueDate;
+        childID = body.UsersChildren[0].ChildID;
         return body;
     };
 
     render() {
-      const studentName = "susie lou";//getChildren("emma@gmail.com");
-        console.log(isAdmin);
-        var dueDate = isAdmin ? <Input id={"dueDateInput"} type="date"> </Input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
-        var evalDate = isAdmin ? <Input id={"evalDateInput"} type="date"> </Input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+        // console.log(isAdmin);
+        var dueDate = isAdmin ? <Input id={"dueDateInput"} type="text"> </Input> : <text style={{fontWeight: 'normal'}}>{this.state.dueDate}</text>;
+        var evalDate = isAdmin ? <Input id={"evalDateInput"} type="text"> </Input> : <text style={{fontWeight: 'normal'}}>{this.state.evalDate}</text>;
 
         return (
             <div className={"p-4"}>
@@ -153,3 +181,4 @@ class ParentTable extends Component {
 }
 
 export default ParentTable;
+export {childID};

@@ -11,10 +11,9 @@ import {
     Row
 } from "reactstrap";
 import { token, userID } from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var childID = "child"
 var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
-var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
 
 class BrainMapConsent extends Component{
     constructor(props) {
@@ -41,6 +40,7 @@ class BrainMapConsent extends Component{
 
     updateFields() {
         let fields = this.state.fields;
+        infoObj.ChildID = childID;
         infoObj.StudentName = fields["studentName"];
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
@@ -99,19 +99,22 @@ class BrainMapConsent extends Component{
 
     postToDB() {
       var update = JSON.stringify(infoObj);
+      var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
       const response = fetch(url, {
-            method: 'POST',
-            headers: {
-                'token': token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: update
-        });
+          method: 'POST',
+          headers: {
+              'token': token,
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: update
+      });
+      console.log(response);
     }
 
     fetchFromDB = async () => {
-      console.log(url)
+        var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
+        console.log("in fetch " + url);
         const response = await fetch(url, {
             method: 'GET',
             headers: {
