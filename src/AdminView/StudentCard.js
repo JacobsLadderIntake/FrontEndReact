@@ -5,8 +5,7 @@ import './StudentCard.css'
 import {Card, CardBody, CardHeader, CardText} from "reactstrap";
 import { token } from '../Login';
 
-let parentFirstName = '';
-let parentLastName = '';
+
 let childID = '';
 
 class StudentCard extends Component {
@@ -16,16 +15,11 @@ class StudentCard extends Component {
         this.state = {
             parentFirstName: "",
             parentLastName: "",
-            // percentCompletion: "",
-            // formDueDate: "",
-            // evalDate: "",
-            // evaluator: "",
         };
         this.handleNameClick = this.handleNameClick.bind(this);
     }
 
     handleNameClick() {
-        // event.preventDefault();
         childID = this.props.child.ChildID;
         this.props.history.push("/parenthome");
     };
@@ -45,10 +39,7 @@ class StudentCard extends Component {
                 'Content-Type': 'application/json',
             },
         });
-        console.log("in get parent name");
         const body = await response.json();
-        console.log(body);
-        console.log(body.User[0]);
         let userObj = body.User[0];
         if (response.status !== 200) throw Error(body.message);
         this.state.parentFirstName = userObj.UserFirstName;
