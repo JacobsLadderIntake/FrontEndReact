@@ -96,13 +96,14 @@ class Login extends Component {
         } else {
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
-            console.log(userID)
+            // console.log(userID)
         }
         console.log(body);
     };
 
     getUser = async () => {
         // infoObj = JSON.stringify(this.infoObj);
+        console.log(userID)
         userUrl = "/api/users/" + userID;
         console.log(userUrl);
         const userResponse = await fetch(userUrl, {
