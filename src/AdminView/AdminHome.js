@@ -12,7 +12,7 @@ class AdminHome extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: "",
+            userName: "",
             children: null,
         };
 
@@ -23,36 +23,27 @@ class AdminHome extends Component {
             .then(res => this.setState({ response: res.express }))
             .catch(err => console.log(err));
 
-        // this.getUser()
-        //     .then(res => this.setState({ response: res.express }))
-        //     .catch(err => console.log(err));
+        this.getUser()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
     }
-    // getUser = async () => {
-    //     // infoObj = JSON.stringify(this.infoObj);
-    //     let userUrl = "/api/users/" + userID;
-    //     console.log(userUrl);
-    //     const userResponse = await fetch(userUrl, {
-    //         method: 'GET',
-    //         headers: {
-    //             'token': token,
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //     });
-    //     const userBody = await userResponse.json();
-    //     if (userResponse.status !== 200) throw Error(userBody.message);
-    //     console.log(userBody);
-    //     const userObj = userBody.User[0]
-    //     if (userBody.Error) {
-    //         console.log(userResponse);
-    //     } else {
-    //         console.log(userObj);
-    //         console.log(userObj.UserFirstName);
-    //         this.state.user = userObj.UserFirstName;
-    //         // user = userObj;
-    //         // console.log(userResponse);
-    //     }
-    // };
+
+    getUser = async () => {
+        let url = '/api/Users/' + userID;
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        let userObj = body.User[0];
+        if (response.status !== 200) throw Error(body.message);
+        this.state.userName = userObj.UserFirstName + " " + userObj.UserLastName;
+        return body;
+    };
 
     getChildren = async () => {
         const response = await fetch('/api/children', {
@@ -64,7 +55,6 @@ class AdminHome extends Component {
             },
         });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         this.state.children = body.Users;
         return body;
@@ -88,7 +78,7 @@ class AdminHome extends Component {
                 <div className = "adminHome container-fluid" >
                     <div className = "row" >
                         <div className = "admin-top col-9">
-                            <h1 className="">Admission Team Board {this.state.user}</h1>
+                            <h1 className="">Admission Team Board: {this.state.userName}</h1>
                         </div>
                     </div>
                     <div className="row pl-3 pr-3 align-items-center">

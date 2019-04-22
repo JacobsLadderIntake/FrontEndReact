@@ -13,7 +13,7 @@ import Header from "./Header/Header";
 var parentObj = {};
 var childObj = {};
 var urlUser = '/signup';
-var urlChild = '/children/'
+var urlChild = '/children/';
 var token = '';
 
 class Register extends Component {
@@ -172,8 +172,8 @@ class Register extends Component {
     updateFields() {
         let fields = this.state.fields;
         parentObj.isAdmin = fields["isAdmin"] ? 1 : 0;
-        parentObj.userFirstName = fields["studentFirstName"];
-        parentObj.userLastName = fields["studentLastName"];
+        parentObj.userFirstName = fields["parentFirstName"];
+        parentObj.userLastName = fields["parentLastName"];
         parentObj.password = fields["password"];
         parentObj.email = fields["email"];
         parentObj.securityQuestion = fields["securityQuestion"];
