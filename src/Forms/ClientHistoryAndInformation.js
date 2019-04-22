@@ -7881,9 +7881,9 @@ class ClientHistoryAndInformation extends Component {
 
                 </div>
                 <Row>
-                    <Col className={"col-2"}>
-                        <div id={"navbar"}> {this.renderNavbar()} </div>
-                    </Col>
+                    {/*<Col className={"col-2"}>*/}
+                        {/*<div id={"navbar"}> {this.renderNavbar()} </div>*/}
+                    {/*</Col>*/}
                     <Col>
                         <div className={"frame p-4 print-form"}>
 

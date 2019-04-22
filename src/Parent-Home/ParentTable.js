@@ -24,33 +24,33 @@ class ParentTable extends Component {
             columns: [{
                 Header: 'Form Name',
                 accessor: 'name',
-            }, {
-                Header: 'Progress',
-                accessor: 'progress',
-                width: 200
+            // }, {
+            //     Header: 'Progress',
+            //     accessor: 'progress',
+            //     width: 200
             }],
             data: [{
                 name: <div id="chai" style={{color: 'blue', textDecoration: 'underline'}}>Client History and Information Form</div>,
-                progress: 'Not Started',
+                // progress: 'Not Started',
                 color: 'white',
             }, {
                 name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>,
-                progress: 'Not Started'
+                // progress: 'Not Started'
             }, {
                 name: 'Permission for Exchange of Information Form',
-                progress: 'Not Started'
+                // progress: 'Not Started'
             }, {
                 name: <div id="ep" style={{color: 'blue', textDecoration: 'underline'}}>Enrollment Process Form</div>,
-                progress: 'Not Started'
+                // progress: 'Not Started'
             }, {
                 name: <div id="bmc" style={{color: 'blue', textDecoration: 'underline'}}>Brain Map Consent Form</div>,
-                progress: 'Not Started'
+                // progress: 'Not Started'
             }, {
                 name: 'Credit Card Authorization Form',
-                progress: 'Not Started'
+                // progress: 'Not Started'
             }, {
                 name: 'Insurance and Financial Information Form',
-                progress: 'Not Started'
+                // progress: 'Not Started'
             }]
         };
         this.handleDueDateSubmit = this.handleDueDateSubmit.bind(this);

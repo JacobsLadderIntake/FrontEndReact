@@ -92,7 +92,7 @@ class ResetPassword extends Component {
                             invalid={this.state.errors["email"]}>{this.state.errors["email"]}</FormFeedback>
                     </FormGroup>
                     <FormGroup>
-                        <Label>GET Security Question</Label>
+                        <Label>What is your mother's maiden name?</Label>
                         <Input
                             autoFocus
                             type="password"
