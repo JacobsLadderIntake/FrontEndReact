@@ -7078,7 +7078,7 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup check>
                                 <Label check onChange={this.togglePhysicalAssistance.bind(this,"physicalAssistanceYes")}>
 
-                                    <Input type="checkbox"/>
+                                    <Input ref = "physicalAssistanceYes" type="checkbox"/>
                                     Yes
                                 </Label>
                             </FormGroup>
@@ -7088,6 +7088,7 @@ class ClientHistoryAndInformation extends Component {
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
+                                            ref = "physicalAssistanceYesExplain"
                                             type="textarea"/>
 
                                     </CardBody>
@@ -7098,7 +7099,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check onChange={this.handleChange.bind(this,"physicalAssistanceYes")}>
 
-                            <Input type="checkbox"/>
+                            <Input ref = "physicalAssistanceNo" type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
@@ -7111,7 +7112,7 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup check>
                                 <Label check id ={"verbalDirectivesYes"} onChange={this.toggleVerbalDirectives.bind(this,"verbalDirectivesYes")}>
 
-                                    <Input type="checkbox"/>
+                                    <Input ref = "verbalDirectivesCheckYes" type="checkbox"/>
                                     Yes
                                 </Label>
                             </FormGroup>
@@ -7121,6 +7122,7 @@ class ClientHistoryAndInformation extends Component {
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
+                                            ref = "verbalDirectivesYesExplain"
                                             type="textarea"/>
 
                                     </CardBody>
@@ -7131,7 +7133,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check id ={"verbalDirectivesNo"} onChange={this.handleChange.bind(this,"verbalDirectivesNo")}>
 
-                            <Input type="checkbox"/>
+                            <Input ref = "verbalDirectivesCheckNo"type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
@@ -7143,7 +7145,7 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup check>
                                 <Label check  id ={"currentEventsYes"} onChange={this.toggleCurrentEvents.bind(this,"currentEventsYes")}>
 
-                                    <Input type="checkbox"/>
+                                    <Input ref = "currentEventsCheckYes "type="checkbox"/>
                                     Yes
                                 </Label>
                             </FormGroup>
@@ -7153,6 +7155,7 @@ class ClientHistoryAndInformation extends Component {
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
+                                            ref = "currentEventsExplain"
                                             type="textarea"/>
 
                                     </CardBody>
@@ -7163,7 +7166,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check  id ={"currentEventsQuestion"} onChange={this.handleChange.bind(this,"currentEventsNo")} >
 
-                            <Input type="checkbox"/>
+                            <Input ref = "currentEventsCheckNo" type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
@@ -7778,7 +7781,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check onChange={this.toggleSeizures.bind(this)}>
 
-                            <Input type="checkbox"/>
+                            <Input ref = "seizureCheckYes" type="checkbox"/>
                             Yes
                         </Label>
                     </FormGroup>
@@ -7786,7 +7789,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check>
 
-                            <Input type="checkbox"/>
+                            <Input ref = "seizureCheckNo" type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
