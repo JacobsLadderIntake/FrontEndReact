@@ -979,13 +979,6 @@ class ClientHistoryAndInformation extends Component {
                 medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"}/>,
                 medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"}/>,
                 medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"}/>
-            }, {
-                medsName: <input type="text" name="med6Name" className={"tableInputField"}/>,
-                medsDosage: <input type="text" name="med6Dosage" className={"tableInputField"}/>,
-                medsTimeGiven: <input type="text" name="med6TimeGiven" className={"tableInputField"}/>,
-                medsFrequency: <input type="text" name="med6Frequency" className={"tableInputField"}/>,
-                medsPurpose: <input type="text" name="med6Purpose" className={"tableInputField"}/>,
-                medsSideEffects: <input type="text" name="med6SideEffects" className={"tableInputField"}/>
             }],
             testingColumns: [{
                 Header: 'Date',
@@ -1029,12 +1022,6 @@ class ClientHistoryAndInformation extends Component {
                 testDiagnosis: <input type="text" name="test5Diagnosis" className={"tableInputField"}/>,
                 testReco: <input type="text" name="test5Reco" className={"tableInputField"}/>,
 
-            }, {
-                testDate: <input type="text" name="test6Date" className={"tableInputField"}/>,
-                testExaminer: <input type="text" name="test6Examiner" className={"tableInputField"}/>,
-                testDiagnosis: <input type="text" name="test6Diagnosis" className={"tableInputField"}/>,
-                testReco: <input type="text" name="test6Reco" className={"tableInputField"}/>,
-                
             }],
             foodGroupColumns: [{
                 Header: 'Food Group',
@@ -2085,7 +2072,7 @@ class ClientHistoryAndInformation extends Component {
                 goal2Verbal: <Label check> <Input type="checkbox" name="g2EduFinancialAidVerbal" id="g2EduFinancialAidVerbal"/> Verbal Prompt</Label>,
                 goal2Initiates: <Label check> <Input type="checkbox" name="g2EduFinancialAidInitiates" id="g2EduFinancialAidInitiates"/> Initiates Independently </Label>
             }, {
-                goal2Category: 'Cna name ways to save money on things he/she buys',
+                goal2Category: 'Can name ways to save money on things he/she buys',
                 goal2NA: <Label check> <Input type="checkbox" name="g2SaveMoneyNA" id="g2SaveMoneyNA"/> N/A</Label>,
                 goal2Physical: <Label check> <Input type="checkbox" name="g2SaveMoneyPhysical" id="g2SaveMoneyPhysical"/> Physical Prompt </Label>,
                 goal2Verbal: <Label check> <Input type="checkbox" name="g2SaveMoneyVerbal" id="g2SaveMoneyVerbal"/> Verbal Prompt</Label>,
@@ -4334,7 +4321,7 @@ class ClientHistoryAndInformation extends Component {
                     className={"testingTable -striped -highlight"}
                     data={this.state.testingData}
                     columns={this.state.testingColumns}
-                    defaultPageSize={6}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4436,14 +4423,14 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label className="control-label  space-between">Please list other supplies/equipment here.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="otherSupplyDetail"
-                                value={this.state.fields["hospital"] || ""}
-                                onChange={this.handleChange.bind(this, "hospital")}
+                                value={this.state.fields["otherSupplyDetail"] || ""}
+                                onChange={this.handleChange.bind(this, "otherSupplyDetail")}
                                 className="error"
-                                invalid={this.state.errors["hospital"] != null}/>
+                                invalid={this.state.errors["otherSupplyDetail"] != null}/>
                             <FormFeedback
-                                invalid={this.state.errors["hospital"]}>{this.state.errors["hospital"]}
+                                invalid={this.state.errors["otherSupplyDetail"]}>{this.state.errors["otherSupplyDetail"]}
                             </FormFeedback>
                         </FormGroup>
                     </Col>
@@ -4454,7 +4441,7 @@ class ClientHistoryAndInformation extends Component {
                     className={"medsTable -striped -highlight"}
                     data={this.state.medsData}
                     columns={this.state.medsColumns}
-                    defaultPageSize={6}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -4753,7 +4740,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label className="control-label space-between">Please list other physical motor challenges.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="otherPhysicalMotor"
                                 value={this.state.fields["otherPhysicalMotor"] || ""}
                                 onChange={this.handleChange.bind(this, "otherPhysicalMotor")}
@@ -4813,7 +4800,7 @@ class ClientHistoryAndInformation extends Component {
                 <FormGroup>
                     <Label className="control-label required">List any education challenges (past or current)</Label>
                     <Input
-                        type="text"
+                        type="textarea"
                         ref="educationalChallenges"
                         value={this.state.fields["educationalChallenges"] || ""}
                         onChange={this.handleChange.bind(this, "educationalChallenges")}
@@ -4826,7 +4813,7 @@ class ClientHistoryAndInformation extends Component {
                 <FormGroup>
                     <Label className="control-label required">List any exceptional abilities – academic, physical, artistic, musical, etc.</Label>
                     <Input
-                        type="text"
+                        type="textarea"
                         ref="exceptionalTalents"
                         value={this.state.fields["exceptionalTalents"] || ""}
                         onChange={this.handleChange.bind(this, "exceptionalTalents")}
@@ -4899,7 +4886,7 @@ class ClientHistoryAndInformation extends Component {
                 <FormGroup>
                     <Label className="control-label required">What is your specific academic goal for your child?</Label>
                     <Input
-                        type="text"
+                        type="textarea"
                         ref="academicGoal"
                         value={this.state.fields["academicGoal"] || ""}
                         onChange={this.handleChange.bind(this, "academicGoal")}
@@ -5045,6 +5032,7 @@ class ClientHistoryAndInformation extends Component {
                             <Input
                                 ref = "binderIndependenceLevel"
                                 type="select">
+                                <option></option>
                                 <option>Select Current Independent Level</option>
                                 <option>Fully Independent</option>
                                 <option>Emerging Independence</option>
