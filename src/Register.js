@@ -10,9 +10,11 @@ import {
 } from "reactstrap";
 import Header from "./Header/Header";
 
-var infoObj = {"studentFirstName":"", "studentLastName":"", "parentFirstName":"", "parentLastName":"",
-                    "Relationship":"", "Email":"", "Password":""}
-var url = '/';
+var parentObj = {};
+var childObj = {};
+var urlUser = '/signup';
+var urlChild = '/children/';
+var token = '';
 
 class Register extends Component {
     constructor(props) {
@@ -26,14 +28,10 @@ class Register extends Component {
             confirmationCodeValid: false,
             submitButtonPressed: false,
             confirmButtonPressed:false
-
             // emailAlreadyExists:false,
         };
         this.goBack = this.goBack.bind(this);
-
     }
-    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
-
 
     goBack(event) {
         window.location.reload()
@@ -44,6 +42,7 @@ class Register extends Component {
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields});
+        this.updateFields();
     }
 
     validate() {
@@ -152,11 +151,7 @@ class Register extends Component {
             }
         }
         this.setState({errors: errors})
-
-
     }
-
-
     handleChangeConfirmationCode(field,e) {
 
         let fields = this.state.fields;
@@ -174,46 +169,71 @@ class Register extends Component {
         }
     }
 
+    updateFields() {
+        let fields = this.state.fields;
+        parentObj.isAdmin = fields["isAdmin"] ? 1 : 0;
+        parentObj.userFirstName = fields["parentFirstName"];
+        parentObj.userLastName = fields["parentLastName"];
+        parentObj.password = fields["password"];
+        parentObj.email = fields["email"];
+        parentObj.securityQuestion = fields["securityQuestion"];
+        parentObj.securityQuestionAnswer = fields["securityAnswer"];
+        childObj.childFirstName = this.state.fields["studentFirstName"];
+        childObj.childLastName = this.state.fields["studentLastName"];
+    }
 
     handleSubmit(event) {
         event.preventDefault();
         this.setState({submitButtonPressed: true},()=> {
-            if (this.validate() && this.state.isAdminChecked) {
-                this.postToDB();
-                this.props.history.push("/adminhome");
-            } else if (this.validate()) {
-                this.props.history.push("/parenthome")
-                this.postToDB();
-            }
         });
-    }
-    // postToDB() {
-    //     infoObj = JSON.stringify(this.infoObj);
-    //     // console.log(infoObj);
-    //     const response = fetch('/children/EmmaChild@gmail.com/forms/BrainMapConsentForm', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: infoObj
-    //     });
-    // }
-    handleCancel(event) {
-        event.preventDefault();
-        this.props.history.push("/")
+        this.createUser();
+        this.createChild();
+        this.props.history.push("/");
     }
 
-    postToDB() {
-      infoObj = JSON.stringify(this.infoObj);
-        const response = fetch(url, {
+    createUser = async () => {
+        parentObj.userID = this.state.fields["email"].split("@")[0];
+        var update = JSON.stringify(parentObj);
+        console.log(update)
+        const response = fetch(urlUser, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: infoObj
+            body: update
         });
+        const body = await response.json;
+        console.log(body)
+        /*if (response.status !== 200) throw Error(body.message);
+        if (body.Error) {
+            this.errorDisplay()
+        } else {
+            //token = body.token;
+        }*/
+    }
+
+    createChild = async () => {
+        childObj.parentID = parentObj.userID;
+        // semi-unique childID generation. relies on no parentID being the same
+        // and no parent naming two children the same thing
+        childObj.childID = childObj.childFirstName + parentObj.userID;
+        var update = JSON.stringify(childObj);
+        console.log(update);
+        const response = fetch(urlChild, {
+            method: 'POST',
+            headers: {
+                //'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: update
+        });
+    }
+
+    handleCancel(event) {
+        event.preventDefault();
+        this.props.history.push("/")
     }
 
     renderConfirmationForm() {

@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import './login.css'
-import {
-  Button,
-  FormGroup,
-  Input,
-  Label,
-  FormFeedback
-} from "reactstrap";
+import {Button, FormGroup, Input, Label, FormFeedback} from "reactstrap";
 import Header from "./Header/Header";
 
 var url = '/userlogin';
 var infoObj = {};
 var token = '';
 var userID = '';
+let isAdmin = false;
 
 class Login extends Component {
 
@@ -36,13 +31,6 @@ class Login extends Component {
 
     handleLogin(e) {
         e.preventDefault();
-        /*if(this.validate(email, password) && this.isAdmin()) {
-            this.props.history.push("/adminhome");
-        } else if (this.validate()){
-
-        } else {
-            return
-        }*/ // not quite how login works
         this.setState({loginButtonPressed:true})
         this.infoObj.password = ReactDOM.findDOMNode(this.password).value;
         this.infoObj.email = ReactDOM.findDOMNode(this.email).value;
@@ -62,7 +50,7 @@ class Login extends Component {
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        this.validate()
+        this.errorDisplay()
         this.updateFields();
         this.setState({fields});
     }
@@ -87,15 +75,18 @@ class Login extends Component {
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         if (body.Error) {
-            this.errorDisplay()
-            console.log("wrong email/pass");
-            console.log(infoObj)
+            this.errorDisplay();
         } else {
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
-            this.props.history.push("/parenthome");
+            if (body.isAdmin === 1) {
+                this.props.history.push("/adminhome");
+                isAdmin = true;
+            } else {
+                this.props.history.push("/parenthome");
+                isAdmin = false;
+            }
         }
-        console.log(body);
     };
 
     errorDisplay() {
@@ -114,10 +105,6 @@ class Login extends Component {
         this.setState({errors: errors})
         return formIsValid
     }
-
-  isAdmin(email) {
-    return true;
-  }
 
   renderForm() {
     return (
@@ -171,6 +158,7 @@ class Login extends Component {
       </div>
     );
   }
+
 }
 export default Login;
-export {token, userID};
+export {token, userID, isAdmin};

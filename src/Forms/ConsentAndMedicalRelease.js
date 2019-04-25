@@ -10,26 +10,21 @@ import {
     Label,
     Row
 } from "reactstrap";
-import { token, userID } from '../Login';
+import token from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj = {};
-var childID = "child";
-var url = "";
+var infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
 
 class ConsentAndMedicalRelease extends Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             errors: [],
             fields: [],
             submitButtonPressed: false,
             saveButtonPressed:false
-        };
-
+        }
         this.goBack = this.goBack.bind(this);
-
     }
 
     goBack(event) {
@@ -43,13 +38,22 @@ class ConsentAndMedicalRelease extends Component {
         this.setState({fields: fields});
     }
 
+    updateFields() {
+        let fields = this.state.fields;
+        infoObj.ChildID = childID;
+        infoObj.StudentName = fields["studentName"];
+        infoObj.ParentName = fields["parentName"];
+        infoObj.Date = fields["date"];
+        infoObj.Comments = fields["consideration"];
+        // infoObj.ConsentCheck = fields["consentCheck"];
+    }
+
     validate() {
         // we are going to store errors for all fields
         // in a single array
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-
         if (this.state.submitButtonPressed) {
             if (!fields["studentName"]) {
                 formIsValid = false;
@@ -64,70 +68,9 @@ class ConsentAndMedicalRelease extends Component {
                 errors["date"] = "Cannot be empty";
             }
         }
-
         this.setState({errors: errors});
-        console.log(formIsValid)
         return formIsValid;
     }
-
-    infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
-    url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
-
-    updateFields() {
-        let fields = this.state.fields;
-        let infoObj = this.infoObj;
-        infoObj.StudentName = fields["studentName"];
-        infoObj.ParentName = fields["parentName"];
-        infoObj.Date = fields["date"];
-        infoObj.Comments = fields["consideration"];
-        // infoObj.ConsentCheck = fields["consentCheck"];
-    }
-
-    componentDidMount() {
-        this.fetchFromDB()
-            .then(res => this.setState({ response: res.express }))
-            .catch(err => console.log(err));
-    }
-
-    postToDB() {
-        infoObj = JSON.stringify(this.infoObj);
-        console.log(this.url);
-        const response = fetch(this.url, {
-            method: 'POST',
-            headers: {
-                'token': token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: infoObj
-        });
-    }
-
-    fetchFromDB = async () => {
-        // infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
-        console.log(this.url)
-        const response = await fetch(this.url, {
-            method: 'GET',
-            headers: {
-                'token': token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-        const body = await response.json();
-        console.log(body);
-        if (response.status !== 200) throw Error(body.message);
-        if (body.Form.length > 0) {
-            this.state.fields["studentName"] = body.Form[0].StudentName;
-            this.state.fields["parentName"] = body.Form[0].ParentName;
-            this.state.fields["date"] = body.Form[0].Date;
-            this.state.fields["consideration"] = body.Form[0].Comments;
-            // this.state.fields["consentCheck"] = body[0].ConsentCheck;
-        }
-        // console.log(this.state.fields)
-        return body;
-    };
 
     handleSubmit(event) {
         event.preventDefault();
@@ -142,13 +85,64 @@ class ConsentAndMedicalRelease extends Component {
     }
 
     handleSaveAndQuit(event) {
-      event.preventDefault();
-      this.updateFields();
-      this.setState({saveButtonPressed: true});
-      this.postToDB();
-      //back to homepage
-      this.props.history.push("/parenthome");
+        event.preventDefault();
+        this.updateFields();
+        this.setState({saveButtonPressed: true});
+        this.postToDB();
+        //back to homepage
+        this.props.history.push("/parenthome");
     }
+
+    componentDidMount() {
+        this.fetchFromDB()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    postToDB() {
+        var update = JSON.stringify(infoObj);
+        var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
+        console.log("post url" + url);
+        console.log("updated JSON");
+        console.log(update);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: update
+        });
+        console.log("response");
+        console.log(response);
+    }
+
+    fetchFromDB = async () => {
+        var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
+        console.log("get url " + url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log("fetch from db response");
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Form.length > 0) {
+            this.state.fields["studentName"] = body.Form[0].StudentName;
+            this.state.fields["parentName"] = body.Form[0].ParentName;
+            this.state.fields["date"] = body.Form[0].Date;
+            this.state.fields["consideration"] = body.Form[0].Comments;
+        }
+        return body;
+    };
+
+
 
     renderFields() {
         return (

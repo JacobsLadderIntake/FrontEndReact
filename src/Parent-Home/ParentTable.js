@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {Row} from "react-bootstrap";
+import {Row, Col, Input, Button} from "reactstrap";
 import Header from "../Header/Header";
-import userID from '../Login';
+import {token, userID, isAdmin} from '../Login';
+import {childParentID} from "../AdminView/StudentCard";
 
-const studentName = '';
-var url = 'api/findUsersChildren';
+// FUTURE WORK: hardcoded indexing at 0 (getChild) will need to be dynamic based on selected student,
+// such that one parent can have multiple children (a need specified by Jacob's Ladder)
+
+let childID = '';
+let childObj = {};
 
 class ParentTable extends Component {
     constructor (props) {
         super(props);
         this.state = {
             isAdmin: false,
-
+            studentName: "",
+            evalDate: "",
+            dueDate: "",
+            fields: [],
             columns: [{
                 Header: 'Form Name',
                 accessor: 'name',
@@ -46,8 +53,22 @@ class ParentTable extends Component {
                 progress: 'Not Started'
             }]
         };
-        // this.getChild();
+        this.handleDueDateSubmit = this.handleDueDateSubmit.bind(this);
     }
+
+    componentDidMount() {
+        if (!isAdmin) {
+            this.getChild()
+                .then(res => this.setState({ response: res.express }))
+                .catch(err => console.log(err));
+        } else {
+            this.getChildFromID()
+                .then(res => this.setState({ response: res.express }))
+                .catch(err => console.log(err));
+        }
+
+    }
+
 
     handleClick(row, event) {
         event.preventDefault();
@@ -71,41 +92,102 @@ class ParentTable extends Component {
     }
 
     getChild = async () => {
-      var infoObj = JSON.stringify(this.userID);
-      console.log(infoObj)
-        const response = fetch(url, {
+        const response = await fetch("api/users/" + userID + "/children", {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
+        this.state.evalDate = body.UsersChildren[0].EvaluationDate;
+        this.state.dueDate = body.UsersChildren[0].ProfileDueDate;
+        childID = body.UsersChildren[0].ChildID;
+        return body;
+    };
+
+    getChildFromID = async () =>{
+        const response = await fetch("api/users/" + childParentID + "/children", {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
+        this.state.fields["evalDateInput"] = body.UsersChildren[0].EvaluationDate;
+        this.state.fields["dueDateInput"] = body.UsersChildren[0].ProfileDueDate;
+        childID = body.UsersChildren[0].ChildID;
+        childObj = body.UsersChildren[0];
+        console.log(childObj);
+        return body;
+    };
+
+    updateChild() {
+        childObj.ProfileDueDate =  this.state.fields["dueDateInput"];
+        childObj.EvaluationDate = this.state.fields["evalDateInput"];
+        var update = JSON.stringify(childObj);
+        console.log("updated JSON");
+        console.log(update);
+        const response = fetch('/children/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: infoObj
+            body: update
         });
-        const body = await response.json();
-        if (response.status !== 200) throw Error(body.message);
-        if (body.Error) {
-            console.log(body.Message);
-        } else {
-            console.log(body.rows);
-            this.studentName = body.rows[0];
-        }
+        console.log("response");
+        console.log(response);
+    }
+
+    handleChange(field, e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.value;
+        // this.validate();
+        this.setState({fields: fields});
+
+    }
+
+    handleDueDateSubmit() {
+        this.updateChild();
     }
 
     render() {
-      const studentName = "susie lou";//getChildren("emma@gmail.com");
-
-        var ifAdmin = this.state.isAdmin ? <input type="date"></input> : <text style={{fontWeight: 'normal'}}>get the date</text>;
+        // console.log(isAdmin);
+        var dueDate = isAdmin ? <Input ref="dueDateInput"
+                                       type="text"
+                                       onChange={this.handleChange.bind(this, "dueDateInput")}
+                                       value={this.state.fields["dueDateInput"] || ""}/>
+                                : <text style={{fontWeight: 'normal'}}>{this.state.dueDate}</text>;
+        var evalDate = isAdmin ? <Input ref="evalDateInput"
+                                        type="text"
+                                        onChange={this.handleChange.bind(this, "evalDateInput")}
+                                        value={this.state.fields["evalDateInput"] || ""}/>
+                                : <text style={{fontWeight: 'normal'}}>{this.state.evalDate}</text>;
+        var button = isAdmin ? <Button className={"align-bottom"} onClick = {this.handleDueDateSubmit}>Set Dates</Button> : "";
         return (
             <div className={"p-4"}>
                 <Header loggedIn = {true}/>
                 <Row className="parent-table-header">
-                    <h2 className = "parent-top col-9 pb-4">Intake Profile Checklist: {studentName}</h2>
+                    <h2 className = "parent-top col-9 pb-4">Intake Profile Checklist: {this.state.studentName}</h2>
                 </Row>
                 <Row>
-                    <div style={{fontWeight: 'bold', marginLeft: 35}}> Intake Profile Due Date: {ifAdmin} </div>
-                </Row>
-                <Row>
-                    <div style={{fontWeight: 'bold', marginLeft: 35}}> Evaluation Date: {ifAdmin} </div>
+                    <Col className={"col-3"} style={{fontWeight: 'bold', marginLeft: 35}}> Intake Profile Due Date: {dueDate} </Col>
+                {/*</Row>*/}
+                {/*<Row>*/}
+                    <Col className={"col-3"} style={{fontWeight: 'bold', marginLeft: 35}}> Evaluation Date: {evalDate} </Col>
+                    <Col className={"col-3 align-bottom "}> {button} </Col>
+
+
                 </Row>
                 <br/>
                 <ReactTable
@@ -145,3 +227,4 @@ class ParentTable extends Component {
 }
 
 export default ParentTable;
+export {childID};

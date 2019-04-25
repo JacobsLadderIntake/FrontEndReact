@@ -40,5 +40,5 @@
     "not op_mini all"
   ],
   "homepage": "https://cmaggio3.github.io/JacobsLadder/",
-  "proxy": "https://jacobsladder.herokuapp.com/"
+  "proxy": "https://jacobsladderapi.herokuapp.com/"
 }

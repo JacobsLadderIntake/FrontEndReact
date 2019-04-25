@@ -11,21 +11,20 @@ import {
     Row
 } from "reactstrap";
 import { token, userID } from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj;
-var url = 'api/children/' + userID + '/forms/BrainMapConsentForm';
+// var childID = "child"
+var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
 
 class EnrollmentProcess extends Component{
     constructor(props) {
         super(props);
-
         this.state = {
             errors: [],
             fields: [],
             submitButtonPressed: false,
             saveButtonPressed:false
         };
-
         this.goBack = this.goBack.bind(this);
     }
 
@@ -42,7 +41,7 @@ class EnrollmentProcess extends Component{
 
     updateFields() {
         let fields = this.state.fields;
-        let infoObj = this.infoObj;
+        infoObj.ChildID = childID;
         infoObj.StudentName = fields["studentName"];
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
@@ -55,7 +54,6 @@ class EnrollmentProcess extends Component{
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-
         if (this.state.submitButtonPressed) {
             if (!fields["studentName"]) {
                 formIsValid = false;
@@ -70,7 +68,6 @@ class EnrollmentProcess extends Component{
                 errors["date"] = "Cannot be empty";
             }
         }
-
         this.setState({errors: errors});
         return formIsValid;
     }
@@ -79,9 +76,8 @@ class EnrollmentProcess extends Component{
         event.preventDefault();
         this.updateFields();
         this.postToDB();
-        this.setState({submitButtonPressed: true}, () => {
+        this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                //NEED TO UPDATE DATABASE
                 this.props.history.push("/parenthome")
             }
         });
@@ -90,13 +86,11 @@ class EnrollmentProcess extends Component{
     handleSaveAndQuit(event) {
         event.preventDefault();
         this.updateFields();
-        this.postToDB();
         this.setState({saveButtonPressed: true});
-        //UPDATE DATABASE
-        this.props.history.push("/parenthome")
+        this.postToDB();
+        //back to homepage
+        this.props.history.push("/parenthome");
     }
-
-    infoObj = {values: {"StudentName":"ChaseMaggio", "ParentName":"Heidi", "Date":"Feb"}};
 
     componentDidMount() {
         this.fetchFromDB()
@@ -105,7 +99,8 @@ class EnrollmentProcess extends Component{
     }
 
     postToDB() {
-      infoObj = JSON.stringify(this.infoObj);
+        var url = 'api/children/' + childID + '/forms/EnrollmentForm';
+        var update = JSON.stringify(infoObj);
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -113,11 +108,12 @@ class EnrollmentProcess extends Component{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: infoObj
+            body: update
         });
     }
 
     fetchFromDB = async () => {
+        var url = 'api/children/' + childID + '/forms/EnrollmentForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -127,12 +123,13 @@ class EnrollmentProcess extends Component{
             },
         });
         const body = await response.json();
-        if (response.status !== 200) throw Error(body.message);
-        this.state.fields["studentName"] = body.Form[0].StudentName;
-        this.state.fields["parentName"] = body.Form[0].ParentName;
-        this.state.fields["date"] = body.Form[0].Date;
-        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
-        console.log(this.state.fields)
+        if (response.status !== 200) {
+            throw Error(body.message);
+        } else if (body.Form.length > 0) {
+          this.state.fields["studentName"] = body.Form[0].StudentName;
+          this.state.fields["parentName"] = body.Form[0].ParentName;
+          this.state.fields["date"] = body.Form[0].Date;
+        }
         return body;
     };
 
