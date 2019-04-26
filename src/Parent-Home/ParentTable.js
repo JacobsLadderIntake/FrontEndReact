@@ -167,12 +167,12 @@ class ParentTable extends Component {
                                        type="text"
                                        onChange={this.handleChange.bind(this, "dueDateInput")}
                                        value={this.state.fields["dueDateInput"] || ""}/>
-                                : <text style={{fontWeight: 'normal'}}>{this.state.dueDate}</text>;
+            : <text style={{fontWeight: 'normal'}}>{this.state.dueDate}</text>;
         var evalDate = isAdmin ? <Input ref="evalDateInput"
                                         type="text"
                                         onChange={this.handleChange.bind(this, "evalDateInput")}
                                         value={this.state.fields["evalDateInput"] || ""}/>
-                                : <text style={{fontWeight: 'normal'}}>{this.state.evalDate}</text>;
+            : <text style={{fontWeight: 'normal'}}>{this.state.evalDate}</text>;
         var button = isAdmin ? <Button className={"mt-auto"} onClick = {this.handleDueDateSubmit}>Set Dates</Button> : "";
         return (
             <div className={"p-4"}>
