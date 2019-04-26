@@ -17,9 +17,10 @@ import {
 } from "reactstrap";
 import ReactTable from "react-table";
 import { token, userID } from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj;
-var url = 'api/children/' + userID + '/forms/BrainMapConsentForm';
+let infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
+// var url = 'api/children/' + userID + '/forms/ClientHistoryIntakeInformationForm';
 
 class ClientHistoryAndInformation extends Component {
     constructor(props) {
@@ -2426,7 +2427,7 @@ class ClientHistoryAndInformation extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-        console.log(fields["crawlYears"])
+        // console.log(fields["crawlYears"])
 
         if (this.state.submitButtonPressed) {
             //SECTION ONE
@@ -3205,11 +3206,117 @@ class ClientHistoryAndInformation extends Component {
         return formIsValid;
     }
 
+    componentDidMount() {
+        this.fetchFromDB()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+
+        // this.fetchSection11FromDB()
+        //     .then(res => this.setState({ response: res.express }))
+        //     .catch(err => console.log(err));
+    }
+
+    postToDB() {
+        var update = JSON.stringify(infoObj);
+        var url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
+        console.log("post url" + url);
+        console.log("updated JSON");
+        console.log(update);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: update
+        });
+        console.log("response");
+        console.log(response);
+    }
+
+    fetchFromDB = async () => {
+        var url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
+        console.log("get url " + url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log("fetch from db response");
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Form.length > 0) {
+            this.state.fields["dob"] = body.Form[0].dob;
+            this.state.fields["age"] = body.Form[0].age;
+            this.state.fields["diagnosis"] = body.Form[0].diagnosis;
+        }
+        return body;
+    };
+
+    // postSection11ToDB() {
+    //     var update = JSON.stringify(infoObj);
+    //     var url = 'api/children/' + childID + '/forms/Section11';
+    //     console.log("post url" + url);
+    //     console.log("updated JSON");
+    //     console.log(update);
+    //     const response = fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'token': token,
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: update
+    //     });
+    //     console.log("response");
+    //     console.log(response);
+    // }
+
+    // fetchSection11FromDB = async () => {
+    //     var url = 'api/children/' + childID + '/forms/Section11';
+    //     console.log("get url " + url);
+    //     const response = await fetch(url, {
+    //         method: 'GET',
+    //         headers: {
+    //             'token': token,
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //         },
+    //     });
+    //     const body = await response.json();
+    //     console.log("fetch from db response");
+    //     console.log(body);
+    //     if (response.status !== 200) throw Error(body.message);
+    //     if (body.Form.length > 0) {
+    //         // this.state.fields["studentName"] = body.Form[0].StudentName;
+    //         // this.state.fields["parentName"] = body.Form[0].ParentName;
+    //         // this.state.fields["date"] = body.Form[0].Date;
+    //         // this.state.fields["consideration"] = body.Form[0].Comments;
+    //     }
+    //     return body;
+    // };
+
+    updateFields() {
+        let fields = this.state.fields;
+        infoObj.ChildID = childID;
+        infoObj.dob = fields["dob"];
+        infoObj.age = fields["age"];
+        infoObj.diagnosis = fields["diagnosis"];
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         this.setState({submitButtonPressed: true}, () => {
             if (this.validate()) {
                 //NEED TO UPDATE DATABASE
+                this.updateFields();
+                this.postToDB();
+                // this.postSection11ToDB();
                 this.props.history.push("/parenthome")
             }
         });
@@ -3219,29 +3326,32 @@ class ClientHistoryAndInformation extends Component {
         event.preventDefault();
         this.setState({saveButtonPressed: true});
         //UPDATE DATABASE
+        this.updateFields();
+        this.postToDB();
+        // this.postSection11ToDB();
         this.props.history.push("/parenthome")
     }
 
-    renderNavbar() {
-        return (
-            <div data-spy="scroll" id="list-example" className="list-group frame">
-                <a class="list-group-item list-group-item-action" href="#section1">Section 1: Client Information</a>
-                <a class="list-group-item list-group-item-action" href="#section2">Section 2: Family Information</a>
-                <a class="list-group-item list-group-item-action" href="#section3">Section 3: Prenatal and Birth History</a>
-                <a class="list-group-item list-group-item-action" href="#section4">Section 4: Developmental History</a>
-                <a class="list-group-item list-group-item-action" href="#section5">Section 5: Medical History/Past Therapies</a>
-                <a class="list-group-item list-group-item-action" href="#section6">Section 6: General Health</a>
-                <a class="list-group-item list-group-item-action" href="#section7">Section 7: Educational History</a>
-                <a class="list-group-item list-group-item-action" href="#section8">Section 8: Communication</a>
-                <a class="list-group-item list-group-item-action" href="#section9">Section 9: Emotional/Behavioral History</a>
-                <a class="list-group-item list-group-item-action" href="#section10">Section 10: Current Schedule and Typical Day</a>
-                <a class="list-group-item list-group-item-action" href="#section11">Section 11: Independent Skills</a>
-                <a class="list-group-item list-group-item-action" href="#section12">Section 12: Additional Information for Evaluation Day</a>
-                <a class="list-group-item list-group-item-action" href="#section13">Section 13: Goals and Additional Information</a>
-                <a class="list-group-item list-group-item-action" href="#section14">Section 14: Signature</a>
-            </div>
-        );
-    }
+    // renderNavbar() {
+    //     return (
+    //         <div data-spy="scroll" id="list-example" className="list-group frame">
+    //             <a class="list-group-item list-group-item-action" href="#section1">Section 1: Client Information</a>
+    //             <a class="list-group-item list-group-item-action" href="#section2">Section 2: Family Information</a>
+    //             <a class="list-group-item list-group-item-action" href="#section3">Section 3: Prenatal and Birth History</a>
+    //             <a class="list-group-item list-group-item-action" href="#section4">Section 4: Developmental History</a>
+    //             <a class="list-group-item list-group-item-action" href="#section5">Section 5: Medical History/Past Therapies</a>
+    //             <a class="list-group-item list-group-item-action" href="#section6">Section 6: General Health</a>
+    //             <a class="list-group-item list-group-item-action" href="#section7">Section 7: Educational History</a>
+    //             <a class="list-group-item list-group-item-action" href="#section8">Section 8: Communication</a>
+    //             <a class="list-group-item list-group-item-action" href="#section9">Section 9: Emotional/Behavioral History</a>
+    //             <a class="list-group-item list-group-item-action" href="#section10">Section 10: Current Schedule and Typical Day</a>
+    //             <a class="list-group-item list-group-item-action" href="#section11">Section 11: Independent Skills</a>
+    //             <a class="list-group-item list-group-item-action" href="#section12">Section 12: Additional Information for Evaluation Day</a>
+    //             <a class="list-group-item list-group-item-action" href="#section13">Section 13: Goals and Additional Information</a>
+    //             <a class="list-group-item list-group-item-action" href="#section14">Section 14: Signature</a>
+    //         </div>
+    //     );
+    // }
 
     renderSection1() {
         return (
@@ -7881,9 +7991,9 @@ class ClientHistoryAndInformation extends Component {
 
                 </div>
                 <Row>
-                    <Col className={"col-2"}>
-                        <div id={"navbar"}> {this.renderNavbar()} </div>
-                    </Col>
+                    {/*<Col className={"col-2"}>*/}
+                        {/*<div id={"navbar"}> {this.renderNavbar()} </div>*/}
+                    {/*</Col>*/}
                     <Col>
                         <div className={"frame p-4 print-form"}>
 
