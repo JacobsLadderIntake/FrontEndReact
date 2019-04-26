@@ -178,7 +178,7 @@ class CreditCardAuthorization extends Component {
                     <FormGroup>
                         <Row>
                         <Col sm={12}>
-                        <Label className="control-label required" sm={12}>Name of Card Holder</Label>
+                        <Label className="control-label required" sm={12}>Name of Card Holder (First and Last)</Label>
 
                             <Input
                                 type="text"
@@ -367,7 +367,7 @@ class CreditCardAuthorization extends Component {
 
                 <Row className={"p-2 justify-content-center"}>
                     <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
-                        Save and Quit
+                        Save and Return
                     </Button>
 
                     <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
