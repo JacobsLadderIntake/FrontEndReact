@@ -4385,13 +4385,13 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label  space-between">Please list other medical conditions here.</Label>
                             <Input
                                 type="textarea"
-                                ref="hospital"
-                                value={this.state.fields["hospital"] || ""}
-                                onChange={this.handleChange.bind(this, "hospital")}
+                                ref="otherMedicalConditions"
+                                value={this.state.fields["otherMedicalConditions"] || ""}
+                                onChange={this.handleChange.bind(this, "otherMedicalConditions")}
                                 className="error"
-                                invalid={this.state.errors["hospital"] != null}/>
+                                invalid={this.state.errors["otherMedicalConditions"] != null}/>
                             <FormFeedback
-                                invalid={this.state.errors["hospital"]}>{this.state.errors["hospital"]}
+                                invalid={this.state.errors["otherMedicalConditions"]}>{this.state.errors["otherMedicalConditions"]}
                             </FormFeedback>
                         </FormGroup>
                     </Col>
@@ -5527,7 +5527,7 @@ class ClientHistoryAndInformation extends Component {
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
-                                    ref="problemsWithAuthority"
+                                    ref="problemsWithAuthorityTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
