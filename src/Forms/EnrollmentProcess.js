@@ -126,9 +126,9 @@ class EnrollmentProcess extends Component{
         if (response.status !== 200) {
             throw Error(body.message);
         } else if (body.Form.length > 0) {
-          this.state.fields["studentName"] = body.Form[0].StudentName;
-          this.state.fields["parentName"] = body.Form[0].ParentName;
-          this.state.fields["date"] = body.Form[0].Date;
+          this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
+          this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
+          this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
         }
         return body;
     };

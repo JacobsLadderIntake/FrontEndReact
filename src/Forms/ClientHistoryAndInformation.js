@@ -19,8 +19,7 @@ import ReactTable from "react-table";
 import { token, userID } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
-let infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
-// var url = 'api/children/' + userID + '/forms/ClientHistoryIntakeInformationForm';
+let infoObj = {"ChildID": childID};
 
 class ClientHistoryAndInformation extends Component {
     constructor(props) {
@@ -3231,8 +3230,7 @@ class ClientHistoryAndInformation extends Component {
             },
             body: update
         });
-        console.log("response");
-        console.log(response);
+
     }
 
     fetchFromDB = async () => {
@@ -3251,9 +3249,9 @@ class ClientHistoryAndInformation extends Component {
         console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
-            this.state.fields["dob"] = body.Form[0].dob;
-            this.state.fields["age"] = body.Form[0].age;
-            this.state.fields["diagnosis"] = body.Form[0].diagnosis;
+            this.state.fields["dob"] = body.Form[0].DateofBirthClient == null ? "" : body.Form[0].DateofBirthClient;
+            this.state.fields["age"] = body.Form[0].AgeClient == null ? "" : body.Form[0].AgeClient;
+            this.state.fields["diagnosis"] = body.Form[0].ReferringDiagnosis == null ? "" : body.Form[0].ReferringDiagnosis;
         }
         return body;
     };
@@ -3304,9 +3302,9 @@ class ClientHistoryAndInformation extends Component {
     updateFields() {
         let fields = this.state.fields;
         infoObj.ChildID = childID;
-        infoObj.dob = fields["dob"];
-        infoObj.age = fields["age"];
-        infoObj.diagnosis = fields["diagnosis"];
+        infoObj.DateofBirthClient = fields["dob"];
+        infoObj.AgeClient = fields["age"];
+        infoObj.ReferringDiagnosis = fields["diagnosis"];
     }
 
     handleSubmit(event) {
