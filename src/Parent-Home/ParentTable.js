@@ -167,13 +167,13 @@ class ParentTable extends Component {
                                        type="text"
                                        onChange={this.handleChange.bind(this, "dueDateInput")}
                                        value={this.state.fields["dueDateInput"] || ""}/>
-                                : <text style={{fontWeight: 'normal'}}>{this.state.dueDate}</text>;
+            : <text style={{fontWeight: 'normal'}}>{this.state.dueDate}</text>;
         var evalDate = isAdmin ? <Input ref="evalDateInput"
                                         type="text"
                                         onChange={this.handleChange.bind(this, "evalDateInput")}
                                         value={this.state.fields["evalDateInput"] || ""}/>
-                                : <text style={{fontWeight: 'normal'}}>{this.state.evalDate}</text>;
-        var button = isAdmin ? <Button className={"align-bottom"} onClick = {this.handleDueDateSubmit}>Set Dates</Button> : "";
+            : <text style={{fontWeight: 'normal'}}>{this.state.evalDate}</text>;
+        var button = isAdmin ? <Button className={"mt-auto"} onClick = {this.handleDueDateSubmit}>Set Dates</Button> : "";
         return (
             <div className={"p-4"}>
                 <Header loggedIn = {true}/>
@@ -181,13 +181,9 @@ class ParentTable extends Component {
                     <h2 className = "parent-top col-9 pb-4">Intake Profile Checklist: {this.state.studentName}</h2>
                 </Row>
                 <Row>
-                    <Col className={"col-3"} style={{fontWeight: 'bold', marginLeft: 35}}> Intake Profile Due Date: {dueDate} </Col>
-                {/*</Row>*/}
-                {/*<Row>*/}
-                    <Col className={"col-3"} style={{fontWeight: 'bold', marginLeft: 35}}> Evaluation Date: {evalDate} </Col>
-                    <Col className={"col-3 align-bottom "}> {button} </Col>
-
-
+                    <Col className={"col-4"} style={{fontWeight: 'bold', marginLeft: 35}}> Intake Profile Due Date: {dueDate} </Col>
+                    <Col className={"col-4"} style={{fontWeight: 'bold'}}> Evaluation Date: {evalDate} </Col>
+                    <Col className={"d-flex flex-column"}> {button} </Col>
                 </Row>
                 <br/>
                 <ReactTable

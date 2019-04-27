@@ -172,7 +172,7 @@ class ConsentAndMedicalRelease extends Component {
 
                     </FormGroup>
                     <FormGroup>
-                        <Label className="control-label required" sm={12}>Student Name</Label>
+                        <Label className="control-label required" sm={12}>Student Name (First and Last)</Label>
                         <Col sm={12}>
                             <Input
                                 type="text"
@@ -187,7 +187,7 @@ class ConsentAndMedicalRelease extends Component {
                         </Col>
                     </FormGroup>
                     <FormGroup>
-                        <Label className="control-label required" sm={12}>Parent/Guardian Name</Label>
+                        <Label className="control-label required" sm={12}>Parent/Guardian Name (First and Last)</Label>
                         <Col sm={12}>
                             <Input
                                 type="text"
@@ -261,7 +261,7 @@ class ConsentAndMedicalRelease extends Component {
 
                 <Row className={"p-2 justify-content-center"}>
                         <Button className={"m-2"} onClick={this.handleSaveAndQuit.bind(this)} active>
-                            Save and Quit
+                            Save and Return
                         </Button>
 
                         <Button className={"m-2"} onClick={this.handleSubmit.bind(this)} active>
