@@ -17,9 +17,9 @@ import {
 } from "reactstrap";
 import ReactTable from "react-table";
 import { token, userID } from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj;
-var url = 'api/children/' + userID + '/forms/BrainMapConsentForm';
+let infoObj = {"ChildID": childID};
 
 class ClientHistoryAndInformation extends Component {
     constructor(props) {
@@ -43,23 +43,23 @@ class ClientHistoryAndInformation extends Component {
             siblingData: [{
                 name: <input type="text" name="sib1Name" className={"tableInputField"}/>,
                 age: <input type="text" name="sib1Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib1Gender"className={"tableInputField"}/>,
+                gender: <input type="text" name="sib1Gender" className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib2Name"className={"tableInputField"}/>,
-                age: <input type="text" name="sib2Age"className={"tableInputField"}/>,
-                gender: <input type="text" name="sib2Gender"className={"tableInputField"}/>,
+                name: <input type="text" name="sib2Name" className={"tableInputField"}/>,
+                age: <input type="text" name="sib2Age" className={"tableInputField"}/>,
+                gender: <input type="text" name="sib2Gender" className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib3Name"className={"tableInputField"}/>,
-                age: <input type="text" name="sib3Age"className={"tableInputField"}/>,
-                gender: <input type="text" name="sib3Gender"className={"tableInputField"}/>,
+                name: <input type="text" name="sib3Name" className={"tableInputField"}/>,
+                age: <input type="text" name="sib3Age" className={"tableInputField"}/>,
+                gender: <input type="text" name="sib3Gender" className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib4Name"className={"tableInputField"}/>,
-                age: <input type="text" name="sib4Age"className={"tableInputField"}/>,
-                gender: <input type="text" name="sib4Gender"className={"tableInputField"}/>,
+                name: <input type="text" name="sib4Name" className={"tableInputField"}/>,
+                age: <input type="text" name="sib4Age" className={"tableInputField"}/>,
+                gender: <input type="text" name="sib4Gender" className={"tableInputField"}/>,
             }, {
-                name: <input type="text" name="sib5Name"className={"tableInputField"}/>,
-                age: <input type="text" name="sib5Age"className={"tableInputField"}/>,
-                gender: <input type="text" name="sib5Gender"className={"tableInputField"}/>,
+                name: <input type="text" name="sib5Name" className={"tableInputField"}/>,
+                age: <input type="text" name="sib5Age" className={"tableInputField"}/>,
+                gender: <input type="text" name="sib5Gender" className={"tableInputField"}/>,
             }],
 
             devHistoryColumns: [{
@@ -2387,10 +2387,11 @@ class ClientHistoryAndInformation extends Component {
         this.validate();
         this.setState({fields: fields});
     }
+
     checkValue(name) {
         let fields = this.state.fields;
         if (fields[name] >= 1){
-            console.log("greater")
+            console.log("greater");
             return true;
         } else {
             return false;
@@ -2413,7 +2414,7 @@ class ClientHistoryAndInformation extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-        console.log(fields["crawlYears"])
+        // console.log(fields["crawlYears"])
 
         if (this.state.submitButtonPressed) {
             //SECTION ONE
@@ -3192,11 +3193,1305 @@ class ClientHistoryAndInformation extends Component {
         return formIsValid;
     }
 
+    componentDidMount() {
+        this.fetchFromDB()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+
+        // this.fetchSection11FromDB()
+        //     .then(res => this.setState({ response: res.express }))
+        //     .catch(err => console.log(err));
+    }
+
+    postToDB() {
+        var update = JSON.stringify(infoObj);
+        var url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
+        console.log("post url" + url);
+        console.log("updated JSON");
+        console.log(update);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: update
+        });
+
+    }
+
+    fetchFromDB = async () => {
+        let url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
+        console.log("get url " + url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log("fetch from db response");
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Form.length > 0) {
+            this.state.fields["dob"] = body.Form[0].dob == null ? "" : body.Form[0].dob;
+            this.state.fields["age"] = body.Form[0].age == null ? "" : body.Form[0].age;
+            this.state.fields["diagnosis"] = body.Form[0].diagnosis == null ? "" : body.Form[0].diagnosis;
+            this.state.fields["height"] = body.Form[0].height == null ? "" : body.Form[0].height;
+            this.state.fields["weight"] = body.Form[0].weight == null ? "" : body.Form[0].weight;
+            this.state.fields["street"] = body.Form[0].street == null ? "" : body.Form[0].street;
+            this.state.fields["city"] = body.Form[0].city == null ? "" : body.Form[0].city;
+            this.state.fields["state"] = body.Form[0].state == null ? "" : body.Form[0].state;
+            this.state.fields["zip"] = body.Form[0].zip == null ? "" : body.Form[0].zip;
+            this.state.fields["country"] = body.Form[0].country == null ? "" : body.Form[0].country;
+            this.state.fields["homeNumber"] = body.Form[0].homeNumber == null ? "" : body.Form[0].homeNumber;
+            this.state.fields["section1Comments"] = body.Form[0].section1Comments == null ? "" : body.Form[0].section1Comments;
+            this.state.fields["isAdopted"] = body.Form[0].isAdopted == null ? "" : body.Form[0].isAdopted;
+            console.log(this.state.fields["isAdopted"]);
+            this.state.fields["isAdoptedAge"] = body.Form[0].isAdoptedAge == null ? "" : body.Form[0].isAdoptedAge;
+            this.state.fields["birthCountry"] = body.Form[0].birthCountry == null ? "" : body.Form[0].birthCountry;
+            this.state.fields["motherName"] = body.Form[0].motherName == null ? "" : body.Form[0].motherName;
+            this.state.fields["motherAge"] = body.Form[0].motherAge == null ? "" : body.Form[0].motherAge;
+            this.state.fields["motherCell"] = body.Form[0].motherCell == null ? "" : body.Form[0].motherCell;
+            this.state.fields["motherEmail"] = body.Form[0].motherEmail == null ? "" : body.Form[0].motherEmail;
+            this.state.fields["motherOccupation"] = body.Form[0].motherOccupation == null ? "" : body.Form[0].motherOccupation;
+            this.state.fields["fatherName"] = body.Form[0].fatherName == null ? "" : body.Form[0].fatherName;
+            this.state.fields["fatherAge"] = body.Form[0].fatherAge == null ? "" : body.Form[0].fatherAge;
+            this.state.fields["fatherCell"] = body.Form[0].fatherCell == null ? "" : body.Form[0].fatherCell;
+            this.state.fields["fatherEmail"] = body.Form[0].fatherEmail == null ? "" : body.Form[0].fatherEmail;
+            this.state.fields["fatherOccupation"] = body.Form[0].fatherOccupation == null ? "" : body.Form[0].fatherOccupation;
+            this.state.fields["maritalStatus"] = body.Form[0].maritalStatus == null ? "" : body.Form[0].maritalStatus;
+            this.state.fields["legalGuardian"] = body.Form[0].legalGuardian == null ? "" : body.Form[0].legalGuardian;
+            this.state.fields["sMotherName"] = body.Form[0].sMotherName == null ? "" : body.Form[0].sMotherName;
+            this.state.fields["sMotherAge"] = body.Form[0].sMotherAge == null ? "" : body.Form[0].sMotherAge;
+            this.state.fields["sMotherCell"] = body.Form[0].sMotherCell == null ? "" : body.Form[0].sMotherCell;
+            this.state.fields["sMotherEmail"] = body.Form[0].sMotherEmail == null ? "" : body.Form[0].sMotherEmail;
+            this.state.fields["sMotherOccupation"] = body.Form[0].sMotherOccupation == null ? "" : body.Form[0].sMotherOccupation;
+            this.state.fields["sFatherName"] = body.Form[0].sFatherName == null ? "" : body.Form[0].sFatherName;
+            this.state.fields["sFatherAge"] = body.Form[0].sFatherAge == null ? "" : body.Form[0].sFatherAge;
+            this.state.fields["sFatherCell"] = body.Form[0].sFatherCell == null ? "" : body.Form[0].sFatherCell;
+            this.state.fields["sFatherEmail"] = body.Form[0].sFatherEmail == null ? "" : body.Form[0].sFatherEmail;
+            this.state.fields["sFatherOccupation"] = body.Form[0].sFatherOccupation == null ? "" : body.Form[0].sFatherOccupation;
+            this.state.fields["sib1Name"] = body.Form[0].sib1Name == null ? "" : body.Form[0].sib1Name;
+            this.state.fields["sib1Age"] = body.Form[0].sib1Age == null ? "" : body.Form[0].sib1Age;
+            this.state.fields["sib1Gender"] = body.Form[0].sib1Gender == null ? "" : body.Form[0].sib1Gender;
+            this.state.fields["sib2Name"] = body.Form[0].sib2Name == null ? "" : body.Form[0].sib2Name;
+            this.state.fields["sib2Age"] = body.Form[0].sib2Age == null ? "" : body.Form[0].sib2Age;
+            this.state.fields["sib2Gender"] = body.Form[0].sib2Gender == null ? "" : body.Form[0].sib2Gender;
+            this.state.fields["sib3Name"] = body.Form[0].sib3Name == null ? "" : body.Form[0].sib3Name;
+            this.state.fields["sib3Age"] = body.Form[0].sib3Age == null ? "" : body.Form[0].sib3Age;
+            this.state.fields["sib3Gender"] = body.Form[0].sib3Gender == null ? "" : body.Form[0].sib3Gender;
+            this.state.fields["sib4Name"] = body.Form[0].sib4Name == null ? "" : body.Form[0].sib4Name;
+            this.state.fields["sib4Age"] = body.Form[0].sib4Age == null ? "" : body.Form[0].sib4Age;
+            this.state.fields["sib4Gender"] = body.Form[0].sib4Gender == null ? "" : body.Form[0].sib4Gender;
+            this.state.fields["sib5Name"] = body.Form[0].sib5Name == null ? "" : body.Form[0].sib5Name;
+            this.state.fields["sib5Age"] = body.Form[0].sib5Age == null ? "" : body.Form[0].sib5Age;
+            this.state.fields["sib5Gender"] = body.Form[0].sib5Gender == null ? "" : body.Form[0].sib5Gender;
+            this.state.fields["section2Comments"] = body.Form[0].section2Comments == null ? "" : body.Form[0].section2Comments;
+            this.state.fields["birthWeek"] = body.Form[0].birthWeek == null ? "" : body.Form[0].birthWeek;
+            this.state.fields["birthWeight"] = body.Form[0].birthWeight == null ? "" : body.Form[0].birthWeight;
+            this.state.fields["deliveryType"] = body.Form[0].deliveryType == null ? "" : body.Form[0].deliveryType;
+            this.state.fields["pregComplications"] = body.Form[0].pregComplications == null ? "" : body.Form[0].pregComplications;
+            this.state.fields["pregComplicationDescription"] = body.Form[0].pregComplicationDescription == null ? "" : body.Form[0].pregComplicationDescription;
+            this.state.fields["hospitalizedAfterBirth"] = body.Form[0].hospitalizedAfterBirth == null ? "" : body.Form[0].hospitalizedAfterBirth;
+            this.state.fields["hospitaliedAfterBirthDescription"] = body.Form[0].hospitaliedAfterBirthDescription == null ? "" : body.Form[0].hospitaliedAfterBirthDescription;
+            this.state.fields["section3Comments"] = body.Form[0].section3Comments == null ? "" : body.Form[0].section3Comments;
+            this.state.fields["crawlYears"] = body.Form[0].crawlYears == null ? "" : body.Form[0].crawlYears;
+            this.state.fields["crawlMonths"] = body.Form[0].crawlMonths == null ? "" : body.Form[0].crawlMonths;
+            this.state.fields["crawlNa"] = body.Form[0].crawlNa == null ? "" : body.Form[0].crawlNa;
+            this.state.fields["creptYears"] = body.Form[0].creptYears == null ? "" : body.Form[0].creptYears;
+            this.state.fields["creptMonths"] = body.Form[0].creptMonths == null ? "" : body.Form[0].creptMonths;
+            this.state.fields["creptNa"] = body.Form[0].creptNa == null ? "" : body.Form[0].creptNa;
+            this.state.fields["walkYears"] = body.Form[0].walkYears == null ? "" : body.Form[0].walkYears;
+            this.state.fields["walkMonths"] = body.Form[0].walkMonths == null ? "" : body.Form[0].walkMonths;
+            this.state.fields["walkNa"] = body.Form[0].walkNa == null ? "" : body.Form[0].walkNa;
+            this.state.fields["toiletYears"] = body.Form[0].toiletYears == null ? "" : body.Form[0].toiletYears;
+            this.state.fields["toiletMonths"] = body.Form[0].toiletMonths == null ? "" : body.Form[0].toiletMonths;
+            this.state.fields["toiletNa"] = body.Form[0].toiletNa == null ? "" : body.Form[0].toiletNa;
+            this.state.fields["wordYears"] = body.Form[0].wordYears == null ? "" : body.Form[0].wordYears;
+            this.state.fields["wordMonths"] = body.Form[0].wordMonths == null ? "" : body.Form[0].wordMonths;
+            this.state.fields["wordNa"] = body.Form[0].wordNa == null ? "" : body.Form[0].wordNa;
+            this.state.fields["coupletYears"] = body.Form[0].coupletYears == null ? "" : body.Form[0].coupletYears;
+            this.state.fields["coupletMonths"] = body.Form[0].coupletMonths == null ? "" : body.Form[0].coupletMonths;
+            this.state.fields["coupletNa"] = body.Form[0].coupletNa == null ? "" : body.Form[0].coupletNa;
+            this.state.fields["phraseYears"] = body.Form[0].phraseYears == null ? "" : body.Form[0].phraseYears;
+            this.state.fields["phraseMonths"] = body.Form[0].phraseMonths == null ? "" : body.Form[0].phraseMonths;
+            this.state.fields["phraseNa"] = body.Form[0].phraseNa == null ? "" : body.Form[0].phraseNa;
+            this.state.fields["sentenceYears"] = body.Form[0].sentenceYears == null ? "" : body.Form[0].sentenceYears;
+            this.state.fields["sentenceMonths"] = body.Form[0].sentenceMonths == null ? "" : body.Form[0].sentenceMonths;
+            this.state.fields["sentenceNa"] = body.Form[0].sentenceNa == null ? "" : body.Form[0].sentenceNa;
+            this.state.fields["conversationYears"] = body.Form[0].conversationYears == null ? "" : body.Form[0].conversationYears;
+            this.state.fields["conversationMonths"] = body.Form[0].conversationMonths == null ? "" : body.Form[0].conversationMonths;
+            this.state.fields["conversationNa"] = body.Form[0].conversationNa == null ? "" : body.Form[0].conversationNa;
+            this.state.fields["readYears"] = body.Form[0].readYears == null ? "" : body.Form[0].readYears;
+            this.state.fields["readMonths"] = body.Form[0].readMonths == null ? "" : body.Form[0].readMonths;
+            this.state.fields["readNa"] = body.Form[0].readNa == null ? "" : body.Form[0].readNa;
+            this.state.fields["section4Comments"] = body.Form[0].section4Comments == null ? "" : body.Form[0].section4Comments;
+            this.state.fields["drName"] = body.Form[0].drName == null ? "" : body.Form[0].drName;
+            this.state.fields["drPhone"] = body.Form[0].drPhone == null ? "" : body.Form[0].drPhone;
+            this.state.fields["drStreet"] = body.Form[0].drStreet == null ? "" : body.Form[0].drStreet;
+            this.state.fields["drCity"] = body.Form[0].drCity == null ? "" : body.Form[0].drCity;
+            this.state.fields["drState"] = body.Form[0].drState == null ? "" : body.Form[0].drState;
+            this.state.fields["drZip"] = body.Form[0].drZip == null ? "" : body.Form[0].drZip;
+            this.state.fields["drCountry"] = body.Form[0].drCountry == null ? "" : body.Form[0].drCountry;
+            this.state.fields["drName2"] = body.Form[0].drName2 == null ? "" : body.Form[0].drName2;
+            this.state.fields["drPhone2"] = body.Form[0].drPhone2 == null ? "" : body.Form[0].drPhone2;
+            this.state.fields["drStreet2"] = body.Form[0].drStreet2 == null ? "" : body.Form[0].drStreet2;
+            this.state.fields["drCity2"] = body.Form[0].drCity2 == null ? "" : body.Form[0].drCity2;
+            this.state.fields["drState2"] = body.Form[0].drState2 == null ? "" : body.Form[0].drState2;
+            this.state.fields["drZip2"] = body.Form[0].drZip2 == null ? "" : body.Form[0].drZip2;
+            this.state.fields["drCountry2"] = body.Form[0].drCountry2 == null ? "" : body.Form[0].drCountry2;
+            this.state.fields["outsideTherapy"] = body.Form[0].outsideTherapy == null ? "" : body.Form[0].outsideTherapy;
+            this.state.fields["doc1Name"] = body.Form[0].doc1Name == null ? "" : body.Form[0].doc1Name;
+            this.state.fields["doc1Specialty"] = body.Form[0].doc1Specialty == null ? "" : body.Form[0].doc1Specialty;
+            this.state.fields["doc1Phone"] = body.Form[0].doc1Phone == null ? "" : body.Form[0].doc1Phone;
+            this.state.fields["doc1Sched"] = body.Form[0].doc1Sched == null ? "" : body.Form[0].doc1Sched;
+            this.state.fields["doc2Name"] = body.Form[0].doc2Name == null ? "" : body.Form[0].doc2Name;
+            this.state.fields["doc2Specialty"] = body.Form[0].doc2Specialty == null ? "" : body.Form[0].doc2Specialty;
+            this.state.fields["doc2Phone"] = body.Form[0].doc2Phone == null ? "" : body.Form[0].doc2Phone;
+            this.state.fields["doc2Sched"] = body.Form[0].doc2Sched == null ? "" : body.Form[0].doc2Sched;
+            this.state.fields["doc3Name"] = body.Form[0].doc3Name == null ? "" : body.Form[0].doc3Name;
+            this.state.fields["doc3Specialty"] = body.Form[0].doc3Specialty == null ? "" : body.Form[0].doc3Specialty;
+            this.state.fields["doc3Phone"] = body.Form[0].doc3Phone == null ? "" : body.Form[0].doc3Phone;
+            this.state.fields["doc3Sched"] = body.Form[0].doc3Sched == null ? "" : body.Form[0].doc3Sched;
+            this.state.fields["doc4Name"] = body.Form[0].doc4Name == null ? "" : body.Form[0].doc4Name;
+            this.state.fields["doc4Specialty"] = body.Form[0].doc4Specialty == null ? "" : body.Form[0].doc4Specialty;
+            this.state.fields["doc4Phone"] = body.Form[0].doc4Phone == null ? "" : body.Form[0].doc4Phone;
+            this.state.fields["doc4Sched"] = body.Form[0].doc4Sched == null ? "" : body.Form[0].doc4Sched;
+            this.state.fields["doc5Name"] = body.Form[0].doc5Name == null ? "" : body.Form[0].doc5Name;
+            this.state.fields["doc5Specialty"] = body.Form[0].doc5Specialty == null ? "" : body.Form[0].doc5Specialty;
+            this.state.fields["doc5Phone"] = body.Form[0].doc5Phone == null ? "" : body.Form[0].doc5Phone;
+            this.state.fields["doc5Sched"] = body.Form[0].doc5Sched == null ? "" : body.Form[0].doc5Sched;
+            this.state.fields["doc5Name"] = body.Form[0].doc5Name == null ? "" : body.Form[0].doc5Name;
+            this.state.fields["specialDoc1Name"] = body.Form[0].specialDoc1Name == null ? "" : body.Form[0].specialDoc1Name;
+            this.state.fields["specialDoc1Specialty"] = body.Form[0].specialDoc1Specialty == null ? "" : body.Form[0].specialDoc1Specialty;
+            this.state.fields["specialDoc1Phone"] = body.Form[0].specialDoc1Phone == null ? "" : body.Form[0].specialDoc1Phone;
+            this.state.fields["specialDoc1Sched"] = body.Form[0].specialDoc1Sched == null ? "" : body.Form[0].specialDoc1Sched;
+            this.state.fields["specialDoc2Name"] = body.Form[0].specialDoc2Name == null ? "" : body.Form[0].specialDoc2Name;
+            this.state.fields["specialDoc2Specialty"] = body.Form[0].specialDoc2Specialty == null ? "" : body.Form[0].specialDoc2Specialty;
+            this.state.fields["specialDoc2Phone"] = body.Form[0].specialDoc2Phone == null ? "" : body.Form[0].specialDoc2Phone;
+            this.state.fields["specialDoc2Sched"] = body.Form[0].specialDoc2Sched == null ? "" : body.Form[0].specialDoc2Sched;
+            this.state.fields["specialDoc3Name"] = body.Form[0].specialDoc3Name == null ? "" : body.Form[0].specialDoc3Name;
+            this.state.fields["specialDoc3Specialty"] = body.Form[0].specialDoc3Specialty == null ? "" : body.Form[0].specialDoc3Specialty;
+            this.state.fields["specialDoc3Phone"] = body.Form[0].specialDoc3Phone == null ? "" : body.Form[0].specialDoc3Phone;
+            this.state.fields["specialDoc3Sched"] = body.Form[0].specialDoc3Sched == null ? "" : body.Form[0].specialDoc3Sched;
+            this.state.fields["specialDoc4Name"] = body.Form[0].specialDoc4Name == null ? "" : body.Form[0].specialDoc4Name;
+            this.state.fields["specialDoc4Specialty"] = body.Form[0].specialDoc4Specialty == null ? "" : body.Form[0].specialDoc4Specialty;
+            this.state.fields["specialDoc4Phone"] = body.Form[0].specialDoc4Phone == null ? "" : body.Form[0].specialDoc4Phone;
+            this.state.fields["specialDoc4Sched"] = body.Form[0].specialDoc4Sched == null ? "" : body.Form[0].specialDoc4Sched;
+            this.state.fields["specialDoc5Name"] = body.Form[0].specialDoc5Name == null ? "" : body.Form[0].specialDoc5Name;
+            this.state.fields["specialDoc5Specialty"] = body.Form[0].specialDoc5Specialty == null ? "" : body.Form[0].specialDoc5Specialty;
+            this.state.fields["specialDoc5Phone"] = body.Form[0].specialDoc5Phone == null ? "" : body.Form[0].specialDoc5Phone;
+            this.state.fields["specialDoc1Sched"] = body.Form[0].specialDoc1Sched == null ? "" : body.Form[0].specialDoc1Sched;
+            this.state.fields["test1Date"] = body.Form[0].test1Date == null ? "" : body.Form[0].test1Date;
+            this.state.fields["test1Examiner"] = body.Form[0].test1Examiner == null ? "" : body.Form[0].test1Examiner;
+            this.state.fields["test1Diagnosis"] = body.Form[0].test1Diagnosis == null ? "" : body.Form[0].test1Diagnosis;
+            this.state.fields["test1Reco"] = body.Form[0].test1Reco == null ? "" : body.Form[0].test1Reco;
+            this.state.fields["test2Date"] = body.Form[0].test2Date == null ? "" : body.Form[0].test2Date;
+            this.state.fields["test2Examiner"] = body.Form[0].test2Examiner == null ? "" : body.Form[0].test2Examiner;
+            this.state.fields["test2Diagnosis"] = body.Form[0].test2Diagnosis == null ? "" : body.Form[0].test2Diagnosis;
+            this.state.fields["test2Reco"] = body.Form[0].test2Reco == null ? "" : body.Form[0].test2Reco;
+            this.state.fields["test3Date"] = body.Form[0].test3Date == null ? "" : body.Form[0].test3Date;
+            this.state.fields["test3Examiner"] = body.Form[0].test3Examiner == null ? "" : body.Form[0].test3Examiner;
+            this.state.fields["test3Diagnosis"] = body.Form[0].test3Diagnosis == null ? "" : body.Form[0].test3Diagnosis;
+            this.state.fields["test3Reco"] = body.Form[0].test3Reco == null ? "" : body.Form[0].test3Reco;
+            this.state.fields["test4Date"] = body.Form[0].test4Date == null ? "" : body.Form[0].test4Date;
+            this.state.fields["test4Examiner"] = body.Form[0].test4Examiner == null ? "" : body.Form[0].test4Examiner;
+            this.state.fields["test4Diagnosis"] = body.Form[0].test4Diagnosis == null ? "" : body.Form[0].test4Diagnosis;
+            this.state.fields["test4Reco"] = body.Form[0].test4Reco == null ? "" : body.Form[0].test4Reco;
+            this.state.fields["test5Date"] = body.Form[0].test5Date == null ? "" : body.Form[0].test5Date;
+            this.state.fields["test5Examiner"] = body.Form[0].test5Examiner == null ? "" : body.Form[0].test5Examiner;
+            this.state.fields["test5Diagnosis"] = body.Form[0].test5Diagnosis == null ? "" : body.Form[0].test5Diagnosis;
+            this.state.fields["test5Reco"] = body.Form[0].test5Reco == null ? "" : body.Form[0].test5Reco;
+            this.state.fields["hospital"] = body.Form[0].hospital == null ? "" : body.Form[0].hospital;
+            this.state.fields["otherMedicalConditions"] = body.Form[0].otherMedicalConditions == null ? "" : body.Form[0].otherMedicalConditions;
+            this.state.fields["epilepsy"] = body.Form[0].epilepsy == null ? "" : body.Form[0].epilepsy;
+            this.state.fields["diabetes"] = body.Form[0].diabetes == null ? "" : body.Form[0].diabetes;
+            this.state.fields["asthma"] = body.Form[0].asthma == null ? "" : body.Form[0].asthma;
+            this.state.fields["epipen"] = body.Form[0].epipen == null ? "" : body.Form[0].epipen;
+            this.state.fields["medConditionOther"] = body.Form[0].medConditionOther == null ? "" : body.Form[0].medConditionOther;
+            this.state.fields["feedSupport"] = body.Form[0].feedSupport == null ? "" : body.Form[0].feedSupport;
+            this.state.fields["toiletEquip"] = body.Form[0].toiletEquip == null ? "" : body.Form[0].toiletEquip;
+            this.state.fields["mobilityEquip"] = body.Form[0].mobilityEquip == null ? "" : body.Form[0].mobilityEquip;
+            this.state.fields["communicationEquip"] = body.Form[0].communicationEquip == null ? "" : body.Form[0].communicationEquip;
+            this.state.fields["oxygenTank"] = body.Form[0].oxygenTank == null ? "" : body.Form[0].oxygenTank;
+            this.state.fields["hearingDevice"] = body.Form[0].hearingDevice == null ? "" : body.Form[0].hearingDevice;
+            this.state.fields["otherSupply"] = body.Form[0].otherSupply == null ? "" : body.Form[0].otherSupply;
+            this.state.fields["otherSupplyDetail"] = body.Form[0].otherSupplyDetail == null ? "" : body.Form[0].otherSupplyDetail;
+            this.state.fields["med1Name"] = body.Form[0].med1Name == null ? "" : body.Form[0].med1Name;
+            this.state.fields["med1Dosage"] = body.Form[0].med1Dosage == null ? "" : body.Form[0].med1Dosage;
+            this.state.fields["med1TimeGiven"] = body.Form[0].med1TimeGiven == null ? "" : body.Form[0].med1TimeGiven;
+            this.state.fields["med1Frequency"] = body.Form[0].med1Frequency == null ? "" : body.Form[0].med1Frequency;
+            this.state.fields["med1Purpose"] = body.Form[0].med1Purpose == null ? "" : body.Form[0].med1Purpose;
+            this.state.fields["med1SideEffect"] = body.Form[0].med1SideEffect == null ? "" : body.Form[0].med1SideEffect;
+            this.state.fields["med2Name"] = body.Form[0].med2Name == null ? "" : body.Form[0].med2Name;
+            this.state.fields["med2Dosage"] = body.Form[0].med2Dosage == null ? "" : body.Form[0].med2Dosage;
+            this.state.fields["med2TimeGiven"] = body.Form[0].med2TimeGiven == null ? "" : body.Form[0].med2TimeGiven;
+            this.state.fields["med2Frequency"] = body.Form[0].med2Frequency == null ? "" : body.Form[0].med2Frequency;
+            this.state.fields["med2Purpose"] = body.Form[0].med2Purpose == null ? "" : body.Form[0].med2Purpose;
+            this.state.fields["med2SideEffect"] = body.Form[0].med2SideEffect == null ? "" : body.Form[0].med2SideEffect;
+            this.state.fields["med3Name"] = body.Form[0].med3Name == null ? "" : body.Form[0].med3Name;
+            this.state.fields["med3Dosage"] = body.Form[0].med3Dosage == null ? "" : body.Form[0].med3Dosage;
+            this.state.fields["med3TimeGiven"] = body.Form[0].med3TimeGiven == null ? "" : body.Form[0].med3TimeGiven;
+            this.state.fields["med3Frequency"] = body.Form[0].med3Frequency == null ? "" : body.Form[0].med3Frequency;
+            this.state.fields["med3Purpose"] = body.Form[0].med3Purpose == null ? "" : body.Form[0].med3Purpose;
+            this.state.fields["med3SideEffect"] = body.Form[0].med3SideEffect == null ? "" : body.Form[0].med3SideEffect;
+            this.state.fields["med4Name"] = body.Form[0].med4Name == null ? "" : body.Form[0].med4Name;
+            this.state.fields["med4Dosage"] = body.Form[0].med4Dosage == null ? "" : body.Form[0].med4Dosage;
+            this.state.fields["med4TimeGiven"] = body.Form[0].med4TimeGiven == null ? "" : body.Form[0].med4TimeGiven;
+            this.state.fields["med4Frequency"] = body.Form[0].med4Frequency == null ? "" : body.Form[0].med4Frequency;
+            this.state.fields["med4Purpose"] = body.Form[0].med4Purpose == null ? "" : body.Form[0].med4Purpose;
+            this.state.fields["med4SideEffect"] = body.Form[0].med4SideEffect == null ? "" : body.Form[0].med4SideEffect;
+            this.state.fields["med5Name"] = body.Form[0].med5Name == null ? "" : body.Form[0].med5Name;
+            this.state.fields["med5Dosage"] = body.Form[0].med5Dosage == null ? "" : body.Form[0].med5Dosage;
+            this.state.fields["med5TimeGiven"] = body.Form[0].med5TimeGiven == null ? "" : body.Form[0].med5TimeGiven;
+            this.state.fields["med5Frequency"] = body.Form[0].med5Frequency == null ? "" : body.Form[0].med5Frequency;
+            this.state.fields["med5Purpose"] = body.Form[0].med5Purpose == null ? "" : body.Form[0].med5Purpose;
+            this.state.fields["med5SideEffect"] = body.Form[0].med5SideEffect == null ? "" : body.Form[0].med5SideEffect;
+            this.state.fields["section5Comments"] = body.Form[0].section5Comments == null ? "" : body.Form[0].section5Comments;
+            this.state.fields["diet"] = body.Form[0].diet == null ? "" : body.Form[0].diet;
+            this.state.fields["vegetableExcess"] = body.Form[0].vegetableExcess == null ? "" : body.Form[0].vegetableExcess;
+            this.state.fields["vegetableDaily"] = body.Form[0].vegetableDaily == null ? "" : body.Form[0].vegetableDaily;
+            this.state.fields["vegetableWeekly"] = body.Form[0].vegetableWeekly == null ? "" : body.Form[0].vegetableWeekly;
+            this.state.fields["vegetableRarely"] = body.Form[0].vegetableRarely == null ? "" : body.Form[0].vegetableRarely;
+            this.state.fields["vegetableNever"] = body.Form[0].vegetableNever == null ? "" : body.Form[0].vegetableNever;
+            this.state.fields["fruitExcess"] = body.Form[0].fruitExcess == null ? "" : body.Form[0].fruitExcess;
+            this.state.fields["fruitDaily"] = body.Form[0].fruitDaily == null ? "" : body.Form[0].fruitDaily;
+            this.state.fields["fruitWeekly"] = body.Form[0].fruitWeekly == null ? "" : body.Form[0].fruitWeekly;
+            this.state.fields["fruitRarely"] = body.Form[0].fruitRarely == null ? "" : body.Form[0].fruitRarely;
+            this.state.fields["fruitNever"] = body.Form[0].fruitNever == null ? "" : body.Form[0].fruitNever;
+            this.state.fields["meatExcess"] = body.Form[0].meatExcess == null ? "" : body.Form[0].meatExcess;
+            this.state.fields["meatDaily"] = body.Form[0].meatDaily == null ? "" : body.Form[0].meatDaily;
+            this.state.fields["meatWeekly"] = body.Form[0].meatWeekly == null ? "" : body.Form[0].meatWeekly;
+            this.state.fields["meatRarely"] = body.Form[0].meatRarely == null ? "" : body.Form[0].meatRarely;
+            this.state.fields["meatNever"] = body.Form[0].meatNever == null ? "" : body.Form[0].meatNever;
+            this.state.fields["sugarExcess"] = body.Form[0].sugarExcess == null ? "" : body.Form[0].sugarExcess;
+            this.state.fields["sugarDaily"] = body.Form[0].sugarDaily == null ? "" : body.Form[0].sugarDaily;
+            this.state.fields["sugarWeekly"] = body.Form[0].sugarWeekly == null ? "" : body.Form[0].sugarWeekly;
+            this.state.fields["sugarRarely"] = body.Form[0].sugarRarely == null ? "" : body.Form[0].sugarRarely;
+            this.state.fields["sugarNever"] = body.Form[0].sugarNever == null ? "" : body.Form[0].sugarNever;
+            this.state.fields["artSweetenerExcess"] = body.Form[0].artSweetenerExcess == null ? "" : body.Form[0].artSweetenerExcess;
+            this.state.fields["artSweetenerDaily"] = body.Form[0].artSweetenerDaily == null ? "" : body.Form[0].artSweetenerDaily;
+            this.state.fields["artSweetenerWeekly"] = body.Form[0].artSweetenerWeekly == null ? "" : body.Form[0].artSweetenerWeekly;
+            this.state.fields["artSweetenerRarely"] = body.Form[0].artSweetenerRarely == null ? "" : body.Form[0].artSweetenerRarely;
+            this.state.fields["artSweetenerNever"] = body.Form[0].artSweetenerNever == null ? "" : body.Form[0].artSweetenerNever;
+            this.state.fields["artProductsExcess"] = body.Form[0].artProductsExcess == null ? "" : body.Form[0].artProductsExcess;
+            this.state.fields["artProductsDaily"] = body.Form[0].artProductsDaily == null ? "" : body.Form[0].artProductsDaily;
+            this.state.fields["artProductsWeekly"] = body.Form[0].artProductsWeekly == null ? "" : body.Form[0].artProductsWeekly;
+            this.state.fields["artProductsRarely"] = body.Form[0].artProductsRarely == null ? "" : body.Form[0].artProductsRarely;
+            this.state.fields["artProductsNever"] = body.Form[0].artProductsNever == null ? "" : body.Form[0].artProductsNever;
+            this.state.fields["dairyExcess"] = body.Form[0].dairyExcess == null ? "" : body.Form[0].dairyExcess;
+            this.state.fields["dairyWeekly"] = body.Form[0].dairyWeekly == null ? "" : body.Form[0].dairyWeekly;
+            this.state.fields["dairyRarely"] = body.Form[0].dairyRarely == null ? "" : body.Form[0].dairyRarely;
+            this.state.fields["dairyNever"] = body.Form[0].dairyNever == null ? "" : body.Form[0].dairyNever;
+            this.state.fields["flourExcess"] = body.Form[0].flourExcess == null ? "" : body.Form[0].flourExcess;
+            this.state.fields["flourDaily"] = body.Form[0].flourDaily == null ? "" : body.Form[0].flourDaily;
+            this.state.fields["flourWeekly"] = body.Form[0].flourWeekly == null ? "" : body.Form[0].flourWeekly;
+            this.state.fields["flourRarely"] = body.Form[0].flourRarely == null ? "" : body.Form[0].flourRarely;
+            this.state.fields["flourNever"] = body.Form[0].flourNever == null ? "" : body.Form[0].flourNever;
+            this.state.fields["allergies"] = body.Form[0].allergies == null ? "" : body.Form[0].allergies;
+            this.state.fields["describeAllergies"] = body.Form[0].describeAllergies == null ? "" : body.Form[0].describeAllergies;
+            this.state.fields["breakfastTime"] = body.Form[0].breakfastTime == null ? "" : body.Form[0].breakfastTime;
+            this.state.fields["lunchTime"] = body.Form[0].lunchTime == null ? "" : body.Form[0].lunchTime;
+            this.state.fields["dinnerTime"] = body.Form[0].dinnerTime == null ? "" : body.Form[0].dinnerTime;
+            this.state.fields["snackTime"] = body.Form[0].snackTime == null ? "" : body.Form[0].snackTime;
+            this.state.fields["hoursOfSleep"] = body.Form[0].hoursOfSleep == null ? "" : body.Form[0].hoursOfSleep;
+            this.state.fields["bedTime"] = body.Form[0].bedTime == null ? "" : body.Form[0].bedTime;
+            this.state.fields["wakeTime"] = body.Form[0].wakeTime == null ? "" : body.Form[0].wakeTime;
+            this.state.fields["troubleFallingAsleep"] = body.Form[0].troubleFallingAsleep == null ? "" : body.Form[0].troubleFallingAsleep;
+            this.state.fields["troubleStayingAsleep"] = body.Form[0].troubleStayingAsleep == null ? "" : body.Form[0].troubleStayingAsleep;
+            this.state.fields["wakesEarly"] = body.Form[0].wakesEarly == null ? "" : body.Form[0].wakesEarly;
+            this.state.fields["lowMuscleTone"] = body.Form[0].lowMuscleTone == null ? "" : body.Form[0].lowMuscleTone;
+            this.state.fields["highMuscleTone"] = body.Form[0].highMuscleTone == null ? "" : body.Form[0].highMuscleTone;
+            this.state.fields["coordination"] = body.Form[0].coordination == null ? "" : body.Form[0].coordination;
+            this.state.fields["crawling"] = body.Form[0].crawling == null ? "" : body.Form[0].crawling;
+            this.state.fields["walking"] = body.Form[0].walking == null ? "" : body.Form[0].walking;
+            this.state.fields["running"] = body.Form[0].running == null ? "" : body.Form[0].running;
+            this.state.fields["athetoid"] = body.Form[0].athetoid == null ? "" : body.Form[0].athetoid;
+            this.state.fields["ataxic"] = body.Form[0].ataxic == null ? "" : body.Form[0].ataxic;
+            this.state.fields["weak"] = body.Form[0].weak == null ? "" : body.Form[0].weak;
+            this.state.fields["balance"] = body.Form[0].balance == null ? "" : body.Form[0].balance;
+            this.state.fields["otherPhysicalMotor"] = body.Form[0].otherPhysicalMotor == null ? "" : body.Form[0].otherPhysicalMotor;
+            this.state.fields["section6Comments"] = body.Form[0].section6Comments == null ? "" : body.Form[0].section6Comments;
+            this.state.fields["program1name"] = body.Form[0].program1name == null ? "" : body.Form[0].program1name;
+            this.state.fields["startdate1"] = body.Form[0].startdate1 == null ? "" : body.Form[0].startdate1;
+            this.state.fields["provider1"] = body.Form[0].provider1 == null ? "" : body.Form[0].provider1;
+            this.state.fields["phonenumber1"] = body.Form[0].phonenumber1 == null ? "" : body.Form[0].phonenumber1;
+            this.state.fields["contactpermission1"] = body.Form[0].contactpermission1 == null ? "" : body.Form[0].contactpermission1;
+            this.state.fields["program2name"] = body.Form[0].program2name == null ? "" : body.Form[0].program2name;
+            this.state.fields["startdate2"] = body.Form[0].startdate2 == null ? "" : body.Form[0].startdate2;
+            this.state.fields["provider2"] = body.Form[0].provider2 == null ? "" : body.Form[0].provider2;
+            this.state.fields["phonenumber2"] = body.Form[0].phonenumber2 == null ? "" : body.Form[0].phonenumber2;
+            this.state.fields["contactpermission2"] = body.Form[0].contactpermission2 == null ? "" : body.Form[0].contactpermission2;
+            this.state.fields["program3name"] = body.Form[0].program3name == null ? "" : body.Form[0].program3name;
+            this.state.fields["startdate3"] = body.Form[0].startdate3 == null ? "" : body.Form[0].startdate3;
+            this.state.fields["provider3"] = body.Form[0].provider3 == null ? "" : body.Form[0].provider3;
+            this.state.fields["phonenumber3"] = body.Form[0].phonenumber3 == null ? "" : body.Form[0].phonenumber3;
+            this.state.fields["contactpermission3"] = body.Form[0].contactpermission3 == null ? "" : body.Form[0].contactpermission3;
+            this.state.fields["program4name"] = body.Form[0].program4name == null ? "" : body.Form[0].program4name;
+            this.state.fields["startdate4"] = body.Form[0].startdate4 == null ? "" : body.Form[0].startdate4;
+            this.state.fields["provider4"] = body.Form[0].provider4 == null ? "" : body.Form[0].provider4;
+            this.state.fields["phonenumber4"] = body.Form[0].phonenumber4 == null ? "" : body.Form[0].phonenumber4;
+            this.state.fields["contactpermission4"] = body.Form[0].contactpermission4 == null ? "" : body.Form[0].contactpermission4;
+            this.state.fields["program5name"] = body.Form[0].program5name == null ? "" : body.Form[0].program5name;
+            this.state.fields["startdate5"] = body.Form[0].startdate5 == null ? "" : body.Form[0].startdate5;
+            this.state.fields["provider5"] = body.Form[0].provider5 == null ? "" : body.Form[0].provider5;
+            this.state.fields["phonenumber5"] = body.Form[0].phonenumber5 == null ? "" : body.Form[0].phonenumber5;
+            this.state.fields["contactpermission5"] = body.Form[0].contactpermission5 == null ? "" : body.Form[0].contactpermission5;
+            this.state.fields["educationalChallenges"] = body.Form[0].educationalChallenges == null ? "" : body.Form[0].educationalChallenges;
+            this.state.fields["exceptionalTalents"] = body.Form[0].exceptionalTalents == null ? "" : body.Form[0].exceptionalTalents;
+            this.state.fields["iepPlan"] = body.Form[0].iepPlan == null ? "" : body.Form[0].iepPlan;
+            this.state.fields["handPreference1"] = body.Form[0].handPreference1 == null ? "" : body.Form[0].handPreference1;
+            this.state.fields["handPreference2"] = body.Form[0].handPreference2 == null ? "" : body.Form[0].handPreference2;
+            this.state.fields["handPreference3"] = body.Form[0].handPreference3 == null ? "" : body.Form[0].handPreference3;
+            this.state.fields["handPreference4"] = body.Form[0].handPreference4 == null ? "" : body.Form[0].handPreference4;
+            this.state.fields["handPreference5"] = body.Form[0].handPreference5 == null ? "" : body.Form[0].handPreference5;
+            this.state.fields["skill1"] = body.Form[0].skill1 == null ? "" : body.Form[0].skill1;
+            this.state.fields["skill2"] = body.Form[0].skill2 == null ? "" : body.Form[0].skill2;
+            this.state.fields["skill3"] = body.Form[0].skill3 == null ? "" : body.Form[0].skill3;
+            this.state.fields["skill4"] = body.Form[0].skill4 == null ? "" : body.Form[0].skill4;
+            this.state.fields["skill5"] = body.Form[0].skill5 == null ? "" : body.Form[0].skill5;
+            this.state.fields["skill6"] = body.Form[0].skill6 == null ? "" : body.Form[0].skill6;
+            this.state.fields["skill7"] = body.Form[0].skill7 == null ? "" : body.Form[0].skill7;
+            this.state.fields["skill8"] = body.Form[0].skill8 == null ? "" : body.Form[0].skill8;
+            this.state.fields["skill9"] = body.Form[0].skill9 == null ? "" : body.Form[0].skill9;
+            this.state.fields["skill10"] = body.Form[0].skill10 == null ? "" : body.Form[0].skill10;
+            this.state.fields["academicGoal"] = body.Form[0].academicGoal == null ? "" : body.Form[0].academicGoal;
+            this.state.fields["section7Comments"] = body.Form[0].section7Comments == null ? "" : body.Form[0].section7Comments;
+            this.state.fields["verbalSkills"] = body.Form[0].verbalSkills == null ? "" : body.Form[0].verbalSkills;
+            this.state.fields["verbalLevel"] = body.Form[0].verbalLevel == null ? "" : body.Form[0].verbalLevel;
+            this.state.fields["pointing"] = body.Form[0].pointing == null ? "" : body.Form[0].pointing;
+            this.state.fields["signLanguage"] = body.Form[0].signLanguage == null ? "" : body.Form[0].signLanguage;
+            this.state.fields["typeOfSignLanguage"] = body.Form[0].typeOfSignLanguage == null ? "" : body.Form[0].typeOfSignLanguage;
+            this.state.fields["numberOfSigns"] = body.Form[0].numberOfSigns == null ? "" : body.Form[0].numberOfSigns;
+            this.state.fields["communicationDevice"] = body.Form[0].communicationDevice == null ? "" : body.Form[0].communicationDevice;
+            this.state.fields["nameOfDevice"] = body.Form[0].nameOfDevice == null ? "" : body.Form[0].nameOfDevice;
+            this.state.fields["deviceIndependenceLevel"] = body.Form[0].deviceIndependenceLevel == null ? "" : body.Form[0].deviceIndependenceLevel;
+            this.state.fields["communicationBinder"] = body.Form[0].communicationBinder == null ? "" : body.Form[0].communicationBinder;
+            this.state.fields["binderIndependenceLevel"] = body.Form[0].binderIndependenceLevel == null ? "" : body.Form[0].binderIndependenceLevel;
+            this.state.fields["otherCommunicationMethod"] = body.Form[0].otherCommunicationMethod == null ? "" : body.Form[0].otherCommunicationMethod;
+            this.state.fields["explainOtherCommunication"] = body.Form[0].explainOtherCommunication == null ? "" : body.Form[0].explainOtherCommunication;
+            this.state.fields["communicationIssue1"] = body.Form[0].communicationIssue1 == null ? "" : body.Form[0].communicationIssue1;
+            this.state.fields["communicationIssue2"] = body.Form[0].communicationIssue2 == null ? "" : body.Form[0].communicationIssue2;
+            this.state.fields["communicationIssue3"] = body.Form[0].communicationIssue3 == null ? "" : body.Form[0].communicationIssue3;
+            this.state.fields["languageAtHome"] = body.Form[0].languageAtHome == null ? "" : body.Form[0].languageAtHome;
+            this.state.fields["otherLanguages"] = body.Form[0].otherLanguages == null ? "" : body.Form[0].otherLanguages;
+            this.state.fields["section8Comments"] = body.Form[0].section8Comments == null ? "" : body.Form[0].section8Comments;
+            this.state.fields["behavioralGoalYes"] = body.Form[0].behavioralGoalYes == null ? "" : body.Form[0].behavioralGoalYes;
+            this.state.fields["behavioralGoalYesExplain"] = body.Form[0].behavioralGoalYesExplain == null ? "" : body.Form[0].behavioralGoalYesExplain;
+            this.state.fields["behavioralGoalNo"] = body.Form[0].behavioralGoalNo == null ? "" : body.Form[0].behavioralGoalNo;
+            this.state.fields["schoolConcentration"] = body.Form[0].schoolConcentration == null ? "" : body.Form[0].schoolConcentration;
+            this.state.fields["schoolConcentrationCurrent"] = body.Form[0].schoolConcentrationCurrent == null ? "" : body.Form[0].schoolConcentrationCurrent;
+            this.state.fields["schoolConcentrationTypical"] = body.Form[0].schoolConcentrationTypical == null ? "" : body.Form[0].schoolConcentrationTypical;
+            this.state.fields["schoolConcentrationLast"] = body.Form[0].schoolConcentrationLast == null ? "" : body.Form[0].schoolConcentrationLast;
+            this.state.fields["schoolConcentrationLocation"] = body.Form[0].schoolConcentrationLocation == null ? "" : body.Form[0].schoolConcentrationLocation;
+            this.state.fields["schoolConcentrationPrecursors"] = body.Form[0].schoolConcentrationPrecursors == null ? "" : body.Form[0].schoolConcentrationPrecursors;
+            this.state.fields["schoolConcentrationHandleBehaviors"] = body.Form[0].schoolConcentrationHandleBehaviors == null ? "" : body.Form[0].schoolConcentrationHandleBehaviors;
+            this.state.fields["socialAnxiety"] = body.Form[0].socialAnxiety == null ? "" : body.Form[0].socialAnxiety;
+            this.state.fields["socialAnxietyCurrent"] = body.Form[0].socialAnxietyCurrent == null ? "" : body.Form[0].socialAnxietyCurrent;
+            this.state.fields["socialAnxietyTypical"] = body.Form[0].socialAnxietyTypical == null ? "" : body.Form[0].socialAnxietyTypical;
+            this.state.fields["socialAnxietyLast"] = body.Form[0].socialAnxietyLast == null ? "" : body.Form[0].socialAnxietyLast;
+            this.state.fields["socialAnxietyLocation"] = body.Form[0].socialAnxietyLocation == null ? "" : body.Form[0].socialAnxietyLocation;
+            this.state.fields["socialAnxietyPrecursors"] = body.Form[0].socialAnxietyPrecursors == null ? "" : body.Form[0].socialAnxietyPrecursors;
+            this.state.fields["socialAnxietyHandleBehavior"] = body.Form[0].socialAnxietyHandleBehavior == null ? "" : body.Form[0].socialAnxietyHandleBehavior;
+            this.state.fields["lowGrades"] = body.Form[0].lowGrades == null ? "" : body.Form[0].lowGrades;
+            this.state.fields["lowGradesTypical"] = body.Form[0].lowGradesTypical == null ? "" : body.Form[0].lowGradesTypical;
+            this.state.fields["lowGradesLast"] = body.Form[0].lowGradesLast == null ? "" : body.Form[0].lowGradesLast;
+            this.state.fields["lowGradesLocation"] = body.Form[0].lowGradesLocation == null ? "" : body.Form[0].lowGradesLocation;
+            this.state.fields["lowGradesPrecursors"] = body.Form[0].lowGradesPrecursors == null ? "" : body.Form[0].lowGradesPrecursors;
+            this.state.fields["lowGradesHandleBehavior"] = body.Form[0].lowGradesHandleBehavior == null ? "" : body.Form[0].lowGradesHandleBehavior;
+            this.state.fields["makingFriends"] = body.Form[0].makingFriends == null ? "" : body.Form[0].makingFriends;
+            this.state.fields["makingFriendsCurrent"] = body.Form[0].makingFriendsCurrent == null ? "" : body.Form[0].makingFriendsCurrent;
+            this.state.fields["makingFriendsTypical"] = body.Form[0].makingFriendsTypical == null ? "" : body.Form[0].makingFriendsTypical;
+            this.state.fields["makingFriendsLocation"] = body.Form[0].makingFriendsLocation == null ? "" : body.Form[0].makingFriendsLocation;
+            this.state.fields["makingFriendsPrecursors"] = body.Form[0].makingFriendsPrecursors == null ? "" : body.Form[0].makingFriendsPrecursors;
+            this.state.fields["makingFriendsHandleBehavior"] = body.Form[0].makingFriendsHandleBehavior == null ? "" : body.Form[0].makingFriendsHandleBehavior;
+            this.state.fields["oppositionalBehavior"] = body.Form[0].oppositionalBehavior == null ? "" : body.Form[0].oppositionalBehavior;
+            this.state.fields["oppositionalBehaviorCurrent"] = body.Form[0].oppositionalBehaviorCurrent == null ? "" : body.Form[0].oppositionalBehaviorCurrent;
+            this.state.fields["oppositionalBehaviorTypical"] = body.Form[0].oppositionalBehaviorTypical == null ? "" : body.Form[0].oppositionalBehaviorTypical;
+            this.state.fields["oppositionalBehaviorLast"] = body.Form[0].oppositionalBehaviorLast == null ? "" : body.Form[0].oppositionalBehaviorLast;
+            this.state.fields["oppositionalBehaviorLocation"] = body.Form[0].oppositionalBehaviorLocation == null ? "" : body.Form[0].oppositionalBehaviorLocation;
+            this.state.fields["oppositionalBehaviorPrecursors"] = body.Form[0].oppositionalBehaviorPrecursors == null ? "" : body.Form[0].oppositionalBehaviorPrecursors;
+            this.state.fields["oppositionalBehaviorHandleBehavior"] = body.Form[0].oppositionalBehaviorHandleBehavior == null ? "" : body.Form[0].oppositionalBehaviorHandleBehavior;
+            this.state.fields["problemsWithAuthority"] = body.Form[0].problemsWithAuthority == null ? "" : body.Form[0].problemsWithAuthority;
+            this.state.fields["problemsWithAuthorityCurrent"] = body.Form[0].problemsWithAuthorityCurrent == null ? "" : body.Form[0].problemsWithAuthorityCurrent;
+            this.state.fields["problemsWithAuthorityTypical"] = body.Form[0].problemsWithAuthorityTypical == null ? "" : body.Form[0].problemsWithAuthorityTypical;
+            this.state.fields["problemsWithAuthorityLast"] = body.Form[0].problemsWithAuthorityLast == null ? "" : body.Form[0].problemsWithAuthorityLast;
+            this.state.fields["problemsWithAuthorityLocation"] = body.Form[0].problemsWithAuthorityLocation == null ? "" : body.Form[0].problemsWithAuthorityLocation;
+            this.state.fields["problemsWithAuthorityPrecursors"] = body.Form[0].problemsWithAuthorityPrecursors == null ? "" : body.Form[0].problemsWithAuthorityPrecursors;
+            this.state.fields["problemsWithAuthorityHandleBehavior"] = body.Form[0].problemsWithAuthorityHandleBehavior == null ? "" : body.Form[0].problemsWithAuthorityHandleBehavior;
+            this.state.fields["sociallyIsolated"] = body.Form[0].sociallyIsolated == null ? "" : body.Form[0].sociallyIsolated;
+            this.state.fields["sociallyIsolatedCurrent"] = body.Form[0].sociallyIsolatedCurrent == null ? "" : body.Form[0].sociallyIsolatedCurrent;
+            this.state.fields["sociallyIsolatedTypical"] = body.Form[0].sociallyIsolatedTypical == null ? "" : body.Form[0].sociallyIsolatedTypical;
+            this.state.fields["sociallyIsolatedLast"] = body.Form[0].sociallyIsolatedLast == null ? "" : body.Form[0].sociallyIsolatedLast;
+            this.state.fields["sociallyIsolatedLocation"] = body.Form[0].sociallyIsolatedLocation == null ? "" : body.Form[0].sociallyIsolatedLocation;
+            this.state.fields["sociallyIsolatedPrecursors"] = body.Form[0].sociallyIsolatedPrecursors == null ? "" : body.Form[0].sociallyIsolatedPrecursors;
+            this.state.fields["sociallyIsolatedHandleBehavior"] = body.Form[0].sociallyIsolatedHandleBehavior == null ? "" : body.Form[0].sociallyIsolatedHandleBehavior;
+            this.state.fields["aggressiveBehavior"] = body.Form[0].aggressiveBehavior == null ? "" : body.Form[0].aggressiveBehavior;
+            this.state.fields["aggressiveBehaviorCurrent"] = body.Form[0].aggressiveBehaviorCurrent == null ? "" : body.Form[0].aggressiveBehaviorCurrent;
+            this.state.fields["aggressiveBehaviorTypical"] = body.Form[0].aggressiveBehaviorTypical == null ? "" : body.Form[0].aggressiveBehaviorTypical;
+            this.state.fields["aggressiveBehaviorLast"] = body.Form[0].aggressiveBehaviorLast == null ? "" : body.Form[0].aggressiveBehaviorLast;
+            this.state.fields["aggressiveBehaviorLocation"] = body.Form[0].aggressiveBehaviorLocation == null ? "" : body.Form[0].aggressiveBehaviorLocation;
+            this.state.fields["aggressiveBehaviorPrecursors"] = body.Form[0].aggressiveBehaviorPrecursors == null ? "" : body.Form[0].aggressiveBehaviorPrecursors;
+            this.state.fields["aggressiveBehaviorHandleBehavior"] = body.Form[0].aggressiveBehaviorHandleBehavior == null ? "" : body.Form[0].aggressiveBehaviorHandleBehavior;
+            this.state.fields["stressFamily"] = body.Form[0].stressFamily == null ? "" : body.Form[0].stressFamily;
+            this.state.fields["stressFamilyCurrent"] = body.Form[0].stressFamilyCurrent == null ? "" : body.Form[0].stressFamilyCurrent;
+            this.state.fields["stressFamilyTypical"] = body.Form[0].stressFamilyTypical == null ? "" : body.Form[0].stressFamilyTypical;
+            this.state.fields["stressFamilyLast"] = body.Form[0].stressFamilyLast == null ? "" : body.Form[0].stressFamilyLast;
+            this.state.fields["stressFamilyLocation"] = body.Form[0].stressFamilyLocation == null ? "" : body.Form[0].stressFamilyLocation;
+            this.state.fields["stressFamilyPrecursors"] = body.Form[0].stressFamilyPrecursors == null ? "" : body.Form[0].stressFamilyPrecursors;
+            this.state.fields["stressFamilyHandleBehavior"] = body.Form[0].stressFamilyHandleBehavior == null ? "" : body.Form[0].stressFamilyHandleBehavior;
+            this.state.fields["generalizedAnxiety"] = body.Form[0].generalizedAnxiety == null ? "" : body.Form[0].generalizedAnxiety;
+            this.state.fields["generalizedAnxietyCurrent"] = body.Form[0].generalizedAnxietyCurrent == null ? "" : body.Form[0].generalizedAnxietyCurrent;
+            this.state.fields["generalizedAnxietyTypical"] = body.Form[0].generalizedAnxietyTypical == null ? "" : body.Form[0].generalizedAnxietyTypical;
+            this.state.fields["generalizedAnxietyLast"] = body.Form[0].generalizedAnxietyLast == null ? "" : body.Form[0].generalizedAnxietyLast;
+            this.state.fields["generalizedAnxietyLocation"] = body.Form[0].generalizedAnxietyLocation == null ? "" : body.Form[0].generalizedAnxietyLocation;
+            this.state.fields["generalizedAnxietyPrecursors"] = body.Form[0].generalizedAnxietyPrecursors == null ? "" : body.Form[0].generalizedAnxietyPrecursors;
+            this.state.fields["generalizedAnxietyHandleBehavio"] = body.Form[0].generalizedAnxietyHandleBehavio == null ? "" : body.Form[0].generalizedAnxietyHandleBehavio;
+            this.state.fields["phobias"] = body.Form[0].phobias == null ? "" : body.Form[0].phobias;
+            this.state.fields["phobiasExplain"] = body.Form[0].phobiasExplain == null ? "" : body.Form[0].phobiasExplain;
+            this.state.fields["phobiasCurrent"] = body.Form[0].phobiasCurrent == null ? "" : body.Form[0].phobiasCurrent;
+            this.state.fields["phobiasTypical"] = body.Form[0].phobiasTypical == null ? "" : body.Form[0].phobiasTypical;
+            this.state.fields["phobiasLast"] = body.Form[0].phobiasLast == null ? "" : body.Form[0].phobiasLast;
+            this.state.fields["phobiasLocation"] = body.Form[0].phobiasLocation == null ? "" : body.Form[0].phobiasLocation;
+            this.state.fields["phobiasPrecursors"] = body.Form[0].phobiasPrecursors == null ? "" : body.Form[0].phobiasPrecursors;
+            this.state.fields["phobiasHandleBehavior"] = body.Form[0].phobiasHandleBehavior == null ? "" : body.Form[0].phobiasHandleBehavior;
+            this.state.fields["hyperactive"] = body.Form[0].hyperactive == null ? "" : body.Form[0].hyperactive;
+            this.state.fields["hyperactiveCurrent"] = body.Form[0].hyperactiveCurrent == null ? "" : body.Form[0].hyperactiveCurrent;
+            this.state.fields["hyperactiveTypical"] = body.Form[0].hyperactiveTypical == null ? "" : body.Form[0].hyperactiveTypical;
+            this.state.fields["hyperactiveLast"] = body.Form[0].hyperactiveLast == null ? "" : body.Form[0].hyperactiveLast;
+            this.state.fields["hyperactiveLocation"] = body.Form[0].hyperactiveLocation == null ? "" : body.Form[0].hyperactiveLocation;
+            this.state.fields["hyperactivePrecursors"] = body.Form[0].hyperactivePrecursors == null ? "" : body.Form[0].hyperactivePrecursors;
+            this.state.fields["hyperactiveHandleBehavior"] = body.Form[0].hyperactiveHandleBehavior == null ? "" : body.Form[0].hyperactiveHandleBehavior;
+            this.state.fields["sensoryProblems"] = body.Form[0].sensoryProblems == null ? "" : body.Form[0].sensoryProblems;
+            this.state.fields["sensoryProblemsCurrent"] = body.Form[0].sensoryProblemsCurrent == null ? "" : body.Form[0].sensoryProblemsCurrent;
+            this.state.fields["sensoryProblemsTypical"] = body.Form[0].sensoryProblemsTypical == null ? "" : body.Form[0].sensoryProblemsTypical;
+            this.state.fields["sensoryProblemsLast"] = body.Form[0].sensoryProblemsLast == null ? "" : body.Form[0].sensoryProblemsLast;
+            this.state.fields["sensoryProblemsLocation"] = body.Form[0].sensoryProblemsLocation == null ? "" : body.Form[0].sensoryProblemsLocation;
+            this.state.fields["sensoryProblemsPrecursors"] = body.Form[0].sensoryProblemsPrecursors == null ? "" : body.Form[0].sensoryProblemsPrecursors;
+            this.state.fields["sensoryProblemsHandleBehavior"] = body.Form[0].sensoryProblemsHandleBehavior == null ? "" : body.Form[0].sensoryProblemsHandleBehavior;
+            this.state.fields["problemsEating"] = body.Form[0].problemsEating == null ? "" : body.Form[0].problemsEating;
+            this.state.fields["problemsEatingCurrent"] = body.Form[0].problemsEatingCurrent == null ? "" : body.Form[0].problemsEatingCurrent;
+            this.state.fields["problemsEatingTypical"] = body.Form[0].problemsEatingTypical == null ? "" : body.Form[0].problemsEatingTypical;
+            this.state.fields["problemsEatingLast"] = body.Form[0].problemsEatingLast == null ? "" : body.Form[0].problemsEatingLast;
+            this.state.fields["problemsEatingLocation"] = body.Form[0].problemsEatingLocation == null ? "" : body.Form[0].problemsEatingLocation;
+            this.state.fields["problemsEatingPrecursors"] = body.Form[0].problemsEatingPrecursors == null ? "" : body.Form[0].problemsEatingPrecursors;
+            this.state.fields["problemsEatingHandleBehavior"] = body.Form[0].problemsEatingHandleBehavior == null ? "" : body.Form[0].problemsEatingHandleBehavior;
+            this.state.fields["wettingAccidents"] = body.Form[0].wettingAccidents == null ? "" : body.Form[0].wettingAccidents;
+            this.state.fields["wettingAccidentsCurrent"] = body.Form[0].wettingAccidentsCurrent == null ? "" : body.Form[0].wettingAccidentsCurrent;
+            this.state.fields["wettingAccidentsTypical"] = body.Form[0].wettingAccidentsTypical == null ? "" : body.Form[0].wettingAccidentsTypical;
+            this.state.fields["wettingAccidentsLast"] = body.Form[0].wettingAccidentsLast == null ? "" : body.Form[0].wettingAccidentsLast;
+            this.state.fields["wettingAccidentsLocation"] = body.Form[0].wettingAccidentsLocation == null ? "" : body.Form[0].wettingAccidentsLocation;
+            this.state.fields["wettingAccidentsPrecursors"] = body.Form[0].wettingAccidentsPrecursors == null ? "" : body.Form[0].wettingAccidentsPrecursors;
+            this.state.fields["wettingAccidentsHandleBehavior"] = body.Form[0].wettingAccidentsHandleBehavior == null ? "" : body.Form[0].wettingAccidentsHandleBehavior;
+            this.state.fields["vocalTics"] = body.Form[0].vocalTics == null ? "" : body.Form[0].vocalTics;
+            this.state.fields["vocalTicsCurrent"] = body.Form[0].vocalTicsCurrent == null ? "" : body.Form[0].vocalTicsCurrent;
+            this.state.fields["vocalTicsTypical"] = body.Form[0].vocalTicsTypical == null ? "" : body.Form[0].vocalTicsTypical;
+            this.state.fields["vocalTicsLast"] = body.Form[0].vocalTicsLast == null ? "" : body.Form[0].vocalTicsLast;
+            this.state.fields["vocalTicsLocation"] = body.Form[0].vocalTicsLocation == null ? "" : body.Form[0].vocalTicsLocation;
+            this.state.fields["vocalTicsPrecursors"] = body.Form[0].vocalTicsPrecursors == null ? "" : body.Form[0].vocalTicsPrecursors;
+            this.state.fields["vocalTicsHandleBehavior"] = body.Form[0].vocalTicsHandleBehavior == null ? "" : body.Form[0].vocalTicsHandleBehavior;
+            this.state.fields["wakingUp"] = body.Form[0].wakingUp == null ? "" : body.Form[0].wakingUp;
+            this.state.fields["wakingUpCurrent"] = body.Form[0].wakingUpCurrent == null ? "" : body.Form[0].wakingUpCurrent;
+            this.state.fields["wakingUpTypical"] = body.Form[0].wakingUpTypical == null ? "" : body.Form[0].wakingUpTypical;
+            this.state.fields["wakingUpLast"] = body.Form[0].wakingUpLast == null ? "" : body.Form[0].wakingUpLast;
+            this.state.fields["wakingUpLocation"] = body.Form[0].wakingUpLocation == null ? "" : body.Form[0].wakingUpLocation;
+            this.state.fields["wakingUpPrecursors"] = body.Form[0].wakingUpPrecursors == null ? "" : body.Form[0].wakingUpPrecursors;
+            this.state.fields["wakingUpHandleBehavior"] = body.Form[0].wakingUpHandleBehavior == null ? "" : body.Form[0].wakingUpHandleBehavior;
+            this.state.fields["nightmares"] = body.Form[0].nightmares == null ? "" : body.Form[0].nightmares;
+            this.state.fields["nightmaresCurrent"] = body.Form[0].nightmaresCurrent == null ? "" : body.Form[0].nightmaresCurrent;
+            this.state.fields["nightmaresTypical"] = body.Form[0].nightmaresTypical == null ? "" : body.Form[0].nightmaresTypical;
+            this.state.fields["nightmaresLast"] = body.Form[0].nightmaresLast == null ? "" : body.Form[0].nightmaresLast;
+            this.state.fields["nightmaresLocation"] = body.Form[0].nightmaresLocation == null ? "" : body.Form[0].nightmaresLocation;
+            this.state.fields["nightmaresPrecursors"] = body.Form[0].nightmaresPrecursors == null ? "" : body.Form[0].nightmaresPrecursors;
+            this.state.fields["nightmaresHandleBehavior"] = body.Form[0].nightmaresHandleBehavior == null ? "" : body.Form[0].nightmaresHandleBehavior;
+            this.state.fields["problemsSleeping"] = body.Form[0].problemsSleeping == null ? "" : body.Form[0].problemsSleeping;
+            this.state.fields["problemsSleepingCurrent"] = body.Form[0].problemsSleepingCurrent == null ? "" : body.Form[0].problemsSleepingCurrent;
+            this.state.fields["problemsSleepingTypical"] = body.Form[0].problemsSleepingTypical == null ? "" : body.Form[0].problemsSleepingTypical;
+            this.state.fields["problemsSleepingLast"] = body.Form[0].problemsSleepingLast == null ? "" : body.Form[0].problemsSleepingLast;
+            this.state.fields["problemsSleepingLocation"] = body.Form[0].problemsSleepingLocation == null ? "" : body.Form[0].problemsSleepingLocation;
+            this.state.fields["problemsSleepingPrecursors"] = body.Form[0].problemsSleepingPrecursors == null ? "" : body.Form[0].problemsSleepingPrecursors;
+            this.state.fields["problemsSleepingHandleBehavior"] = body.Form[0].problemsSleepingHandleBehavior == null ? "" : body.Form[0].problemsSleepingHandleBehavior;
+            this.state.fields["tiredness"] = body.Form[0].tiredness == null ? "" : body.Form[0].tiredness;
+            this.state.fields["tirednessCurrent"] = body.Form[0].tirednessCurrent == null ? "" : body.Form[0].tirednessCurrent;
+            this.state.fields["tirednessTypical"] = body.Form[0].tirednessTypical == null ? "" : body.Form[0].tirednessTypical;
+            this.state.fields["tirednessLast"] = body.Form[0].tirednessLast == null ? "" : body.Form[0].tirednessLast;
+            this.state.fields["tirednessLocation"] = body.Form[0].tirednessLocation == null ? "" : body.Form[0].tirednessLocation;
+            this.state.fields["tirednessPrecurosors"] = body.Form[0].tirednessPrecurosors == null ? "" : body.Form[0].tirednessPrecurosors;
+            this.state.fields["tirednessHandleBehavior"] = body.Form[0].tirednessHandleBehavior == null ? "" : body.Form[0].tirednessHandleBehavior;
+            this.state.fields["sadness"] = body.Form[0].sadness == null ? "" : body.Form[0].sadness;
+            this.state.fields["sadnessCurrent"] = body.Form[0].sadnessCurrent == null ? "" : body.Form[0].sadnessCurrent;
+            this.state.fields["sadnessTypical"] = body.Form[0].sadnessTypical == null ? "" : body.Form[0].sadnessTypical;
+            this.state.fields["sadnessLast"] = body.Form[0].sadnessLast == null ? "" : body.Form[0].sadnessLast;
+            this.state.fields["sadnessLocation"] = body.Form[0].sadnessLocation == null ? "" : body.Form[0].sadnessLocation;
+            this.state.fields["sadnessPrecursors"] = body.Form[0].sadnessPrecursors == null ? "" : body.Form[0].sadnessPrecursors;
+            this.state.fields["sadnessHandleBehavior"] = body.Form[0].sadnessHandleBehavior == null ? "" : body.Form[0].sadnessHandleBehavior;
+            this.state.fields["impulsive"] = body.Form[0].impulsive == null ? "" : body.Form[0].impulsive;
+            this.state.fields["impulsiveCurrent"] = body.Form[0].impulsiveCurrent == null ? "" : body.Form[0].impulsiveCurrent;
+            this.state.fields["impulsiveTypical"] = body.Form[0].impulsiveTypical == null ? "" : body.Form[0].impulsiveTypical;
+            this.state.fields["impulsiveLocation"] = body.Form[0].impulsiveLocation == null ? "" : body.Form[0].impulsiveLocation;
+            this.state.fields["impulsivePrecursors"] = body.Form[0].impulsivePrecursors == null ? "" : body.Form[0].impulsivePrecursors;
+            this.state.fields["impulsiveHandleBehavior"] = body.Form[0].impulsiveHandleBehavior == null ? "" : body.Form[0].impulsiveHandleBehavior;
+            this.state.fields["noncompliant"] = body.Form[0].noncompliant == null ? "" : body.Form[0].noncompliant;
+            this.state.fields["noncompliantCurrent"] = body.Form[0].noncompliantCurrent == null ? "" : body.Form[0].noncompliantCurrent;
+            this.state.fields["noncompliantTypcial"] = body.Form[0].noncompliantTypcial == null ? "" : body.Form[0].noncompliantTypcial;
+            this.state.fields["noncompliantLast"] = body.Form[0].noncompliantLast == null ? "" : body.Form[0].noncompliantLast;
+            this.state.fields["noncompliantLocation"] = body.Form[0].noncompliantLocation == null ? "" : body.Form[0].noncompliantLocation;
+            this.state.fields["noncompliantPrecursors"] = body.Form[0].noncompliantPrecursors == null ? "" : body.Form[0].noncompliantPrecursors;
+            this.state.fields["noncompliantHandleBeahvior"] = body.Form[0].noncompliantHandleBeahvior == null ? "" : body.Form[0].noncompliantHandleBeahvior;
+            this.state.fields["tantrums"] = body.Form[0].tantrums == null ? "" : body.Form[0].tantrums;
+            this.state.fields["tantrumsCurrent"] = body.Form[0].tantrumsCurrent == null ? "" : body.Form[0].tantrumsCurrent;
+            this.state.fields["tantrumsTypical"] = body.Form[0].tantrumsTypical == null ? "" : body.Form[0].tantrumsTypical;
+            this.state.fields["tantrumsLast"] = body.Form[0].tantrumsLast == null ? "" : body.Form[0].tantrumsLast;
+            this.state.fields["tantrumsLocation"] = body.Form[0].tantrumsLocation == null ? "" : body.Form[0].tantrumsLocation;
+            this.state.fields["tantrumsPrecursors"] = body.Form[0].tantrumsPrecursors == null ? "" : body.Form[0].tantrumsPrecursors;
+            this.state.fields["tantrumsHandleBehavior"] = body.Form[0].tantrumsHandleBehavior == null ? "" : body.Form[0].tantrumsHandleBehavior;
+            this.state.fields["injuryBehavior"] = body.Form[0].injuryBehavior == null ? "" : body.Form[0].injuryBehavior;
+            this.state.fields["injuryBehaviorCurrent"] = body.Form[0].injuryBehaviorCurrent == null ? "" : body.Form[0].injuryBehaviorCurrent;
+            this.state.fields["injuryBehaviorTypical"] = body.Form[0].injuryBehaviorTypical == null ? "" : body.Form[0].injuryBehaviorTypical;
+            this.state.fields["injuryBehaviorLast"] = body.Form[0].injuryBehaviorLast == null ? "" : body.Form[0].injuryBehaviorLast;
+            this.state.fields["injuryBehaviorLocation"] = body.Form[0].injuryBehaviorLocation == null ? "" : body.Form[0].injuryBehaviorLocation;
+            this.state.fields["injuryBehaviorPrecursors"] = body.Form[0].injuryBehaviorPrecursors == null ? "" : body.Form[0].injuryBehaviorPrecursors;
+            this.state.fields["injuryBehaviorHandleBehavior"] = body.Form[0].injuryBehaviorHandleBehavior == null ? "" : body.Form[0].injuryBehaviorHandleBehavior;
+            this.state.fields["temperProblem"] = body.Form[0].temperProblem == null ? "" : body.Form[0].temperProblem;
+            this.state.fields["temperProblemCurrent"] = body.Form[0].temperProblemCurrent == null ? "" : body.Form[0].temperProblemCurrent;
+            this.state.fields["temperProblemTypical"] = body.Form[0].temperProblemTypical == null ? "" : body.Form[0].temperProblemTypical;
+            this.state.fields["temperProblemLast"] = body.Form[0].temperProblemLast == null ? "" : body.Form[0].temperProblemLast;
+            this.state.fields["temperProblemLocation"] = body.Form[0].temperProblemLocation == null ? "" : body.Form[0].temperProblemLocation;
+            this.state.fields["temperProblemPrecursors"] = body.Form[0].temperProblemPrecursors == null ? "" : body.Form[0].temperProblemPrecursors;
+            this.state.fields["temperProblemHandleBehavior"] = body.Form[0].temperProblemHandleBehavior == null ? "" : body.Form[0].temperProblemHandleBehavior;
+            this.state.fields["darting"] = body.Form[0].darting == null ? "" : body.Form[0].darting;
+            this.state.fields["dartingCurrent"] = body.Form[0].dartingCurrent == null ? "" : body.Form[0].dartingCurrent;
+            this.state.fields["dartingTypical"] = body.Form[0].dartingTypical == null ? "" : body.Form[0].dartingTypical;
+            this.state.fields["dartingLast"] = body.Form[0].dartingLast == null ? "" : body.Form[0].dartingLast;
+            this.state.fields["dartingLocation"] = body.Form[0].dartingLocation == null ? "" : body.Form[0].dartingLocation;
+            this.state.fields["dartingPrecursors"] = body.Form[0].dartingPrecursors == null ? "" : body.Form[0].dartingPrecursors;
+            this.state.fields["dartingHandleBehavior"] = body.Form[0].dartingHandleBehavior == null ? "" : body.Form[0].dartingHandleBehavior;
+            this.state.fields["rigid"] = body.Form[0].rigid == null ? "" : body.Form[0].rigid;
+            this.state.fields["rigidCurrent"] = body.Form[0].rigidCurrent == null ? "" : body.Form[0].rigidCurrent;
+            this.state.fields["rigidTypical"] = body.Form[0].rigidTypical == null ? "" : body.Form[0].rigidTypical;
+            this.state.fields["rigidLast"] = body.Form[0].rigidLast == null ? "" : body.Form[0].rigidLast;
+            this.state.fields["rigidLocation"] = body.Form[0].rigidLocation == null ? "" : body.Form[0].rigidLocation;
+            this.state.fields["rigidPrecursors"] = body.Form[0].rigidPrecursors == null ? "" : body.Form[0].rigidPrecursors;
+            this.state.fields["rigidHandleBehavior"] = body.Form[0].rigidHandleBehavior == null ? "" : body.Form[0].rigidHandleBehavior;
+            this.state.fields["abuse"] = body.Form[0].abuse == null ? "" : body.Form[0].abuse;
+            this.state.fields["abuseCurrent"] = body.Form[0].abuseCurrent == null ? "" : body.Form[0].abuseCurrent;
+            this.state.fields["abuseTypical"] = body.Form[0].abuseTypical == null ? "" : body.Form[0].abuseTypical;
+            this.state.fields["abuseLast"] = body.Form[0].abuseLast == null ? "" : body.Form[0].abuseLast;
+            this.state.fields["abuseCurrentLocation"] = body.Form[0].abuseCurrentLocation == null ? "" : body.Form[0].abuseCurrentLocation;
+            this.state.fields["abusePrecursors"] = body.Form[0].abusePrecursors == null ? "" : body.Form[0].abusePrecursors;
+            this.state.fields["abuseHandleBehavior"] = body.Form[0].abuseHandleBehavior == null ? "" : body.Form[0].abuseHandleBehavior;
+            this.state.fields["physicalAssistanceQuestion"] = body.Form[0].physicalAssistanceQuestion == null ? "" : body.Form[0].physicalAssistanceQuestion;
+            this.state.fields["physicalAssistanceYes"] = body.Form[0].physicalAssistanceYes == null ? "" : body.Form[0].physicalAssistanceYes;
+            this.state.fields["physicalAssistanceYesExplain"] = body.Form[0].physicalAssistanceYesExplain == null ? "" : body.Form[0].physicalAssistanceYesExplain;
+            this.state.fields["physicalAssistanceNo"] = body.Form[0].physicalAssistanceNo == null ? "" : body.Form[0].physicalAssistanceNo;
+            this.state.fields["verbalDirectivesCheckYes"] = body.Form[0].verbalDirectivesCheckYes == null ? "" : body.Form[0].verbalDirectivesCheckYes;
+            this.state.fields["verbalDirectivesYesExplain"] = body.Form[0].verbalDirectivesYesExplain == null ? "" : body.Form[0].verbalDirectivesYesExplain;
+            this.state.fields["verbalDirectivesCheckNo"] = body.Form[0].verbalDirectivesCheckNo == null ? "" : body.Form[0].verbalDirectivesCheckNo;
+            this.state.fields["currentEventsCheckYes"] = body.Form[0].currentEventsCheckYes == null ? "" : body.Form[0].currentEventsCheckYes;
+            this.state.fields["currentEventsExplain"] = body.Form[0].currentEventsExplain == null ? "" : body.Form[0].currentEventsExplain;
+            this.state.fields["currentEventsCheckNo"] = body.Form[0].currentEventsCheckNo == null ? "" : body.Form[0].currentEventsCheckNo;
+            this.state.fields["positiveBehavior"] = body.Form[0].positiveBehavior == null ? "" : body.Form[0].positiveBehavior;
+            this.state.fields["assistanceRequired"] = body.Form[0].assistanceRequired == null ? "" : body.Form[0].assistanceRequired;
+            this.state.fields["soothing"] = body.Form[0].soothing == null ? "" : body.Form[0].soothing;
+            this.state.fields["section9Comments"] = body.Form[0].section9Comments == null ? "" : body.Form[0].section9Comments;
+            this.state.fields["morning"] = body.Form[0].morning == null ? "" : body.Form[0].morning;
+            this.state.fields["afternoon"] = body.Form[0].afternoon == null ? "" : body.Form[0].afternoon;
+            this.state.fields["evening"] = body.Form[0].evening == null ? "" : body.Form[0].evening;
+            this.state.fields["downtime"] = body.Form[0].downtime == null ? "" : body.Form[0].downtime;
+            this.state.fields["homeExpectation"] = body.Form[0].homeExpectation == null ? "" : body.Form[0].homeExpectation;
+            this.state.fields["screentime"] = body.Form[0].screentime == null ? "" : body.Form[0].screentime;
+            this.state.fields["chores"] = body.Form[0].chores == null ? "" : body.Form[0].chores;
+            this.state.fields["physicalActivity"] = body.Form[0].physicalActivity == null ? "" : body.Form[0].physicalActivity;
+            this.state.fields["section10Comments"] = body.Form[0].section10Comments == null ? "" : body.Form[0].section10Comments;
+            this.state.fields["challengesWithUnknownProvider"] = body.Form[0].challengesWithUnknownProvider == null ? "" : body.Form[0].challengesWithUnknownProvider;
+            this.state.fields["concernsWithRoom"] = body.Form[0].concernsWithRoom == null ? "" : body.Form[0].concernsWithRoom;
+            this.state.fields["concernsWithCubbies"] = body.Form[0].concernsWithCubbies == null ? "" : body.Form[0].concernsWithCubbies;
+            this.state.fields["signsOfToilet"] = body.Form[0].signsOfToilet == null ? "" : body.Form[0].signsOfToilet;
+            this.state.fields["amountOfRestroomUse"] = body.Form[0].amountOfRestroomUse == null ? "" : body.Form[0].amountOfRestroomUse;
+            this.state.fields["restroomTerminology"] = body.Form[0].restroomTerminology == null ? "" : body.Form[0].restroomTerminology;
+            this.state.fields["restroomIndependence"] = body.Form[0].restroomIndependence == null ? "" : body.Form[0].restroomIndependence;
+            this.state.fields["snackDuringEval"] = body.Form[0].snackDuringEval == null ? "" : body.Form[0].snackDuringEval;
+            this.state.fields["techniquesDuringEating"] = body.Form[0].techniquesDuringEating == null ? "" : body.Form[0].techniquesDuringEating;
+            this.state.fields["eatingIndependence"] = body.Form[0].eatingIndependence == null ? "" : body.Form[0].eatingIndependence;
+            this.state.fields["medicationDuringEval"] = body.Form[0].medicationDuringEval == null ? "" : body.Form[0].medicationDuringEval;
+            this.state.fields["conditionsWithRescueMedication"] = body.Form[0].conditionsWithRescueMedication == null ? "" : body.Form[0].conditionsWithRescueMedication;
+            this.state.fields["allergicReaction"] = body.Form[0].allergicReaction == null ? "" : body.Form[0].allergicReaction;
+            this.state.fields["seizureCheckYes"] = body.Form[0].seizureCheckYes == null ? "" : body.Form[0].seizureCheckYes;
+            this.state.fields["seizureCheckNo"] = body.Form[0].seizureCheckNo == null ? "" : body.Form[0].seizureCheckNo;
+            this.state.fields["seizureHistory"] = body.Form[0].seizureHistory == null ? "" : body.Form[0].seizureHistory;
+            this.state.fields["signsOfSeizure"] = body.Form[0].signsOfSeizure == null ? "" : body.Form[0].signsOfSeizure;
+            this.state.fields["otherSeizureProtocol"] = body.Form[0].otherSeizureProtocol == null ? "" : body.Form[0].otherSeizureProtocol;
+            this.state.fields["lastSeizure"] = body.Form[0].lastSeizure == null ? "" : body.Form[0].lastSeizure;
+            this.state.fields["seizureFrequency"] = body.Form[0].seizureFrequency == null ? "" : body.Form[0].seizureFrequency;
+            this.state.fields["section12Comments"] = body.Form[0].section12Comments == null ? "" : body.Form[0].section12Comments;
+            this.state.fields["hearAboutJL"] = body.Form[0].hearAboutJL == null ? "" : body.Form[0].hearAboutJL;
+            this.state.fields["goalsAndExpectations"] = body.Form[0].goalsAndExpectations == null ? "" : body.Form[0].goalsAndExpectations;
+            this.state.fields["enrollmentAfterEval"] = body.Form[0].enrollmentAfterEval == null ? "" : body.Form[0].enrollmentAfterEval;
+            this.state.fields["additionalInfoAboutChild"] = body.Form[0].additionalInfoAboutChild == null ? "" : body.Form[0].additionalInfoAboutChild;
+            this.state.fields["consentCheck"] = body.Form[0].consentCheck == null ? "" : body.Form[0].consentCheck;
+            this.state.fields["studentName"] = body.Form[0].studentName == null ? "" : body.Form[0].studentName;
+            this.state.fields["parentName"] = body.Form[0].parentName == null ? "" : body.Form[0].parentName;
+            this.state.fields["date"] = body.Form[0].date == null ? "" : body.Form[0].date;
+        }
+        return body;
+    };
+
+    // postSection11ToDB() {
+    //     var update = JSON.stringify(infoObj);
+    //     var url = 'api/children/' + childID + '/forms/Section11';
+    //     console.log("post url" + url);
+    //     console.log("updated JSON");
+    //     console.log(update);
+    //     const response = fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'token': token,
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: update
+    //     });
+    //     console.log("response");
+    //     console.log(response);
+    // }
+
+    // fetchSection11FromDB = async () => {
+    //     var url = 'api/children/' + childID + '/forms/Section11';
+    //     console.log("get url " + url);
+    //     const response = await fetch(url, {
+    //         method: 'GET',
+    //         headers: {
+    //             'token': token,
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //         },
+    //     });
+    //     const body = await response.json();
+    //     console.log("fetch from db response");
+    //     console.log(body);
+    //     if (response.status !== 200) throw Error(body.message);
+    //     if (body.Form.length > 0) {
+    //         // this.state.fields["studentName"] = body.Form[0].StudentName;
+    //         // this.state.fields["parentName"] = body.Form[0].ParentName;
+    //         // this.state.fields["date"] = body.Form[0].Date;
+    //         // this.state.fields["consideration"] = body.Form[0].Comments;
+    //     }
+    //     return body;
+    // };
+
+    updateFields() {
+        let fields = this.state.fields;
+        infoObj.ChildID = childID;
+        infoObj.dob = fields["dob"];
+        infoObj.age = fields["age"];
+        infoObj.diagnosis = fields["diagnosis"];
+        infoObj.height = fields["height"];
+        infoObj.weight = fields["weight"];
+        infoObj.street = fields["street"];
+        infoObj.city = fields["city"];
+        infoObj.state = fields["state"];
+        infoObj.zip = fields["zip"];
+        infoObj.country = fields["country"];
+        infoObj.homeNumber = fields["homeNumber"];
+        infoObj.section1Comments = fields["section1Comments"];
+        infoObj.isAdopted = fields["isAdopted"];
+        infoObj.isAdoptedAge = fields["isAdoptedAge"];
+        infoObj.birthCountry = fields["birthCountry"];
+        infoObj.motherName = fields["motherName"];
+        infoObj.motherAge = fields["motherAge"];
+        infoObj.motherCell = fields["motherCell"];
+        infoObj.motherEmail = fields["motherEmail"];
+        infoObj.motherOccupation = fields["motherOccupation"];
+        infoObj.fatherName = fields["fatherName"];
+        infoObj.fatherAge = fields["fatherAge"];
+        infoObj.fatherCell = fields["fatherCell"];
+        infoObj.fatherEmail = fields["fatherEmail"];
+        infoObj.fatherOccupation = fields["fatherOccupation"];
+        infoObj.maritalStatus = fields["maritalStatus"];
+        infoObj.legalGuardian = fields["legalGuardian"];
+        infoObj.sMotherName = fields["sMotherName"];
+        infoObj.sMotherAge = fields["sMotherAge"];
+        infoObj.sMotherCell = fields["sMotherCell"];
+        infoObj.sMotherEmail = fields["sMotherEmail"];
+        infoObj.sMotherOccupation = fields["sMotherOccupation"];
+        infoObj.sFatherName = fields["sFatherName"];
+        infoObj.sFatherAge = fields["sFatherAge"];
+        infoObj.sFatherCell = fields["sFatherCell"];
+        infoObj.sFatherEmail = fields["sFatherEmail"];
+        infoObj.sFatherOccupation = fields["sFatherOccupation"];
+        infoObj.sib1Name = fields["sib1Name"];
+        infoObj.sib1Age = fields["sib1Age"];
+        infoObj.sib1Gender = fields["sib1Gender"];
+        infoObj.sib2Name = fields["sib2Name"];
+        infoObj.sib2Age = fields["sib2Age"];
+        infoObj.sib2Gender = fields["sib2Gender"];
+        infoObj.sib3Name = fields["sib3Name"];
+        infoObj.sib3Age = fields["sib3Age"];
+        infoObj.sib3Gender = fields["sib3Gender"];
+        infoObj.sib4Name = fields["sib4Name"];
+        infoObj.sib4Age = fields["sib4Age"];
+        infoObj.sib4Gender = fields["sib4Gender"];
+        infoObj.sib5Name = fields["sib5Name"];
+        infoObj.sib5Age = fields["sib5Age"];
+        infoObj.sib5Gender = fields["sib5Gender"];
+        infoObj.section2Comments = fields["section2Comments"];
+        infoObj.birthWeek = fields["birthWeek"];
+        infoObj.birthWeight = fields["birthWeight"];
+        infoObj.deliveryType = fields["deliveryType"];
+        infoObj.pregComplications = fields["pregComplications"];
+        infoObj.pregComplicationDescription = fields["pregComplicationDescription"];
+        infoObj.hospitalizedAfterBirth = fields["hospitalizedAfterBirth"];
+        infoObj.hospitaliedAfterBirthDescription = fields["hospitaliedAfterBirthDescription"];
+        infoObj.section3Comments = fields["section3Comments"];
+        infoObj.crawlYears = fields["crawlYears"];
+        infoObj.crawlMonths = fields["crawlMonths"];
+        infoObj.crawlNa = fields["crawlNa"];
+        infoObj.creptYears = fields["creptYears"];
+        infoObj.creptMonths = fields["creptMonths"];
+        infoObj.creptNa = fields["creptNa"];
+        infoObj.walkYears = fields["walkYears"];
+        infoObj.walkMonths = fields["walkMonths"];
+        infoObj.walkNa = fields["walkNa"];
+        infoObj.toiletYears = fields["toiletYears"];
+        infoObj.toiletMonths = fields["toiletMonths"];
+        infoObj.toiletNa = fields["toiletNa"];
+        infoObj.wordYears = fields["wordYears"];
+        infoObj.wordMonths = fields["wordMonths"];
+        infoObj.wordNa = fields["wordNa"];
+        infoObj.coupletYears = fields["coupletYears"];
+        infoObj.coupletMonths = fields["coupletMonths"];
+        infoObj.coupletNa = fields["coupletNa"];
+        infoObj.phraseYears = fields["phraseYears"];
+        infoObj.phraseMonths = fields["phraseMonths"];
+        infoObj.phraseNa = fields["phraseNa"];
+        infoObj.sentenceYears = fields["sentenceYears"];
+        infoObj.sentenceMonths = fields["sentenceMonths"];
+        infoObj.sentenceNa = fields["sentenceNa"];
+        infoObj.conversationYears = fields["conversationYears"];
+        infoObj.conversationMonths = fields["conversationMonths"];
+        infoObj.conversationNa = fields["conversationNa"];
+        infoObj.readYears = fields["readYears"];
+        infoObj.readMonths = fields["readMonths"];
+        infoObj.readNa = fields["readNa"];
+        infoObj.section4Comments = fields["section4Comments"];
+        infoObj.drName = fields["drName"];
+        infoObj.drPhone = fields["drPhone"];
+        infoObj.drStreet = fields["drStreet"];
+        infoObj.drCity = fields["drCity"];
+        infoObj.drState = fields["drState"];
+        infoObj.drZip = fields["drZip"];
+        infoObj.drCountry = fields["drCountry"];
+        infoObj.drName2 = fields["drName2"];
+        infoObj.drPhone2 = fields["drPhone2"];
+        infoObj.drStreet2 = fields["drStreet2"];
+        infoObj.drCity2 = fields["drCity2"];
+        infoObj.drState2 = fields["drState2"];
+        infoObj.drZip2 = fields["drZip2"];
+        infoObj.drCountry2 = fields["drCountry2"];
+        infoObj.outsideTherapy = fields["outsideTherapy"];
+        infoObj.doc1Name = fields["doc1Name"];
+        infoObj.doc1Specialty = fields["doc1Specialty"];
+        infoObj.doc1Phone = fields["doc1Phone"];
+        infoObj.doc1Sched = fields["doc1Sched"];
+        infoObj.doc2Name = fields["doc2Name"];
+        infoObj.doc2Specialty = fields["doc2Specialty"];
+        infoObj.doc2Phone = fields["doc2Phone"];
+        infoObj.doc2Sched = fields["doc2Sched"];
+        infoObj.doc3Name = fields["doc3Name"];
+        infoObj.doc3Specialty = fields["doc3Specialty"];
+        infoObj.doc3Phone = fields["doc3Phone"];
+        infoObj.doc3Sched = fields["doc3Sched"];
+        infoObj.doc4Name = fields["doc4Name"];
+        infoObj.doc4Specialty = fields["doc4Specialty"];
+        infoObj.doc4Phone = fields["doc4Phone"];
+        infoObj.doc4Sched = fields["doc4Sched"];
+        infoObj.doc5Name = fields["doc5Name"];
+        infoObj.doc5Specialty = fields["doc5Specialty"];
+        infoObj.doc5Phone = fields["doc5Phone"];
+        infoObj.doc5Sched = fields["doc5Sched"];
+        infoObj.specialDoc1Name = fields["specialDoc1Name"];
+        infoObj.specialDoc1Specialty = fields["specialDoc1Specialty"];
+        infoObj.specialDoc1Phone = fields["specialDoc1Phone"];
+        infoObj.specialDoc1Sched = fields["specialDoc1Sched"];
+        infoObj.specialDoc2Name = fields["specialDoc2Name"];
+        infoObj.specialDoc2Specialty = fields["specialDoc2Specialty"];
+        infoObj.specialDoc2Phone = fields["specialDoc2Phone"];
+        infoObj.specialDoc2Sched = fields["specialDoc2Sched"];
+        infoObj.specialDoc3Name = fields["specialDoc3Name"];
+        infoObj.specialDoc3Specialty = fields["specialDoc3Specialty"];
+        infoObj.specialDoc3Phone = fields["specialDoc3Phone"];
+        infoObj.specialDoc3Sched = fields["specialDoc3Sched"];
+        infoObj.specialDoc4Name = fields["specialDoc4Name"];
+        infoObj.specialDoc4Specialty = fields["specialDoc4Specialty"];
+        infoObj.specialDoc4Phone = fields["specialDoc4Phone"];
+        infoObj.specialDoc4Sched = fields["specialDoc4Sched"];
+        infoObj.specialDoc5Name = fields["specialDoc5Name"];
+        infoObj.specialDoc5Specialty = fields["specialDoc5Specialty"];
+        infoObj.specialDoc5Phone = fields["specialDoc5Phone"];
+        infoObj.specialDoc5Sched = fields["specialDoc5Sched"];
+        infoObj.test1Date = fields["test1Date"];
+        infoObj.test1Examiner = fields["test1Examiner"];
+        infoObj.test1Diagnosis = fields["test1Diagnosis"];
+        infoObj.test1Reco = fields["test1Reco"];
+        infoObj.test2Date = fields["test2Date"];
+        infoObj.test2Examiner = fields["test2Examiner"];
+        infoObj.test2Diagnosis = fields["test2Diagnosis"];
+        infoObj.test2Reco = fields["test2Reco"];
+        infoObj.test3Date = fields["test3Date"];
+        infoObj.test3Examiner = fields["test3Examiner"];
+        infoObj.test3Diagnosis = fields["test3Diagnosis"];
+        infoObj.test3Reco = fields["test3Reco"];
+        infoObj.test4Date = fields["test4Date"];
+        infoObj.test4Examiner = fields["test4Examiner"];
+        infoObj.test4Diagnosis = fields["test4Diagnosis"];
+        infoObj.test4Reco = fields["test4Reco"];
+        infoObj.test5Date = fields["test5Date"];
+        infoObj.test5Examiner = fields["test5Examiner"];
+        infoObj.test5Diagnosis = fields["test5Diagnosis"];
+        infoObj.test5Reco = fields["test5Reco"];
+        infoObj.hospital = fields["hospital"];
+        infoObj.otherMedicalConditions = fields["otherMedicalConditions"];
+        infoObj.epilepsy = fields["epilepsy"];
+        infoObj.diabetes = fields["diabetes"];
+        infoObj.asthma = fields["asthma"];
+        infoObj.epipen = fields["epipen"];
+        infoObj.medConditionOther = fields["medConditionOther"];
+        infoObj.feedSupport = fields["feedSupport"];
+        infoObj.toiletEquip = fields["toiletEquip"];
+        infoObj.mobilityEquip = fields["mobilityEquip"];
+        infoObj.communicationEquip = fields["communicationEquip"];
+        infoObj.oxygenTank = fields["oxygenTank"];
+        infoObj.hearingDevice = fields["hearingDevice"];
+        infoObj.otherSupply = fields["otherSupply"];
+        infoObj.otherSupplyDetail = fields["otherSupplyDetail"];
+        infoObj.med1Name = fields["med1Name"];
+        infoObj.med1Dosage = fields["med1Dosage"];
+        infoObj.med1TimeGiven = fields["med1TimeGiven"];
+        infoObj.med1Frequency = fields["med1Frequency"];
+        infoObj.med1Purpose = fields["med1Purpose"];
+        infoObj.med1SideEffect = fields["med1SideEffect"];
+        infoObj.med2Name = fields["med2Name"];
+        infoObj.med2Dosage = fields["med2Dosage"];
+        infoObj.med2TimeGiven = fields["med2TimeGiven"];
+        infoObj.med2Frequency = fields["med2Frequency"];
+        infoObj.med2Purpose = fields["med2Purpose"];
+        infoObj.med2SideEffect = fields["med2SideEffect"];
+        infoObj.med3Name = fields["med3Name"];
+        infoObj.med3Dosage = fields["med3Dosage"];
+        infoObj.med3TimeGiven = fields["med3TimeGiven"];
+        infoObj.med3Frequency = fields["med3Frequency"];
+        infoObj.med3Purpose = fields["med3Purpose"];
+        infoObj.med3SideEffect = fields["med3SideEffect"];
+        infoObj.med4Name = fields["med4Name"];
+        infoObj.med4Dosage = fields["med4Dosage"];
+        infoObj.med4TimeGiven = fields["med4TimeGiven"];
+        infoObj.med4Frequency = fields["med4Frequency"];
+        infoObj.med4Purpose = fields["med4Purpose"];
+        infoObj.med4SideEffect = fields["med4SideEffect"];
+        infoObj.med5Name = fields["med5Name"];
+        infoObj.med5Dosage = fields["med5Dosage"];
+        infoObj.med5TimeGiven = fields["med5TimeGiven"];
+        infoObj.med5Frequency = fields["med5Frequency"];
+        infoObj.med5Purpose = fields["med5Purpose"];
+        infoObj.med5SideEffect = fields["med5SideEffect"];
+        infoObj.section5Comments = fields["section5Comments"];
+        infoObj.diet = fields["diet"];
+        infoObj.vegetableExcess = fields["vegetableExcess"];
+        infoObj.vegetableDaily = fields["vegetableDaily"];
+        infoObj.vegetableWeekly = fields["vegetableWeekly"];
+        infoObj.vegetableRarely = fields["vegetableRarely"];
+        infoObj.vegetableNever = fields["vegetableNever"];
+        infoObj.fruitExcess = fields["fruitExcess"];
+        infoObj.fruitDaily = fields["fruitDaily"];
+        infoObj.fruitWeekly = fields["fruitWeekly"];
+        infoObj.fruitRarely = fields["fruitRarely"];
+        infoObj.fruitNever = fields["fruitNever"];
+        infoObj.meatExcess = fields["meatExcess"];
+        infoObj.meatDaily = fields["meatDaily"];
+        infoObj.meatWeekly = fields["meatWeekly"];
+        infoObj.meatRarely = fields["meatRarely"];
+        infoObj.meatNever = fields["meatNever"];
+        infoObj.sugarExcess = fields["sugarExcess"];
+        infoObj.sugarDaily = fields["sugarDaily"];
+        infoObj.sugarWeekly = fields["sugarWeekly"];
+        infoObj.sugarRarely = fields["sugarRarely"];
+        infoObj.sugarNever = fields["sugarNever"];
+        infoObj.artSweetenerExcess = fields["artSweetenerExcess"];
+        infoObj.artSweetenerDaily = fields["artSweetenerDaily"];
+        infoObj.artSweetenerWeekly = fields["artSweetenerWeekly"];
+        infoObj.artSweetenerRarely = fields["artSweetenerRarely"];
+        infoObj.artSweetenerNever = fields["artSweetenerNever"];
+        infoObj.artProductsExcess = fields["artProductsExcess"];
+        infoObj.artProductsDaily = fields["artProductsDaily"];
+        infoObj.artProductsWeekly = fields["artProductsWeekly"];
+        infoObj.artProductsRarely = fields["artProductsRarely"];
+        infoObj.artProductsNever = fields["artProductsNever"];
+        infoObj.dairyExcess = fields["dairyExcess"];
+        infoObj.dairyWeekly = fields["dairyWeekly"];
+        infoObj.dairyRarely = fields["dairyRarely"];
+        infoObj.dairyNever = fields["dairyNever"];
+        infoObj.flourExcess = fields["flourExcess"];
+        infoObj.flourDaily = fields["flourDaily"];
+        infoObj.flourWeekly = fields["flourWeekly"];
+        infoObj.flourRarely = fields["flourRarely"];
+        infoObj.flourNever = fields["flourNever"];
+        infoObj.allergies = fields["allergies"];
+        infoObj.describeAllergies = fields["describeAllergies"];
+        infoObj.breakfastTime = fields["breakfastTime"];
+        infoObj.lunchTime = fields["lunchTime"];
+        infoObj.dinnerTime = fields["dinnerTime"];
+        infoObj.snackTime = fields["snackTime"];
+        infoObj.hoursOfSleep = fields["hoursOfSleep"];
+        infoObj.bedTime = fields["bedTime"];
+        infoObj.wakeTime = fields["wakeTime"];
+        infoObj.troubleFallingAsleep = fields["troubleFallingAsleep"];
+        infoObj.troubleStayingAsleep = fields["troubleStayingAsleep"];
+        infoObj.wakesEarly = fields["wakesEarly"];
+        infoObj.lowMuscleTone = fields["lowMuscleTone"];
+        infoObj.highMuscleTone = fields["highMuscleTone"];
+        infoObj.coordination = fields["coordination"];
+        infoObj.crawling = fields["crawling"];
+        infoObj.walking = fields["walking"];
+        infoObj.running = fields["running"];
+        infoObj.athetoid = fields["athetoid"];
+        infoObj.ataxic = fields["ataxic"];
+        infoObj.weak = fields["weak"];
+        infoObj.balance = fields["balance"];
+        infoObj.otherPhysicalMotor = fields["otherPhysicalMotor"];
+        infoObj.section6Comments = fields["section6Comments"];
+        infoObj.program1name = fields["program1name"];
+        infoObj.startdate1 = fields["startdate1"];
+        infoObj.provider1 = fields["provider1"];
+        infoObj.phonenumber1 = fields["phonenumber1"];
+        infoObj.contactpermission1 = fields["contactpermission1"];
+        infoObj.program2name = fields["program2name"];
+        infoObj.startdate2 = fields["startdate2"];
+        infoObj.provider2 = fields["provider2"];
+        infoObj.phonenumber2 = fields["phonenumber2"];
+        infoObj.contactpermission2 = fields["contactpermission2"];
+        infoObj.program3name = fields["program3name"];
+        infoObj.startdate3 = fields["startdate3"];
+        infoObj.provider3 = fields["provider3"];
+        infoObj.phonenumber3 = fields["phonenumber3"];
+        infoObj.contactpermission3 = fields["contactpermission3"];
+        infoObj.program4name = fields["program4name"];
+        infoObj.startdate4 = fields["startdate4"];
+        infoObj.provider4 = fields["provider4"];
+        infoObj.phonenumber4 = fields["phonenumber4"];
+        infoObj.contactpermission4 = fields["contactpermission4"];
+        infoObj.program5name = fields["program5name"];
+        infoObj.startdate5 = fields["startdate5"];
+        infoObj.provider5 = fields["provider5"];
+        infoObj.phonenumber5 = fields["phonenumber5"];
+        infoObj.contactpermission5 = fields["contactpermission5"];
+        infoObj.educationalChallenges = fields["educationalChallenges"];
+        infoObj.exceptionalTalents = fields["exceptionalTalents"];
+        infoObj.iepPlan = fields["iepPlan"];
+        infoObj.handPreference1 = fields["handPreference1"];
+        infoObj.handPreference2 = fields["handPreference2"];
+        infoObj.handPreference3 = fields["handPreference3"];
+        infoObj.handPreference4 = fields["handPreference4"];
+        infoObj.handPreference5 = fields["handPreference5"];
+        infoObj.skill1 = fields["skill1"];
+        infoObj.skill2 = fields["skill2"];
+        infoObj.skill3 = fields["skill3"];
+        infoObj.skill4 = fields["skill4"];
+        infoObj.skill5 = fields["skill5"];
+        infoObj.skill6 = fields["skill6"];
+        infoObj.skill7 = fields["skill7"];
+        infoObj.skill8 = fields["skill8"];
+        infoObj.skill9 = fields["skill9"];
+        infoObj.skill10 = fields["skill10"];
+        infoObj.academicGoal = fields["academicGoal"];
+        infoObj.section7Comments = fields["section7Comments"];
+        infoObj.verbalSkills = fields["verbalSkills"];
+        infoObj.verbalLevel = fields["verbalLevel"];
+        infoObj.pointing = fields["pointing"];
+        infoObj.signLanguage = fields["signLanguage"];
+        infoObj.typeOfSignLanguage = fields["typeOfSignLanguage"];
+        infoObj.numberOfSigns = fields["numberOfSigns"];
+        infoObj.communicationDevice = fields["communicationDevice"];
+        infoObj.nameOfDevice = fields["nameOfDevice"];
+        infoObj.deviceIndependenceLevel = fields["deviceIndependenceLevel"];
+        infoObj.communicationBinder = fields["communicationBinder"];
+        infoObj.binderIndependenceLevel = fields["binderIndependenceLevel"];
+        infoObj.otherCommunicationMethod = fields["otherCommunicationMethod"];
+        infoObj.explainOtherCommunication = fields["explainOtherCommunication"];
+        infoObj.communicationIssue1 = fields["communicationIssue1"];
+        infoObj.communicationIssue2 = fields["communicationIssue2"];
+        infoObj.communicationIssue3 = fields["communicationIssue3"];
+        infoObj.languageAtHome = fields["languageAtHome"];
+        infoObj.otherLanguages = fields["otherLanguages"];
+        infoObj.section8Comments = fields["section8Comments"];
+        infoObj.behavioralGoalYes = fields["behavioralGoalYes"];
+        infoObj.behavioralGoalYesExplain = fields["behavioralGoalYesExplain"];
+        infoObj.behavioralGoalNo = fields["behavioralGoalNo"];
+        infoObj.schoolConcentration = fields["schoolConcentration"];
+        infoObj.schoolConcentrationCurrent = fields["schoolConcentrationCurrent"];
+        infoObj.schoolConcentrationTypical = fields["schoolConcentrationTypical"];
+        infoObj.schoolConcentrationLast = fields["schoolConcentrationLast"];
+        infoObj.schoolConcentrationLocation = fields["schoolConcentrationLocation"];
+        infoObj.schoolConcentrationPrecursors = fields["schoolConcentrationPrecursors"];
+        infoObj.schoolConcentrationHandleBehaviors = fields["schoolConcentrationHandleBehaviors"];
+        infoObj.socialAnxiety = fields["socialAnxiety"];
+        infoObj.socialAnxietyCurrent = fields["socialAnxietyCurrent"];
+        infoObj.socialAnxietyTypical = fields["socialAnxietyTypical"];
+        infoObj.socialAnxietyLast = fields["socialAnxietyLast"];
+        infoObj.socialAnxietyLocation = fields["socialAnxietyLocation"];
+        infoObj.socialAnxietyPrecursors = fields["socialAnxietyPrecursors"];
+        infoObj.socialAnxietyHandleBehavior = fields["socialAnxietyHandleBehavior"];
+        infoObj.lowGrades = fields["lowGrades"];
+        infoObj.lowGradesTypical = fields["lowGradesTypical"];
+        infoObj.lowGradesLast = fields["lowGradesLast"];
+        infoObj.lowGradesLocation = fields["lowGradesLocation"];
+        infoObj.lowGradesPrecursors = fields["lowGradesPrecursors"];
+        infoObj.lowGradesHandleBehavior = fields["lowGradesHandleBehavior"];
+        infoObj.makingFriends = fields["makingFriends"];
+        infoObj.makingFriendsCurrent = fields["makingFriendsCurrent"];
+        infoObj.makingFriendsTypical = fields["makingFriendsTypical"];
+        infoObj.makingFriendsLocation = fields["makingFriendsLocation"];
+        infoObj.makingFriendsPrecursors = fields["makingFriendsPrecursors"];
+        infoObj.makingFriendsHandleBehavior = fields["makingFriendsHandleBehavior"];
+        infoObj.oppositionalBehavior = fields["oppositionalBehavior"];
+        infoObj.oppositionalBehaviorCurrent = fields["oppositionalBehaviorCurrent"];
+        infoObj.oppositionalBehaviorTypical = fields["oppositionalBehaviorTypical"];
+        infoObj.oppositionalBehaviorLast = fields["oppositionalBehaviorLast"];
+        infoObj.oppositionalBehaviorLocation = fields["oppositionalBehaviorLocation"];
+        infoObj.oppositionalBehaviorPrecursors = fields["oppositionalBehaviorPrecursors"];
+        infoObj.oppositionalBehaviorHandleBehavior = fields["oppositionalBehaviorHandleBehavior"];
+        infoObj.problemsWithAuthority = fields["problemsWithAuthority"];
+        infoObj.problemsWithAuthorityCurrent = fields["problemsWithAuthorityCurrent"];
+        infoObj.problemsWithAuthorityTypical = fields["problemsWithAuthorityTypical"];
+        infoObj.problemsWithAuthorityLast = fields["problemsWithAuthorityLast"];
+        infoObj.problemsWithAuthorityLocation = fields["problemsWithAuthorityLocation"];
+        infoObj.problemsWithAuthorityPrecursors = fields["problemsWithAuthorityPrecursors"];
+        infoObj.problemsWithAuthorityHandleBehavior = fields["problemsWithAuthorityHandleBehavior"];
+        infoObj.sociallyIsolated = fields["sociallyIsolated"];
+        infoObj.sociallyIsolatedCurrent = fields["sociallyIsolatedCurrent"];
+        infoObj.sociallyIsolatedTypical = fields["sociallyIsolatedTypical"];
+        infoObj.sociallyIsolatedLast = fields["sociallyIsolatedLast"];
+        infoObj.sociallyIsolatedLocation = fields["sociallyIsolatedLocation"];
+        infoObj.sociallyIsolatedPrecursors = fields["sociallyIsolatedPrecursors"];
+        infoObj.sociallyIsolatedHandleBehavior = fields["sociallyIsolatedHandleBehavior"];
+        infoObj.aggressiveBehavior = fields["aggressiveBehavior"];
+        infoObj.aggressiveBehaviorCurrent = fields["aggressiveBehaviorCurrent"];
+        infoObj.aggressiveBehaviorTypical = fields["aggressiveBehaviorTypical"];
+        infoObj.aggressiveBehaviorLast = fields["aggressiveBehaviorLast"];
+        infoObj.aggressiveBehaviorLocation = fields["aggressiveBehaviorLocation"];
+        infoObj.aggressiveBehaviorPrecursors = fields["aggressiveBehaviorPrecursors"];
+        infoObj.aggressiveBehaviorHandleBehavior = fields["aggressiveBehaviorHandleBehavior"];
+        infoObj.stressFamily = fields["stressFamily"];
+        infoObj.stressFamilyCurrent = fields["stressFamilyCurrent"];
+        infoObj.stressFamilyTypical = fields["stressFamilyTypical"];
+        infoObj.stressFamilyLast = fields["stressFamilyLast"];
+        infoObj.stressFamilyLocation = fields["stressFamilyLocation"];
+        infoObj.stressFamilyPrecursors = fields["stressFamilyPrecursors"];
+        infoObj.stressFamilyHandleBehavior = fields["stressFamilyHandleBehavior"];
+        infoObj.generalizedAnxiety = fields["generalizedAnxiety"];
+        infoObj.generalizedAnxietyCurrent = fields["generalizedAnxietyCurrent"];
+        infoObj.generalizedAnxietyTypical = fields["generalizedAnxietyTypical"];
+        infoObj.generalizedAnxietyLast = fields["generalizedAnxietyLast"];
+        infoObj.generalizedAnxietyLocation = fields["generalizedAnxietyLocation"];
+        infoObj.generalizedAnxietyPrecursors = fields["generalizedAnxietyPrecursors"];
+        infoObj.generalizedAnxietyHandleBehavio = fields["generalizedAnxietyHandleBehavio"];
+        infoObj.phobias = fields["phobias"];
+        infoObj.phobiasExplain = fields["phobiasExplain"];
+        infoObj.phobiasCurrent = fields["phobiasCurrent"];
+        infoObj.phobiasTypical = fields["phobiasTypical"];
+        infoObj.phobiasLast = fields["phobiasLast"];
+        infoObj.phobiasLocation = fields["phobiasLocation"];
+        infoObj.phobiasPrecursors = fields["phobiasPrecursors"];
+        infoObj.phobiasHandleBehavior = fields["phobiasHandleBehavior"];
+        infoObj.hyperactive = fields["hyperactive"];
+        infoObj.hyperactiveCurrent = fields["hyperactiveCurrent"];
+        infoObj.hyperactiveTypical = fields["hyperactiveTypical"];
+        infoObj.hyperactiveLast = fields["hyperactiveLast"];
+        infoObj.hyperactiveLocation = fields["hyperactiveLocation"];
+        infoObj.hyperactivePrecursors = fields["hyperactivePrecursors"];
+        infoObj.hyperactiveHandleBehavior = fields["hyperactiveHandleBehavior"];
+        infoObj.sensoryProblems = fields["sensoryProblems"];
+        infoObj.sensoryProblemsCurrent = fields["sensoryProblemsCurrent"];
+        infoObj.sensoryProblemsTypical = fields["sensoryProblemsTypical"];
+        infoObj.sensoryProblemsLast = fields["sensoryProblemsLast"];
+        infoObj.sensoryProblemsLocation = fields["sensoryProblemsLocation"];
+        infoObj.sensoryProblemsPrecursors = fields["sensoryProblemsPrecursors"];
+        infoObj.sensoryProblemsHandleBehavior = fields["sensoryProblemsHandleBehavior"];
+        infoObj.problemsEating = fields["problemsEating"];
+        infoObj.problemsEatingCurrent = fields["problemsEatingCurrent"];
+        infoObj.problemsEatingTypical = fields["problemsEatingTypical"];
+        infoObj.problemsEatingLast = fields["problemsEatingLast"];
+        infoObj.problemsEatingLocation = fields["problemsEatingLocation"];
+        infoObj.problemsEatingPrecursors = fields["problemsEatingPrecursors"];
+        infoObj.problemsEatingHandleBehavior = fields["problemsEatingHandleBehavior"];
+        infoObj.wettingAccidents = fields["wettingAccidents"];
+        infoObj.wettingAccidentsCurrent = fields["wettingAccidentsCurrent"];
+        infoObj.wettingAccidentsTypical = fields["wettingAccidentsTypical"];
+        infoObj.wettingAccidentsLast = fields["wettingAccidentsLast"];
+        infoObj.wettingAccidentsLocation = fields["wettingAccidentsLocation"];
+        infoObj.wettingAccidentsPrecursors = fields["wettingAccidentsPrecursors"];
+        infoObj.wettingAccidentsHandleBehavior = fields["wettingAccidentsHandleBehavior"];
+        infoObj.vocalTics = fields["vocalTics"];
+        infoObj.vocalTicsCurrent = fields["vocalTicsCurrent"];
+        infoObj.vocalTicsTypical = fields["vocalTicsTypical"];
+        infoObj.vocalTicsLast = fields["vocalTicsLast"];
+        infoObj.vocalTicsLocation = fields["vocalTicsLocation"];
+        infoObj.vocalTicsPrecursors = fields["vocalTicsPrecursors"];
+        infoObj.vocalTicsHandleBehavior = fields["vocalTicsHandleBehavior"];
+        infoObj.wakingUp = fields["wakingUp"];
+        infoObj.wakingUpCurrent = fields["wakingUpCurrent"];
+        infoObj.wakingUpTypical = fields["wakingUpTypical"];
+        infoObj.wakingUpLast = fields["wakingUpLast"];
+        infoObj.wakingUpLocation = fields["wakingUpLocation"];
+        infoObj.wakingUpPrecursors = fields["wakingUpPrecursors"];
+        infoObj.wakingUpHandleBehavior = fields["wakingUpHandleBehavior"];
+        infoObj.nightmares = fields["nightmares"];
+        infoObj.nightmaresCurrent = fields["nightmaresCurrent"];
+        infoObj.nightmaresTypical = fields["nightmaresTypical"];
+        infoObj.nightmaresLast = fields["nightmaresLast"];
+        infoObj.nightmaresLocation = fields["nightmaresLocation"];
+        infoObj.nightmaresPrecursors = fields["nightmaresPrecursors"];
+        infoObj.nightmaresHandleBehavior = fields["nightmaresHandleBehavior"];
+        infoObj.problemsSleeping = fields["problemsSleeping"];
+        infoObj.problemsSleepingCurrent = fields["problemsSleepingCurrent"];
+        infoObj.problemsSleepingTypical = fields["problemsSleepingTypical"];
+        infoObj.problemsSleepingLast = fields["problemsSleepingLast"];
+        infoObj.problemsSleepingLocation = fields["problemsSleepingLocation"];
+        infoObj.problemsSleepingPrecursors = fields["problemsSleepingPrecursors"];
+        infoObj.problemsSleepingHandleBehavior = fields["problemsSleepingHandleBehavior"];
+        infoObj.tiredness = fields["tiredness"];
+        infoObj.tirednessCurrent = fields["tirednessCurrent"];
+        infoObj.tirednessTypical = fields["tirednessTypical"];
+        infoObj.tirednessLast = fields["tirednessLast"];
+        infoObj.tirednessLocation = fields["tirednessLocation"];
+        infoObj.tirednessPrecurosors = fields["tirednessPrecurosors"];
+        infoObj.tirednessHandleBehavior = fields["tirednessHandleBehavior"];
+        infoObj.sadness = fields["sadness"];
+        infoObj.sadnessCurrent = fields["sadnessCurrent"];
+        infoObj.sadnessTypical = fields["sadnessTypical"];
+        infoObj.sadnessLast = fields["sadnessLast"];
+        infoObj.sadnessLocation = fields["sadnessLocation"];
+        infoObj.sadnessPrecursors = fields["sadnessPrecursors"];
+        infoObj.sadnessHandleBehavior = fields["sadnessHandleBehavior"];
+        infoObj.impulsive = fields["impulsive"];
+        infoObj.impulsiveCurrent = fields["impulsiveCurrent"];
+        infoObj.impulsiveTypical = fields["impulsiveTypical"];
+        infoObj.impulsiveLocation = fields["impulsiveLocation"];
+        infoObj.impulsivePrecursors = fields["impulsivePrecursors"];
+        infoObj.impulsiveHandleBehavior = fields["impulsiveHandleBehavior"];
+        infoObj.noncompliant = fields["noncompliant"];
+        infoObj.noncompliantCurrent = fields["noncompliantCurrent"];
+        infoObj.noncompliantTypcial = fields["noncompliantTypcial"];
+        infoObj.noncompliantLast = fields["noncompliantLast"];
+        infoObj.noncompliantLocation = fields["noncompliantLocation"];
+        infoObj.noncompliantPrecursors = fields["noncompliantPrecursors"];
+        infoObj.noncompliantHandleBeahvior = fields["noncompliantHandleBeahvior"];
+        infoObj.tantrums = fields["tantrums"];
+        infoObj.tantrumsCurrent = fields["tantrumsCurrent"];
+        infoObj.tantrumsTypical = fields["tantrumsTypical"];
+        infoObj.tantrumsLast = fields["tantrumsLast"];
+        infoObj.tantrumsLocation = fields["tantrumsLocation"];
+        infoObj.tantrumsPrecursors = fields["tantrumsPrecursors"];
+        infoObj.tantrumsHandleBehavior = fields["tantrumsHandleBehavior"];
+        infoObj.injuryBehavior = fields["injuryBehavior"];
+        infoObj.injuryBehaviorCurrent = fields["injuryBehaviorCurrent"];
+        infoObj.injuryBehaviorTypical = fields["injuryBehaviorTypical"];
+        infoObj.injuryBehaviorLast = fields["injuryBehaviorLast"];
+        infoObj.injuryBehaviorLocation = fields["injuryBehaviorLocation"];
+        infoObj.injuryBehaviorPrecursors = fields["injuryBehaviorPrecursors"];
+        infoObj.injuryBehaviorHandleBehavior = fields["injuryBehaviorHandleBehavior"];
+        infoObj.temperProblem = fields["temperProblem"];
+        infoObj.temperProblemCurrent = fields["temperProblemCurrent"];
+        infoObj.temperProblemTypical = fields["temperProblemTypical"];
+        infoObj.temperProblemLast = fields["temperProblemLast"];
+        infoObj.temperProblemLocation = fields["temperProblemLocation"];
+        infoObj.temperProblemPrecursors = fields["temperProblemPrecursors"];
+        infoObj.temperProblemHandleBehavior = fields["temperProblemHandleBehavior"];
+        infoObj.darting = fields["darting"];
+        infoObj.dartingCurrent = fields["dartingCurrent"];
+        infoObj.dartingTypical = fields["dartingTypical"];
+        infoObj.dartingLast = fields["dartingLast"];
+        infoObj.dartingLocation = fields["dartingLocation"];
+        infoObj.dartingPrecursors = fields["dartingPrecursors"];
+        infoObj.dartingHandleBehavior = fields["dartingHandleBehavior"];
+        infoObj.rigid = fields["rigid"];
+        infoObj.rigidCurrent = fields["rigidCurrent"];
+        infoObj.rigidTypical = fields["rigidTypical"];
+        infoObj.rigidLast = fields["rigidLast"];
+        infoObj.rigidLocation = fields["rigidLocation"];
+        infoObj.rigidPrecursors = fields["rigidPrecursors"];
+        infoObj.rigidHandleBehavior = fields["rigidHandleBehavior"];
+        infoObj.abuse = fields["abuse"];
+        infoObj.abuseCurrent = fields["abuseCurrent"];
+        infoObj.abuseTypical = fields["abuseTypical"];
+        infoObj.abuseLast = fields["abuseLast"];
+        infoObj.abuseCurrentLocation = fields["abuseCurrentLocation"];
+        infoObj.abusePrecursors = fields["abusePrecursors"];
+        infoObj.abuseHandleBehavior = fields["abuseHandleBehavior"];
+        infoObj.physicalAssistanceQuestion = fields["physicalAssistanceQuestion"];
+        infoObj.physicalAssistanceYes = fields["physicalAssistanceYes"];
+        infoObj.physicalAssistanceYesExplain = fields["physicalAssistanceYesExplain"];
+        infoObj.physicalAssistanceNo = fields["physicalAssistanceNo"];
+        infoObj.verbalDirectivesCheckYes = fields["verbalDirectivesCheckYes"];
+        infoObj.verbalDirectivesYesExplain = fields["verbalDirectivesYesExplain"];
+        infoObj.verbalDirectivesCheckNo = fields["verbalDirectivesCheckNo"];
+        infoObj.currentEventsCheckYes = fields["currentEventsCheckYes"];
+        infoObj.currentEventsExplain = fields["currentEventsExplain"];
+        infoObj.currentEventsCheckNo = fields["currentEventsCheckNo"];
+        infoObj.positiveBehavior = fields["positiveBehavior"];
+        infoObj.assistanceRequired = fields["assistanceRequired"];
+        infoObj.soothing = fields["soothing"];
+        infoObj.section9Comments = fields["section9Comments"];
+        infoObj.morning = fields["morning"];
+        infoObj.afternoon = fields["afternoon"];
+        infoObj.evening = fields["evening"];
+        infoObj.downtime = fields["downtime"];
+        infoObj.homeExpectation = fields["homeExpectation"];
+        infoObj.screentime = fields["screentime"];
+        infoObj.chores = fields["chores"];
+        infoObj.physicalActivity = fields["physicalActivity"];
+        infoObj.section10Comments = fields["section10Comments"];
+        infoObj.challengesWithUnknownProvider = fields["challengesWithUnknownProvider"];
+        infoObj.concernsWithRoom = fields["concernsWithRoom"];
+        infoObj.concernsWithCubbies = fields["concernsWithCubbies"];
+        infoObj.signsOfToilet = fields["signsOfToilet"];
+        infoObj.amountOfRestroomUse = fields["amountOfRestroomUse"];
+        infoObj.restroomTerminology = fields["restroomTerminology"];
+        infoObj.restroomIndependence = fields["restroomIndependence"];
+        infoObj.snackDuringEval = fields["snackDuringEval"];
+        infoObj.techniquesDuringEating = fields["techniquesDuringEating"];
+        infoObj.eatingIndependence = fields["eatingIndependence"];
+        infoObj.medicationDuringEval = fields["medicationDuringEval"];
+        infoObj.conditionsWithRescueMedication = fields["conditionsWithRescueMedication"];
+        infoObj.allergicReaction = fields["allergicReaction"];
+        infoObj.seizureCheckYes = fields["seizureCheckYes"];
+        infoObj.seizureCheckNo = fields["seizureCheckNo"];
+        infoObj.seizureHistory = fields["seizureHistory"];
+        infoObj.signsOfSeizure = fields["signsOfSeizure"];
+        infoObj.otherSeizureProtocol = fields["otherSeizureProtocol"];
+        infoObj.lastSeizure = fields["lastSeizure"];
+        infoObj.seizureFrequency = fields["seizureFrequency"];
+        infoObj.section12Comments = fields["section12Comments"];
+        infoObj.hearAboutJL = fields["hearAboutJL"];
+        infoObj.goalsAndExpectations = fields["goalsAndExpectations"];
+        infoObj.enrollmentAfterEval = fields["enrollmentAfterEval"];
+        infoObj.additionalInfoAboutChild = fields["additionalInfoAboutChild"];
+        infoObj.consentCheck = fields["consentCheck"];
+        infoObj.studentName = fields["studentName"];
+        infoObj.parentName = fields["parentName"];
+        infoObj.date = fields["date"];
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         this.setState({submitButtonPressed: true}, () => {
             if (this.validate()) {
-                //NEED TO UPDATE DATABASE
+                this.updateFields();
+                this.postToDB();
+                // this.postSection11ToDB();
                 this.props.history.push("/parenthome")
             }
         });
@@ -3205,34 +4500,36 @@ class ClientHistoryAndInformation extends Component {
     handleSaveAndQuit(event) {
         event.preventDefault();
         this.setState({saveButtonPressed: true});
-        //UPDATE DATABASE
+        this.updateFields();
+        this.postToDB();
+        // this.postSection11ToDB();
         this.props.history.push("/parenthome")
     }
 
     renderNavbar() {
         return (
             <div data-spy="scroll" id="list-example" className="list-group frame">
-                <a class="list-group-item list-group-item-action" href="#section1">Section 1: Client Information</a>
-                <a class="list-group-item list-group-item-action" href="#section2">Section 2: Family Information</a>
-                <a class="list-group-item list-group-item-action" href="#section3">Section 3: Prenatal and Birth History</a>
-                <a class="list-group-item list-group-item-action" href="#section4">Section 4: Developmental History</a>
-                <a class="list-group-item list-group-item-action" href="#section5">Section 5: Medical History/Past Therapies</a>
-                <a class="list-group-item list-group-item-action" href="#section6">Section 6: General Health</a>
-                <a class="list-group-item list-group-item-action" href="#section7">Section 7: Educational History</a>
-                <a class="list-group-item list-group-item-action" href="#section8">Section 8: Communication</a>
-                <a class="list-group-item list-group-item-action" href="#section9">Section 9: Emotional/Behavioral History</a>
-                <a class="list-group-item list-group-item-action" href="#section10">Section 10: Current Schedule and Typical Day</a>
-                <a class="list-group-item list-group-item-action" href="#section11">Section 11: Independent Skills</a>
-                <a class="list-group-item list-group-item-action" href="#section12">Section 12: Additional Information for Evaluation Day</a>
-                <a class="list-group-item list-group-item-action" href="#section13">Section 13: Goals and Additional Information</a>
-                <a class="list-group-item list-group-item-action" href="#section14">Section 14: Signature</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section1">Section 1: Client Information</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section2">Section 2: Family Information</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section3">Section 3: Prenatal and Birth History</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section4">Section 4: Developmental History</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section5">Section 5: Medical History/Past Therapies</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section6">Section 6: General Health</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section7">Section 7: Educational History</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section8">Section 8: Communication</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section9">Section 9: Emotional/Behavioral History</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section10">Section 10: Current Schedule and Typical Day</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section11">Section 11: Independent Skills</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section12">Section 12: Additional Information for Evaluation Day</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section13">Section 13: Goals and Additional Information</a>
+                <a className="list-group-item list-group-item-action" href="#/chai/section14">Section 14: Signature</a>
             </div>
         );
     }
 
     renderSection1() {
         return (
-            <fieldset id="section1">
+            <fieldset id="/chai/section1">
                 <div className={"section"}>Section 1: Client Information</div>
                 <Row >
                     <Col sm={3}>
@@ -3436,7 +4733,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection2() {
         return (
-            <fieldset id="section2">
+            <fieldset id="/chai/section2">
                 <div className={"section"}>Section 2: Family Information</div>
                 <div className={"sub-section"}>Student's Information</div>
                 <Row>
@@ -3446,7 +4743,7 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="isAdopted"
                                    id="isAdopted"
-                                   ref = "isAdopted"
+                                   ref="isAdopted"
                                    onChange={this.handleChange.bind(this, "isAdopted")}
                                    invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
                                 >
@@ -3479,7 +4776,6 @@ class ClientHistoryAndInformation extends Component {
                                    name="birthCountry"
                                    id="birthCountry">
                             </Input>
-
                         </FormGroup>
                     </Col>
                 </Row>
@@ -3841,7 +5137,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection3() {
         return (
-            <fieldset id="section3">
+            <fieldset id="/chai/section3">
                 <div className={"section"}>Section 3: Prenatal and Birth History</div>
                 <Row>
                     <Col sm={4}>
@@ -3985,7 +5281,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection4() {
         return (
-            <fieldset id="section4">
+            <fieldset id="/chai/section4">
                 <div className={"section"}>Section 4: Developmental History</div>
                 <div className={"sub-section"}>Please complete the table below</div>
                 <ReactTable
@@ -4029,7 +5325,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection5() {
         return (
-            <fieldset id="section5">
+            <fieldset id="/chai/section5">
                 <div className={"section"}>Section 5: Medical History/Past Therapies</div>
                 <div className={"sub-section"}>Primary Physician's Information</div>
                 <Row>
@@ -4479,7 +5775,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection6() {
         return (
-            <fieldset id="section6">
+            <fieldset id="/chai/section6">
                 <div className={"section"}>Section 6: General Health</div>
                 <Row>
                     <Col>
@@ -4773,7 +6069,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection7() {
         return (
-            <fieldset id="section7">
+            <fieldset id="/chai/section7">
                 <div className={"section"}>Section 7: Educational History</div>
                 <p className="control-label required">List current and past educational and/or treatment placement(s).</p>
                 <ReactTable
@@ -4918,7 +6214,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection8() {
         return (
-            <fieldset id="section8">
+            <fieldset id="/chai/section8">
                 <div className={"section"}>Section 8: Communication</div>
                     <p className="control-label required" >Please indicate the client’s primary mode of communication and current independence level:</p>
                 <Row>
@@ -5133,7 +6429,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection9() {
         return (
-            <fieldset id="section9">
+            <fieldset id="/chai/section9">
                 <div className={"section"}>Section 9: Emotional/Behavioral History</div>
                 <p className="word-section">In order for Jacob’s Ladder to best serve your family and design the optimal program for the client, please share as much specific and detailed information as possible regarding the client’s past and/or current behavioral needs.
                     This information will not prohibit admissions but will allow Jacob’s Ladder to best prepare for the client’s evaluation and program design</p>
@@ -7220,7 +8516,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection10() {
         return (
-            <fieldset id="section10">
+            <fieldset id="/chai/section10">
                 <div className={"section"}>Section 10: Current Schedule and Typical Day</div>
                 <p>What does the client’s current full-time educational/therapeutic daily routine look like?  Please include environment, setting, expectations, schedule, provider, etc.</p>
                 <FormGroup>
@@ -7349,7 +8645,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection11() {
         return (
-            <fieldset id="section11">
+            <fieldset id="/chai/section11">
                 <div className={"section"}>Section 11: Independent Skills</div>
                 <div>As part of the daily program at Jacob’s Ladder, our clients/students are learning and developing skills needed to successfully transition into adulthood.  Our goal is to assist you your family throughout your time at Jacob’s Ladder with meeting these skills by reinforcing them at school and home. In order for us to maintain cohesion across providers within their expectations, we ask that you complete the following questionnaire to better equip the JL Clinical Team with a thorough understanding of the client’s abilities.</div>
                 <div className={"sub-section"}>Level One Goals:</div>
@@ -7433,7 +8729,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection12() {
         return (
-            <fieldset id="section12">
+            <fieldset id="/chai/section12">
                 <div className={"section"}>Section 12: Additional Information for Evaluation Day</div>
                 <Row>
                     <Col>
@@ -7873,7 +9169,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection13() {
         return (
-            <fieldset id="section13">
+            <fieldset id="/chai/section13">
                 <div className={"section"}>Section 13: Goals and Additional Information</div>
                 <Row>
                     <Col>
@@ -7961,7 +9257,7 @@ class ClientHistoryAndInformation extends Component {
 
     renderSection14() {
         return (
-            <fieldset id="section14">
+            <fieldset id="/chai/section14">
                 <hr></hr>
                 <div className={"section"}>Section 14: Signature</div>
                 <Row>

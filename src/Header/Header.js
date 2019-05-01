@@ -1,29 +1,39 @@
 import React from 'react'
 import './header.css';
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap'
+import {isAdmin} from "../Login";
 
-// need to be able to have a check on what page is
+
  class Header extends React.Component {
      constructor(props) {
          super(props);
          this.state = {
              isLoggedIn: true
          };
+         this.handleHomeClick = this.handleHomeClick.bind(this);
+
 
      }
 
+     handleHomeClick() {
+         if (isAdmin) {
+             return "/#/adminhome";
+         } else {
+             return "/#/parenthome";
+         }
+     }
 
     render() {
         let isLoggedIn = {
             display: this.props.loggedIn ? "flex" : "none",
         };
+        let link = isAdmin ? "/#/adminhome" : "/#/parenthome";
         return (
             <Navbar className="header shadow fixed-top">
                 <NavbarBrand className="company text-left">Jacob's Ladder Intake Profile</NavbarBrand>
                     <Nav className="ml-auto" style={isLoggedIn}>
                         <NavItem >
-                            {/*this need to change to be adminHome or parentHome depending on who is logged in*/}
-                            <NavLink className="header" href="/adminHome">Home</NavLink>
+                            <NavLink className="header" href={link}>Home</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink className="header" href="/">Logout</NavLink>
