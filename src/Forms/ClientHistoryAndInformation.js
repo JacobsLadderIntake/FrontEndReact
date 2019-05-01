@@ -2387,6 +2387,13 @@ class ClientHistoryAndInformation extends Component {
         this.validate();
         this.setState({fields: fields});
     }
+    handleChangeCheckbox(field,e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.checked;
+        console.log(fields[field])
+        this.validate();
+        this.setState({fields: fields});
+    }
 
     checkValue(name) {
         let fields = this.state.fields;
@@ -6220,7 +6227,8 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={"2"}>
                         <FormGroup check>
-                            <Input ref="verbalSkills" type="checkbox"/>
+                            <Input onChange={this.handleChangeCheckbox.bind(this, "verbalSkills")}
+                                   ref="verbalSkills" type="checkbox" checked={this.state.fields["verbalSkills"] || ""}/>
                             <Label>
                                 Verbal
                             </Label>
