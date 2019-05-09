@@ -50,7 +50,6 @@ class Login extends Component {
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        this.errorDisplay()
         this.updateFields();
         this.setState({fields});
     }
@@ -95,13 +94,12 @@ class Login extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-        if(this.state.loginButtonPressed) {
-            if (!fields["email"] || !fields["password"]) {
-                errors["email"] = "Email or password is incorrect";
-                errors["password"] = "Email or password is incorrect";
-            }
 
-        }
+        errors["email"] = "Email or password is incorrect";
+        errors["password"] = "Email or password is incorrect";
+
+
+
         this.setState({errors: errors})
         return formIsValid
     }

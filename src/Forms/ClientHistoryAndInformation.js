@@ -979,13 +979,6 @@ class ClientHistoryAndInformation extends Component {
                 medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"}/>,
                 medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"}/>,
                 medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"}/>
-            }, {
-                medsName: <input type="text" name="med6Name" className={"tableInputField"}/>,
-                medsDosage: <input type="text" name="med6Dosage" className={"tableInputField"}/>,
-                medsTimeGiven: <input type="text" name="med6TimeGiven" className={"tableInputField"}/>,
-                medsFrequency: <input type="text" name="med6Frequency" className={"tableInputField"}/>,
-                medsPurpose: <input type="text" name="med6Purpose" className={"tableInputField"}/>,
-                medsSideEffects: <input type="text" name="med6SideEffects" className={"tableInputField"}/>
             }],
             testingColumns: [{
                 Header: 'Date',
@@ -1029,12 +1022,6 @@ class ClientHistoryAndInformation extends Component {
                 testDiagnosis: <input type="text" name="test5Diagnosis" className={"tableInputField"}/>,
                 testReco: <input type="text" name="test5Reco" className={"tableInputField"}/>,
 
-            }, {
-                testDate: <input type="text" name="test6Date" className={"tableInputField"}/>,
-                testExaminer: <input type="text" name="test6Examiner" className={"tableInputField"}/>,
-                testDiagnosis: <input type="text" name="test6Diagnosis" className={"tableInputField"}/>,
-                testReco: <input type="text" name="test6Reco" className={"tableInputField"}/>,
-                
             }],
             foodGroupColumns: [{
                 Header: 'Food Group',
@@ -2085,7 +2072,7 @@ class ClientHistoryAndInformation extends Component {
                 goal2Verbal: <Label check> <Input type="checkbox" name="g2EduFinancialAidVerbal" id="g2EduFinancialAidVerbal"/> Verbal Prompt</Label>,
                 goal2Initiates: <Label check> <Input type="checkbox" name="g2EduFinancialAidInitiates" id="g2EduFinancialAidInitiates"/> Initiates Independently </Label>
             }, {
-                goal2Category: 'Cna name ways to save money on things he/she buys',
+                goal2Category: 'Can name ways to save money on things he/she buys',
                 goal2NA: <Label check> <Input type="checkbox" name="g2SaveMoneyNA" id="g2SaveMoneyNA"/> N/A</Label>,
                 goal2Physical: <Label check> <Input type="checkbox" name="g2SaveMoneyPhysical" id="g2SaveMoneyPhysical"/> Physical Prompt </Label>,
                 goal2Verbal: <Label check> <Input type="checkbox" name="g2SaveMoneyVerbal" id="g2SaveMoneyVerbal"/> Verbal Prompt</Label>,
@@ -2397,6 +2384,13 @@ class ClientHistoryAndInformation extends Component {
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
+        this.validate();
+        this.setState({fields: fields});
+    }
+    handleChangeCheckbox(field,e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.checked;
+        console.log(fields[field])
         this.validate();
         this.setState({fields: fields});
     }
@@ -5630,7 +5624,7 @@ class ClientHistoryAndInformation extends Component {
                     className={"testingTable -striped -highlight"}
                     data={this.state.testingData}
                     columns={this.state.testingColumns}
-                    defaultPageSize={6}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -5694,13 +5688,13 @@ class ClientHistoryAndInformation extends Component {
                             <Label className="control-label  space-between">Please list other medical conditions here.</Label>
                             <Input
                                 type="textarea"
-                                ref="hospital"
-                                value={this.state.fields["hospital"] || ""}
-                                onChange={this.handleChange.bind(this, "hospital")}
+                                ref="otherMedicalConditions"
+                                value={this.state.fields["otherMedicalConditions"] || ""}
+                                onChange={this.handleChange.bind(this, "otherMedicalConditions")}
                                 className="error"
-                                invalid={this.state.errors["hospital"] != null}/>
+                                invalid={this.state.errors["otherMedicalConditions"] != null}/>
                             <FormFeedback
-                                invalid={this.state.errors["hospital"]}>{this.state.errors["hospital"]}
+                                invalid={this.state.errors["otherMedicalConditions"]}>{this.state.errors["otherMedicalConditions"]}
                             </FormFeedback>
                         </FormGroup>
                     </Col>
@@ -5732,14 +5726,14 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label className="control-label  space-between">Please list other supplies/equipment here.</Label>
                             <Input
-                                type="text"
-                                ref="hospital"
-                                value={this.state.fields["hospital"] || ""}
-                                onChange={this.handleChange.bind(this, "hospital")}
+                                type="textarea"
+                                ref="otherSupplyDetail"
+                                value={this.state.fields["otherSupplyDetail"] || ""}
+                                onChange={this.handleChange.bind(this, "otherSupplyDetail")}
                                 className="error"
-                                invalid={this.state.errors["hospital"] != null}/>
+                                invalid={this.state.errors["otherSupplyDetail"] != null}/>
                             <FormFeedback
-                                invalid={this.state.errors["hospital"]}>{this.state.errors["hospital"]}
+                                invalid={this.state.errors["otherSupplyDetail"]}>{this.state.errors["otherSupplyDetail"]}
                             </FormFeedback>
                         </FormGroup>
                     </Col>
@@ -5750,7 +5744,7 @@ class ClientHistoryAndInformation extends Component {
                     className={"medsTable -striped -highlight"}
                     data={this.state.medsData}
                     columns={this.state.medsColumns}
-                    defaultPageSize={6}
+                    defaultPageSize={5}
                     showPagination={false}
                     getTheadProps={(state, rowInfo) => {
                         return {
@@ -6049,7 +6043,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label className="control-label space-between">Please list other physical motor challenges.</Label>
                             <Input
-                                type="text"
+                                type="textarea"
                                 ref="otherPhysicalMotor"
                                 value={this.state.fields["otherPhysicalMotor"] || ""}
                                 onChange={this.handleChange.bind(this, "otherPhysicalMotor")}
@@ -6109,7 +6103,7 @@ class ClientHistoryAndInformation extends Component {
                 <FormGroup>
                     <Label className="control-label required">List any education challenges (past or current)</Label>
                     <Input
-                        type="text"
+                        type="textarea"
                         ref="educationalChallenges"
                         value={this.state.fields["educationalChallenges"] || ""}
                         onChange={this.handleChange.bind(this, "educationalChallenges")}
@@ -6122,7 +6116,7 @@ class ClientHistoryAndInformation extends Component {
                 <FormGroup>
                     <Label className="control-label required">List any exceptional abilities – academic, physical, artistic, musical, etc.</Label>
                     <Input
-                        type="text"
+                        type="textarea"
                         ref="exceptionalTalents"
                         value={this.state.fields["exceptionalTalents"] || ""}
                         onChange={this.handleChange.bind(this, "exceptionalTalents")}
@@ -6195,7 +6189,7 @@ class ClientHistoryAndInformation extends Component {
                 <FormGroup>
                     <Label className="control-label required">What is your specific academic goal for your child?</Label>
                     <Input
-                        type="text"
+                        type="textarea"
                         ref="academicGoal"
                         value={this.state.fields["academicGoal"] || ""}
                         onChange={this.handleChange.bind(this, "academicGoal")}
@@ -6233,7 +6227,8 @@ class ClientHistoryAndInformation extends Component {
                 <Row>
                     <Col sm={"2"}>
                         <FormGroup check>
-                            <Input type="checkbox"/>
+                            <Input onChange={this.handleChangeCheckbox.bind(this, "verbalSkills")}
+                                   ref="verbalSkills" type="checkbox" checked={this.state.fields["verbalSkills"] || ""}/>
                             <Label>
                                 Verbal
                             </Label>
@@ -6241,6 +6236,7 @@ class ClientHistoryAndInformation extends Component {
                     </Col>
                     <Col sm={"6"}>
                         <Input
+                            ref = "verbalLevel"
                             type="select"
                             placeholder="why">
                             <option>Select Current Independent Level</option>
@@ -6254,7 +6250,7 @@ class ClientHistoryAndInformation extends Component {
 
                 <FormGroup check>
                     <Label check>
-                        <Input type="checkbox"/>
+                        <Input ref = "pointing" type="checkbox"/>
                         Pointing/Grabbing
                     </Label>
                 </FormGroup>
@@ -6263,7 +6259,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup check>
                             <Label check>
 
-                                <Input type="checkbox"/>
+                                <Input type="checkbox" ref ="signLanguage"/>
                                 Sign Language
                             </Label>
                         </FormGroup>
@@ -6272,13 +6268,15 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label> Types of signs used (i.e.ALS or modified):</Label>
                             <Input
-                                type="text"/>
+                                type="text"
+                            ref = "typeOfSignLanguage"/>
                         </FormGroup>
                     </Col>
                     <Col sm={5}>
                         <FormGroup>
                             <Label> Number of signs known:</Label>
                             <Input
+                                ref = "numberOfSigns"
                                 type="text"/>
                         </FormGroup>
                     </Col>
@@ -6288,7 +6286,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup check>
                             <Label check>
 
-                                <Input type="checkbox"/>
+                                <Input ref = "communicationDevice" type="checkbox"/>
                                 Communication Device
                             </Label>
                         </FormGroup>
@@ -6312,6 +6310,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label>Select Current Independent Level</Label>
                             <Input
+                                ref = "deviceIndependenceLevel"
                                 type="select">
                                 <option></option>
                                 <option>Fully Independent</option>
@@ -6326,7 +6325,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup check>
                             <Label check>
 
-                                <Input type="checkbox"/>
+                                <Input ref = "communicationBinder" type="checkbox"/>
                                 Communication Binder
                             </Label>
                         </FormGroup>
@@ -6335,7 +6334,9 @@ class ClientHistoryAndInformation extends Component {
 
                         <FormGroup>
                             <Input
+                                ref = "binderIndependenceLevel"
                                 type="select">
+                                <option></option>
                                 <option>Select Current Independent Level</option>
                                 <option>Fully Independent</option>
                                 <option>Emerging Independence</option>
@@ -6351,7 +6352,7 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup check>
                                 <Label check>
 
-                                    <Input type="checkbox"/>
+                                    <Input ref ="otherCommunicationMethod"type="checkbox"/>
                                     Other
                                 </Label>
                             </FormGroup>
@@ -6361,6 +6362,7 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup>
                                 <Label> Please Explain</Label>
                                 <Input
+                                    ref= "explainOtherCommunication"
                                     type="textarea"/>
                             </FormGroup>
                         </Col>
@@ -6445,7 +6447,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check onChange={this.toggleBehavioralGoals.bind(this)}>
 
-                            <Input type="checkbox"/>
+                            <Input ref ="behavioralGoalYes" type="checkbox"/>
                             Yes
                         </Label>
                     </FormGroup>
@@ -6453,6 +6455,7 @@ class ClientHistoryAndInformation extends Component {
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
                                 <Input
+                                    ref ="behavioralGoalYesExplain"
                                     type="textarea"/>
 
                             </CardBody>
@@ -6461,7 +6464,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check>
 
-                            <Input type="checkbox"/>
+                            <Input ref ="behavioralGoalNo"type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
@@ -6500,27 +6503,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                     <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                     <Input
+                                        ref="schoolConcentrationCurrent"
                                         type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref = "schoolConcentrationTypical"
                                 type="textarea"
                                 className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                             <Input
+                                ref  = "schoolConcentrationLast"
                                 type="textarea"
                                 className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="schoolConcentrationLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref = "schoolConcentrationPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref = "schoolConcentrationHandleBehaviors"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -6558,25 +6567,31 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="socialAnxietyCurrent"
                                     type="textarea"/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="socialAnxietyTypical"
                                     type="textarea"/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="socialAnxietyLast"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="socialAnxietyLocation"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="socialAnxietyPrecursors"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="socialAnxietyHandleBehavior"
                                     type="textarea"
                                 />
 
@@ -6615,27 +6630,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="lowGradesCurrent"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="lowGradesTypical"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="lowGradesLast"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="lowGradesLocation"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="lowGradesPrecursors"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="lowGradesHandleBehavior"
                                     type="textarea"
                                 />
 
@@ -6673,26 +6694,32 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="makingFriendsCurrent"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="makingFriendsTypical"
                                     type="textarea"/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="makingFriendsLast"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="makingFriendsLocation"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="makingFriendsPrecursors"
                                     type="textarea"
                                 />
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="makingFriendsHandleBehavior"
                                     type="textarea"
                                 />
 
@@ -6730,28 +6757,37 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="oppositionalBehaviorCurrent"
                                     type="textarea"
+
                                 />
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
                                     type="textarea"
+                                    ref="oppositionalBehaviorTypical"
                                 />
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="oppositionalBehaviorLast"
+
                                 />
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="oppositionalBehaviorLocation"
                                 />
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="oppositionalBehaviorPrecursors"
+
                                 />
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="oppositionalBehaviorHandleBehavior"
                                 />
 
                             </CardBody>
@@ -6790,26 +6826,32 @@ class ClientHistoryAndInformation extends Component {
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     type="textarea"
+                                    ref="problemsWithAuthorityCurrent"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="problemsWithAuthorityTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="problemsWithAuthorityLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="problemsWithAuthorityLocation"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="problemsWithAuthorityPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="problemsWithAuthorityHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -6848,27 +6890,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="sociallyIsolatedCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="sociallyIsolatedTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="sociallyIsolatedLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="sociallyIsolatedLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="sociallyIsolatedPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="sociallyIsolatedHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -6908,26 +6956,32 @@ class ClientHistoryAndInformation extends Component {
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     type="textarea"
+                                    ref="aggressiveBehaviorCurrent"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="aggressiveBehaviorTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="aggressiveBehaviorLast"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="aggressiveBehaviorLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="aggressiveBehaviorPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="aggressiveBehaviorHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -6965,27 +7019,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="stressFamilyCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="stressFamilyTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="stressFamilyLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="stressFamilyLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="stressFamilyPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="stressFamilyHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7024,27 +7084,34 @@ class ClientHistoryAndInformation extends Component {
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="generalizedAnxietyCurrent"
+                                />
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
                                     type="textarea"
+                                    ref="generalizedAnxietyTypical"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="generalizedAnxietyLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="generalizedAnxietyLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="generalizedAnxietyPrecursors"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="generalizedAnxietyHandleBehavior"
                                     className={"required"}/>
 
                             </CardBody>
@@ -7079,6 +7146,7 @@ class ClientHistoryAndInformation extends Component {
                             <Col sm={8}>
 
                                 <Input
+                                    ref = "phobiasExplain"
                                     type="textarea"
                                 placeholde="Please List"/>
                             </Col>
@@ -7090,27 +7158,33 @@ class ClientHistoryAndInformation extends Component {
                                 <CardBody className={"toggle-card-body"}>
                                     <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                     <Input
+                                        ref="phobiasCurrent"
                                         type="textarea"
                                         className={"required"}/>
                                     <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                     <Input
                                         type="textarea"
+                                        ref="phobiasTypical"
                                         className={"required"}/>
                                     <Label className="control-label required"> How long do they generally last?</Label>
                                     <Input
                                         type="textarea"
+                                        ref="phobiasLast"
                                         className={"required"}/>
                                     <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                     <Input
+                                        ref="phobiasLocation"
                                         type="textarea"
                                         className={"required"}/>
                                     <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                     <Input
+                                        ref="phobiasPrecursors"
                                         type="textarea"
                                         className={"required"}/>
                                     <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                     <Input
+                                        ref="phobiasHandleBehavior"
                                         type="textarea"
                                         className={"required"}/>
 
@@ -7151,27 +7225,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="hyperactiveCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="hyperactiveTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="hyperactiveLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="hyperactiveLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="hyperactivePrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="hyperactiveHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7211,26 +7291,37 @@ class ClientHistoryAndInformation extends Component {
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="sensoryProblemsCurrent"
+                                />
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="sensoryProblemsTypical"
+                                />
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="sensoryProblemsLast"
+                                />
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="sensoryProblemsLocation"
+                                />
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="sensoryProblemsPrecursors"
+                                />
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="sensoryProblemsHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7268,27 +7359,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="problemsEatingCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="problemsEatingTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="problemsEatingLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="problemsEatingLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="problemsEatingPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="problemsEatingHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7326,27 +7423,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="wettingAccidentsCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
                                     type="textarea"
+                                    ref="wettingAccidentsTypical"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="wettingAccidentsLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="wettingAccidentsLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="wettingAccidentsPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="wettingAccidentsHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7385,26 +7488,34 @@ class ClientHistoryAndInformation extends Component {
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="vocalTicsCurrent"
+                                />
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="vocalTicsTypical"
+                                />
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="vocalTicsLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="vocalTicsLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="vocalTicsPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="vocalTicsHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7442,27 +7553,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="wakingUpCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="wakingUpTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="wakingUpLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="wakingUpLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="wakingUpPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="wakingUpHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7501,27 +7618,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="nightmaresCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="nightmaresTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="nightmaresLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="nightmaresLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="nightmaresPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="nightmaresHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7559,27 +7682,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="problemsSleepingCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="problemsSleepingTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="problemsSleepingLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="problemsSleepingLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="problemsSleepingPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="problemsSleepingHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7618,28 +7747,36 @@ class ClientHistoryAndInformation extends Component {
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="tirednessCurrent"
+                                />
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
                                     type="textarea"
+                                    ref="tirednessTypical"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
                                     type="textarea"
+                                    ref="tirednessLast"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="tirednessLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="tirednessPrecurosors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="tirednessHandleBehavior"
+                                />
 
                             </CardBody>
                         </Card>
@@ -7676,27 +7813,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="sadnessCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="sadnessTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="sadnessLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="sadnessLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="sadnessPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="sadnessHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7734,27 +7877,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="impulsiveCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="impulsiveTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="impulsiveLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="impulsiveLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="impulsivePrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="impulsiveHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7793,26 +7942,33 @@ class ClientHistoryAndInformation extends Component {
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     type="textarea"
-                                    className={"required"}/>
+                                    className={"required"}
+                                    ref="noncompliantCurrent"
+                                />
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="noncompliantTypcial"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="noncompliantLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="noncompliantLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="noncompliantPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="noncompliantHandleBeahvior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7850,27 +8006,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="tantrumsCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="tantrumsTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="tantrumsLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="tantrumsLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="tantrumsPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="tantrumsHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -7909,26 +8071,33 @@ class ClientHistoryAndInformation extends Component {
                                     <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                     <Input
                                         type="textarea"
-                                        className={"required"}/>
+                                        className={"required"}
+                                        ref="injuryBehaviorCurrent"
+                                    />
                                     <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                     <Input
+                                        ref="injuryBehaviorTypical"
                                         type="textarea"
                                         className={"required"}/>
                                     <Label className="control-label required"> How long do they generally last?</Label>
                                     <Input
+                                        ref="injuryBehaviorLast"
                                         type="textarea"
                                         className={"required"}/>
                                     <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                     <Input
+                                        ref="injuryBehaviorLocation"
                                         type="textarea"
                                         className={"required"}/>
                                     <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                     <Input
+                                        ref="injuryBehaviorPrecursors"
                                         type="textarea"
                                         className={"required"}/>
                                     <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                     <Input
+                                        ref="injuryBehaviorHandleBehavior"
                                         type="textarea"
                                         className={"required"}/>
 
@@ -7966,27 +8135,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="temperProblemCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="temperProblemTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="temperProblemLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="temperProblemLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="temperProblemPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="temperProblemHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -8024,27 +8199,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="dartingCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="dartingTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="dartingLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="dartingLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="dartingPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="dartingHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -8082,27 +8263,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="rigidCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="rigidTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="rigidLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="rigidLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="rigidPrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="rigidHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -8141,27 +8328,33 @@ class ClientHistoryAndInformation extends Component {
                             <CardBody className={"toggle-card-body"}>
                                 <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
+                                    ref="abuseCurrent"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
 
                                 <Input
+                                    ref="abuseTypical"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
+                                    ref="abuseLast"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
+                                    ref="abuseCurrentLocation"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
+                                    ref="abusePrecursors"
                                     type="textarea"
                                     className={"required"}/>
                                 <Label className="control-label required"> How do you typically handle these behaviors?</Label>
                                 <Input
+                                    ref="abuseHandleBehavior"
                                     type="textarea"
                                     className={"required"}/>
 
@@ -8177,7 +8370,7 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup check>
                                 <Label check onChange={this.togglePhysicalAssistance.bind(this,"physicalAssistanceYes")}>
 
-                                    <Input type="checkbox"/>
+                                    <Input ref = "physicalAssistanceYes" type="checkbox"/>
                                     Yes
                                 </Label>
                             </FormGroup>
@@ -8187,6 +8380,7 @@ class ClientHistoryAndInformation extends Component {
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
+                                            ref = "physicalAssistanceYesExplain"
                                             type="textarea"/>
 
                                     </CardBody>
@@ -8197,7 +8391,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check onChange={this.handleChange.bind(this,"physicalAssistanceYes")}>
 
-                            <Input type="checkbox"/>
+                            <Input ref = "physicalAssistanceNo" type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
@@ -8210,7 +8404,7 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup check>
                                 <Label check id ={"verbalDirectivesYes"} onChange={this.toggleVerbalDirectives.bind(this,"verbalDirectivesYes")}>
 
-                                    <Input type="checkbox"/>
+                                    <Input ref = "verbalDirectivesCheckYes" type="checkbox"/>
                                     Yes
                                 </Label>
                             </FormGroup>
@@ -8220,6 +8414,7 @@ class ClientHistoryAndInformation extends Component {
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
+                                            ref = "verbalDirectivesYesExplain"
                                             type="textarea"/>
 
                                     </CardBody>
@@ -8230,7 +8425,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check id ={"verbalDirectivesNo"} onChange={this.handleChange.bind(this,"verbalDirectivesNo")}>
 
-                            <Input type="checkbox"/>
+                            <Input ref = "verbalDirectivesCheckNo"type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
@@ -8242,7 +8437,7 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup check>
                                 <Label check  id ={"currentEventsYes"} onChange={this.toggleCurrentEvents.bind(this,"currentEventsYes")}>
 
-                                    <Input type="checkbox"/>
+                                    <Input ref = "currentEventsCheckYes "type="checkbox"/>
                                     Yes
                                 </Label>
                             </FormGroup>
@@ -8252,6 +8447,7 @@ class ClientHistoryAndInformation extends Component {
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
+                                            ref = "currentEventsExplain"
                                             type="textarea"/>
 
                                     </CardBody>
@@ -8262,7 +8458,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check  id ={"currentEventsQuestion"} onChange={this.handleChange.bind(this,"currentEventsNo")} >
 
-                            <Input type="checkbox"/>
+                            <Input ref = "currentEventsCheckNo" type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
@@ -8877,7 +9073,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check onChange={this.toggleSeizures.bind(this)}>
 
-                            <Input type="checkbox"/>
+                            <Input ref = "seizureCheckYes" type="checkbox"/>
                             Yes
                         </Label>
                     </FormGroup>
@@ -8885,7 +9081,7 @@ class ClientHistoryAndInformation extends Component {
                     <FormGroup check>
                         <Label check>
 
-                            <Input type="checkbox"/>
+                            <Input ref = "seizureCheckNo" type="checkbox"/>
                             No
                         </Label>
                     </FormGroup>
