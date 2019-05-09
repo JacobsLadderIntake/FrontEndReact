@@ -67,7 +67,6 @@ class AdminHome extends Component {
                 cards.push(<Col className={"col-3 p-2"}> <StudentCard child = {this.state.children[i]}/> </Col>)
             }
         }
-
         return cards;
     }
 
@@ -92,8 +91,7 @@ class AdminHome extends Component {
                 </div>
 
             </div>
-
-    )
+        )
     }
 }
 

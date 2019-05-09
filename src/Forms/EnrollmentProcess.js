@@ -28,7 +28,7 @@ class EnrollmentProcess extends Component{
         this.goBack = this.goBack.bind(this);
     }
 
-    goBack(event) {
+    goBack() {
         window.location.reload();
     }
 
@@ -78,7 +78,7 @@ class EnrollmentProcess extends Component{
         this.postToDB();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                this.props.history.push("/parenthome")
+                this.props.history.push("/parenthome");
             }
         });
     }
@@ -99,8 +99,8 @@ class EnrollmentProcess extends Component{
     }
 
     postToDB() {
-        var url = 'api/children/' + childID + '/forms/EnrollmentForm';
-        var update = JSON.stringify(infoObj);
+        let url = 'api/children/' + childID + '/forms/EnrollmentForm';
+        let update = JSON.stringify(infoObj);
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -113,7 +113,7 @@ class EnrollmentProcess extends Component{
     }
 
     fetchFromDB = async () => {
-        var url = 'api/children/' + childID + '/forms/EnrollmentForm';
+        let url = 'api/children/' + childID + '/forms/EnrollmentForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -126,9 +126,9 @@ class EnrollmentProcess extends Component{
         if (response.status !== 200) {
             throw Error(body.message);
         } else if (body.Form.length > 0) {
-          this.state.fields["studentName"] = body.Form[0].StudentName;
-          this.state.fields["parentName"] = body.Form[0].ParentName;
-          this.state.fields["date"] = body.Form[0].Date;
+          this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
+          this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
+          this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
         }
         return body;
     };
