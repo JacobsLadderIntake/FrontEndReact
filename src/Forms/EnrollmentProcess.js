@@ -14,7 +14,7 @@ import { token, userID } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
 // var childID = "child"
-var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
+var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":"","ConsentCheck":""};
 
 class EnrollmentProcess extends Component{
     constructor(props) {
@@ -132,6 +132,18 @@ class EnrollmentProcess extends Component{
         }
         return body;
     };
+    handleChangeCheckbox(field,e) {
+        let fields = this.state.fields;
+        if (e.target.checked == true) {
+            fields[field] = true;
+            console.log("yep")
+        } else {
+            fields[field] = false;
+            console.log("nope")
+
+        }
+        this.setState({fields: fields});
+    }
 
     renderFields() {
         return (
@@ -142,6 +154,7 @@ class EnrollmentProcess extends Component{
                             <Label sm={12} className={"checkBox"}>
                                 <Input type="checkbox"
                                        ref="consentCheck"
+                                       onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
                                        className="error"/>
                                 By signing, I acknowledge that I am aware and understand the enrollment process and financial responsibilities.
                             </Label>

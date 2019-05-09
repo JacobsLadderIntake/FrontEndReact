@@ -13,7 +13,7 @@ import {
 import { token, userID } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
+var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":"", "ConsentCheck":""};
 
 class BrainMapConsent extends Component{
     constructor(props) {
@@ -44,7 +44,8 @@ class BrainMapConsent extends Component{
         infoObj.StudentName = fields["studentName"];
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
-        // infoObj.ConsentCheck = fields["consentCheck"];
+        infoObj.ConsentCheck = {type: "Buffer", data: [444]}
+
     }
 
     validate() {
@@ -129,9 +130,20 @@ class BrainMapConsent extends Component{
           this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
           this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
           this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
+          this.state.fields["consentCheck"] = (body.Form[0].ConsentCheck == null || body.Form[0].ConsentCheck.data[0] ==1) ? 99: 100;
+
         }
         return body;
     };
+    handleChangeCheckbox(field,e) {
+        let fields = this.state.fields;
+        if (e.target.checked == 100) {
+            fields[field] = 1;
+        } else {
+            fields[field] = 0;
+        }
+        this.setState({fields: fields});
+    }
 
     renderFields() {
         return (
@@ -142,7 +154,9 @@ class BrainMapConsent extends Component{
                           <Label sm={12} className={"checkBox"}>
                               <Input type="checkbox"
                                      ref="consentCheck"
-                                     className="error"/>
+                                     className="error"
+                                     onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
+                                     checked={this.state.fields["consentCheck"] == 100 || ""}/>
                               I hereby give release to complete a brain map as part of the Jacob’s Ladder initial evaluation process.
                           </Label>
                       </Col>
