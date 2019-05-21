@@ -87,7 +87,6 @@ class PermissionExchangeInformation extends Component {
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
                 //NEED TO UPDATE DATABASE
-                console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
         });
@@ -100,7 +99,6 @@ class PermissionExchangeInformation extends Component {
         //UPDATE DATABASE
         this.postToDB();
         // this.componentDidMount();
-        console.log("saved and quit");
         //back to homepage
         this.props.history.push("/parenthome");
     }
@@ -113,7 +111,6 @@ class PermissionExchangeInformation extends Component {
 
     postToDB() {
         infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
         const response = fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm', {
             method: 'POST',
             headers: {
@@ -126,16 +123,14 @@ class PermissionExchangeInformation extends Component {
 
     callApi = async () => {
         // infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
+
         const response = await fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm');
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         this.state.fields["studentName"] = body[0].StudentName;
         this.state.fields["parentName"] = body[0].ParentName;
         this.state.fields["date"] = body[0].Date;
         // this.state.fields["consentCheck"] = body[0].ConsentCheck;
-        console.log(this.state.fields);
         return body;
     };
 
