@@ -2384,6 +2384,7 @@ class ClientHistoryAndInformation extends Component {
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
+        infoObj[field] = e.target.value
         this.validate();
         this.setState({fields: fields});
     }
@@ -2398,7 +2399,6 @@ class ClientHistoryAndInformation extends Component {
     checkValue(name) {
         let fields = this.state.fields;
         if (fields[name] >= 1){
-            console.log("greater");
             return true;
         } else {
             return false;
@@ -3213,7 +3213,7 @@ class ClientHistoryAndInformation extends Component {
     postToDB() {
         var update = JSON.stringify(infoObj);
         var url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
-        console.log("post url" + url);
+        console.log("post url " + url);
         console.log("updated JSON");
         console.log(update);
         const response = fetch(url, {
@@ -3225,6 +3225,9 @@ class ClientHistoryAndInformation extends Component {
             },
             body: update
         });
+
+        console.log("RESPONSE")
+        console.log(response)
 
     }
 
@@ -3257,7 +3260,6 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["homeNumber"] = body.Form[0].homeNumber == null ? "" : body.Form[0].homeNumber;
             this.state.fields["section1Comments"] = body.Form[0].section1Comments == null ? "" : body.Form[0].section1Comments;
             this.state.fields["isAdopted"] = body.Form[0].isAdopted == null ? "" : body.Form[0].isAdopted;
-            console.log(this.state.fields["isAdopted"]);
             this.state.fields["isAdoptedAge"] = body.Form[0].isAdoptedAge == null ? "" : body.Form[0].isAdoptedAge;
             this.state.fields["birthCountry"] = body.Form[0].birthCountry == null ? "" : body.Form[0].birthCountry;
             this.state.fields["motherName"] = body.Form[0].motherName == null ? "" : body.Form[0].motherName;
@@ -4490,6 +4492,9 @@ class ClientHistoryAndInformation extends Component {
         infoObj.studentName = fields["studentName"];
         infoObj.parentName = fields["parentName"];
         infoObj.date = fields["date"];
+
+        console.log("UPDATED FIELDS")
+        console.log(infoObj);
     }
 
     handleSubmit(event) {
@@ -4506,8 +4511,8 @@ class ClientHistoryAndInformation extends Component {
 
     handleSaveAndQuit(event) {
         event.preventDefault();
-        this.setState({saveButtonPressed: true});
         this.updateFields();
+        this.setState({saveButtonPressed: true});
         this.postToDB();
         // this.postSection11ToDB();
         this.props.history.push("/parenthome")

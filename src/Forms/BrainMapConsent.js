@@ -13,14 +13,15 @@ import {
 import { token, userID } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":"", "ConsentCheck":""};
+var infoObj = {"ChildID": childID, "ParentName":"", "Date":"", "ConsentCheck":""};
 
 class BrainMapConsent extends Component{
     constructor(props) {
         super(props);
         this.state = {
             errors: [],
-            fields: [],
+            fields: {"consentCheck": false},
+            consent: false,
             submitButtonPressed: false,
             saveButtonPressed:false
         };
@@ -44,7 +45,7 @@ class BrainMapConsent extends Component{
         infoObj.StudentName = fields["studentName"];
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
-        infoObj.ConsentCheck = {type: "Buffer", data: [444]}
+        infoObj.ConsentCheck = fields["consentCheck"];
 
     }
 
@@ -88,7 +89,7 @@ class BrainMapConsent extends Component{
       this.updateFields();
       this.setState({saveButtonPressed: true});
       this.postToDB();
-      //back to homepage
+      //back to parent checklist
       this.props.history.push("/parenthome");
     }
 
@@ -110,12 +111,10 @@ class BrainMapConsent extends Component{
           },
           body: update
       });
-      console.log(response);
     }
 
     fetchFromDB = async () => {
         var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
-        console.log("in fetch " + url);
         const response = await fetch(url, {
             method: 'GET',
             headers: {

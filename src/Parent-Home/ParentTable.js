@@ -37,7 +37,7 @@ class ParentTable extends Component {
                 name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>,
                 progress: 'Not Started'
             }, {
-                name: 'Permission for Exchange of Information Form',
+                name: <div id="pei" >Permission for Exchange of Information Form</div>,
                 progress: 'Not Started'
             }, {
                 name: <div id="ep" style={{color: 'blue', textDecoration: 'underline'}}>Enrollment Process Form</div>,
@@ -46,10 +46,10 @@ class ParentTable extends Component {
                 name: <div id="bmc" style={{color: 'blue', textDecoration: 'underline'}}>Brain Map Consent Form</div>,
                 progress: 'Not Started'
             }, {
-                name: 'Credit Card Authorization Form',
+                name: <div id="cca" >Credit Card Authorization Form</div>,
                 progress: 'Not Started'
             }, {
-                name: 'Insurance and Financial Information Form',
+                name: <div id="ifi" >Insurance and Financial Information Form</div>,
                 progress: 'Not Started'
             }]
         };
@@ -72,6 +72,7 @@ class ParentTable extends Component {
 
     handleClick(row, event) {
         event.preventDefault();
+
         if (row.name.props.id === "bmc") {
             this.props.history.push("/bmc");
         } else if (row.name.props.id === "ep") {
@@ -80,15 +81,16 @@ class ParentTable extends Component {
             this.props.history.push("/cmr");
         } else if (row.name.props.id === "chai") {
             this.props.history.push("/chai");
-        } else if (row.name === "Permission for Exchange of Information Form") {
-            this.props.history.push("/pei");
-        } else if (row.name === "Credit Card Authorization Form") {
-            this.props.history.push("/cca");
-        } else if (row.name === "Insurance and Financial Information Form") {
-            this.props.history.push("/ifi");
+        } else if (row.name.props.id === "pei") {
+            // THIS FORM IS NOT YET FULLY WORKING
+            // this.props.history.push("/pei");
+        } else if (row.name.props.id === "cca") {
+            // THIS FORM IS NOT YET FULLY WORKING
+            // this.props.history.push("/cca");
+        } else if (row.name.props.id === "ifi") {
+            // THIS FORM IS NOT YET FULLY WORKING
+            // this.props.history.push("/ifi");
         }
-        // console.log(this.state.data.name);
-        // need to figure out how to access the row that has been clicked on, not sure how to do that though
     }
 
     getChild = async () => {

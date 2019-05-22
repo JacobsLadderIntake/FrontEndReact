@@ -78,7 +78,6 @@ class ConsentAndMedicalRelease extends Component {
         this.postToDB();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
         });

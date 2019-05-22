@@ -41,7 +41,6 @@ class StudentCard extends Component {
         });
         const body = await response.json();
         let userObj = body.User[0];
-        console.log(userObj);
         if (response.status !== 200) throw Error(body.message);
         this.state.parentFirstName = userObj.UserFirstName;
         this.state.parentLastName = userObj.UserLastName;

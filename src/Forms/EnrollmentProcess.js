@@ -136,11 +136,8 @@ class EnrollmentProcess extends Component{
         let fields = this.state.fields;
         if (e.target.checked == true) {
             fields[field] = true;
-            console.log("yep")
         } else {
             fields[field] = false;
-            console.log("nope")
-
         }
         this.setState({fields: fields});
     }
