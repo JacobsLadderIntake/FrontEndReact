@@ -41,7 +41,8 @@ class ClientHistoryAndInformation extends Component {
                 accessor: 'gender'
             }],
             siblingData: [{
-                name: <input type="text" name="sib1Name" className={"tableInputField"}/>,
+                name: <input type="text" name="sib1Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Name")}
+                />,
                 age: <input type="text" name="sib1Age" className={"tableInputField"}/>,
                 gender: <input type="text" name="sib1Gender" className={"tableInputField"}/>,
             }, {
@@ -81,18 +82,21 @@ class ClientHistoryAndInformation extends Component {
                                         name="crawlYears"
                                         id="crawlYears"
                                         onChange={this.handleChange.bind(this, "crawlYears")}
+                                        accessor = "crawlYears"
+                                        value={"nine"}
+
                                         >
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
+                    <option  value={"zero"}>0</option>
+                    <option value="one">1</option>
+                    <option value={"two"}>2</option>
+                    <option value={"three"}>3</option>
+                    <option value = {"four"}>4</option>
+                    <option value ="five">5</option>
+                    <option value ="six">6</option>
+                    <option value={"seven"}>7</option>
+                    <option value ="eight">8</option>
+                    <option value = "nine">9</option>
+                    <option value ="10">10</option>
                     <option>11</option>
                     <option>12</option>
                     <option>13</option>
@@ -2382,8 +2386,10 @@ class ClientHistoryAndInformation extends Component {
         this.setState(state=>({seizures: !state.seizures}));
     }
     handleChange(field, e) {
+        console.log(field)
         let fields = this.state.fields;
         fields[field] = e.target.value;
+        console.log(fields[field])
         infoObj[field] = e.target.value
         this.validate();
         this.setState({fields: fields});
@@ -2421,7 +2427,6 @@ class ClientHistoryAndInformation extends Component {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-        // console.log(fields["crawlYears"])
 
         if (this.state.submitButtonPressed) {
             //SECTION ONE
@@ -2515,7 +2520,7 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["fatherOccupation"] = "Cannot be empty";
             }
-            if (!fields["isAdopted"]) {
+            if (!fields["isAdopted"] || fields["isAdopted"] =="blank") {
                 formIsValid = false;
                 errors["isAdopted"] = "Cannot be empty";
             }
@@ -3285,7 +3290,7 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["sFatherEmail"] = body.Form[0].sFatherEmail == null ? "" : body.Form[0].sFatherEmail;
             this.state.fields["sFatherOccupation"] = body.Form[0].sFatherOccupation == null ? "" : body.Form[0].sFatherOccupation;
             this.state.fields["sib1Name"] = body.Form[0].sib1Name == null ? "" : body.Form[0].sib1Name;
-            this.state.fields["sib1Age"] = body.Form[0].sib1Age == null ? "" : body.Form[0].sib1Age;
+           this.state.fields["sib1Age"] = body.Form[0].sib1Age == null ? "" : body.Form[0].sib1Age;
             this.state.fields["sib1Gender"] = body.Form[0].sib1Gender == null ? "" : body.Form[0].sib1Gender;
             this.state.fields["sib2Name"] = body.Form[0].sib2Name == null ? "" : body.Form[0].sib2Name;
             this.state.fields["sib2Age"] = body.Form[0].sib2Age == null ? "" : body.Form[0].sib2Age;
@@ -4756,12 +4761,13 @@ class ClientHistoryAndInformation extends Component {
                                    name="isAdopted"
                                    id="isAdopted"
                                    ref="isAdopted"
+                                   value = {this.state.fields["isAdopted"]}
                                    onChange={this.handleChange.bind(this, "isAdopted")}
                                    invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
                                 >
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option value={"blank"}></option>
+                                <option value={"yes"}>Yes</option>
+                                <option value={"no"}>No</option>
                             </Input>
                             <FormFeedback
                                 invalid={this.state.errors["isAdopted"] }>{this.state.errors["isAdopted"]}
@@ -4775,8 +4781,11 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label>What Age?</Label>
                             <Input type="text"
-                                   name="isAdopted"
-                                   id="isAdopted">
+                                   name="isAdoptedAge"
+                                   id="isAdoptedAge"
+                                   onChange={this.handleChange.bind(this, "isAdoptedAge")}
+                                   value={this.state.fields["isAdoptedAge"] || ""}
+                            >
                             </Input>
 
                         </FormGroup>
@@ -4786,7 +4795,10 @@ class ClientHistoryAndInformation extends Component {
                             <Label>Country of Birth?</Label>
                             <Input type="text"
                                    name="birthCountry"
-                                   id="birthCountry">
+                                   id="birthCountry"
+                                   onChange={this.handleChange.bind(this, "birthCountry")}
+                                   value={this.state.fields["birthCountry"] || ""}>
+
                             </Input>
                         </FormGroup>
                     </Col>
@@ -4964,13 +4976,14 @@ class ClientHistoryAndInformation extends Component {
                                    name="maritalStatus"
                                    id="maritalStatus"
                                    onChange={this.handleChange.bind(this, "maritalStatus")}
+                                   value={this.state.fields["maritalStatus"]}
                             invalid={this.state.errors["maritalStatus"]}>
-                                <option></option>
-                                <option>Single</option>
-                                <option>Married</option>
-                                <option>Divorced</option>
-                                <option>Separated</option>
-                                <option>Widowed</option>
+                                <option value= "blank"></option>
+                                <option value = "single">Single</option>
+                                <option value ="married">Married</option>
+                                <option value ="divorced">Divorced</option>
+                                <option value ="separated">Separated</option>
+                                <option value = "widowed">Widowed</option>
                             </Input>
                             <FormFeedback
                             invalid={this.state.errors["martialStatus"]}> Cannot be Empty
@@ -5192,13 +5205,14 @@ class ClientHistoryAndInformation extends Component {
                                    name="deliveryType"
                                    id="deliveryType"
                                    ref ="deliveryType"
+                                   value = {this.state.fields["deliveryType"]}
                                    invalid={this.state.errors["deliveryType"]}
                                    onChange={this.handleChange.bind(this, "deliveryType")}
 
                             >
-                                <option></option>
-                                <option>Vaginal</option>
-                                <option>Cesarean</option>
+                                <option value = "blank"></option>
+                                <option value = "vaginal">Vaginal</option>
+                                <option value = "cesarean">Cesarean</option>
                             </Input>
                             <FormFeedback
                             invalid={this.state.errors["deliveryType"] }>{this.state.errors["deliveryType"]}
@@ -5215,12 +5229,13 @@ class ClientHistoryAndInformation extends Component {
                                    name="pregComplications"
                                    id="pregComplications"
                                    ref="pregComplications"
+                                   value = {this.state.fields["pregComplications"]}
                                    invalid={this.state.errors["pregComplications"]}
                                    onChange={this.handleChange.bind(this, "pregComplications")}
                             >
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option value ={"blank"}></option>
+                                <option value={"yes"}>Yes</option>
+                                <option value ={"no"}>No</option>
                             </Input>
                             <FormFeedback
                             invalid={this.state.errors["pregComplications"] }>{this.state.errors["pregComplications"]}
@@ -5251,9 +5266,9 @@ class ClientHistoryAndInformation extends Component {
                                    invalid={this.state.errors["hospitalizedAfterBirth"]}
                                    onChange={this.handleChange.bind(this, "hospitalizedAfterBirth")}
                             >
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option value = {"blank"}></option>
+                                <option value = {"yes"}>Yes</option>
+                                <option value = {"no"}>No</option>
                             </Input>
                             <FormFeedback
                             invalid={this.state.errors["hospitaliedAfterBirth"] }>{this.state.errors["hospitalizedAfterBirth"]}
@@ -5571,10 +5586,11 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="outsideTherapy"
                                    id="outsideTherapy"
+                                   value = {this.state.fields["outsideTherapy"]}
                                    onChange={this.handleChange.bind(this, "outsideTherapy")}>
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option value = "blank"></option>
+                                <option value = "yes">Yes</option>
+                                <option value = "no">No</option>
                             </Input>
                         </FormGroup>
                     </Col>
@@ -5835,10 +5851,11 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="allergies"
                                    id="allergies"
+                                   value = {this.state.fields["allergies"]}
                                    onChange={this.handleChange.bind(this, "allergies")}>
-                                <option></option>
-                                <option>Yes</option>
-                                <option>None Known</option>
+                                <option value = "blank"></option>
+                                <option value ="yes">Yes</option>
+                                <option value = "none">None Known</option>
                             </Input>
                         </FormGroup>
                     </Col>
@@ -5980,11 +5997,12 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="troubleFallingAsleep"
                                    id="troubleFallingAsleep"
+                                   value={this.state.fields["troubleFallingAsleep"]}
                                    onChange={this.handleChange.bind(this, "troubleFallingAsleep")}>
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
-                                <option>Not Sure</option>
+                                <option value={"blank"}></option>
+                                <option value = "yes">Yes</option>
+                                <option value = "no">No</option>
+                                <option value = "not sure">Not Sure</option>
                             </Input>
                         </FormGroup>
                     </Col>
@@ -5995,11 +6013,12 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="troubleStayingAsleep"
                                    id="troubleStayingAsleep"
+                                   value = {this.state.fields["troubleStayingAsleep"]}
                                    onChange={this.handleChange.bind(this, "troubleStayingAsleep")}>
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
-                                <option>Not Sure</option>
+                                <option value = "blank"></option>
+                                <option value = "yes">Yes</option>
+                                <option value = "no">No</option>
+                                <option value = "not sure">Not Sure</option>
                             </Input>
                         </FormGroup>
                     </Col>
@@ -6009,11 +6028,12 @@ class ClientHistoryAndInformation extends Component {
                             <Input type="select"
                                    name="wakesEarly"
                                    id="wakesEarly"
+                                   value={this.state.fields["wakesEarly"]}
                                    onChange={this.handleChange.bind(this, "wakesEarly")}>
-                                <option></option>
-                                <option>Yes</option>
-                                <option>No</option>
-                                <option>Not Sure</option>
+                                <option value ="blank"></option>
+                                <option value = "yes">Yes</option>
+                                <option value = "no">No</option>
+                                <option value = "not sure">Not Sure</option>
                             </Input>
                         </FormGroup>
                     </Col>
@@ -6139,10 +6159,11 @@ class ClientHistoryAndInformation extends Component {
                         <Input type="select"
                                name="iepPlan"
                                id="iepPlan"
+                               value = {this.state.fields["iepPlan"]}
                                onChange={this.handleChange.bind(this, "iepPlan")}>
-                            <option></option>
-                            <option>Yes</option>
-                            <option>No</option>
+                            <option value = "blank"></option>
+                            <option value = "yes">Yes</option>
+                            <option value = "no">No</option>
                         </Input>
                     </Col>
 
@@ -6243,11 +6264,13 @@ class ClientHistoryAndInformation extends Component {
                         <Input
                             ref = "verbalLevel"
                             type="select"
-                            placeholder="why">
-                            <option>Select Current Independent Level</option>
-                            <option>fully conversational with original thought language</option>
-                            <option>sentences with some rote language</option>
-                            <option>1-2 word verbalizations</option>
+                            placeholder="why"
+                            value = {this.state.fields["verbalLevel"]}
+                            onChange={this.handleChangeCheckbox.bind(this, "verbalLevel")}>
+                            <option value={"select"}>Select Current Independent Level</option>
+                            <option value={"fully"}>fully conversational with original thought language</option>
+                            <option value={"some"}>sentences with some rote language</option>
+                            <option value={"word"}>1-2 word verbalizations</option>
 
                         </Input>
                     </Col>
@@ -6316,11 +6339,13 @@ class ClientHistoryAndInformation extends Component {
                             <Label>Select Current Independent Level</Label>
                             <Input
                                 ref = "deviceIndependenceLevel"
-                                type="select">
-                                <option></option>
-                                <option>Fully Independent</option>
-                                <option>Emerging Independence</option>
-                                <option>Heavy Prompting Required</option>
+                                type="select"
+                                value = {this.state.fields["deviceIndependenceLevel"]}
+                                onChange={this.handleChangeCheckbox.bind(this, "deviceIndependenceLevel")}>
+                                <option value={"blank"}></option>
+                                <option value={"fully"}>Fully Independent</option>
+                                <option value={"emerging"}>Emerging Independence</option>
+                                <option value={"heavy"}>Heavy Prompting Required</option>
                             </Input>
                         </FormGroup>
                     </Col>
@@ -6340,12 +6365,13 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Input
                                 ref = "binderIndependenceLevel"
-                                type="select">
-                                <option></option>
-                                <option>Select Current Independent Level</option>
-                                <option>Fully Independent</option>
-                                <option>Emerging Independence</option>
-                                <option>Heavy Prompting Required</option>
+                                type="select"
+                                value = {this.state.fields["binderIndependenceLevel"]}
+                                onChange={this.handleChangeCheckbox.bind(this, "binderIndependenceLevel")}>
+                                <option value={"blank"}></option>
+                                <option value={"fully"}>Fully Independent</option>
+                                <option value={"emerging"}>Emerging Independence</option>
+                                <option value={"heavy"}>Heavy Prompting Required</option>
 
                             </Input>
                         </FormGroup>
@@ -6489,18 +6515,18 @@ class ClientHistoryAndInformation extends Component {
                                id="schoolConcentration"
                                value={this.state.fields["schoolConcentration"] || ""}
                                onChange={this.handleChange.bind(this, "schoolConcentration")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("schoolConcentration")}>
@@ -6544,7 +6570,7 @@ class ClientHistoryAndInformation extends Component {
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"socialAnxiety")}>
+                        <Label  className="control-label required">
                             Social Anxiety</Label>
                         <Input type="select"
                                className={"col-4"}
@@ -6552,18 +6578,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "socialAnxiety"
                                value={this.state.fields["socialAnxiety"] || ""}
                                onChange={this.handleChange.bind(this, "socialAnxiety")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
 
                     </FormGroup>
@@ -6616,18 +6642,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "lowGrades"
                                value={this.state.fields["lowGrades"] || ""}
                                onChange={this.handleChange.bind(this, "lowGrades")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("lowGrades")}>
@@ -6680,18 +6706,18 @@ class ClientHistoryAndInformation extends Component {
                                    id = "makingFriends"
                                    value={this.state.fields["makingFriends"] || ""}
                                    onChange={this.handleChange.bind(this, "makingFriends")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                             </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("makingFriends")}>
@@ -6743,18 +6769,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "oppositionalBehavior"
                                value={this.state.fields["oppositionalBehavior"] || ""}
                                onChange={this.handleChange.bind(this, "oppositionalBehavior")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("oppositionalBehavior")}>
@@ -6811,18 +6837,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "problemsWithAuthority"
                                value={this.state.fields["problemsWithAuthority"] || ""}
                                onChange={this.handleChange.bind(this, "problemsWithAuthority")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("problemsWithAuthority")}>
@@ -6876,18 +6902,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "sociallyIsolated"
                                value={this.state.fields["sociallyIsolated"] || ""}
                                onChange={this.handleChange.bind(this, "sociallyIsolated")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sociallyIsolated")}>
@@ -6941,18 +6967,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "aggressiveBehavior"
                                value={this.state.fields["aggressiveBehavior"] || ""}
                                onChange={this.handleChange.bind(this, "aggressiveBehavior")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("aggressiveBehavior")}>
@@ -7005,18 +7031,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "stressFamily"
                                value={this.state.fields["stressFamily"] || ""}
                                onChange={this.handleChange.bind(this, "stressFamily")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("stressFamily")}>
@@ -7069,18 +7095,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "generalizedAnxiety"
                                value={this.state.fields["generalizedAnxiety"] || ""}
                                onChange={this.handleChange.bind(this, "generalizedAnxiety")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
@@ -7134,18 +7160,18 @@ class ClientHistoryAndInformation extends Component {
                                        id = "phobias"
                                        value={this.state.fields["phobias"] || ""}
                                        onChange={this.handleChange.bind(this, "phobias")}>
-                                    <option></option>
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
+                                    <option value = "blank"></option>
+                                    <option value = "0">0</option>
+                                    <option value = "1">1</option>
+                                    <option value = "2">2</option>
+                                    <option value = "3">3</option>
+                                    <option value = "4">4</option>
+                                    <option value = "5">5</option>
+                                    <option value = "6">6</option>
+                                    <option value = "7">7</option>
+                                    <option value = "8">8</option>
+                                    <option value = "9">9</option>
+                                    <option value = "10">10</option>
                                 </Input>
                             </Col>
                             <Col sm={8}>
@@ -7211,18 +7237,18 @@ class ClientHistoryAndInformation extends Component {
                                    id = "hyperactive"
                                    value={this.state.fields["hyperactive"] || ""}
                                    onChange={this.handleChange.bind(this, "hyperactive")}>
-                                <option></option>
-                                <option>0</option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                                <option>7</option>
-                                <option>8</option>
-                                <option>9</option>
-                                <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                             </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("hyperactive")}>
@@ -7276,18 +7302,18 @@ class ClientHistoryAndInformation extends Component {
                                id ="sensoryProblems"
                                value={this.state.fields["sensoryProblems"] || ""}
                                onChange={this.handleChange.bind(this, "sensoryProblems")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sensoryProblems")}>
@@ -7345,18 +7371,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "problemsEating"
                                value={this.state.fields["problemsEating"] || ""}
                                onChange={this.handleChange.bind(this, "problemsEating")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("problemsEating")}>
@@ -7409,18 +7435,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "wettingAccidents"
                                value={this.state.fields["wettingAccidents"] || ""}
                                onChange={this.handleChange.bind(this, "wettingAccidents")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("wettingAccidents")}>
@@ -7473,18 +7499,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "vocalTics"
                                value={this.state.fields["vocalTics"] || ""}
                                onChange={this.handleChange.bind(this, "vocalTics")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("vocalTics")}>
@@ -7539,18 +7565,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "wakingUp"
                                value={this.state.fields["wakingUp"] || ""}
                                onChange={this.handleChange.bind(this, "wakingUp")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("wakingUp")}>
@@ -7604,18 +7630,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "nightmares"
                                value={this.state.fields["nightmares"] || ""}
                                onChange={this.handleChange.bind(this, "nightmares")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("nightmares")}>
@@ -7668,18 +7694,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "problemsSleeping"
                                value={this.state.fields["problemsSleeping"] || ""}
                                onChange={this.handleChange.bind(this, "problemsSleeping")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("problemsSleeping")}>
@@ -7732,18 +7758,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "tiredness"
                                value={this.state.fields["tiredness"] || ""}
                                onChange={this.handleChange.bind(this, "tiredness")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("tiredness")}>
@@ -7799,18 +7825,18 @@ class ClientHistoryAndInformation extends Component {
                                id ="sadness"
                                value={this.state.fields["sadness"] || ""}
                                onChange={this.handleChange.bind(this, "sadness")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("sadness")}>
@@ -7863,18 +7889,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "impulsive"
                                value={this.state.fields["impulsive"] || ""}
                                onChange={this.handleChange.bind(this, "impulsive")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                             </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("impulsive")}>
@@ -7927,18 +7953,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "noncompliant"
                                value={this.state.fields["noncompliant"] || ""}
                                onChange={this.handleChange.bind(this, "noncompliant")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("noncompliant")}>
@@ -7992,18 +8018,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "tantrums"
                                value={this.state.fields["tantrums"] || ""}
                                onChange={this.handleChange.bind(this, "tantrums")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("tantrums")}>
@@ -8056,18 +8082,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "injuryBehavior"
                                value={this.state.fields["injuryBehavior"] || ""}
                                onChange={this.handleChange.bind(this, "injuryBehavior")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("injuryBehavior")}>
@@ -8121,18 +8147,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "temperProblem"
                                value={this.state.fields["temperProblem"] || ""}
                                onChange={this.handleChange.bind(this, "temperProblem")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("temperProblem")}>
@@ -8185,18 +8211,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "darting"
                                value={this.state.fields["darting"] || ""}
                                onChange={this.handleChange.bind(this, "darting")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("darting")}>
@@ -8249,18 +8275,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "rigid"
                                value={this.state.fields["rigid"] || ""}
                                onChange={this.handleChange.bind(this, "rigid")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("rigid")}>
@@ -8314,18 +8340,18 @@ class ClientHistoryAndInformation extends Component {
                                id = "abuse"
                                value={this.state.fields["abuse"] || ""}
                                onChange={this.handleChange.bind(this, "abuse")}>
-                            <option></option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
+                            <option value = "blank"></option>
+                            <option value = "0">0</option>
+                            <option value = "1">1</option>
+                            <option value = "2">2</option>
+                            <option value = "3">3</option>
+                            <option value = "4">4</option>
+                            <option value = "5">5</option>
+                            <option value = "6">6</option>
+                            <option value = "7">7</option>
+                            <option value = "8">8</option>
+                            <option value = "9">9</option>
+                            <option value = "10">10</option>
                         </Input>
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("abuse")}>
