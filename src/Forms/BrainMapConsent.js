@@ -129,18 +129,17 @@ class BrainMapConsent extends Component{
           this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
           this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
           this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
-          this.state.fields["consentCheck"] = (body.Form[0].ConsentCheck == null || body.Form[0].ConsentCheck.data[0] ==1) ? 99: 100;
+          this.state.fields["consentCheck"] = body.Form[0].ConsentCheck == null ? "" : body.Form[0].ConsentCheck;
 
         }
         return body;
     };
+
     handleChangeCheckbox(field,e) {
         let fields = this.state.fields;
-        if (e.target.checked == 100) {
-            fields[field] = 1;
-        } else {
-            fields[field] = 0;
-        }
+        fields[field] = e.target.checked ? "true" : "false";
+        console.log(fields[field]);
+        this.validate();
         this.setState({fields: fields});
     }
 
@@ -153,9 +152,13 @@ class BrainMapConsent extends Component{
                           <Label sm={12} className={"checkBox"}>
                               <Input type="checkbox"
                                      ref="consentCheck"
-                                     className="error"
+                                     checked={this.state.fields["consentCheck"] === "true"}
                                      onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
-                                     checked={this.state.fields["consentCheck"] == 100 || ""}/>
+                                     className="error"
+                                     invalid={this.state.fields["consentCheck"] === false || this.state.errors["consentCheck"] != null}/>
+                              <FormFeedback
+                                  invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}
+                              </FormFeedback>
                               I hereby give release to complete a brain map as part of the Jacob’s Ladder initial evaluation process.
                           </Label>
                       </Col>

@@ -2356,7 +2356,6 @@ class ClientHistoryAndInformation extends Component {
         };
 
         this.goBack = this.goBack.bind(this);
-        this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
     }
 
     goBack(event) {
@@ -2396,8 +2395,8 @@ class ClientHistoryAndInformation extends Component {
     }
     handleChangeCheckbox(field,e) {
         let fields = this.state.fields;
-        fields[field] = e.target.checked;
-        console.log(fields[field])
+        fields[field] = e.target.checked ? "true" : "false";
+        console.log(fields[field]);
         this.validate();
         this.setState({fields: fields});
     }
@@ -2409,16 +2408,6 @@ class ClientHistoryAndInformation extends Component {
         } else {
             return false;
         }
-    }
-
-    handleCheckBoxChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
     }
 
     validate() {
@@ -3164,24 +3153,6 @@ class ClientHistoryAndInformation extends Component {
             }
 
             // SECTION 13
-            if (!fields["consentCheck"]) {
-                formIsValid = false;
-                errors["consentCheck"] = "Cannot be empty";
-            }
-            if (!fields["studentName"]) {
-                formIsValid = false;
-                errors["studentName"] = "Cannot be empty";
-            }
-            if (!fields["parentName"]) {
-                formIsValid = false;
-                errors["parentName"] = "Cannot be empty";
-            }
-            if (!fields["date"]) {
-                formIsValid = false;
-                errors["date"] = "Cannot be empty";
-            }
-
-            //SECTION 14
             if (!fields["hearAboutJL"]) {
                 formIsValid = false;
                 errors["hearAboutJL"] = "Cannot be empty";
@@ -3197,6 +3168,24 @@ class ClientHistoryAndInformation extends Component {
             if (!fields["additionalInfoAboutChild"]) {
                 formIsValid = false;
                 errors["additionalInfoAboutChild"] = "Cannot be empty";
+            }
+
+            //SECTION 14
+            if (!fields["consentCheck"]) {
+                formIsValid = false;
+                errors["consentCheck"] = "Cannot be empty";
+            }
+            if (!fields["studentName"]) {
+                formIsValid = false;
+                errors["studentName"] = "Cannot be empty";
+            }
+            if (!fields["parentName"]) {
+                formIsValid = false;
+                errors["parentName"] = "Cannot be empty";
+            }
+            if (!fields["date"]) {
+                formIsValid = false;
+                errors["date"] = "Cannot be empty";
             }
 
         }
@@ -3290,7 +3279,7 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["sFatherEmail"] = body.Form[0].sFatherEmail == null ? "" : body.Form[0].sFatherEmail;
             this.state.fields["sFatherOccupation"] = body.Form[0].sFatherOccupation == null ? "" : body.Form[0].sFatherOccupation;
             this.state.fields["sib1Name"] = body.Form[0].sib1Name == null ? "" : body.Form[0].sib1Name;
-           this.state.fields["sib1Age"] = body.Form[0].sib1Age == null ? "" : body.Form[0].sib1Age;
+            this.state.fields["sib1Age"] = body.Form[0].sib1Age == null ? "" : body.Form[0].sib1Age;
             this.state.fields["sib1Gender"] = body.Form[0].sib1Gender == null ? "" : body.Form[0].sib1Gender;
             this.state.fields["sib2Name"] = body.Form[0].sib2Name == null ? "" : body.Form[0].sib2Name;
             this.state.fields["sib2Age"] = body.Form[0].sib2Age == null ? "" : body.Form[0].sib2Age;
@@ -3850,6 +3839,7 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["studentName"] = body.Form[0].studentName == null ? "" : body.Form[0].studentName;
             this.state.fields["parentName"] = body.Form[0].parentName == null ? "" : body.Form[0].parentName;
             this.state.fields["date"] = body.Form[0].date == null ? "" : body.Form[0].date;
+            this.state.fields["section11Comments"] = body.Form[0].section11comments == null ? "" : body.Form[0].section11comments;
         }
         return body;
     };
@@ -4497,6 +4487,7 @@ class ClientHistoryAndInformation extends Component {
         infoObj.studentName = fields["studentName"];
         infoObj.parentName = fields["parentName"];
         infoObj.date = fields["date"];
+        infoObj.section11comments = fields["section11Comments"];
 
         console.log("UPDATED FIELDS")
         console.log(infoObj);
@@ -6254,7 +6245,12 @@ class ClientHistoryAndInformation extends Component {
                     <Col sm={"2"}>
                         <FormGroup check>
                             <Input onChange={this.handleChangeCheckbox.bind(this, "verbalSkills")}
-                                   ref="verbalSkills" type="checkbox" checked={this.state.fields["verbalSkills"] || ""}/>
+                                   ref="verbalSkills"
+                                   type="checkbox"
+                                   checked={this.state.fields["verbalSkills"] === "true"} />
+                            <FormFeedback
+                                invalid={this.state.errors["verbalSkills"]}>{this.state.errors["verbalSkills"]}
+                            </FormFeedback>
                             <Label>
                                 Verbal
                             </Label>
@@ -6278,7 +6274,10 @@ class ClientHistoryAndInformation extends Component {
 
                 <FormGroup check>
                     <Label check>
-                        <Input ref = "pointing" type="checkbox"/>
+                        <Input onChange={this.handleChangeCheckbox.bind(this, "pointing")}
+                               ref="pointing"
+                               type="checkbox"
+                               checked={this.state.fields["pointing"] === "true"} />
                         Pointing/Grabbing
                     </Label>
                 </FormGroup>
@@ -6286,8 +6285,10 @@ class ClientHistoryAndInformation extends Component {
                     <Col sm={2}>
                         <FormGroup check>
                             <Label check>
-
-                                <Input type="checkbox" ref ="signLanguage"/>
+                                <Input onChange={this.handleChangeCheckbox.bind(this, "signLanguage")}
+                                       ref="signLanguage"
+                                       type="checkbox"
+                                       checked={this.state.fields["signLanguage"] === "true"}/>
                                 Sign Language
                             </Label>
                         </FormGroup>
@@ -6314,7 +6315,10 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup check>
                             <Label check>
 
-                                <Input ref = "communicationDevice" type="checkbox"/>
+                                <Input onChange={this.handleChangeCheckbox.bind(this, "communicationDevice")}
+                                       ref="communicationDevice"
+                                       type="checkbox"
+                                       checked={this.state.fields["communicationDevice"] === "true"} />
                                 Communication Device
                             </Label>
                         </FormGroup>
@@ -6355,7 +6359,10 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup check>
                             <Label check>
 
-                                <Input ref = "communicationBinder" type="checkbox"/>
+                                <Input onChange={this.handleChangeCheckbox.bind(this, "communicationBinder")}
+                                       ref="communicationBinder"
+                                       type="checkbox"
+                                       checked={this.state.fields["communicationBinder"] === "true"} />
                                 Communication Binder
                             </Label>
                         </FormGroup>
@@ -6383,7 +6390,10 @@ class ClientHistoryAndInformation extends Component {
                             <FormGroup check>
                                 <Label check>
 
-                                    <Input ref ="otherCommunicationMethod"type="checkbox"/>
+                                    <Input onChange={this.handleChangeCheckbox.bind(this, "otherCommunicationMethod")}
+                                           ref="otherCommunicationMethod"
+                                           type="checkbox"
+                                           checked={this.state.fields["otherCommunicationMethod"] === "true"} />
                                     Other
                                 </Label>
                             </FormGroup>
@@ -9312,13 +9322,13 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup className={"pl-4"}>
                             <Input type="checkbox"
                                    ref="consentCheck"
-                                   value={this.state.fields["consentCheck"] || ""}
-                                   onChange={this.handleChange.bind(this, "consentCheck")}
+                                   checked={this.state.fields["consentCheck"] === "true"}
+                                   onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
                                    className="error"
                                    invalid={this.state.errors["consentCheck"] != null}/>
-                            {/*<FormFeedback*/}
-                                {/*invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}*/}
-                            {/*</FormFeedback>*/}
+                            <FormFeedback
+                                invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}
+                            </FormFeedback>
                             <Label className={"checkBox control-label required"}>
                                 I acknowledge that I have read and completed this information to the best of my knowledge and ability.
                             </Label>
