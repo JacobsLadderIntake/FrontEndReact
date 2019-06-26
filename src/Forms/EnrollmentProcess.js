@@ -13,14 +13,14 @@ import {
 import { token, userID } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj = {ChildID: childID, StudentName:"", ParentName:"", Date:"",ConsentCheck:""};
+var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":"","consentCheck":""};
 
 class EnrollmentProcess extends Component{
     constructor(props) {
         super(props);
         this.state = {
             errors: [],
-            fields: [],
+            fields: {"consentCheck": false},
             submitButtonPressed: false,
             saveButtonPressed:false
         };
@@ -140,7 +140,6 @@ class EnrollmentProcess extends Component{
         return body;
     };
     handleChangeCheckbox(field,e) {
-        console.log(field);
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
         console.log(fields[field]);

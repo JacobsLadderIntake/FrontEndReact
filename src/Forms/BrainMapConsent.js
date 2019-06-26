@@ -21,7 +21,6 @@ class BrainMapConsent extends Component{
         this.state = {
             errors: [],
             fields: {"consentCheck": false},
-            consent: false,
             submitButtonPressed: false,
             saveButtonPressed:false
         };
@@ -67,6 +66,10 @@ class BrainMapConsent extends Component{
             if (!fields["date"]) {
                 formIsValid = false;
                 errors["date"] = "Cannot be empty";
+            }
+            if (!fields["consentCheck"]) {
+                formIsValid = false;
+                errors["consentCheck"] = "Cannot be empty";
             }
         }
         this.setState({errors: errors});
