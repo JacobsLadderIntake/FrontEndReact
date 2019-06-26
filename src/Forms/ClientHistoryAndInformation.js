@@ -40,28 +40,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Gender',
                 accessor: 'gender'
             }],
-            siblingData: [{
-                name: <input type="text" name="sib1Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Name")}
-                />,
-                age: <input type="text" name="sib1Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib1Gender" className={"tableInputField"}/>,
-            }, {
-                name: <input type="text" name="sib2Name" className={"tableInputField"}/>,
-                age: <input type="text" name="sib2Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib2Gender" className={"tableInputField"}/>,
-            }, {
-                name: <input type="text" name="sib3Name" className={"tableInputField"}/>,
-                age: <input type="text" name="sib3Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib3Gender" className={"tableInputField"}/>,
-            }, {
-                name: <input type="text" name="sib4Name" className={"tableInputField"}/>,
-                age: <input type="text" name="sib4Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib4Gender" className={"tableInputField"}/>,
-            }, {
-                name: <input type="text" name="sib5Name" className={"tableInputField"}/>,
-                age: <input type="text" name="sib5Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib5Gender" className={"tableInputField"}/>,
-            }],
+
 
             devHistoryColumns: [{
                 Header: 'Activity',
@@ -76,563 +55,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Developed?',
                 accessor: 'devHistoryNa'
             }],
-            devHistoryData: [{
-                devHistoryActivity:'Crawled on stomach',
-                devHistoryYears: <Input type="select"
-                                        name="crawlYears"
-                                        id="crawlYears"
-                                        onChange={this.handleChange.bind(this, "crawlYears")}
-                                        accessor = "crawlYears"
-                                        value={"nine"}
 
-                                        >
-                    <option  value={"zero"}>0</option>
-                    <option value="one">1</option>
-                    <option value={"two"}>2</option>
-                    <option value={"three"}>3</option>
-                    <option value = {"four"}>4</option>
-                    <option value ="five">5</option>
-                    <option value ="six">6</option>
-                    <option value={"seven"}>7</option>
-                    <option value ="eight">8</option>
-                    <option value = "nine">9</option>
-                    <option value ="10">10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="crawlMonths"
-                                         id="crawlMonths"
-                                         onChange={this.handleChange.bind(this, "crawlMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                           name="crawlNa"
-                           id="crawlNa"
-                                     onChange={this.handleChange.bind(this, "crawlNa")}
-                >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Developed</option>
-                    <option>Unknown</option>
-                </Input>
-            }, {
-                devHistoryActivity: 'Crept on hands and knees',
-                devHistoryYears: <Input type="select"
-                                        name="creptYears"
-                                        id="creptYears"
-                                        onChange={this.handleChange.bind(this, "creptYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                               name="creptMonths"
-                               id="creptMonths"
-                                         onChange={this.handleChange.bind(this, "creptMonths")}
-                >
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="creptNa"
-                                     id="creptNa"
-                                     onChange={this.handleChange.bind(this, "creptNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Developed</option>
-                    <option>Unknown</option>
-                </Input>
-            }, {
-                devHistoryActivity: 'Walked',
-                devHistoryYears: <Input type="select"
-                                        name="walkYears"
-                                        id="walkYears"
-                                        onChange={this.handleChange.bind(this, "walkYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="walkMonths"
-                                         id="walkMonths"
-                                         onChange={this.handleChange.bind(this, "walkMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="walkNa"
-                                     id="walkNa"
-                                     onChange={this.handleChange.bind(this, "walkNa")}
-                >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Toilet trained',
-                devHistoryYears: <Input type="select"
-                                        name="toiletYears"
-                                        id="toiletYears"
-                                        onChange={this.handleChange.bind(this, "toiletYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="toiletMonths"
-                                         id="toiletMonths"
-                                         onChange={this.handleChange.bind(this, "toiletMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="toiletNa"
-                                     id="toiletNa"
-                                     onChange={this.handleChange.bind(this, "toiletNa")}
-                >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'First word',
-                devHistoryYears: <Input type="select"
-                                        name="wordYears"
-                                        id="wordYears"
-                                        onChange={this.handleChange.bind(this, "wordYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="wordMonths"
-                                         id="wordMonths"
-                                         onChange={this.handleChange.bind(this, "wordMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="wordNa"
-                                     id="wordNa"
-                                     onChange={this.handleChange.bind(this, "wordNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Use of couplets (2 words together)',
-                devHistoryYears: <Input type="select"
-                                        name="coupletYears"
-                                        id="coupletYears"
-                                        onChange={this.handleChange.bind(this, "coupletYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="coupletMonths"
-                                         id="coupletMonths"
-                                         onChange={this.handleChange.bind(this, "coupletMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="coupletNa"
-                                     id="coupletNa"
-                                     onChange={this.handleChange.bind(this, "coupletNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                        <option>Unknown</option>
-                </Input>
-            }, {
-                devHistoryActivity: '3-4 word phrases',
-                devHistoryYears: <Input type="select"
-                                        name="phraseYears"
-                                        id="phraseYears"
-                                        onChange={this.handleChange.bind(this, "phraseYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="phraseMonths"
-                                         id="phraseMonths"
-                                         onChange={this.handleChange.bind(this, "phraseMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="phraseNa"
-                                     id="phraseNa"
-                                     onChange={this.handleChange.bind(this, "phraseNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Sentences',
-                devHistoryYears: <Input type="select"
-                                        name="sentenceYears"
-                                        id="sentenceYears"
-                                        onChange={this.handleChange.bind(this, "sentenceYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="sentenceMonths"
-                                         id="sentenceMonths"
-                                         onChange={this.handleChange.bind(this, "sentenceMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="sentenceNa"
-                                     id="sentenceNa"
-                                     onChange={this.handleChange.bind(this, "sentenceNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Conversational language',
-                devHistoryYears: <Input type="select"
-                                        name="conversationYears"
-                                        id="conversationYears"
-                                        onChange={this.handleChange.bind(this, "conversationYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="conversationMonths"
-                                         id="conversationMonths"
-                                         onChange={this.handleChange.bind(this, "conversationMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="conversationNa"
-                                     id="conversationNa"
-                                     onChange={this.handleChange.bind(this, "conversationNa")}
-                >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Reading',
-                devHistoryYears: <Input type="select"
-                                        name="readYears"
-                                        id="readYears"
-                                        onChange={this.handleChange.bind(this, "readYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="readMonths"
-                                         id="readMonths"
-                                         onChange={this.handleChange.bind(this, "readMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="readNa"
-                                     id="readNa"
-                                     onChange={this.handleChange.bind(this, "readNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }],
             otherDoctorsColumns: [{
                 Header: 'Name',
                 accessor: 'otherDrName'
@@ -2361,10 +1784,22 @@ class ClientHistoryAndInformation extends Component {
     goBack(event) {
         window.location.reload();
     }
+
     togglePhysicalAssistance(field,e){
         this.setState(state=>({physicalAssistance:!state.physicalAssistance}));
         this.handleChange(field,e);
     }
+    getValue() {
+        console.log("whoop")
+        console.log(this.fields)
+
+        if(this.fields !=null) {
+            return "one";
+        }
+
+        return "two";
+    }
+
     toggleVerbalDirectives(field,e){
         this.setState(state=>({verbalDirectives:!state.verbalDirectives}));
         this.handleChange(field,e);
@@ -2385,6 +1820,8 @@ class ClientHistoryAndInformation extends Component {
         this.setState(state=>({seizures: !state.seizures}));
     }
     handleChange(field, e) {
+        console.log("yeet");
+        console.log(this.props.devHistoryData);
         console.log(field)
         let fields = this.state.fields;
         fields[field] = e.target.value;
@@ -2394,6 +1831,7 @@ class ClientHistoryAndInformation extends Component {
         this.setState({fields: fields});
     }
     handleChangeCheckbox(field,e) {
+
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
         console.log(fields[field]);
@@ -3840,6 +3278,7 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["parentName"] = body.Form[0].parentName == null ? "" : body.Form[0].parentName;
             this.state.fields["date"] = body.Form[0].date == null ? "" : body.Form[0].date;
             this.state.fields["section11Comments"] = body.Form[0].section11comments == null ? "" : body.Form[0].section11comments;
+
         }
         return body;
     };
@@ -4740,6 +4179,27 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection2() {
+        const siblingData = [{
+                name: <input type="text" name="sib1Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Name")} value={this.state.fields["sib1Name"] || ""}/>,
+                age: <input type="text" name="sib1Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Age")}value={this.state.fields["sib1Age"] || ""}/>,
+                gender: <input type="text" name="sib1Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Gender")} value={this.state.fields["sib1Gender"] || ""}/>,
+            }, {
+                name: <input type="text" name="sib2Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib2Name")} value={this.state.fields["sib2Name"] || ""}/>,
+                age: <input type="text" name="sib2Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib2Age")} value={this.state.fields["sib2Age"] || ""}/>,
+                gender: <input type="text" name="sib2Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib2Gender")}value={this.state.fields["sib2Gender"] || ""}/>,
+            }, {
+                name: <input type="text" name="sib3Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib3Name")}value={this.state.fields["sib3Name"] || ""}/>,
+                age: <input type="text" name="sib3Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib3Age")}value={this.state.fields["sib3Age"] || ""}/>,
+                gender: <input type="text" name="sib3Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib3Gender")} value={this.state.fields["sib3Gender"] || ""}/>,
+            }, {
+                name: <input type="text" name="sib4Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib4Name")} value={this.state.fields["sib4Name"] || ""}/>,
+                age: <input type="text" name="sib4Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib4Age")} value={this.state.fields["sib4Age"] || ""}/>,
+                gender: <input type="text" name="sib4Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib4Gender")} value={this.state.fields["sib4Gender"] || ""}/>,
+            }, {
+                name: <input type="text" name="sib5Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib5Name")} value={this.state.fields["sib5Name"] || ""}/>,
+                age: <input type="text" name="sib5Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib5Age")} value={this.state.fields["sib5Age"] || ""}/>,
+                gender: <input type="text" name="sib5Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib5Gender")}value={this.state.fields["sib5Gender"] || ""}/>,
+            }]
         return (
             <fieldset id="/chai/section2">
                 <div className={"section"}>Section 2: Family Information</div>
@@ -5110,9 +4570,10 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
 
                 <Label className="pr-2">Please list siblings in the table below. </Label>
+
                 <ReactTable
                     className={"-striped -highlight"}
-                    data={this.state.siblingData}
+                    data={siblingData}
                     columns={this.state.siblingColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -5298,13 +4759,569 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection4() {
+        const devHistoryData= [{
+                devHistoryActivity:'Crawled on stomach',
+                devHistoryYears: <Input type="select"
+                name="crawlYears"
+                id="crawlYears"
+                accesor={"crawlYears"}
+                onChange={this.handleChange.bind(this, "crawlYears")}
+                                        value = {this.state.fields["crawlYears"]}
+                >
+                <option  value={"zero"}>0</option>
+                <option value="one">1</option>
+                <option value={"two"}>2</option>
+                <option value={"three"}>3</option>
+                <option value = {"four"}>4</option>
+                <option value ="five">5</option>
+                <option value ="six">6</option>
+                <option value={"seven"}>7</option>
+                <option value ="eight">8</option>
+                <option value = "nine">9</option>
+                <option value ="ten">10</option>
+                <option value ="eleven">11</option>
+                <option value = "twelve">12</option>
+                <option value = "thirteen">13</option>
+                <option value = "fourteen">14</option>
+                <option value = "fifteen">15</option>
+                <option value = "sixteen">16</option>
+                <option value = "seventeen">17</option>
+                <option value = "eighteen">18</option>
+                <option value = "nineteem">19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="crawlMonths"
+                id="crawlMonths"
+                onChange={this.handleChange.bind(this, "crawlMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="crawlNa"
+                id="crawlNa"
+                onChange={this.handleChange.bind(this, "crawlNa")}
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>Not Developed</option>
+                <option>Unknown</option>
+                </Input>
+            }, {
+                devHistoryActivity: 'Crept on hands and knees',
+                devHistoryYears: <Input type="select"
+                name="creptYears"
+                id="creptYears"
+                onChange={this.handleChange.bind(this, "creptYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="creptMonths"
+                id="creptMonths"
+                onChange={this.handleChange.bind(this, "creptMonths")}
+                >
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="creptNa"
+                id="creptNa"
+                onChange={this.handleChange.bind(this, "creptNa")}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Developed</option>
+                <option>Unknown</option>
+                </Input>
+            }, {
+                devHistoryActivity: 'Walked',
+                devHistoryYears: <Input type="select"
+                name="walkYears"
+                id="walkYears"
+                onChange={this.handleChange.bind(this, "walkYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="walkMonths"
+                id="walkMonths"
+                onChange={this.handleChange.bind(this, "walkMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="walkNa"
+                id="walkNa"
+                onChange={this.handleChange.bind(this, "walkNa")}
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>Not Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Toilet trained',
+                devHistoryYears: <Input type="select"
+                name="toiletYears"
+                id="toiletYears"
+                onChange={this.handleChange.bind(this, "toiletYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="toiletMonths"
+                id="toiletMonths"
+                onChange={this.handleChange.bind(this, "toiletMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="toiletNa"
+                id="toiletNa"
+                onChange={this.handleChange.bind(this, "toiletNa")}
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'First word',
+                devHistoryYears: <Input type="select"
+                name="wordYears"
+                id="wordYears"
+                onChange={this.handleChange.bind(this, "wordYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="wordMonths"
+                id="wordMonths"
+                onChange={this.handleChange.bind(this, "wordMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="wordNa"
+                id="wordNa"
+                onChange={this.handleChange.bind(this, "wordNa")}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Use of couplets (2 words together)',
+                devHistoryYears: <Input type="select"
+                name="coupletYears"
+                id="coupletYears"
+                onChange={this.handleChange.bind(this, "coupletYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="coupletMonths"
+                id="coupletMonths"
+                onChange={this.handleChange.bind(this, "coupletMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="coupletNa"
+                id="coupletNa"
+                onChange={this.handleChange.bind(this, "coupletNa")}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+                </Input>
+            }, {
+                devHistoryActivity: '3-4 word phrases',
+                devHistoryYears: <Input type="select"
+                name="phraseYears"
+                id="phraseYears"
+                onChange={this.handleChange.bind(this, "phraseYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="phraseMonths"
+                id="phraseMonths"
+                onChange={this.handleChange.bind(this, "phraseMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="phraseNa"
+                id="phraseNa"
+                onChange={this.handleChange.bind(this, "phraseNa")}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Sentences',
+                devHistoryYears: <Input type="select"
+                name="sentenceYears"
+                id="sentenceYears"
+                onChange={this.handleChange.bind(this, "sentenceYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="sentenceMonths"
+                id="sentenceMonths"
+                onChange={this.handleChange.bind(this, "sentenceMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="sentenceNa"
+                id="sentenceNa"
+                onChange={this.handleChange.bind(this, "sentenceNa")}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Conversational language',
+                devHistoryYears: <Input type="select"
+                name="conversationYears"
+                id="conversationYears"
+                onChange={this.handleChange.bind(this, "conversationYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="conversationMonths"
+                id="conversationMonths"
+                onChange={this.handleChange.bind(this, "conversationMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="conversationNa"
+                id="conversationNa"
+                onChange={this.handleChange.bind(this, "conversationNa")}
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Reading',
+                devHistoryYears: <Input type="select"
+                name="readYears"
+                id="readYears"
+                onChange={this.handleChange.bind(this, "readYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="readMonths"
+                id="readMonths"
+                onChange={this.handleChange.bind(this, "readMonths")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="readNa"
+                id="readNa"
+                onChange={this.handleChange.bind(this, "readNa")}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }]
         return (
             <fieldset id="/chai/section4">
                 <div className={"section"}>Section 4: Developmental History</div>
                 <div className={"sub-section"}>Please complete the table below</div>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
-                    data={this.state.devHistoryData}
+                    data={devHistoryData}
                     columns={this.state.devHistoryColumns}
                     defaultPageSize={9}
                     showPagination={false}
