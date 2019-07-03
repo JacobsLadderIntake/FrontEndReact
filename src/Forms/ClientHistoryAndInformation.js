@@ -27,7 +27,7 @@ class ClientHistoryAndInformation extends Component {
 
         this.state = {
             errors: [],
-            fields: [],
+            fields: {"vegetableExcess": false},
             submitButtonPressed: false,
             saveButtonPressed: false,
             siblingColumns: [{
@@ -834,7 +834,6 @@ class ClientHistoryAndInformation extends Component {
         this.setState({fields: fields});
     }
     handleChangeCheckbox(field,e) {
-
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
         console.log(fields[field]);
@@ -4642,7 +4641,7 @@ class ClientHistoryAndInformation extends Component {
                 <option value = "yes">Yes</option>
                 <option value = "no">No</option>
             </Input>
-        }]
+        }];
         const medsData = [{
             medsName: <input type="text" name="med1Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Name")} value={this.state.fields["med1Name"] || ""}/>,
             medsDosage: <input type="text" name="med1Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Dosage")} value={this.state.fields["med1Dosage"] || ""}/>,
@@ -4678,64 +4677,7 @@ class ClientHistoryAndInformation extends Component {
             medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Frequency")} value={this.state.fields["med5Frequency"] || ""}/>,
             medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Purpose")} value={this.state.fields["med5Purpose"] || ""}/>,
             medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5SideEffects")} value={this.state.fields["med5SideEffects"] || ""}/>
-        }]
-        const foodGroupData = [{
-            foodGroup: 'Vegetables',
-            foodExcessive: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableExcess" id="vegetableExcess" className={"checkbox-style"} value={this.state.fields["vegetableExcess"] || ""} onChange={this.handleChange.bind(this, "vegetableExcess")}/></div>,
-            foodDaily: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableDaily" id="vegetableDaily" className={"checkbox-style"} value={this.state.fields["vegetableDaily"] || ""} onChange={this.handleChange.bind(this, "vegetableDaily")}/></div>,
-            foodWeekly: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly" className={"checkbox-style"} value={this.state.fields["vegetableWeekly"] || ""} onChange={this.handleChange.bind(this, "vegetableWeekly")}/></div>,
-            foodRarely: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableRarely" id="vegetableRarely" className={"checkbox-style"} value={this.state.fields["vegetableRarely"] || ""} onChange={this.handleChange.bind(this, "vegetableRarely")}/></div>,
-            foodNever: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableNever" id="vegetableNever" className={"checkbox-style"} value={this.state.fields["vegetableNever"] || ""} onChange={this.handleChange.bind(this, "vegetableNever")}/></div>
-        }, {
-            foodGroup: 'Fruits',
-            foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitExcess" id="fruitExcess" className={"checkbox-style"} value={this.state.fields["fruitExcess"] || ""} onChange={this.handleChange.bind(this, "fruitExcess")}/>  </div>,
-            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitDaily" id="fruitDaily"className={"checkbox-style"} value={this.state.fields["fruitDaily"] || ""} onChange={this.handleChange.bind(this, "fruitDaily")}/>  </div>,
-            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly" className={"checkbox-style"} value={this.state.fields["fruitWeekly"] || ""} onChange={this.handleChange.bind(this, "fruitWeekly")}/>  </div>,
-            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitRarely" id="fruitRarely"className={"checkbox-style"} value={this.state.fields["fruitRarely"] || ""} onChange={this.handleChange.bind(this, "fruitRarely")}/>  </div>,
-            foodNever: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitNever" id="fruitNever"className={"checkbox-style"} value={this.state.fields["fruitNever"] || ""} onChange={this.handleChange.bind(this, "fruitNever")}/>  </div>
-        }, {
-            foodGroup: 'Meats',
-            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatExcess" id="meatExcess" className={"checkbox-style"} value={this.state.fields["meatExcess"] || ""} onChange={this.handleChange.bind(this, "meatExcess")}/></div> ,
-            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="meatDaily" id="meatDaily" className={"checkbox-style"} value={this.state.fields["meatDaily"] || ""} onChange={this.handleChange.bind(this, "meatDaily")}/>  </div>,
-            foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatWeekly" id="meatWeekly" className={"checkbox-style"} value={this.state.fields["meatWeekly"] || ""} onChange={this.handleChange.bind(this, "meatWeekly")}/>  </div>,
-            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatRarely" id="meatRarely" className={"checkbox-style"} value={this.state.fields["meatRarely"] || ""} onChange={this.handleChange.bind(this, "meatRarely")}/>  </div>,
-            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatNever" id="meatNever" className={"checkbox-style"} value={this.state.fields["meatNever"] || ""} onChange={this.handleChange.bind(this, "meatNever")}/>  </div>
-        }, {
-            foodGroup: 'Sugar',
-            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarExcess" id="sugarExcess" className={"checkbox-style"} value={this.state.fields["sugarExcess"] || ""} onChange={this.handleChange.bind(this, "sugarExcess")}/>  </div>,
-            foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarDaily" id="sugarDaily" className={"checkbox-style"} value={this.state.fields["sugarDaily"] || ""} onChange={this.handleChange.bind(this, "sugarDaily")}/>  </div>,
-            foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarWeekly" id="sugarWeekly" className={"checkbox-style"} value={this.state.fields["sugarWeekly"] || ""} onChange={this.handleChange.bind(this, "sugarWeekly")}/>  </div>,
-            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarRarely" id="sugarRarely" className={"checkbox-style"}value={this.state.fields["sugarRarely"] || ""} onChange={this.handleChange.bind(this, "sugarRarely")}/>  </div>,
-            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarNever" id="sugarNever" className={"checkbox-style"} value={this.state.fields["sugarNever"] || ""} onChange={this.handleChange.bind(this, "sugarNever")}/>  </div>
-        }, {
-            foodGroup: 'Artificial Sweetener',
-            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess" className={"checkbox-style"} value={this.state.fields["artSweetenerExcess"] || ""} onChange={this.handleChange.bind(this, "artSweetenerExcess")}/>  </div>,
-            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily" className={"checkbox-style"} value={this.state.fields["artSweetenerDaily"] || ""} onChange={this.handleChange.bind(this, "artSweetenerDaily")}/>  </div>,
-            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly" className={"checkbox-style"} value={this.state.fields["artSweetenerWeekly"] || ""} onChange={this.handleChange.bind(this, "artSweetenerWeekly")}/>  </div>,
-            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely" className={"checkbox-style"} value={this.state.fields["artSweetenerRarely"] || ""} onChange={this.handleChange.bind(this, "artSweetenerRarely")}/>  </div>,
-            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever" className={"checkbox-style"} value={this.state.fields["artSweetenerNever"] || ""} onChange={this.handleChange.bind(this, "artSweetenerNever")}/>  </div>
-        }, {
-            foodGroup: 'Artificial Products',
-            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsExcess" id="artProductsExcess" className={"checkbox-style"} value={this.state.fields["artProductsExcess"] || ""} onChange={this.handleChange.bind(this, "artProductsExcess")}/>  </div>,
-            foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsDaily" id="artProductsDaily" className={"checkbox-style"} value={this.state.fields["artProductsDaily"] || ""} onChange={this.handleChange.bind(this, "artProductsDaily")}/>  </div>,
-            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly" className={"checkbox-style"} value={this.state.fields["artProductsWeekly"] || ""} onChange={this.handleChange.bind(this, "artProductsWeekly")}/>  </div>,
-            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely" className={"checkbox-style"} value={this.state.fields["artProductsRarely"] || ""} onChange={this.handleChange.bind(this, "artProductsRarely")}/>  </div>,
-            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsNever" id="artProductsNever" className={"checkbox-style"} value={this.state.fields["artProductsNever"] || ""} onChange={this.handleChange.bind(this, "artProductsNever")}/>  </div>
-        }, {
-            foodGroup: 'Dairy Products',
-            foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyExcess" id="dairyExcess" className={"checkbox-style"} value={this.state.fields["dairyExcess"] || ""} onChange={this.handleChange.bind(this, "dairyExcess")}/>  </div>,
-            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyDaily" id="dairyDaily" className={"checkbox-style"} value={this.state.fields["dairyDaily"] || ""} onChange={this.handleChange.bind(this, "dairyDaily")}/>  </div>,
-            foodWeekly:<div className={"checkbox-div"}> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly" className={"checkbox-style"} value={this.state.fields["dairyWeekly"] || ""} onChange={this.handleChange.bind(this, "dairyWeekly")}/>  </div>,
-            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyRarely" id="dairyRarely" className={"checkbox-style"} value={this.state.fields["dairyRarely"] || ""} onChange={this.handleChange.bind(this, "dairyRarely")}/>  </div>,
-            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="dairyNever" id="dairyNever"className={"checkbox-style"} value={this.state.fields["dairyNever"] || ""} onChange={this.handleChange.bind(this, "dairyNever")}/>  </div>
-        }, {
-            foodGroup: 'White Flour',
-            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourExcess" id="flourExcess"className={"checkbox-style"} value={this.state.fields["flourExcess"] || ""} onChange={this.handleChange.bind(this, "flourExcess")}/>  </div>,
-            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="flourDaily" id="flourDaily" className={"checkbox-style"} value={this.state.fields["flourDaily"] || ""} onChange={this.handleChange.bind(this, "flourDaily")}/>  </div>,
-            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="flourWeekly" id="flourWeekly" className={"checkbox-style"} value={this.state.fields["flourWeekly"] || ""} onChange={this.handleChange.bind(this, "flourWeekly")}/>  </div>,
-            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourRarely" id="flourRarely" className={"checkbox-style"} value={this.state.fields["flourRarely"] || ""} onChange={this.handleChange.bind(this, "flourRarely")}/>  </div>,
-            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourNever" id="flourNever" className={"checkbox-style"} value={this.state.fields["flourNever"] || ""} onChange={this.handleChange.bind(this, "flourNever")}/>  </div>
-        }]
+        }];
         return (
             <fieldset id="/chai/section5">
                 <div className={"section"}>Section 5: Medical History/Past Therapies</div>
@@ -5187,6 +5129,63 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection6() {
+        const foodGroupData = [{
+            foodGroup: 'Vegetables',
+            foodExcessive: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableExcess" id="vegetableExcess" className={"checkbox-style"} value={this.state.fields["vegetableExcess"] === true} onChange={this.handleChangeCheckbox.bind(this, "vegetableExcess")}/></div>,
+            foodDaily: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableDaily" id="vegetableDaily" className={"checkbox-style"} value={this.state.fields["vegetableDaily"] === true} onChange={this.handleChangeCheckbox.bind(this, "vegetableDaily")}/></div>,
+            foodWeekly: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly" className={"checkbox-style"} value={this.state.fields["vegetableWeekly"] === true} onChange={this.handleChangeCheckbox.bind(this, "vegetableWeekly")}/></div>,
+            foodRarely: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableRarely" id="vegetableRarely" className={"checkbox-style"} value={this.state.fields["vegetableRarely"] === true} onChange={this.handleChangeCheckbox.bind(this, "vegetableRarely")}/></div>,
+            foodNever: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableNever" id="vegetableNever" className={"checkbox-style"} value={this.state.fields["vegetableNever"] === true} onChange={this.handleChangeCheckbox.bind(this, "vegetableNever")}/></div>
+        }, {
+            foodGroup: 'Fruits',
+            foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitExcess" id="fruitExcess" className={"checkbox-style"} value={this.state.fields["fruitExcess"] || ""} onChange={this.handleChangeCheckbox.bind(this, "fruitExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitDaily" id="fruitDaily"className={"checkbox-style"} value={this.state.fields["fruitDaily"] || ""} onChange={this.handleChangeCheckbox.bind(this, "fruitDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly" className={"checkbox-style"} value={this.state.fields["fruitWeekly"] || ""} onChange={this.handleChangeCheckbox.bind(this, "fruitWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitRarely" id="fruitRarely"className={"checkbox-style"} value={this.state.fields["fruitRarely"] || ""} onChange={this.handleChangeCheckbox.bind(this, "fruitRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitNever" id="fruitNever"className={"checkbox-style"} value={this.state.fields["fruitNever"] || ""} onChange={this.handleChangeCheckbox.bind(this, "fruitNever")}/>  </div>
+        }, {
+            foodGroup: 'Meats',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatExcess" id="meatExcess" className={"checkbox-style"} value={this.state.fields["meatExcess"] || ""} onChange={this.handleChangeCheckbox.bind(this, "meatExcess")}/></div> ,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="meatDaily" id="meatDaily" className={"checkbox-style"} value={this.state.fields["meatDaily"] || ""} onChange={this.handleChange.bind(this, "meatDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatWeekly" id="meatWeekly" className={"checkbox-style"} value={this.state.fields["meatWeekly"] || ""} onChange={this.handleChange.bind(this, "meatWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatRarely" id="meatRarely" className={"checkbox-style"} value={this.state.fields["meatRarely"] || ""} onChange={this.handleChange.bind(this, "meatRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatNever" id="meatNever" className={"checkbox-style"} value={this.state.fields["meatNever"] || ""} onChange={this.handleChange.bind(this, "meatNever")}/>  </div>
+        }, {
+            foodGroup: 'Sugar',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarExcess" id="sugarExcess" className={"checkbox-style"} value={this.state.fields["sugarExcess"] || ""} onChange={this.handleChange.bind(this, "sugarExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarDaily" id="sugarDaily" className={"checkbox-style"} value={this.state.fields["sugarDaily"] || ""} onChange={this.handleChange.bind(this, "sugarDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarWeekly" id="sugarWeekly" className={"checkbox-style"} value={this.state.fields["sugarWeekly"] || ""} onChange={this.handleChange.bind(this, "sugarWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarRarely" id="sugarRarely" className={"checkbox-style"}value={this.state.fields["sugarRarely"] || ""} onChange={this.handleChange.bind(this, "sugarRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarNever" id="sugarNever" className={"checkbox-style"} value={this.state.fields["sugarNever"] || ""} onChange={this.handleChange.bind(this, "sugarNever")}/>  </div>
+        }, {
+            foodGroup: 'Artificial Sweetener',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess" className={"checkbox-style"} value={this.state.fields["artSweetenerExcess"] || ""} onChange={this.handleChange.bind(this, "artSweetenerExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily" className={"checkbox-style"} value={this.state.fields["artSweetenerDaily"] || ""} onChange={this.handleChange.bind(this, "artSweetenerDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly" className={"checkbox-style"} value={this.state.fields["artSweetenerWeekly"] || ""} onChange={this.handleChange.bind(this, "artSweetenerWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely" className={"checkbox-style"} value={this.state.fields["artSweetenerRarely"] || ""} onChange={this.handleChange.bind(this, "artSweetenerRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever" className={"checkbox-style"} value={this.state.fields["artSweetenerNever"] || ""} onChange={this.handleChange.bind(this, "artSweetenerNever")}/>  </div>
+        }, {
+            foodGroup: 'Artificial Products',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsExcess" id="artProductsExcess" className={"checkbox-style"} value={this.state.fields["artProductsExcess"] || ""} onChange={this.handleChange.bind(this, "artProductsExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsDaily" id="artProductsDaily" className={"checkbox-style"} value={this.state.fields["artProductsDaily"] || ""} onChange={this.handleChange.bind(this, "artProductsDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly" className={"checkbox-style"} value={this.state.fields["artProductsWeekly"] || ""} onChange={this.handleChange.bind(this, "artProductsWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely" className={"checkbox-style"} value={this.state.fields["artProductsRarely"] || ""} onChange={this.handleChange.bind(this, "artProductsRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsNever" id="artProductsNever" className={"checkbox-style"} value={this.state.fields["artProductsNever"] || ""} onChange={this.handleChange.bind(this, "artProductsNever")}/>  </div>
+        }, {
+            foodGroup: 'Dairy Products',
+            foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyExcess" id="dairyExcess" className={"checkbox-style"} value={this.state.fields["dairyExcess"] || ""} onChange={this.handleChange.bind(this, "dairyExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyDaily" id="dairyDaily" className={"checkbox-style"} value={this.state.fields["dairyDaily"] || ""} onChange={this.handleChange.bind(this, "dairyDaily")}/>  </div>,
+            foodWeekly:<div className={"checkbox-div"}> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly" className={"checkbox-style"} value={this.state.fields["dairyWeekly"] || ""} onChange={this.handleChange.bind(this, "dairyWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyRarely" id="dairyRarely" className={"checkbox-style"} value={this.state.fields["dairyRarely"] || ""} onChange={this.handleChange.bind(this, "dairyRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="dairyNever" id="dairyNever"className={"checkbox-style"} value={this.state.fields["dairyNever"] || ""} onChange={this.handleChange.bind(this, "dairyNever")}/>  </div>
+        }, {
+            foodGroup: 'White Flour',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourExcess" id="flourExcess"className={"checkbox-style"} value={this.state.fields["flourExcess"] || ""} onChange={this.handleChange.bind(this, "flourExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="flourDaily" id="flourDaily" className={"checkbox-style"} value={this.state.fields["flourDaily"] || ""} onChange={this.handleChange.bind(this, "flourDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="flourWeekly" id="flourWeekly" className={"checkbox-style"} value={this.state.fields["flourWeekly"] || ""} onChange={this.handleChange.bind(this, "flourWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourRarely" id="flourRarely" className={"checkbox-style"} value={this.state.fields["flourRarely"] || ""} onChange={this.handleChange.bind(this, "flourRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourNever" id="flourNever" className={"checkbox-style"} value={this.state.fields["flourNever"] || ""} onChange={this.handleChange.bind(this, "flourNever")}/>  </div>
+        }]
         const physicalMotorData = [{
             physicalMotor: 'Low muscle tone',
             physicalMotorYN: <Input type="select"
