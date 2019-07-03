@@ -40,28 +40,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Gender',
                 accessor: 'gender'
             }],
-            siblingData: [{
-                name: <input type="text" name="sib1Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Name")}
-                />,
-                age: <input type="text" name="sib1Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib1Gender" className={"tableInputField"}/>,
-            }, {
-                name: <input type="text" name="sib2Name" className={"tableInputField"}/>,
-                age: <input type="text" name="sib2Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib2Gender" className={"tableInputField"}/>,
-            }, {
-                name: <input type="text" name="sib3Name" className={"tableInputField"}/>,
-                age: <input type="text" name="sib3Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib3Gender" className={"tableInputField"}/>,
-            }, {
-                name: <input type="text" name="sib4Name" className={"tableInputField"}/>,
-                age: <input type="text" name="sib4Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib4Gender" className={"tableInputField"}/>,
-            }, {
-                name: <input type="text" name="sib5Name" className={"tableInputField"}/>,
-                age: <input type="text" name="sib5Age" className={"tableInputField"}/>,
-                gender: <input type="text" name="sib5Gender" className={"tableInputField"}/>,
-            }],
+
 
             devHistoryColumns: [{
                 Header: 'Activity',
@@ -76,563 +55,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Developed?',
                 accessor: 'devHistoryNa'
             }],
-            devHistoryData: [{
-                devHistoryActivity:'Crawled on stomach',
-                devHistoryYears: <Input type="select"
-                                        name="crawlYears"
-                                        id="crawlYears"
-                                        onChange={this.handleChange.bind(this, "crawlYears")}
-                                        accessor = "crawlYears"
-                                        value={"nine"}
 
-                                        >
-                    <option  value={"zero"}>0</option>
-                    <option value="one">1</option>
-                    <option value={"two"}>2</option>
-                    <option value={"three"}>3</option>
-                    <option value = {"four"}>4</option>
-                    <option value ="five">5</option>
-                    <option value ="six">6</option>
-                    <option value={"seven"}>7</option>
-                    <option value ="eight">8</option>
-                    <option value = "nine">9</option>
-                    <option value ="10">10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="crawlMonths"
-                                         id="crawlMonths"
-                                         onChange={this.handleChange.bind(this, "crawlMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                           name="crawlNa"
-                           id="crawlNa"
-                                     onChange={this.handleChange.bind(this, "crawlNa")}
-                >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Developed</option>
-                    <option>Unknown</option>
-                </Input>
-            }, {
-                devHistoryActivity: 'Crept on hands and knees',
-                devHistoryYears: <Input type="select"
-                                        name="creptYears"
-                                        id="creptYears"
-                                        onChange={this.handleChange.bind(this, "creptYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                               name="creptMonths"
-                               id="creptMonths"
-                                         onChange={this.handleChange.bind(this, "creptMonths")}
-                >
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="creptNa"
-                                     id="creptNa"
-                                     onChange={this.handleChange.bind(this, "creptNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Developed</option>
-                    <option>Unknown</option>
-                </Input>
-            }, {
-                devHistoryActivity: 'Walked',
-                devHistoryYears: <Input type="select"
-                                        name="walkYears"
-                                        id="walkYears"
-                                        onChange={this.handleChange.bind(this, "walkYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="walkMonths"
-                                         id="walkMonths"
-                                         onChange={this.handleChange.bind(this, "walkMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="walkNa"
-                                     id="walkNa"
-                                     onChange={this.handleChange.bind(this, "walkNa")}
-                >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Toilet trained',
-                devHistoryYears: <Input type="select"
-                                        name="toiletYears"
-                                        id="toiletYears"
-                                        onChange={this.handleChange.bind(this, "toiletYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="toiletMonths"
-                                         id="toiletMonths"
-                                         onChange={this.handleChange.bind(this, "toiletMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="toiletNa"
-                                     id="toiletNa"
-                                     onChange={this.handleChange.bind(this, "toiletNa")}
-                >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'First word',
-                devHistoryYears: <Input type="select"
-                                        name="wordYears"
-                                        id="wordYears"
-                                        onChange={this.handleChange.bind(this, "wordYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="wordMonths"
-                                         id="wordMonths"
-                                         onChange={this.handleChange.bind(this, "wordMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="wordNa"
-                                     id="wordNa"
-                                     onChange={this.handleChange.bind(this, "wordNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Use of couplets (2 words together)',
-                devHistoryYears: <Input type="select"
-                                        name="coupletYears"
-                                        id="coupletYears"
-                                        onChange={this.handleChange.bind(this, "coupletYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="coupletMonths"
-                                         id="coupletMonths"
-                                         onChange={this.handleChange.bind(this, "coupletMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="coupletNa"
-                                     id="coupletNa"
-                                     onChange={this.handleChange.bind(this, "coupletNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                        <option>Unknown</option>
-                </Input>
-            }, {
-                devHistoryActivity: '3-4 word phrases',
-                devHistoryYears: <Input type="select"
-                                        name="phraseYears"
-                                        id="phraseYears"
-                                        onChange={this.handleChange.bind(this, "phraseYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="phraseMonths"
-                                         id="phraseMonths"
-                                         onChange={this.handleChange.bind(this, "phraseMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="phraseNa"
-                                     id="phraseNa"
-                                     onChange={this.handleChange.bind(this, "phraseNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Sentences',
-                devHistoryYears: <Input type="select"
-                                        name="sentenceYears"
-                                        id="sentenceYears"
-                                        onChange={this.handleChange.bind(this, "sentenceYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="sentenceMonths"
-                                         id="sentenceMonths"
-                                         onChange={this.handleChange.bind(this, "sentenceMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="sentenceNa"
-                                     id="sentenceNa"
-                                     onChange={this.handleChange.bind(this, "sentenceNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Conversational language',
-                devHistoryYears: <Input type="select"
-                                        name="conversationYears"
-                                        id="conversationYears"
-                                        onChange={this.handleChange.bind(this, "conversationYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="conversationMonths"
-                                         id="conversationMonths"
-                                         onChange={this.handleChange.bind(this, "conversationMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="conversationNa"
-                                     id="conversationNa"
-                                     onChange={this.handleChange.bind(this, "conversationNa")}
-                >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }, {
-                devHistoryActivity: 'Reading',
-                devHistoryYears: <Input type="select"
-                                        name="readYears"
-                                        id="readYears"
-                                        onChange={this.handleChange.bind(this, "readYears")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19+</option>
-                </Input>,
-                devHistoryMonths: <Input type="select"
-                                         name="readMonths"
-                                         id="readMonths"
-                                         onChange={this.handleChange.bind(this, "readMonths")}>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </Input>,
-                devHistoryNa: <Input type="select"
-                                     name="readNa"
-                                     id="readNa"
-                                     onChange={this.handleChange.bind(this, "readNa")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>Not Yet Developed</option>
-                    <option>Unknown</option>
-
-                </Input>
-            }],
             otherDoctorsColumns: [{
                 Header: 'Name',
                 accessor: 'otherDrName'
@@ -645,32 +68,6 @@ class ClientHistoryAndInformation extends Component {
             }, {
                 Header: 'Schedule of Service (Date and Time)',
                 accessor: 'otherDrSched'
-            }],
-            otherDoctorsData: [{
-                otherDrName: <input type="text" name="doc1Name" className={"tableInputField"}/>,
-                otherDrSpecialty: <input type="text" name="doc1Specialty"className={"tableInputField"}/>,
-                otherDrPhone: <input type="text" name="doc1Phone"className={"tableInputField"}/>,
-                otherDrSched: <input type="text" name="doc1Sched"className={"tableInputField"}/>
-            }, {
-                otherDrName: <input type="text" name="doc2Name"className={"tableInputField"}/>,
-                otherDrSpecialty: <input type="text" name="doc2Specialty"className={"tableInputField"}/>,
-                otherDrPhone: <input type="text" name="doc2Phone" className={"tableInputField"}/>,
-                otherDrSched: <input type="text" name="doc2Sched"className={"tableInputField"}/>
-            }, {
-                otherDrName: <input type="text" name="doc3Name"className={"tableInputField"}/>,
-                otherDrSpecialty: <input type="text" name="doc3Specialty"className={"tableInputField"}/>,
-                otherDrPhone: <input type="text" name="doc3Phone"className={"tableInputField"}/>,
-                otherDrSched: <input type="text" name="doc3Sched"className={"tableInputField"}/>
-            }, {
-                otherDrName: <input type="text" name="doc4Name"className={"tableInputField"}/>,
-                otherDrSpecialty: <input type="text" name="doc4Specialty"className={"tableInputField"}/>,
-                otherDrPhone: <input type="text" name="doc4Phone"className={"tableInputField"}/>,
-                otherDrSched: <input type="text" name="doc4Sched"className={"tableInputField"}/>
-            }, {
-                otherDrName: <input type="text" name="doc5Name"className={"tableInputField"}/>,
-                otherDrSpecialty: <input type="text" name="doc5Specialty"className={"tableInputField"}/>,
-                otherDrPhone: <input type="text" name="doc5Phone"className={"tableInputField"}/>,
-                otherDrSched: <input type="text" name="doc5Sched"className={"tableInputField"}/>
             }],
             otherSpecialistsColumns: [{
             Header: 'Name',
@@ -685,32 +82,7 @@ class ClientHistoryAndInformation extends Component {
             Header: 'Diagnosis',
             accessor: 'specialDrSched'
         }],
-            specialDoctorsData: [{
-            specialDrName: <input type="text" name="specialDoc1Name" className={"tableInputField"}/>,
-            specialDrSpecialty: <input type="text" name="specialDoc1Specialty"className={"tableInputField"}/>,
-            specialDrPhone: <input type="text" name="specialDoc1Phone"className={"tableInputField"}/>,
-            specialDrSched: <input type="text" name="specialDoc1Sched"className={"tableInputField"}/>
-        },{
-            specialDrName: <input type="text" name="specialDoc2Name" className={"tableInputField"}/>,
-            specialDrSpecialty: <input type="text" name="specialDoc2Specialty"className={"tableInputField"}/>,
-            specialDrPhone: <input type="text" name="specialDoc2Phone"className={"tableInputField"}/>,
-            specialDrSched: <input type="text" name="specialDoc2Sched"className={"tableInputField"}/>
-        },{
-            specialDrName: <input type="text" name="specialDoc3Name" className={"tableInputField"}/>,
-            specialDrSpecialty: <input type="text" name="specialDoc3Specialty"className={"tableInputField"}/>,
-            specialDrPhone: <input type="text" name="specialDoc3Phone"className={"tableInputField"}/>,
-            specialDrSched: <input type="text" name="specialDoc3Sched"className={"tableInputField"}/>
-        },{
-            specialDrName: <input type="text" name="specialDoc4Name" className={"tableInputField"}/>,
-            specialDrSpecialty: <input type="text" name="specialDoc4Specialty"className={"tableInputField"}/>,
-            specialDrPhone: <input type="text" name="specialDoc4Phone"className={"tableInputField"}/>,
-            specialDrSched: <input type="text" name="specialDoc4Sched"className={"tableInputField"}/>
-        },{
-            specialDrName: <input type="text" name="specialDoc5Name" className={"tableInputField"}/>,
-            specialDrSpecialty: <input type="text" name="specialDoc5Specialty"className={"tableInputField"}/>,
-            specialDrPhone: <input type="text" name="specialDoc5Phone"className={"tableInputField"}/>,
-            specialDrSched: <input type="text" name="specialDoc5Sched"className={"tableInputField"}/>
-        }],
+
             otherProgramsColumns: [{
                 Header: 'School/Program Name',
                 accessor: 'programName'
@@ -727,119 +99,13 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'May we contact the primary provider?',
                 accessor: 'contactPermission'
             }],
-            otherProgramsData: [{
-                programName: <input type="text" name="program1name"className={"tableInputField"}/>,
-                startDate: <input type="text" name="startdate1"className={"tableInputField"}/>,
-                provider: <input type="text" name="provider1"className={"tableInputField"}/>,
-                programPhoneNumber: <input type="tel" name="phonenumber1"className={"tableInputField"}/>,
-                contactPermission: <Input type="select"
-                                          name="contactpermission1"
-                                          id="contactpermission1">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                programName: <input type="text" name="program2name"className={"tableInputField"}/>,
-                startDate: <input type="text" name="startdate2"className={"tableInputField"}/>,
-                provider: <input type="text" name="provider2"className={"tableInputField"}/>,
-                programPhoneNumber: <input type="tel" name="phonenumber2"className={"tableInputField"}/>,
-                contactPermission: <Input type="select"
-                                          name="contactpermission2"
-                                          id="contactpermission2">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                programName: <input type="text" name="program3name"className={"tableInputField"}/>,
-                startDate: <input type="text" name="startdate3"className={"tableInputField"}/>,
-                provider: <input type="text" name="provider3" className={"tableInputField"}/>,
-                programPhoneNumber: <input type="tel" name="phonenumber3" className={"tableInputField"}/>,
-                contactPermission: <Input type="select"
-                                          name="contactpermission3"
-                                          id="contactpermission3">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                programName: <input type="text" name="program4name" className={"tableInputField"}/>,
-                startDate: <input type="text" name="startdate4" className={"tableInputField"}/>,
-                provider: <input type="text" name="provider4" className={"tableInputField"}/>,
-                programPhoneNumber: <input type="tel" name="phonenumber4" className={"tableInputField"}/>,
-                contactPermission: <Input type="select"
-                                          name="contactpermission4"
-                                          id="contactpermission4">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                programName: <input type="text" name="program5name" className={"tableInputField"}/>,
-                startDate: <input type="text" name="startdate5" className={"tableInputField"}/>,
-                provider: <input type="text" name="provider5" className={"tableInputField"}/>,
-                programPhoneNumber: <input type="tel" name="phonenumber5" className={"tableInputField"}/>,
-                contactPermission: <Input type="select"
-                                          name="contactpermission5"
-                                          id="contactpermission5">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }],
+
             medicalConditionsColumns: [{
                 Header: 'Medical Condition',
                 accessor: 'medCondition'
             }, {
                 Header: ' ',
                 accessor: 'medConditionYN'
-            }],
-            medicalConditionsData: [{
-                medCondition: 'Epilepsy/Seizures',
-                medConditionYN: <Input type="select"
-                                       name="epilepsy"
-                                       id="epilepsy">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                medCondition: 'Diabetes',
-                medConditionYN: <Input type="select"
-                                       name="diabetes"
-                                       id="diabetes">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                medCondition: 'Asthma',
-                medConditionYN: <Input type="select"
-                                       name="asthma"
-                                       id="asthma">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                medCondition: 'Uses an Epi-Pen',
-                medConditionYN: <Input type="select"
-                                       name="epipen"
-                                       id="epipen">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                medCondition: 'Other (please list in the box below)',
-                medConditionYN: <Input type="select"
-                                       name="medConditionOther"
-                                       id="medConditionOther">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
             }],
             suppliesColumns: [{
                 Header: 'Supplies/Equipment',
@@ -848,88 +114,7 @@ class ClientHistoryAndInformation extends Component {
                 Header: '',
                 accessor: 'suppliesYN'
             }],
-            suppliesData: [{
-                supplies: 'Braces/Splints',
-                suppliesYN: <Input type="select"
-                                   name="brace"
-                                   id="brace"
-                                   onChange={this.handleChange.bind(this, "brace")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                supplies: 'Feeding Support & Supplies',
-                suppliesYN: <Input type="select"
-                                   name="feedSupport"
-                                   id="feedSupport"
-                                   onChange={this.handleChange.bind(this, "feedSupport")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                supplies: 'Toileting Equipment',
-                suppliesYN: <Input type="select"
-                                   name="toiletEquip"
-                                   id="toiletEquip"
-                                   onChange={this.handleChange.bind(this, "toiletEquip")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                supplies: 'Mobility Equipment',
-                suppliesYN: <Input type="select"
-                                   name="mobilityEquip"
-                                   id="mobilityEquip"
-                                   onChange={this.handleChange.bind(this, "mobilityEquip")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                supplies: 'Communication Equipment',
-                suppliesYN: <Input type="select"
-                                   name="communicationEquip"
-                                   id="communicationEquip"
-                                   onChange={this.handleChange.bind(this, "communicationEquip")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                supplies: 'Oxygen Tank',
-                suppliesYN: <Input type="select"
-                                   name="oxygenTank"
-                                   id="oxygenTank"
-                                   onChange={this.handleChange.bind(this, "oxygenTank")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                supplies: 'Hearing Device',
-                suppliesYN: <Input type="select"
-                                   name="hearingDevice"
-                                   id="hearingDevice"
-                                   onChange={this.handleChange.bind(this, "hearingDevice")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                supplies: 'Other',
-                suppliesYN: <Input type="select"
-                                   name="otherSupply"
-                                   id="otherSupply"
-                                   onChange={this.handleChange.bind(this, "otherSupply")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }],
-            medsColumns: [{
+             medsColumns: [{
                 Header: 'Name',
                 accessor: 'medsName'
             }, {
@@ -948,42 +133,6 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Potential Side Effects',
                 accessor: 'medsSideEffects'
             }],
-            medsData: [{
-                medsName: <input type="text" name="med1Name" className={"tableInputField"}/>,
-                medsDosage: <input type="text" name="med1Dosage" className={"tableInputField"}/>,
-                medsTimeGiven: <input type="text" name="med1TimeGiven" className={"tableInputField"}/>,
-                medsFrequency: <input type="text" name="med1Frequency" className={"tableInputField"}/>,
-                medsPurpose: <input type="text" name="med1Purpose" className={"tableInputField"}/>,
-                medsSideEffects: <input type="text" name="med1SideEffects" className={"tableInputField"}/>
-            }, {
-                medsName: <input type="text" name="med2Name" className={"tableInputField"}/>,
-                medsDosage: <input type="text" name="med2Dosage" className={"tableInputField"}/>,
-                medsTimeGiven: <input type="text" name="med2TimeGiven" className={"tableInputField"}/>,
-                medsFrequency: <input type="text" name="med2Frequency" className={"tableInputField"}/>,
-                medsPurpose: <input type="text" name="med2Purpose" className={"tableInputField"}/>,
-                medsSideEffects: <input type="text" name="med2SideEffects" className={"tableInputField"}/>
-            }, {
-                medsName: <input type="text" name="med3Name" className={"tableInputField"}/>,
-                medsDosage: <input type="text" name="med3Dosage" className={"tableInputField"}/>,
-                medsTimeGiven: <input type="text" name="med3TimeGiven" className={"tableInputField"}/>,
-                medsFrequency: <input type="text" name="med3Frequency" className={"tableInputField"}/>,
-                medsPurpose: <input type="text" name="med3Purpose" className={"tableInputField"}/>,
-                medsSideEffects: <input type="text" name="med3SideEffects" className={"tableInputField"}/>
-            }, {
-                medsName: <input type="text" name="med4Name" className={"tableInputField"}/>,
-                medsDosage: <input type="text" name="med4Dosage" className={"tableInputField"}/>,
-                medsTimeGiven: <input type="text" name="med4TimeGiven" className={"tableInputField"}/>,
-                medsFrequency: <input type="text" name="med4Frequency" className={"tableInputField"}/>,
-                medsPurpose: <input type="text" name="med4Purpose" className={"tableInputField"}/>,
-                medsSideEffects: <input type="text" name="med4SideEffects" className={"tableInputField"}/>
-            }, {
-                medsName: <input type="text" name="med5Name" className={"tableInputField"}/>,
-                medsDosage: <input type="text" name="med5Dosage" className={"tableInputField"}/>,
-                medsTimeGiven: <input type="text" name="med5TimeGiven" className={"tableInputField"}/>,
-                medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"}/>,
-                medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"}/>,
-                medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"}/>
-            }],
             testingColumns: [{
                 Header: 'Date',
                 accessor: 'testDate'
@@ -996,36 +145,6 @@ class ClientHistoryAndInformation extends Component {
             }, {
                 Header: 'Recommendations',
                 accessor: 'testReco'
-            }],
-            testingData: [{
-                testDate: <input type="text" name="test1Date" className={"tableInputField"}/>,
-                testExaminer: <input type="text" name="test1Examiner"className={"tableInputField"}/>,
-                testDiagnosis: <input type="text" name="test1Diagnosis" className={"tableInputField"}/>,
-                testReco: <input type="text" name="test1Reco" className={"tableInputField"}/>,
-
-            }, {
-                testDate: <input type="text" name="test2Date" className={"tableInputField"}/>,
-                testExaminer: <input type="text" name="test2Examiner" className={"tableInputField"}/>,
-                testDiagnosis: <input type="text" name="test2Diagnosis" className={"tableInputField"}/>,
-                testReco: <input type="text" name="test2Reco" className={"tableInputField"}/>,
-
-            }, {
-                testDate: <input type="text" name="test3Date" className={"tableInputField"}/>,
-                testExaminer: <input type="text" name="test3Examiner" className={"tableInputField"}/>,
-                testDiagnosis: <input type="text" name="test3Diagnosis" className={"tableInputField"}/>,
-                testReco: <input type="text" name="test3Reco" className={"tableInputField"}/>,
-            }, {
-                testDate: <input type="text" name="test4Date" className={"tableInputField"}/>,
-                testExaminer: <input type="text" name="test4Examiner" className={"tableInputField"}/>,
-                testDiagnosis: <input type="text" name="test4Diagnosis" className={"tableInputField"}/>,
-                testReco: <input type="text" name="test4Reco" className={"tableInputField"}/>,
-
-            }, {
-                testDate: <input type="text" name="test5Date" className={"tableInputField"}/>,
-                testExaminer: <input type="text" name="test5Examiner" className={"tableInputField"}/>,
-                testDiagnosis: <input type="text" name="test5Diagnosis" className={"tableInputField"}/>,
-                testReco: <input type="text" name="test5Reco" className={"tableInputField"}/>,
-
             }],
             foodGroupColumns: [{
                 Header: 'Food Group',
@@ -1046,180 +165,12 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Never',
                 accessor: 'foodNever'
             }],
-            foodGroupData: [{
-                foodGroup: 'Vegetables',
-                foodExcessive: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableExcess" id="vegetableExcess" className={"checkbox-style"}/></div>,
-                foodDaily: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableDaily" id="vegetableDaily" className={"checkbox-style"}/></div>,
-                foodWeekly: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly" className={"checkbox-style"}/></div>,
-                foodRarely: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableRarely" id="vegetableRarely" className={"checkbox-style"}/></div>,
-                foodNever: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableNever" id="vegetableNever" className={"checkbox-style"}/></div>
-            }, {
-                foodGroup: 'Fruits',
-                foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitExcess" id="fruitExcess" className={"checkbox-style"}/>  </div>,
-                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitDaily" id="fruitDaily"className={"checkbox-style"}/>  </div>,
-                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly" className={"checkbox-style"}/>  </div>,
-                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitRarely" id="fruitRarely"className={"checkbox-style"}/>  </div>,
-                foodNever: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitNever" id="fruitNever"className={"checkbox-style"}/>  </div>
-            }, {
-                foodGroup: 'Meats',
-                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatExcess" id="meatExcess" className={"checkbox-style"}/></div> ,
-                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="meatDaily" id="meatDaily" className={"checkbox-style"}/>  </div>,
-                foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatWeekly" id="meatWeekly" className={"checkbox-style"}/>  </div>,
-                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatRarely" id="meatRarely" className={"checkbox-style"}/>  </div>,
-                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatNever" id="meatNever" className={"checkbox-style"}/>  </div>
-            }, {
-                foodGroup: 'Sugar',
-                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarExcess" id="sugarExcess" className={"checkbox-style"}/>  </div>,
-                foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarDaily" id="sugarDaily" className={"checkbox-style"}/>  </div>,
-                foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarWeekly" id="sugarWeekly" className={"checkbox-style"}/>  </div>,
-                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarRarely" id="sugarRarely" className={"checkbox-style"}/>  </div>,
-                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarNever" id="sugarNever" className={"checkbox-style"}/>  </div>
-            }, {
-                foodGroup: 'Artificial Sweetener',
-                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess" className={"checkbox-style"}/>  </div>,
-                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily" className={"checkbox-style"}/>  </div>,
-                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly" className={"checkbox-style"}/>  </div>,
-                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely" className={"checkbox-style"}/>  </div>,
-                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever" className={"checkbox-style"}/>  </div>
-            }, {
-                foodGroup: 'Artificial Products',
-                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsExcess" id="artProductsExcess" className={"checkbox-style"}/>  </div>,
-                foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsDaily" id="artProductsDaily" className={"checkbox-style"}/>  </div>,
-                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly" className={"checkbox-style"}/>  </div>,
-                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely" className={"checkbox-style"}/>  </div>,
-                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsNever" id="artProductsNever" className={"checkbox-style"}/>  </div>
-            }, {
-                foodGroup: 'Dairy Products',
-                foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyExcess" id="dairyExcess" className={"checkbox-style"}/>  </div>,
-                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyDaily" id="dairyDaily" className={"checkbox-style"}/>  </div>,
-                foodWeekly:<div className={"checkbox-div"}> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly" className={"checkbox-style"}/>  </div>,
-                foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyRarely" id="dairyRarely" className={"checkbox-style"}/>  </div>,
-                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="dairyNever" id="dairyNever"className={"checkbox-style"}/>  </div>
-            }, {
-                foodGroup: 'White Flour',
-                foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourExcess" id="flourExcess"className={"checkbox-style"}/>  </div>,
-                foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="flourDaily" id="flourDaily" className={"checkbox-style"}/>  </div>,
-                foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="flourWeekly" id="flourWeekly" className={"checkbox-style"}/>  </div>,
-                foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourRarely" id="flourRarely" className={"checkbox-style"}/>  </div>,
-                foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourNever" id="flourNever" className={"checkbox-style"}/>  </div>
-            }],
             physicalMotorColumns: [{
                 Header: '',
                 accessor: 'physicalMotor'
             }, {
                 Header: '',
                 accessor: 'physicalMotorYN'
-            }],
-            physicalMotorData: [{
-                physicalMotor: 'Low muscle tone',
-                physicalMotorYN: <Input type="select"
-                                        name="lowMuscleTone"
-                                        id="lowMuscleTone"
-                                        onChange={this.handleChange.bind(this, "lowMuscleTone")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'High muscle tone',
-                physicalMotorYN: <Input type="select"
-                                        name="highMuscleTone"
-                                        id="highMuscleTone"
-                                        onChange={this.handleChange.bind(this, "highMuscleTone")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Coordination challenges',
-                physicalMotorYN: <Input type="select"
-                                        name="coordination"
-                                        id="coordination"
-                                        onChange={this.handleChange.bind(this, "coordination")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Crawling challenges',
-                physicalMotorYN: <Input type="select"
-                                        name="crawling"
-                                        id="crawling"
-                                        onChange={this.handleChange.bind(this, "crawling")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Walking challenges',
-                physicalMotorYN: <Input type="select"
-                                        name="walking"
-                                        id="walking"
-                                        onChange={this.handleChange.bind(this, "walking")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Running challenges',
-                physicalMotorYN: <Input type="select"
-                                        name="running"
-                                        id="running"
-                                        onChange={this.handleChange.bind(this, "running")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Athetoid movement',
-                physicalMotorYN: <Input type="select"
-                                        name="athetoid"
-                                        id="athetoid"
-                                        onChange={this.handleChange.bind(this, "athetoid")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Ataxic',
-                physicalMotorYN: <Input type="select"
-                                        name="ataxic"
-                                        id="ataxic"
-                                        onChange={this.handleChange.bind(this, "ataxic")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Weak',
-                physicalMotorYN: <Input type="select"
-                                        name="weak"
-                                        id="weak"
-                                        onChange={this.handleChange.bind(this, "weak")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                physicalMotor: 'Balance challenges',
-                physicalMotorYN: <Input type="select"
-                                        name="balance"
-                                        id="balance"
-                                        onChange={this.handleChange.bind(this, "balance")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
             }],
             handPreferenceColumns: [{
                 Header: 'Activity',
@@ -1228,67 +179,6 @@ class ClientHistoryAndInformation extends Component {
                 Header: 'Hand Preference',
                 accessor: 'handPreference'
             }],
-            handPreferenceData: [{
-                activityHandPreference: "Writing",
-                handPreference: <Input type="select"
-                                       name="handPreference1"
-                                       id="handPreference1"
-                                       onChange={this.handleChange.bind(this, "handPreference1")}>
-                    <option></option>
-                    <option>Unknown</option>
-                    <option>Right</option>
-                    <option>Left</option>
-                    <option>Mixed</option>
-                </Input>
-            }, {
-                activityHandPreference: "Eating",
-                handPreference: <Input type="select"
-                                       name="handPreference2"
-                                       id="handPreference2"
-                                       onChange={this.handleChange.bind(this, "handPreference2")}>
-                    <option></option>
-                    <option>Unknown</option>
-                    <option>Right</option>
-                    <option>Left</option>
-                    <option>Mixed</option>
-                </Input>
-            }, {
-                activityHandPreference: "Throwing",
-                handPreference: <Input type="select"
-                                       name="handPreference3"
-                                       id="handPreference3"
-                                       onChange={this.handleChange.bind(this, "handPreference3")}>
-                    <option></option>
-                    <option>Unknown</option>
-                    <option>Right</option>
-                    <option>Left</option>
-                    <option>Mixed</option>
-                </Input>
-            }, {
-                activityHandPreference: "Brushing Teeth",
-                handPreference: <Input type="select"
-                                       name="handPreference4"
-                                       id="handPreference4"
-                                       onChange={this.handleChange.bind(this, "handPreference4")}>
-                    <option></option>
-                    <option>Unknown</option>
-                    <option>Right</option>
-                    <option>Left</option>
-                    <option>Mixed</option>
-                </Input>
-            }, {
-                activityHandPreference: "Combing Hair",
-                handPreference: <Input type="select"
-                                       name="handPreference5"
-                                       id="handPreference5"
-                                       onChange={this.handleChange.bind(this, "handPreference5")}>
-                    <option></option>
-                    <option>Unknown</option>
-                    <option>Right</option>
-                    <option>Left</option>
-                    <option>Mixed</option>
-                </Input>
-            }],
             skillsColumns: [{
                 Header: '',
                 accessor: 'skill'
@@ -1296,159 +186,12 @@ class ClientHistoryAndInformation extends Component {
                 Header: '',
                 accessor: 'checkApplied'
             }],
-            skillsData: [{
-                skill: "Poor Pencil Grip",
-                checkApplied: <Input type="select"
-                                     name="skill1"
-                                     id="skill1"
-                                     onChange={this.handleChange.bind(this, "skill1")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Sloppy Writing",
-                checkApplied: <Input type="select"
-                                     name="skill2"
-                                     id="skill2"
-                                     onChange={this.handleChange.bind(this, "skill2")}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Letter Reversals",
-                checkApplied: <Input type="select"
-                                     name="skill3"
-                                     id="skill3"
-                                     onChange={this.handleChange.bind(this, "skill3")}>
-                    >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Right/Left Confusion",
-                checkApplied: <Input type="select"
-                                     name="skill4"
-                                     id="skill4"
-                                     onChange={this.handleChange.bind(this, "skill4")}>
-                    >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Poor reading ability",
-                checkApplied: <Input type="select"
-                                     name="skill5"
-                                     id="skill5"
-                                     onChange={this.handleChange.bind(this, "skill5")}>
-                    >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Math Computation Challenges",
-                checkApplied: <Input type="select"
-                                     name="skill6"
-                                     id="skill6"
-                                     onChange={this.handleChange.bind(this, "skill6")}>
-                    >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Math Concept Challenges",
-                checkApplied: <Input type="select"
-                                     name="skill7"
-                                     id="skill7"
-                                     onChange={this.handleChange.bind(this, "skill7")}>
-                    >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Math Word Problem Challenges",
-                checkApplied: <Input type="select"
-                                     name="skill8"
-                                     id="skill8"
-                                     onChange={this.handleChange.bind(this, "skill8")}>
-                    >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Math Logic Challenges",
-                checkApplied: <Input type="select"
-                                     name="skill9"
-                                     id="skill9"
-                                     onChange={this.handleChange.bind(this, "skill9")}>
-                    >
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-                </Input>
-            }, {
-                skill: "Other related Challenges",
-                checkApplied: <Input type="text"
-                                     name="skill10"
-                                     id="skill10"
-                                     placeholder="Please Explain">
-                </Input>
-            }],
             communicationProblemsColumns: [{
                 Header: 'Other Communication Issues',
                 accessor: 'communicationIssue'
             }, {
                 Header: '',
                 accessor: 'communicationResponse'
-            }],
-            communicationProblemsData: [{
-                communicationIssue: "Articulation Problems",
-                communicationResponse: <Input type="select"
-                                   name="communicationIssue1"
-                                   id="communicationIssue1">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-
-                </Input>
-            },{communicationIssue: "Stammer or Stutter",
-                communicationResponse: <Input type="select"
-                                              name="communicationIssue2"
-                                              id="communicationIssue2">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-
-                </Input>
-            }, {
-                communicationIssue: "Aphasia",
-                communicationResponse: <Input type="select"
-                                              name="communicationIssue3"
-                                              id="communicationIssue3">
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not Sure</option>
-
-                </Input>
             }],
             level1GoalsColumns: [{
                 Header: 'Level of Completion',
@@ -1465,313 +208,6 @@ class ClientHistoryAndInformation extends Component {
             }, {
                 Header: '',
                 accessor: 'goal1Initiates',
-            }],
-            level1GoalsData: [{
-                goal1Category: <div className={"sub-section"}>Attending Skills</div>,
-                goal1NA: '',
-                goal1Physical: '',
-                goal1Verbal: '',
-                goal1Initiates: ''
-            }, {
-                goal1Category: 'Sits in chair independently',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SitNA" id="g1SitNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SitPhysical" id="g1SitPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1SitVerbal" id="g1SitVerbal"/> Verbal Prompt</Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1SitInitiates" id="g1SitInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Attends to a task >5 minutes',
-                goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskLongNA" id="g1AttendTaskLongNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskLongPhysical" id="g1AttendTaskLongPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskLongVerbal" id="g1AttendTaskLongVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskLongInitiates" id="g1AttendTaskLongInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Attends to a task <5 minutes',
-                goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskShortNA" id="g1AttendTaskShortNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskShortPhysical" id="g1AttendTaskShortPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskShortVerbal" id="g1AttendTaskShortVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskShortInitiates" id="g1AttendTaskShortInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Makes eye contact',
-                goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNA" id="g1EyeContactNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactPhysical" id="g1EyeContactPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactVerbal" id="g1EyeContactVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactInitiates" id="g1EyeContactInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Sustains eye contact in response to name',
-                goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNameNA" id="g1EyeContactNameNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactNamePhysical" id="g1EyeContactNamePhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactNameVerbal" id="g1EyeContactNameVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactNameInitiates" id="g1EyeContactNameInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Makes eye contact during group instruction',
-                goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactGroupNA" id="g1EyeContactGroupNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactGroupPhysical" id="g1EyeContactGroupPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactGroupVerbal" id="g1EyeContactGroupVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactGroupInitiates" id="g1EyeContactGroupInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: <div className={"sub-section"}>Communication Skills</div>,
-                goal1NA: '',
-                goal1Physical: '',
-                goal1Verbal: '',
-                goal1Initiates: ''
-            }, {
-                goal1Category: 'Communicates wants and needs',
-                goal1NA: <Label check> <Input type="checkbox" name="g1WantsNeedsNA" id="g1WantsNeedsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1WantsNeedsPhysical" id="g1WantsNeedsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1WantsNeedsVerbal" id="g1WantsNeedsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1WantsNeedsInitiates" id="g1WantsNeedsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Answers simple social questions',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SocialQsNA" id="g1socialQsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SocialQsPhysical" id="g1SocialQsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1SocialQsVerbal" id="g1SocialQsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1SocialQsInitiates" id="g1SocialQsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Answers simple interference-based questions',
-                goal1NA: <Label check> <Input type="checkbox" name="g1InterferenceQsNA" id="g1InterferenceQsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1InterferenceQsPhysical" id="g1InterferenceQsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1InterferenceQsVerbal" id="g1InterferenceQsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1InterferenceQsInitiates" id="g1InterferenceQsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Reciprocates conversation',
-                goal1NA: <Label check> <Input type="checkbox" name="g1ReciprocateConversationNA" id="g1ReciprocateConversationNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1ReciprocateConversationPhysical" id="g1ReciprocateConversationPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1ReciprocateConversationVerbal" id="g1ReciprocateConversationVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1ReciprocateConversationInitiates" id="g1ReciprocateConversationInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Maintains conversation',
-                goal1NA: <FormGroup> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA"/><Label check>  N/A </Label></FormGroup>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1MaintainConversationPhysical" id="g1MaintainConversationPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1MaintainConversationVerbal" id="g1MaintainConversationVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1MaintainConversationInitiates" id="g1MaintainConversationInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Has conversations using original thought',
-                goal1NA: <Label check> <Input type="checkbox" name="g1OriginalConversationNA" id="g1OriginalConversationNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1OriginalConversationPhysical" id="g1OriginalConversationPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1OriginalConversationVerbal" id="g1OriginalConversationVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1OriginalConversationInitiates" id="g1OriginalConversationInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: <div className={"sub-section"}>Independent Skills</div>,
-                goal1NA: '',
-                goal1Physical: '',
-                goal1Verbal: '',
-                goal1Initiates: ''
-            }, {
-                goal1Category: 'Goes to designated person/place within the room',
-                goal1NA: <Label check> <Input type="checkbox" name="g1WithinRoomNA" id="g1WithinRoomNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1WithinRoomPhysical" id="g1WithinRoomPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1WithinRoomVerbal" id="g1WithinRoomVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1WithinRoomInitiates" id="g1WithinRoomInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Goes to designated person/place in another room',
-                goal1NA: <Label check> <Input type="checkbox" name="g1AnotherRoomNA" id="g1AnotherRoomNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1AnotherRoomPhysical" id="g1AnotherRoomPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1AnotherRoomVerbal" id="g1AnotherRoomVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1AnotherRoomInitiates" id="g1AnotherRoomInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Able to complete task independently >5 minutes',
-                goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskLongNA" id="g1IndTaskLongNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskLongPhysical" id="g1IndTaskLongPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskLongVerbal" id="g1IndTaskLongVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskLongInitiates" id="g1IndTaskLongInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Able to complete task independently <5 minutes',
-                goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskShortNA" id="g1IndTaskShortNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskShortPhysical" id="g1IndTaskShortPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskShortVerbal" id="g1IndTaskShortVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskShortInitiates" id="g1IndTaskShortInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Able to organize materials within and for simple tasks and execute them independently',
-                goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsNA" id="g1OrganizeMaterialsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsPhysical" id="g1OrganizeMaterialsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsVerbal" id="g1OrganizeMaterialsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsInitiates" id="g1OrganizeMaterialsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Able to organize/prioritize simple progression of tasks (ex. Prioritizing homework with different due dates- doing what is due first, then second, etc.)',
-                goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeTasksNA" id="g1OrganizeTasksNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeTasksPhysical" id="g1OrganizeTasksPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeTasksVerbal" id="g1OrganizeTasksVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeTasksInitiates" id="g1OrganizeTasksInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: <div className={"sub-section"}>Self-Care Skills</div>,
-                goal1NA: '',
-                goal1Physical: '',
-                goal1Verbal: '',
-                goal1Initiates: ''
-            }, {
-                goal1Category: 'Put shoes on and off',
-                goal1NA: <Label check> <Input type="checkbox" name="g1ShoesOnOffNA" id="g1ShoesOnOffNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1ShoesOnOffPhysical" id="g1ShoesOnOffPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1ShoesOnOffVerbal" id="g1ShoesOnOffVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1ShoesOnOffInitiates" id="g1ShoesOnOffInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Discriminates right and left',
-                goal1NA: <Label check> <Input type="checkbox" name="g1RightLeftNA" id="g1RightLeftNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1RightLeftPhysical" id="g1RightLeftPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1RightLeftVerbal" id="g1RightLeftVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1RightLeftInitiates" id="g1RightLeftInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Unties and ties shoes',
-                goal1NA: <Label check> <Input type="checkbox" name="g1TieShoesNA" id="g1TieShoesNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1TieShoesPhysical" id="g1TieShoesPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1TieShoesVerbal" id="g1TieShoesVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1TieShoesInitiates" id="g1TieShoesInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Pulls up/down pants',
-                goal1NA: <Label check> <Input type="checkbox" name="g1PantsNA" id="g1PantsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1PantsPhysical" id="g1PantsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1PantsVerbal" id="g1PantsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1PantsInitiates" id="g1PantsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Buttons and unbuttons',
-                goal1NA: <Label check> <Input type="checkbox" name="g1ButtonsNA" id="g1ButtonsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1ButtonsPhysical" id="g1ButtonsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1ButtonsVerbal" id="g1ButtonsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1ButtonsInitiates" id="g1ButtonsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Adjusts clothes',
-                goal1NA: <Label check> <Input type="checkbox" name="g1AdjustClothesNA" id="g1AdjustClothesNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1AdjustClothesPhysical" id="g1AdjustClothesPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1AdjustClothesVerbal" id="g1AdjustClothesVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1AdjustClothesInitiates" id="g1AdjustClothesInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Dresses and undresses',
-                goal1NA: <Label check> <Input type="checkbox" name="g1DressesNA" id="g1DressesNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1DressesPhysical" id="g1DressesPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1DressesVerbal" id="g1DressesVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1DressesInitiates" id="g1DressesInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Sorts clothes for washing',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SortsClothesNA" id="g1SortsClothesNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SortsClothesPhysical" id="g1SortsClothesPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1SortsClothesVerbal" id="g1SortsClothesVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1SortsClothesInitiates" id="g1SortsClothesInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Identifies clothes based on the weather',
-                goal1NA: <Label check> <Input type="checkbox" name="g1ClothesWeatherNA" id="g1ClothesWeatherNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1ClothesWeatherPhysical" id="g1ClothesWeatherPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1ClothesWeatherVerbal" id="g1ClothesWeatherVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1ClothesWeatherInitiates" id="g1ClothesWeatherInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Goes to the bathroom independently',
-                goal1NA: <Label check> <Input type="checkbox" name="g1BathroomNA" id="g1BathroomNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1BathroomPhysical" id="g1BathroomPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1BathroomVerbal" id="g1BathroomVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1BathroomInitiates" id="g1BathroomInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Washes hands',
-                goal1NA: <Label check> <Input type="checkbox" name="g1WashesHandsNA" id="g1WashesHandsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1WashesHandsPhysical" id="g1WashesHandsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1WashesHandsVerbal" id="g1WashesHandsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1WashesHandsInitiates" id="g1WashesHandsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Completes shower/bathing sequence',
-                goal1NA: <Label check> <Input type="checkbox" name="g1ShowerNA" id="g1ShowerNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1ShowerPhysical" id="g1ShowerPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1ShowerVerbal" id="g1ShowerVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1ShowerInitiates" id="g1ShowerInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Uses utensils properly when eating',
-                goal1NA: <Label check> <Input type="checkbox" name="g1UtensilsNA" id="g1UtensilsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1UtensilsPhysical" id="g1UtensilsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1UtensilsVerbal" id="g1UtensilsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1UtensilsInitiates" id="g1UtensilsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Opens food containers/wrappers',
-                goal1NA: <Label check> <Input type="checkbox" name="g1OpensContainersNA" id="g1OpensContainersNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1OpensContainersPhysical" id="g1OpensContainersPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1OpensContainersVerbal" id="g1OpensContainersVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1OpensContainersInitiates" id="g1OpensContainersInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Cleans up eating area after eating',
-                goal1NA: <Label check> <Input type="checkbox" name="g1CleansEatingAreaNA" id="g1CleansEatingAreaNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1CleansEatingAreaPhysical" id="g1CleansEatingAreaPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1CleansEatingAreaVerbal" id="g1CleansEatingAreaVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1CleansEatingAreaInitiates" id="g1CleansEatingAreaInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Uses caution with hot items',
-                goal1NA: <Label check> <Input type="checkbox" name="g1HotCautionNA" id="g1HotCautionNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1HotCautionPhysical" id="g1HotCautionPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1HotCautionVerbal" id="g1HotCautionVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1HotCautionInitiates" id="g1HotCautionInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: <div className={"sub-section"}>Social Skills</div>,
-                goal1NA: '',
-                goal1Physical: '',
-                goal1Verbal: '',
-                goal1Initiates: ''
-            }, {
-                goal1Category: 'Appropriate with near peers',
-                goal1NA: <Label check> <Input type="checkbox" name="g1NearPeersNA" id="g1NearPeersNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1NearPeersPhysical" id="g1NearPeersPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1NearPeersVerbal" id="g1NearPeersVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1NearPeersInitiates" id="g1NearPeersInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Shows interest in others',
-                goal1NA: <Label check> <Input type="checkbox" name="g1InterestInOthersNA" id="g1InterestInOthersNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1InterestInOthersPhysical" id="g1InterestInOthersPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1InterestInOthersVerbal" id="g1InterestInOthersVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1InterestInOthersInitiates" id="g1InterestInOthersInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Sits appropriately in small groups (3-5)',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SitSmallGroupNA" id="g1SitSmallGroupNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SitSmallGroupPhysical" id="g1SitSmallGroupPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1SitSmallGroupVerbal" id="g1SitSmallGroupVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1SitSmallGroupInitiates" id="g1SitSmallGroupInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Attends to instructor in small groups (3-5)',
-                goal1NA: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupNA" id="g1InstructorSmallGroupNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupPhysical" id="g1InstructorSmallGroupPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupVerbal" id="g1InstructorSmallGroupVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupInitiates" id="g1InstructorSmallGroupInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Follows instruction',
-                goal1NA: <Label check> <Input type="checkbox" name="g1InstructionNA" id="g1InstructionNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructionPhysical" id="g1InstructionPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructionVerbal" id="g1InstructionVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructionInitiates" id="g1InstructionInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Takes turns',
-                goal1NA: <Label check> <Input type="checkbox" name="g1TakesTurnsNA" id="g1TakesTurnsNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1TakesTurnsPhysical" id="g1TakesTurnsPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1TakesTurnsVerbal" id="g1TakesTurnsVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1TakesTurnsInitiates" id="g1TakesTurnsInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Shares',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SharesNA" id="g1SharesNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SharesPhysical" id="g1SharesPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1SharesVerbal" id="g1SharesVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1SharesInitiates" id="g1SharesInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Converses with others',
-                goal1NA: <Label check> <Input type="checkbox" name="g1ConverseOthersNA" id="g1ConverseOthersNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1ConverseOthersPhysical" id="g1ConverseOthersPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1ConverseOthersVerbal" id="g1ConverseOthersVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1ConverseOthersInitiates" id="g1ConverseOthersInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Sits appropriately in large groups (3-5)',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SitLargeGroupNA" id="g1SitLargeGroupNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SitLargeGroupPhysical" id="g1SitLargeGroupPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1SitLargeGroupVerbal" id="g1SitLargeGroupVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1SitLargeGroupInitiates" id="g1SitLargeGroupInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Attends to instructor in large groups (3-5)',
-                goal1NA: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupNA" id="g1InstructorLargeGroupNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupPhysical" id="g1InstructorLargeGroupPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupVerbal" id="g1InstructorLargeGroupVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupInitiates" id="g1InstructorLargeGroupInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Stands and waits independently during transitions',
-                goal1NA: <Label check> <Input type="checkbox" name="g1StandWaitNA" id="g1StandWaitNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1StandWaitPhysical" id="g1StandWaitPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1StandWaitVerbal" id="g1StandWaitVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1StandWaitInitiates" id="g1StandWaitInitiates"/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Understands simple rules of the classroom',
-                goal1NA: <Label check> <Input type="checkbox" name="g1UnderstandsRulesNA" id="g1UnderstandsRulesNA"/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1UnderstandsRulesPhysical" id="g1UnderstandsRulesPhysical"/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1UnderstandsRulesVerbal" id="g1UnderstandsRulesVerbal"/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1UnderstandsRulesInitiates" id="g1UnderstandsRulesInitiates"/> Initiates Independently </Label>
             }],
             level2GoalsColumns: [{
                 Header: 'Level of Completion',
@@ -2361,10 +797,12 @@ class ClientHistoryAndInformation extends Component {
     goBack(event) {
         window.location.reload();
     }
+
     togglePhysicalAssistance(field,e){
         this.setState(state=>({physicalAssistance:!state.physicalAssistance}));
         this.handleChange(field,e);
     }
+
     toggleVerbalDirectives(field,e){
         this.setState(state=>({verbalDirectives:!state.verbalDirectives}));
         this.handleChange(field,e);
@@ -2385,6 +823,8 @@ class ClientHistoryAndInformation extends Component {
         this.setState(state=>({seizures: !state.seizures}));
     }
     handleChange(field, e) {
+        console.log("yeet");
+        console.log(this.props.devHistoryData);
         console.log(field)
         let fields = this.state.fields;
         fields[field] = e.target.value;
@@ -2394,6 +834,7 @@ class ClientHistoryAndInformation extends Component {
         this.setState({fields: fields});
     }
     handleChangeCheckbox(field,e) {
+
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
         console.log(fields[field]);
@@ -3388,7 +1829,7 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["specialDoc5Name"] = body.Form[0].specialDoc5Name == null ? "" : body.Form[0].specialDoc5Name;
             this.state.fields["specialDoc5Specialty"] = body.Form[0].specialDoc5Specialty == null ? "" : body.Form[0].specialDoc5Specialty;
             this.state.fields["specialDoc5Phone"] = body.Form[0].specialDoc5Phone == null ? "" : body.Form[0].specialDoc5Phone;
-            this.state.fields["specialDoc1Sched"] = body.Form[0].specialDoc1Sched == null ? "" : body.Form[0].specialDoc1Sched;
+            this.state.fields["specialDoc5Sched"] = body.Form[0].specialDoc1Sched == null ? "" : body.Form[0].specialDoc1Sched;
             this.state.fields["test1Date"] = body.Form[0].test1Date == null ? "" : body.Form[0].test1Date;
             this.state.fields["test1Examiner"] = body.Form[0].test1Examiner == null ? "" : body.Form[0].test1Examiner;
             this.state.fields["test1Diagnosis"] = body.Form[0].test1Diagnosis == null ? "" : body.Form[0].test1Diagnosis;
@@ -3840,6 +2281,14 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["parentName"] = body.Form[0].parentName == null ? "" : body.Form[0].parentName;
             this.state.fields["date"] = body.Form[0].date == null ? "" : body.Form[0].date;
             this.state.fields["section11Comments"] = body.Form[0].section11comments == null ? "" : body.Form[0].section11comments;
+            this.state.fields["brace"] = body.Form[0].brace == null ? "" : body.Form[0].brace;
+            this.state.fields["feedSupport"] = body.Form[0].feedSupport == null ? "" : body.Form[0].feedSupport;
+            this.state.fields["toiletEquip"] = body.Form[0].toiletEquip == null ? "" : body.Form[0].toiletEquip;
+            this.state.fields["mobilityEquip"] = body.Form[0].mobilityEquip == null ? "" : body.Form[0].mobilityEquip;
+            this.state.fields["communicationEquip"] = body.Form[0].communicationEquip == null ? "" : body.Form[0].communicationEquip;
+            this.state.fields["oxygenTank"] = body.Form[0].oxygenTank == null ? "" : body.Form[0].oxygenTank;
+            this.state.fields["hearingDevice"] = body.Form[0].hearingDevice == null ? "" : body.Form[0].hearingDevice;
+            this.state.fields["otherSupply"] = body.Form[0].otherSupply == null ? "" : body.Form[0].otherSupply;
         }
         return body;
     };
@@ -4488,6 +2937,22 @@ class ClientHistoryAndInformation extends Component {
         infoObj.parentName = fields["parentName"];
         infoObj.date = fields["date"];
         infoObj.section11comments = fields["section11Comments"];
+        infoObj.brace = fields["brace"];
+        infoObj.feedSupport = fields["feedSupport"];
+        infoObj.toiletEquip = fields["toiletEquip"];
+        infoObj.mobilityEquip = fields["mobilityEquip"];
+        infoObj.communicationEquip = fields["communicationEquip"];
+        infoObj.oxygenTank = fields["oxygenTank"];
+        infoObj.hearingDevice = fields["hearingDevice"];
+        infoObj.otherSupply = fields["otherSupply"];
+
+
+
+
+
+
+
+
 
         console.log("UPDATED FIELDS")
         console.log(infoObj);
@@ -4740,6 +3205,27 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection2() {
+        const siblingData = [{
+                name: <input type="text" name="sib1Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Name")} value={this.state.fields["sib1Name"] || ""}/>,
+                age: <input type="text" name="sib1Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Age")}value={this.state.fields["sib1Age"] || ""}/>,
+                gender: <input type="text" name="sib1Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib1Gender")} value={this.state.fields["sib1Gender"] || ""}/>,
+            }, {
+                name: <input type="text" name="sib2Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib2Name")} value={this.state.fields["sib2Name"] || ""}/>,
+                age: <input type="text" name="sib2Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib2Age")} value={this.state.fields["sib2Age"] || ""}/>,
+                gender: <input type="text" name="sib2Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib2Gender")}value={this.state.fields["sib2Gender"] || ""}/>,
+            }, {
+                name: <input type="text" name="sib3Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib3Name")}value={this.state.fields["sib3Name"] || ""}/>,
+                age: <input type="text" name="sib3Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib3Age")}value={this.state.fields["sib3Age"] || ""}/>,
+                gender: <input type="text" name="sib3Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib3Gender")} value={this.state.fields["sib3Gender"] || ""}/>,
+            }, {
+                name: <input type="text" name="sib4Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib4Name")} value={this.state.fields["sib4Name"] || ""}/>,
+                age: <input type="text" name="sib4Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib4Age")} value={this.state.fields["sib4Age"] || ""}/>,
+                gender: <input type="text" name="sib4Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib4Gender")} value={this.state.fields["sib4Gender"] || ""}/>,
+            }, {
+                name: <input type="text" name="sib5Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib5Name")} value={this.state.fields["sib5Name"] || ""}/>,
+                age: <input type="text" name="sib5Age" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib5Age")} value={this.state.fields["sib5Age"] || ""}/>,
+                gender: <input type="text" name="sib5Gender" className={"tableInputField"} onChange={this.handleChange.bind(this, "sib5Gender")}value={this.state.fields["sib5Gender"] || ""}/>,
+            }]
         return (
             <fieldset id="/chai/section2">
                 <div className={"section"}>Section 2: Family Information</div>
@@ -4749,6 +3235,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup>
                             <Label className="control-label required pr-2">Is your child adopted?</Label>
                             <Input type="select"
+                                   accesor={"isAdopted"}
                                    name="isAdopted"
                                    id="isAdopted"
                                    ref="isAdopted"
@@ -5110,9 +3597,10 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
 
                 <Label className="pr-2">Please list siblings in the table below. </Label>
+
                 <ReactTable
                     className={"-striped -highlight"}
-                    data={this.state.siblingData}
+                    data={siblingData}
                     columns={this.state.siblingColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -5298,13 +3786,598 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection4() {
+        const devHistoryData= [{
+                devHistoryActivity:'Crawled on stomach',
+                devHistoryYears: <Input type="select"
+                name="crawlYears"
+                id="crawlYears"
+                accesor={"crawlYears"}
+                onChange={this.handleChange.bind(this, "crawlYears")}
+                                        value = {this.state.fields["crawlYears"]}
+                >
+                <option  value={"zero"}>0</option>
+                <option value="one">1</option>
+                <option value={"two"}>2</option>
+                <option value={"three"}>3</option>
+                <option value = {"four"}>4</option>
+                <option value ="five">5</option>
+                <option value ="six">6</option>
+                <option value={"seven"}>7</option>
+                <option value ="eight">8</option>
+                <option value = "nine">9</option>
+                <option value ="ten">10</option>
+                <option value ="eleven">11</option>
+                <option value = "twelve">12</option>
+                <option value = "thirteen">13</option>
+                <option value = "fourteen">14</option>
+                <option value = "fifteen">15</option>
+                <option value = "sixteen">16</option>
+                <option value = "seventeen">17</option>
+                <option value = "eighteen">18</option>
+                <option value = "nineteen">19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="crawlMonths"
+                id="crawlMonths"
+                onChange={this.handleChange.bind(this, "crawlMonths")}
+                                         value = {this.state.fields["crawlMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="crawlNa"
+                id="crawlNa"
+                onChange={this.handleChange.bind(this, "crawlNa")}
+                                     value = {this.state.fields["crawlNa"]}
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>Not Developed</option>
+                <option>Unknown</option>
+                </Input>
+            }, {
+                devHistoryActivity: 'Crept on hands and knees',
+                devHistoryYears: <Input type="select"
+                name="creptYears"
+                id="creptYears"
+                                        value = {this.state.fields["creptYears"]}
+                onChange={this.handleChange.bind(this, "creptYears")}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="creptMonths"
+                id="creptMonths"
+                onChange={this.handleChange.bind(this, "creptMonths")}
+                                         value = {this.state.fields["creptMonths"]}
+                >
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="creptNa"
+                id="creptNa"
+                onChange={this.handleChange.bind(this, "creptNa")}
+                                     value = {this.state.fields["creptNa"]}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Developed</option>
+                <option>Unknown</option>
+                </Input>
+            }, {
+                devHistoryActivity: 'Walked',
+                devHistoryYears: <Input type="select"
+                name="walkYears"
+                id="walkYears"
+                onChange={this.handleChange.bind(this, "walkYears")}
+                                        value = {this.state.fields["walkYears"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="walkMonths"
+                id="walkMonths"
+                onChange={this.handleChange.bind(this, "walkMonths")}
+                                         value = {this.state.fields["walkMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="walkNa"
+                id="walkNa"
+                                     value = {this.state.fields["walkNa"]}
+                onChange={this.handleChange.bind(this, "walkNa")}
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>Not Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Toilet trained',
+                devHistoryYears: <Input type="select"
+                name="toiletYears"
+                id="toiletYears"
+                onChange={this.handleChange.bind(this, "toiletYears")}
+                                        value = {this.state.fields["toiletYears"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="toiletMonths"
+                id="toiletMonths"
+                onChange={this.handleChange.bind(this, "toiletMonths")}
+                                         value = {this.state.fields["toiletMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="toiletNa"
+                id="toiletNa"
+                onChange={this.handleChange.bind(this, "toiletNa")}
+                                     value = {this.state.fields["toiletNa"]}
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'First word',
+                devHistoryYears: <Input type="select"
+                name="wordYears"
+                id="wordYears"
+                onChange={this.handleChange.bind(this, "wordYears")}
+                                        value = {this.state.fields["wordYears"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="wordMonths"
+                id="wordMonths"
+                onChange={this.handleChange.bind(this, "wordMonths")}
+                                         value = {this.state.fields["wordMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="wordNa"
+                id="wordNa"
+                onChange={this.handleChange.bind(this, "wordNa")}
+                                     value = {this.state.fields["wordNa"]}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Use of couplets (2 words together)',
+                devHistoryYears: <Input type="select"
+                name="coupletYears"
+                id="coupletYears"
+                onChange={this.handleChange.bind(this, "coupletYears")}
+                                        value = {this.state.fields["coupletYears"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="coupletMonths"
+                id="coupletMonths"
+                onChange={this.handleChange.bind(this, "coupletMonths")}
+                                         value = {this.state.fields["coupletMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="coupletNa"
+                id="coupletNa"
+                onChange={this.handleChange.bind(this, "coupletNa")}
+                                     value = {this.state.fields["coupletNa"]}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+                </Input>
+            }, {
+                devHistoryActivity: '3-4 word phrases',
+                devHistoryYears: <Input type="select"
+                name="phraseYears"
+                id="phraseYears"
+                onChange={this.handleChange.bind(this, "phraseYears")}
+                                        value = {this.state.fields["phraseYears"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="phraseMonths"
+                id="phraseMonths"
+                onChange={this.handleChange.bind(this, "phraseMonths")}
+                                         value = {this.state.fields["phraseMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="phraseNa"
+                id="phraseNa"
+                onChange={this.handleChange.bind(this, "phraseNa")}
+                                     value = {this.state.fields["phraseNa"]}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Sentences',
+                devHistoryYears: <Input type="select"
+                name="sentenceYears"
+                id="sentenceYears"
+                onChange={this.handleChange.bind(this, "sentenceYears")}
+                                        value = {this.state.fields["sentenceYears"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="sentenceMonths"
+                id="sentenceMonths"
+                onChange={this.handleChange.bind(this, "sentenceMonths")}
+                                         value = {this.state.fields["sentenceMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="sentenceNa"
+                id="sentenceNa"
+                onChange={this.handleChange.bind(this, "sentenceNa")}
+                                     value = {this.state.fields["sentenceNa"]}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Conversational language',
+                devHistoryYears: <Input type="select"
+                name="conversationYears"
+                id="conversationYears"
+                onChange={this.handleChange.bind(this, "conversationYears")}
+                                        value = {this.state.fields["conversationYears"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="conversationMonths"
+                id="conversationMonths"
+                onChange={this.handleChange.bind(this, "conversationMonths")}
+                                         value = {this.state.fields["conversationMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="conversationNa"
+                id="conversationNa"
+                onChange={this.handleChange.bind(this, "conversationNa")}
+                                     value = {this.state.fields["conversationNa"]}
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }, {
+                devHistoryActivity: 'Reading',
+                devHistoryYears: <Input type="select"
+                name="readYears"
+                id="readYears"
+                onChange={this.handleChange.bind(this, "readYears")}
+                                        value = {this.state.fields["readYears"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19+</option>
+                </Input>,
+                devHistoryMonths: <Input type="select"
+                name="readMonths"
+                id="readMonths"
+                onChange={this.handleChange.bind(this, "readMonths")}
+                                         value = {this.state.fields["readMonths"]}>
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                </Input>,
+                devHistoryNa: <Input type="select"
+                name="readNa"
+                id="readNa"
+                onChange={this.handleChange.bind(this, "readNa")}
+                                     value = {this.state.fields["readNa"]}>
+                <option></option>
+                <option>Yes</option>
+                <option>Not Yet Developed</option>
+                <option>Unknown</option>
+
+                </Input>
+            }]
         return (
             <fieldset id="/chai/section4">
                 <div className={"section"}>Section 4: Developmental History</div>
                 <div className={"sub-section"}>Please complete the table below</div>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
-                    data={this.state.devHistoryData}
+                    data={devHistoryData}
                     columns={this.state.devHistoryColumns}
                     defaultPageSize={9}
                     showPagination={false}
@@ -5342,6 +4415,327 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection5() {
+        const  otherDoctorsData = [{
+            otherDrName: <input type="text" name="doc1Name" className={"tableInputField"}  value={this.state.fields["doc1Name"] || ""} onChange={this.handleChange.bind(this, "doc1Name")}/>,
+            otherDrSpecialty: <input type="text" name="doc1Specialty"className={"tableInputField"} value={this.state.fields["doc1Specialty"] || ""} onChange={this.handleChange.bind(this, "doc1Specialty")}/>,
+            otherDrPhone: <input type="text" name="doc1Phone"className={"tableInputField"} value={this.state.fields["doc1Phone"] || ""} onChange={this.handleChange.bind(this, "doc1Phone")}/>,
+            otherDrSched: <input type="text" name="doc1Sched"className={"tableInputField"} value={this.state.fields["doc1Sched"] || ""} onChange={this.handleChange.bind(this, "doc1Sched")}/>
+        }, {
+            otherDrName: <input type="text" name="doc2Name"className={"tableInputField"} value={this.state.fields["doc2Name"] || ""} onChange={this.handleChange.bind(this, "doc2Name")}/>,
+            otherDrSpecialty: <input type="text" name="doc2Specialty"className={"tableInputField"} value={this.state.fields["doc2Specialty"] || ""} onChange={this.handleChange.bind(this, "doc2Specialty")}/>,
+            otherDrPhone: <input type="text" name="doc2Phone" className={"tableInputField"} value={this.state.fields["doc2Phone"] || ""} onChange={this.handleChange.bind(this, "doc2Phone")}/>,
+            otherDrSched: <input type="text" name="doc2Sched"className={"tableInputField"} value={this.state.fields["doc2Sched"] || ""} onChange={this.handleChange.bind(this, "doc2Sched")}/>
+        }, {
+            otherDrName: <input type="text" name="doc3Name"className={"tableInputField"} value={this.state.fields["doc3Name"] || ""} onChange={this.handleChange.bind(this, "doc3Name")}/>,
+            otherDrSpecialty: <input type="text" name="doc3Specialty"className={"tableInputField"} value={this.state.fields["doc3Specialty"] || ""} onChange={this.handleChange.bind(this, "doc3Specialty")}/>,
+            otherDrPhone: <input type="text" name="doc3Phone"className={"tableInputField"} value={this.state.fields["doc3Phone"] || ""} onChange={this.handleChange.bind(this, "doc3Phone")}/>,
+            otherDrSched: <input type="text" name="doc3Sched"className={"tableInputField"} value={this.state.fields["doc3Sched"] || ""} onChange={this.handleChange.bind(this, "doc3Sched")}/>
+        }, {
+            otherDrName: <input type="text" name="doc4Name"className={"tableInputField"} value={this.state.fields["doc4Name"] || ""} onChange={this.handleChange.bind(this, "doc4Name")}/>,
+            otherDrSpecialty: <input type="text" name="doc4Specialty"className={"tableInputField"} value={this.state.fields["doc4Specialty"] || ""} onChange={this.handleChange.bind(this, "doc4Specialty")}/>,
+            otherDrPhone: <input type="text" name="doc4Phone"className={"tableInputField"} value={this.state.fields["doc4Phone"] || ""} onChange={this.handleChange.bind(this, "doc4Phone")}/>,
+            otherDrSched: <input type="text" name="doc4Sched"className={"tableInputField"} value={this.state.fields["doc4Sched"] || ""} onChange={this.handleChange.bind(this, "doc4Sched")}/>
+        }, {
+            otherDrName: <input type="text" name="doc5Name"className={"tableInputField"} value={this.state.fields["doc5Name"] || ""} onChange={this.handleChange.bind(this, "doc5Name")}/>,
+            otherDrSpecialty: <input type="text" name="doc5Specialty"className={"tableInputField"} value={this.state.fields["doc5Specialty"] || ""} onChange={this.handleChange.bind(this, "doc5Specialty")}/>,
+            otherDrPhone: <input type="text" name="doc5Phone"className={"tableInputField"} value={this.state.fields["doc5Phone"] || ""} onChange={this.handleChange.bind(this, "doc5Phone")}/>,
+            otherDrSched: <input type="text" name="doc5Sched"className={"tableInputField"} value={this.state.fields["doc5Sched"] || ""} onChange={this.handleChange.bind(this, "doc5Sched")}/>
+        }];
+        const specialDoctorsData = [{
+            specialDrName: <input type="text" name="specialDoc1Name" className={"tableInputField"} value={this.state.fields["specialDoc1Name"] || ""} onChange={this.handleChange.bind(this, "specialDoc1Name")}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc1Specialty"className={"tableInputField"} value={this.state.fields["specialDoc1Specialty"] || ""} onChange={this.handleChange.bind(this, "specialDoc1Specialty")}/>,
+            specialDrPhone: <input type="text" name="specialDoc1Phone"className={"tableInputField"} value={this.state.fields["specialDoc1Phone"] || ""} onChange={this.handleChange.bind(this, "specialDoc1Phone")}/>,
+            specialDrSched: <input type="text" name="specialDoc1Sched"className={"tableInputField"} value={this.state.fields["specialDoc1Sched"] || ""} onChange={this.handleChange.bind(this, "specialDoc1Sched")}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc2Name" className={"tableInputField"} value={this.state.fields["specialDoc2Name"] || ""} onChange={this.handleChange.bind(this, "specialDoc2Name")}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc2Specialty"className={"tableInputField"} value={this.state.fields["specialDoc2Specialty"] || ""} onChange={this.handleChange.bind(this, "specialDoc2Specialty")}/>,
+            specialDrPhone: <input type="text" name="specialDoc2Phone"className={"tableInputField"} value={this.state.fields["specialDoc2Phone"] || ""} onChange={this.handleChange.bind(this, "specialDoc2Phone")}/>,
+            specialDrSched: <input type="text" name="specialDoc2Sched"className={"tableInputField"} value={this.state.fields["specialDoc2Sched"] || ""} onChange={this.handleChange.bind(this, "specialDoc2Sched")}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc3Name" className={"tableInputField"} value={this.state.fields["specialDoc3Name"] || ""} onChange={this.handleChange.bind(this, "specialDoc3Name")}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc3Specialty"className={"tableInputField"} value={this.state.fields["specialDoc3Specialty"] || ""} onChange={this.handleChange.bind(this, "specialDoc3Specialty")}/>,
+            specialDrPhone: <input type="text" name="specialDoc3Phone"className={"tableInputField"} value={this.state.fields["specialDoc3Phone"] || ""} onChange={this.handleChange.bind(this, "specialDoc3Phone")}/>,
+            specialDrSched: <input type="text" name="specialDoc3Sched"className={"tableInputField"} value={this.state.fields["specialDoc3Sched"] || ""} onChange={this.handleChange.bind(this, "specialDoc3Sched")}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc4Name" className={"tableInputField"} value={this.state.fields["specialDoc4Name"] || ""} onChange={this.handleChange.bind(this, "specialDoc4Name")}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc4Specialty"className={"tableInputField"} value={this.state.fields["specialDoc4Specialty"] || ""} onChange={this.handleChange.bind(this, "specialDoc4Specialty")}/>,
+            specialDrPhone: <input type="text" name="specialDoc4Phone"className={"tableInputField"} value={this.state.fields["specialDoc4Phone"] || ""} onChange={this.handleChange.bind(this, "specialDoc4Phone")}/>,
+            specialDrSched: <input type="text" name="specialDoc4Sched"className={"tableInputField"} value={this.state.fields["specialDoc4Sched"] || ""} onChange={this.handleChange.bind(this, "specialDoc4Sched")}/>
+        },{
+            specialDrName: <input type="text" name="specialDoc5Name" className={"tableInputField"} value={this.state.fields["specialDoc5Name"] || ""} onChange={this.handleChange.bind(this, "specialDoc5Name")}/>,
+            specialDrSpecialty: <input type="text" name="specialDoc5Specialty"className={"tableInputField"} value={this.state.fields["specialDoc5Specialty"] || ""} onChange={this.handleChange.bind(this, "specialDoc5Specialty")}/>,
+            specialDrPhone: <input type="text" name="specialDoc5Phone"className={"tableInputField"} value={this.state.fields["specialDoc5Phone"] || ""} onChange={this.handleChange.bind(this, "specialDoc5Phone")}/>,
+            specialDrSched: <input type="text" name="specialDoc5Sched"className={"tableInputField"} value={this.state.fields["specialDoc5Sched"] || ""} onChange={this.handleChange.bind(this, "specialDoc5Sched")}/>
+        }]
+        const medicalConditionsData = [{
+            medCondition: 'Epilepsy/Seizures',
+            medConditionYN: <Input type="select"
+                                   name="epilepsy"
+                                   id="epilepsy"
+                                   accesor={"epilepsy"}
+                                   value={this.state.fields["epilepsy"] || ""}
+                                   onChange={this.handleChange.bind(this, "epilepsy")}>
+                <option value = {"blank"}></option>
+                <option value = {"yes"}>Yes</option>
+                <option value = {"no"}>No</option>
+            </Input>
+        }, {
+            medCondition: 'Diabetes',
+            medConditionYN: <Input type="select"
+                                   name="diabetes"
+                                   id="diabetes"
+                                   value={this.state.fields["diabetes"] || ""}
+                                   onChange={this.handleChange.bind(this, "diabetes")}>
+                <option value = {"blank"}></option>
+                <option value = {"yes"}>Yes</option>
+                <option value = {"no"}>No</option>
+            </Input>
+        }, {
+            medCondition: 'Asthma',
+            medConditionYN: <Input type="select"
+                                   name="asthma"
+                                   id="asthma"
+                                   value={this.state.fields["asthma"] || ""}
+                                   onChange={this.handleChange.bind(this, "asthma")}>
+                <option value = {"blank"}></option>
+                <option value = {"yes"}>Yes</option>
+                <option value = {"no"}>No</option>
+            </Input>
+        }, {
+            medCondition: 'Uses an Epi-Pen',
+            medConditionYN: <Input type="select"
+                                   name="epipen"
+                                   id="epipen"
+                                   value={this.state.fields["epipen"] || ""}
+                                   onChange={this.handleChange.bind(this, "epipen")}>
+                <option value = {"blank"}></option>
+                <option value = {"yes"}>Yes</option>
+                <option value = {"no"}>No</option>
+            </Input>
+        }, {
+            medCondition: 'Other (please list in the box below)',
+            medConditionYN: <Input type="select"
+                                   name="medConditionOther"
+                                   id="medConditionOther"
+                                   value={this.state.fields["medConditionOther"] || ""}
+                                   onChange={this.handleChange.bind(this, "medConditionOther")}>
+                <option value = {"blank"}></option>
+                <option value = {"yes"}>Yes</option>
+                <option value = {"no"}>No</option>
+            </Input>
+        }]
+        const testingData = [{
+            testDate: <input type="text" name="test1Date" className={"tableInputField"} value={this.state.fields["test1Date"] || ""} onChange={this.handleChange.bind(this, "test1Date")}/>,
+            testExaminer: <input type="text" name="test1Examiner"className={"tableInputField"} value={this.state.fields["test1Examiner"] || ""} onChange={this.handleChange.bind(this, "test1Examiner")}/>,
+            testDiagnosis: <input type="text" name="test1Diagnosis" className={"tableInputField"} value={this.state.fields["test1Diagnosis"] || ""} onChange={this.handleChange.bind(this, "test1Diagnosis")}/>,
+            testReco: <input type="text" name="test1Reco" className={"tableInputField"} value={this.state.fields["test1Reco"] || ""} onChange={this.handleChange.bind(this, "test1Reco")}/>,
+
+        }, {
+            testDate: <input type="text" name="test2Date" className={"tableInputField"} value={this.state.fields["test2Date"] || ""} onChange={this.handleChange.bind(this, "test2Date")}/>,
+            testExaminer: <input type="text" name="test2Examiner" className={"tableInputField"} value={this.state.fields["test2Examiner"] || ""} onChange={this.handleChange.bind(this, "test2Examiner")}/>,
+            testDiagnosis: <input type="text" name="test2Diagnosis" className={"tableInputField"} value={this.state.fields["test2Diagnosis"] || ""} onChange={this.handleChange.bind(this, "test2Diagnosis")}/>,
+            testReco: <input type="text" name="test2Reco" className={"tableInputField"} value={this.state.fields["test2Reco"] || ""} onChange={this.handleChange.bind(this, "test2Reco")}/>,
+
+        }, {
+            testDate: <input type="text" name="test3Date" className={"tableInputField"} value={this.state.fields["test3Date"] || ""} onChange={this.handleChange.bind(this, "test3Date")}/>,
+            testExaminer: <input type="text" name="test3Examiner" className={"tableInputField"} value={this.state.fields["test3Examiner"] || ""} onChange={this.handleChange.bind(this, "test3Examiner")}/>,
+            testDiagnosis: <input type="text" name="test3Diagnosis" className={"tableInputField"} value={this.state.fields["test3Diagnosis"] || ""} onChange={this.handleChange.bind(this, "test3Diagnosis")}/>,
+            testReco: <input type="text" name="test3Reco" className={"tableInputField"} value={this.state.fields["test3Reco"] || ""} onChange={this.handleChange.bind(this, "test3Reco")}/>,
+        }, {
+            testDate: <input type="text" name="test4Date" className={"tableInputField"} value={this.state.fields["test4Date"] || ""} onChange={this.handleChange.bind(this, "test4Date")}/>,
+            testExaminer: <input type="text" name="test4Examiner" className={"tableInputField"} value={this.state.fields["test4Examiner"] || ""} onChange={this.handleChange.bind(this, "test4Examiner")}/>,
+            testDiagnosis: <input type="text" name="test4Diagnosis" className={"tableInputField"} value={this.state.fields["test4Diagnosis"] || ""} onChange={this.handleChange.bind(this, "test4Diagnosis")}/>,
+            testReco: <input type="text" name="test4Reco" className={"tableInputField"} value={this.state.fields["test4Reco"] || ""} onChange={this.handleChange.bind(this, "test4Reco")}/>,
+
+        }, {
+            testDate: <input type="text" name="test5Date" className={"tableInputField"} value={this.state.fields["test5Date"] || ""} onChange={this.handleChange.bind(this, "test5Date")}/>,
+            testExaminer: <input type="text" name="test5Examiner" className={"tableInputField"} value={this.state.fields["test5Examiner"] || ""} onChange={this.handleChange.bind(this, "test5Examiner")}/>,
+            testDiagnosis: <input type="text" name="test5Diagnosis" className={"tableInputField"} value={this.state.fields["test5Diagnosis"] || ""} onChange={this.handleChange.bind(this, "test5Diagnosis")}/>,
+            testReco: <input type="text" name="test5Reco" className={"tableInputField"} value={this.state.fields["test5Reco"] || ""} onChange={this.handleChange.bind(this, "test5Reco")}/>,
+
+        }]
+        const suppliesData= [{
+            supplies: 'Braces/Splints',
+            suppliesYN: <Input type="select"
+                               name="brace"
+                               id="brace"
+                               onChange={this.handleChange.bind(this, "brace")}
+                               value={this.state.fields["brace"] || ""}>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "no">No</option>
+            </Input>
+        }, {
+            supplies: 'Feeding Support & Supplies',
+            suppliesYN: <Input type="select"
+                               name="feedSupport"
+                               id="feedSupport"
+                               onChange={this.handleChange.bind(this, "feedSupport")}
+                               value={this.state.fields["feedSupport"] || ""}>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "no">No</option>
+            </Input>
+        }, {
+            supplies: 'Toileting Equipment',
+            suppliesYN: <Input type="select"
+                               name="toiletEquip"
+                               id="toiletEquip"
+                               onChange={this.handleChange.bind(this, "toiletEquip")}
+                               value={this.state.fields["toiletEquip"] || ""}>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "no">No</option>
+            </Input>
+        }, {
+            supplies: 'Mobility Equipment',
+            suppliesYN: <Input type="select"
+                               name="mobilityEquip"
+                               id="mobilityEquip"
+                               onChange={this.handleChange.bind(this, "mobilityEquip")}
+                               value={this.state.fields["mobilityEquip"] || ""}>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "no">No</option>
+            </Input>
+        }, {
+            supplies: 'Communication Equipment',
+            suppliesYN: <Input type="select"
+                               name="communicationEquip"
+                               id="communicationEquip"
+                               onChange={this.handleChange.bind(this, "communicationEquip")}
+                               value={this.state.fields["communicationEquip"] || ""}>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "no">No</option>
+            </Input>
+        }, {
+            supplies: 'Oxygen Tank',
+            suppliesYN: <Input type="select"
+                               name="oxygenTank"
+                               id="oxygenTank"
+                               onChange={this.handleChange.bind(this, "oxygenTank")}
+                               value={this.state.fields["oxygenTank"] || ""}>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "no">No</option>
+            </Input>
+        }, {
+            supplies: 'Hearing Device',
+            suppliesYN: <Input type="select"
+                               name="hearingDevice"
+                               id="hearingDevice"
+                               onChange={this.handleChange.bind(this, "hearingDevice")}
+                               value={this.state.fields["hearingDevice"] || ""}>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "no">No</option>
+            </Input>
+        }, {
+            supplies: 'Other',
+            suppliesYN: <Input type="select"
+                               name="otherSupply"
+                               id="otherSupply"
+                               onChange={this.handleChange.bind(this, "otherSupply")}
+                               value={this.state.fields["otherSupply"] || ""}>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "no">No</option>
+            </Input>
+        }]
+        const medsData = [{
+            medsName: <input type="text" name="med1Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Name")} value={this.state.fields["med1Name"] || ""}/>,
+            medsDosage: <input type="text" name="med1Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Dosage")} value={this.state.fields["med1Dosage"] || ""}/>,
+            medsTimeGiven: <input type="text" name="med1TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1TimeGiven")} value={this.state.fields["med1TimeGiven"] || ""}/>,
+            medsFrequency: <input type="text" name="med1Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Frequency")} value={this.state.fields["med1Frequency"] || ""}/>,
+            medsPurpose: <input type="text" name="med1Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Purpose")} value={this.state.fields["med1Purpose"] || ""}/>,
+            medsSideEffects: <input type="text" name="med1SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1SideEffects")} value={this.state.fields["med1SideEffects"] || ""}/>
+        }, {
+            medsName: <input type="text" name="med2Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2Name")} value={this.state.fields["med2Name"] || ""}/>,
+            medsDosage: <input type="text" name="med2Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2Dosage")} value={this.state.fields["med2Dosage"] || ""}/>,
+            medsTimeGiven: <input type="text" name="med2TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2TimeGiven")} value={this.state.fields["med2TimeGiven"] || ""}/>,
+            medsFrequency: <input type="text" name="med2Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2Frequency")} value={this.state.fields["med2Frequency"] || ""}/>,
+            medsPurpose: <input type="text" name="med2Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2Purpose")} value={this.state.fields["med2Purpose"] || ""}/>,
+            medsSideEffects: <input type="text" name="med2SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2SideEffects")} value={this.state.fields["med2SideEffects"] || ""}/>
+        }, {
+            medsName: <input type="text" name="med3Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3Name")} value={this.state.fields["med3Name"] || ""}/>,
+            medsDosage: <input type="text" name="med3Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3Dosage")} value={this.state.fields["med3Dosage"] || ""}/>,
+            medsTimeGiven: <input type="text" name="med3TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3TimeGiven")} value={this.state.fields["med3TimeGiven"] || ""}/>,
+            medsFrequency: <input type="text" name="med3Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3Frequency")} value={this.state.fields["med3Frequency"] || ""}/>,
+            medsPurpose: <input type="text" name="med3Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3Purpose")} value={this.state.fields["med3Purpose"] || ""}/>,
+            medsSideEffects: <input type="text" name="med3SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3SideEffects")} value={this.state.fields["med3SideEffects"] || ""}/>
+        }, {
+            medsName: <input type="text" name="med4Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4Name")} value={this.state.fields["med4Name"] || ""}/>,
+            medsDosage: <input type="text" name="med4Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4Dosage")} value={this.state.fields["med4Dosage"] || ""} />,
+            medsTimeGiven: <input type="text" name="med4TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4TimeGiven")} value={this.state.fields["med4TimeGiven"] || ""}/>,
+            medsFrequency: <input type="text" name="med4Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4Frequency")} value={this.state.fields["med4Frequency"] || ""}/>,
+            medsPurpose: <input type="text" name="med4Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4Purpose")} value={this.state.fields["med4Purpose"] || ""}/>,
+            medsSideEffects: <input type="text" name="med4SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4SideEffects")} value={this.state.fields["med4SideEffects"] || ""}/>
+        }, {
+            medsName: <input type="text" name="med5Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Name")} value={this.state.fields["med5Name"] || ""}/>,
+            medsDosage: <input type="text" name="med5Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Dosage")} value={this.state.fields["med5Dosage"] || ""}/>,
+            medsTimeGiven: <input type="text" name="med5TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5TimeGiven")} value={this.state.fields["med5TimeGiven"] || ""}/>,
+            medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Frequency")} value={this.state.fields["med5Frequency"] || ""}/>,
+            medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Purpose")} value={this.state.fields["med5Purpose"] || ""}/>,
+            medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5SideEffects")} value={this.state.fields["med5SideEffects"] || ""}/>
+        }]
+        const foodGroupData = [{
+            foodGroup: 'Vegetables',
+            foodExcessive: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableExcess" id="vegetableExcess" className={"checkbox-style"} value={this.state.fields["vegetableExcess"] || ""} onChange={this.handleChange.bind(this, "vegetableExcess")}/></div>,
+            foodDaily: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableDaily" id="vegetableDaily" className={"checkbox-style"} value={this.state.fields["vegetableDaily"] || ""} onChange={this.handleChange.bind(this, "vegetableDaily")}/></div>,
+            foodWeekly: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableWeekly" id="vegetableWeekly" className={"checkbox-style"} value={this.state.fields["vegetableWeekly"] || ""} onChange={this.handleChange.bind(this, "vegetableWeekly")}/></div>,
+            foodRarely: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableRarely" id="vegetableRarely" className={"checkbox-style"} value={this.state.fields["vegetableRarely"] || ""} onChange={this.handleChange.bind(this, "vegetableRarely")}/></div>,
+            foodNever: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableNever" id="vegetableNever" className={"checkbox-style"} value={this.state.fields["vegetableNever"] || ""} onChange={this.handleChange.bind(this, "vegetableNever")}/></div>
+        }, {
+            foodGroup: 'Fruits',
+            foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitExcess" id="fruitExcess" className={"checkbox-style"} value={this.state.fields["fruitExcess"] || ""} onChange={this.handleChange.bind(this, "fruitExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitDaily" id="fruitDaily"className={"checkbox-style"} value={this.state.fields["fruitDaily"] || ""} onChange={this.handleChange.bind(this, "fruitDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitWeekly" id="fruitWeekly" className={"checkbox-style"} value={this.state.fields["fruitWeekly"] || ""} onChange={this.handleChange.bind(this, "fruitWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitRarely" id="fruitRarely"className={"checkbox-style"} value={this.state.fields["fruitRarely"] || ""} onChange={this.handleChange.bind(this, "fruitRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}> <Input type="checkbox" name="fruitNever" id="fruitNever"className={"checkbox-style"} value={this.state.fields["fruitNever"] || ""} onChange={this.handleChange.bind(this, "fruitNever")}/>  </div>
+        }, {
+            foodGroup: 'Meats',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatExcess" id="meatExcess" className={"checkbox-style"} value={this.state.fields["meatExcess"] || ""} onChange={this.handleChange.bind(this, "meatExcess")}/></div> ,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="meatDaily" id="meatDaily" className={"checkbox-style"} value={this.state.fields["meatDaily"] || ""} onChange={this.handleChange.bind(this, "meatDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatWeekly" id="meatWeekly" className={"checkbox-style"} value={this.state.fields["meatWeekly"] || ""} onChange={this.handleChange.bind(this, "meatWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatRarely" id="meatRarely" className={"checkbox-style"} value={this.state.fields["meatRarely"] || ""} onChange={this.handleChange.bind(this, "meatRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="meatNever" id="meatNever" className={"checkbox-style"} value={this.state.fields["meatNever"] || ""} onChange={this.handleChange.bind(this, "meatNever")}/>  </div>
+        }, {
+            foodGroup: 'Sugar',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarExcess" id="sugarExcess" className={"checkbox-style"} value={this.state.fields["sugarExcess"] || ""} onChange={this.handleChange.bind(this, "sugarExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarDaily" id="sugarDaily" className={"checkbox-style"} value={this.state.fields["sugarDaily"] || ""} onChange={this.handleChange.bind(this, "sugarDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarWeekly" id="sugarWeekly" className={"checkbox-style"} value={this.state.fields["sugarWeekly"] || ""} onChange={this.handleChange.bind(this, "sugarWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarRarely" id="sugarRarely" className={"checkbox-style"}value={this.state.fields["sugarRarely"] || ""} onChange={this.handleChange.bind(this, "sugarRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="sugarNever" id="sugarNever" className={"checkbox-style"} value={this.state.fields["sugarNever"] || ""} onChange={this.handleChange.bind(this, "sugarNever")}/>  </div>
+        }, {
+            foodGroup: 'Artificial Sweetener',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerExcess" id="artSweetenerExcess" className={"checkbox-style"} value={this.state.fields["artSweetenerExcess"] || ""} onChange={this.handleChange.bind(this, "artSweetenerExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerDaily" id="artSweetenerDaily" className={"checkbox-style"} value={this.state.fields["artSweetenerDaily"] || ""} onChange={this.handleChange.bind(this, "artSweetenerDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artSweetenerWeekly" id="artSweetenerWeekly" className={"checkbox-style"} value={this.state.fields["artSweetenerWeekly"] || ""} onChange={this.handleChange.bind(this, "artSweetenerWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerRarely" id="artSweetenerRarely" className={"checkbox-style"} value={this.state.fields["artSweetenerRarely"] || ""} onChange={this.handleChange.bind(this, "artSweetenerRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artSweetenerNever" id="artSweetenerNever" className={"checkbox-style"} value={this.state.fields["artSweetenerNever"] || ""} onChange={this.handleChange.bind(this, "artSweetenerNever")}/>  </div>
+        }, {
+            foodGroup: 'Artificial Products',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsExcess" id="artProductsExcess" className={"checkbox-style"} value={this.state.fields["artProductsExcess"] || ""} onChange={this.handleChange.bind(this, "artProductsExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsDaily" id="artProductsDaily" className={"checkbox-style"} value={this.state.fields["artProductsDaily"] || ""} onChange={this.handleChange.bind(this, "artProductsDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsWeekly" id="artProductsWeekly" className={"checkbox-style"} value={this.state.fields["artProductsWeekly"] || ""} onChange={this.handleChange.bind(this, "artProductsWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="artProductsRarely" id="artProductsRarely" className={"checkbox-style"} value={this.state.fields["artProductsRarely"] || ""} onChange={this.handleChange.bind(this, "artProductsRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="artProductsNever" id="artProductsNever" className={"checkbox-style"} value={this.state.fields["artProductsNever"] || ""} onChange={this.handleChange.bind(this, "artProductsNever")}/>  </div>
+        }, {
+            foodGroup: 'Dairy Products',
+            foodExcessive: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyExcess" id="dairyExcess" className={"checkbox-style"} value={this.state.fields["dairyExcess"] || ""} onChange={this.handleChange.bind(this, "dairyExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyDaily" id="dairyDaily" className={"checkbox-style"} value={this.state.fields["dairyDaily"] || ""} onChange={this.handleChange.bind(this, "dairyDaily")}/>  </div>,
+            foodWeekly:<div className={"checkbox-div"}> <Input type="checkbox" name="dairyWeekly" id="dairyWeekly" className={"checkbox-style"} value={this.state.fields["dairyWeekly"] || ""} onChange={this.handleChange.bind(this, "dairyWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}> <Input type="checkbox" name="dairyRarely" id="dairyRarely" className={"checkbox-style"} value={this.state.fields["dairyRarely"] || ""} onChange={this.handleChange.bind(this, "dairyRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="dairyNever" id="dairyNever"className={"checkbox-style"} value={this.state.fields["dairyNever"] || ""} onChange={this.handleChange.bind(this, "dairyNever")}/>  </div>
+        }, {
+            foodGroup: 'White Flour',
+            foodExcessive: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourExcess" id="flourExcess"className={"checkbox-style"} value={this.state.fields["flourExcess"] || ""} onChange={this.handleChange.bind(this, "flourExcess")}/>  </div>,
+            foodDaily: <div className={"checkbox-div"}> <Input type="checkbox" name="flourDaily" id="flourDaily" className={"checkbox-style"} value={this.state.fields["flourDaily"] || ""} onChange={this.handleChange.bind(this, "flourDaily")}/>  </div>,
+            foodWeekly: <div className={"checkbox-div"}> <Input type="checkbox" name="flourWeekly" id="flourWeekly" className={"checkbox-style"} value={this.state.fields["flourWeekly"] || ""} onChange={this.handleChange.bind(this, "flourWeekly")}/>  </div>,
+            foodRarely: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourRarely" id="flourRarely" className={"checkbox-style"} value={this.state.fields["flourRarely"] || ""} onChange={this.handleChange.bind(this, "flourRarely")}/>  </div>,
+            foodNever: <div className={"checkbox-div"}>  <Input type="checkbox" name="flourNever" id="flourNever" className={"checkbox-style"} value={this.state.fields["flourNever"] || ""} onChange={this.handleChange.bind(this, "flourNever")}/>  </div>
+        }]
         return (
             <fieldset id="/chai/section5">
                 <div className={"section"}>Section 5: Medical History/Past Therapies</div>
@@ -5589,7 +4983,7 @@ class ClientHistoryAndInformation extends Component {
                 <div className={"space-between"}>If yes, please fill out the following table</div>
                 <ReactTable
                     className={"otherDoctorsTable -striped -highlight"}
-                    data={this.state.otherDoctorsData}
+                    data={otherDoctorsData}
                     columns={this.state.otherDoctorsColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -5611,7 +5005,7 @@ class ClientHistoryAndInformation extends Component {
                 <div className={"space-between"}>Please list any additional specialists the client sees (psychologists, OT, SLP,Educational,Behavioral,etc.)</div>
                 <ReactTable
                     className={" otherDoctorsTable -striped -highlight"}
-                    data={this.state.specialDoctorsData}
+                    data={specialDoctorsData}
                     columns={this.state.otherSpecialistsColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -5634,7 +5028,7 @@ class ClientHistoryAndInformation extends Component {
                         Please send any supporting documents or reports to Jacob's Ladder via email.</Label>
                 <ReactTable
                     className={"testingTable -striped -highlight"}
-                    data={this.state.testingData}
+                    data={testingData}
                     columns={this.state.testingColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -5675,7 +5069,7 @@ class ClientHistoryAndInformation extends Component {
                     <Label className="control-label required">Please indicate whether the following apply to the client.</Label>
                 <ReactTable
                     className={"medicalConditionsTable -striped -highlight"}
-                    data={this.state.medicalConditionsData}
+                    data={medicalConditionsData}
                     columns={this.state.medicalConditionsColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -5714,7 +5108,7 @@ class ClientHistoryAndInformation extends Component {
                     <Label className="control-label required space-between">Please indicate if the client uses any of the following supplies/equipment.</Label>
                 <ReactTable
                     className={"suppliesTable -striped -highlight"}
-                    data={this.state.suppliesData}
+                    data={suppliesData}
                     columns={this.state.suppliesColumns}
                     defaultPageSize={8}
                     showPagination={false}
@@ -5754,7 +5148,7 @@ class ClientHistoryAndInformation extends Component {
                     <Label className="control-label required">Please list all current medications, dietary supplement, and vitamins.</Label>
                 <ReactTable
                     className={"medsTable -striped -highlight"}
-                    data={this.state.medsData}
+                    data={medsData}
                     columns={this.state.medsColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -5793,6 +5187,131 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection6() {
+        const physicalMotorData = [{
+            physicalMotor: 'Low muscle tone',
+            physicalMotorYN: <Input type="select"
+                                    name="lowMuscleTone"
+                                    id="lowMuscleTone"
+                                    onChange={this.handleChange.bind(this, "lowMuscleTone")}
+                                    value={this.state.fields["lowMuscleTone"] || ""}
+            >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'High muscle tone',
+            physicalMotorYN: <Input type="select"
+                                    name="highMuscleTone"
+                                    id="highMuscleTone"
+                                    onChange={this.handleChange.bind(this, "highMuscleTone")}
+                                    value={this.state.fields["highuscleTone"] || ""}
+            >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'Coordination challenges',
+            physicalMotorYN: <Input type="select"
+                                    name="coordination"
+                                    id="coordination"
+                                    onChange={this.handleChange.bind(this, "coordination")}
+                                    value={this.state.fields["coordination"] || ""}
+            >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'Crawling challenges',
+            physicalMotorYN: <Input type="select"
+                                    name="crawling"
+                                    id="crawling"
+                                    value={this.state.fields["crawling"] || ""}
+                                    onChange={this.handleChange.bind(this, "crawling")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'Walking challenges',
+            physicalMotorYN: <Input type="select"
+                                    name="walking"
+                                    id="walking"
+                                    onChange={this.handleChange.bind(this, "walking")}
+                                    value={this.state.fields["walking"] || ""}
+            >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'Running challenges',
+            physicalMotorYN: <Input type="select"
+                                    name="running"
+                                    id="running"
+                                    value={this.state.fields["running"] || ""}
+                                    onChange={this.handleChange.bind(this, "running")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'Athetoid movement',
+            physicalMotorYN: <Input type="select"
+                                    name="athetoid"
+                                    id="athetoid"
+                                    value={this.state.fields["athetoid"] || ""}
+                                    onChange={this.handleChange.bind(this, "athetoid")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'Ataxic',
+            physicalMotorYN: <Input type="select"
+                                    name="ataxic"
+                                    id="ataxic"
+                                    value={this.state.fields["ataxic"] || ""}
+                                    onChange={this.handleChange.bind(this, "ataxic")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'Weak',
+            physicalMotorYN: <Input type="select"
+                                    name="weak"
+                                    id="weak"
+                                    value={this.state.fields["weak"] || ""}
+                                    onChange={this.handleChange.bind(this, "weak")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            physicalMotor: 'Balance challenges',
+            physicalMotorYN: <Input type="select"
+                                    name="balance"
+                                    id="balance"
+                                    value={this.state.fields["balance"] || ""}
+                                    onChange={this.handleChange.bind(this, "balance")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }]
         return (
             <fieldset id="/chai/section6">
                 <div className={"section"}>Section 6: General Health</div>
@@ -5816,7 +5335,7 @@ class ClientHistoryAndInformation extends Component {
                     <Label className="control-label required">Please check all that apply:</Label>
                 <ReactTable
                     className={"foodGroupTable -striped -highlight"}
-                    data={this.state.foodGroupData}
+                    data={foodGroupData}
                     columns={this.state.foodGroupColumns}
                     defaultPageSize={8}
                     showPagination={false}
@@ -6035,7 +5554,7 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
                 <ReactTable
                     className={"physicalMotorTable -striped -highlight"}
-                    data={this.state.physicalMotorData}
+                    data={physicalMotorData}
                     columns={this.state.physicalMotorColumns}
                     defaultPageSize={10}
                     showPagination={false}
@@ -6091,13 +5610,281 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection7() {
+        const otherProgramsData = [{
+            programName: <input type="text" name="program1name"className={"tableInputField"} value={this.state.fields["program1name"] || ""} onChange={this.handleChange.bind(this, "program1name")}/>,
+            startDate: <input type="text" name="startdate1"className={"tableInputField"} value={this.state.fields["startdate1"] || ""} onChange={this.handleChange.bind(this, "startdate1")}/>,
+            provider: <input type="text" name="provider1"className={"tableInputField"} value={this.state.fields["provider1"] || ""} onChange={this.handleChange.bind(this, "provider1")}/>,
+            programPhoneNumber: <input type="tel" name="phonenumber1"className={"tableInputField"} value={this.state.fields["phonenumber1"] || ""} onChange={this.handleChange.bind(this, "phonenumber1")}/>,
+            contactPermission: <Input type="select"
+                                      name="contactpermission1"
+                                      id="contactpermission1"
+                                      value={this.state.fields["contactpermission1"] || ""}
+                                      onChange={this.handleChange.bind(this, "contactpermission1")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+            </Input>
+        }, {
+            programName: <input type="text" name="program2name"className={"tableInputField"} value={this.state.fields["program2name"] || ""} onChange={this.handleChange.bind(this, "program2name")}/>,
+            startDate: <input type="text" name="startdate2"className={"tableInputField"} value={this.state.fields["startdate2"] || ""} onChange={this.handleChange.bind(this, "startdate2")}/>,
+            provider: <input type="text" name="provider2"className={"tableInputField"} value={this.state.fields["provider2"] || ""} onChange={this.handleChange.bind(this, "provider2")}/>,
+            programPhoneNumber: <input type="tel" name="phonenumber2"className={"tableInputField"} value={this.state.fields["phonenumber2"] || ""} onChange={this.handleChange.bind(this, "phonenumber2")}/>,
+            contactPermission: <Input type="select"
+                                      name="contactpermission2"
+                                      id="contactpermission2"
+                                      value={this.state.fields["contactpermission2"] || ""}
+                                      onChange={this.handleChange.bind(this, "contactpermission2")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+            </Input>
+        }, {
+            programName: <input type="text" name="program3name"className={"tableInputField"} value={this.state.fields["program3name"] || ""} onChange={this.handleChange.bind(this, "program3name")}/>,
+            startDate: <input type="text" name="startdate3"className={"tableInputField"} value={this.state.fields["startdate3"] || ""} onChange={this.handleChange.bind(this, "startdate3")}/>,
+            provider: <input type="text" name="provider3" className={"tableInputField"} value={this.state.fields["provider3"] || ""} onChange={this.handleChange.bind(this, "provider3")}/>,
+            programPhoneNumber: <input type="tel" name="phonenumber3" className={"tableInputField"} value={this.state.fields["phonenumber3"] || ""} onChange={this.handleChange.bind(this, "phonenumber3")}/>,
+            contactPermission: <Input type="select"
+                                      name="contactpermission3"
+                                      id="contactpermission3"
+                                      value={this.state.fields["contactpermission3"] || ""}
+                                      onChange={this.handleChange.bind(this, "contactpermission3")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+            </Input>
+        }, {
+            programName: <input type="text" name="program4name" className={"tableInputField"} value={this.state.fields["program4name"] || ""} onChange={this.handleChange.bind(this, "program4name")}/>,
+            startDate: <input type="text" name="startdate4" className={"tableInputField"} value={this.state.fields["startdate4"] || ""} onChange={this.handleChange.bind(this, "startdate4")}/>,
+            provider: <input type="text" name="provider4" className={"tableInputField"} value={this.state.fields["provider4"] || ""} onChange={this.handleChange.bind(this, "provider4")}/>,
+            programPhoneNumber: <input type="tel" name="phonenumber4" className={"tableInputField"} value={this.state.fields["phonenumber4"] || ""} onChange={this.handleChange.bind(this, "phonenumber4")}/>,
+            contactPermission: <Input type="select"
+                                      name="contactpermission4"
+                                      id="contactpermission4"
+                                      value={this.state.fields["contactpermission4"] || ""}
+                                      onChange={this.handleChange.bind(this, "contactpermission4")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+            </Input>
+        }, {
+            programName: <input type="text" name="program5name" className={"tableInputField"} value={this.state.fields["program5name"] || ""} onChange={this.handleChange.bind(this, "program5name")}/>,
+            startDate: <input type="text" name="startdate5" className={"tableInputField"} value={this.state.fields["startdate5"] || ""} onChange={this.handleChange.bind(this, "startdate5")}/>,
+            provider: <input type="text" name="provider5" className={"tableInputField"} value={this.state.fields["provider5"] || ""} onChange={this.handleChange.bind(this, "provider5")}/>,
+            programPhoneNumber: <input type="tel" name="phonenumber5" className={"tableInputField"} value={this.state.fields["phonenumber5"] || ""} onChange={this.handleChange.bind(this, "phonenumber5")}/>,
+            contactPermission: <Input type="select"
+                                      name="contactpermission5"
+                                      id="contactpermission5"
+                                      value={this.state.fields["contactpermission5"] || ""}
+                                      onChange={this.handleChange.bind(this, "contactpermission5")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+            </Input>
+        }]
+         const handPreferenceData = [{
+            activityHandPreference: "Writing",
+            handPreference: <Input type="select"
+                                   name="handPreference1"
+                                   id="handPreference1"
+                                   onChange={this.handleChange.bind(this, "handPreference1")}
+                                   value={this.state.fields["handPreference1"] || ""}
+            >
+                <option></option>
+                <option>Unknown</option>
+                <option>Right</option>
+                <option>Left</option>
+                <option>Mixed</option>
+            </Input>
+        }, {
+            activityHandPreference: "Eating",
+            handPreference: <Input type="select"
+                                   name="handPreference2"
+                                   id="handPreference2"
+                                   onChange={this.handleChange.bind(this, "handPreference2")}
+                                   value={this.state.fields["handPreference2"] || ""}
+            >
+                <option></option>
+                <option>Unknown</option>
+                <option>Right</option>
+                <option>Left</option>
+                <option>Mixed</option>
+            </Input>
+        }, {
+            activityHandPreference: "Throwing",
+            handPreference: <Input type="select"
+                                   name="handPreference3"
+                                   id="handPreference3"
+                                   onChange={this.handleChange.bind(this, "handPreference3")}
+                                   value={this.state.fields["handPreference3"] || ""}
+            >
+                <option></option>
+                <option>Unknown</option>
+                <option>Right</option>
+                <option>Left</option>
+                <option>Mixed</option>
+            </Input>
+        }, {
+            activityHandPreference: "Brushing Teeth",
+            handPreference: <Input type="select"
+                                   name="handPreference4"
+                                   id="handPreference4"
+                                   onChange={this.handleChange.bind(this, "handPreference4")}
+                                   value={this.state.fields["handPreference4"] || ""}
+            >
+                <option></option>
+                <option>Unknown</option>
+                <option>Right</option>
+                <option>Left</option>
+                <option>Mixed</option>
+            </Input>
+        }, {
+            activityHandPreference: "Combing Hair",
+            handPreference: <Input type="select"
+                                   name="handPreference5"
+                                   id="handPreference5"
+                                   onChange={this.handleChange.bind(this, "handPreference5")}
+                                   value={this.state.fields["handPreference5"] || ""}
+            >
+                <option></option>
+                <option>Unknown</option>
+                <option>Right</option>
+                <option>Left</option>
+                <option>Mixed</option>
+            </Input>
+        }]
+        const skillsData = [{
+            skill: "Poor Pencil Grip",
+            checkApplied: <Input type="select"
+                                 name="skill1"
+                                 id="skill1"
+                                 onChange={this.handleChange.bind(this, "skill1")}
+                                 value={this.state.fields["skill1"] || ""}
+            >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Sloppy Writing",
+            checkApplied: <Input type="select"
+                                 name="skill2"
+                                 id="skill2"
+                                 onChange={this.handleChange.bind(this, "skill2")}
+                                 value={this.state.fields["skill2"] || ""}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Letter Reversals",
+            checkApplied: <Input type="select"
+                                 name="skill3"
+                                 id="skill3"
+                                 onChange={this.handleChange.bind(this, "skill3")}
+                                 value={this.state.fields["skill3"] || ""}>
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Right/Left Confusion",
+            checkApplied: <Input type="select"
+                                 name="skill4"
+                                 id="skill4"
+                                 onChange={this.handleChange.bind(this, "skill4")}
+                                 value={this.state.fields["skill4"] || ""}>
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Poor reading ability",
+            checkApplied: <Input type="select"
+                                 name="skill5"
+                                 id="skill5"
+                                 onChange={this.handleChange.bind(this, "skill5")}
+                                 value={this.state.fields["skill5"] || ""}>
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Math Computation Challenges",
+            checkApplied: <Input type="select"
+                                 name="skill6"
+                                 id="skill6"
+                                 onChange={this.handleChange.bind(this, "skill6")}
+                                 value={this.state.fields["skill6"] || ""}>
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Math Concept Challenges",
+            checkApplied: <Input type="select"
+                                 name="skill7"
+                                 id="skill7"
+                                 onChange={this.handleChange.bind(this, "skill7")}
+                                 value={this.state.fields["skill7"] || ""}>
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Math Word Problem Challenges",
+            checkApplied: <Input type="select"
+                                 name="skill8"
+                                 id="skill8"
+                                 onChange={this.handleChange.bind(this, "skill8")}
+                                 value={this.state.fields["skill8"] || ""}>
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Math Logic Challenges",
+            checkApplied: <Input type="select"
+                                 name="skill9"
+                                 id="skill9"
+                                 onChange={this.handleChange.bind(this, "skill9")}
+                                 value={this.state.fields["skill9"] || ""}>
+                >
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+            </Input>
+        }, {
+            skill: "Other related Challenges",
+            checkApplied: <Input type="text"
+                                 name="skill10"
+                                 id="skill10"
+                                 placeholder="Please Explain"
+                                 onChange={this.handleChange.bind(this, "skill10")}
+                                 value={this.state.fields["skill10"] || ""}>
+            </Input>
+        }]
         return (
             <fieldset id="/chai/section7">
                 <div className={"section"}>Section 7: Educational History</div>
                 <p className="control-label required">List current and past educational and/or treatment placement(s).</p>
                 <ReactTable
                     className={"otherSchoolTable -striped -highlight"}
-                    data={this.state.otherProgramsData}
+                    data={otherProgramsData}
                     columns={this.state.otherProgramsColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -6162,7 +5949,7 @@ class ClientHistoryAndInformation extends Component {
                 <p className="control-label required">Indicate your child’s hand preference for each activity: Right/Left/Mixed/Not Applicable.</p>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
-                    data={this.state.handPreferenceData}
+                    data={handPreferenceData}
                     columns={this.state.handPreferenceColumns}
                     defaultPageSize={5}
                     showPagination={false}
@@ -6184,7 +5971,7 @@ class ClientHistoryAndInformation extends Component {
                 <p className="control-label required">Check all of the following that apply.</p>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
-                    data={this.state.skillsData}
+                    data={skillsData}
                     columns={this.state.skillsColumns}
                     defaultPageSize={10}
                     showPagination={false}
@@ -6237,6 +6024,45 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection8() {
+        const communicationProblemsData= [{
+            communicationIssue: "Articulation Problems",
+            communicationResponse: <Input type="select"
+                                          name="communicationIssue1"
+                                          id="communicationIssue1"
+                                          value={this.state.fields["communicationIssue1"] || ""}
+                                          onChange={this.handleChange.bind(this, "communicationIssue1")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+
+            </Input>
+        },{communicationIssue: "Stammer or Stutter",
+            communicationResponse: <Input type="select"
+                                          name="communicationIssue2"
+                                          id="communicationIssue2"
+                                          value={this.state.fields["communicationIssue2"] || ""}
+                                          onChange={this.handleChange.bind(this, "communicationIssue2")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+
+            </Input>
+        }, {
+            communicationIssue: "Aphasia",
+            communicationResponse: <Input type="select"
+                                          name="communicationIssue3"
+                                          id="communicationIssue3"
+                                          value={this.state.fields["communicationIssue3"] || ""}
+                                          onChange={this.handleChange.bind(this, "communicationIssue3")}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+                <option>Not Sure</option>
+
+            </Input>
+        }]
         return (
             <fieldset id="/chai/section8">
                 <div className={"section"}>Section 8: Communication</div>
@@ -6412,7 +6238,7 @@ class ClientHistoryAndInformation extends Component {
                 </Row>
                 <ReactTable
                     className={"devHistoryTable -striped -highlight"}
-                    data={this.state.communicationProblemsData}
+                    data={communicationProblemsData}
                     columns={this.state.communicationProblemsColumns}
                     defaultPageSize={3}
                     showPagination={false}
@@ -8693,6 +8519,313 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection11() {
+            const level1GoalsData = [{
+            goal1Category: <div className={"sub-section"}>Attending Skills</div>,
+            goal1NA: '',
+            goal1Physical: '',
+            goal1Verbal: '',
+            goal1Initiates: ''
+        }, {
+            goal1Category: 'Sits in chair independently',
+            goal1NA: <Label check> <Input type="checkbox" name="g1SitNA" id="g1SitNA" value={this.state.fields["g1SitNA"] || ""} onChange={this.handleChange.bind(this, "g1SitNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SitPhysical" id="g1SitPhysical" value={this.state.fields["g1SitPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SitPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SitVerbal" id="g1SitVerbal" value={this.state.fields["g1SitVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SitVerbal")}/> Verbal Prompt</Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SitInitiates" id="g1SitInitiates" value={this.state.fields["g1SitNA"] || ""} onChange={this.handleChange.bind(this, "g1SitNA")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Attends to a task >5 minutes',
+            goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskLongNA" id="g1AttendTaskLongNA" value={this.state.fields["g1AttendTaskLongNA"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskLongNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskLongPhysical" id="g1AttendTaskLongPhysical" value={this.state.fields["g1AttendTaskLongPhysical"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskLongPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskLongVerbal" id="g1AttendTaskLongVerbal" value={this.state.fields["g1AttendTaskLongVerbal"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskLongVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskLongInitiates" id="g1AttendTaskLongInitiates" value={this.state.fields["g1AttendTaskLongInitiates"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskLongInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Attends to a task <5 minutes',
+            goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskShortNA" id="g1AttendTaskShortNA" value={this.state.fields["g1AttendTaskShortNA"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskShortNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskShortPhysical" id="g1AttendTaskShortPhysical" value={this.state.fields["g1AttendTaskShortPhysical"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskShortPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskShortVerbal" id="g1AttendTaskShortVerbal" value={this.state.fields["g1AttendTaskShortVerbal"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskShortVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskShortInitiates" id="g1AttendTaskShortInitiates" value={this.state.fields["g1AttendTaskShortInitiates"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskShortInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Makes eye contact',
+            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNA" id="g1EyeContactNA" value={this.state.fields["g1EyeContactNA"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactPhysical" id="g1EyeContactPhysical" value={this.state.fields["g1EyeContactPhysical"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactVerbal" id="g1EyeContactVerbal" value={this.state.fields["g1EyeContactVerbal"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactInitiates" id="g1EyeContactInitiates" value={this.state.fields["g1EyeContactInitiates"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Sustains eye contact in response to name',
+            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNameNA" id="g1EyeContactNameNA" value={this.state.fields["g1EyeContactNameNA"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNameNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactNamePhysical" id="g1EyeContactNamePhysical" value={this.state.fields["g1EyeContactNamePhysical"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNamePhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactNameVerbal" id="g1EyeContactNameVerbal" value={this.state.fields["g1EyeContactNameVerbal"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNameVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactNameInitiates" id="g1EyeContactNameInitiates" value={this.state.fields["g1EyeContactNameInitiates"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNameInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Makes eye contact during group instruction',
+            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactGroupNA" id="g1EyeContactGroupNA" value={this.state.fields["g1EyeContactGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactGroupNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactGroupPhysical" id="g1EyeContactGroupPhysical" value={this.state.fields["g1EyeContactGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactGroupPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactGroupVerbal" id="g1EyeContactGroupVerbal" value={this.state.fields["g1EyeContactGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactGroupVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactGroupInitiates" id="g1EyeContactGroupInitiates" value={this.state.fields["g1EyeContactGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactGroupInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: <div className={"sub-section"}>Communication Skills</div>,
+            goal1NA: '',
+            goal1Physical: '',
+            goal1Verbal: '',
+            goal1Initiates: ''
+        }, {
+            goal1Category: 'Communicates wants and needs',
+            goal1NA: <Label check> <Input type="checkbox" name="g1WantsNeedsNA" id="g1WantsNeedsNA" value={this.state.fields["g1WantsNeedsNA"] || ""} onChange={this.handleChange.bind(this, "g1WantsNeedsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1WantsNeedsPhysical" id="g1WantsNeedsPhysical" value={this.state.fields["g1WantsNeedsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1WantsNeedsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1WantsNeedsVerbal" id="g1WantsNeedsVerbal" value={this.state.fields["g1WantsNeedsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1WantsNeedsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1WantsNeedsInitiates" id="g1WantsNeedsInitiates" value={this.state.fields["g1WantsNeedsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1WantsNeedsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Answers simple social questions',
+            goal1NA: <Label check> <Input type="checkbox" name="g1SocialQsNA" id="g1socialQsNA" value={this.state.fields["g1SocialQsNA"] || ""} onChange={this.handleChange.bind(this, "g1SocialQsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SocialQsPhysical" id="g1SocialQsPhysical" value={this.state.fields["g1SocialQsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SocialQsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SocialQsVerbal" id="g1SocialQsVerbal" value={this.state.fields["g1SocialQsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SocialQsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SocialQsInitiates" id="g1SocialQsInitiates" value={this.state.fields["g1SocialQsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SocialQsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Answers simple interference-based questions',
+            goal1NA: <Label check> <Input type="checkbox" name="g1InterferenceQsNA" id="g1InterferenceQsNA" value={this.state.fields["g1InterferenceQsNA"] || ""} onChange={this.handleChange.bind(this, "g1InterferenceQsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1InterferenceQsPhysical" id="g1InterferenceQsPhysical" value={this.state.fields["g1InterferenceQsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InterferenceQsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1InterferenceQsVerbal" id="g1InterferenceQsVerbal" value={this.state.fields["g1InterferenceQsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InterferenceQsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1InterferenceQsInitiates" id="g1InterferenceQsInitiates" value={this.state.fields["g1InterferenceQsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InterferenceQsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Reciprocates conversation',
+            goal1NA: <Label check> <Input type="checkbox" name="g1ReciprocateConversationNA" id="g1ReciprocateConversationNA" value={this.state.fields["g1ReciprocateConversationNA"] || ""} onChange={this.handleChange.bind(this, "g1ReciprocateConversationNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ReciprocateConversationPhysical" id="g1ReciprocateConversationPhysical" value={this.state.fields["g1ReciprocateConversationPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ReciprocateConversationPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ReciprocateConversationVerbal" id="g1ReciprocateConversationVerbal" value={this.state.fields["g1ReciprocateConversationVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ReciprocateConversationVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ReciprocateConversationInitiates" id="g1ReciprocateConversationInitiates" value={this.state.fields["g1ReciprocateConversationInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ReciprocateConversationInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Maintains conversation',
+            goal1NA: <FormGroup> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA" value={this.state.fields["g1MaintainConversationNA"] || ""} onChange={this.handleChange.bind(this, "g1MaintainConversationNA")}/><Label check>  N/A </Label></FormGroup>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1MaintainConversationPhysical" id="g1MaintainConversationPhysical" value={this.state.fields["g1MaintainConversationPhysical"] || ""} onChange={this.handleChange.bind(this, "g1MaintainConversationPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1MaintainConversationVerbal" id="g1MaintainConversationVerbal" value={this.state.fields["g1MaintainConversationVerbal"] || ""} onChange={this.handleChange.bind(this, "g1MaintainConversationVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1MaintainConversationInitiates" id="g1MaintainConversationInitiates" value={this.state.fields["g1MaintainConversationInitiates"] || ""} onChange={this.handleChange.bind(this, "g1MaintainConversationInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Has conversations using original thought',
+            goal1NA: <Label check> <Input type="checkbox" name="g1OriginalConversationNA" id="g1OriginalConversationNA" value={this.state.fields["g1OriginalConversationNA"] || ""} onChange={this.handleChange.bind(this, "g1OriginalConversationNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1OriginalConversationPhysical" id="g1OriginalConversationPhysical" value={this.state.fields["g1OriginalConversationPhysical"] || ""} onChange={this.handleChange.bind(this, "g1OriginalConversationPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1OriginalConversationVerbal" id="g1OriginalConversationVerbal" value={this.state.fields["g1OriginalConversationVerbal"] || ""} onChange={this.handleChange.bind(this, "g1OriginalConversationVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1OriginalConversationInitiates" id="g1OriginalConversationInitiates" value={this.state.fields["g1OriginalConversationInitiates"] || ""} onChange={this.handleChange.bind(this, "g1OriginalConversationInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: <div className={"sub-section"}>Independent Skills</div>,
+            goal1NA: '',
+            goal1Physical: '',
+            goal1Verbal: '',
+            goal1Initiates: ''
+        }, {
+            goal1Category: 'Goes to designated person/place within the room',
+            goal1NA: <Label check> <Input type="checkbox" name="g1WithinRoomNA" id="g1WithinRoomNA" value={this.state.fields["g1WithinRoomNA"] || ""} onChange={this.handleChange.bind(this, "g1WithinRoomNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1WithinRoomPhysical" id="g1WithinRoomPhysical" value={this.state.fields["g1WithinRoomPhysical"] || ""} onChange={this.handleChange.bind(this, "g1WithinRoomPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1WithinRoomVerbal" id="g1WithinRoomVerbal" value={this.state.fields["g1WithinRoomVerbal"] || ""} onChange={this.handleChange.bind(this, "g1WithinRoomVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1WithinRoomInitiates" id="g1WithinRoomInitiates" value={this.state.fields["g1WithinRoomInitiates"] || ""} onChange={this.handleChange.bind(this, "g1WithinRoomInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Goes to designated person/place in another room',
+            goal1NA: <Label check> <Input type="checkbox" name="g1AnotherRoomNA" id="g1AnotherRoomNA" value={this.state.fields["g1AnotherRoomNA"] || ""} onChange={this.handleChange.bind(this, "g1AnotherRoomNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1AnotherRoomPhysical" id="g1AnotherRoomPhysical" value={this.state.fields["g1AnotherRoomPhysical"] || ""} onChange={this.handleChange.bind(this, "g1AnotherRoomPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1AnotherRoomVerbal" id="g1AnotherRoomVerbal" value={this.state.fields["g1AnotherRoomVerbal"] || ""} onChange={this.handleChange.bind(this, "g1AnotherRoomVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1AnotherRoomInitiates" id="g1AnotherRoomInitiates" value={this.state.fields["g1AnotherRoomInitiates"] || ""} onChange={this.handleChange.bind(this, "g1AnotherRoomInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Able to complete task independently >5 minutes',
+            goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskLongNA" id="g1IndTaskLongNA" value={this.state.fields["g1IndTaskLongNA"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskLongNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskLongPhysical" id="g1IndTaskLongPhysical" value={this.state.fields["g1IndTaskLongPhysical"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskLongPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskLongVerbal" id="g1IndTaskLongVerbal" value={this.state.fields["g1IndTaskLongVerbal"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskLongVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskLongInitiates" id="g1IndTaskLongInitiates" value={this.state.fields["g1IndTaskLongInitiates"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskLongInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Able to complete task independently <5 minutes',
+            goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskShortNA" id="g1IndTaskShortNA" value={this.state.fields["g1IndTaskShortNA"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskShortNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskShortPhysical" id="g1IndTaskShortPhysical" value={this.state.fields["g1IndTaskShortPhysical"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskShortPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskShortVerbal" id="g1IndTaskShortVerbal" value={this.state.fields["g1IndTaskShortVerbal"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskShortVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskShortInitiates" id="g1IndTaskShortInitiates" value={this.state.fields["g1IndTaskShortInitiates"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskShortInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Able to organize materials within and for simple tasks and execute them independently',
+            goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsNA" id="g1OrganizeMaterialsNA" value={this.state.fields["g1OrganizeMaterialsNA"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeMaterialsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsPhysical" id="g1OrganizeMaterialsPhysical" value={this.state.fields["g1OrganizeMaterialsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeMaterialsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsVerbal" id="g1OrganizeMaterialsVerbal" value={this.state.fields["g1OrganizeMaterialsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeMaterialsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsInitiates" id="g1OrganizeMaterialsInitiates" value={this.state.fields["g1OrganizeMaterialsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeMaterialsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Able to organize/prioritize simple progression of tasks (ex. Prioritizing homework with different due dates- doing what is due first, then second, etc.)',
+            goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeTasksNA" id="g1OrganizeTasksNA" value={this.state.fields["g1OrganizeTasksNA"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeTasksNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeTasksPhysical" id="g1OrganizeTasksPhysical" value={this.state.fields["g1OrganizeTasksPhysical"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeTasksPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeTasksVerbal" id="g1OrganizeTasksVerbal" value={this.state.fields["g1OrganizeTasksVerbal"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeTasksVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeTasksInitiates" id="g1OrganizeTasksInitiates" value={this.state.fields["g1OrganizeTasksInitiates"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeTasksInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: <div className={"sub-section"}>Self-Care Skills</div>,
+            goal1NA: '',
+            goal1Physical: '',
+            goal1Verbal: '',
+            goal1Initiates: ''
+        }, {
+            goal1Category: 'Put shoes on and off',
+            goal1NA: <Label check> <Input type="checkbox" name="g1ShoesOnOffNA" id="g1ShoesOnOffNA" value={this.state.fields["g1ShoesOnOffNA"] || ""} onChange={this.handleChange.bind(this, "g1ShoesOnOffNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ShoesOnOffPhysical" id="g1ShoesOnOffPhysical" value={this.state.fields["g1ShoesOnOffPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ShoesOnOffPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ShoesOnOffVerbal" id="g1ShoesOnOffVerbal" value={this.state.fields["g1ShoesOnOffVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ShoesOnOffVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ShoesOnOffInitiates" id="g1ShoesOnOffInitiates" value={this.state.fields["g1ShoesOnOffInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ShoesOnOffInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Discriminates right and left',
+            goal1NA: <Label check> <Input type="checkbox" name="g1RightLeftNA" id="g1RightLeftNA" value={this.state.fields["g1RightLeftNA"] || ""} onChange={this.handleChange.bind(this, "g1RightLeftNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1RightLeftPhysical" id="g1RightLeftPhysical" value={this.state.fields["g1RightLeftPhysical"] || ""} onChange={this.handleChange.bind(this, "g1RightLeftPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1RightLeftVerbal" id="g1RightLeftVerbal" value={this.state.fields["g1RightLeftVerbal"] || ""} onChange={this.handleChange.bind(this, "g1RightLeftVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1RightLeftInitiates" id="g1RightLeftInitiates" value={this.state.fields["g1RightLeftInitiates"] || ""} onChange={this.handleChange.bind(this, "g1RightLeftInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Unties and ties shoes',
+            goal1NA: <Label check> <Input type="checkbox" name="g1TieShoesNA" id="g1TieShoesNA" value={this.state.fields["g1TieShoesNA"] || ""} onChange={this.handleChange.bind(this, "g1TieShoesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1TieShoesPhysical" id="g1TieShoesPhysical" value={this.state.fields["g1TieShoesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1TieShoesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1TieShoesVerbal" id="g1TieShoesVerbal" value={this.state.fields["g1TieShoesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1TieShoesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1TieShoesInitiates" id="g1TieShoesInitiates" value={this.state.fields["g1TieShoesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1TieShoesInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Pulls up/down pants',
+            goal1NA: <Label check> <Input type="checkbox" name="g1PantsNA" id="g1PantsNA" value={this.state.fields["g1PantsNA"] || ""} onChange={this.handleChange.bind(this, "g1PantsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1PantsPhysical" id="g1PantsPhysical" value={this.state.fields["g1PantsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1PantsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1PantsVerbal" id="g1PantsVerbal" value={this.state.fields["g1PantsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1PantsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1PantsInitiates" id="g1PantsInitiates" value={this.state.fields["g1PantsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1PantsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Buttons and unbuttons',
+            goal1NA: <Label check> <Input type="checkbox" name="g1ButtonsNA" id="g1ButtonsNA" value={this.state.fields["g1ButtonsNA"] || ""} onChange={this.handleChange.bind(this, "g1ButtonsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ButtonsPhysical" id="g1ButtonsPhysical" value={this.state.fields["g1ButtonsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ButtonsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ButtonsVerbal" id="g1ButtonsVerbal" value={this.state.fields["g1ButtonsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ButtonsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ButtonsInitiates" id="g1ButtonsInitiates" value={this.state.fields["g1ButtonsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ButtonsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Adjusts clothes',
+            goal1NA: <Label check> <Input type="checkbox" name="g1AdjustClothesNA" id="g1AdjustClothesNA" value={this.state.fields["g1AdjustClothesNA"] || ""} onChange={this.handleChange.bind(this, "g1AdjustClothesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1AdjustClothesPhysical" id="g1AdjustClothesPhysical" value={this.state.fields["g1AdjustClothesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1AdjustClothesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1AdjustClothesVerbal" id="g1AdjustClothesVerbal" value={this.state.fields["g1AdjustClothesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1AdjustClothesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1AdjustClothesInitiates" id="g1AdjustClothesInitiates" value={this.state.fields["g1AdjustClothesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1AdjustClothesInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Dresses and undresses',
+            goal1NA: <Label check> <Input type="checkbox" name="g1DressesNA" id="g1DressesNA" value={this.state.fields["g1DressesNA"] || ""} onChange={this.handleChange.bind(this, "g1DressesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1DressesPhysical" id="g1DressesPhysical" value={this.state.fields["g1DressesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1DressesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1DressesVerbal" id="g1DressesVerbal" value={this.state.fields["g1DressesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1DressesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1DressesInitiates" id="g1DressesInitiates" value={this.state.fields["g1DressesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1DressesInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Sorts clothes for washing',
+            goal1NA: <Label check> <Input type="checkbox" name="g1SortsClothesNA" id="g1SortsClothesNA" value={this.state.fields["g1SortsClothesNA"] || ""} onChange={this.handleChange.bind(this, "g1SortsClothesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SortsClothesPhysical" id="g1SortsClothesPhysical" value={this.state.fields["g1SortsClothesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SortsClothesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SortsClothesVerbal" id="g1SortsClothesVerbal" value={this.state.fields["g1SortsClothesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SortsClothesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SortsClothesInitiates" id="g1SortsClothesInitiates" value={this.state.fields["g1SortsClothesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SortsClothesInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Identifies clothes based on the weather',
+            goal1NA: <Label check> <Input type="checkbox" name="g1ClothesWeatherNA" id="g1ClothesWeatherNA" value={this.state.fields["g1ClothesWeatherNA"] || ""} onChange={this.handleChange.bind(this, "g1ClothesWeatherNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ClothesWeatherPhysical" id="g1ClothesWeatherPhysical" value={this.state.fields["g1ClothesWeatherPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ClothesWeatherPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ClothesWeatherVerbal" id="g1ClothesWeatherVerbal" value={this.state.fields["g1ClothesWeatherVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ClothesWeatherVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ClothesWeatherInitiates" id="g1ClothesWeatherInitiates" value={this.state.fields["g1ClothesWeatherInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ClothesWeatherInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Goes to the bathroom independently',
+            goal1NA: <Label check> <Input type="checkbox" name="g1BathroomNA" id="g1BathroomNA" value={this.state.fields["g1BathroomNA"] || ""} onChange={this.handleChange.bind(this, "g1BathroomNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1BathroomPhysical" id="g1BathroomPhysical" value={this.state.fields["g1BathroomPhysical"] || ""} onChange={this.handleChange.bind(this, "g1BathroomPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1BathroomVerbal" id="g1BathroomVerbal" value={this.state.fields["g1BathroomVerbal"] || ""} onChange={this.handleChange.bind(this, "g1BathroomVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1BathroomInitiates" id="g1BathroomInitiates" value={this.state.fields["g1BathroomInitiates"] || ""} onChange={this.handleChange.bind(this, "g1BathroomInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Washes hands',
+            goal1NA: <Label check> <Input type="checkbox" name="g1WashesHandsNA" id="g1WashesHandsNA" value={this.state.fields["g1WashesHandsNA"] || ""} onChange={this.handleChange.bind(this, "g1WashesHandsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1WashesHandsPhysical" id="g1WashesHandsPhysical" value={this.state.fields["g1WashesHandsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1WashesHandsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1WashesHandsVerbal" id="g1WashesHandsVerbal" value={this.state.fields["g1WashesHandsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1WashesHandsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1WashesHandsInitiates" id="g1WashesHandsInitiates" value={this.state.fields["g1WashesHandsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1WashesHandsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Completes shower/bathing sequence',
+            goal1NA: <Label check> <Input type="checkbox" name="g1ShowerNA" id="g1ShowerNA" value={this.state.fields["g1ShowerNA"] || ""} onChange={this.handleChange.bind(this, "g1ShowerNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ShowerPhysical" id="g1ShowerPhysical" value={this.state.fields["g1ShowerPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ShowerPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ShowerVerbal" id="g1ShowerVerbal" value={this.state.fields["g1ShowerVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ShowerVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ShowerInitiates" id="g1ShowerInitiates" value={this.state.fields["g1ShowerInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ShowerInitiates")}/> Initiates Independently </Label>
+        }, {
+                goal1Category: 'Uses utensils properly when eating',
+                goal1NA: <Label check> <Input type="checkbox" name="g1UtensilsNA" id="g1UtensilsNA"value={this.state.fields["g1UtensilsNA"] || ""} onChange={this.handleChange.bind(this, "g1UtensilsNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1UtensilsPhysical" id="g1UtensilsPhysical"value={this.state.fields["g1UtensilsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1UtensilsPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1UtensilsVerbal" id="g1UtensilsVerbal"value={this.state.fields["g1UtensilsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1UtensilsVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1UtensilsInitiates" id="g1UtensilsInitiates"value={this.state.fields["g1UtensilsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1UtensilsInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Opens food containers/wrappers',
+                goal1NA: <Label check> <Input type="checkbox" name="g1OpensContainersNA" id="g1OpensContainersNA"value={this.state.fields["g1OpensContainersNA"] || ""} onChange={this.handleChange.bind(this, "g1OpensContainersNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1OpensContainersPhysical" id="g1OpensContainersPhysical"value={this.state.fields["g1OpensContainersPhysical"] || ""} onChange={this.handleChange.bind(this, "g1OpensContainersPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1OpensContainersVerbal" id="g1OpensContainersVerbal"value={this.state.fields["g1OpensContainersVerbal"] || ""} onChange={this.handleChange.bind(this, "g1OpensContainersVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1OpensContainersInitiates" id="g1OpensContainersInitiates"value={this.state.fields["g1OpensContainersInitiates"] || ""} onChange={this.handleChange.bind(this, "g1OpensContainersInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Cleans up eating area after eating',
+                goal1NA: <Label check> <Input type="checkbox" name="g1CleansEatingAreaNA" id="g1CleansEatingAreaNA"value={this.state.fields["g1CleansEatingAreaNA"] || ""} onChange={this.handleChange.bind(this, "g1CleansEatingAreaNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1CleansEatingAreaPhysical" id="g1CleansEatingAreaPhysical"value={this.state.fields["g1CleansEatingAreaPhysical"] || ""} onChange={this.handleChange.bind(this, "g1CleansEatingAreaPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1CleansEatingAreaVerbal" id="g1CleansEatingAreaVerbal"value={this.state.fields["g1CleansEatingAreaVerbal"] || ""} onChange={this.handleChange.bind(this, "g1CleansEatingAreaVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1CleansEatingAreaInitiates" id="g1CleansEatingAreaInitiates"value={this.state.fields["g1CleansEatingAreaInitiates"] || ""} onChange={this.handleChange.bind(this, "g1CleansEatingAreaInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Uses caution with hot items',
+                goal1NA: <Label check> <Input type="checkbox" name="g1HotCautionNA" id="g1HotCautionNA"value={this.state.fields["g1HotCautionNA"] || ""} onChange={this.handleChange.bind(this, "g1HotCautionNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1HotCautionPhysical" id="g1HotCautionPhysical"value={this.state.fields["g1HotCautionPhysical"] || ""} onChange={this.handleChange.bind(this, "g1HotCautionPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1HotCautionVerbal" id="g1HotCautionVerbal"value={this.state.fields["g1HotCautionVerbal"] || ""} onChange={this.handleChange.bind(this, "g1HotCautionVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1HotCautionInitiates" id="g1HotCautionInitiates"value={this.state.fields["g1HotCautionInitiates"] || ""} onChange={this.handleChange.bind(this, "g1HotCautionInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: <div className={"sub-section"}>Social Skills</div>,
+                goal1NA: '',
+                goal1Physical: '',
+                goal1Verbal: '',
+                goal1Initiates: ''
+            }, {
+                goal1Category: 'Appropriate with near peers',
+                goal1NA: <Label check> <Input type="checkbox" name="g1NearPeersNA" id="g1NearPeersNA"value={this.state.fields["g1NearPeersNA"] || ""} onChange={this.handleChange.bind(this, "g1NearPeersNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1NearPeersPhysical" id="g1NearPeersPhysical"value={this.state.fields["g1NearPeersPhysical"] || ""} onChange={this.handleChange.bind(this, "g1NearPeersPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1NearPeersVerbal" id="g1NearPeersVerbal"value={this.state.fields["g1NearPeersVerbal"] || ""} onChange={this.handleChange.bind(this, "g1NearPeersVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1NearPeersInitiates" id="g1NearPeersInitiates"value={this.state.fields["g1NearPeersInitiates"] || ""} onChange={this.handleChange.bind(this, "g1NearPeersInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Shows interest in others',
+                goal1NA: <Label check> <Input type="checkbox" name="g1InterestInOthersNA" id="g1InterestInOthersNA"value={this.state.fields["g1InterestInOthersNA"] || ""} onChange={this.handleChange.bind(this, "g1InterestInOthersNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1InterestInOthersPhysical" id="g1InterestInOthersPhysical"value={this.state.fields["g1InterestInOthersPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InterestInOthersPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1InterestInOthersVerbal" id="g1InterestInOthersVerbal"value={this.state.fields["g1InterestInOthersVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InterestInOthersVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1InterestInOthersInitiates" id="g1InterestInOthersInitiates"value={this.state.fields["g1InterestInOthersInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InterestInOthersInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Sits appropriately in small groups (3-5)',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SitSmallGroupNA" id="g1SitSmallGroupNA"value={this.state.fields["g1SitSmallGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1SitSmallGroupNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SitSmallGroupPhysical" id="g1SitSmallGroupPhysical"value={this.state.fields["g1SitSmallGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SitSmallGroupPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1SitSmallGroupVerbal" id="g1SitSmallGroupVerbal"value={this.state.fields["g1SitSmallGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SitSmallGroupVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1SitSmallGroupInitiates" id="g1SitSmallGroupInitiates"value={this.state.fields["g1SitSmallGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SitSmallGroupInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Attends to instructor in small groups (3-5)',
+                goal1NA: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupNA" id="g1InstructorSmallGroupNA"value={this.state.fields["g1InstructorSmallGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1InstructorSmallGroupNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupPhysical" id="g1InstructorSmallGroupPhysical"value={this.state.fields["g1InstructorSmallGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InstructorSmallGroupPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupVerbal" id="g1InstructorSmallGroupVerbal"value={this.state.fields["g1InstructorSmallGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InstructorSmallGroupVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupInitiates" id="g1InstructorSmallGroupInitiates"value={this.state.fields["g1InstructorSmallGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InstructorSmallGroupInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Follows instruction',
+                goal1NA: <Label check> <Input type="checkbox" name="g1InstructionNA" id="g1InstructionNA"value={this.state.fields["g1InstructionNA"] || ""} onChange={this.handleChange.bind(this, "g1InstructionNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructionPhysical" id="g1InstructionPhysical"value={this.state.fields["g1InstructionPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InstructionPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructionVerbal" id="g1InstructionVerbal"value={this.state.fields["g1InstructionVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InstructionVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructionInitiates" id="g1InstructionInitiates"value={this.state.fields["g1InstructionInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InstructionInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Takes turns',
+                goal1NA: <Label check> <Input type="checkbox" name="g1TakesTurnsNA" id="g1TakesTurnsNA"value={this.state.fields["g1TakesTurnsNA"] || ""} onChange={this.handleChange.bind(this, "g1TakesTurnsNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1TakesTurnsPhysical" id="g1TakesTurnsPhysical"value={this.state.fields["g1TakesTurnsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1TakesTurnsPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1TakesTurnsVerbal" id="g1TakesTurnsVerbal"value={this.state.fields["g1TakesTurnsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1TakesTurnsVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1TakesTurnsInitiates" id="g1TakesTurnsInitiates"value={this.state.fields["g1TakesTurnsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1TakesTurnsInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Shares',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SharesNA" id="g1SharesNA"value={this.state.fields["g1SharesNA"] || ""} onChange={this.handleChange.bind(this, "g1SharesNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SharesPhysical" id="g1SharesPhysical"value={this.state.fields["g1SharesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SharesPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1SharesVerbal" id="g1SharesVerbal"value={this.state.fields["g1SharesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SharesVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1SharesInitiates" id="g1SharesInitiates"value={this.state.fields["g1SharesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SharesInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Converses with others',
+                goal1NA: <Label check> <Input type="checkbox" name="g1ConverseOthersNA" id="g1ConverseOthersNA"value={this.state.fields["g1ConverseOthersNA"] || ""} onChange={this.handleChange.bind(this, "g1ConverseOthersNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1ConverseOthersPhysical" id="g1ConverseOthersPhysical"value={this.state.fields["g1ConverseOthersPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ConverseOthersPhysical")}/> Physical Prompt </Label>,
+                goal1Verbal: <Label check> <Input type="checkbox" name="g1ConverseOthersVerbal" id="g1ConverseOthersVerbal"value={this.state.fields["g1ConverseOthersVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ConverseOthersVerbal")}/> Verbal Prompt </Label>,
+                goal1Initiates: <Label check> <Input type="checkbox" name="g1ConverseOthersInitiates" id="g1ConverseOthersInitiates"value={this.state.fields["g1ConverseOthersInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ConverseOthersInitiates")}/> Initiates Independently </Label>
+            }, {
+                goal1Category: 'Sits appropriately in large groups (3-5)',
+                goal1NA: <Label check> <Input type="checkbox" name="g1SitLargeGroupNA" id="g1SitLargeGroupNA"value={this.state.fields["g1SitLargeGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1SitLargeGroupNA")}/> N/A </Label>,
+                goal1Physical: <Label check> <Input type="checkbox" name="g1SitLargeGroupPhysical" id="g1SitLargeGroupPhysical"value={this.state.fields["g1SitLargeGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SitLargeGroupPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SitLargeGroupVerbal" id="g1SitLargeGroupVerbal"value={this.state.fields["g1SitLargeGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SitLargeGroupVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SitLargeGroupInitiates" id="g1SitLargeGroupInitiates"value={this.state.fields["g1SitLargeGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SitLargeGroupInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Attends to instructor in large groups (3-5)',
+            goal1NA: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupNA" id="g1InstructorLargeGroupNA"value={this.state.fields["g1InstructorLargeGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1InstructorLargeGroupNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupPhysical" id="g1InstructorLargeGroupPhysical"value={this.state.fields["g1InstructorLargeGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InstructorLargeGroupPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupVerbal" id="g1InstructorLargeGroupVerbal"value={this.state.fields["g1InstructorLargeGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InstructorLargeGroupVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupInitiates" id="g1InstructorLargeGroupInitiates"value={this.state.fields["g1InstructorLargeGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InstructorLargeGroupInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Stands and waits independently during transitions',
+            goal1NA: <Label check> <Input type="checkbox" name="g1StandWaitNA" id="g1StandWaitNA"value={this.state.fields["g1StandWaitNA"] || ""} onChange={this.handleChange.bind(this, "g1StandWaitNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1StandWaitPhysical" id="g1StandWaitPhysical"value={this.state.fields["g1StandWaitPhysical"] || ""} onChange={this.handleChange.bind(this, "g1StandWaitPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1StandWaitVerbal" id="g1StandWaitVerbal"value={this.state.fields["g1StandWaitVerbal"] || ""} onChange={this.handleChange.bind(this, "g1StandWaitVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1StandWaitInitiates" id="g1StandWaitInitiates"value={this.state.fields["g1StandWaitInitiates"] || ""} onChange={this.handleChange.bind(this, "g1StandWaitInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Understands simple rules of the classroom',
+            goal1NA: <Label check> <Input type="checkbox" name="g1UnderstandsRulesNA" id="g1UnderstandsRulesNA"value={this.state.fields["g1UnderstandsRulesNA"] || ""} onChange={this.handleChange.bind(this, "g1UnderstandsRulesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1UnderstandsRulesPhysical" id="g1UnderstandsRulesPhysical"value={this.state.fields["g1UnderstandsRulesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1UnderstandsRulesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1UnderstandsRulesVerbal" id="g1UnderstandsRulesVerbal"value={this.state.fields["g1UnderstandsRulesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1UnderstandsRulesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1UnderstandsRulesInitiates" id="g1UnderstandsRulesInitiates"value={this.state.fields["g1UnderstandsRulesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1UnderstandsRulesInitiates")}/> Initiates Independently </Label>
+        }]
         return (
             <fieldset id="/chai/section11">
                 <div className={"section"}>Section 11: Independent Skills</div>
@@ -8700,7 +8833,7 @@ class ClientHistoryAndInformation extends Component {
                 <div className={"sub-section"}>Level One Goals:</div>
                 <ReactTable
                     className={"level1GoalsTable -striped -highlight"}
-                    data={this.state.level1GoalsData}
+                    data={level1GoalsData}
                     columns={this.state.level1GoalsColumns}
                     defaultPageSize={51}
                     showPagination={false}
