@@ -10,20 +10,20 @@ import {
     Label,
     Row
 } from "reactstrap";
-import token from '../Login';
+import {token} from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj = {"ChildID":childID, "StudentName":"", "ParentName":"", "Date":"", "Comments":""};
+var infoObj = {"ChildID": childID};
 
 class ConsentAndMedicalRelease extends Component {
     constructor(props) {
         super(props);
         this.state = {
             errors: [],
-            fields: [],
+            fields: {"consentCheck": false},
             submitButtonPressed: false,
             saveButtonPressed:false
-        }
+        };
         this.goBack = this.goBack.bind(this);
     }
 
@@ -45,7 +45,7 @@ class ConsentAndMedicalRelease extends Component {
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
         infoObj.Comments = fields["consideration"];
-        // infoObj.ConsentCheck = fields["consentCheck"];
+        infoObj.ConsentCheck = fields["consentCheck"];
     }
 
     validate() {
@@ -66,6 +66,10 @@ class ConsentAndMedicalRelease extends Component {
             if (!fields["date"]) {
                 formIsValid = false;
                 errors["date"] = "Cannot be empty";
+            }
+            if (!fields["consentCheck"]) {
+                formIsValid = false;
+                errors["consentCheck"] = "Cannot be empty";
             }
         }
         this.setState({errors: errors});
@@ -92,6 +96,13 @@ class ConsentAndMedicalRelease extends Component {
         this.props.history.push("/parenthome");
     }
 
+    handleChangeCheckbox(field,e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.checked ? "true" : "false";
+        this.validate();
+        this.setState({fields: fields});
+    }
+
     componentDidMount() {
         this.fetchFromDB()
             .then(res => this.setState({ response: res.express }))
@@ -101,9 +112,6 @@ class ConsentAndMedicalRelease extends Component {
     postToDB() {
         var update = JSON.stringify(infoObj);
         var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
-        console.log("post url" + url);
-        console.log("updated JSON");
-        console.log(update);
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -113,13 +121,10 @@ class ConsentAndMedicalRelease extends Component {
             },
             body: update
         });
-        console.log("response");
-        console.log(response);
     }
 
     fetchFromDB = async () => {
-        var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
-        console.log("get url " + url);
+        let url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -129,19 +134,16 @@ class ConsentAndMedicalRelease extends Component {
             },
         });
         const body = await response.json();
-        console.log("fetch from db response");
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
             this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
-            this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].StudentName;
-            this.state.fields["consideration"] = body.Form[0].Comments == null ? "" : body.Date[0].Comments;
+            this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
+            this.state.fields["consentCheck"] = body.Form[0].consentCheck == null ? "" : body.Form[0].consentCheck;
+            this.state.fields["consideration"] = body.Form[0].Comments == null ? "" : body.Form[0].Comments;
         }
         return body;
     };
-
-
 
     renderFields() {
         return (
@@ -164,8 +166,14 @@ class ConsentAndMedicalRelease extends Component {
                             <Label sm={12} className={"checkBox"}>
                                 <Input type="checkbox"
                                        ref="consentCheck"
-                                       className="error"/>
-                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.”
+                                       checked={this.state.fields["consentCheck"] === "true"}
+                                       onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
+                                       className="error"
+                                       invalid={this.state.fields["consentCheck"] === false || this.state.errors["consentCheck"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}
+                                </FormFeedback>
+                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.
                             </Label>
                         </Col>
 

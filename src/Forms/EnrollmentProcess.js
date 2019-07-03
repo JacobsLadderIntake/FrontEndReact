@@ -112,8 +112,6 @@ class EnrollmentProcess extends Component{
             },
             body: update
         });
-        console.log("POST");
-        console.log(update);
     }
 
     fetchFromDB = async () => {
@@ -135,14 +133,11 @@ class EnrollmentProcess extends Component{
             this.state.fields["consentCheck"] = body.Form[0].consentCheck == null ? "" : body.Form[0].consentCheck;
 
         }
-        console.log("FETCH");
-        console.log(body);
         return body;
     };
     handleChangeCheckbox(field,e) {
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
-        console.log(fields[field]);
         this.validate();
         this.setState({fields: fields});
     }

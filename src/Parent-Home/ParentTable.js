@@ -46,7 +46,7 @@ class ParentTable extends Component {
                 name: <div id="bmc" style={{color: 'blue', textDecoration: 'underline'}}>Brain Map Consent Form</div>,
                 progress: 'Not Started'
             }, {
-                name: <div id="cca" >Credit Card Authorization Form</div>,
+                name: <div id="cca" style={{color: 'blue', textDecoration: 'underline'}}>Credit Card Authorization Form</div>,
                 progress: 'Not Started'
             }, {
                 name: <div id="ifi" >Insurance and Financial Information Form</div>,
@@ -83,13 +83,13 @@ class ParentTable extends Component {
             this.props.history.push("/chai");
         } else if (row.name.props.id === "pei") {
             // THIS FORM IS NOT YET FULLY WORKING
-            // this.props.history.push("/pei");
+            this.props.history.push("/pei");
         } else if (row.name.props.id === "cca") {
             // THIS FORM IS NOT YET FULLY WORKING
-            // this.props.history.push("/cca");
+            this.props.history.push("/cca");
         } else if (row.name.props.id === "ifi") {
             // THIS FORM IS NOT YET FULLY WORKING
-            // this.props.history.push("/ifi");
+            this.props.history.push("/ifi");
         }
     }
 
@@ -103,7 +103,6 @@ class ParentTable extends Component {
             },
         });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
         this.state.evalDate = body.UsersChildren[0].EvaluationDate;
@@ -122,14 +121,12 @@ class ParentTable extends Component {
             },
         });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
         this.state.fields["evalDateInput"] = body.UsersChildren[0].EvaluationDate;
         this.state.fields["dueDateInput"] = body.UsersChildren[0].ProfileDueDate;
         childID = body.UsersChildren[0].ChildID;
         childObj = body.UsersChildren[0];
-        console.log(childObj);
         return body;
     };
 
@@ -137,8 +134,6 @@ class ParentTable extends Component {
         childObj.ProfileDueDate =  this.state.fields["dueDateInput"];
         childObj.EvaluationDate = this.state.fields["evalDateInput"];
         var update = JSON.stringify(childObj);
-        console.log("updated JSON");
-        console.log(update);
         const response = fetch('/children/', {
             method: 'POST',
             headers: {
@@ -147,8 +142,6 @@ class ParentTable extends Component {
             },
             body: update
         });
-        console.log("response");
-        console.log(response);
     }
 
     handleChange(field, e) {
@@ -164,7 +157,6 @@ class ParentTable extends Component {
     }
 
     render() {
-        // console.log(isAdmin);
         var dueDate = isAdmin ? <Input ref="dueDateInput"
                                        type="text"
                                        onChange={this.handleChange.bind(this, "dueDateInput")}
@@ -197,7 +189,6 @@ class ParentTable extends Component {
                     getTdProps={(state, rowInfo) => {
                         return {
                             onClick: (e) => {
-                                // console.log(rowInfo);
                                 this.handleClick(rowInfo.original, e);},
                             // style: {background: (rowInfo.progress == "In Progress") ? "grey" : "white"}
 

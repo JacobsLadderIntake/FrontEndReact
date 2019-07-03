@@ -141,7 +141,6 @@ class BrainMapConsent extends Component{
     handleChangeCheckbox(field,e) {
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
-        console.log(fields[field]);
         this.validate();
         this.setState({fields: fields});
     }

@@ -11,6 +11,8 @@ import {
     Row, Collapse, Card, CardBody
 } from "reactstrap";
 import ReactTable from 'react-table';
+import {token} from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
 class InsuranceFinancialInformation extends Component{
     constructor(props) {
@@ -1059,7 +1061,7 @@ class InsuranceFinancialInformation extends Component{
                                 <Input type="checkbox"
                                        ref="consentCheck"
                                        className="error"/>
-                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.”
+                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.
                             </Label>
                         </Col>
                     </FormGroup>
