@@ -135,6 +135,7 @@ class EnrollmentProcess extends Component{
         }
         return body;
     };
+
     handleChangeCheckbox(field,e) {
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";

@@ -13,6 +13,7 @@ import {
 import ReactTable from 'react-table';
 import {token} from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
+var infoObj = {"ChildID": childID};
 
 class InsuranceFinancialInformation extends Component{
     constructor(props) {
@@ -144,6 +145,13 @@ class InsuranceFinancialInformation extends Component{
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
+        this.validate();
+        this.setState({fields: fields});
+    }
+
+    handleChangeCheckbox(field,e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.checked ? "true" : "false";
         this.validate();
         this.setState({fields: fields});
     }
@@ -390,18 +398,138 @@ class InsuranceFinancialInformation extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        this.updateFields();
+        this.postToDB();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                //NEED TO UPDATE DATABASE
                 this.props.history.push("/parenthome")
             }
+        });
+    }
+    componentDidMount() {
+        this.fetchFromDB()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    updateFields() {
+        let fields = this.state.fields;
+        infoObj.ChildID = childID;
+        infoObj.ClientName = fields["clientName"];
+        infoObj.Dob = fields["dob"];
+        infoObj.ParentName1 = fields["parentName1"];
+        infoObj.ParentPhoneNumber = fields["parentPhoneNumber"];
+        infoObj.ParentEmail = fields["parentEmail"];
+        infoObj.PhysicianName = fields["physicianName"];
+        infoObj.PhysicianPhoneNumber = fields["physicianPhoneNumber"];
+        infoObj.PhysicianFaxNumber = fields["physicianFaxNumber"];
+        infoObj.Address = fields["address"];
+        infoObj.City = fields["city"];
+        infoObj.State = fields["state"];
+        infoObj.Zip = fields["zip"];
+        infoObj.Country = fields["country"];
+
+        infoObj.CustomerService1 = fields["customerService1"];
+        infoObj.CustomerService1 = fields["customerService2"];
+        infoObj.Diagnosis = fields["diagnosis"];
+        infoObj.Employer1 = fields["employer1"];
+        infoObj.Employer2 = fields["employer2"];
+        infoObj.GncWaiver = fields["gncWaiver"];
+        infoObj.GroupNumber1 = fields["groupNumber1"];
+        infoObj.GroupNumber2 = fields["groupNumber2"];
+        infoObj.InsuranceDob1 = fields["insuranceDob1"];
+        infoObj.InsuranceDob2 = fields["insuranceDob2"];
+        infoObj.InsuranceSsn1 = fields["insuranceSsn1"];
+        infoObj.InsuranceSsn2 = fields["insuranceSsn2"];
+        infoObj.MemberID1 = fields["memberID1"];
+        infoObj.MemberID2 = fields["memberID2"];
+        infoObj.PrimaryInsurance = fields["primaryInsurance"];
+        infoObj.PrimaryInsuranceName = fields["primaryInsuranceName"];
+        infoObj.SecondaryInsurance = fields["secondaryInsurance"];
+
+        // not in db yet
+        infoObj.studentName = fields["studentName"];
+        infoObj.parentName2 = fields["parentName2"];
+        infoObj.date = fields["date"];
+        infoObj.consentCheck = fields["consentCheck"];
+        console.log(infoObj)
+
+    }
+
+    fetchFromDB = async () => {
+        let url = 'api/children/' + childID + '/forms/InsuranceFinancialInformationForm';
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log(body)
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Form.length > 0) {
+            this.state.fields["clientName"] = body.Form[0].ClientName == null ? "" : body.Form[0].ClientName;
+            this.state.fields["dob"] = body.Form[0].Dob == null ? "" : body.Form[0].Dob;
+            this.state.fields["parentName1"] = body.Form[0].ParentName1 == null ? "" : body.Form[0].ParentName1;
+            this.state.fields["parentPhoneNumber"] = body.Form[0].ParentPhoneNumber == null ? "" : body.Form[0].ParentPhoneNumber;
+            this.state.fields["parentEmail"] = body.Form[0].ParentEmail == null ? "" : body.Form[0].ParentEmail;
+            this.state.fields["physicianName"] = body.Form[0].PhysicianName == null ? "" : body.Form[0].PhysicianName;
+            this.state.fields["physicianPhoneNumber"] = body.Form[0].PhysicianPhoneNumber == null ? "" : body.Form[0].PhysicianPhoneNumber;
+            this.state.fields["physicianFaxNumber"] = body.Form[0].PhysicianFaxNumber == null ? "" : body.Form[0].PhysicianFaxNumber;
+            this.state.fields["country"] = body.Form[0].Country == null ? "" : body.Form[0].Country;
+            this.state.fields["city"] = body.Form[0].City == null ? "" : body.Form[0].City;
+            this.state.fields["state"] = body.Form[0].State == null ? "" : body.Form[0].State;
+            this.state.fields["zip"] = body.Form[0].Zip == null ? "" : body.Form[0].Zip;
+            this.state.fields["address"] = body.Form[0].Address == null ? "" : body.Form[0].Address;
+
+
+            this.state.fields["customerService1"] = body.Form[0].CustomerService1 == null ? "" : body.Form[0].CustomerService1;
+            this.state.fields["customerService1"] = body.Form[0].CustomerService1 == null ? "" : body.Form[0].CustomerService1;
+            this.state.fields["diagnosis"] = body.Form[0].Diagnosis == null ? "" : body.Form[0].Diagnosis;
+            this.state.fields["employer1"] = body.Form[0].Employer1 == null ? "" : body.Form[0].Employer1;
+            this.state.fields["employer2"] = body.Form[0].Employer2 == null ? "" : body.Form[0].Employer2;
+            this.state.fields["gncWaiver"] = body.Form[0].GncWaiver == null ? "" : body.Form[0].GncWaiver;
+            this.state.fields["groupNumber1"] = body.Form[0].GroupNumber1 == null ? "" : body.Form[0].GroupNumber1;
+            this.state.fields["groupNumber2"] = body.Form[0].GroupNumber2 == null ? "" : body.Form[0].GroupNumber2;
+            this.state.fields["insuranceDob1"] = body.Form[0].InsuranceDob1 == null ? "" : body.Form[0].InsuranceDob1;
+            this.state.fields["insuranceDob2"] = body.Form[0].InsuranceDob2 == null ? "" : body.Form[0].InsuranceDob2;
+            this.state.fields["insuranceSsn1"] = body.Form[0].InsuranceSsn1 == null ? "" : body.Form[0].InsuranceSsn1;
+            this.state.fields["insuranceSsn2"] = body.Form[0].InsuranceSsn2 == null ? "" : body.Form[0].InsuranceSsn2;
+            this.state.fields["memberID1"] = body.Form[0].MemberID1 == null ? "" : body.Form[0].MemberID1;
+            this.state.fields["memberID2"] = body.Form[0].MemberID2 == null ? "" : body.Form[0].MemberID2;
+            this.state.fields["primaryInsurance"] = body.Form[0].PrimaryInsurance == null ? "" : body.Form[0].PrimaryInsurance;
+            this.state.fields["primaryInsuranceName"] = body.Form[0].PrimaryInsuranceName == null ? "" : body.Form[0].PrimaryInsuranceName;
+            this.state.fields["secondaryInsurance"] = body.Form[0].SecondaryInsurance == null ? "" : body.Form[0].SecondaryInsurance;
+
+            this.state.fields["studentName"] = body.Form[0].studentName == null ? "" : body.Form[0].studentName;
+            this.state.fields["parentName2"] = body.Form[0].parentName2 == null ? "" : body.Form[0].parentName2;
+            this.state.fields["date"] = body.Form[0].date == null ? "" : body.Form[0].date;
+            this.state.fields["consentCheck"] = body.Form[0].consentCheck == null ? "" : body.Form[0].consentCheck;
+        }
+        return body;
+    };
+
+    postToDB() {
+        let url = 'api/children/' + childID + '/forms/InsuranceFinancialInformationForm';
+        let update = JSON.stringify(infoObj);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: update
         });
     }
 
     handleSaveAndQuit(event) {
         event.preventDefault();
+        this.updateFields();
         this.setState({saveButtonPressed: true});
-        //UPDATE DATABASE
+        this.postToDB();
         this.props.history.push("/parenthome")
     }
 
@@ -1060,7 +1188,13 @@ class InsuranceFinancialInformation extends Component{
                             <Label sm={12} className={"checkBox"}>
                                 <Input type="checkbox"
                                        ref="consentCheck"
-                                       className="error"/>
+                                       checked={this.state.fields["consentCheck"] === "true"}
+                                       onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
+                                       className="error"
+                                       invalid={this.state.fields["consentCheck"] === false || this.state.errors["consentCheck"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}
+                                </FormFeedback>
                                 I acknowledge that I have read and completed this information to the best of my knowledge and ability.
                             </Label>
                         </Col>
