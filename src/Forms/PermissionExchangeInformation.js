@@ -135,7 +135,6 @@ class PermissionExchangeInformation extends Component {
         });
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
-        console.log(body);
         if (body.Form.length > 0) {
             this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
             this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;

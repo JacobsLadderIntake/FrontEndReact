@@ -20,6 +20,7 @@ import { token, userID } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
 let infoObj = {"ChildID": childID};
+let sec11InfoObj = {"ChildID": childID};;
 
 class ClientHistoryAndInformation extends Component {
     constructor(props) {
@@ -276,18 +277,13 @@ class ClientHistoryAndInformation extends Component {
         this.setState(state=>({seizures: !state.seizures}));
     }
     handleChange(field, e) {
-        console.log("yeet");
-        console.log(this.props.devHistoryData);
-        console.log(field)
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        console.log(fields[field])
         infoObj[field] = e.target.value
         this.validate();
         this.setState({fields: fields});
     }
     handleChangeCheckbox(field,e) {
-
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
         console.log(fields[field]);
@@ -1093,17 +1089,14 @@ class ClientHistoryAndInformation extends Component {
             .then(res => this.setState({ response: res.express }))
             .catch(err => console.log(err));
 
-        // this.fetchSection11FromDB()
-        //     .then(res => this.setState({ response: res.express }))
-        //     .catch(err => console.log(err));
+        this.fetchSection11FromDB()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
     }
 
     postToDB() {
         var update = JSON.stringify(infoObj);
         var url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
-        console.log("post url " + url);
-        console.log("updated JSON");
-        console.log(update);
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -1113,15 +1106,10 @@ class ClientHistoryAndInformation extends Component {
             },
             body: update
         });
-
-        console.log("RESPONSE")
-        console.log(response)
-
     }
 
     fetchFromDB = async () => {
         let url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
-        console.log("get url " + url);
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -1131,8 +1119,6 @@ class ClientHistoryAndInformation extends Component {
             },
         });
         const body = await response.json();
-        console.log("fetch from db response");
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["dob"] = body.Form[0].dob == null ? "" : body.Form[0].dob;
@@ -1746,48 +1732,562 @@ class ClientHistoryAndInformation extends Component {
         return body;
     };
 
-    // postSection11ToDB() {
-    //     var update = JSON.stringify(infoObj);
-    //     var url = 'api/children/' + childID + '/forms/Section11';
-    //     console.log("post url" + url);
-    //     console.log("updated JSON");
-    //     console.log(update);
-    //     const response = fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'token': token,
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: update
-    //     });
-    //     console.log("response");
-    //     console.log(response);
-    // }
+    postSection11ToDB() {
+        var update = JSON.stringify(sec11InfoObj);
+        var url = 'api/children/' + childID + '/forms/Section11';
+        console.log("post section 11 url" + url);
+        console.log("updated section 11 JSON");
+        console.log(update);
+        const response = fetch(url, {
+            method: 'POST',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: update
+        });
+    }
 
-    // fetchSection11FromDB = async () => {
-    //     var url = 'api/children/' + childID + '/forms/Section11';
-    //     console.log("get url " + url);
-    //     const response = await fetch(url, {
-    //         method: 'GET',
-    //         headers: {
-    //             'token': token,
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //     });
-    //     const body = await response.json();
-    //     console.log("fetch from db response");
-    //     console.log(body);
-    //     if (response.status !== 200) throw Error(body.message);
-    //     if (body.Form.length > 0) {
-    //         // this.state.fields["studentName"] = body.Form[0].StudentName;
-    //         // this.state.fields["parentName"] = body.Form[0].ParentName;
-    //         // this.state.fields["date"] = body.Form[0].Date;
-    //         // this.state.fields["consideration"] = body.Form[0].Comments;
-    //     }
-    //     return body;
-    // };
+    fetchSection11FromDB = async () => {
+        var url = 'api/children/' + childID + '/forms/Section11';
+        console.log("get url " + url);
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
+        const body = await response.json();
+        console.log("fetch section 11 from db response");
+        console.log(body);
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Form.length > 0) {
+            this.state.fields["g1SitNA"] = body.Form[0].g1SitNA == null ? "" : body.Form[0].g1SitNA;
+            this.state.fields["g1SitPhysical"] = body.Form[0].g1SitPhysical == null ? "" : body.Form[0].g1SitPhysical;
+            this.state.fields["g1SitVerbal"] = body.Form[0].g1SitVerbal == null ? "" : body.Form[0].g1SitVerbal;
+            this.state.fields["g1SitInitiates"] = body.Form[0].g1SitInitiates == null ? "" : body.Form[0].g1SitInitiates;
+            this.state.fields["g1AttendTaskLongNA"] = body.Form[0].g1AttendTaskLongNA == null ? "" : body.Form[0].g1AttendTaskLongNA;
+            this.state.fields["g1AttendTaskLongPhysical"] = body.Form[0].g1AttendTaskLongPhysical == null ? "" : body.Form[0].g1AttendTaskLongPhysical;
+            this.state.fields["g1AttendTaskLongVerbal"] = body.Form[0].g1AttendTaskLongVerbal == null ? "" : body.Form[0].g1AttendTaskLongVerbal;
+            this.state.fields["g1AttendTaskLongInitiates"] = body.Form[0].g1AttendTaskLongInitiates == null ? "" : body.Form[0].g1AttendTaskLongInitiates;
+            this.state.fields["g1AttendTaskShortNA"] = body.Form[0].g1AttendTaskShortNA == null ? "" : body.Form[0].g1AttendTaskShortNA;
+            this.state.fields["g1AttendTaskShortPhysical"] = body.Form[0].g1AttendTaskShortPhysical == null ? "" : body.Form[0].g1AttendTaskShortPhysical;
+            this.state.fields["g1AttendTaskShortVerbal"] = body.Form[0].g1AttendTaskShortVerbal == null ? "" : body.Form[0].g1AttendTaskShortVerbal;
+            this.state.fields["g1AttendTaskShortInitiates"] = body.Form[0].g1AttendTaskShortInitiates == null ? "" : body.Form[0].g1AttendTaskShortInitiates;
+            this.state.fields["g1EyeContactNA"] = body.Form[0].g1EyeContactNA == null ? "" : body.Form[0].g1EyeContactNA;
+            this.state.fields["g1EyeContactPhysical"] = body.Form[0].g1EyeContactPhysical == null ? "" : body.Form[0].g1EyeContactPhysical;
+            this.state.fields["g1EyeContactVerbal"] = body.Form[0].g1EyeContactVerbal == null ? "" : body.Form[0].g1EyeContactVerbal;
+            this.state.fields["g1EyeContactInitiates"] = body.Form[0].g1EyeContactInitiates == null ? "" : body.Form[0].g1EyeContactInitiates;
+            this.state.fields["g1EyeContactNameNA"] = body.Form[0].g1EyeContactNameNA == null ? "" : body.Form[0].g1EyeContactNameNA;
+            this.state.fields["g1EyeContactNamePhysical"] = body.Form[0].g1EyeContactNamePhysical == null ? "" : body.Form[0].g1EyeContactNamePhysical;
+            this.state.fields["g1EyeContactNameVerbal"] = body.Form[0].g1EyeContactNameVerbal == null ? "" : body.Form[0].g1EyeContactNameVerbal;
+            this.state.fields["g1EyeContactNameInitiates"] = body.Form[0].g1EyeContactNameInitiates == null ? "" : body.Form[0].g1EyeContactNameInitiates;
+            this.state.fields["g1EyeContactGroupNA"] = body.Form[0].g1EyeContactGroupNA == null ? "" : body.Form[0].g1EyeContactGroupNA;
+            this.state.fields["g1EyeContactGroupPhysical"] = body.Form[0].g1EyeContactGroupPhysical == null ? "" : body.Form[0].g1EyeContactGroupPhysical;
+            this.state.fields["g1EyeContactGroupVerbal"] = body.Form[0].g1EyeContactGroupVerbal == null ? "" : body.Form[0].g1EyeContactGroupVerbal;
+            this.state.fields["g1EyeContactGroupInitiates"] = body.Form[0].g1EyeContactGroupInitiates == null ? "" : body.Form[0].g1EyeContactGroupInitiates;
+            this.state.fields["g1WantsNeedsNA"] = body.Form[0].g1WantsNeedsNA == null ? "" : body.Form[0].g1WantsNeedsNA;
+            this.state.fields["g1WantsNeedsPhysical"] = body.Form[0].g1WantsNeedsPhysical == null ? "" : body.Form[0].g1WantsNeedsPhysical;
+            this.state.fields["g1WantsNeedsVerbal"] = body.Form[0].g1WantsNeedsVerbal == null ? "" : body.Form[0].g1WantsNeedsVerbal;
+            this.state.fields["g1WantsNeedsInitiates"] = body.Form[0].g1WantsNeedsInitiates == null ? "" : body.Form[0].g1WantsNeedsInitiates;
+            this.state.fields["g1socialQsNA"] = body.Form[0].g1socialQsNA == null ? "" : body.Form[0].g1socialQsNA;
+            this.state.fields["g1SocialQsPhysical"] = body.Form[0].g1SocialQsPhysical == null ? "" : body.Form[0].g1SocialQsPhysical;
+            this.state.fields["g1SocialQsVerbal"] = body.Form[0].g1SocialQsVerbal == null ? "" : body.Form[0].g1SocialQsVerbal;
+            this.state.fields["g1SocialQsInitiates"] = body.Form[0].g1SocialQsInitiates == null ? "" : body.Form[0].g1SocialQsInitiates;
+            this.state.fields["g1InterferenceQsNA"] = body.Form[0].g1InterferenceQsNA == null ? "" : body.Form[0].g1InterferenceQsNA;
+            this.state.fields["g1InterferenceQsPhysical"] = body.Form[0].g1InterferenceQsPhysical == null ? "" : body.Form[0].g1InterferenceQsPhysical;
+            this.state.fields["g1InterferenceQsVerbal"] = body.Form[0].g1InterferenceQsVerbal == null ? "" : body.Form[0].g1InterferenceQsVerbal;
+            this.state.fields["g1InterferenceQsInitiates"] = body.Form[0].g1InterferenceQsInitiates == null ? "" : body.Form[0].g1InterferenceQsInitiates;
+            this.state.fields["g1ReciprocateConversationNA"] = body.Form[0].g1ReciprocateConversationNA == null ? "" : body.Form[0].g1ReciprocateConversationNA;
+            this.state.fields["g1ReciprocateConversationPhysical"] = body.Form[0].g1ReciprocateConversationPhysical == null ? "" : body.Form[0].g1ReciprocateConversationPhysical;
+            this.state.fields["g1ReciprocateConversationVerbal"] = body.Form[0].g1ReciprocateConversationVerbal == null ? "" : body.Form[0].g1ReciprocateConversationVerbal;
+            this.state.fields["g1ReciprocateConversationInitiates"] = body.Form[0].g1ReciprocateConversationInitiates == null ? "" : body.Form[0].g1ReciprocateConversationInitiates;
+            this.state.fields["g1MaintainConversationNA"] = body.Form[0].g1MaintainConversationNA == null ? "" : body.Form[0].g1MaintainConversationNA;
+            this.state.fields["g1MaintainConversationPhysical"] = body.Form[0].g1MaintainConversationPhysical == null ? "" : body.Form[0].g1MaintainConversationPhysical;
+            this.state.fields["g1MaintainConversationVerbal"] = body.Form[0].g1MaintainConversationVerbal == null ? "" : body.Form[0].g1MaintainConversationVerbal;
+            this.state.fields["g1MaintainConversationInitiates"] = body.Form[0].g1MaintainConversationInitiates == null ? "" : body.Form[0].g1MaintainConversationInitiates;
+            this.state.fields["g1OriginalConversationNA"] = body.Form[0].g1OriginalConversationNA == null ? "" : body.Form[0].g1OriginalConversationNA;
+            this.state.fields["g1OriginalConversationPhysical"] = body.Form[0].g1OriginalConversationPhysical == null ? "" : body.Form[0].g1OriginalConversationPhysical;
+            this.state.fields["g1OriginalConversationVerbal"] = body.Form[0].g1OriginalConversationVerbal == null ? "" : body.Form[0].g1OriginalConversationVerbal;
+            this.state.fields["g1OriginalConversationInitiates"] = body.Form[0].g1OriginalConversationInitiates == null ? "" : body.Form[0].g1OriginalConversationInitiates;
+            this.state.fields["g1WithinRoomNA"] = body.Form[0].g1WithinRoomNA == null ? "" : body.Form[0].g1WithinRoomNA;
+            this.state.fields["g1WithinRoomPhysical"] = body.Form[0].g1WithinRoomPhysical == null ? "" : body.Form[0].g1WithinRoomPhysical;
+            this.state.fields["g1WithinRoomVerbal"] = body.Form[0].g1WithinRoomVerbal == null ? "" : body.Form[0].g1WithinRoomVerbal;
+            this.state.fields["g1WithinRoomInitiates"] = body.Form[0].g1WithinRoomInitiates == null ? "" : body.Form[0].g1WithinRoomInitiates;
+            this.state.fields["g1AnotherRoomNA"] = body.Form[0].g1AnotherRoomNA == null ? "" : body.Form[0].g1AnotherRoomNA;
+            this.state.fields["g1AnotherRoomPhysical"] = body.Form[0].g1AnotherRoomPhysical == null ? "" : body.Form[0].g1AnotherRoomPhysical;
+            this.state.fields["g1AnotherRoomVerbal"] = body.Form[0].g1AnotherRoomVerbal == null ? "" : body.Form[0].g1AnotherRoomVerbal;
+            this.state.fields["g1AnotherRoomInitiates"] = body.Form[0].g1AnotherRoomInitiates == null ? "" : body.Form[0].g1AnotherRoomInitiates;
+            this.state.fields["g1IndTaskLongNA"] = body.Form[0].g1IndTaskLongNA == null ? "" : body.Form[0].g1IndTaskLongNA;
+            this.state.fields["g1IndTaskLongPhysical"] = body.Form[0].g1IndTaskLongPhysical == null ? "" : body.Form[0].g1IndTaskLongPhysical;
+            this.state.fields["g1IndTaskLongVerbal"] = body.Form[0].g1IndTaskLongVerbal == null ? "" : body.Form[0].g1IndTaskLongVerbal;
+            this.state.fields["g1IndTaskLongInitiates"] = body.Form[0].g1IndTaskLongInitiates == null ? "" : body.Form[0].g1IndTaskLongInitiates;
+            this.state.fields["g1IndTaskShortNA"] = body.Form[0].g1IndTaskShortNA == null ? "" : body.Form[0].g1IndTaskShortNA;
+            this.state.fields["g1IndTaskShortPhysical"] = body.Form[0].g1IndTaskShortPhysical == null ? "" : body.Form[0].g1IndTaskShortPhysical;
+            this.state.fields["g1IndTaskShortVerbal"] = body.Form[0].g1IndTaskShortVerbal == null ? "" : body.Form[0].g1IndTaskShortVerbal;
+            this.state.fields["g1IndTaskShortInitiates"] = body.Form[0].g1IndTaskShortInitiates == null ? "" : body.Form[0].g1IndTaskShortInitiates;
+            this.state.fields["g1OrganizeMaterialsNA"] = body.Form[0].g1OrganizeMaterialsNA == null ? "" : body.Form[0].g1OrganizeMaterialsNA;
+            this.state.fields["g1OrganizeMaterialsPhysical"] = body.Form[0].g1OrganizeMaterialsPhysical == null ? "" : body.Form[0].g1OrganizeMaterialsPhysical;
+            this.state.fields["g1OrganizeMaterialsVerbal"] = body.Form[0].g1OrganizeMaterialsVerbal == null ? "" : body.Form[0].g1OrganizeMaterialsVerbal;
+            this.state.fields["g1OrganizeMaterialsInitiates"] = body.Form[0].g1OrganizeMaterialsInitiates == null ? "" : body.Form[0].g1OrganizeMaterialsInitiates;
+            this.state.fields["g1OrganizeTasksNA"] = body.Form[0].g1OrganizeTasksNA == null ? "" : body.Form[0].g1OrganizeTasksNA;
+            this.state.fields["g1OrganizeTasksPhysical"] = body.Form[0].g1OrganizeTasksPhysical == null ? "" : body.Form[0].g1OrganizeTasksPhysical;
+            this.state.fields["g1OrganizeTasksVerbal"] = body.Form[0].g1OrganizeTasksVerbal == null ? "" : body.Form[0].g1OrganizeTasksVerbal;
+            this.state.fields["g1OrganizeTasksInitiates"] = body.Form[0].g1OrganizeTasksInitiates == null ? "" : body.Form[0].g1OrganizeTasksInitiates;
+            this.state.fields["g1ShoesOnOffNA"] = body.Form[0].g1ShoesOnOffNA == null ? "" : body.Form[0].g1ShoesOnOffNA;
+            this.state.fields["g1ShoesOnOffPhysical"] = body.Form[0].g1ShoesOnOffPhysical == null ? "" : body.Form[0].g1ShoesOnOffPhysical;
+            this.state.fields["g1ShoesOnOffVerbal"] = body.Form[0].g1ShoesOnOffVerbal == null ? "" : body.Form[0].g1ShoesOnOffVerbal;
+            this.state.fields["g1ShoesOnOffInitiates"] = body.Form[0].g1ShoesOnOffInitiates == null ? "" : body.Form[0].g1ShoesOnOffInitiates;
+            this.state.fields["g1RightLeftNA"] = body.Form[0].g1RightLeftNA == null ? "" : body.Form[0].g1RightLeftNA;
+            this.state.fields["g1RightLeftPhysical"] = body.Form[0].g1RightLeftPhysical == null ? "" : body.Form[0].g1RightLeftPhysical;
+            this.state.fields["g1RightLeftVerbal"] = body.Form[0].g1RightLeftVerbal == null ? "" : body.Form[0].g1RightLeftVerbal;
+            this.state.fields["g1RightLeftInitiates"] = body.Form[0].g1RightLeftInitiates == null ? "" : body.Form[0].g1RightLeftInitiates;
+            this.state.fields["g1TieShoesNA"] = body.Form[0].g1TieShoesNA == null ? "" : body.Form[0].g1TieShoesNA;
+            this.state.fields["g1TieShoesPhysical"] = body.Form[0].g1TieShoesPhysical == null ? "" : body.Form[0].g1TieShoesPhysical;
+            this.state.fields["g1TieShoesVerbal"] = body.Form[0].g1TieShoesVerbal == null ? "" : body.Form[0].g1TieShoesVerbal;
+            this.state.fields["g1TieShoesInitiates"] = body.Form[0].g1TieShoesInitiates == null ? "" : body.Form[0].g1TieShoesInitiates;
+            this.state.fields["g1PantsNA"] = body.Form[0].g1PantsNA == null ? "" : body.Form[0].g1PantsNA;
+            this.state.fields["g1PantsPhysical"] = body.Form[0].g1PantsPhysical == null ? "" : body.Form[0].g1PantsPhysical;
+            this.state.fields["g1PantsVerbal"] = body.Form[0].g1PantsVerbal == null ? "" : body.Form[0].g1PantsVerbal;
+            this.state.fields["g1PantsInitiates"] = body.Form[0].g1PantsInitiates == null ? "" : body.Form[0].g1PantsInitiates;
+            this.state.fields["g1ButtonsNA"] = body.Form[0].g1ButtonsNA == null ? "" : body.Form[0].g1ButtonsNA;
+            this.state.fields["g1ButtonsPhysical"] = body.Form[0].g1ButtonsPhysical == null ? "" : body.Form[0].g1ButtonsPhysical;
+            this.state.fields["g1ButtonsVerbal"] = body.Form[0].g1ButtonsVerbal == null ? "" : body.Form[0].g1ButtonsVerbal;
+            this.state.fields["g1ButtonsInitiates"] = body.Form[0].g1ButtonsInitiates == null ? "" : body.Form[0].g1ButtonsInitiates;
+            this.state.fields["g1AdjustClothesNA"] = body.Form[0].g1AdjustClothesNA == null ? "" : body.Form[0].g1AdjustClothesNA;
+            this.state.fields["g1AdjustClothesPhysical"] = body.Form[0].g1AdjustClothesPhysical == null ? "" : body.Form[0].g1AdjustClothesPhysical;
+            this.state.fields["g1AdjustClothesVerbal"] = body.Form[0].g1AdjustClothesVerbal == null ? "" : body.Form[0].g1AdjustClothesVerbal;
+            this.state.fields["g1AdjustClothesInitiates"] = body.Form[0].g1AdjustClothesInitiates == null ? "" : body.Form[0].g1AdjustClothesInitiates;
+            this.state.fields["g1DressesNA"] = body.Form[0].g1DressesNA == null ? "" : body.Form[0].g1DressesNA;
+            this.state.fields["g1DressesPhysical"] = body.Form[0].g1DressesPhysical == null ? "" : body.Form[0].g1DressesPhysical;
+            this.state.fields["g1DressesVerbal"] = body.Form[0].g1DressesVerbal == null ? "" : body.Form[0].g1DressesVerbal;
+            this.state.fields["g1DressesInitiates"] = body.Form[0].g1DressesInitiates == null ? "" : body.Form[0].g1DressesInitiates;
+            this.state.fields["g1SortsClothesNA"] = body.Form[0].g1SortsClothesNA == null ? "" : body.Form[0].g1SortsClothesNA;
+            this.state.fields["g1SortsClothesPhysical"] = body.Form[0].g1SortsClothesPhysical == null ? "" : body.Form[0].g1SortsClothesPhysical;
+            this.state.fields["g1SortsClothesVerbal"] = body.Form[0].g1SortsClothesVerbal == null ? "" : body.Form[0].g1SortsClothesVerbal;
+            this.state.fields["g1SortsClothesInitiates"] = body.Form[0].g1SortsClothesInitiates == null ? "" : body.Form[0].g1SortsClothesInitiates;
+            this.state.fields["g1ClothesWeatherNA"] = body.Form[0].g1ClothesWeatherNA == null ? "" : body.Form[0].g1ClothesWeatherNA;
+            this.state.fields["g1ClothesWeatherPhysical"] = body.Form[0].g1ClothesWeatherPhysical == null ? "" : body.Form[0].g1ClothesWeatherPhysical;
+            this.state.fields["g1ClothesWeatherVerbal"] = body.Form[0].g1ClothesWeatherVerbal == null ? "" : body.Form[0].g1ClothesWeatherVerbal;
+            this.state.fields["g1ClothesWeatherInitiates"] = body.Form[0].g1ClothesWeatherInitiates == null ? "" : body.Form[0].g1ClothesWeatherInitiates;
+            this.state.fields["g1BathroomNA"] = body.Form[0].g1BathroomNA == null ? "" : body.Form[0].g1BathroomNA;
+            this.state.fields["g1BathroomPhysical"] = body.Form[0].g1BathroomPhysical == null ? "" : body.Form[0].g1BathroomPhysical;
+            this.state.fields["g1BathroomVerbal"] = body.Form[0].g1BathroomVerbal == null ? "" : body.Form[0].g1BathroomVerbal;
+            this.state.fields["g1BathroomInitiates"] = body.Form[0].g1BathroomInitiates == null ? "" : body.Form[0].g1BathroomInitiates;
+            this.state.fields["g1WashesHandsNA"] = body.Form[0].g1WashesHandsNA == null ? "" : body.Form[0].g1WashesHandsNA;
+            this.state.fields["g1WashesHandsPhysical"] = body.Form[0].g1WashesHandsPhysical == null ? "" : body.Form[0].g1WashesHandsPhysical;
+            this.state.fields["g1WashesHandsVerbal"] = body.Form[0].g1WashesHandsVerbal == null ? "" : body.Form[0].g1WashesHandsVerbal;
+            this.state.fields["g1WashesHandsInitiates"] = body.Form[0].g1WashesHandsInitiates == null ? "" : body.Form[0].g1WashesHandsInitiates;
+            this.state.fields["g1ShowerNA"] = body.Form[0].g1ShowerNA == null ? "" : body.Form[0].g1ShowerNA;
+            this.state.fields["g1ShowerPhysical"] = body.Form[0].g1ShowerPhysical == null ? "" : body.Form[0].g1ShowerPhysical;
+            this.state.fields["g1ShowerVerbal"] = body.Form[0].g1ShowerVerbal == null ? "" : body.Form[0].g1ShowerVerbal;
+            this.state.fields["g1ShowerInitiates"] = body.Form[0].g1ShowerInitiates == null ? "" : body.Form[0].g1ShowerInitiates;
+            this.state.fields["g1UtensilsNA"] = body.Form[0].g1UtensilsNA == null ? "" : body.Form[0].g1UtensilsNA;
+            this.state.fields["g1UtensilsPhysical"] = body.Form[0].g1UtensilsPhysical == null ? "" : body.Form[0].g1UtensilsPhysical;
+            this.state.fields["g1UtensilsVerbal"] = body.Form[0].g1UtensilsVerbal == null ? "" : body.Form[0].g1UtensilsVerbal;
+            this.state.fields["g1UtensilsInitiates"] = body.Form[0].g1UtensilsInitiates == null ? "" : body.Form[0].g1UtensilsInitiates;
+            this.state.fields["g1OpensContainersNA"] = body.Form[0].g1OpensContainersNA == null ? "" : body.Form[0].g1OpensContainersNA;
+            this.state.fields["g1OpensContainersPhysical"] = body.Form[0].g1OpensContainersPhysical == null ? "" : body.Form[0].g1OpensContainersPhysical;
+            this.state.fields["g1OpensContainersVerbal"] = body.Form[0].g1OpensContainersVerbal == null ? "" : body.Form[0].g1OpensContainersVerbal;
+            this.state.fields["g1OpensContainersInitiates"] = body.Form[0].g1OpensContainersInitiates == null ? "" : body.Form[0].g1OpensContainersInitiates;
+            this.state.fields["g1CleansEatingAreaNA"] = body.Form[0].g1CleansEatingAreaNA == null ? "" : body.Form[0].g1CleansEatingAreaNA;
+            this.state.fields["g1CleansEatingAreaPhysical"] = body.Form[0].g1CleansEatingAreaPhysical == null ? "" : body.Form[0].g1CleansEatingAreaPhysical;
+            this.state.fields["g1CleansEatingAreaVerbal"] = body.Form[0].g1CleansEatingAreaVerbal == null ? "" : body.Form[0].g1CleansEatingAreaVerbal;
+            this.state.fields["g1CleansEatingAreaInitiates"] = body.Form[0].g1CleansEatingAreaInitiates == null ? "" : body.Form[0].g1CleansEatingAreaInitiates;
+            this.state.fields["g1HotCautionNA"] = body.Form[0].g1HotCautionNA == null ? "" : body.Form[0].g1HotCautionNA;
+            this.state.fields["g1HotCautionPhysical"] = body.Form[0].g1HotCautionPhysical == null ? "" : body.Form[0].g1HotCautionPhysical;
+            this.state.fields["g1HotCautionVerbal"] = body.Form[0].g1HotCautionVerbal == null ? "" : body.Form[0].g1HotCautionVerbal;
+            this.state.fields["g1HotCautionInitiates"] = body.Form[0].g1HotCautionInitiates == null ? "" : body.Form[0].g1HotCautionInitiates;
+            this.state.fields["g1NearPeersNA"] = body.Form[0].g1NearPeersNA == null ? "" : body.Form[0].g1NearPeersNA;
+            this.state.fields["g1NearPeersPhysical"] = body.Form[0].g1NearPeersPhysical == null ? "" : body.Form[0].g1NearPeersPhysical;
+            this.state.fields["g1NearPeersVerbal"] = body.Form[0].g1NearPeersVerbal == null ? "" : body.Form[0].g1NearPeersVerbal;
+            this.state.fields["g1NearPeersInitiates"] = body.Form[0].g1NearPeersInitiates == null ? "" : body.Form[0].g1NearPeersInitiates;
+            this.state.fields["g1InterestInOthersNA"] = body.Form[0].g1InterestInOthersNA == null ? "" : body.Form[0].g1InterestInOthersNA;
+            this.state.fields["g1InterestInOthersPhysical"] = body.Form[0].g1InterestInOthersPhysical == null ? "" : body.Form[0].g1InterestInOthersPhysical;
+            this.state.fields["g1InterestInOthersVerbal"] = body.Form[0].g1InterestInOthersVerbal == null ? "" : body.Form[0].g1InterestInOthersVerbal;
+            this.state.fields["g1InterestInOthersInitiates"] = body.Form[0].g1InterestInOthersInitiates == null ? "" : body.Form[0].g1InterestInOthersInitiates;
+            this.state.fields["g1SitSmallGroupNA"] = body.Form[0].g1SitSmallGroupNA == null ? "" : body.Form[0].g1SitSmallGroupNA;
+            this.state.fields["g1SitSmallGroupPhysical"] = body.Form[0].g1SitSmallGroupPhysical == null ? "" : body.Form[0].g1SitSmallGroupPhysical;
+            this.state.fields["g1SitSmallGroupVerbal"] = body.Form[0].g1SitSmallGroupVerbal == null ? "" : body.Form[0].g1SitSmallGroupVerbal;
+            this.state.fields["g1SitSmallGroupInitiates"] = body.Form[0].g1SitSmallGroupInitiates == null ? "" : body.Form[0].g1SitSmallGroupInitiates;
+            this.state.fields["g1InstructorSmallGroupNA"] = body.Form[0].g1InstructorSmallGroupNA == null ? "" : body.Form[0].g1InstructorSmallGroupNA;
+            this.state.fields["g1InstructorSmallGroupPhysical"] = body.Form[0].g1InstructorSmallGroupPhysical == null ? "" : body.Form[0].g1InstructorSmallGroupPhysical;
+            this.state.fields["g1InstructorSmallGroupVerbal"] = body.Form[0].g1InstructorSmallGroupVerbal == null ? "" : body.Form[0].g1InstructorSmallGroupVerbal;
+            this.state.fields["g1InstructorSmallGroupInitiates"] = body.Form[0].g1InstructorSmallGroupInitiates == null ? "" : body.Form[0].g1InstructorSmallGroupInitiates;
+            this.state.fields["g1InstructionNA"] = body.Form[0].g1InstructionNA == null ? "" : body.Form[0].g1InstructionNA;
+            this.state.fields["g1InstructionPhysical"] = body.Form[0].g1InstructionPhysical == null ? "" : body.Form[0].g1InstructionPhysical;
+            this.state.fields["g1InstructionVerbal"] = body.Form[0].g1InstructionVerbal == null ? "" : body.Form[0].g1InstructionVerbal;
+            this.state.fields["g1InstructionInitiates"] = body.Form[0].g1InstructionInitiates == null ? "" : body.Form[0].g1InstructionInitiates;
+            this.state.fields["g1TakesTurnsNA"] = body.Form[0].g1TakesTurnsNA == null ? "" : body.Form[0].g1TakesTurnsNA;
+            this.state.fields["g1TakesTurnsPhysical"] = body.Form[0].g1TakesTurnsPhysical == null ? "" : body.Form[0].g1TakesTurnsPhysical;
+            this.state.fields["g1TakesTurnsVerbal"] = body.Form[0].g1TakesTurnsVerbal == null ? "" : body.Form[0].g1TakesTurnsVerbal;
+            this.state.fields["g1TakesTurnsInitiates"] = body.Form[0].g1TakesTurnsInitiates == null ? "" : body.Form[0].g1TakesTurnsInitiates;
+            this.state.fields["g1SharesNA"] = body.Form[0].g1SharesNA == null ? "" : body.Form[0].g1SharesNA;
+            this.state.fields["g1SharesPhysical"] = body.Form[0].g1SharesPhysical == null ? "" : body.Form[0].g1SharesPhysical;
+            this.state.fields["g1SharesVerbal"] = body.Form[0].g1SharesVerbal == null ? "" : body.Form[0].g1SharesVerbal;
+            this.state.fields["g1SharesInitiates"] = body.Form[0].g1SharesInitiates == null ? "" : body.Form[0].g1SharesInitiates;
+            this.state.fields["g1ConverseOthersNA"] = body.Form[0].g1ConverseOthersNA == null ? "" : body.Form[0].g1ConverseOthersNA;
+            this.state.fields["g1ConverseOthersPhysical"] = body.Form[0].g1ConverseOthersPhysical == null ? "" : body.Form[0].g1ConverseOthersPhysical;
+            this.state.fields["g1ConverseOthersVerbal"] = body.Form[0].g1ConverseOthersVerbal == null ? "" : body.Form[0].g1ConverseOthersVerbal;
+            this.state.fields["g1ConverseOthersInitiates"] = body.Form[0].g1ConverseOthersInitiates == null ? "" : body.Form[0].g1ConverseOthersInitiates;
+            this.state.fields["g1SitLargeGroupNA"] = body.Form[0].g1SitLargeGroupNA == null ? "" : body.Form[0].g1SitLargeGroupNA;
+            this.state.fields["g1SitLargeGroupPhysical"] = body.Form[0].g1SitLargeGroupPhysical == null ? "" : body.Form[0].g1SitLargeGroupPhysical;
+            this.state.fields["g1SitLargeGroupVerbal"] = body.Form[0].g1SitLargeGroupVerbal == null ? "" : body.Form[0].g1SitLargeGroupVerbal;
+            this.state.fields["g1SitLargeGroupInitiates"] = body.Form[0].g1SitLargeGroupInitiates == null ? "" : body.Form[0].g1SitLargeGroupInitiates;
+            this.state.fields["g1InstructorLargeGroupNA"] = body.Form[0].g1InstructorLargeGroupNA == null ? "" : body.Form[0].g1InstructorLargeGroupNA;
+            this.state.fields["g1InstructorLargeGroupPhysical"] = body.Form[0].g1InstructorLargeGroupPhysical == null ? "" : body.Form[0].g1InstructorLargeGroupPhysical;
+            this.state.fields["g1InstructorLargeGroupVerbal"] = body.Form[0].g1InstructorLargeGroupVerbal == null ? "" : body.Form[0].g1InstructorLargeGroupVerbal;
+            this.state.fields["g1InstructorLargeGroupInitiates"] = body.Form[0].g1InstructorLargeGroupInitiates == null ? "" : body.Form[0].g1InstructorLargeGroupInitiates;
+            this.state.fields["g1StandWaitNA"] = body.Form[0].g1StandWaitNA == null ? "" : body.Form[0].g1StandWaitNA;
+            this.state.fields["g1StandWaitPhysical"] = body.Form[0].g1StandWaitPhysical == null ? "" : body.Form[0].g1StandWaitPhysical;
+            this.state.fields["g1StandWaitVerbal"] = body.Form[0].g1StandWaitVerbal == null ? "" : body.Form[0].g1StandWaitVerbal;
+            this.state.fields["g1StandWaitInitiates"] = body.Form[0].g1StandWaitInitiates == null ? "" : body.Form[0].g1StandWaitInitiates;
+            this.state.fields["g1UnderstandsRulesNA"] = body.Form[0].g1UnderstandsRulesNA == null ? "" : body.Form[0].g1UnderstandsRulesNA;
+            this.state.fields["g1UnderstandsRulesPhysical"] = body.Form[0].g1UnderstandsRulesPhysical == null ? "" : body.Form[0].g1UnderstandsRulesPhysical;
+            this.state.fields["g1UnderstandsRulesVerbal"] = body.Form[0].g1UnderstandsRulesVerbal == null ? "" : body.Form[0].g1UnderstandsRulesVerbal;
+            this.state.fields["g1UnderstandsRulesInitiates"] = body.Form[0].g1UnderstandsRulesInitiates == null ? "" : body.Form[0].g1UnderstandsRulesInitiates;
+            this.state.fields["g2FeelingsHelpNA"] = body.Form[0].g2FeelingsHelpNA == null ? "" : body.Form[0].g2FeelingsHelpNA;
+            this.state.fields["g2FeelingsHelpPhysical"] = body.Form[0].g2FeelingsHelpPhysical == null ? "" : body.Form[0].g2FeelingsHelpPhysical;
+            this.state.fields["g2FeelingsHelpVerbal"] = body.Form[0].g2FeelingsHelpVerbal == null ? "" : body.Form[0].g2FeelingsHelpVerbal;
+            this.state.fields["g2FeelingsHelpInitiates"] = body.Form[0].g2FeelingsHelpInitiates == null ? "" : body.Form[0].g2FeelingsHelpInitiates;
+            this.state.fields["g2ExplainFeelingsNA"] = body.Form[0].g2ExplainFeelingsNA == null ? "" : body.Form[0].g2ExplainFeelingsNA;
+            this.state.fields["g2ExplainFeelingsPhysical"] = body.Form[0].g2ExplainFeelingsPhysical == null ? "" : body.Form[0].g2ExplainFeelingsPhysical;
+            this.state.fields["g2ExplainFeelingsVerbal"] = body.Form[0].g2ExplainFeelingsVerbal == null ? "" : body.Form[0].g2ExplainFeelingsVerbal;
+            this.state.fields["g2ExplainFeelingsInitiates"] = body.Form[0].g2ExplainFeelingsInitiates == null ? "" : body.Form[0].g2ExplainFeelingsInitiates;
+            this.state.fields["g2AsksHelpNA"] = body.Form[0].g2AsksHelpNA == null ? "" : body.Form[0].g2AsksHelpNA;
+            this.state.fields["g2AsksHelpPhysical"] = body.Form[0].g2AsksHelpPhysical == null ? "" : body.Form[0].g2AsksHelpPhysical;
+            this.state.fields["g2AsksHelpVerbal"] = body.Form[0].g2AsksHelpVerbal == null ? "" : body.Form[0].g2AsksHelpVerbal;
+            this.state.fields["g2AsksHelpInitiates"] = body.Form[0].g2AsksHelpInitiates == null ? "" : body.Form[0].g2AsksHelpInitiates;
+            this.state.fields["g2TalksToAdultNA"] = body.Form[0].g2TalksToAdultNA == null ? "" : body.Form[0].g2TalksToAdultNA;
+            this.state.fields["g2TalksToAdultPhysical"] = body.Form[0].g2TalksToAdultPhysical == null ? "" : body.Form[0].g2TalksToAdultPhysical;
+            this.state.fields["g2TalksToAdultVerbal"] = body.Form[0].g2TalksToAdultVerbal == null ? "" : body.Form[0].g2TalksToAdultVerbal;
+            this.state.fields["g2TalksToAdultInitiates"] = body.Form[0].g2TalksToAdultInitiates == null ? "" : body.Form[0].g2TalksToAdultInitiates;
+            this.state.fields["g2TalksToFriendNA"] = body.Form[0].g2TalksToFriendNA == null ? "" : body.Form[0].g2TalksToFriendNA;
+            this.state.fields["g2TalksToFriendPhysical"] = body.Form[0].g2TalksToFriendPhysical == null ? "" : body.Form[0].g2TalksToFriendPhysical;
+            this.state.fields["g2TalksToFriendVerbal"] = body.Form[0].g2TalksToFriendVerbal == null ? "" : body.Form[0].g2TalksToFriendVerbal;
+            this.state.fields["g2TalksToFriendInitiates"] = body.Form[0].g2TalksToFriendInitiates == null ? "" : body.Form[0].g2TalksToFriendInitiates;
+            this.state.fields["g2ComplimentNA"] = body.Form[0].g2ComplimentNA == null ? "" : body.Form[0].g2ComplimentNA;
+            this.state.fields["g2ComplimentPhysical"] = body.Form[0].g2ComplimentPhysical == null ? "" : body.Form[0].g2ComplimentPhysical;
+            this.state.fields["g2ComplimentVerbal"] = body.Form[0].g2ComplimentVerbal == null ? "" : body.Form[0].g2ComplimentVerbal;
+            this.state.fields["g2ComplimentInitiates"] = body.Form[0].g2ComplimentInitiates == null ? "" : body.Form[0].g2ComplimentInitiates;
+            this.state.fields["g2PresentsIdeasNA"] = body.Form[0].g2PresentsIdeasNA == null ? "" : body.Form[0].g2PresentsIdeasNA;
+            this.state.fields["g2PresentsIdeasPhysical"] = body.Form[0].g2PresentsIdeasPhysical == null ? "" : body.Form[0].g2PresentsIdeasPhysical;
+            this.state.fields["g2PresentsIdeasVerbal"] = body.Form[0].g2PresentsIdeasVerbal == null ? "" : body.Form[0].g2PresentsIdeasVerbal;
+            this.state.fields["g2PresentsIdeasInitiates"] = body.Form[0].g2PresentsIdeasInitiates == null ? "" : body.Form[0].g2PresentsIdeasInitiates;
+            this.state.fields["g2AsksQuestionsNA"] = body.Form[0].g2AsksQuestionsNA == null ? "" : body.Form[0].g2AsksQuestionsNA;
+            this.state.fields["g2AsksQuestionsPhysical"] = body.Form[0].g2AsksQuestionsPhysical == null ? "" : body.Form[0].g2AsksQuestionsPhysical;
+            this.state.fields["g2AsksQuestionsVerbal"] = body.Form[0].g2AsksQuestionsVerbal == null ? "" : body.Form[0].g2AsksQuestionsVerbal;
+            this.state.fields["g2AsksQuestionsInitiates"] = body.Form[0].g2AsksQuestionsInitiates == null ? "" : body.Form[0].g2AsksQuestionsInitiates;
+            this.state.fields["g2CompromiseNA"] = body.Form[0].g2CompromiseNA == null ? "" : body.Form[0].g2CompromiseNA;
+            this.state.fields["g2CompromisePhysical"] = body.Form[0].g2CompromisePhysical == null ? "" : body.Form[0].g2CompromisePhysical;
+            this.state.fields["g2CompromiseVerbal"] = body.Form[0].g2CompromiseVerbal == null ? "" : body.Form[0].g2CompromiseVerbal;
+            this.state.fields["g2CompromiseInitiates"] = body.Form[0].g2CompromiseInitiates == null ? "" : body.Form[0].g2CompromiseInitiates;
+            this.state.fields["g2FeedbackNA"] = body.Form[0].g2FeedbackNA == null ? "" : body.Form[0].g2FeedbackNA;
+            this.state.fields["g2FeedbackPhysical"] = body.Form[0].g2FeedbackPhysical == null ? "" : body.Form[0].g2FeedbackPhysical;
+            this.state.fields["g2FeedbackVerbal"] = body.Form[0].g2FeedbackVerbal == null ? "" : body.Form[0].g2FeedbackVerbal;
+            this.state.fields["g2FeedbackInitiates"] = body.Form[0].g2FeedbackInitiates == null ? "" : body.Form[0].g2FeedbackInitiates;
+            this.state.fields["g2MicrowaveNA"] = body.Form[0].g2MicrowaveNA == null ? "" : body.Form[0].g2MicrowaveNA;
+            this.state.fields["g2MicrowavePhysical"] = body.Form[0].g2MicrowavePhysical == null ? "" : body.Form[0].g2MicrowavePhysical;
+            this.state.fields["g2MicrowaveHelpVerbal"] = body.Form[0].g2MicrowaveHelpVerbal == null ? "" : body.Form[0].g2MicrowaveHelpVerbal;
+            this.state.fields["g2MicrowaveInitiates"] = body.Form[0].g2MicrowaveInitiates == null ? "" : body.Form[0].g2MicrowaveInitiates;
+            this.state.fields["g2StoveTopNA"] = body.Form[0].g2StoveTopNA == null ? "" : body.Form[0].g2StoveTopNA;
+            this.state.fields["g2StoveTopVerbal"] = body.Form[0].g2StoveTopVerbal == null ? "" : body.Form[0].g2StoveTopVerbal;
+            this.state.fields["g2StoveTopPhysical"] = body.Form[0].g2StoveTopPhysical == null ? "" : body.Form[0].g2StoveTopPhysical;
+            this.state.fields["g2StoveTopInitiates"] = body.Form[0].g2StoveTopInitiates == null ? "" : body.Form[0].g2StoveTopInitiates;
+            this.state.fields["g2OvenNA"] = body.Form[0].g2OvenNA == null ? "" : body.Form[0].g2OvenNA;
+            this.state.fields["g2OvenPhysical"] = body.Form[0].g2OvenPhysical == null ? "" : body.Form[0].g2OvenPhysical;
+            this.state.fields["g2OvenVerbal"] = body.Form[0].g2OvenVerbal == null ? "" : body.Form[0].g2OvenVerbal;
+            this.state.fields["g2OvenInitiates"] = body.Form[0].g2OvenInitiates == null ? "" : body.Form[0].g2OvenInitiates;
+            this.state.fields["g2StoresFoodNA"] = body.Form[0].g2StoresFoodNA == null ? "" : body.Form[0].g2StoresFoodNA;
+            this.state.fields["g2StoresFoodPhysical"] = body.Form[0].g2StoresFoodPhysical == null ? "" : body.Form[0].g2StoresFoodPhysical;
+            this.state.fields["g2StoresFoodVerbal"] = body.Form[0].g2StoresFoodVerbal == null ? "" : body.Form[0].g2StoresFoodVerbal;
+            this.state.fields["g2StoresFoodInitiates"] = body.Form[0].g2StoresFoodInitiates == null ? "" : body.Form[0].g2StoresFoodInitiates;
+            this.state.fields["g2SimpleMealsNA"] = body.Form[0].g2SimpleMealsNA == null ? "" : body.Form[0].g2SimpleMealsNA;
+            this.state.fields["g2SimpleMealsPhysical"] = body.Form[0].g2SimpleMealsPhysical == null ? "" : body.Form[0].g2SimpleMealsPhysical;
+            this.state.fields["g2SimpleMealsVerbal"] = body.Form[0].g2SimpleMealsVerbal == null ? "" : body.Form[0].g2SimpleMealsVerbal;
+            this.state.fields["g2SimpleMealsInitiates"] = body.Form[0].g2SimpleMealsInitiates == null ? "" : body.Form[0].g2SimpleMealsInitiates;
+            this.state.fields["g2ComplexMealsNA"] = body.Form[0].g2ComplexMealsNA == null ? "" : body.Form[0].g2ComplexMealsNA;
+            this.state.fields["g2ComplexMealsPhysical"] = body.Form[0].g2ComplexMealsPhysical == null ? "" : body.Form[0].g2ComplexMealsPhysical;
+            this.state.fields["g2ComplexMealsVerbal"] = body.Form[0].g2ComplexMealsVerbal == null ? "" : body.Form[0].g2ComplexMealsVerbal;
+            this.state.fields["g2ComplexMealsInitiates"] = body.Form[0].g2ComplexMealsInitiates == null ? "" : body.Form[0].g2ComplexMealsInitiates;
+            this.state.fields["g2DishwasherNA"] = body.Form[0].g2DishwasherNA == null ? "" : body.Form[0].g2DishwasherNA;
+            this.state.fields["g2DishwasherPhysical"] = body.Form[0].g2DishwasherPhysical == null ? "" : body.Form[0].g2DishwasherPhysical;
+            this.state.fields["g2DishwasherVerbal"] = body.Form[0].g2DishwasherVerbal == null ? "" : body.Form[0].g2DishwasherVerbal;
+            this.state.fields["g2DishwasherInitiates"] = body.Form[0].g2DishwasherInitiates == null ? "" : body.Form[0].g2DishwasherInitiates;
+            this.state.fields["g2WashDishesNA"] = body.Form[0].g2WashDishesNA == null ? "" : body.Form[0].g2WashDishesNA;
+            this.state.fields["g2WashDishesPhysical"] = body.Form[0].g2WashDishesPhysical == null ? "" : body.Form[0].g2WashDishesPhysical;
+            this.state.fields["g2WashDishesVerbal"] = body.Form[0].g2WashDishesVerbal == null ? "" : body.Form[0].g2WashDishesVerbal;
+            this.state.fields["g2WashDishesInitiates"] = body.Form[0].g2WashDishesInitiates == null ? "" : body.Form[0].g2WashDishesInitiates;
+            this.state.fields["g2OrderMealsNA"] = body.Form[0].g2OrderMealsNA == null ? "" : body.Form[0].g2OrderMealsNA;
+            this.state.fields["g2OrderMealsPhysical"] = body.Form[0].g2OrderMealsPhysical == null ? "" : body.Form[0].g2OrderMealsPhysical;
+            this.state.fields["g2OrderMealsVerbal"] = body.Form[0].g2OrderMealsVerbal == null ? "" : body.Form[0].g2OrderMealsVerbal;
+            this.state.fields["g2OrderMealsInitiates"] = body.Form[0].g2OrderMealsInitiates == null ? "" : body.Form[0].g2OrderMealsInitiates;
+            this.state.fields["g2CleanSpaceNA"] = body.Form[0].g2CleanSpaceNA == null ? "" : body.Form[0].g2CleanSpaceNA;
+            this.state.fields["g2CleanSpacePhysical"] = body.Form[0].g2CleanSpacePhysical == null ? "" : body.Form[0].g2CleanSpacePhysical;
+            this.state.fields["g2CleanSpaceVerbal"] = body.Form[0].g2CleanSpaceVerbal == null ? "" : body.Form[0].g2CleanSpaceVerbal;
+            this.state.fields["g2CleanSpaceInitiates"] = body.Form[0].g2CleanSpaceInitiates == null ? "" : body.Form[0].g2CleanSpaceInitiates;
+            this.state.fields["g2WashClothesNA"] = body.Form[0].g2WashClothesNA == null ? "" : body.Form[0].g2WashClothesNA;
+            this.state.fields["g2WashClothesPhysical"] = body.Form[0].g2WashClothesPhysical == null ? "" : body.Form[0].g2WashClothesPhysical;
+            this.state.fields["g2WashClothesVerbal"] = body.Form[0].g2WashClothesVerbal == null ? "" : body.Form[0].g2WashClothesVerbal;
+            this.state.fields["g2WashClothesInitiates"] = body.Form[0].g2WashClothesInitiates == null ? "" : body.Form[0].g2WashClothesInitiates;
+            this.state.fields["g2DressAppropriatelyNA"] = body.Form[0].g2DressAppropriatelyNA == null ? "" : body.Form[0].g2DressAppropriatelyNA;
+            this.state.fields["g2DressAppropriatelyPhysical"] = body.Form[0].g2DressAppropriatelyPhysical == null ? "" : body.Form[0].g2DressAppropriatelyPhysical;
+            this.state.fields["g2DressAppropriatelyVerbal"] = body.Form[0].g2DressAppropriatelyVerbal == null ? "" : body.Form[0].g2DressAppropriatelyVerbal;
+            this.state.fields["g2DressAppropriatelyInitiates"] = body.Form[0].g2DressAppropriatelyInitiates == null ? "" : body.Form[0].g2DressAppropriatelyInitiates;
+            this.state.fields["g2FixClothesNA"] = body.Form[0].g2FixClothesNA == null ? "" : body.Form[0].g2FixClothesNA;
+            this.state.fields["g2FixClothesPhysical"] = body.Form[0].g2FixClothesPhysical == null ? "" : body.Form[0].g2FixClothesPhysical;
+            this.state.fields["g2FixClothesVerbal"] = body.Form[0].g2FixClothesVerbal == null ? "" : body.Form[0].g2FixClothesVerbal;
+            this.state.fields["g2FixClothesInitiates"] = body.Form[0].g2FixClothesInitiates == null ? "" : body.Form[0].g2FixClothesInitiates;
+            this.state.fields["g2FireRulesNA"] = body.Form[0].g2FireRulesNA == null ? "" : body.Form[0].g2FireRulesNA;
+            this.state.fields["g2FireRulesPhysical"] = body.Form[0].g2FireRulesPhysical == null ? "" : body.Form[0].g2FireRulesPhysical;
+            this.state.fields["g2FireRulesVerbal"] = body.Form[0].g2FireRulesVerbal == null ? "" : body.Form[0].g2FireRulesVerbal;
+            this.state.fields["g2FireRulesInitiates"] = body.Form[0].g2FireRulesInitiates == null ? "" : body.Form[0].g2FireRulesInitiates;
+            this.state.fields["g2TimeMgmtNA"] = body.Form[0].g2TimeMgmtNA == null ? "" : body.Form[0].g2TimeMgmtNA;
+            this.state.fields["g2TimeMgmtPhysical"] = body.Form[0].g2TimeMgmtPhysical == null ? "" : body.Form[0].g2TimeMgmtPhysical;
+            this.state.fields["g2TimeMgmtVerbal"] = body.Form[0].g2TimeMgmtVerbal == null ? "" : body.Form[0].g2TimeMgmtVerbal;
+            this.state.fields["g2TimeMgmtInitiates"] = body.Form[0].g2TimeMgmtInitiates == null ? "" : body.Form[0].g2TimeMgmtInitiates;
+            this.state.fields["g2SleepSchedNA"] = body.Form[0].g2SleepSchedNA == null ? "" : body.Form[0].g2SleepSchedNA;
+            this.state.fields["g2SleepSchedPhysical"] = body.Form[0].g2SleepSchedPhysical == null ? "" : body.Form[0].g2SleepSchedPhysical;
+            this.state.fields["g2SleepSchedVerbal"] = body.Form[0].g2SleepSchedVerbal == null ? "" : body.Form[0].g2SleepSchedVerbal;
+            this.state.fields["g2SleepSchedInitiates"] = body.Form[0].g2SleepSchedInitiates == null ? "" : body.Form[0].g2SleepSchedInitiates;
+            this.state.fields["g2RentAgreementNA"] = body.Form[0].g2RentAgreementNA == null ? "" : body.Form[0].g2RentAgreementNA;
+            this.state.fields["g2RentAgreementPhysical"] = body.Form[0].g2RentAgreementPhysical == null ? "" : body.Form[0].g2RentAgreementPhysical;
+            this.state.fields["g2RentAgreementVerbal"] = body.Form[0].g2RentAgreementVerbal == null ? "" : body.Form[0].g2RentAgreementVerbal;
+            this.state.fields["g2RentAgreementInitiates"] = body.Form[0].g2RentAgreementInitiates == null ? "" : body.Form[0].g2RentAgreementInitiates;
+            this.state.fields["g2PhoneServicesNA"] = body.Form[0].g2PhoneServicesNA == null ? "" : body.Form[0].g2PhoneServicesNA;
+            this.state.fields["g2PhoneServicesPhysical"] = body.Form[0].g2PhoneServicesPhysical == null ? "" : body.Form[0].g2PhoneServicesPhysical;
+            this.state.fields["g2PhoneServicesVerbal"] = body.Form[0].g2PhoneServicesVerbal == null ? "" : body.Form[0].g2PhoneServicesVerbal;
+            this.state.fields["g2PhoneServicesInitiates"] = body.Form[0].g2PhoneServicesInitiates == null ? "" : body.Form[0].g2PhoneServicesInitiates;
+            this.state.fields["g2LivingCostsNA"] = body.Form[0].g2LivingCostsNA == null ? "" : body.Form[0].g2LivingCostsNA;
+            this.state.fields["g2LivingCostsPhysical"] = body.Form[0].g2LivingCostsPhysical == null ? "" : body.Form[0].g2LivingCostsPhysical;
+            this.state.fields["g2LivingCostsVerbal"] = body.Form[0].g2LivingCostsVerbal == null ? "" : body.Form[0].g2LivingCostsVerbal;
+            this.state.fields["g2LivingCostsInitiates"] = body.Form[0].g2LivingCostsInitiates == null ? "" : body.Form[0].g2LivingCostsInitiates;
+            this.state.fields["g2CarInsuranceNA"] = body.Form[0].g2CarInsuranceNA == null ? "" : body.Form[0].g2CarInsuranceNA;
+            this.state.fields["g2CarInsurancePhysical"] = body.Form[0].g2CarInsurancePhysical == null ? "" : body.Form[0].g2CarInsurancePhysical;
+            this.state.fields["g2CarInsuranceVerbal"] = body.Form[0].g2CarInsuranceVerbal == null ? "" : body.Form[0].g2CarInsuranceVerbal;
+            this.state.fields["g2CarInsuranceInitiates"] = body.Form[0].g2CarInsuranceInitiates == null ? "" : body.Form[0].g2CarInsuranceInitiates;
+            this.state.fields["g2GoodCreditNA"] = body.Form[0].g2GoodCreditNA == null ? "" : body.Form[0].g2GoodCreditNA;
+            this.state.fields["g2GoodCreditPhysical"] = body.Form[0].g2GoodCreditPhysical == null ? "" : body.Form[0].g2GoodCreditPhysical;
+            this.state.fields["g2GoodCreditVerbal"] = body.Form[0].g2GoodCreditVerbal == null ? "" : body.Form[0].g2GoodCreditVerbal;
+            this.state.fields["g2GoodCreditInitiates"] = body.Form[0].g2GoodCreditInitiates == null ? "" : body.Form[0].g2GoodCreditInitiates;
+            this.state.fields["g2PayStubNA"] = body.Form[0].g2PayStubNA == null ? "" : body.Form[0].g2PayStubNA;
+            this.state.fields["g2PayStubPhysical"] = body.Form[0].g2PayStubPhysical == null ? "" : body.Form[0].g2PayStubPhysical;
+            this.state.fields["g2PayStubVerbal"] = body.Form[0].g2PayStubVerbal == null ? "" : body.Form[0].g2PayStubVerbal;
+            this.state.fields["g2PayStubInitiates"] = body.Form[0].g2PayStubInitiates == null ? "" : body.Form[0].g2PayStubInitiates;
+            this.state.fields["g2BillingInfoNA"] = body.Form[0].g2BillingInfoNA == null ? "" : body.Form[0].g2BillingInfoNA;
+            this.state.fields["g2BillingInfoPhysical"] = body.Form[0].g2BillingInfoPhysical == null ? "" : body.Form[0].g2BillingInfoPhysical;
+            this.state.fields["g2BillingInfoVerbal"] = body.Form[0].g2BillingInfoVerbal == null ? "" : body.Form[0].g2BillingInfoVerbal;
+            this.state.fields["g2BillingInfoInitiates"] = body.Form[0].g2BillingInfoInitiates == null ? "" : body.Form[0].g2BillingInfoInitiates;
+            this.state.fields["g2BudgetNA"] = body.Form[0].g2BudgetNA == null ? "" : body.Form[0].g2BudgetNA;
+            this.state.fields["g2BudgetPhysical"] = body.Form[0].g2BudgetPhysical == null ? "" : body.Form[0].g2BudgetPhysical;
+            this.state.fields["g2BudgetVerbal"] = body.Form[0].g2BudgetVerbal == null ? "" : body.Form[0].g2BudgetVerbal;
+            this.state.fields["g2BudgetInitiates"] = body.Form[0].g2BudgetInitiates == null ? "" : body.Form[0].g2BudgetInitiates;
+            this.state.fields["g2CreditNA"] = body.Form[0].g2CreditNA == null ? "" : body.Form[0].g2CreditNA;
+            this.state.fields["g2CreditPhysical"] = body.Form[0].g2CreditPhysical == null ? "" : body.Form[0].g2CreditPhysical;
+            this.state.fields["g2CreditVerbal"] = body.Form[0].g2CreditVerbal == null ? "" : body.Form[0].g2CreditVerbal;
+            this.state.fields["g2CreditInitiates"] = body.Form[0].g2CreditInitiates == null ? "" : body.Form[0].g2CreditInitiates;
+            this.state.fields["g2DriversLicenseNA"] = body.Form[0].g2DriversLicenseNA == null ? "" : body.Form[0].g2DriversLicenseNA;
+            this.state.fields["g2DriversLicensePhysical"] = body.Form[0].g2DriversLicensePhysical == null ? "" : body.Form[0].g2DriversLicensePhysical;
+            this.state.fields["g2DriversLicenseVerbal"] = body.Form[0].g2DriversLicenseVerbal == null ? "" : body.Form[0].g2DriversLicenseVerbal;
+            this.state.fields["g2DriversLicenseInitiates"] = body.Form[0].g2DriversLicenseInitiates == null ? "" : body.Form[0].g2DriversLicenseInitiates;
+            this.state.fields["g2TransportationNA"] = body.Form[0].g2TransportationNA == null ? "" : body.Form[0].g2TransportationNA;
+            this.state.fields["g2TransportationPhysical"] = body.Form[0].g2TransportationPhysical == null ? "" : body.Form[0].g2TransportationPhysical;
+            this.state.fields["g2TransportationVerbal"] = body.Form[0].g2TransportationVerbal == null ? "" : body.Form[0].g2TransportationVerbal;
+            this.state.fields["g2TransportationInitiates"] = body.Form[0].g2TransportationInitiates == null ? "" : body.Form[0].g2TransportationInitiates;
+            this.state.fields["g2FollowNavigationNA"] = body.Form[0].g2FollowNavigationNA == null ? "" : body.Form[0].g2FollowNavigationNA;
+            this.state.fields["g2FollowNavigationPhysical"] = body.Form[0].g2FollowNavigationPhysical == null ? "" : body.Form[0].g2FollowNavigationPhysical;
+            this.state.fields["g2FollowNavigationVerbal"] = body.Form[0].g2FollowNavigationVerbal == null ? "" : body.Form[0].g2FollowNavigationVerbal;
+            this.state.fields["g2FollowNavigationInitiates"] = body.Form[0].g2FollowNavigationInitiates == null ? "" : body.Form[0].g2FollowNavigationInitiates;
+            this.state.fields["g2FinancialAdviceNA"] = body.Form[0].g2FinancialAdviceNA == null ? "" : body.Form[0].g2FinancialAdviceNA;
+            this.state.fields["g2FinancialAdvicePhysical"] = body.Form[0].g2FinancialAdvicePhysical == null ? "" : body.Form[0].g2FinancialAdvicePhysical;
+            this.state.fields["g2FinancialAdviceVerbal"] = body.Form[0].g2FinancialAdviceVerbal == null ? "" : body.Form[0].g2FinancialAdviceVerbal;
+            this.state.fields["g2FinancialAdviceInitiates"] = body.Form[0].g2FinancialAdviceInitiates == null ? "" : body.Form[0].g2FinancialAdviceInitiates;
+            this.state.fields["g2WriteChecksNA"] = body.Form[0].g2WriteChecksNA == null ? "" : body.Form[0].g2WriteChecksNA;
+            this.state.fields["g2WriteChecksPhysical"] = body.Form[0].g2WriteChecksPhysical == null ? "" : body.Form[0].g2WriteChecksPhysical;
+            this.state.fields["g2WriteChecksVerbal"] = body.Form[0].g2WriteChecksVerbal == null ? "" : body.Form[0].g2WriteChecksVerbal;
+            this.state.fields["g2WriteChecksInitiates"] = body.Form[0].g2WriteChecksInitiates == null ? "" : body.Form[0].g2WriteChecksInitiates;
+            this.state.fields["g2ATMTransactionsNA"] = body.Form[0].g2ATMTransactionsNA == null ? "" : body.Form[0].g2ATMTransactionsNA;
+            this.state.fields["g2ATMTransactionsPhysical"] = body.Form[0].g2ATMTransactionsPhysical == null ? "" : body.Form[0].g2ATMTransactionsPhysical;
+            this.state.fields["g2ATMTransactionsVerbal"] = body.Form[0].g2ATMTransactionsVerbal == null ? "" : body.Form[0].g2ATMTransactionsVerbal;
+            this.state.fields["g2ATMTransactionsInitiates"] = body.Form[0].g2ATMTransactionsInitiates == null ? "" : body.Form[0].g2ATMTransactionsInitiates;
+            this.state.fields["g2BalanceBankAccountNA"] = body.Form[0].g2BalanceBankAccountNA == null ? "" : body.Form[0].g2BalanceBankAccountNA;
+            this.state.fields["g2BalanceBankAccountPhysical"] = body.Form[0].g2BalanceBankAccountPhysical == null ? "" : body.Form[0].g2BalanceBankAccountPhysical;
+            this.state.fields["g2BalanceBankAccountVerbal"] = body.Form[0].g2BalanceBankAccountVerbal == null ? "" : body.Form[0].g2BalanceBankAccountVerbal;
+            this.state.fields["g2BalanceBankAccountInitiates"] = body.Form[0].g2BalanceBankAccountInitiates == null ? "" : body.Form[0].g2BalanceBankAccountInitiates;
+            this.state.fields["g2HousingAdsNA"] = body.Form[0].g2HousingAdsNA == null ? "" : body.Form[0].g2HousingAdsNA;
+            this.state.fields["g2HousingAdsPhysical"] = body.Form[0].g2HousingAdsPhysical == null ? "" : body.Form[0].g2HousingAdsPhysical;
+            this.state.fields["g2HousingAdsVerbal"] = body.Form[0].g2HousingAdsVerbal == null ? "" : body.Form[0].g2HousingAdsVerbal;
+            this.state.fields["g2HousingAdsInitiates"] = body.Form[0].g2HousingAdsInitiates == null ? "" : body.Form[0].g2HousingAdsInitiates;
+            this.state.fields["g2EduFinancialAidNA"] = body.Form[0].g2EduFinancialAidNA == null ? "" : body.Form[0].g2EduFinancialAidNA;
+            this.state.fields["g2EduFinancialAidPhysical"] = body.Form[0].g2EduFinancialAidPhysical == null ? "" : body.Form[0].g2EduFinancialAidPhysical;
+            this.state.fields["g2EduFinancialAidVerbal"] = body.Form[0].g2EduFinancialAidVerbal == null ? "" : body.Form[0].g2EduFinancialAidVerbal;
+            this.state.fields["g2EduFinancialAidInitiates"] = body.Form[0].g2EduFinancialAidInitiates == null ? "" : body.Form[0].g2EduFinancialAidInitiates;
+            this.state.fields["g2SaveMoneyNA"] = body.Form[0].g2SaveMoneyNA == null ? "" : body.Form[0].g2SaveMoneyNA;
+            this.state.fields["g2SaveMoneyPhysical"] = body.Form[0].g2SaveMoneyPhysical == null ? "" : body.Form[0].g2SaveMoneyPhysical;
+            this.state.fields["g2SaveMoneyVerbal"] = body.Form[0].g2SaveMoneyVerbal == null ? "" : body.Form[0].g2SaveMoneyVerbal;
+            this.state.fields["g2SaveMoneyInitiates"] = body.Form[0].g2SaveMoneyInitiates == null ? "" : body.Form[0].g2SaveMoneyInitiates;
+            this.state.fields["g2SocialServicesNA"] = body.Form[0].g2SocialServicesNA == null ? "" : body.Form[0].g2SocialServicesNA;
+            this.state.fields["g2SocialServicesPhysical"] = body.Form[0].g2SocialServicesPhysical == null ? "" : body.Form[0].g2SocialServicesPhysical;
+            this.state.fields["g2SocialServicesVerbal"] = body.Form[0].g2SocialServicesVerbal == null ? "" : body.Form[0].g2SocialServicesVerbal;
+            this.state.fields["g2SocialServicesInitiates"] = body.Form[0].g2SocialServicesInitiates == null ? "" : body.Form[0].g2SocialServicesInitiates;
+            this.state.fields["g2CareerEduNA"] = body.Form[0].g2CareerEduNA == null ? "" : body.Form[0].g2CareerEduNA;
+            this.state.fields["g2CareerEduPhysical"] = body.Form[0].g2CareerEduPhysical == null ? "" : body.Form[0].g2CareerEduPhysical;
+            this.state.fields["g2CareerEduVerbal"] = body.Form[0].g2CareerEduVerbal == null ? "" : body.Form[0].g2CareerEduVerbal;
+            this.state.fields["g2CareerEduInitiates"] = body.Form[0].g2CareerEduInitiates == null ? "" : body.Form[0].g2CareerEduInitiates;
+            this.state.fields["g2OralCareNA"] = body.Form[0].g2OralCareNA == null ? "" : body.Form[0].g2OralCareNA;
+            this.state.fields["g2OralCarePhysical"] = body.Form[0].g2OralCarePhysical == null ? "" : body.Form[0].g2OralCarePhysical;
+            this.state.fields["g2OralCareVerbal"] = body.Form[0].g2OralCareVerbal == null ? "" : body.Form[0].g2OralCareVerbal;
+            this.state.fields["g2OralCareInitiates"] = body.Form[0].g2OralCareInitiates == null ? "" : body.Form[0].g2OralCareInitiates;
+            this.state.fields["g2HairNA"] = body.Form[0].g2HairNA == null ? "" : body.Form[0].g2HairNA;
+            this.state.fields["g2HairPhysical"] = body.Form[0].g2HairPhysical == null ? "" : body.Form[0].g2HairPhysical;
+            this.state.fields["g2HairVerbal"] = body.Form[0].g2HairVerbal == null ? "" : body.Form[0].g2HairVerbal;
+            this.state.fields["g2HairInitiates"] = body.Form[0].g2HairInitiates == null ? "" : body.Form[0].g2HairInitiates;
+            this.state.fields["g2SkinCareNA"] = body.Form[0].g2SkinCareNA == null ? "" : body.Form[0].g2SkinCareNA;
+            this.state.fields["g2SkinCarePhysical"] = body.Form[0].g2SkinCarePhysical == null ? "" : body.Form[0].g2SkinCarePhysical;
+            this.state.fields["g2SkinCareVerbal"] = body.Form[0].g2SkinCareVerbal == null ? "" : body.Form[0].g2SkinCareVerbal;
+            this.state.fields["g2SkinCareInitiates"] = body.Form[0].g2SkinCareInitiates == null ? "" : body.Form[0].g2SkinCareInitiates;
+            this.state.fields["g2EyeGlassesNA"] = body.Form[0].g2EyeGlassesNA == null ? "" : body.Form[0].g2EyeGlassesNA;
+            this.state.fields["g2EyeGlassesPhysical"] = body.Form[0].g2EyeGlassesPhysical == null ? "" : body.Form[0].g2EyeGlassesPhysical;
+            this.state.fields["g2EyeGlassesVerbal"] = body.Form[0].g2EyeGlassesVerbal == null ? "" : body.Form[0].g2EyeGlassesVerbal;
+            this.state.fields["g2EyeGlassesInitiates"] = body.Form[0].g2EyeGlassesInitiates == null ? "" : body.Form[0].g2EyeGlassesInitiates;
+            this.state.fields["g2WellGroomedNA"] = body.Form[0].g2WellGroomedNA == null ? "" : body.Form[0].g2WellGroomedNA;
+            this.state.fields["g2WellGroomedPhysical"] = body.Form[0].g2WellGroomedPhysical == null ? "" : body.Form[0].g2WellGroomedPhysical;
+            this.state.fields["g2WellGroomedVerbal"] = body.Form[0].g2WellGroomedVerbal == null ? "" : body.Form[0].g2WellGroomedVerbal;
+            this.state.fields["g2WellGroomedInitiates"] = body.Form[0].g2WellGroomedInitiates == null ? "" : body.Form[0].g2WellGroomedInitiates;
+            this.state.fields["g2ToiletNeedsNA"] = body.Form[0].g2ToiletNeedsNA == null ? "" : body.Form[0].g2ToiletNeedsNA;
+            this.state.fields["g2ToiletNeedsPhysical"] = body.Form[0].g2ToiletNeedsPhysical == null ? "" : body.Form[0].g2ToiletNeedsPhysical;
+            this.state.fields["g2ToiletNeedsVerbal"] = body.Form[0].g2ToiletNeedsVerbal == null ? "" : body.Form[0].g2ToiletNeedsVerbal;
+            this.state.fields["g2ToiletNeedsInitiates"] = body.Form[0].g2ToiletNeedsInitiates == null ? "" : body.Form[0].g2ToiletNeedsInitiates;
+            this.state.fields["g2WashHandsNA"] = body.Form[0].g2WashHandsNA == null ? "" : body.Form[0].g2WashHandsNA;
+            this.state.fields["g2WashHandsPhysical"] = body.Form[0].g2WashHandsPhysical == null ? "" : body.Form[0].g2WashHandsPhysical;
+            this.state.fields["g2WashHandsVerbal"] = body.Form[0].g2WashHandsVerbal == null ? "" : body.Form[0].g2WashHandsVerbal;
+            this.state.fields["g2WashHandsInitiates"] = body.Form[0].g2WashHandsInitiates == null ? "" : body.Form[0].g2WashHandsInitiates;
+            this.state.fields["g2BatheNA"] = body.Form[0].g2BatheNA == null ? "" : body.Form[0].g2BatheNA;
+            this.state.fields["g2BathePhysical"] = body.Form[0].g2BathePhysical == null ? "" : body.Form[0].g2BathePhysical;
+            this.state.fields["g2BatheVerbal"] = body.Form[0].g2BatheVerbal == null ? "" : body.Form[0].g2BatheVerbal;
+            this.state.fields["g2BatheInitiates"] = body.Form[0].g2BatheInitiates == null ? "" : body.Form[0].g2BatheInitiates;
+            this.state.fields["g2ShavingNeedsNA"] = body.Form[0].g2ShavingNeedsNA == null ? "" : body.Form[0].g2ShavingNeedsNA;
+            this.state.fields["g2ShavingNeedsPhysical"] = body.Form[0].g2ShavingNeedsPhysical == null ? "" : body.Form[0].g2ShavingNeedsPhysical;
+            this.state.fields["g2ShavingNeedsVerbal"] = body.Form[0].g2ShavingNeedsVerbal == null ? "" : body.Form[0].g2ShavingNeedsVerbal;
+            this.state.fields["g2ShavingNeedsInitiates"] = body.Form[0].g2ShavingNeedsInitiates == null ? "" : body.Form[0].g2ShavingNeedsInitiates;
+            this.state.fields["g2DeodorantNA"] = body.Form[0].g2DeodorantNA == null ? "" : body.Form[0].g2DeodorantNA;
+            this.state.fields["g2DeodorantPhysical"] = body.Form[0].g2DeodorantPhysical == null ? "" : body.Form[0].g2DeodorantPhysical;
+            this.state.fields["g2DeodorantVerbal"] = body.Form[0].g2DeodorantVerbal == null ? "" : body.Form[0].g2DeodorantVerbal;
+            this.state.fields["g2DeodorantInitiates"] = body.Form[0].g2DeodorantInitiates == null ? "" : body.Form[0].g2DeodorantInitiates;
+            this.state.fields["g2ClosesDoorNA"] = body.Form[0].g2ClosesDoorNA == null ? "" : body.Form[0].g2ClosesDoorNA;
+            this.state.fields["g2ClosesDoorPhysical"] = body.Form[0].g2ClosesDoorPhysical == null ? "" : body.Form[0].g2ClosesDoorPhysical;
+            this.state.fields["g2ClosesDoorVerbal"] = body.Form[0].g2ClosesDoorVerbal == null ? "" : body.Form[0].g2ClosesDoorVerbal;
+            this.state.fields["g2ClosesDoorInitiates"] = body.Form[0].g2ClosesDoorInitiates == null ? "" : body.Form[0].g2ClosesDoorInitiates;
+            this.state.fields["g2MinorInjuriesNA"] = body.Form[0].g2MinorInjuriesNA == null ? "" : body.Form[0].g2MinorInjuriesNA;
+            this.state.fields["g2MinorInjuriesPhysical"] = body.Form[0].g2MinorInjuriesPhysical == null ? "" : body.Form[0].g2MinorInjuriesPhysical;
+            this.state.fields["g2MinorInjuriesVerbal"] = body.Form[0].g2MinorInjuriesVerbal == null ? "" : body.Form[0].g2MinorInjuriesVerbal;
+            this.state.fields["g2MinorInjuriesInitiates"] = body.Form[0].g2MinorInjuriesInitiates == null ? "" : body.Form[0].g2MinorInjuriesInitiates;
+            this.state.fields["g2GetsMedicalHelpNA"] = body.Form[0].g2GetsMedicalHelpNA == null ? "" : body.Form[0].g2GetsMedicalHelpNA;
+            this.state.fields["g2GetsMedicalHelpPhysical"] = body.Form[0].g2GetsMedicalHelpPhysical == null ? "" : body.Form[0].g2GetsMedicalHelpPhysical;
+            this.state.fields["g2GetsMedicalHelpVerbal"] = body.Form[0].g2GetsMedicalHelpVerbal == null ? "" : body.Form[0].g2GetsMedicalHelpVerbal;
+            this.state.fields["g2GetsMedicalHelpInitiates"] = body.Form[0].g2GetsMedicalHelpInitiates == null ? "" : body.Form[0].g2GetsMedicalHelpInitiates;
+            this.state.fields["g2Call911NA"] = body.Form[0].g2Call911NA == null ? "" : body.Form[0].g2Call911NA;
+            this.state.fields["g2Call911Physical"] = body.Form[0].g2Call911Physical == null ? "" : body.Form[0].g2Call911Physical;
+            this.state.fields["g2Call911Verbal"] = body.Form[0].g2Call911Verbal == null ? "" : body.Form[0].g2Call911Verbal;
+            this.state.fields["g2Call911Initiates"] = body.Form[0].g2Call911Initiates == null ? "" : body.Form[0].g2Call911Initiates;
+            this.state.fields["g2HelpIfUnsafeNA"] = body.Form[0].g2HelpIfUnsafeNA == null ? "" : body.Form[0].g2HelpIfUnsafeNA;
+            this.state.fields["g2HelpIfUnsafePhysical"] = body.Form[0].g2HelpIfUnsafePhysical == null ? "" : body.Form[0].g2HelpIfUnsafePhysical;
+            this.state.fields["g2HelpIfUnsafeVerbal"] = body.Form[0].g2HelpIfUnsafeVerbal == null ? "" : body.Form[0].g2HelpIfUnsafeVerbal;
+            this.state.fields["g2HelpIfUnsafeInitiates"] = body.Form[0].g2HelpIfUnsafeInitiates == null ? "" : body.Form[0].g2HelpIfUnsafeInitiates;
+            this.state.fields["g2IDStrangerNA"] = body.Form[0].g2IDStrangerNA == null ? "" : body.Form[0].g2IDStrangerNA;
+            this.state.fields["g2IDStrangerPhysical"] = body.Form[0].g2IDStrangerPhysical == null ? "" : body.Form[0].g2IDStrangerPhysical;
+            this.state.fields["g2IDStrangerVerbal"] = body.Form[0].g2IDStrangerVerbal == null ? "" : body.Form[0].g2IDStrangerVerbal;
+            this.state.fields["g2IDStrangerInitiates"] = body.Form[0].g2IDStrangerInitiates == null ? "" : body.Form[0].g2IDStrangerInitiates;
+            this.state.fields["g2PoliteNA"] = body.Form[0].g2PoliteNA == null ? "" : body.Form[0].g2PoliteNA;
+            this.state.fields["g2PolitePhysical"] = body.Form[0].g2PolitePhysical == null ? "" : body.Form[0].g2PolitePhysical;
+            this.state.fields["g2PoliteVerbal"] = body.Form[0].g2PoliteVerbal == null ? "" : body.Form[0].g2PoliteVerbal;
+            this.state.fields["g2PoliteInitiates"] = body.Form[0].g2PoliteInitiates == null ? "" : body.Form[0].g2PoliteInitiates;
+            this.state.fields["g2RespectOthersThingsNA"] = body.Form[0].g2RespectOthersThingsNA == null ? "" : body.Form[0].g2RespectOthersThingsNA;
+            this.state.fields["g2RespectOthersThingsPhysical"] = body.Form[0].g2RespectOthersThingsPhysical == null ? "" : body.Form[0].g2RespectOthersThingsPhysical;
+            this.state.fields["g2RespectOthersThingsVerbal"] = body.Form[0].g2RespectOthersThingsVerbal == null ? "" : body.Form[0].g2RespectOthersThingsVerbal;
+            this.state.fields["g2RespectOthersThingsInitiates"] = body.Form[0].g2RespectOthersThingsInitiates == null ? "" : body.Form[0].g2RespectOthersThingsInitiates;
+            this.state.fields["g2RespectOthersIdeasNA"] = body.Form[0].g2RespectOthersIdeasNA == null ? "" : body.Form[0].g2RespectOthersIdeasNA;
+            this.state.fields["g2RespectOthersIdeasPhysical"] = body.Form[0].g2RespectOthersIdeasPhysical == null ? "" : body.Form[0].g2RespectOthersIdeasPhysical;
+            this.state.fields["g2RespectOthersIdeasVerbal"] = body.Form[0].g2RespectOthersIdeasVerbal == null ? "" : body.Form[0].g2RespectOthersIdeasVerbal;
+            this.state.fields["g2RespectOthersIdeasInitiates"] = body.Form[0].g2RespectOthersIdeasInitiates == null ? "" : body.Form[0].g2RespectOthersIdeasInitiates;
+            this.state.fields["g2AppreciationNA"] = body.Form[0].g2AppreciationNA == null ? "" : body.Form[0].g2AppreciationNA;
+            this.state.fields["g2AppreciationPhysical"] = body.Form[0].g2AppreciationPhysical == null ? "" : body.Form[0].g2AppreciationPhysical;
+            this.state.fields["g2AppreciationVerbal"] = body.Form[0].g2AppreciationVerbal == null ? "" : body.Form[0].g2AppreciationVerbal;
+            this.state.fields["g2AppreciationInitiates"] = body.Form[0].g2AppreciationInitiates == null ? "" : body.Form[0].g2AppreciationInitiates;
+            this.state.fields["g2NonviolentAngerNA"] = body.Form[0].g2NonviolentAngerNA == null ? "" : body.Form[0].g2NonviolentAngerNA;
+            this.state.fields["g2NonviolentAngerPhysical"] = body.Form[0].g2NonviolentAngerPhysical == null ? "" : body.Form[0].g2NonviolentAngerPhysical;
+            this.state.fields["g2NonviolentAngerVerbal"] = body.Form[0].g2NonviolentAngerVerbal == null ? "" : body.Form[0].g2NonviolentAngerVerbal;
+            this.state.fields["g2NonviolentAngerInitiates"] = body.Form[0].g2NonviolentAngerInitiates == null ? "" : body.Form[0].g2NonviolentAngerInitiates;
+            this.state.fields["g2EffectOfChoicesNA"] = body.Form[0].g2EffectOfChoicesNA == null ? "" : body.Form[0].g2EffectOfChoicesNA;
+            this.state.fields["g2EffectOfChoicesPhysical"] = body.Form[0].g2EffectOfChoicesPhysical == null ? "" : body.Form[0].g2EffectOfChoicesPhysical;
+            this.state.fields["g2EffectOfChoicesVerbal"] = body.Form[0].g2EffectOfChoicesVerbal == null ? "" : body.Form[0].g2EffectOfChoicesVerbal;
+            this.state.fields["g2EffectOfChoicesInitiates"] = body.Form[0].g2EffectOfChoicesInitiates == null ? "" : body.Form[0].g2EffectOfChoicesInitiates;
+            this.state.fields["g2InternetSafetyNA"] = body.Form[0].g2InternetSafetyNA == null ? "" : body.Form[0].g2InternetSafetyNA;
+            this.state.fields["g2InternetSafetyPhysical"] = body.Form[0].g2InternetSafetyPhysical == null ? "" : body.Form[0].g2InternetSafetyPhysical;
+            this.state.fields["g2InternetSafetyVerbal"] = body.Form[0].g2InternetSafetyVerbal == null ? "" : body.Form[0].g2InternetSafetyVerbal;
+            this.state.fields["g2InternetSafetyInitiates"] = body.Form[0].g2InternetSafetyInitiates == null ? "" : body.Form[0].g2InternetSafetyInitiates;
+            this.state.fields["g2PublicPrivateNA"] = body.Form[0].g2PublicPrivateNA == null ? "" : body.Form[0].g2PublicPrivateNA;
+            this.state.fields["g2PublicPrivatePhysical"] = body.Form[0].g2PublicPrivatePhysical == null ? "" : body.Form[0].g2PublicPrivatePhysical;
+            this.state.fields["g2PublicPrivateVerbal"] = body.Form[0].g2PublicPrivateVerbal == null ? "" : body.Form[0].g2PublicPrivateVerbal;
+            this.state.fields["g2PublicPrivateInitiates"] = body.Form[0].g2PublicPrivateInitiates == null ? "" : body.Form[0].g2PublicPrivateInitiates;
+            this.state.fields["g2WorkDoneOnTimeNA"] = body.Form[0].g2WorkDoneOnTimeNA == null ? "" : body.Form[0].g2WorkDoneOnTimeNA;
+            this.state.fields["g2WorkDoneOnTimePhysical"] = body.Form[0].g2WorkDoneOnTimePhysical == null ? "" : body.Form[0].g2WorkDoneOnTimePhysical;
+            this.state.fields["g2WorkDoneOnTimeVerbal"] = body.Form[0].g2WorkDoneOnTimeVerbal == null ? "" : body.Form[0].g2WorkDoneOnTimeVerbal;
+            this.state.fields["g2WorkDoneOnTimeInitiates"] = body.Form[0].g2WorkDoneOnTimeInitiates == null ? "" : body.Form[0].g2WorkDoneOnTimeInitiates;
+            this.state.fields["g2OnTimeToSchoolNA"] = body.Form[0].g2OnTimeToSchoolNA == null ? "" : body.Form[0].g2OnTimeToSchoolNA;
+            this.state.fields["g2OnTimeToSchoolPhysical"] = body.Form[0].g2OnTimeToSchoolPhysical == null ? "" : body.Form[0].g2OnTimeToSchoolPhysical;
+            this.state.fields["g2OnTimeToSchoolVerbal"] = body.Form[0].g2OnTimeToSchoolVerbal == null ? "" : body.Form[0].g2OnTimeToSchoolVerbal;
+            this.state.fields["g2OnTimeToSchoolInitiates"] = body.Form[0].g2OnTimeToSchoolInitiates == null ? "" : body.Form[0].g2OnTimeToSchoolInitiates;
+            this.state.fields["g2SchoolHelpNA"] = body.Form[0].g2SchoolHelpNA == null ? "" : body.Form[0].g2SchoolHelpNA;
+            this.state.fields["g2SchoolHelpPhysical"] = body.Form[0].g2SchoolHelpPhysical == null ? "" : body.Form[0].g2SchoolHelpPhysical;
+            this.state.fields["g2SchoolHelpVerbal"] = body.Form[0].g2SchoolHelpVerbal == null ? "" : body.Form[0].g2SchoolHelpVerbal;
+            this.state.fields["g2SchoolHelpInitiates"] = body.Form[0].g2SchoolHelpInitiates == null ? "" : body.Form[0].g2SchoolHelpInitiates;
+            this.state.fields["g2ExamPrepNA"] = body.Form[0].g2ExamPrepNA == null ? "" : body.Form[0].g2ExamPrepNA;
+            this.state.fields["g2ExamPrepPhysical"] = body.Form[0].g2ExamPrepPhysical == null ? "" : body.Form[0].g2ExamPrepPhysical;
+            this.state.fields["g2ExamPrepVerbal"] = body.Form[0].g2ExamPrepVerbal == null ? "" : body.Form[0].g2ExamPrepVerbal;
+            this.state.fields["g2ExamPrepInitiates"] = body.Form[0].g2ExamPrepInitiates == null ? "" : body.Form[0].g2ExamPrepInitiates;
+            this.state.fields["g2LooksForMistakesNA"] = body.Form[0].g2LooksForMistakesNA == null ? "" : body.Form[0].g2LooksForMistakesNA;
+            this.state.fields["g2LooksForMistakesPhysical"] = body.Form[0].g2LooksForMistakesPhysical == null ? "" : body.Form[0].g2LooksForMistakesPhysical;
+            this.state.fields["g2LooksForMistakesVerbal"] = body.Form[0].g2LooksForMistakesVerbal == null ? "" : body.Form[0].g2LooksForMistakesVerbal;
+            this.state.fields["g2LooksForMistakesInitiates"] = body.Form[0].g2LooksForMistakesInitiates == null ? "" : body.Form[0].g2LooksForMistakesInitiates;
+            this.state.fields["g2GetsInformationNA"] = body.Form[0].g2GetsInformationNA == null ? "" : body.Form[0].g2GetsInformationNA;
+            this.state.fields["g2GetsInformationPhysical"] = body.Form[0].g2GetsInformationPhysical == null ? "" : body.Form[0].g2GetsInformationPhysical;
+            this.state.fields["g2GetsInformationVerbal"] = body.Form[0].g2GetsInformationVerbal == null ? "" : body.Form[0].g2GetsInformationVerbal;
+            this.state.fields["g2GetsInformationInitiates"] = body.Form[0].g2GetsInformationInitiates == null ? "" : body.Form[0].g2GetsInformationInitiates;
+            this.state.fields["g2InternetForHomeworkNA"] = body.Form[0].g2InternetForHomeworkNA == null ? "" : body.Form[0].g2InternetForHomeworkNA;
+            this.state.fields["g2InternetForHomeworkPhysical"] = body.Form[0].g2InternetForHomeworkPhysical == null ? "" : body.Form[0].g2InternetForHomeworkPhysical;
+            this.state.fields["g2InternetForHomeworkVerbal"] = body.Form[0].g2InternetForHomeworkVerbal == null ? "" : body.Form[0].g2InternetForHomeworkVerbal;
+            this.state.fields["g2InternetForHomeworkInitiates"] = body.Form[0].g2InternetForHomeworkInitiates == null ? "" : body.Form[0].g2InternetForHomeworkInitiates;
+            this.state.fields["g2SearchEngineNA"] = body.Form[0].g2SearchEngineNA == null ? "" : body.Form[0].g2SearchEngineNA;
+            this.state.fields["g2SearchEnginePhysical"] = body.Form[0].g2SearchEnginePhysical == null ? "" : body.Form[0].g2SearchEnginePhysical;
+            this.state.fields["g2SearchEngineVerbal"] = body.Form[0].g2SearchEngineVerbal == null ? "" : body.Form[0].g2SearchEngineVerbal;
+            this.state.fields["g2SearchEngineInitiates"] = body.Form[0].g2SearchEngineInitiates == null ? "" : body.Form[0].g2SearchEngineInitiates;
+            this.state.fields["g2ComputerDocumentsNA"] = body.Form[0].g2ComputerDocumentsNA == null ? "" : body.Form[0].g2ComputerDocumentsNA;
+            this.state.fields["g2ComputerDocumentsPhysical"] = body.Form[0].g2ComputerDocumentsPhysical == null ? "" : body.Form[0].g2ComputerDocumentsPhysical;
+            this.state.fields["g2ComputerDocumentsVerbal"] = body.Form[0].g2ComputerDocumentsVerbal == null ? "" : body.Form[0].g2ComputerDocumentsVerbal;
+            this.state.fields["g2ComputerDocumentsInitiates"] = body.Form[0].g2ComputerDocumentsInitiates == null ? "" : body.Form[0].g2ComputerDocumentsInitiates;
+            this.state.fields["g2MakeAppointmentsNA"] = body.Form[0].g2MakeAppointmentsNA == null ? "" : body.Form[0].g2MakeAppointmentsNA;
+            this.state.fields["g2MakeAppointmentsPhysical"] = body.Form[0].g2MakeAppointmentsPhysical == null ? "" : body.Form[0].g2MakeAppointmentsPhysical;
+            this.state.fields["g2MakeAppointmentsVerbal"] = body.Form[0].g2MakeAppointmentsVerbal == null ? "" : body.Form[0].g2MakeAppointmentsVerbal;
+            this.state.fields["g2MakeAppointmentsInitiates"] = body.Form[0].g2MakeAppointmentsInitiates == null ? "" : body.Form[0].g2MakeAppointmentsInitiates;
+            this.state.fields["g2HurtRelationshipsNA"] = body.Form[0].g2HurtRelationshipsNA == null ? "" : body.Form[0].g2HurtRelationshipsNA;
+            this.state.fields["g2HurtRelationshipsPhysical"] = body.Form[0].g2HurtRelationshipsPhysical == null ? "" : body.Form[0].g2HurtRelationshipsPhysical;
+            this.state.fields["g2HurtRelationshipsVerbal"] = body.Form[0].g2HurtRelationshipsVerbal == null ? "" : body.Form[0].g2HurtRelationshipsVerbal;
+            this.state.fields["g2HurtRelationshipsInitiates"] = body.Form[0].g2HurtRelationshipsInitiates == null ? "" : body.Form[0].g2HurtRelationshipsInitiates;
+            this.state.fields["g2BirthCertificateNA"] = body.Form[0].g2BirthCertificateNA == null ? "" : body.Form[0].g2BirthCertificateNA;
+            this.state.fields["g2BirthCertificatePhysical"] = body.Form[0].g2BirthCertificatePhysical == null ? "" : body.Form[0].g2BirthCertificatePhysical;
+            this.state.fields["g2BirthCertificateVerbal"] = body.Form[0].g2BirthCertificateVerbal == null ? "" : body.Form[0].g2BirthCertificateVerbal;
+            this.state.fields["g2BirthCertificateInitiates"] = body.Form[0].g2BirthCertificateInitiates == null ? "" : body.Form[0].g2BirthCertificateInitiates;
+            this.state.fields["g2SocialSecurityCardNA"] = body.Form[0].g2SocialSecurityCardNA == null ? "" : body.Form[0].g2SocialSecurityCardNA;
+            this.state.fields["g2SocialSecurityCardPhysical"] = body.Form[0].g2SocialSecurityCardPhysical == null ? "" : body.Form[0].g2SocialSecurityCardPhysical;
+            this.state.fields["g2SocialSecurityCardVerbal"] = body.Form[0].g2SocialSecurityCardVerbal == null ? "" : body.Form[0].g2SocialSecurityCardVerbal;
+            this.state.fields["g2SocialSecurityCardInitiates"] = body.Form[0].g2SocialSecurityCardInitiates == null ? "" : body.Form[0].g2SocialSecurityCardInitiates;
+        }
+        return body;
+    };
 
     updateFields() {
         let fields = this.state.fields;
@@ -2398,26 +2898,544 @@ class ClientHistoryAndInformation extends Component {
         infoObj.oxygenTank = fields["oxygenTank"];
         infoObj.hearingDevice = fields["hearingDevice"];
         infoObj.otherSupply = fields["otherSupply"];
-
-
-
-
-
-
-
-
-
         console.log("UPDATED FIELDS")
         console.log(infoObj);
     }
 
+    updateSection11Fields () {
+        let fields = this.state.fields;
+        sec11InfoObj.ChildID = childID;
+        sec11InfoObj.g1SitNA = fields["g1SitNA"];
+        sec11InfoObj.g1SitPhysical = fields["g1SitPhysical"];
+        sec11InfoObj.g1SitVerbal = fields["g1SitVerbal"];
+        sec11InfoObj.g1SitInitiates = fields["g1SitInitiates"];
+        sec11InfoObj.g1AttendTaskLongNA = fields["g1AttendTaskLongNA"];
+        sec11InfoObj.g1AttendTaskLongPhysical = fields["g1AttendTaskLongPhysical"];
+        sec11InfoObj.g1AttendTaskLongVerbal = fields["g1AttendTaskLongVerbal"];
+        sec11InfoObj.g1AttendTaskLongInitiates = fields["g1AttendTaskLongInitiates"];
+        sec11InfoObj.g1AttendTaskShortNA = fields["g1AttendTaskShortNA"];
+        sec11InfoObj.g1AttendTaskShortPhysical = fields["g1AttendTaskShortPhysical"];
+        sec11InfoObj.g1AttendTaskShortVerbal = fields["g1AttendTaskShortVerbal"];
+        sec11InfoObj.g1AttendTaskShortInitiates = fields["g1AttendTaskShortInitiates"];
+        sec11InfoObj.g1EyeContactNA = fields["g1EyeContactNA"];
+        sec11InfoObj.g1EyeContactPhysical = fields["g1EyeContactPhysical"];
+        sec11InfoObj.g1EyeContactVerbal = fields["g1EyeContactVerbal"];
+        sec11InfoObj.g1EyeContactInitiates = fields["g1EyeContactInitiates"];
+        sec11InfoObj.g1EyeContactNameNA = fields["g1EyeContactNameNA"];
+        sec11InfoObj.g1EyeContactNamePhysical = fields["g1EyeContactNamePhysical"];
+        sec11InfoObj.g1EyeContactNameVerbal = fields["g1EyeContactNameVerbal"];
+        sec11InfoObj.g1EyeContactNameInitiates = fields["g1EyeContactNameInitiates"];
+        sec11InfoObj.g1EyeContactGroupNA = fields["g1EyeContactGroupNA"];
+        sec11InfoObj.g1EyeContactGroupPhysical = fields["g1EyeContactGroupPhysical"];
+        sec11InfoObj.g1EyeContactGroupVerbal = fields["g1EyeContactGroupVerbal"];
+        sec11InfoObj.g1EyeContactGroupInitiates = fields["g1EyeContactGroupInitiates"];
+        sec11InfoObj.g1WantsNeedsNA = fields["g1WantsNeedsNA"];
+        sec11InfoObj.g1WantsNeedsPhysical = fields["g1WantsNeedsPhysical"];
+        sec11InfoObj.g1WantsNeedsVerbal = fields["g1WantsNeedsVerbal"];
+        sec11InfoObj.g1WantsNeedsInitiates = fields["g1WantsNeedsInitiates"];
+        sec11InfoObj.g1socialQsNA = fields["g1socialQsNA"];
+        sec11InfoObj.g1SocialQsPhysical = fields["g1SocialQsPhysical"];
+        sec11InfoObj.g1SocialQsVerbal = fields["g1SocialQsVerbal"];
+        sec11InfoObj.g1SocialQsInitiates = fields["g1SocialQsInitiates"];
+        sec11InfoObj.g1InterferenceQsNA = fields["g1InterferenceQsNA"];
+        sec11InfoObj.g1InterferenceQsPhysical = fields["g1InterferenceQsPhysical"];
+        sec11InfoObj.g1InterferenceQsVerbal = fields["g1InterferenceQsVerbal"];
+        sec11InfoObj.g1InterferenceQsInitiates = fields["g1InterferenceQsInitiates"];
+        sec11InfoObj.g1ReciprocateConversationNA = fields["g1ReciprocateConversationNA"];
+        sec11InfoObj.g1ReciprocateConversationPhysical = fields["g1ReciprocateConversationPhysical"];
+        sec11InfoObj.g1ReciprocateConversationVerbal = fields["g1ReciprocateConversationVerbal"];
+        sec11InfoObj.g1ReciprocateConversationInitiates = fields["g1ReciprocateConversationInitiates"];
+        sec11InfoObj.g1MaintainConversationNA = fields["g1MaintainConversationNA"];
+        sec11InfoObj.g1MaintainConversationPhysical = fields["g1MaintainConversationPhysical"];
+        sec11InfoObj.g1MaintainConversationVerbal = fields["g1MaintainConversationVerbal"];
+        sec11InfoObj.g1MaintainConversationInitiates = fields["g1MaintainConversationInitiates"];
+        sec11InfoObj.g1OriginalConversationNA = fields["g1OriginalConversationNA"];
+        sec11InfoObj.g1OriginalConversationPhysical = fields["g1OriginalConversationPhysical"];
+        sec11InfoObj.g1OriginalConversationVerbal = fields["g1OriginalConversationVerbal"];
+        sec11InfoObj.g1OriginalConversationInitiates = fields["g1OriginalConversationInitiates"];
+        sec11InfoObj.g1WithinRoomNA = fields["g1WithinRoomNA"];
+        sec11InfoObj.g1WithinRoomPhysical = fields["g1WithinRoomPhysical"];
+        sec11InfoObj.g1WithinRoomVerbal = fields["g1WithinRoomVerbal"];
+        sec11InfoObj.g1WithinRoomInitiates = fields["g1WithinRoomInitiates"];
+        sec11InfoObj.g1AnotherRoomNA = fields["g1AnotherRoomNA"];
+        sec11InfoObj.g1AnotherRoomPhysical = fields["g1AnotherRoomPhysical"];
+        sec11InfoObj.g1AnotherRoomVerbal = fields["g1AnotherRoomVerbal"];
+        sec11InfoObj.g1AnotherRoomInitiates = fields["g1AnotherRoomInitiates"];
+        sec11InfoObj.g1IndTaskLongNA = fields["g1IndTaskLongNA"];
+        sec11InfoObj.g1IndTaskLongPhysical = fields["g1IndTaskLongPhysical"];
+        sec11InfoObj.g1IndTaskLongVerbal = fields["g1IndTaskLongVerbal"];
+        sec11InfoObj.g1IndTaskLongInitiates = fields["g1IndTaskLongInitiates"];
+        sec11InfoObj.g1IndTaskShortNA = fields["g1IndTaskShortNA"];
+        sec11InfoObj.g1IndTaskShortPhysical = fields["g1IndTaskShortPhysical"];
+        sec11InfoObj.g1IndTaskShortVerbal = fields["g1IndTaskShortVerbal"];
+        sec11InfoObj.g1IndTaskShortInitiates = fields["g1IndTaskShortInitiates"];
+        sec11InfoObj.g1OrganizeMaterialsNA = fields["g1OrganizeMaterialsNA"];
+        sec11InfoObj.g1OrganizeMaterialsPhysical = fields["g1OrganizeMaterialsPhysical"];
+        sec11InfoObj.g1OrganizeMaterialsVerbal = fields["g1OrganizeMaterialsVerbal"];
+        sec11InfoObj.g1OrganizeMaterialsInitiates = fields["g1OrganizeMaterialsInitiates"];
+        sec11InfoObj.g1OrganizeTasksNA = fields["g1OrganizeTasksNA"];
+        sec11InfoObj.g1OrganizeTasksPhysical = fields["g1OrganizeTasksPhysical"];
+        sec11InfoObj.g1OrganizeTasksVerbal = fields["g1OrganizeTasksVerbal"];
+        sec11InfoObj.g1OrganizeTasksInitiates = fields["g1OrganizeTasksInitiates"];
+        sec11InfoObj.g1ShoesOnOffNA = fields["g1ShoesOnOffNA"];
+        sec11InfoObj.g1ShoesOnOffPhysical = fields["g1ShoesOnOffPhysical"];
+        sec11InfoObj.g1ShoesOnOffVerbal = fields["g1ShoesOnOffVerbal"];
+        sec11InfoObj.g1ShoesOnOffInitiates = fields["g1ShoesOnOffInitiates"];
+        sec11InfoObj.g1RightLeftNA = fields["g1RightLeftNA"];
+        sec11InfoObj.g1RightLeftPhysical = fields["g1RightLeftPhysical"];
+        sec11InfoObj.g1RightLeftVerbal = fields["g1RightLeftVerbal"];
+        sec11InfoObj.g1RightLeftInitiates = fields["g1RightLeftInitiates"];
+        sec11InfoObj.g1TieShoesNA = fields["g1TieShoesNA"];
+        sec11InfoObj.g1TieShoesPhysical = fields["g1TieShoesPhysical"];
+        sec11InfoObj.g1TieShoesVerbal = fields["g1TieShoesVerbal"];
+        sec11InfoObj.g1TieShoesInitiates = fields["g1TieShoesInitiates"];
+        sec11InfoObj.g1PantsNA = fields["g1PantsNA"];
+        sec11InfoObj.g1PantsPhysical = fields["g1PantsPhysical"];
+        sec11InfoObj.g1PantsVerbal = fields["g1PantsVerbal"];
+        sec11InfoObj.g1PantsInitiates = fields["g1PantsInitiates"];
+        sec11InfoObj.g1ButtonsNA = fields["g1ButtonsNA"];
+        sec11InfoObj.g1ButtonsPhysical = fields["g1ButtonsPhysical"];
+        sec11InfoObj.g1ButtonsVerbal = fields["g1ButtonsVerbal"];
+        sec11InfoObj.g1ButtonsInitiates = fields["g1ButtonsInitiates"];
+        sec11InfoObj.g1AdjustClothesNA = fields["g1AdjustClothesNA"];
+        sec11InfoObj.g1AdjustClothesPhysical = fields["g1AdjustClothesPhysical"];
+        sec11InfoObj.g1AdjustClothesVerbal = fields["g1AdjustClothesVerbal"];
+        sec11InfoObj.g1AdjustClothesInitiates = fields["g1AdjustClothesInitiates"];
+        sec11InfoObj.g1DressesNA = fields["g1DressesNA"];
+        sec11InfoObj.g1DressesPhysical = fields["g1DressesPhysical"];
+        sec11InfoObj.g1DressesVerbal = fields["g1DressesVerbal"];
+        sec11InfoObj.g1DressesInitiates = fields["g1DressesInitiates"];
+        sec11InfoObj.g1SortsClothesNA = fields["g1SortsClothesNA"];
+        sec11InfoObj.g1SortsClothesPhysical = fields["g1SortsClothesPhysical"];
+        sec11InfoObj.g1SortsClothesVerbal = fields["g1SortsClothesVerbal"];
+        sec11InfoObj.g1SortsClothesInitiates = fields["g1SortsClothesInitiates"];
+        sec11InfoObj.g1ClothesWeatherNA = fields["g1ClothesWeatherNA"];
+        sec11InfoObj.g1ClothesWeatherPhysical = fields["g1ClothesWeatherPhysical"];
+        sec11InfoObj.g1ClothesWeatherVerbal = fields["g1ClothesWeatherVerbal"];
+        sec11InfoObj.g1ClothesWeatherInitiates = fields["g1ClothesWeatherInitiates"];
+        sec11InfoObj.g1BathroomNA = fields["g1BathroomNA"];
+        sec11InfoObj.g1BathroomPhysical = fields["g1BathroomPhysical"];
+        sec11InfoObj.g1BathroomVerbal = fields["g1BathroomVerbal"];
+        sec11InfoObj.g1BathroomInitiates = fields["g1BathroomInitiates"];
+        sec11InfoObj.g1WashesHandsNA = fields["g1WashesHandsNA"];
+        sec11InfoObj.g1WashesHandsPhysical = fields["g1WashesHandsPhysical"];
+        sec11InfoObj.g1WashesHandsVerbal = fields["g1WashesHandsVerbal"];
+        sec11InfoObj.g1WashesHandsInitiates = fields["g1WashesHandsInitiates"];
+        sec11InfoObj.g1ShowerNA = fields["g1ShowerNA"];
+        sec11InfoObj.g1ShowerPhysical = fields["g1ShowerPhysical"];
+        sec11InfoObj.g1ShowerVerbal = fields["g1ShowerVerbal"];
+        sec11InfoObj.g1ShowerInitiates = fields["g1ShowerInitiates"];
+        sec11InfoObj.g1UtensilsNA = fields["g1UtensilsNA"];
+        sec11InfoObj.g1UtensilsPhysical = fields["g1UtensilsPhysical"];
+        sec11InfoObj.g1UtensilsVerbal = fields["g1UtensilsVerbal"];
+        sec11InfoObj.g1UtensilsInitiates = fields["g1UtensilsInitiates"];
+        sec11InfoObj.g1OpensContainersNA = fields["g1OpensContainersNA"];
+        sec11InfoObj.g1OpensContainersPhysical = fields["g1OpensContainersPhysical"];
+        sec11InfoObj.g1OpensContainersVerbal = fields["g1OpensContainersVerbal"];
+        sec11InfoObj.g1OpensContainersInitiates = fields["g1OpensContainersInitiates"];
+        sec11InfoObj.g1CleansEatingAreaNA = fields["g1CleansEatingAreaNA"];
+        sec11InfoObj.g1CleansEatingAreaPhysical = fields["g1CleansEatingAreaPhysical"];
+        sec11InfoObj.g1CleansEatingAreaVerbal = fields["g1CleansEatingAreaVerbal"];
+        sec11InfoObj.g1CleansEatingAreaInitiates = fields["g1CleansEatingAreaInitiates"];
+        sec11InfoObj.g1HotCautionNA = fields["g1HotCautionNA"];
+        sec11InfoObj.g1HotCautionPhysical = fields["g1HotCautionPhysical"];
+        sec11InfoObj.g1HotCautionVerbal = fields["g1HotCautionVerbal"];
+        sec11InfoObj.g1HotCautionInitiates = fields["g1HotCautionInitiates"];
+        sec11InfoObj.g1NearPeersNA = fields["g1NearPeersNA"];
+        sec11InfoObj.g1NearPeersPhysical = fields["g1NearPeersPhysical"];
+        sec11InfoObj.g1NearPeersVerbal = fields["g1NearPeersVerbal"];
+        sec11InfoObj.g1NearPeersInitiates = fields["g1NearPeersInitiates"];
+        sec11InfoObj.g1InterestInOthersNA = fields["g1InterestInOthersNA"];
+        sec11InfoObj.g1InterestInOthersPhysical = fields["g1InterestInOthersPhysical"];
+        sec11InfoObj.g1InterestInOthersVerbal = fields["g1InterestInOthersVerbal"];
+        sec11InfoObj.g1InterestInOthersInitiates = fields["g1InterestInOthersInitiates"];
+        sec11InfoObj.g1SitSmallGroupNA = fields["g1SitSmallGroupNA"];
+        sec11InfoObj.g1SitSmallGroupPhysical = fields["g1SitSmallGroupPhysical"];
+        sec11InfoObj.g1SitSmallGroupVerbal = fields["g1SitSmallGroupVerbal"];
+        sec11InfoObj.g1SitSmallGroupInitiates = fields["g1SitSmallGroupInitiates"];
+        sec11InfoObj.g1InstructorSmallGroupNA = fields["g1InstructorSmallGroupNA"];
+        sec11InfoObj.g1InstructorSmallGroupPhysical = fields["g1InstructorSmallGroupPhysical"];
+        sec11InfoObj.g1InstructorSmallGroupVerbal = fields["g1InstructorSmallGroupVerbal"];
+        sec11InfoObj.g1InstructorSmallGroupInitiates = fields["g1InstructorSmallGroupInitiates"];
+        sec11InfoObj.g1InstructionNA = fields["g1InstructionNA"];
+        sec11InfoObj.g1InstructionPhysical = fields["g1InstructionPhysical"];
+        sec11InfoObj.g1InstructionVerbal = fields["g1InstructionVerbal"];
+        sec11InfoObj.g1InstructionInitiates = fields["g1InstructionInitiates"];
+        sec11InfoObj.g1TakesTurnsNA = fields["g1TakesTurnsNA"];
+        sec11InfoObj.g1TakesTurnsPhysical = fields["g1TakesTurnsPhysical"];
+        sec11InfoObj.g1TakesTurnsVerbal = fields["g1TakesTurnsVerbal"];
+        sec11InfoObj.g1TakesTurnsInitiates = fields["g1TakesTurnsInitiates"];
+        sec11InfoObj.g1SharesNA = fields["g1SharesNA"];
+        sec11InfoObj.g1SharesPhysical = fields["g1SharesPhysical"];
+        sec11InfoObj.g1SharesVerbal = fields["g1SharesVerbal"];
+        sec11InfoObj.g1SharesInitiates = fields["g1SharesInitiates"];
+        sec11InfoObj.g1ConverseOthersNA = fields["g1ConverseOthersNA"];
+        sec11InfoObj.g1ConverseOthersPhysical = fields["g1ConverseOthersPhysical"];
+        sec11InfoObj.g1ConverseOthersVerbal = fields["g1ConverseOthersVerbal"];
+        sec11InfoObj.g1ConverseOthersInitiates = fields["g1ConverseOthersInitiates"];
+        sec11InfoObj.g1SitLargeGroupNA = fields["g1SitLargeGroupNA"];
+        sec11InfoObj.g1SitLargeGroupPhysical = fields["g1SitLargeGroupPhysical"];
+        sec11InfoObj.g1SitLargeGroupVerbal = fields["g1SitLargeGroupVerbal"];
+        sec11InfoObj.g1SitLargeGroupInitiates = fields["g1SitLargeGroupInitiates"];
+        sec11InfoObj.g1InstructorLargeGroupNA = fields["g1InstructorLargeGroupNA"];
+        sec11InfoObj.g1InstructorLargeGroupPhysical = fields["g1InstructorLargeGroupPhysical"];
+        sec11InfoObj.g1InstructorLargeGroupVerbal = fields["g1InstructorLargeGroupVerbal"];
+        sec11InfoObj.g1InstructorLargeGroupInitiates = fields["g1InstructorLargeGroupInitiates"];
+        sec11InfoObj.g1StandWaitNA = fields["g1StandWaitNA"];
+        sec11InfoObj.g1StandWaitPhysical = fields["g1StandWaitPhysical"];
+        sec11InfoObj.g1StandWaitVerbal = fields["g1StandWaitVerbal"];
+        sec11InfoObj.g1StandWaitInitiates = fields["g1StandWaitInitiates"];
+        sec11InfoObj.g1UnderstandsRulesNA = fields["g1UnderstandsRulesNA"];
+        sec11InfoObj.g1UnderstandsRulesPhysical = fields["g1UnderstandsRulesPhysical"];
+        sec11InfoObj.g1UnderstandsRulesVerbal = fields["g1UnderstandsRulesVerbal"];
+        sec11InfoObj.g1UnderstandsRulesInitiates = fields["g1UnderstandsRulesInitiates"];
+        sec11InfoObj.g2FeelingsHelpNA = fields["g2FeelingsHelpNA"];
+        sec11InfoObj.g2FeelingsHelpPhysical = fields["g2FeelingsHelpPhysical"];
+        sec11InfoObj.g2FeelingsHelpVerbal = fields["g2FeelingsHelpVerbal"];
+        sec11InfoObj.g2FeelingsHelpInitiates = fields["g2FeelingsHelpInitiates"];
+        sec11InfoObj.g2ExplainFeelingsNA = fields["g2ExplainFeelingsNA"];
+        sec11InfoObj.g2ExplainFeelingsPhysical = fields["g2ExplainFeelingsPhysical"];
+        sec11InfoObj.g2ExplainFeelingsVerbal = fields["g2ExplainFeelingsVerbal"];
+        sec11InfoObj.g2ExplainFeelingsInitiates = fields["g2ExplainFeelingsInitiates"];
+        sec11InfoObj.g2AsksHelpNA = fields["g2AsksHelpNA"];
+        sec11InfoObj.g2AsksHelpPhysical = fields["g2AsksHelpPhysical"];
+        sec11InfoObj.g2AsksHelpVerbal = fields["g2AsksHelpVerbal"];
+        sec11InfoObj.g2AsksHelpInitiates = fields["g2AsksHelpInitiates"];
+        sec11InfoObj.g2TalksToAdultNA = fields["g2TalksToAdultNA"];
+        sec11InfoObj.g2TalksToAdultPhysical = fields["g2TalksToAdultPhysical"];
+        sec11InfoObj.g2TalksToAdultVerbal = fields["g2TalksToAdultVerbal"];
+        sec11InfoObj.g2TalksToAdultInitiates = fields["g2TalksToAdultInitiates"];
+        sec11InfoObj.g2TalksToFriendNA = fields["g2TalksToFriendNA"];
+        sec11InfoObj.g2TalksToFriendPhysical = fields["g2TalksToFriendPhysical"];
+        sec11InfoObj.g2TalksToFriendVerbal = fields["g2TalksToFriendVerbal"];
+        sec11InfoObj.g2TalksToFriendInitiates = fields["g2TalksToFriendInitiates"];
+        sec11InfoObj.g2ComplimentNA = fields["g2ComplimentNA"];
+        sec11InfoObj.g2ComplimentPhysical = fields["g2ComplimentPhysical"];
+        sec11InfoObj.g2ComplimentVerbal = fields["g2ComplimentVerbal"];
+        sec11InfoObj.g2ComplimentInitiates = fields["g2ComplimentInitiates"];
+        sec11InfoObj.g2PresentsIdeasNA = fields["g2PresentsIdeasNA"];
+        sec11InfoObj.g2PresentsIdeasPhysical = fields["g2PresentsIdeasPhysical"];
+        sec11InfoObj.g2PresentsIdeasVerbal = fields["g2PresentsIdeasVerbal"];
+        sec11InfoObj.g2PresentsIdeasInitiates = fields["g2PresentsIdeasInitiates"];
+        sec11InfoObj.g2AsksQuestionsNA = fields["g2AsksQuestionsNA"];
+        sec11InfoObj.g2AsksQuestionsPhysical = fields["g2AsksQuestionsPhysical"];
+        sec11InfoObj.g2AsksQuestionsVerbal = fields["g2AsksQuestionsVerbal"];
+        sec11InfoObj.g2AsksQuestionsInitiates = fields["g2AsksQuestionsInitiates"];
+        sec11InfoObj.g2CompromiseNA = fields["g2CompromiseNA"];
+        sec11InfoObj.g2CompromisePhysical = fields["g2CompromisePhysical"];
+        sec11InfoObj.g2CompromiseVerbal = fields["g2CompromiseVerbal"];
+        sec11InfoObj.g2CompromiseInitiates = fields["g2CompromiseInitiates"];
+        sec11InfoObj.g2FeedbackNA = fields["g2FeedbackNA"];
+        sec11InfoObj.g2FeedbackPhysical = fields["g2FeedbackPhysical"];
+        sec11InfoObj.g2FeedbackVerbal = fields["g2FeedbackVerbal"];
+        sec11InfoObj.g2FeedbackInitiates = fields["g2FeedbackInitiates"];
+        sec11InfoObj.g2MicrowaveNA = fields["g2MicrowaveNA"];
+        sec11InfoObj.g2MicrowavePhysical = fields["g2MicrowavePhysical"];
+        sec11InfoObj.g2MicrowaveHelpVerbal = fields["g2MicrowaveHelpVerbal"];
+        sec11InfoObj.g2MicrowaveInitiates = fields["g2MicrowaveInitiates"];
+        sec11InfoObj.g2StoveTopNA = fields["g2StoveTopNA"];
+        sec11InfoObj.g2StoveTopVerbal = fields["g2StoveTopVerbal"];
+        sec11InfoObj.g2StoveTopPhysical = fields["g2StoveTopPhysical"];
+        sec11InfoObj.g2StoveTopInitiates = fields["g2StoveTopInitiates"];
+        sec11InfoObj.g2OvenNA = fields["g2OvenNA"];
+        sec11InfoObj.g2OvenPhysical = fields["g2OvenPhysical"];
+        sec11InfoObj.g2OvenVerbal = fields["g2OvenVerbal"];
+        sec11InfoObj.g2OvenInitiates = fields["g2OvenInitiates"];
+        sec11InfoObj.g2StoresFoodNA = fields["g2StoresFoodNA"];
+        sec11InfoObj.g2StoresFoodPhysical = fields["g2StoresFoodPhysical"];
+        sec11InfoObj.g2StoresFoodVerbal = fields["g2StoresFoodVerbal"];
+        sec11InfoObj.g2StoresFoodInitiates = fields["g2StoresFoodInitiates"];
+        sec11InfoObj.g2SimpleMealsNA = fields["g2SimpleMealsNA"];
+        sec11InfoObj.g2SimpleMealsPhysical = fields["g2SimpleMealsPhysical"];
+        sec11InfoObj.g2SimpleMealsVerbal = fields["g2SimpleMealsVerbal"];
+        sec11InfoObj.g2SimpleMealsInitiates = fields["g2SimpleMealsInitiates"];
+        sec11InfoObj.g2ComplexMealsNA = fields["g2ComplexMealsNA"];
+        sec11InfoObj.g2ComplexMealsPhysical = fields["g2ComplexMealsPhysical"];
+        sec11InfoObj.g2ComplexMealsVerbal = fields["g2ComplexMealsVerbal"];
+        sec11InfoObj.g2ComplexMealsInitiates = fields["g2ComplexMealsInitiates"];
+        sec11InfoObj.g2DishwasherNA = fields["g2DishwasherNA"];
+        sec11InfoObj.g2DishwasherPhysical = fields["g2DishwasherPhysical"];
+        sec11InfoObj.g2DishwasherVerbal = fields["g2DishwasherVerbal"];
+        sec11InfoObj.g2DishwasherInitiates = fields["g2DishwasherInitiates"];
+        sec11InfoObj.g2WashDishesNA = fields["g2WashDishesNA"];
+        sec11InfoObj.g2WashDishesPhysical = fields["g2WashDishesPhysical"];
+        sec11InfoObj.g2WashDishesVerbal = fields["g2WashDishesVerbal"];
+        sec11InfoObj.g2WashDishesInitiates = fields["g2WashDishesInitiates"];
+        sec11InfoObj.g2OrderMealsNA = fields["g2OrderMealsNA"];
+        sec11InfoObj.g2OrderMealsPhysical = fields["g2OrderMealsPhysical"];
+        sec11InfoObj.g2OrderMealsVerbal = fields["g2OrderMealsVerbal"];
+        sec11InfoObj.g2OrderMealsInitiates = fields["g2OrderMealsInitiates"];
+        sec11InfoObj.g2CleanSpaceNA = fields["g2CleanSpaceNA"];
+        sec11InfoObj.g2CleanSpacePhysical = fields["g2CleanSpacePhysical"];
+        sec11InfoObj.g2CleanSpaceVerbal = fields["g2CleanSpaceVerbal"];
+        sec11InfoObj.g2CleanSpaceInitiates = fields["g2CleanSpaceInitiates"];
+        sec11InfoObj.g2WashClothesNA = fields["g2WashClothesNA"];
+        sec11InfoObj.g2WashClothesPhysical = fields["g2WashClothesPhysical"];
+        sec11InfoObj.g2WashClothesVerbal = fields["g2WashClothesVerbal"];
+        sec11InfoObj.g2WashClothesInitiates = fields["g2WashClothesInitiates"];
+        sec11InfoObj.g2DressAppropriatelyNA = fields["g2DressAppropriatelyNA"];
+        sec11InfoObj.g2DressAppropriatelyPhysical = fields["g2DressAppropriatelyPhysical"];
+        sec11InfoObj.g2DressAppropriatelyVerbal = fields["g2DressAppropriatelyVerbal"];
+        sec11InfoObj.g2DressAppropriatelyInitiates = fields["g2DressAppropriatelyInitiates"];
+        sec11InfoObj.g2FixClothesNA = fields["g2FixClothesNA"];
+        sec11InfoObj.g2FixClothesPhysical = fields["g2FixClothesPhysical"];
+        sec11InfoObj.g2FixClothesVerbal = fields["g2FixClothesVerbal"];
+        sec11InfoObj.g2FixClothesInitiates = fields["g2FixClothesInitiates"];
+        sec11InfoObj.g2FireRulesNA = fields["g2FireRulesNA"];
+        sec11InfoObj.g2FireRulesPhysical = fields["g2FireRulesPhysical"];
+        sec11InfoObj.g2FireRulesVerbal = fields["g2FireRulesVerbal"];
+        sec11InfoObj.g2FireRulesInitiates = fields["g2FireRulesInitiates"];
+        sec11InfoObj.g2TimeMgmtNA = fields["g2TimeMgmtNA"];
+        sec11InfoObj.g2TimeMgmtPhysical = fields["g2TimeMgmtPhysical"];
+        sec11InfoObj.g2TimeMgmtVerbal = fields["g2TimeMgmtVerbal"];
+        sec11InfoObj.g2TimeMgmtInitiates = fields["g2TimeMgmtInitiates"];
+        sec11InfoObj.g2SleepSchedNA = fields["g2SleepSchedNA"];
+        sec11InfoObj.g2SleepSchedPhysical = fields["g2SleepSchedPhysical"];
+        sec11InfoObj.g2SleepSchedVerbal = fields["g2SleepSchedVerbal"];
+        sec11InfoObj.g2SleepSchedInitiates = fields["g2SleepSchedInitiates"];
+        sec11InfoObj.g2RentAgreementNA = fields["g2RentAgreementNA"];
+        sec11InfoObj.g2RentAgreementPhysical = fields["g2RentAgreementPhysical"];
+        sec11InfoObj.g2RentAgreementVerbal = fields["g2RentAgreementVerbal"];
+        sec11InfoObj.g2RentAgreementInitiates = fields["g2RentAgreementInitiates"];
+        sec11InfoObj.g2PhoneServicesNA = fields["g2PhoneServicesNA"];
+        sec11InfoObj.g2PhoneServicesPhysical = fields["g2PhoneServicesPhysical"];
+        sec11InfoObj.g2PhoneServicesVerbal = fields["g2PhoneServicesVerbal"];
+        sec11InfoObj.g2PhoneServicesInitiates = fields["g2PhoneServicesInitiates"];
+        sec11InfoObj.g2LivingCostsNA = fields["g2LivingCostsNA"];
+        sec11InfoObj.g2LivingCostsPhysical = fields["g2LivingCostsPhysical"];
+        sec11InfoObj.g2LivingCostsVerbal = fields["g2LivingCostsVerbal"];
+        sec11InfoObj.g2LivingCostsInitiates = fields["g2LivingCostsInitiates"];
+        sec11InfoObj.g2CarInsuranceNA = fields["g2CarInsuranceNA"];
+        sec11InfoObj.g2CarInsurancePhysical = fields["g2CarInsurancePhysical"];
+        sec11InfoObj.g2CarInsuranceVerbal = fields["g2CarInsuranceVerbal"];
+        sec11InfoObj.g2CarInsuranceInitiates = fields["g2CarInsuranceInitiates"];
+        sec11InfoObj.g2GoodCreditNA = fields["g2GoodCreditNA"];
+        sec11InfoObj.g2GoodCreditPhysical = fields["g2GoodCreditPhysical"];
+        sec11InfoObj.g2GoodCreditVerbal = fields["g2GoodCreditVerbal"];
+        sec11InfoObj.g2GoodCreditInitiates = fields["g2GoodCreditInitiates"];
+        sec11InfoObj.g2PayStubNA = fields["g2PayStubNA"];
+        sec11InfoObj.g2PayStubPhysical = fields["g2PayStubPhysical"];
+        sec11InfoObj.g2PayStubVerbal = fields["g2PayStubVerbal"];
+        sec11InfoObj.g2PayStubInitiates = fields["g2PayStubInitiates"];
+        sec11InfoObj.g2BillingInfoNA = fields["g2BillingInfoNA"];
+        sec11InfoObj.g2BillingInfoPhysical = fields["g2BillingInfoPhysical"];
+        sec11InfoObj.g2BillingInfoVerbal = fields["g2BillingInfoVerbal"];
+        sec11InfoObj.g2BillingInfoInitiates = fields["g2BillingInfoInitiates"];
+        sec11InfoObj.g2BudgetNA = fields["g2BudgetNA"];
+        sec11InfoObj.g2BudgetPhysical = fields["g2BudgetPhysical"];
+        sec11InfoObj.g2BudgetVerbal = fields["g2BudgetVerbal"];
+        sec11InfoObj.g2BudgetInitiates = fields["g2BudgetInitiates"];
+        sec11InfoObj.g2CreditNA = fields["g2CreditNA"];
+        sec11InfoObj.g2CreditPhysical = fields["g2CreditPhysical"];
+        sec11InfoObj.g2CreditVerbal = fields["g2CreditVerbal"];
+        sec11InfoObj.g2CreditInitiates = fields["g2CreditInitiates"];
+        sec11InfoObj.g2DriversLicenseNA = fields["g2DriversLicenseNA"];
+        sec11InfoObj.g2DriversLicensePhysical = fields["g2DriversLicensePhysical"];
+        sec11InfoObj.g2DriversLicenseVerbal = fields["g2DriversLicenseVerbal"];
+        sec11InfoObj.g2DriversLicenseInitiates = fields["g2DriversLicenseInitiates"];
+        sec11InfoObj.g2TransportationNA = fields["g2TransportationNA"];
+        sec11InfoObj.g2TransportationPhysical = fields["g2TransportationPhysical"];
+        sec11InfoObj.g2TransportationVerbal = fields["g2TransportationVerbal"];
+        sec11InfoObj.g2TransportationInitiates = fields["g2TransportationInitiates"];
+        sec11InfoObj.g2FollowNavigationNA = fields["g2FollowNavigationNA"];
+        sec11InfoObj.g2FollowNavigationPhysical = fields["g2FollowNavigationPhysical"];
+        sec11InfoObj.g2FollowNavigationVerbal = fields["g2FollowNavigationVerbal"];
+        sec11InfoObj.g2FollowNavigationInitiates = fields["g2FollowNavigationInitiates"];
+        sec11InfoObj.g2FinancialAdviceNA = fields["g2FinancialAdviceNA"];
+        sec11InfoObj.g2FinancialAdvicePhysical = fields["g2FinancialAdvicePhysical"];
+        sec11InfoObj.g2FinancialAdviceVerbal = fields["g2FinancialAdviceVerbal"];
+        sec11InfoObj.g2FinancialAdviceInitiates = fields["g2FinancialAdviceInitiates"];
+        sec11InfoObj.g2WriteChecksNA = fields["g2WriteChecksNA"];
+        sec11InfoObj.g2WriteChecksPhysical = fields["g2WriteChecksPhysical"];
+        sec11InfoObj.g2WriteChecksVerbal = fields["g2WriteChecksVerbal"];
+        sec11InfoObj.g2WriteChecksInitiates = fields["g2WriteChecksInitiates"];
+        sec11InfoObj.g2ATMTransactionsNA = fields["g2ATMTransactionsNA"];
+        sec11InfoObj.g2ATMTransactionsPhysical = fields["g2ATMTransactionsPhysical"];
+        sec11InfoObj.g2ATMTransactionsVerbal = fields["g2ATMTransactionsVerbal"];
+        sec11InfoObj.g2ATMTransactionsInitiates = fields["g2ATMTransactionsInitiates"];
+        sec11InfoObj.g2BalanceBankAccountNA = fields["g2BalanceBankAccountNA"];
+        sec11InfoObj.g2BalanceBankAccountPhysical = fields["g2BalanceBankAccountPhysical"];
+        sec11InfoObj.g2BalanceBankAccountVerbal = fields["g2BalanceBankAccountVerbal"];
+        sec11InfoObj.g2BalanceBankAccountInitiates = fields["g2BalanceBankAccountInitiates"];
+        sec11InfoObj.g2HousingAdsNA = fields["g2HousingAdsNA"];
+        sec11InfoObj.g2HousingAdsPhysical = fields["g2HousingAdsPhysical"];
+        sec11InfoObj.g2HousingAdsVerbal = fields["g2HousingAdsVerbal"];
+        sec11InfoObj.g2HousingAdsInitiates = fields["g2HousingAdsInitiates"];
+        sec11InfoObj.g2EduFinancialAidNA = fields["g2EduFinancialAidNA"];
+        sec11InfoObj.g2EduFinancialAidPhysical = fields["g2EduFinancialAidPhysical"];
+        sec11InfoObj.g2EduFinancialAidVerbal = fields["g2EduFinancialAidVerbal"];
+        sec11InfoObj.g2EduFinancialAidInitiates = fields["g2EduFinancialAidInitiates"];
+        sec11InfoObj.g2SaveMoneyNA = fields["g2SaveMoneyNA"];
+        sec11InfoObj.g2SaveMoneyPhysical = fields["g2SaveMoneyPhysical"];
+        sec11InfoObj.g2SaveMoneyVerbal = fields["g2SaveMoneyVerbal"];
+        sec11InfoObj.g2SaveMoneyInitiates = fields["g2SaveMoneyInitiates"];
+        sec11InfoObj.g2SocialServicesNA = fields["g2SocialServicesNA"];
+        sec11InfoObj.g2SocialServicesPhysical = fields["g2SocialServicesPhysical"];
+        sec11InfoObj.g2SocialServicesVerbal = fields["g2SocialServicesVerbal"];
+        sec11InfoObj.g2SocialServicesInitiates = fields["g2SocialServicesInitiates"];
+        sec11InfoObj.g2CareerEduNA = fields["g2CareerEduNA"];
+        sec11InfoObj.g2CareerEduPhysical = fields["g2CareerEduPhysical"];
+        sec11InfoObj.g2CareerEduVerbal = fields["g2CareerEduVerbal"];
+        sec11InfoObj.g2CareerEduInitiates = fields["g2CareerEduInitiates"];
+        sec11InfoObj.g2OralCareNA = fields["g2OralCareNA"];
+        sec11InfoObj.g2OralCarePhysical = fields["g2OralCarePhysical"];
+        sec11InfoObj.g2OralCareVerbal = fields["g2OralCareVerbal"];
+        sec11InfoObj.g2OralCareInitiates = fields["g2OralCareInitiates"];
+        sec11InfoObj.g2HairNA = fields["g2HairNA"];
+        sec11InfoObj.g2HairPhysical = fields["g2HairPhysical"];
+        sec11InfoObj.g2HairVerbal = fields["g2HairVerbal"];
+        sec11InfoObj.g2HairInitiates = fields["g2HairInitiates"];
+        sec11InfoObj.g2SkinCareNA = fields["g2SkinCareNA"];
+        sec11InfoObj.g2SkinCarePhysical = fields["g2SkinCarePhysical"];
+        sec11InfoObj.g2SkinCareVerbal = fields["g2SkinCareVerbal"];
+        sec11InfoObj.g2SkinCareInitiates = fields["g2SkinCareInitiates"];
+        sec11InfoObj.g2EyeGlassesNA = fields["g2EyeGlassesNA"];
+        sec11InfoObj.g2EyeGlassesPhysical = fields["g2EyeGlassesPhysical"];
+        sec11InfoObj.g2EyeGlassesVerbal = fields["g2EyeGlassesVerbal"];
+        sec11InfoObj.g2EyeGlassesInitiates = fields["g2EyeGlassesInitiates"];
+        sec11InfoObj.g2WellGroomedNA = fields["g2WellGroomedNA"];
+        sec11InfoObj.g2WellGroomedPhysical = fields["g2WellGroomedPhysical"];
+        sec11InfoObj.g2WellGroomedVerbal = fields["g2WellGroomedVerbal"];
+        sec11InfoObj.g2WellGroomedInitiates = fields["g2WellGroomedInitiates"];
+        sec11InfoObj.g2ToiletNeedsNA = fields["g2ToiletNeedsNA"];
+        sec11InfoObj.g2ToiletNeedsPhysical = fields["g2ToiletNeedsPhysical"];
+        sec11InfoObj.g2ToiletNeedsVerbal = fields["g2ToiletNeedsVerbal"];
+        sec11InfoObj.g2ToiletNeedsInitiates = fields["g2ToiletNeedsInitiates"];
+        sec11InfoObj.g2WashHandsNA = fields["g2WashHandsNA"];
+        sec11InfoObj.g2WashHandsPhysical = fields["g2WashHandsPhysical"];
+        sec11InfoObj.g2WashHandsVerbal = fields["g2WashHandsVerbal"];
+        sec11InfoObj.g2WashHandsInitiates = fields["g2WashHandsInitiates"];
+        sec11InfoObj.g2BatheNA = fields["g2BatheNA"];
+        sec11InfoObj.g2BathePhysical = fields["g2BathePhysical"];
+        sec11InfoObj.g2BatheVerbal = fields["g2BatheVerbal"];
+        sec11InfoObj.g2BatheInitiates = fields["g2BatheInitiates"];
+        sec11InfoObj.g2ShavingNeedsNA = fields["g2ShavingNeedsNA"];
+        sec11InfoObj.g2ShavingNeedsPhysical = fields["g2ShavingNeedsPhysical"];
+        sec11InfoObj.g2ShavingNeedsVerbal = fields["g2ShavingNeedsVerbal"];
+        sec11InfoObj.g2ShavingNeedsInitiates = fields["g2ShavingNeedsInitiates"];
+        sec11InfoObj.g2DeodorantNA = fields["g2DeodorantNA"];
+        sec11InfoObj.g2DeodorantPhysical = fields["g2DeodorantPhysical"];
+        sec11InfoObj.g2DeodorantVerbal = fields["g2DeodorantVerbal"];
+        sec11InfoObj.g2DeodorantInitiates = fields["g2DeodorantInitiates"];
+        sec11InfoObj.g2ClosesDoorNA = fields["g2ClosesDoorNA"];
+        sec11InfoObj.g2ClosesDoorPhysical = fields["g2ClosesDoorPhysical"];
+        sec11InfoObj.g2ClosesDoorVerbal = fields["g2ClosesDoorVerbal"];
+        sec11InfoObj.g2ClosesDoorInitiates = fields["g2ClosesDoorInitiates"];
+        sec11InfoObj.g2MinorInjuriesNA = fields["g2MinorInjuriesNA"];
+        sec11InfoObj.g2MinorInjuriesPhysical = fields["g2MinorInjuriesPhysical"];
+        sec11InfoObj.g2MinorInjuriesVerbal = fields["g2MinorInjuriesVerbal"];
+        sec11InfoObj.g2MinorInjuriesInitiates = fields["g2MinorInjuriesInitiates"];
+        sec11InfoObj.g2GetsMedicalHelpNA = fields["g2GetsMedicalHelpNA"];
+        sec11InfoObj.g2GetsMedicalHelpPhysical = fields["g2GetsMedicalHelpPhysical"];
+        sec11InfoObj.g2GetsMedicalHelpVerbal = fields["g2GetsMedicalHelpVerbal"];
+        sec11InfoObj.g2GetsMedicalHelpInitiates = fields["g2GetsMedicalHelpInitiates"];
+        sec11InfoObj.g2Call911NA = fields["g2Call911NA"];
+        sec11InfoObj.g2Call911Physical = fields["g2Call911Physical"];
+        sec11InfoObj.g2Call911Verbal = fields["g2Call911Verbal"];
+        sec11InfoObj.g2Call911Initiates = fields["g2Call911Initiates"];
+        sec11InfoObj.g2HelpIfUnsafeNA = fields["g2HelpIfUnsafeNA"];
+        sec11InfoObj.g2HelpIfUnsafePhysical = fields["g2HelpIfUnsafePhysical"];
+        sec11InfoObj.g2HelpIfUnsafeVerbal = fields["g2HelpIfUnsafeVerbal"];
+        sec11InfoObj.g2HelpIfUnsafeInitiates = fields["g2HelpIfUnsafeInitiates"];
+        sec11InfoObj.g2IDStrangerNA = fields["g2IDStrangerNA"];
+        sec11InfoObj.g2IDStrangerPhysical = fields["g2IDStrangerPhysical"];
+        sec11InfoObj.g2IDStrangerVerbal = fields["g2IDStrangerVerbal"];
+        sec11InfoObj.g2IDStrangerInitiates = fields["g2IDStrangerInitiates"];
+        sec11InfoObj.g2PoliteNA = fields["g2PoliteNA"];
+        sec11InfoObj.g2PolitePhysical = fields["g2PolitePhysical"];
+        sec11InfoObj.g2PoliteVerbal = fields["g2PoliteVerbal"];
+        sec11InfoObj.g2PoliteInitiates = fields["g2PoliteInitiates"];
+        sec11InfoObj.g2RespectOthersThingsNA = fields["g2RespectOthersThingsNA"];
+        sec11InfoObj.g2RespectOthersThingsPhysical = fields["g2RespectOthersThingsPhysical"];
+        sec11InfoObj.g2RespectOthersThingsVerbal = fields["g2RespectOthersThingsVerbal"];
+        sec11InfoObj.g2RespectOthersThingsInitiates = fields["g2RespectOthersThingsInitiates"];
+        sec11InfoObj.g2RespectOthersIdeasNA = fields["g2RespectOthersIdeasNA"];
+        sec11InfoObj.g2RespectOthersIdeasPhysical = fields["g2RespectOthersIdeasPhysical"];
+        sec11InfoObj.g2RespectOthersIdeasVerbal = fields["g2RespectOthersIdeasVerbal"];
+        sec11InfoObj.g2RespectOthersIdeasInitiates = fields["g2RespectOthersIdeasInitiates"];
+        sec11InfoObj.g2AppreciationNA = fields["g2AppreciationNA"];
+        sec11InfoObj.g2AppreciationPhysical = fields["g2AppreciationPhysical"];
+        sec11InfoObj.g2AppreciationVerbal = fields["g2AppreciationVerbal"];
+        sec11InfoObj.g2AppreciationInitiates = fields["g2AppreciationInitiates"];
+        sec11InfoObj.g2NonviolentAngerNA = fields["g2NonviolentAngerNA"];
+        sec11InfoObj.g2NonviolentAngerPhysical = fields["g2NonviolentAngerPhysical"];
+        sec11InfoObj.g2NonviolentAngerVerbal = fields["g2NonviolentAngerVerbal"];
+        sec11InfoObj.g2NonviolentAngerInitiates = fields["g2NonviolentAngerInitiates"];
+        sec11InfoObj.g2EffectOfChoicesNA = fields["g2EffectOfChoicesNA"];
+        sec11InfoObj.g2EffectOfChoicesPhysical = fields["g2EffectOfChoicesPhysical"];
+        sec11InfoObj.g2EffectOfChoicesVerbal = fields["g2EffectOfChoicesVerbal"];
+        sec11InfoObj.g2EffectOfChoicesInitiates = fields["g2EffectOfChoicesInitiates"];
+        sec11InfoObj.g2InternetSafetyNA = fields["g2InternetSafetyNA"];
+        sec11InfoObj.g2InternetSafetyPhysical = fields["g2InternetSafetyPhysical"];
+        sec11InfoObj.g2InternetSafetyVerbal = fields["g2InternetSafetyVerbal"];
+        sec11InfoObj.g2InternetSafetyInitiates = fields["g2InternetSafetyInitiates"];
+        sec11InfoObj.g2PublicPrivateNA = fields["g2PublicPrivateNA"];
+        sec11InfoObj.g2PublicPrivatePhysical = fields["g2PublicPrivatePhysical"];
+        sec11InfoObj.g2PublicPrivateVerbal = fields["g2PublicPrivateVerbal"];
+        sec11InfoObj.g2PublicPrivateInitiates = fields["g2PublicPrivateInitiates"];
+        sec11InfoObj.g2WorkDoneOnTimeNA = fields["g2WorkDoneOnTimeNA"];
+        sec11InfoObj.g2WorkDoneOnTimePhysical = fields["g2WorkDoneOnTimePhysical"];
+        sec11InfoObj.g2WorkDoneOnTimeVerbal = fields["g2WorkDoneOnTimeVerbal"];
+        sec11InfoObj.g2WorkDoneOnTimeInitiates = fields["g2WorkDoneOnTimeInitiates"];
+        sec11InfoObj.g2OnTimeToSchoolNA = fields["g2OnTimeToSchoolNA"];
+        sec11InfoObj.g2OnTimeToSchoolPhysical = fields["g2OnTimeToSchoolPhysical"];
+        sec11InfoObj.g2OnTimeToSchoolVerbal = fields["g2OnTimeToSchoolVerbal"];
+        sec11InfoObj.g2OnTimeToSchoolInitiates = fields["g2OnTimeToSchoolInitiates"];
+        sec11InfoObj.g2SchoolHelpNA = fields["g2SchoolHelpNA"];
+        sec11InfoObj.g2SchoolHelpPhysical = fields["g2SchoolHelpPhysical"];
+        sec11InfoObj.g2SchoolHelpVerbal = fields["g2SchoolHelpVerbal"];
+        sec11InfoObj.g2SchoolHelpInitiates = fields["g2SchoolHelpInitiates"];
+        sec11InfoObj.g2ExamPrepNA = fields["g2ExamPrepNA"];
+        sec11InfoObj.g2ExamPrepPhysical = fields["g2ExamPrepPhysical"];
+        sec11InfoObj.g2ExamPrepVerbal = fields["g2ExamPrepVerbal"];
+        sec11InfoObj.g2ExamPrepInitiates = fields["g2ExamPrepInitiates"];
+        sec11InfoObj.g2LooksForMistakesNA = fields["g2LooksForMistakesNA"];
+        sec11InfoObj.g2LooksForMistakesPhysical = fields["g2LooksForMistakesPhysical"];
+        sec11InfoObj.g2LooksForMistakesVerbal = fields["g2LooksForMistakesVerbal"];
+        sec11InfoObj.g2LooksForMistakesInitiates = fields["g2LooksForMistakesInitiates"];
+        sec11InfoObj.g2GetsInformationNA = fields["g2GetsInformationNA"];
+        sec11InfoObj.g2GetsInformationPhysical = fields["g2GetsInformationPhysical"];
+        sec11InfoObj.g2GetsInformationVerbal = fields["g2GetsInformationVerbal"];
+        sec11InfoObj.g2GetsInformationInitiates = fields["g2GetsInformationInitiates"];
+        sec11InfoObj.g2InternetForHomeworkNA = fields["g2InternetForHomeworkNA"];
+        sec11InfoObj.g2InternetForHomeworkPhysical = fields["g2InternetForHomeworkPhysical"];
+        sec11InfoObj.g2InternetForHomeworkVerbal = fields["g2InternetForHomeworkVerbal"];
+        sec11InfoObj.g2InternetForHomeworkInitiates = fields["g2InternetForHomeworkInitiates"];
+        sec11InfoObj.g2SearchEngineNA = fields["g2SearchEngineNA"];
+        sec11InfoObj.g2SearchEnginePhysical = fields["g2SearchEnginePhysical"];
+        sec11InfoObj.g2SearchEngineVerbal = fields["g2SearchEngineVerbal"];
+        sec11InfoObj.g2SearchEngineInitiates = fields["g2SearchEngineInitiates"];
+        sec11InfoObj.g2ComputerDocumentsNA = fields["g2ComputerDocumentsNA"];
+        sec11InfoObj.g2ComputerDocumentsPhysical = fields["g2ComputerDocumentsPhysical"];
+        sec11InfoObj.g2ComputerDocumentsVerbal = fields["g2ComputerDocumentsVerbal"];
+        sec11InfoObj.g2ComputerDocumentsInitiates = fields["g2ComputerDocumentsInitiates"];
+        sec11InfoObj.g2MakeAppointmentsNA = fields["g2MakeAppointmentsNA"];
+        sec11InfoObj.g2MakeAppointmentsPhysical = fields["g2MakeAppointmentsPhysical"];
+        sec11InfoObj.g2MakeAppointmentsVerbal = fields["g2MakeAppointmentsVerbal"];
+        sec11InfoObj.g2MakeAppointmentsInitiates = fields["g2MakeAppointmentsInitiates"];
+        sec11InfoObj.g2HurtRelationshipsNA = fields["g2HurtRelationshipsNA"];
+        sec11InfoObj.g2HurtRelationshipsPhysical = fields["g2HurtRelationshipsPhysical"];
+        sec11InfoObj.g2HurtRelationshipsVerbal = fields["g2HurtRelationshipsVerbal"];
+        sec11InfoObj.g2HurtRelationshipsInitiates = fields["g2HurtRelationshipsInitiates"];
+        sec11InfoObj.g2BirthCertificateNA = fields["g2BirthCertificateNA"];
+        sec11InfoObj.g2BirthCertificatePhysical = fields["g2BirthCertificatePhysical"];
+        sec11InfoObj.g2BirthCertificateVerbal = fields["g2BirthCertificateVerbal"];
+        sec11InfoObj.g2BirthCertificateInitiates = fields["g2BirthCertificateInitiates"];
+        sec11InfoObj.g2SocialSecurityCardNA = fields["g2SocialSecurityCardNA"];
+        sec11InfoObj.g2SocialSecurityCardPhysical = fields["g2SocialSecurityCardPhysical"];
+        sec11InfoObj.g2SocialSecurityCardVerbal = fields["g2SocialSecurityCardVerbal"];
+        sec11InfoObj.g2SocialSecurityCardInitiates = fields["g2SocialSecurityCardInitiates"];
+    }
+
     handleSubmit(event) {
         event.preventDefault();
+        this.updateFields();
+        this.postToDB();
+        this.updateSection11Fields();
+        this.postSection11ToDB();
         this.setState({submitButtonPressed: true}, () => {
             if (this.validate()) {
-                this.updateFields();
-                this.postToDB();
-                // this.postSection11ToDB();
+
                 this.props.history.push("/parenthome")
             }
         });
@@ -2428,7 +3446,8 @@ class ClientHistoryAndInformation extends Component {
         this.updateFields();
         this.setState({saveButtonPressed: true});
         this.postToDB();
-        // this.postSection11ToDB();
+        this.updateSection11Fields();
+        this.postSection11ToDB();
         this.props.history.push("/parenthome")
     }
 
@@ -7980,40 +8999,40 @@ class ClientHistoryAndInformation extends Component {
             goal1Initiates: ''
         }, {
             goal1Category: 'Sits in chair independently',
-            goal1NA: <Label check> <Input type="checkbox" name="g1SitNA" id="g1SitNA" value={this.state.fields["g1SitNA"] || ""} onChange={this.handleChange.bind(this, "g1SitNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1SitPhysical" id="g1SitPhysical" value={this.state.fields["g1SitPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SitPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1SitVerbal" id="g1SitVerbal" value={this.state.fields["g1SitVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SitVerbal")}/> Verbal Prompt</Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1SitInitiates" id="g1SitInitiates" value={this.state.fields["g1SitNA"] || ""} onChange={this.handleChange.bind(this, "g1SitNA")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1SitNA" id="g1SitNA" checked={this.state.fields["g1SitNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SitPhysical" id="g1SitPhysical" checked={this.state.fields["g1SitPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SitVerbal" id="g1SitVerbal" checked={this.state.fields["g1SitVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitVerbal")}/> Verbal Prompt</Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SitInitiates" id="g1SitInitiates" checked={this.state.fields["g1SitInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Attends to a task >5 minutes',
-            goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskLongNA" id="g1AttendTaskLongNA" value={this.state.fields["g1AttendTaskLongNA"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskLongNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskLongPhysical" id="g1AttendTaskLongPhysical" value={this.state.fields["g1AttendTaskLongPhysical"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskLongPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskLongVerbal" id="g1AttendTaskLongVerbal" value={this.state.fields["g1AttendTaskLongVerbal"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskLongVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskLongInitiates" id="g1AttendTaskLongInitiates" value={this.state.fields["g1AttendTaskLongInitiates"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskLongInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskLongNA" id="g1AttendTaskLongNA" checked={this.state.fields["g1AttendTaskLongNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AttendTaskLongNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskLongPhysical" id="g1AttendTaskLongPhysical" checked={this.state.fields["g1AttendTaskLongPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AttendTaskLongPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskLongVerbal" id="g1AttendTaskLongVerbal" checked={this.state.fields["g1AttendTaskLongVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AttendTaskLongVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskLongInitiates" id="g1AttendTaskLongInitiates" checked={this.state.fields["g1AttendTaskLongInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AttendTaskLongInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Attends to a task <5 minutes',
-            goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskShortNA" id="g1AttendTaskShortNA" value={this.state.fields["g1AttendTaskShortNA"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskShortNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskShortPhysical" id="g1AttendTaskShortPhysical" value={this.state.fields["g1AttendTaskShortPhysical"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskShortPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskShortVerbal" id="g1AttendTaskShortVerbal" value={this.state.fields["g1AttendTaskShortVerbal"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskShortVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskShortInitiates" id="g1AttendTaskShortInitiates" value={this.state.fields["g1AttendTaskShortInitiates"] || ""} onChange={this.handleChange.bind(this, "g1AttendTaskShortInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1AttendTaskShortNA" id="g1AttendTaskShortNA" checked={this.state.fields["g1AttendTaskShortNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AttendTaskShortNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1AttendTaskShortPhysical" id="g1AttendTaskShortPhysical" checked={this.state.fields["g1AttendTaskShortPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AttendTaskShortPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1AttendTaskShortVerbal" id="g1AttendTaskShortVerbal" checked={this.state.fields["g1AttendTaskShortVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AttendTaskShortVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1AttendTaskShortInitiates" id="g1AttendTaskShortInitiates" checked={this.state.fields["g1AttendTaskShortInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AttendTaskShortInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Makes eye contact',
-            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNA" id="g1EyeContactNA" value={this.state.fields["g1EyeContactNA"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactPhysical" id="g1EyeContactPhysical" value={this.state.fields["g1EyeContactPhysical"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactVerbal" id="g1EyeContactVerbal" value={this.state.fields["g1EyeContactVerbal"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactInitiates" id="g1EyeContactInitiates" value={this.state.fields["g1EyeContactInitiates"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNA" id="g1EyeContactNA" checked={this.state.fields["g1EyeContactNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactPhysical" id="g1EyeContactPhysical" checked={this.state.fields["g1EyeContactPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactVerbal" id="g1EyeContactVerbal" checked={this.state.fields["g1EyeContactVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactInitiates" id="g1EyeContactInitiates" checked={this.state.fields["g1EyeContactInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Sustains eye contact in response to name',
-            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNameNA" id="g1EyeContactNameNA" value={this.state.fields["g1EyeContactNameNA"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNameNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactNamePhysical" id="g1EyeContactNamePhysical" value={this.state.fields["g1EyeContactNamePhysical"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNamePhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactNameVerbal" id="g1EyeContactNameVerbal" value={this.state.fields["g1EyeContactNameVerbal"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNameVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactNameInitiates" id="g1EyeContactNameInitiates" value={this.state.fields["g1EyeContactNameInitiates"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactNameInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactNameNA" id="g1EyeContactNameNA" checked={this.state.fields["g1EyeContactNameNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactNameNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactNamePhysical" id="g1EyeContactNamePhysical" checked={this.state.fields["g1EyeContactNamePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactNamePhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactNameVerbal" id="g1EyeContactNameVerbal" checked={this.state.fields["g1EyeContactNameVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactNameVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactNameInitiates" id="g1EyeContactNameInitiates" checked={this.state.fields["g1EyeContactNameInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactNameInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Makes eye contact during group instruction',
-            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactGroupNA" id="g1EyeContactGroupNA" value={this.state.fields["g1EyeContactGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactGroupNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactGroupPhysical" id="g1EyeContactGroupPhysical" value={this.state.fields["g1EyeContactGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactGroupPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactGroupVerbal" id="g1EyeContactGroupVerbal" value={this.state.fields["g1EyeContactGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactGroupVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactGroupInitiates" id="g1EyeContactGroupInitiates" value={this.state.fields["g1EyeContactGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1EyeContactGroupInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1EyeContactGroupNA" id="g1EyeContactGroupNA" checked={this.state.fields["g1EyeContactGroupNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactGroupNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1EyeContactGroupPhysical" id="g1EyeContactGroupPhysical" checked={this.state.fields["g1EyeContactGroupPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactGroupPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1EyeContactGroupVerbal" id="g1EyeContactGroupVerbal" checked={this.state.fields["g1EyeContactGroupVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactGroupVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1EyeContactGroupInitiates" id="g1EyeContactGroupInitiates" checked={this.state.fields["g1EyeContactGroupInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1EyeContactGroupInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: <div className={"sub-section"}>Communication Skills</div>,
             goal1NA: '',
@@ -8022,40 +9041,40 @@ class ClientHistoryAndInformation extends Component {
             goal1Initiates: ''
         }, {
             goal1Category: 'Communicates wants and needs',
-            goal1NA: <Label check> <Input type="checkbox" name="g1WantsNeedsNA" id="g1WantsNeedsNA" value={this.state.fields["g1WantsNeedsNA"] || ""} onChange={this.handleChange.bind(this, "g1WantsNeedsNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1WantsNeedsPhysical" id="g1WantsNeedsPhysical" value={this.state.fields["g1WantsNeedsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1WantsNeedsPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1WantsNeedsVerbal" id="g1WantsNeedsVerbal" value={this.state.fields["g1WantsNeedsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1WantsNeedsVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1WantsNeedsInitiates" id="g1WantsNeedsInitiates" value={this.state.fields["g1WantsNeedsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1WantsNeedsInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1WantsNeedsNA" id="g1WantsNeedsNA" checked={this.state.fields["g1WantsNeedsNA"]  === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WantsNeedsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1WantsNeedsPhysical" id="g1WantsNeedsPhysical" checked={this.state.fields["g1WantsNeedsPhysical"]  === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WantsNeedsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1WantsNeedsVerbal" id="g1WantsNeedsVerbal" checked={this.state.fields["g1WantsNeedsVerbal"]  === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WantsNeedsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1WantsNeedsInitiates" id="g1WantsNeedsInitiates" checked={this.state.fields["g1WantsNeedsInitiates"]  === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WantsNeedsInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Answers simple social questions',
-            goal1NA: <Label check> <Input type="checkbox" name="g1SocialQsNA" id="g1socialQsNA" value={this.state.fields["g1SocialQsNA"] || ""} onChange={this.handleChange.bind(this, "g1SocialQsNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1SocialQsPhysical" id="g1SocialQsPhysical" value={this.state.fields["g1SocialQsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SocialQsPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1SocialQsVerbal" id="g1SocialQsVerbal" value={this.state.fields["g1SocialQsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SocialQsVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1SocialQsInitiates" id="g1SocialQsInitiates" value={this.state.fields["g1SocialQsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SocialQsInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1SocialQsNA" id="g1socialQsNA" checked={this.state.fields["g1SocialQsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SocialQsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SocialQsPhysical" id="g1SocialQsPhysical" checked={this.state.fields["g1SocialQsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SocialQsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SocialQsVerbal" id="g1SocialQsVerbal" checked={this.state.fields["g1SocialQsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SocialQsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SocialQsInitiates" id="g1SocialQsInitiates" checked={this.state.fields["g1SocialQsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SocialQsInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Answers simple interference-based questions',
-            goal1NA: <Label check> <Input type="checkbox" name="g1InterferenceQsNA" id="g1InterferenceQsNA" value={this.state.fields["g1InterferenceQsNA"] || ""} onChange={this.handleChange.bind(this, "g1InterferenceQsNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1InterferenceQsPhysical" id="g1InterferenceQsPhysical" value={this.state.fields["g1InterferenceQsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InterferenceQsPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1InterferenceQsVerbal" id="g1InterferenceQsVerbal" value={this.state.fields["g1InterferenceQsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InterferenceQsVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1InterferenceQsInitiates" id="g1InterferenceQsInitiates" value={this.state.fields["g1InterferenceQsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InterferenceQsInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1InterferenceQsNA" id="g1InterferenceQsNA" checked={this.state.fields["g1InterferenceQsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InterferenceQsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1InterferenceQsPhysical" id="g1InterferenceQsPhysical" checked={this.state.fields["g1InterferenceQsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InterferenceQsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1InterferenceQsVerbal" id="g1InterferenceQsVerbal" checked={this.state.fields["g1InterferenceQsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InterferenceQsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1InterferenceQsInitiates" id="g1InterferenceQsInitiates" checked={this.state.fields["g1InterferenceQsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InterferenceQsInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Reciprocates conversation',
-            goal1NA: <Label check> <Input type="checkbox" name="g1ReciprocateConversationNA" id="g1ReciprocateConversationNA" value={this.state.fields["g1ReciprocateConversationNA"] || ""} onChange={this.handleChange.bind(this, "g1ReciprocateConversationNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1ReciprocateConversationPhysical" id="g1ReciprocateConversationPhysical" value={this.state.fields["g1ReciprocateConversationPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ReciprocateConversationPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1ReciprocateConversationVerbal" id="g1ReciprocateConversationVerbal" value={this.state.fields["g1ReciprocateConversationVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ReciprocateConversationVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1ReciprocateConversationInitiates" id="g1ReciprocateConversationInitiates" value={this.state.fields["g1ReciprocateConversationInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ReciprocateConversationInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1ReciprocateConversationNA" id="g1ReciprocateConversationNA" checked={this.state.fields["g1ReciprocateConversationNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ReciprocateConversationNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ReciprocateConversationPhysical" id="g1ReciprocateConversationPhysical" checked={this.state.fields["g1ReciprocateConversationPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ReciprocateConversationPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ReciprocateConversationVerbal" id="g1ReciprocateConversationVerbal" checked={this.state.fields["g1ReciprocateConversationVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ReciprocateConversationVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ReciprocateConversationInitiates" id="g1ReciprocateConversationInitiates" checked={this.state.fields["g1ReciprocateConversationInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ReciprocateConversationInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Maintains conversation',
-            goal1NA: <FormGroup> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA" value={this.state.fields["g1MaintainConversationNA"] || ""} onChange={this.handleChange.bind(this, "g1MaintainConversationNA")}/><Label check>  N/A </Label></FormGroup>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1MaintainConversationPhysical" id="g1MaintainConversationPhysical" value={this.state.fields["g1MaintainConversationPhysical"] || ""} onChange={this.handleChange.bind(this, "g1MaintainConversationPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1MaintainConversationVerbal" id="g1MaintainConversationVerbal" value={this.state.fields["g1MaintainConversationVerbal"] || ""} onChange={this.handleChange.bind(this, "g1MaintainConversationVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1MaintainConversationInitiates" id="g1MaintainConversationInitiates" value={this.state.fields["g1MaintainConversationInitiates"] || ""} onChange={this.handleChange.bind(this, "g1MaintainConversationInitiates")}/> Initiates Independently </Label>
+            goal1NA: <FormGroup> <Input type="checkbox" name="g1MaintainConversationNA" id="g1MaintainConversationNA" checked={this.state.fields["g1MaintainConversationNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1MaintainConversationNA")}/><Label check>  N/A </Label></FormGroup>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1MaintainConversationPhysical" id="g1MaintainConversationPhysical" checked={this.state.fields["g1MaintainConversationPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1MaintainConversationPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1MaintainConversationVerbal" id="g1MaintainConversationVerbal" checked={this.state.fields["g1MaintainConversationVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1MaintainConversationVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1MaintainConversationInitiates" id="g1MaintainConversationInitiates" checked={this.state.fields["g1MaintainConversationInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1MaintainConversationInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Has conversations using original thought',
-            goal1NA: <Label check> <Input type="checkbox" name="g1OriginalConversationNA" id="g1OriginalConversationNA" value={this.state.fields["g1OriginalConversationNA"] || ""} onChange={this.handleChange.bind(this, "g1OriginalConversationNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1OriginalConversationPhysical" id="g1OriginalConversationPhysical" value={this.state.fields["g1OriginalConversationPhysical"] || ""} onChange={this.handleChange.bind(this, "g1OriginalConversationPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1OriginalConversationVerbal" id="g1OriginalConversationVerbal" value={this.state.fields["g1OriginalConversationVerbal"] || ""} onChange={this.handleChange.bind(this, "g1OriginalConversationVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1OriginalConversationInitiates" id="g1OriginalConversationInitiates" value={this.state.fields["g1OriginalConversationInitiates"] || ""} onChange={this.handleChange.bind(this, "g1OriginalConversationInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1OriginalConversationNA" id="g1OriginalConversationNA" checked={this.state.fields["g1OriginalConversationNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OriginalConversationNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1OriginalConversationPhysical" id="g1OriginalConversationPhysical" checked={this.state.fields["g1OriginalConversationPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OriginalConversationPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1OriginalConversationVerbal" id="g1OriginalConversationVerbal" checked={this.state.fields["g1OriginalConversationVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OriginalConversationVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1OriginalConversationInitiates" id="g1OriginalConversationInitiates" checked={this.state.fields["g1OriginalConversationInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OriginalConversationInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: <div className={"sub-section"}>Independent Skills</div>,
             goal1NA: '',
@@ -8064,40 +9083,40 @@ class ClientHistoryAndInformation extends Component {
             goal1Initiates: ''
         }, {
             goal1Category: 'Goes to designated person/place within the room',
-            goal1NA: <Label check> <Input type="checkbox" name="g1WithinRoomNA" id="g1WithinRoomNA" value={this.state.fields["g1WithinRoomNA"] || ""} onChange={this.handleChange.bind(this, "g1WithinRoomNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1WithinRoomPhysical" id="g1WithinRoomPhysical" value={this.state.fields["g1WithinRoomPhysical"] || ""} onChange={this.handleChange.bind(this, "g1WithinRoomPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1WithinRoomVerbal" id="g1WithinRoomVerbal" value={this.state.fields["g1WithinRoomVerbal"] || ""} onChange={this.handleChange.bind(this, "g1WithinRoomVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1WithinRoomInitiates" id="g1WithinRoomInitiates" value={this.state.fields["g1WithinRoomInitiates"] || ""} onChange={this.handleChange.bind(this, "g1WithinRoomInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1WithinRoomNA" id="g1WithinRoomNA" checked={this.state.fields["g1WithinRoomNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WithinRoomNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1WithinRoomPhysical" id="g1WithinRoomPhysical" checked={this.state.fields["g1WithinRoomPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WithinRoomPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1WithinRoomVerbal" id="g1WithinRoomVerbal" checked={this.state.fields["g1WithinRoomVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WithinRoomVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1WithinRoomInitiates" id="g1WithinRoomInitiates" checked={this.state.fields["g1WithinRoomInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WithinRoomInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Goes to designated person/place in another room',
-            goal1NA: <Label check> <Input type="checkbox" name="g1AnotherRoomNA" id="g1AnotherRoomNA" value={this.state.fields["g1AnotherRoomNA"] || ""} onChange={this.handleChange.bind(this, "g1AnotherRoomNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1AnotherRoomPhysical" id="g1AnotherRoomPhysical" value={this.state.fields["g1AnotherRoomPhysical"] || ""} onChange={this.handleChange.bind(this, "g1AnotherRoomPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1AnotherRoomVerbal" id="g1AnotherRoomVerbal" value={this.state.fields["g1AnotherRoomVerbal"] || ""} onChange={this.handleChange.bind(this, "g1AnotherRoomVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1AnotherRoomInitiates" id="g1AnotherRoomInitiates" value={this.state.fields["g1AnotherRoomInitiates"] || ""} onChange={this.handleChange.bind(this, "g1AnotherRoomInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1AnotherRoomNA" id="g1AnotherRoomNA" checked={this.state.fields["g1AnotherRoomNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AnotherRoomNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1AnotherRoomPhysical" id="g1AnotherRoomPhysical" checked={this.state.fields["g1AnotherRoomPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AnotherRoomPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1AnotherRoomVerbal" id="g1AnotherRoomVerbal" checked={this.state.fields["g1AnotherRoomVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AnotherRoomVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1AnotherRoomInitiates" id="g1AnotherRoomInitiates" checked={this.state.fields["g1AnotherRoomInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AnotherRoomInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Able to complete task independently >5 minutes',
-            goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskLongNA" id="g1IndTaskLongNA" value={this.state.fields["g1IndTaskLongNA"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskLongNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskLongPhysical" id="g1IndTaskLongPhysical" value={this.state.fields["g1IndTaskLongPhysical"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskLongPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskLongVerbal" id="g1IndTaskLongVerbal" value={this.state.fields["g1IndTaskLongVerbal"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskLongVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskLongInitiates" id="g1IndTaskLongInitiates" value={this.state.fields["g1IndTaskLongInitiates"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskLongInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskLongNA" id="g1IndTaskLongNA" checked={this.state.fields["g1IndTaskLongNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskLongNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskLongPhysical" id="g1IndTaskLongPhysical" checked={this.state.fields["g1IndTaskLongPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskLongPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskLongVerbal" id="g1IndTaskLongVerbal" checked={this.state.fields["g1IndTaskLongVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskLongVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskLongInitiates" id="g1IndTaskLongInitiates" checked={this.state.fields["g1IndTaskLongInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskLongInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Able to complete task independently <5 minutes',
-            goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskShortNA" id="g1IndTaskShortNA" value={this.state.fields["g1IndTaskShortNA"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskShortNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskShortPhysical" id="g1IndTaskShortPhysical" value={this.state.fields["g1IndTaskShortPhysical"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskShortPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskShortVerbal" id="g1IndTaskShortVerbal" value={this.state.fields["g1IndTaskShortVerbal"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskShortVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskShortInitiates" id="g1IndTaskShortInitiates" value={this.state.fields["g1IndTaskShortInitiates"] || ""} onChange={this.handleChange.bind(this, "g1IndTaskShortInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskShortNA" id="g1IndTaskShortNA" checked={this.state.fields["g1IndTaskShortNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskShortPhysical" id="g1IndTaskShortPhysical" checked={this.state.fields["g1IndTaskShortPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskShortVerbal" id="g1IndTaskShortVerbal" checked={this.state.fields["g1IndTaskShortVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskShortInitiates" id="g1IndTaskShortInitiates" checked={this.state.fields["g1IndTaskShortInitiates"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Able to organize materials within and for simple tasks and execute them independently',
-            goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsNA" id="g1OrganizeMaterialsNA" value={this.state.fields["g1OrganizeMaterialsNA"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeMaterialsNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsPhysical" id="g1OrganizeMaterialsPhysical" value={this.state.fields["g1OrganizeMaterialsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeMaterialsPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsVerbal" id="g1OrganizeMaterialsVerbal" value={this.state.fields["g1OrganizeMaterialsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeMaterialsVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsInitiates" id="g1OrganizeMaterialsInitiates" value={this.state.fields["g1OrganizeMaterialsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeMaterialsInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsNA" id="g1OrganizeMaterialsNA" checked={this.state.fields["g1OrganizeMaterialsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeMaterialsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsPhysical" id="g1OrganizeMaterialsPhysical" checked={this.state.fields["g1OrganizeMaterialsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeMaterialsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsVerbal" id="g1OrganizeMaterialsVerbal" checked={this.state.fields["g1OrganizeMaterialsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeMaterialsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsInitiates" id="g1OrganizeMaterialsInitiates" checked={this.state.fields["g1OrganizeMaterialsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeMaterialsInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Able to organize/prioritize simple progression of tasks (ex. Prioritizing homework with different due dates- doing what is due first, then second, etc.)',
-            goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeTasksNA" id="g1OrganizeTasksNA" value={this.state.fields["g1OrganizeTasksNA"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeTasksNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeTasksPhysical" id="g1OrganizeTasksPhysical" value={this.state.fields["g1OrganizeTasksPhysical"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeTasksPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeTasksVerbal" id="g1OrganizeTasksVerbal" value={this.state.fields["g1OrganizeTasksVerbal"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeTasksVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeTasksInitiates" id="g1OrganizeTasksInitiates" value={this.state.fields["g1OrganizeTasksInitiates"] || ""} onChange={this.handleChange.bind(this, "g1OrganizeTasksInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeTasksNA" id="g1OrganizeTasksNA" checked={this.state.fields["g1OrganizeTasksNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeTasksNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1OrganizeTasksPhysical" id="g1OrganizeTasksPhysical" checked={this.state.fields["g1OrganizeTasksPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeTasksPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1OrganizeTasksVerbal" id="g1OrganizeTasksVerbal" checked={this.state.fields["g1OrganizeTasksVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeTasksVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1OrganizeTasksInitiates" id="g1OrganizeTasksInitiates" checked={this.state.fields["g1OrganizeTasksInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeTasksInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: <div className={"sub-section"}>Self-Care Skills</div>,
             goal1NA: '',
@@ -8106,179 +9125,179 @@ class ClientHistoryAndInformation extends Component {
             goal1Initiates: ''
         }, {
             goal1Category: 'Put shoes on and off',
-            goal1NA: <Label check> <Input type="checkbox" name="g1ShoesOnOffNA" id="g1ShoesOnOffNA" value={this.state.fields["g1ShoesOnOffNA"] || ""} onChange={this.handleChange.bind(this, "g1ShoesOnOffNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1ShoesOnOffPhysical" id="g1ShoesOnOffPhysical" value={this.state.fields["g1ShoesOnOffPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ShoesOnOffPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1ShoesOnOffVerbal" id="g1ShoesOnOffVerbal" value={this.state.fields["g1ShoesOnOffVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ShoesOnOffVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1ShoesOnOffInitiates" id="g1ShoesOnOffInitiates" value={this.state.fields["g1ShoesOnOffInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ShoesOnOffInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1ShoesOnOffNA" id="g1ShoesOnOffNA" checked={this.state.fields["g1ShoesOnOffNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ShoesOnOffNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ShoesOnOffPhysical" id="g1ShoesOnOffPhysical" checked={this.state.fields["g1ShoesOnOffPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ShoesOnOffPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ShoesOnOffVerbal" id="g1ShoesOnOffVerbal" checked={this.state.fields["g1ShoesOnOffVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ShoesOnOffVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ShoesOnOffInitiates" id="g1ShoesOnOffInitiates" checked={this.state.fields["g1ShoesOnOffInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ShoesOnOffInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Discriminates right and left',
-            goal1NA: <Label check> <Input type="checkbox" name="g1RightLeftNA" id="g1RightLeftNA" value={this.state.fields["g1RightLeftNA"] || ""} onChange={this.handleChange.bind(this, "g1RightLeftNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1RightLeftPhysical" id="g1RightLeftPhysical" value={this.state.fields["g1RightLeftPhysical"] || ""} onChange={this.handleChange.bind(this, "g1RightLeftPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1RightLeftVerbal" id="g1RightLeftVerbal" value={this.state.fields["g1RightLeftVerbal"] || ""} onChange={this.handleChange.bind(this, "g1RightLeftVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1RightLeftInitiates" id="g1RightLeftInitiates" value={this.state.fields["g1RightLeftInitiates"] || ""} onChange={this.handleChange.bind(this, "g1RightLeftInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1RightLeftNA" id="g1RightLeftNA" checked={this.state.fields["g1RightLeftNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1RightLeftNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1RightLeftPhysical" id="g1RightLeftPhysical" checked={this.state.fields["g1RightLeftPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1RightLeftPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1RightLeftVerbal" id="g1RightLeftVerbal" checked={this.state.fields["g1RightLeftVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1RightLeftVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1RightLeftInitiates" id="g1RightLeftInitiates" checked={this.state.fields["g1RightLeftInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1RightLeftInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Unties and ties shoes',
-            goal1NA: <Label check> <Input type="checkbox" name="g1TieShoesNA" id="g1TieShoesNA" value={this.state.fields["g1TieShoesNA"] || ""} onChange={this.handleChange.bind(this, "g1TieShoesNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1TieShoesPhysical" id="g1TieShoesPhysical" value={this.state.fields["g1TieShoesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1TieShoesPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1TieShoesVerbal" id="g1TieShoesVerbal" value={this.state.fields["g1TieShoesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1TieShoesVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1TieShoesInitiates" id="g1TieShoesInitiates" value={this.state.fields["g1TieShoesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1TieShoesInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1TieShoesNA" id="g1TieShoesNA" checked={this.state.fields["g1TieShoesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1TieShoesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1TieShoesPhysical" id="g1TieShoesPhysical" checked={this.state.fields["g1TieShoesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1TieShoesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1TieShoesVerbal" id="g1TieShoesVerbal" checked={this.state.fields["g1TieShoesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1TieShoesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1TieShoesInitiates" id="g1TieShoesInitiates" checked={this.state.fields["g1TieShoesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1TieShoesInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Pulls up/down pants',
-            goal1NA: <Label check> <Input type="checkbox" name="g1PantsNA" id="g1PantsNA" value={this.state.fields["g1PantsNA"] || ""} onChange={this.handleChange.bind(this, "g1PantsNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1PantsPhysical" id="g1PantsPhysical" value={this.state.fields["g1PantsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1PantsPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1PantsVerbal" id="g1PantsVerbal" value={this.state.fields["g1PantsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1PantsVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1PantsInitiates" id="g1PantsInitiates" value={this.state.fields["g1PantsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1PantsInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1PantsNA" id="g1PantsNA" checked={this.state.fields["g1PantsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1PantsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1PantsPhysical" id="g1PantsPhysical" checked={this.state.fields["g1PantsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1PantsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1PantsVerbal" id="g1PantsVerbal" checked={this.state.fields["g1PantsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1PantsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1PantsInitiates" id="g1PantsInitiates" checked={this.state.fields["g1PantsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1PantsInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Buttons and unbuttons',
-            goal1NA: <Label check> <Input type="checkbox" name="g1ButtonsNA" id="g1ButtonsNA" value={this.state.fields["g1ButtonsNA"] || ""} onChange={this.handleChange.bind(this, "g1ButtonsNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1ButtonsPhysical" id="g1ButtonsPhysical" value={this.state.fields["g1ButtonsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ButtonsPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1ButtonsVerbal" id="g1ButtonsVerbal" value={this.state.fields["g1ButtonsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ButtonsVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1ButtonsInitiates" id="g1ButtonsInitiates" value={this.state.fields["g1ButtonsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ButtonsInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1ButtonsNA" id="g1ButtonsNA" checked={this.state.fields["g1ButtonsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ButtonsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ButtonsPhysical" id="g1ButtonsPhysical" checked={this.state.fields["g1ButtonsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ButtonsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ButtonsVerbal" id="g1ButtonsVerbal" checked={this.state.fields["g1ButtonsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ButtonsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ButtonsInitiates" id="g1ButtonsInitiates" checked={this.state.fields["g1ButtonsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ButtonsInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Adjusts clothes',
-            goal1NA: <Label check> <Input type="checkbox" name="g1AdjustClothesNA" id="g1AdjustClothesNA" value={this.state.fields["g1AdjustClothesNA"] || ""} onChange={this.handleChange.bind(this, "g1AdjustClothesNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1AdjustClothesPhysical" id="g1AdjustClothesPhysical" value={this.state.fields["g1AdjustClothesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1AdjustClothesPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1AdjustClothesVerbal" id="g1AdjustClothesVerbal" value={this.state.fields["g1AdjustClothesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1AdjustClothesVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1AdjustClothesInitiates" id="g1AdjustClothesInitiates" value={this.state.fields["g1AdjustClothesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1AdjustClothesInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1AdjustClothesNA" id="g1AdjustClothesNA" checked={this.state.fields["g1AdjustClothesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AdjustClothesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1AdjustClothesPhysical" id="g1AdjustClothesPhysical" checked={this.state.fields["g1AdjustClothesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AdjustClothesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1AdjustClothesVerbal" id="g1AdjustClothesVerbal" checked={this.state.fields["g1AdjustClothesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AdjustClothesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1AdjustClothesInitiates" id="g1AdjustClothesInitiates" checked={this.state.fields["g1AdjustClothesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1AdjustClothesInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Dresses and undresses',
-            goal1NA: <Label check> <Input type="checkbox" name="g1DressesNA" id="g1DressesNA" value={this.state.fields["g1DressesNA"] || ""} onChange={this.handleChange.bind(this, "g1DressesNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1DressesPhysical" id="g1DressesPhysical" value={this.state.fields["g1DressesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1DressesPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1DressesVerbal" id="g1DressesVerbal" value={this.state.fields["g1DressesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1DressesVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1DressesInitiates" id="g1DressesInitiates" value={this.state.fields["g1DressesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1DressesInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1DressesNA" id="g1DressesNA" checked={this.state.fields["g1DressesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1DressesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1DressesPhysical" id="g1DressesPhysical" checked={this.state.fields["g1DressesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1DressesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1DressesVerbal" id="g1DressesVerbal" checked={this.state.fields["g1DressesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1DressesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1DressesInitiates" id="g1DressesInitiates" checked={this.state.fields["g1DressesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1DressesInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Sorts clothes for washing',
-            goal1NA: <Label check> <Input type="checkbox" name="g1SortsClothesNA" id="g1SortsClothesNA" value={this.state.fields["g1SortsClothesNA"] || ""} onChange={this.handleChange.bind(this, "g1SortsClothesNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1SortsClothesPhysical" id="g1SortsClothesPhysical" value={this.state.fields["g1SortsClothesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SortsClothesPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1SortsClothesVerbal" id="g1SortsClothesVerbal" value={this.state.fields["g1SortsClothesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SortsClothesVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1SortsClothesInitiates" id="g1SortsClothesInitiates" value={this.state.fields["g1SortsClothesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SortsClothesInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1SortsClothesNA" id="g1SortsClothesNA" checked={this.state.fields["g1SortsClothesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SortsClothesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SortsClothesPhysical" id="g1SortsClothesPhysical" checked={this.state.fields["g1SortsClothesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SortsClothesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SortsClothesVerbal" id="g1SortsClothesVerbal" checked={this.state.fields["g1SortsClothesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SortsClothesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SortsClothesInitiates" id="g1SortsClothesInitiates" checked={this.state.fields["g1SortsClothesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SortsClothesInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Identifies clothes based on the weather',
-            goal1NA: <Label check> <Input type="checkbox" name="g1ClothesWeatherNA" id="g1ClothesWeatherNA" value={this.state.fields["g1ClothesWeatherNA"] || ""} onChange={this.handleChange.bind(this, "g1ClothesWeatherNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1ClothesWeatherPhysical" id="g1ClothesWeatherPhysical" value={this.state.fields["g1ClothesWeatherPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ClothesWeatherPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1ClothesWeatherVerbal" id="g1ClothesWeatherVerbal" value={this.state.fields["g1ClothesWeatherVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ClothesWeatherVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1ClothesWeatherInitiates" id="g1ClothesWeatherInitiates" value={this.state.fields["g1ClothesWeatherInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ClothesWeatherInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1ClothesWeatherNA" id="g1ClothesWeatherNA" checked={this.state.fields["g1ClothesWeatherNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ClothesWeatherNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ClothesWeatherPhysical" id="g1ClothesWeatherPhysical" checked={this.state.fields["g1ClothesWeatherPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ClothesWeatherPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ClothesWeatherVerbal" id="g1ClothesWeatherVerbal" checked={this.state.fields["g1ClothesWeatherVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ClothesWeatherVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ClothesWeatherInitiates" id="g1ClothesWeatherInitiates" checked={this.state.fields["g1ClothesWeatherInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ClothesWeatherInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Goes to the bathroom independently',
-            goal1NA: <Label check> <Input type="checkbox" name="g1BathroomNA" id="g1BathroomNA" value={this.state.fields["g1BathroomNA"] || ""} onChange={this.handleChange.bind(this, "g1BathroomNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1BathroomPhysical" id="g1BathroomPhysical" value={this.state.fields["g1BathroomPhysical"] || ""} onChange={this.handleChange.bind(this, "g1BathroomPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1BathroomVerbal" id="g1BathroomVerbal" value={this.state.fields["g1BathroomVerbal"] || ""} onChange={this.handleChange.bind(this, "g1BathroomVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1BathroomInitiates" id="g1BathroomInitiates" value={this.state.fields["g1BathroomInitiates"] || ""} onChange={this.handleChange.bind(this, "g1BathroomInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1BathroomNA" id="g1BathroomNA" checked={this.state.fields["g1BathroomNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1BathroomNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1BathroomPhysical" id="g1BathroomPhysical" checked={this.state.fields["g1BathroomPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1BathroomPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1BathroomVerbal" id="g1BathroomVerbal" checked={this.state.fields["g1BathroomVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1BathroomVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1BathroomInitiates" id="g1BathroomInitiates" checked={this.state.fields["g1BathroomInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1BathroomInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Washes hands',
-            goal1NA: <Label check> <Input type="checkbox" name="g1WashesHandsNA" id="g1WashesHandsNA" value={this.state.fields["g1WashesHandsNA"] || ""} onChange={this.handleChange.bind(this, "g1WashesHandsNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1WashesHandsPhysical" id="g1WashesHandsPhysical" value={this.state.fields["g1WashesHandsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1WashesHandsPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1WashesHandsVerbal" id="g1WashesHandsVerbal" value={this.state.fields["g1WashesHandsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1WashesHandsVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1WashesHandsInitiates" id="g1WashesHandsInitiates" value={this.state.fields["g1WashesHandsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1WashesHandsInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1WashesHandsNA" id="g1WashesHandsNA" checked={this.state.fields["g1WashesHandsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WashesHandsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1WashesHandsPhysical" id="g1WashesHandsPhysical" checked={this.state.fields["g1WashesHandsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WashesHandsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1WashesHandsVerbal" id="g1WashesHandsVerbal" checked={this.state.fields["g1WashesHandsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WashesHandsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1WashesHandsInitiates" id="g1WashesHandsInitiates" checked={this.state.fields["g1WashesHandsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WashesHandsInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Completes shower/bathing sequence',
-            goal1NA: <Label check> <Input type="checkbox" name="g1ShowerNA" id="g1ShowerNA" value={this.state.fields["g1ShowerNA"] || ""} onChange={this.handleChange.bind(this, "g1ShowerNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1ShowerPhysical" id="g1ShowerPhysical" value={this.state.fields["g1ShowerPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ShowerPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1ShowerVerbal" id="g1ShowerVerbal" value={this.state.fields["g1ShowerVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ShowerVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1ShowerInitiates" id="g1ShowerInitiates" value={this.state.fields["g1ShowerInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ShowerInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1ShowerNA" id="g1ShowerNA" checked={this.state.fields["g1ShowerNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ShowerNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ShowerPhysical" id="g1ShowerPhysical" checked={this.state.fields["g1ShowerPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ShowerPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ShowerVerbal" id="g1ShowerVerbal" checked={this.state.fields["g1ShowerVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ShowerVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ShowerInitiates" id="g1ShowerInitiates" checked={this.state.fields["g1ShowerInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ShowerInitiates")}/> Initiates Independently </Label>
         }, {
-                goal1Category: 'Uses utensils properly when eating',
-                goal1NA: <Label check> <Input type="checkbox" name="g1UtensilsNA" id="g1UtensilsNA"value={this.state.fields["g1UtensilsNA"] || ""} onChange={this.handleChange.bind(this, "g1UtensilsNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1UtensilsPhysical" id="g1UtensilsPhysical"value={this.state.fields["g1UtensilsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1UtensilsPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1UtensilsVerbal" id="g1UtensilsVerbal"value={this.state.fields["g1UtensilsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1UtensilsVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1UtensilsInitiates" id="g1UtensilsInitiates"value={this.state.fields["g1UtensilsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1UtensilsInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Opens food containers/wrappers',
-                goal1NA: <Label check> <Input type="checkbox" name="g1OpensContainersNA" id="g1OpensContainersNA"value={this.state.fields["g1OpensContainersNA"] || ""} onChange={this.handleChange.bind(this, "g1OpensContainersNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1OpensContainersPhysical" id="g1OpensContainersPhysical"value={this.state.fields["g1OpensContainersPhysical"] || ""} onChange={this.handleChange.bind(this, "g1OpensContainersPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1OpensContainersVerbal" id="g1OpensContainersVerbal"value={this.state.fields["g1OpensContainersVerbal"] || ""} onChange={this.handleChange.bind(this, "g1OpensContainersVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1OpensContainersInitiates" id="g1OpensContainersInitiates"value={this.state.fields["g1OpensContainersInitiates"] || ""} onChange={this.handleChange.bind(this, "g1OpensContainersInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Cleans up eating area after eating',
-                goal1NA: <Label check> <Input type="checkbox" name="g1CleansEatingAreaNA" id="g1CleansEatingAreaNA"value={this.state.fields["g1CleansEatingAreaNA"] || ""} onChange={this.handleChange.bind(this, "g1CleansEatingAreaNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1CleansEatingAreaPhysical" id="g1CleansEatingAreaPhysical"value={this.state.fields["g1CleansEatingAreaPhysical"] || ""} onChange={this.handleChange.bind(this, "g1CleansEatingAreaPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1CleansEatingAreaVerbal" id="g1CleansEatingAreaVerbal"value={this.state.fields["g1CleansEatingAreaVerbal"] || ""} onChange={this.handleChange.bind(this, "g1CleansEatingAreaVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1CleansEatingAreaInitiates" id="g1CleansEatingAreaInitiates"value={this.state.fields["g1CleansEatingAreaInitiates"] || ""} onChange={this.handleChange.bind(this, "g1CleansEatingAreaInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Uses caution with hot items',
-                goal1NA: <Label check> <Input type="checkbox" name="g1HotCautionNA" id="g1HotCautionNA"value={this.state.fields["g1HotCautionNA"] || ""} onChange={this.handleChange.bind(this, "g1HotCautionNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1HotCautionPhysical" id="g1HotCautionPhysical"value={this.state.fields["g1HotCautionPhysical"] || ""} onChange={this.handleChange.bind(this, "g1HotCautionPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1HotCautionVerbal" id="g1HotCautionVerbal"value={this.state.fields["g1HotCautionVerbal"] || ""} onChange={this.handleChange.bind(this, "g1HotCautionVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1HotCautionInitiates" id="g1HotCautionInitiates"value={this.state.fields["g1HotCautionInitiates"] || ""} onChange={this.handleChange.bind(this, "g1HotCautionInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: <div className={"sub-section"}>Social Skills</div>,
-                goal1NA: '',
-                goal1Physical: '',
-                goal1Verbal: '',
-                goal1Initiates: ''
-            }, {
-                goal1Category: 'Appropriate with near peers',
-                goal1NA: <Label check> <Input type="checkbox" name="g1NearPeersNA" id="g1NearPeersNA"value={this.state.fields["g1NearPeersNA"] || ""} onChange={this.handleChange.bind(this, "g1NearPeersNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1NearPeersPhysical" id="g1NearPeersPhysical"value={this.state.fields["g1NearPeersPhysical"] || ""} onChange={this.handleChange.bind(this, "g1NearPeersPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1NearPeersVerbal" id="g1NearPeersVerbal"value={this.state.fields["g1NearPeersVerbal"] || ""} onChange={this.handleChange.bind(this, "g1NearPeersVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1NearPeersInitiates" id="g1NearPeersInitiates"value={this.state.fields["g1NearPeersInitiates"] || ""} onChange={this.handleChange.bind(this, "g1NearPeersInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Shows interest in others',
-                goal1NA: <Label check> <Input type="checkbox" name="g1InterestInOthersNA" id="g1InterestInOthersNA"value={this.state.fields["g1InterestInOthersNA"] || ""} onChange={this.handleChange.bind(this, "g1InterestInOthersNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1InterestInOthersPhysical" id="g1InterestInOthersPhysical"value={this.state.fields["g1InterestInOthersPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InterestInOthersPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1InterestInOthersVerbal" id="g1InterestInOthersVerbal"value={this.state.fields["g1InterestInOthersVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InterestInOthersVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1InterestInOthersInitiates" id="g1InterestInOthersInitiates"value={this.state.fields["g1InterestInOthersInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InterestInOthersInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Sits appropriately in small groups (3-5)',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SitSmallGroupNA" id="g1SitSmallGroupNA"value={this.state.fields["g1SitSmallGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1SitSmallGroupNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SitSmallGroupPhysical" id="g1SitSmallGroupPhysical"value={this.state.fields["g1SitSmallGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SitSmallGroupPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1SitSmallGroupVerbal" id="g1SitSmallGroupVerbal"value={this.state.fields["g1SitSmallGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SitSmallGroupVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1SitSmallGroupInitiates" id="g1SitSmallGroupInitiates"value={this.state.fields["g1SitSmallGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SitSmallGroupInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Attends to instructor in small groups (3-5)',
-                goal1NA: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupNA" id="g1InstructorSmallGroupNA"value={this.state.fields["g1InstructorSmallGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1InstructorSmallGroupNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupPhysical" id="g1InstructorSmallGroupPhysical"value={this.state.fields["g1InstructorSmallGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InstructorSmallGroupPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupVerbal" id="g1InstructorSmallGroupVerbal"value={this.state.fields["g1InstructorSmallGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InstructorSmallGroupVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupInitiates" id="g1InstructorSmallGroupInitiates"value={this.state.fields["g1InstructorSmallGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InstructorSmallGroupInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Follows instruction',
-                goal1NA: <Label check> <Input type="checkbox" name="g1InstructionNA" id="g1InstructionNA"value={this.state.fields["g1InstructionNA"] || ""} onChange={this.handleChange.bind(this, "g1InstructionNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1InstructionPhysical" id="g1InstructionPhysical"value={this.state.fields["g1InstructionPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InstructionPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructionVerbal" id="g1InstructionVerbal"value={this.state.fields["g1InstructionVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InstructionVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructionInitiates" id="g1InstructionInitiates"value={this.state.fields["g1InstructionInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InstructionInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Takes turns',
-                goal1NA: <Label check> <Input type="checkbox" name="g1TakesTurnsNA" id="g1TakesTurnsNA"value={this.state.fields["g1TakesTurnsNA"] || ""} onChange={this.handleChange.bind(this, "g1TakesTurnsNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1TakesTurnsPhysical" id="g1TakesTurnsPhysical"value={this.state.fields["g1TakesTurnsPhysical"] || ""} onChange={this.handleChange.bind(this, "g1TakesTurnsPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1TakesTurnsVerbal" id="g1TakesTurnsVerbal"value={this.state.fields["g1TakesTurnsVerbal"] || ""} onChange={this.handleChange.bind(this, "g1TakesTurnsVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1TakesTurnsInitiates" id="g1TakesTurnsInitiates"value={this.state.fields["g1TakesTurnsInitiates"] || ""} onChange={this.handleChange.bind(this, "g1TakesTurnsInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Shares',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SharesNA" id="g1SharesNA"value={this.state.fields["g1SharesNA"] || ""} onChange={this.handleChange.bind(this, "g1SharesNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SharesPhysical" id="g1SharesPhysical"value={this.state.fields["g1SharesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SharesPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1SharesVerbal" id="g1SharesVerbal"value={this.state.fields["g1SharesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SharesVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1SharesInitiates" id="g1SharesInitiates"value={this.state.fields["g1SharesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SharesInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Converses with others',
-                goal1NA: <Label check> <Input type="checkbox" name="g1ConverseOthersNA" id="g1ConverseOthersNA"value={this.state.fields["g1ConverseOthersNA"] || ""} onChange={this.handleChange.bind(this, "g1ConverseOthersNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1ConverseOthersPhysical" id="g1ConverseOthersPhysical"value={this.state.fields["g1ConverseOthersPhysical"] || ""} onChange={this.handleChange.bind(this, "g1ConverseOthersPhysical")}/> Physical Prompt </Label>,
-                goal1Verbal: <Label check> <Input type="checkbox" name="g1ConverseOthersVerbal" id="g1ConverseOthersVerbal"value={this.state.fields["g1ConverseOthersVerbal"] || ""} onChange={this.handleChange.bind(this, "g1ConverseOthersVerbal")}/> Verbal Prompt </Label>,
-                goal1Initiates: <Label check> <Input type="checkbox" name="g1ConverseOthersInitiates" id="g1ConverseOthersInitiates"value={this.state.fields["g1ConverseOthersInitiates"] || ""} onChange={this.handleChange.bind(this, "g1ConverseOthersInitiates")}/> Initiates Independently </Label>
-            }, {
-                goal1Category: 'Sits appropriately in large groups (3-5)',
-                goal1NA: <Label check> <Input type="checkbox" name="g1SitLargeGroupNA" id="g1SitLargeGroupNA"value={this.state.fields["g1SitLargeGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1SitLargeGroupNA")}/> N/A </Label>,
-                goal1Physical: <Label check> <Input type="checkbox" name="g1SitLargeGroupPhysical" id="g1SitLargeGroupPhysical"value={this.state.fields["g1SitLargeGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1SitLargeGroupPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1SitLargeGroupVerbal" id="g1SitLargeGroupVerbal"value={this.state.fields["g1SitLargeGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1SitLargeGroupVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1SitLargeGroupInitiates" id="g1SitLargeGroupInitiates"value={this.state.fields["g1SitLargeGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1SitLargeGroupInitiates")}/> Initiates Independently </Label>
+            goal1Category: 'Uses utensils properly when eating',
+            goal1NA: <Label check> <Input type="checkbox" name="g1UtensilsNA" id="g1UtensilsNA" checked={this.state.fields["g1UtensilsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1UtensilsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1UtensilsPhysical" id="g1UtensilsPhysical" checked={this.state.fields["g1UtensilsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1UtensilsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1UtensilsVerbal" id="g1UtensilsVerbal" checked={this.state.fields["g1UtensilsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1UtensilsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1UtensilsInitiates" id="g1UtensilsInitiates" checked={this.state.fields["g1UtensilsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1UtensilsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Opens food containers/wrappers',
+            goal1NA: <Label check> <Input type="checkbox" name="g1OpensContainersNA" id="g1OpensContainersNA" checked={this.state.fields["g1OpensContainersNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OpensContainersNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1OpensContainersPhysical" id="g1OpensContainersPhysical" checked={this.state.fields["g1OpensContainersPhysical"]  === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OpensContainersPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1OpensContainersVerbal" id="g1OpensContainersVerbal" checked={this.state.fields["g1OpensContainersVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OpensContainersVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1OpensContainersInitiates" id="g1OpensContainersInitiates" checked={this.state.fields["g1OpensContainersInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OpensContainersInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Cleans up eating area after eating',
+            goal1NA: <Label check> <Input type="checkbox" name="g1CleansEatingAreaNA" id="g1CleansEatingAreaNA" checked={this.state.fields["g1CleansEatingAreaNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1CleansEatingAreaNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1CleansEatingAreaPhysical" id="g1CleansEatingAreaPhysical" checked={this.state.fields["g1CleansEatingAreaPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1CleansEatingAreaPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1CleansEatingAreaVerbal" id="g1CleansEatingAreaVerbal" checked={this.state.fields["g1CleansEatingAreaVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1CleansEatingAreaVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1CleansEatingAreaInitiates" id="g1CleansEatingAreaInitiates" checked={this.state.fields["g1CleansEatingAreaInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1CleansEatingAreaInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Uses caution with hot items',
+            goal1NA: <Label check> <Input type="checkbox" name="g1HotCautionNA" id="g1HotCautionNA" checked={this.state.fields["g1HotCautionNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1HotCautionNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1HotCautionPhysical" id="g1HotCautionPhysical" checked={this.state.fields["g1HotCautionPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1HotCautionPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1HotCautionVerbal" id="g1HotCautionVerbal" checked={this.state.fields["g1HotCautionVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1HotCautionVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1HotCautionInitiates" id="g1HotCautionInitiates" checked={this.state.fields["g1HotCautionInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1HotCautionInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: <div className={"sub-section"}>Social Skills</div>,
+            goal1NA: '',
+            goal1Physical: '',
+            goal1Verbal: '',
+            goal1Initiates: ''
+        }, {
+            goal1Category: 'Appropriate with near peers',
+            goal1NA: <Label check> <Input type="checkbox" name="g1NearPeersNA" id="g1NearPeersNA" checked={this.state.fields["g1NearPeersNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1NearPeersNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1NearPeersPhysical" id="g1NearPeersPhysical" checked={this.state.fields["g1NearPeersPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1NearPeersPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1NearPeersVerbal" id="g1NearPeersVerbal" checked={this.state.fields["g1NearPeersVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1NearPeersVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1NearPeersInitiates" id="g1NearPeersInitiates" checked={this.state.fields["g1NearPeersInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1NearPeersInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Shows interest in others',
+            goal1NA: <Label check> <Input type="checkbox" name="g1InterestInOthersNA" id="g1InterestInOthersNA" checked={this.state.fields["g1InterestInOthersNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InterestInOthersNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1InterestInOthersPhysical" id="g1InterestInOthersPhysical" checked={this.state.fields["g1InterestInOthersPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InterestInOthersPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1InterestInOthersVerbal" id="g1InterestInOthersVerbal" checked={this.state.fields["g1InterestInOthersVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InterestInOthersVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1InterestInOthersInitiates" id="g1InterestInOthersInitiates" checked={this.state.fields["g1InterestInOthersInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InterestInOthersInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Sits appropriately in small groups (3-5)',
+            goal1NA: <Label check> <Input type="checkbox" name="g1SitSmallGroupNA" id="g1SitSmallGroupNA" checked={this.state.fields["g1SitSmallGroupNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitSmallGroupNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SitSmallGroupPhysical" id="g1SitSmallGroupPhysical" checked={this.state.fields["g1SitSmallGroupPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitSmallGroupPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SitSmallGroupVerbal" id="g1SitSmallGroupVerbal" checked={this.state.fields["g1SitSmallGroupVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitSmallGroupVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SitSmallGroupInitiates" id="g1SitSmallGroupInitiates" checked={this.state.fields["g1SitSmallGroupInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitSmallGroupInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Attends to instructor in small groups (3-5)',
+            goal1NA: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupNA" id="g1InstructorSmallGroupNA" checked={this.state.fields["g1InstructorSmallGroupNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructorSmallGroupNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupPhysical" id="g1InstructorSmallGroupPhysical" checked={this.state.fields["g1InstructorSmallGroupPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructorSmallGroupPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupVerbal" id="g1InstructorSmallGroupVerbal" checked={this.state.fields["g1InstructorSmallGroupVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructorSmallGroupVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorSmallGroupInitiates" id="g1InstructorSmallGroupInitiates" checked={this.state.fields["g1InstructorSmallGroupInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructorSmallGroupInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Follows instruction',
+            goal1NA: <Label check> <Input type="checkbox" name="g1InstructionNA" id="g1InstructionNA" checked={this.state.fields["g1InstructionNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructionNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1InstructionPhysical" id="g1InstructionPhysical" checked={this.state.fields["g1InstructionPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructionPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructionVerbal" id="g1InstructionVerbal" checked={this.state.fields["g1InstructionVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructionVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructionInitiates" id="g1InstructionInitiates" checked={this.state.fields["g1InstructionInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructionInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Takes turns',
+            goal1NA: <Label check> <Input type="checkbox" name="g1TakesTurnsNA" id="g1TakesTurnsNA" checked={this.state.fields["g1TakesTurnsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1TakesTurnsNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1TakesTurnsPhysical" id="g1TakesTurnsPhysical" checked={this.state.fields["g1TakesTurnsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1TakesTurnsPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1TakesTurnsVerbal" id="g1TakesTurnsVerbal" checked={this.state.fields["g1TakesTurnsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1TakesTurnsVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1TakesTurnsInitiates" id="g1TakesTurnsInitiates" checked={this.state.fields["g1TakesTurnsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1TakesTurnsInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Shares',
+            goal1NA: <Label check> <Input type="checkbox" name="g1SharesNA" id="g1SharesNA" checked={this.state.fields["g1SharesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SharesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SharesPhysical" id="g1SharesPhysical" checked={this.state.fields["g1SharesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SharesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SharesVerbal" id="g1SharesVerbal" checked={this.state.fields["g1SharesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SharesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SharesInitiates" id="g1SharesInitiates" checked={this.state.fields["g1SharesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SharesInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Converses with others',
+            goal1NA: <Label check> <Input type="checkbox" name="g1ConverseOthersNA" id="g1ConverseOthersNA" checked={this.state.fields["g1ConverseOthersNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ConverseOthersNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1ConverseOthersPhysical" id="g1ConverseOthersPhysical" checked={this.state.fields["g1ConverseOthersPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ConverseOthersPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1ConverseOthersVerbal" id="g1ConverseOthersVerbal" checked={this.state.fields["g1ConverseOthersVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ConverseOthersVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1ConverseOthersInitiates" id="g1ConverseOthersInitiates" checked={this.state.fields["g1ConverseOthersInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1ConverseOthersInitiates")}/> Initiates Independently </Label>
+        }, {
+            goal1Category: 'Sits appropriately in large groups (3-5)',
+            goal1NA: <Label check> <Input type="checkbox" name="g1SitLargeGroupNA" id="g1SitLargeGroupNA" checked={this.state.fields["g1SitLargeGroupNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitLargeGroupNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1SitLargeGroupPhysical" id="g1SitLargeGroupPhysical" checked={this.state.fields["g1SitLargeGroupPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitLargeGroupPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1SitLargeGroupVerbal" id="g1SitLargeGroupVerbal" checked={this.state.fields["g1SitLargeGroupVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitLargeGroupVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1SitLargeGroupInitiates" id="g1SitLargeGroupInitiates" checked={this.state.fields["g1SitLargeGroupInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SitLargeGroupInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Attends to instructor in large groups (3-5)',
-            goal1NA: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupNA" id="g1InstructorLargeGroupNA"value={this.state.fields["g1InstructorLargeGroupNA"] || ""} onChange={this.handleChange.bind(this, "g1InstructorLargeGroupNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupPhysical" id="g1InstructorLargeGroupPhysical"value={this.state.fields["g1InstructorLargeGroupPhysical"] || ""} onChange={this.handleChange.bind(this, "g1InstructorLargeGroupPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupVerbal" id="g1InstructorLargeGroupVerbal"value={this.state.fields["g1InstructorLargeGroupVerbal"] || ""} onChange={this.handleChange.bind(this, "g1InstructorLargeGroupVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupInitiates" id="g1InstructorLargeGroupInitiates"value={this.state.fields["g1InstructorLargeGroupInitiates"] || ""} onChange={this.handleChange.bind(this, "g1InstructorLargeGroupInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupNA" id="g1InstructorLargeGroupNA" checked={this.state.fields["g1InstructorLargeGroupNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructorLargeGroupNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupPhysical" id="g1InstructorLargeGroupPhysical" checked={this.state.fields["g1InstructorLargeGroupPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructorLargeGroupPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupVerbal" id="g1InstructorLargeGroupVerbal" checked={this.state.fields["g1InstructorLargeGroupVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructorLargeGroupVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1InstructorLargeGroupInitiates" id="g1InstructorLargeGroupInitiates" checked={this.state.fields["g1InstructorLargeGroupInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1InstructorLargeGroupInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Stands and waits independently during transitions',
-            goal1NA: <Label check> <Input type="checkbox" name="g1StandWaitNA" id="g1StandWaitNA"value={this.state.fields["g1StandWaitNA"] || ""} onChange={this.handleChange.bind(this, "g1StandWaitNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1StandWaitPhysical" id="g1StandWaitPhysical"value={this.state.fields["g1StandWaitPhysical"] || ""} onChange={this.handleChange.bind(this, "g1StandWaitPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1StandWaitVerbal" id="g1StandWaitVerbal"value={this.state.fields["g1StandWaitVerbal"] || ""} onChange={this.handleChange.bind(this, "g1StandWaitVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1StandWaitInitiates" id="g1StandWaitInitiates"value={this.state.fields["g1StandWaitInitiates"] || ""} onChange={this.handleChange.bind(this, "g1StandWaitInitiates")}/> Initiates Independently </Label>
+            goal1NA: <Label check> <Input type="checkbox" name="g1StandWaitNA" id="g1StandWaitNA" checked={this.state.fields["g1StandWaitNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1StandWaitNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1StandWaitPhysical" id="g1StandWaitPhysical" checked={this.state.fields["g1StandWaitPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1StandWaitPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1StandWaitVerbal" id="g1StandWaitVerbal" checked={this.state.fields["g1StandWaitVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1StandWaitVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1StandWaitInitiates" id="g1StandWaitInitiates" checked={this.state.fields["g1StandWaitInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1StandWaitInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Understands simple rules of the classroom',
-            goal1NA: <Label check> <Input type="checkbox" name="g1UnderstandsRulesNA" id="g1UnderstandsRulesNA"value={this.state.fields["g1UnderstandsRulesNA"] || ""} onChange={this.handleChange.bind(this, "g1UnderstandsRulesNA")}/> N/A </Label>,
-            goal1Physical: <Label check> <Input type="checkbox" name="g1UnderstandsRulesPhysical" id="g1UnderstandsRulesPhysical"value={this.state.fields["g1UnderstandsRulesPhysical"] || ""} onChange={this.handleChange.bind(this, "g1UnderstandsRulesPhysical")}/> Physical Prompt </Label>,
-            goal1Verbal: <Label check> <Input type="checkbox" name="g1UnderstandsRulesVerbal" id="g1UnderstandsRulesVerbal"value={this.state.fields["g1UnderstandsRulesVerbal"] || ""} onChange={this.handleChange.bind(this, "g1UnderstandsRulesVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1UnderstandsRulesInitiates" id="g1UnderstandsRulesInitiates"value={this.state.fields["g1UnderstandsRulesInitiates"] || ""} onChange={this.handleChange.bind(this, "g1UnderstandsRulesInitiates")}/> Initiates Independently </Label>
-        }]
+            goal1NA: <Label check> <Input type="checkbox" name="g1UnderstandsRulesNA" id="g1UnderstandsRulesNA" checked={this.state.fields["g1UnderstandsRulesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1UnderstandsRulesNA")}/> N/A </Label>,
+            goal1Physical: <Label check> <Input type="checkbox" name="g1UnderstandsRulesPhysical" id="g1UnderstandsRulesPhysical" checked={this.state.fields["g1UnderstandsRulesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1UnderstandsRulesPhysical")}/> Physical Prompt </Label>,
+            goal1Verbal: <Label check> <Input type="checkbox" name="g1UnderstandsRulesVerbal" id="g1UnderstandsRulesVerbal" checked={this.state.fields["g1UnderstandsRulesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1UnderstandsRulesVerbal")}/> Verbal Prompt </Label>,
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1UnderstandsRulesInitiates" id="g1UnderstandsRulesInitiates" checked={this.state.fields["g1UnderstandsRulesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1UnderstandsRulesInitiates")}/> Initiates Independently </Label>
+        }];
         const level2GoalsData =  [{
             goal2Category: <div className={"sub-section"}>Communication</div>,
             goal2NA: '',
@@ -8287,64 +9306,64 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: ''
         }, {
             goal2Category: 'Gets help if his/her feelings bother him/her',
-            goal2NA: <Label check> <Input type="checkbox" name="g2FeelingsHelpNA" id="g2FeelingsHelpNA"value={this.state.fields["g2FeelingsHelpNA"] || ""} onChange={this.handleChange.bind(this, "g2FeelingsHelpNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2FeelingsHelpPhysical" id="g2FeelingsHelpPhysical"value={this.state.fields["g2FeelingsHelpPhysical"] || ""} onChange={this.handleChange.bind(this, "g2FeelingsHelpPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2FeelingsHelpVerbal" id="g2FeelingsHelpVerbal"value={this.state.fields["g2FeelingsHelpVerbal"] || ""} onChange={this.handleChange.bind(this, "g2FeelingsHelpVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2FeelingsHelpInitiates" id="g2FeelingsHelpInitiates"value={this.state.fields["g2FeelingsHelpInitiates"] || ""} onChange={this.handleChange.bind(this, "g2FeelingsHelpInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2FeelingsHelpNA" id="g2FeelingsHelpNA" checked={this.state.fields["g2FeelingsHelpNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FeelingsHelpNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2FeelingsHelpPhysical" id="g2FeelingsHelpPhysical" checked={this.state.fields["g2FeelingsHelpPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FeelingsHelpPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2FeelingsHelpVerbal" id="g2FeelingsHelpVerbal" checked={this.state.fields["g2FeelingsHelpVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FeelingsHelpVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2FeelingsHelpInitiates" id="g2FeelingsHelpInitiates" checked={this.state.fields["g2FeelingsHelpInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FeelingsHelpInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how he/she is feeling (angry, happy, etc.)',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ExplainFeelingsNA" id="g2ExplainFeelingsNA"value={this.state.fields["g2ExplainFeelingsNA"] || ""} onChange={this.handleChange.bind(this, "g2ExplainFeelingsNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ExplainFeelingsPhysical" id="g2ExplainFeelingsPhysical"value={this.state.fields["g2ExplainFeelingsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ExplainFeelingsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ExplainFeelingsVerbal" id="g2ExplainFeelingsVerbal"value={this.state.fields["g2ExplainFeelingsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ExplainFeelingsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ExplainFeelingsInitiates" id="g2ExplainFeelingsInitiates"value={this.state.fields["g2ExplainFeelingsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ExplainFeelingsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ExplainFeelingsNA" id="g2ExplainFeelingsNA" checked={this.state.fields["g2ExplainFeelingsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ExplainFeelingsNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ExplainFeelingsPhysical" id="g2ExplainFeelingsPhysical" checked={this.state.fields["g2ExplainFeelingsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ExplainFeelingsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ExplainFeelingsVerbal" id="g2ExplainFeelingsVerbal" checked={this.state.fields["g2ExplainFeelingsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ExplainFeelingsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ExplainFeelingsInitiates" id="g2ExplainFeelingsInitiates" checked={this.state.fields["g2ExplainFeelingsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ExplainFeelingsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Asks for help when he/she needs it',
-            goal2NA: <Label check> <Input type="checkbox" name="g2AsksHelpNA" id="g2AsksHelpNA"value={this.state.fields["g2AsksHelpNA"] || ""} onChange={this.handleChange.bind(this, "g2AsksHelpNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2AsksHelpPhysical" id="g2AsksHelpPhysical"value={this.state.fields["g2AsksHelpPhysical"] || ""} onChange={this.handleChange.bind(this, "g2AsksHelpPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2AsksHelpVerbal" id="g2AsksHelpVerbal"value={this.state.fields["g2AsksHelpVerbal"] || ""} onChange={this.handleChange.bind(this, "g2AsksHelpVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2AsksHelpInitiates" id="g2AsksHelpInitiates"value={this.state.fields["g2AsksHelpInitiates"] || ""} onChange={this.handleChange.bind(this, "g2AsksHelpInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2AsksHelpNA" id="g2AsksHelpNA" checked={this.state.fields["g2AsksHelpNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AsksHelpNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2AsksHelpPhysical" id="g2AsksHelpPhysical" checked={this.state.fields["g2AsksHelpPhysical"]  === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AsksHelpPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2AsksHelpVerbal" id="g2AsksHelpVerbal" checked={this.state.fields["g2AsksHelpVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AsksHelpVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2AsksHelpInitiates" id="g2AsksHelpInitiates" checked={this.state.fields["g2AsksHelpInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AsksHelpInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Talks with an adult he/she feels close to',
-            goal2NA: <Label check> <Input type="checkbox" name="g2TalksToAdultNA" id="g2TalksToAdultNA"value={this.state.fields["g2TalksToAdultNA"] || ""} onChange={this.handleChange.bind(this, "g2TalksToAdultNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2TalksToAdultPhysical" id="g2TalksToAdultPhysical"value={this.state.fields["g2TalksToAdultPhysical"] || ""} onChange={this.handleChange.bind(this, "g2TalksToAdultPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2TalksToAdultVerbal" id="g2TalksToAdultVerbal"value={this.state.fields["g2TalksToAdultVerbal"] || ""} onChange={this.handleChange.bind(this, "g2TalksToAdultVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2TalksToAdultInitiates" id="g2TalksToAdultInitiates"value={this.state.fields["g2TalksToAdultInitiates"] || ""} onChange={this.handleChange.bind(this, "g2TalksToAdultInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2TalksToAdultNA" id="g2TalksToAdultNA" checked={this.state.fields["g2TalksToAdultNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TalksToAdultNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2TalksToAdultPhysical" id="g2TalksToAdultPhysical" checked={this.state.fields["g2TalksToAdultPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TalksToAdultPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2TalksToAdultVerbal" id="g2TalksToAdultVerbal" checked={this.state.fields["g2TalksToAdultVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TalksToAdultVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2TalksToAdultInitiates" id="g2TalksToAdultInitiates" checked={this.state.fields["g2TalksToAdultInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TalksToAdultInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Talks over problems with a friend',
-            goal2NA: <Label check> <Input type="checkbox" name="g2TalksToFriendNA" id="g2TalksToFriendNA"value={this.state.fields["g2TalksToFriendNA"] || ""} onChange={this.handleChange.bind(this, "g2TalksToFriendNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2TalksToFriendPhysical" id="g2TalksToFriendPhysical"value={this.state.fields["g2TalksToFriendPhysical"] || ""} onChange={this.handleChange.bind(this, "g2TalksToFriendPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2TalksToFriendVerbal" id="g2TalksToFriendVerbal"value={this.state.fields["g2TalksToFriendVerbal"] || ""} onChange={this.handleChange.bind(this, "g2TalksToFriendVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2TalksToFriendInitiates" id="g2TalksToFriendInitiates"value={this.state.fields["g2TalksToFriendInitiates"] || ""} onChange={this.handleChange.bind(this, "g2TalksToFriendInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2TalksToFriendNA" id="g2TalksToFriendNA" checked={this.state.fields["g2TalksToFriendNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TalksToFriendNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2TalksToFriendPhysical" id="g2TalksToFriendPhysical" checked={this.state.fields["g2TalksToFriendPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TalksToFriendPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2TalksToFriendVerbal" id="g2TalksToFriendVerbal" checked={this.state.fields["g2TalksToFriendVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TalksToFriendVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2TalksToFriendInitiates" id="g2TalksToFriendInitiates" checked={this.state.fields["g2TalksToFriendInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TalksToFriendInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Accepts compliments or praise without feeling embarrassed',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ComplimentNA" id="g2ComplimentNA"value={this.state.fields["g2ComplimentNA"] || ""} onChange={this.handleChange.bind(this, "g2ComplimentNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ComplimentPhysical" id="g2ComplimentPhysical"value={this.state.fields["g2ComplimentPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ComplimentPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ComplimentVerbal" id="g2ComplimentVerbal"value={this.state.fields["g2ComplimentVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ComplimentVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ComplimentInitiates" id="g2ComplimentInitiates"value={this.state.fields["g2ComplimentInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ComplimentInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ComplimentNA" id="g2ComplimentNA" checked={this.state.fields["g2ComplimentNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComplimentNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ComplimentPhysical" id="g2ComplimentPhysical" checked={this.state.fields["g2ComplimentPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComplimentPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ComplimentVerbal" id="g2ComplimentVerbal" checked={this.state.fields["g2ComplimentVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComplimentVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ComplimentInitiates" id="g2ComplimentInitiates" checked={this.state.fields["g2ComplimentInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComplimentInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Clearly presents his/her ideas to others',
-            goal2NA: <Label check> <Input type="checkbox" name="g2PresentsIdeasNA" id="g2PresentsIdeasNA"value={this.state.fields["g2PresentsIdeasNA"] || ""} onChange={this.handleChange.bind(this, "g2PresentsIdeasNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2PresentsIdeasPhysical" id="g2PresentsIdeasPhysical"value={this.state.fields["g2PresentsIdeasPhysical"] || ""} onChange={this.handleChange.bind(this, "g2PresentsIdeasPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2PresentsIdeasVerbal" id="g2PresentsIdeasVerbal"value={this.state.fields["g2PresentsIdeasVerbal"] || ""} onChange={this.handleChange.bind(this, "g2PresentsIdeasVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2PresentsIdeasInitiates" id="g2PresentsIdeasInitiates"value={this.state.fields["g2PresentsIdeasInitiates"] || ""} onChange={this.handleChange.bind(this, "g2PresentsIdeasInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2PresentsIdeasNA" id="g2PresentsIdeasNA" checked={this.state.fields["g2PresentsIdeasNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PresentsIdeasNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2PresentsIdeasPhysical" id="g2PresentsIdeasPhysical" checked={this.state.fields["g2PresentsIdeasPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PresentsIdeasPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2PresentsIdeasVerbal" id="g2PresentsIdeasVerbal" checked={this.state.fields["g2PresentsIdeasVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PresentsIdeasVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2PresentsIdeasInitiates" id="g2PresentsIdeasInitiates" checked={this.state.fields["g2PresentsIdeasInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PresentsIdeasInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Asks questions to make sure he/she understands something someone has said',
-            goal2NA: <Label check> <Input type="checkbox" name="g2AsksQuestionsNA" id="g2AsksQuestionsNA"value={this.state.fields["g2AsksQuestionsNA"] || ""} onChange={this.handleChange.bind(this, "g2AsksQuestionsNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2AsksQuestionsPhysical" id="g2AsksQuestionsPhysical"value={this.state.fields["g2AsksQuestionsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2AsksQuestionsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2AsksQuestionsVerbal" id="g2AsksQuestionsVerbal"value={this.state.fields["g2AsksQuestionsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2AsksQuestionsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2AsksQuestionsInitiates" id="g2AsksQuestionsInitiates"value={this.state.fields["g2AsksQuestionsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2AsksQuestionsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2AsksQuestionsNA" id="g2AsksQuestionsNA" checked={this.state.fields["g2AsksQuestionsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AsksQuestionsNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2AsksQuestionsPhysical" id="g2AsksQuestionsPhysical" checked={this.state.fields["g2AsksQuestionsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AsksQuestionsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2AsksQuestionsVerbal" id="g2AsksQuestionsVerbal" checked={this.state.fields["g2AsksQuestionsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AsksQuestionsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2AsksQuestionsInitiates" id="g2AsksQuestionsInitiates" checked={this.state.fields["g2AsksQuestionsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AsksQuestionsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Tries to find a compromise when he/she disagrees with someone',
-            goal2NA: <Label check> <Input type="checkbox" name="g2CompromiseNA" id="g2CompromiseNA"value={this.state.fields["g2CompromiseNA"] || ""} onChange={this.handleChange.bind(this, "g2CompromiseNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2CompromisePhysical" id="g2CompromisePhysical"value={this.state.fields["g2CompromisePhysical"] || ""} onChange={this.handleChange.bind(this, "g2CompromisePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2CompromiseVerbal" id="g2CompromiseVerbal"value={this.state.fields["g2CompromiseVerbal"] || ""} onChange={this.handleChange.bind(this, "g2CompromiseVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2CompromiseInitiates" id="g2CompromiseInitiates"value={this.state.fields["g2CompromiseInitiates"] || ""} onChange={this.handleChange.bind(this, "g2CompromiseInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2CompromiseNA" id="g2CompromiseNA" checked={this.state.fields["g2CompromiseNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CompromiseNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2CompromisePhysical" id="g2CompromisePhysical" checked={this.state.fields["g2CompromisePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CompromisePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2CompromiseVerbal" id="g2CompromiseVerbal" checked={this.state.fields["g2CompromiseVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CompromiseVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2CompromiseInitiates" id="g2CompromiseInitiates" checked={this.state.fields["g2CompromiseInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CompromiseInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Accepts constructive feedback with regards to assigned tasks',
-            goal2NA: <Label check> <Input type="checkbox" name="g2FeedbackNA" id="g2FeedbackNA"value={this.state.fields["g2FeedbackNA"] || ""} onChange={this.handleChange.bind(this, "g2FeedbackNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2FeedbackPhysical" id="g2FeedbackPhysical"value={this.state.fields["g2FeedbackPhysical"] || ""} onChange={this.handleChange.bind(this, "g2FeedbackPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2FeedbackVerbal" id="g2FeedbackVerbal"value={this.state.fields["g2FeedbackVerbal"] || ""} onChange={this.handleChange.bind(this, "g2FeedbackVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2FeedbackInitiates" id="g2FeedbackInitiates"value={this.state.fields["g2FeedbackInitiates"] || ""} onChange={this.handleChange.bind(this, "g2FeedbackInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2FeedbackNA" id="g2FeedbackNA" checked={this.state.fields["g2FeedbackNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FeedbackNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2FeedbackPhysical" id="g2FeedbackPhysical" checked={this.state.fields["g2FeedbackPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FeedbackPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2FeedbackVerbal" id="g2FeedbackVerbal" checked={this.state.fields["g2FeedbackVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FeedbackVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2FeedbackInitiates" id="g2FeedbackInitiates" checked={this.state.fields["g2FeedbackInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FeedbackInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: <div className={"sub-section"}>Daily Living</div>,
             goal2NA: '',
@@ -8353,100 +9372,100 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: ''
         }, {
             goal2Category: 'Uses the microwave',
-            goal2NA: <Label check> <Input type="checkbox" name="g2MicrowaveNA" id="g2MicrowaveNA"value={this.state.fields["g2MicrowaveNA"] || ""} onChange={this.handleChange.bind(this, "g2MicrowaveNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2MicrowavePhysical" id="g2MicrowavePhysical"value={this.state.fields["g2MicrowavePhysical"] || ""} onChange={this.handleChange.bind(this, "g2MicrowavePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2MicrowaveVerbal" id="g2MicrowaveHelpVerbal"value={this.state.fields["g2MicrowaveVerbal"] || ""} onChange={this.handleChange.bind(this, "g2MicrowaveVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2MicrowaveInitiates" id="g2MicrowaveInitiates"value={this.state.fields["g2MicrowaveInitiates"] || ""} onChange={this.handleChange.bind(this, "g2MicrowaveInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2MicrowaveNA" id="g2MicrowaveNA" checked={this.state.fields["g2MicrowaveNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2MicrowavePhysical" id="g2MicrowavePhysical" checked={this.state.fields["g2MicrowavePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowavePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2MicrowaveVerbal" id="g2MicrowaveHelpVerbal" checked={this.state.fields["g2MicrowaveVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2MicrowaveInitiates" id="g2MicrowaveInitiates" checked={this.state.fields["g2MicrowaveInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Uses the stove top',
-            goal2NA: <Label check> <Input type="checkbox" name="g2StoveTopNA" id="g2StoveTopNA"value={this.state.fields["g2StoveTopNA"] || ""} onChange={this.handleChange.bind(this, "g2StoveTopNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2StoveTopPhysical" id="g2StoveTopPhysical"value={this.state.fields["g2StoveTopPhysical"] || ""} onChange={this.handleChange.bind(this, "g2StoveTopPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2StoveTopVerbal" id="g2StoveTopVerbal"value={this.state.fields["g2StoveTopVerbal"] || ""} onChange={this.handleChange.bind(this, "g2StoveTopVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2StoveTopInitiates" id="g2StoveTopInitiates"value={this.state.fields["g2StoveTopInitiates"] || ""} onChange={this.handleChange.bind(this, "g2StoveTopInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2StoveTopNA" id="g2StoveTopNA" checked={this.state.fields["g2StoveTopNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2StoveTopNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2StoveTopPhysical" id="g2StoveTopPhysical" checked={this.state.fields["g2StoveTopPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2StoveTopPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2StoveTopVerbal" id="g2StoveTopVerbal" checked={this.state.fields["g2StoveTopVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2StoveTopVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2StoveTopInitiates" id="g2StoveTopInitiates" checked={this.state.fields["g2StoveTopInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2StoveTopInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Uses the oven',
-            goal2NA: <Label check> <Input type="checkbox" name="g2OvenNA" id="g2OvenNA"value={this.state.fields["g2OvenNA"] || ""} onChange={this.handleChange.bind(this, "g2OvenNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2OvenPhysical" id="g2OvenPhysical"value={this.state.fields["g2OvenPhysical"] || ""} onChange={this.handleChange.bind(this, "g2OvenPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2OvenVerbal" id="g2OvenVerbal"value={this.state.fields["g2OvenVerbal"] || ""} onChange={this.handleChange.bind(this, "g2OvenVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2OvenInitiates" id="g2OvenInitiates"value={this.state.fields["g2OvenInitiates"] || ""} onChange={this.handleChange.bind(this, "g2OvenInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2OvenNA" id="g2OvenNA" checked={this.state.fields["g2OvenNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OvenNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2OvenPhysical" id="g2OvenPhysical" checked={this.state.fields["g2OvenPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OvenPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2OvenVerbal" id="g2OvenVerbal" checked={this.state.fields["g2OvenVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OvenVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2OvenInitiates" id="g2OvenInitiates" checked={this.state.fields["g2OvenInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OvenInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Stores food so it doesn\'t spoil or go bad',
-            goal2NA: <Label check> <Input type="checkbox" name="g2StoresFoodNA" id="g2StoresFoodNA"value={this.state.fields["g2StoresFoodNA"] || ""} onChange={this.handleChange.bind(this, "g2StoresFoodNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2StoresFoodPhysical" id="g2StoresFoodPhysical"value={this.state.fields["g2StoresFoodPhysical"] || ""} onChange={this.handleChange.bind(this, "g2StoresFoodPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2StoresFoodVerbal" id="g2StoresFoodVerbal"value={this.state.fields["g2StoresFoodVerbal"] || ""} onChange={this.handleChange.bind(this, "g2StoresFoodVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2StoresFoodInitiates" id="g2StoresFoodInitiates"value={this.state.fields["g2StoresFoodInitiates"] || ""} onChange={this.handleChange.bind(this, "g2StoresFoodInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2StoresFoodNA" id="g2StoresFoodNA" checked={this.state.fields["g2StoresFoodNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2StoresFoodNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2StoresFoodPhysical" id="g2StoresFoodPhysical" checked={this.state.fields["g2StoresFoodPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2StoresFoodPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2StoresFoodVerbal" id="g2StoresFoodVerbal" checked={this.state.fields["g2StoresFoodVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2StoresFoodVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2StoresFoodInitiates" id="g2StoresFoodInitiates" checked={this.state.fields["g2StoresFoodInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2StoresFoodInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can fix simple meals for himself/herself',
-            goal2NA: <Label check> <Input type="checkbox" name="g2SimpleMealsNA" id="g2SimpleMealsNA"value={this.state.fields["g2SimpleMealsNA"] || ""} onChange={this.handleChange.bind(this, "g2SimpleMealsNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SimpleMealsPhysical" id="g2SimpleMealsPhysical"value={this.state.fields["g2SimpleMealsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2SimpleMealsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2SimpleMealsVerbal" id="g2SimpleMealsVerbal"value={this.state.fields["g2SimpleMealsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2SimpleMealsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2SimpleMealsInitiates" id="g2SimpleMealsInitiates"value={this.state.fields["g2SimpleMealsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2SimpleMealsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2SimpleMealsNA" id="g2SimpleMealsNA" checked={this.state.fields["g2SimpleMealsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SimpleMealsNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SimpleMealsPhysical" id="g2SimpleMealsPhysical" checked={this.state.fields["g2SimpleMealsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SimpleMealsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2SimpleMealsVerbal" id="g2SimpleMealsVerbal" checked={this.state.fields["g2SimpleMealsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SimpleMealsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2SimpleMealsInitiates" id="g2SimpleMealsInitiates" checked={this.state.fields["g2SimpleMealsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SimpleMealsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can fix more complex meals by gathering ingredients\nand following box instructions or recipes',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ComplexMealsNA" id="g2ComplexMealsNA"value={this.state.fields["g2ComplexMealsNA"] || ""} onChange={this.handleChange.bind(this, "g2ComplexMealsNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ComplexMealsPhysical" id="g2ComplexMealsPhysical"value={this.state.fields["g2ComplexMealsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ComplexMealsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ComplexMealsVerbal" id="g2ComplexMealsVerbal"value={this.state.fields["g2ComplexMealsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ComplexMealsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ComplexMealsInitiates" id="g2ComplexMealsInitiates"value={this.state.fields["g2ComplexMealsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ComplexMealsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ComplexMealsNA" id="g2ComplexMealsNA" checked={this.state.fields["g2ComplexMealsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComplexMealsNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ComplexMealsPhysical" id="g2ComplexMealsPhysical" checked={this.state.fields["g2ComplexMealsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComplexMealsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ComplexMealsVerbal" id="g2ComplexMealsVerbal" checked={this.state.fields["g2ComplexMealsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComplexMealsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ComplexMealsInitiates" id="g2ComplexMealsInitiates" checked={this.state.fields["g2ComplexMealsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComplexMealsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can load/unload dishwasher',
-            goal2NA: <Label check> <Input type="checkbox" name="g2DishwasherNA" id="g2DishwasherNA"value={this.state.fields["g2DishwasherNA"] || ""} onChange={this.handleChange.bind(this, "g2DishwasherNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2DishwasherPhysical" id="g2DishwasherPhysical"value={this.state.fields["g2DishwasherPhysical"] || ""} onChange={this.handleChange.bind(this, "g2DishwasherPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2DishwasherVerbal" id="g2DishwasherVerbal"value={this.state.fields["g2DishwasherVerbal"] || ""} onChange={this.handleChange.bind(this, "g2DishwasherVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2DishwasherInitiates" id="g2DishwasherInitiates"value={this.state.fields["g2DishwasherInitiates"] || ""} onChange={this.handleChange.bind(this, "g2DishwasherInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2DishwasherNA" id="g2DishwasherNA" checked={this.state.fields["g2DishwasherNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DishwasherNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2DishwasherPhysical" id="g2DishwasherPhysical" checked={this.state.fields["g2DishwasherPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DishwasherPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2DishwasherVerbal" id="g2DishwasherVerbal" checked={this.state.fields["g2DishwasherVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DishwasherVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2DishwasherInitiates" id="g2DishwasherInitiates" checked={this.state.fields["g2DishwasherInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DishwasherInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can hand wash/dry/put away dishes',
-            goal2NA: <Label check> <Input type="checkbox" name="g2WashDishesNA" id="g2WashDishesNA"value={this.state.fields["g2WashDishesNA"] || ""} onChange={this.handleChange.bind(this, "g2WashDishesNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2WashDishesPhysical" id="g2WashDishesPhysical"value={this.state.fields["g2WashDishesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2WashDishesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2WashDishesVerbal" id="g2WashDishesVerbal"value={this.state.fields["g2WashDishesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2WashDishesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2WashDishesInitiates" id="g2WashDishesInitiates"value={this.state.fields["g2WashDishesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2WashDishesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2WashDishesNA" id="g2WashDishesNA"value={this.state.fields["g2WashDishesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2WashDishesPhysical" id="g2WashDishesPhysical"value={this.state.fields["g2WashDishesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2WashDishesVerbal" id="g2WashDishesVerbal"value={this.state.fields["g2WashDishesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2WashDishesInitiates" id="g2WashDishesInitiates"value={this.state.fields["g2WashDishesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can communicate meal preferences in a restaurant or other settings away from home',
-            goal2NA: <Label check> <Input type="checkbox" name="g2OrderMealsNA" id="g2OrderMealsNA"value={this.state.fields["g2OrderMealsNA"] || ""} onChange={this.handleChange.bind(this, "g2OrderMealsNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2OrderMealsPhysical" id="g2OrderMealsPhysical"value={this.state.fields["g2OrderMealsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2OrderMealsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2OrderMealsVerbal" id="g2OrderMealsVerbal"value={this.state.fields["g2OrderMealsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2OrderMealsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2OrderMealsInitiates" id="g2OrderMealsInitiates"value={this.state.fields["g2OrderMealsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2OrderMealsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2OrderMealsNA" id="g2OrderMealsNA" checked={this.state.fields["g2OrderMealsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OrderMealsNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2OrderMealsPhysical" id="g2OrderMealsPhysical" checked={this.state.fields["g2OrderMealsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OrderMealsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2OrderMealsVerbal" id="g2OrderMealsVerbal" checked={this.state.fields["g2OrderMealsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OrderMealsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2OrderMealsInitiates" id="g2OrderMealsInitiates" checked={this.state.fields["g2OrderMealsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OrderMealsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Keeps his/her living space clean',
-            goal2NA: <Label check> <Input type="checkbox" name="g2CleanSpaceNA" id="g2CleanSpaceNA"value={this.state.fields["g2CleanSpaceNA"] || ""} onChange={this.handleChange.bind(this, "g2CleanSpaceNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2CleanSpacePhysical" id="g2CleanSpacePhysical"value={this.state.fields["g2CleanSpacePhysical"] || ""} onChange={this.handleChange.bind(this, "g2CleanSpacePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2CleanSpaceVerbal" id="g2CleanSpaceVerbal"value={this.state.fields["g2CleanSpaceVerbal"] || ""} onChange={this.handleChange.bind(this, "g2CleanSpaceVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2CleanSpaceInitiates" id="g2CleanSpaceInitiates"value={this.state.fields["g2CleanSpaceInitiates"] || ""} onChange={this.handleChange.bind(this, "g2CleanSpaceInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2CleanSpaceNA" id="g2CleanSpaceNA" checked={this.state.fields["g2CleanSpaceNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CleanSpaceNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2CleanSpacePhysical" id="g2CleanSpacePhysical" checked={this.state.fields["g2CleanSpacePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CleanSpacePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2CleanSpaceVerbal" id="g2CleanSpaceVerbal" checked={this.state.fields["g2CleanSpaceVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CleanSpaceVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2CleanSpaceInitiates" id="g2CleanSpaceInitiates" checked={this.state.fields["g2CleanSpaceInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CleanSpaceInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Knows how to wash clothes according to the label (hand wash, dry clean, cold water, etc.)',
-            goal2NA: <Label check> <Input type="checkbox" name="g2WashClothesNA" id="g2WashClothesNA"value={this.state.fields["g2WashClothesNA"] || ""} onChange={this.handleChange.bind(this, "g2WashClothesNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2WashClothesPhysical" id="g2WashClothesPhysical"value={this.state.fields["g2WashClothesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2WashClothesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2WashClothesVerbal" id="g2WashClothesVerbal"value={this.state.fields["g2WashClothesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2WashClothesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2WashClothesInitiates" id="g2WashClothesInitiates"value={this.state.fields["g2WashClothesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2WashClothesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2WashClothesNA" id="g2WashClothesNA" checked={this.state.fields["g2WashClothesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashClothesNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2WashClothesPhysical" id="g2WashClothesPhysical" checked={this.state.fields["g2WashClothesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashClothesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2WashClothesVerbal" id="g2WashClothesVerbal" checked={this.state.fields["g2WashClothesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashClothesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2WashClothesInitiates" id="g2WashClothesInitiates" checked={this.state.fields["g2WashClothesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashClothesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Dresses and appropriately for season/occasion/destination',
-            goal2NA: <Label check> <Input type="checkbox" name="g2DressAppropriatelyNA" id="g2DressAppropriatelyNA"value={this.state.fields["g2DressAppropriatelyNA"] || ""} onChange={this.handleChange.bind(this, "g2DressAppropriatelyNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2DressAppropriatelyPhysical" id="g2DressAppropriatelyPhysical"value={this.state.fields["g2DressAppropriatelyPhysical"] || ""} onChange={this.handleChange.bind(this, "g2DressAppropriatelyPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2DressAppropriatelyVerbal" id="g2DressAppropriatelyVerbal"value={this.state.fields["g2DressAppropriatelyVerbal"] || ""} onChange={this.handleChange.bind(this, "g2DressAppropriatelyVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2DressAppropriatelyInitiates" id="g2DressAppropriatelyInitiates"value={this.state.fields["g2DressAppropriatelyInitiates"] || ""} onChange={this.handleChange.bind(this, "g2DressAppropriatelyInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2DressAppropriatelyNA" id="g2DressAppropriatelyNA" checked={this.state.fields["g2DressAppropriatelyNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DressAppropriatelyNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2DressAppropriatelyPhysical" id="g2DressAppropriatelyPhysical" checked={this.state.fields["g2DressAppropriatelyPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DressAppropriatelyPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2DressAppropriatelyVerbal" id="g2DressAppropriatelyVerbal" checked={this.state.fields["g2DressAppropriatelyVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DressAppropriatelyVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2DressAppropriatelyInitiates" id="g2DressAppropriatelyInitiates" checked={this.state.fields["g2DressAppropriatelyInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DressAppropriatelyInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Fixes his/her clothes when needed, like sewing on a button',
-            goal2NA: <Label check> <Input type="checkbox" name="g2FixClothesNA" id="g2FixClothesNA"value={this.state.fields["g2FixClothesNA"] || ""} onChange={this.handleChange.bind(this, "g2FixClothesNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2FixClothesPhysical" id="g2FixClothesPhysical"value={this.state.fields["g2FixClothesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2FixClothesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2FixClothesVerbal" id="g2FixClothesVerbal"value={this.state.fields["g2FixClothesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2FixClothesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2FixClothesInitiates" id="g2FixClothesInitiates"value={this.state.fields["g2FixClothesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2FixClothesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2FixClothesNA" id="g2FixClothesNA" checked={this.state.fields["g2FixClothesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FixClothesNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2FixClothesPhysical" id="g2FixClothesPhysical" checked={this.state.fields["g2FixClothesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FixClothesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2FixClothesVerbal" id="g2FixClothesVerbal" checked={this.state.fields["g2FixClothesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FixClothesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2FixClothesInitiates" id="g2FixClothesInitiates" checked={this.state.fields["g2FixClothesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FixClothesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Follows the basic fire prevention and safety rules for where he/she lives',
-            goal2NA: <Label check> <Input type="checkbox" name="g2FireRulesNA" id="g2FireRulesNA"value={this.state.fields["g2FireRulesNA"] || ""} onChange={this.handleChange.bind(this, "g2FireRulesNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2FireRulesPhysical" id="g2FireRulesPhysical"value={this.state.fields["g2FireRulesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2FireRulesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2FireRulesVerbal" id="g2FireRulesVerbal"value={this.state.fields["g2FireRulesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2FireRulesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2FireRulesInitiates" id="g2FireRulesInitiates"value={this.state.fields["g2FireRulesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2FireRulesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2FireRulesNA" id="g2FireRulesNA" checked={this.state.fields["g2FireRulesNA"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2FireRulesPhysical" id="g2FireRulesPhysical" checked={this.state.fields["g2FireRulesPhysical"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2FireRulesVerbal" id="g2FireRulesVerbal" checked={this.state.fields["g2FireRulesVerbal"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2FireRulesInitiates" id="g2FireRulesInitiates" checked={this.state.fields["g2FireRulesInitiates"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can self-monitor time management activities',
-            goal2NA: <Label check> <Input type="checkbox" name="g2TimeMgmtNA" id="g2TimeMgmtNA"value={this.state.fields["g2TimeMgmtNA"] || ""} onChange={this.handleChange.bind(this, "g2TimeMgmtNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2TimeMgmtPhysical" id="g2TimeMgmtPhysical"value={this.state.fields["g2TimeMgmtPhysical"] || ""} onChange={this.handleChange.bind(this, "g2TimeMgmtPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2TimeMgmtVerbal" id="g2TimeMgmtVerbal"value={this.state.fields["g2TimeMgmtVerbal"] || ""} onChange={this.handleChange.bind(this, "g2TimeMgmtVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2TimeMgmtInitiates" id="g2TimeMgmtInitiates"value={this.state.fields["g2TimeMgmtInitiates"] || ""} onChange={this.handleChange.bind(this, "g2TimeMgmtInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2TimeMgmtNA" id="g2TimeMgmtNA" checked={this.state.fields["g2TimeMgmtNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TimeMgmtNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2TimeMgmtPhysical" id="g2TimeMgmtPhysical" checked={this.state.fields["g2TimeMgmtPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TimeMgmtPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2TimeMgmtVerbal" id="g2TimeMgmtVerbal" checked={this.state.fields["g2TimeMgmtVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TimeMgmtVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2TimeMgmtInitiates" id="g2TimeMgmtInitiates" checked={this.state.fields["g2TimeMgmtInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TimeMgmtInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can monitor own sleep schedule (bedtime and setting an alarm to get up)',
-            goal2NA: <Label check> <Input type="checkbox" name="g2SleepSchedNA" id="g2SleepSchedNA"value={this.state.fields["g2SleepSchedNA"] || ""} onChange={this.handleChange.bind(this, "g2SleepSchedNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SleepSchedPhysical" id="g2SleepSchedPhysical"value={this.state.fields["g2SleepSchedPhysical"] || ""} onChange={this.handleChange.bind(this, "g2SleepSchedPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2SleepSchedVerbal" id="g2SleepSchedVerbal"value={this.state.fields["g2SleepSchedVerbal"] || ""} onChange={this.handleChange.bind(this, "g2SleepSchedVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2SleepSchedInitiates" id="g2SleepSchedInitiates"value={this.state.fields["g2SleepSchedInitiates"] || ""} onChange={this.handleChange.bind(this, "g2SleepSchedInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2SleepSchedNA" id="g2SleepSchedNA" checked={this.state.fields["g2SleepSchedNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SleepSchedNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SleepSchedPhysical" id="g2SleepSchedPhysical" checked={this.state.fields["g2SleepSchedPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SleepSchedPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2SleepSchedVerbal" id="g2SleepSchedVerbal" checked={this.state.fields["g2SleepSchedVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SleepSchedVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2SleepSchedInitiates" id="g2SleepSchedInitiates" checked={this.state.fields["g2SleepSchedInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SleepSchedInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: <div className={"sub-section"}>Housing and Money Management</div>,
             goal2NA: '',
@@ -8455,130 +9474,130 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: ''
         }, {
             goal2Category: 'Can complete a rental or lease agreement',
-            goal2NA: <Label check> <Input type="checkbox" name="g2RentAgreementNA" id="g2RentAgreementNA"value={this.state.fields["g2RentAgreementNA"] || ""} onChange={this.handleChange.bind(this, "g2RentAgreementNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2RentAgreementPhysical" id="g2RentAgreementPhysical"value={this.state.fields["g2RentAgreementPhysical"] || ""} onChange={this.handleChange.bind(this, "g2RentAgreementPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2RentAgreementVerbal" id="g2RentAgreementVerbal"value={this.state.fields["g2RentAgreementVerbal"] || ""} onChange={this.handleChange.bind(this, "g2RentAgreementVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2RentAgreementInitiates" id="g2RentAgreementInitiates"value={this.state.fields["g2RentAgreementInitiates"] || ""} onChange={this.handleChange.bind(this, "g2RentAgreementInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2RentAgreementNA" id="g2RentAgreementNA" checked={this.state.fields["g2RentAgreementNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RentAgreementNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2RentAgreementPhysical" id="g2RentAgreementPhysical" checked={this.state.fields["g2RentAgreementPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RentAgreementPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2RentAgreementVerbal" id="g2RentAgreementVerbal" checked={this.state.fields["g2RentAgreementVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RentAgreementVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2RentAgreementInitiates" id="g2RentAgreementInitiates" checked={this.state.fields["g2RentAgreementInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RentAgreementInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can arrange for new telephone services and utilities',
-            goal2NA: <Label check> <Input type="checkbox" name="g2PhoneServicesNA" id="g2PhoneServicesNA"value={this.state.fields["g2PhoneServicesNA"] || ""} onChange={this.handleChange.bind(this, "g2PhoneServicesNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2PhoneServicesPhysical" id="g2PhoneServicesPhysical"value={this.state.fields["g2PhoneServicesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2PhoneServicesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2PhoneServicesVerbal" id="g2PhoneServicesVerbal"value={this.state.fields["g2PhoneServicesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2PhoneServicesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2PhoneServicesInitiates" id="g2PhoneServicesInitiates"value={this.state.fields["g2PhoneServicesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2PhoneServicesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2PhoneServicesNA" id="g2PhoneServicesNA"value={this.state.fields["g2PhoneServicesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2PhoneServicesPhysical" id="g2PhoneServicesPhysical" checked={this.state.fields["g2PhoneServicesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2PhoneServicesVerbal" id="g2PhoneServicesVerbal" checked={this.state.fields["g2PhoneServicesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2PhoneServicesInitiates" id="g2PhoneServicesInitiates" checked={this.state.fields["g2PhoneServicesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can calculate the start-up costs for new living arrangements (rental deposits, rent, utilities, etc.)',
-            goal2NA: <Label check> <Input type="checkbox" name="g2LivingCostsNA" id="g2LivingCostsNA"value={this.state.fields["g1UtensilsNA"] || ""} onChange={this.handleChange.bind(this, "g2LivingCostsNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2LivingCostsPhysical" id="g2LivingCostsPhysical"value={this.state.fields["g2LivingCostsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2LivingCostsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2LivingCostsVerbal" id="g2LivingCostsVerbal"value={this.state.fields["g2LivingCostsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2LivingCostsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2LivingCostsInitiates" id="g2LivingCostsInitiates"value={this.state.fields["g2LivingCostsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2LivingCostsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2LivingCostsNA" id="g2LivingCostsNA" checked={this.state.fields["g1UtensilsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2LivingCostsPhysical" id="g2LivingCostsPhysical" checked={this.state.fields["g2LivingCostsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2LivingCostsVerbal" id="g2LivingCostsVerbal" checked={this.state.fields["g2LivingCostsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2LivingCostsInitiates" id="g2LivingCostsInitiates" checked={this.state.fields["g2LivingCostsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how to get car insurance',
-            goal2NA: <Label check> <Input type="checkbox" name="g2CarInsuranceNA" id="g2CarInsuranceNA"value={this.state.fields["g2CarInsuranceNA"] || ""} onChange={this.handleChange.bind(this, "g2CarInsuranceNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2CarInsurancePhysical" id="g2CarInsurancePhysical"value={this.state.fields["g2CarInsurancePhysical"] || ""} onChange={this.handleChange.bind(this, "g2CarInsurancePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2CarInsuranceVerbal" id="g2CarInsuranceVerbal"value={this.state.fields["g2CarInsuranceVerbal"] || ""} onChange={this.handleChange.bind(this, "g2CarInsuranceVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2CarInsuranceInitiates" id="g2CarInsuranceInitiates"value={this.state.fields["g2CarInsuranceInitiates"] || ""} onChange={this.handleChange.bind(this, "g2CarInsuranceInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2CarInsuranceNA" id="g2CarInsuranceNA" checked={this.state.fields["g2CarInsuranceNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CarInsuranceNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2CarInsurancePhysical" id="g2CarInsurancePhysical" checked={this.state.fields["g2CarInsurancePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CarInsurancePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2CarInsuranceVerbal" id="g2CarInsuranceVerbal" checked={this.state.fields["g2CarInsuranceVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CarInsuranceVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2CarInsuranceInitiates" id="g2CarInsuranceInitiates" checked={this.state.fields["g2CarInsuranceInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CarInsuranceInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how to establish and maintain good credit',
-            goal2NA: <Label check> <Input type="checkbox" name="g2GoodCreditNA" id="g2GoodCreditNA"value={this.state.fields["g2GoodCreditNA"] || ""} onChange={this.handleChange.bind(this, "g2GoodCreditNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2GoodCreditPhysical" id="g2GoodCreditPhysical"value={this.state.fields["g2GoodCreditPhysical"] || ""} onChange={this.handleChange.bind(this, "g2GoodCreditPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2GoodCreditVerbal" id="g2GoodCreditVerbal"value={this.state.fields["g2GoodCreditVerbal"] || ""} onChange={this.handleChange.bind(this, "g2GoodCreditVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2GoodCreditInitiates" id="g2GoodCreditInitiates"value={this.state.fields["g2GoodCreditInitiates"] || ""} onChange={this.handleChange.bind(this, "g2GoodCreditInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2GoodCreditNA" id="g2GoodCreditNA" checked={this.state.fields["g2GoodCreditNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GoodCreditNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2GoodCreditPhysical" id="g2GoodCreditPhysical" checked={this.state.fields["g2GoodCreditPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GoodCreditPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2GoodCreditVerbal" id="g2GoodCreditVerbal" checked={this.state.fields["g2GoodCreditVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GoodCreditVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2GoodCreditInitiates" id="g2GoodCreditInitiates" checked={this.state.fields["g2GoodCreditInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GoodCreditInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can interpret pay stub information',
-            goal2NA: <Label check> <Input type="checkbox" name="g2PayStubNA" id="g2PayStubNA"value={this.state.fields["g2PayStubNA"] || ""} onChange={this.handleChange.bind(this, "g2PayStubNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2PayStubPhysical" id="g2PayStubPhysical"value={this.state.fields["g2PayStubPhysical"] || ""} onChange={this.handleChange.bind(this, "g2PayStubPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2PayStubVerbal" id="g2PayStubVerbal"value={this.state.fields["g2PayStubVerbal"] || ""} onChange={this.handleChange.bind(this, "g2PayStubVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2PayStubInitiates" id="g2PayStubInitiates"value={this.state.fields["g2PayStubInitiates"] || ""} onChange={this.handleChange.bind(this, "g2PayStubInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2PayStubNA" id="g2PayStubNA" checked={this.state.fields["g2PayStubNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PayStubNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2PayStubPhysical" id="g2PayStubPhysical" checked={this.state.fields["g2PayStubPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PayStubPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2PayStubVerbal" id="g2PayStubVerbal" checked={this.state.fields["g2PayStubVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PayStubVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2PayStubInitiates" id="g2PayStubInitiates" checked={this.state.fields["g2PayStubInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PayStubInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can understand billing information (such as phone bill)',
-            goal2NA: <Label check> <Input type="checkbox" name="g2BillingInfoNA" id="g2BillingInfoNA"value={this.state.fields["g2BillingInfoNA"] || ""} onChange={this.handleChange.bind(this, "g2BillingInfoNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2BillingInfoPhysical" id="g2BillingInfoPhysical"value={this.state.fields["g2BillingInfoPhysical"] || ""} onChange={this.handleChange.bind(this, "g2BillingInfoPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2BillingInfoVerbal" id="g2BillingInfoVerbal"value={this.state.fields["g2BillingInfoVerbal"] || ""} onChange={this.handleChange.bind(this, "g2BillingInfoVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2BillingInfoInitiates" id="g2BillingInfoInitiates"value={this.state.fields["g2BillingInfoInitiates"] || ""} onChange={this.handleChange.bind(this, "g2BillingInfoInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2BillingInfoNA" id="g2BillingInfoNA" checked={this.state.fields["g2BillingInfoNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BillingInfoNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2BillingInfoPhysical" id="g2BillingInfoPhysical" checked={this.state.fields["g2BillingInfoPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BillingInfoPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2BillingInfoVerbal" id="g2BillingInfoVerbal" checked={this.state.fields["g2BillingInfoVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BillingInfoVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2BillingInfoInitiates" id="g2BillingInfoInitiates" checked={this.state.fields["g2BillingInfoInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BillingInfoInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can develop a monthly budget for living on his/her own',
-            goal2NA: <Label check> <Input type="checkbox" name="g2BudgetNA" id="g2BudgetNA"value={this.state.fields["g2BudgetNA"] || ""} onChange={this.handleChange.bind(this, "g2BudgetNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2BudgetPhysical" id="g2BudgetPhysical"value={this.state.fields["g2BudgetPhysical"] || ""} onChange={this.handleChange.bind(this, "g2BudgetPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2BudgetVerbal" id="g2BudgetVerbal"value={this.state.fields["g2BudgetVerbal"] || ""} onChange={this.handleChange.bind(this, "g2BudgetVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2BudgetInitiates" id="g2BudgetInitiates"value={this.state.fields["g2BudgetInitiates"] || ""} onChange={this.handleChange.bind(this, "g2BudgetInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2BudgetNA" id="g2BudgetNA" checked={this.state.fields["g2BudgetNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BudgetNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2BudgetPhysical" id="g2BudgetPhysical" checked={this.state.fields["g2BudgetPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BudgetPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2BudgetVerbal" id="g2BudgetVerbal" checked={this.state.fields["g2BudgetVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BudgetVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2BudgetInitiates" id="g2BudgetInitiates" checked={this.state.fields["g2BudgetInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BudgetInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain the pros and cons of buying on credit',
-            goal2NA: <Label check> <Input type="checkbox" name="g2CreditNA" id="g2CreditNA"value={this.state.fields["g2CreditNA"] || ""} onChange={this.handleChange.bind(this, "g2CreditNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2CreditPhysical" id="g2CreditPhysical"value={this.state.fields["g2CreditPhysical"] || ""} onChange={this.handleChange.bind(this, "g2CreditPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2CreditVerbal" id="g2CreditVerbal"value={this.state.fields["g2CreditVerbal"] || ""} onChange={this.handleChange.bind(this, "g2CreditVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2CreditInitiates" id="g2CreditInitiates"value={this.state.fields["g2CreditInitiates"] || ""} onChange={this.handleChange.bind(this, "g2CreditInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2CreditNA" id="g2CreditNA" checked={this.state.fields["g2CreditNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CreditNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2CreditPhysical" id="g2CreditPhysical" checked={this.state.fields["g2CreditPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CreditPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2CreditVerbal" id="g2CreditVerbal" checked={this.state.fields["g2CreditVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CreditVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2CreditInitiates" id="g2CreditInitiates" checked={this.state.fields["g2CreditInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CreditInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how to get and revew a driver\'s licence',
-            goal2NA: <Label check> <Input type="checkbox" name="g2DriversLicenseNA" id="g2DriversLicenseNA"value={this.state.fields["g2DriversLicenseNA"] || ""} onChange={this.handleChange.bind(this, "g2DriversLicenseNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2DriversLicensePhysical" id="g2DriversLicensePhysical"value={this.state.fields["g2DriversLicensePhysical"] || ""} onChange={this.handleChange.bind(this, "g2DriversLicensePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2DriversLicenseVerbal" id="g2DriversLicenseVerbal"value={this.state.fields["g2DriversLicenseVerbal"] || ""} onChange={this.handleChange.bind(this, "g2DriversLicenseVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2DriversLicenseInitiates" id="g2DriversLicenseInitiates"value={this.state.fields["g2DriversLicenseInitiates"] || ""} onChange={this.handleChange.bind(this, "g2DriversLicenseInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2DriversLicenseNA" id="g2DriversLicenseNA" checked={this.state.fields["g2DriversLicenseNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DriversLicenseNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2DriversLicensePhysical" id="g2DriversLicensePhysical" checked={this.state.fields["g2DriversLicensePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DriversLicensePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2DriversLicenseVerbal" id="g2DriversLicenseVerbal" checked={this.state.fields["g2DriversLicenseVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DriversLicenseVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2DriversLicenseInitiates" id="g2DriversLicenseInitiates" checked={this.state.fields["g2DriversLicenseInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DriversLicenseInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can use transportation independently (MARTA, bus, train)',
-            goal2NA: <Label check> <Input type="checkbox" name="g2TransportationNA" id="g2TransportationNA"value={this.state.fields["g2TransportationNA"] || ""} onChange={this.handleChange.bind(this, "g2TransportationNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2TransportationPhysical" id="g2TransportationPhysical"value={this.state.fields["g2TransportationPhysical"] || ""} onChange={this.handleChange.bind(this, "g2TransportationPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2TransportationVerbal" id="g2TransportationVerbal"value={this.state.fields["g2TransportationVerbal"] || ""} onChange={this.handleChange.bind(this, "g2TransportationVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2TransportationInitiates" id="g2TransportationInitiates"value={this.state.fields["g2TransportationInitiates"] || ""} onChange={this.handleChange.bind(this, "g2TransportationInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2TransportationNA" id="g2TransportationNA" checked={this.state.fields["g2TransportationNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TransportationNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2TransportationPhysical" id="g2TransportationPhysical" checked={this.state.fields["g2TransportationPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TransportationPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2TransportationVerbal" id="g2TransportationVerbal" checked={this.state.fields["g2TransportationVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TransportationVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2TransportationInitiates" id="g2TransportationInitiates" checked={this.state.fields["g2TransportationInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TransportationInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can follow directions to navigate by car, bike, or on foot to other/new destinations',
-            goal2NA: <Label check> <Input type="checkbox" name="g2FollowNavigationNA" id="g2FollowNavigationNA"value={this.state.fields["g2FollowNavigationNA"] || ""} onChange={this.handleChange.bind(this, "g2FollowNavigationNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2FollowNavigationPhysical" id="g2FollowNavigationPhysical"value={this.state.fields["g2FollowNavigationPhysical"] || ""} onChange={this.handleChange.bind(this, "g2FollowNavigationPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2FollowNavigationVerbal" id="g2FollowNavigationVerbal"value={this.state.fields["g2FollowNavigationVerbal"] || ""} onChange={this.handleChange.bind(this, "g2FollowNavigationVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2FollowNavigationInitiates" id="g2FollowNavigationInitiates"value={this.state.fields["g2FollowNavigationInitiates"] || ""} onChange={this.handleChange.bind(this, "g2FollowNavigationInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2FollowNavigationNA" id="g2FollowNavigationNA" checked={this.state.fields["g2FollowNavigationNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FollowNavigationNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2FollowNavigationPhysical" id="g2FollowNavigationPhysical" checked={this.state.fields["g2FollowNavigationPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FollowNavigationPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2FollowNavigationVerbal" id="g2FollowNavigationVerbal" checked={this.state.fields["g2FollowNavigationVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FollowNavigationVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2FollowNavigationInitiates" id="g2FollowNavigationInitiates" checked={this.state.fields["g2FollowNavigationInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FollowNavigationInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can contact places around where he/she lives to get financial advice',
-            goal2NA: <Label check> <Input type="checkbox" name="g2FinancialAdviceNA" id="g2FinancialAdviceNA"value={this.state.fields["g2FinancialAdviceNA"] || ""} onChange={this.handleChange.bind(this, "g2FinancialAdviceNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2FinancialAdvicePhysical" id="g2FinancialAdvicePhysical"value={this.state.fields["g2FinancialAdvicePhysical"] || ""} onChange={this.handleChange.bind(this, "g2FinancialAdvicePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2FinancialAdviceVerbal" id="g2FinancialAdviceVerbal"value={this.state.fields["g2FinancialAdviceVerbal"] || ""} onChange={this.handleChange.bind(this, "g2FinancialAdviceVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2FinancialAdviceInitiates" id="g2FinancialAdviceInitiates"value={this.state.fields["g2FinancialAdviceInitiates"] || ""} onChange={this.handleChange.bind(this, "g2FinancialAdviceInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2FinancialAdviceNA" id="g2FinancialAdviceNA" checked={this.state.fields["g2FinancialAdviceNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FinancialAdviceNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2FinancialAdvicePhysical" id="g2FinancialAdvicePhysical" checked={this.state.fields["g2FinancialAdvicePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FinancialAdvicePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2FinancialAdviceVerbal" id="g2FinancialAdviceVerbal" checked={this.state.fields["g2FinancialAdviceVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FinancialAdviceVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2FinancialAdviceInitiates" id="g2FinancialAdviceInitiates" checked={this.state.fields["g2FinancialAdviceInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FinancialAdviceInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how to write checks',
-            goal2NA: <Label check> <Input type="checkbox" name="g2WriteChecksNA" id="g2WriteChecksNA"value={this.state.fields["g2WriteChecksNA"] || ""} onChange={this.handleChange.bind(this, "g2WriteChecksNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2WriteChecksPhysical" id="g2WriteChecksPhysical"value={this.state.fields["g2WriteChecksPhysical"] || ""} onChange={this.handleChange.bind(this, "g2WriteChecksPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2WriteChecksVerbal" id="g2WriteChecksVerbal"value={this.state.fields["g2WriteChecksVerbal"] || ""} onChange={this.handleChange.bind(this, "g2WriteChecksVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2WriteChecksInitiates" id="g2WriteChecksInitiates"value={this.state.fields["g2WriteChecksInitiates"] || ""} onChange={this.handleChange.bind(this, "g2WriteChecksInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2WriteChecksNA" id="g2WriteChecksNA" checked={this.state.fields["g2WriteChecksNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WriteChecksNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2WriteChecksPhysical" id="g2WriteChecksPhysical" checked={this.state.fields["g2WriteChecksPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WriteChecksPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2WriteChecksVerbal" id="g2WriteChecksVerbal" checked={this.state.fields["g2WriteChecksVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WriteChecksVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2WriteChecksInitiates" id="g2WriteChecksInitiates" checked={this.state.fields["g2WriteChecksInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WriteChecksInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how to make deposits and ATM transactions',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ATMTransactionsNA" id="g2ATMTransactionsNA"value={this.state.fields["g2ATMTransactionsNA"] || ""} onChange={this.handleChange.bind(this, "g2ATMTransactionsNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ATMTransactionsPhysical" id="g2ATMTransactionsPhysical"value={this.state.fields["g2ATMTransactionsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ATMTransactionsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ATMTransactionsVerbal" id="g2ATMTransactionsVerbal"value={this.state.fields["g2ATMTransactionsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ATMTransactionsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ATMTransactionsInitiates" id="g2ATMTransactionsInitiates"value={this.state.fields["g2ATMTransactionsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ATMTransactionsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ATMTransactionsNA" id="g2ATMTransactionsNA" checked={this.state.fields["g2ATMTransactionsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ATMTransactionsNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ATMTransactionsPhysical" id="g2ATMTransactionsPhysical" checked={this.state.fields["g2ATMTransactionsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ATMTransactionsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ATMTransactionsVerbal" id="g2ATMTransactionsVerbal" checked={this.state.fields["g2ATMTransactionsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ATMTransactionsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ATMTransactionsInitiates" id="g2ATMTransactionsInitiates" checked={this.state.fields["g2ATMTransactionsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ATMTransactionsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how to balance a checking/savings account',
-            goal2NA: <Label check> <Input type="checkbox" name="g2BalanceBankAccountNA" id="g2BalanceBankAccountNA"value={this.state.fields["g2BalanceBankAccountNA"] || ""} onChange={this.handleChange.bind(this, "g2BalanceBankAccountNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2BalanceBankAccountPhysical" id="g2BalanceBankAccountPhysical"value={this.state.fields["g2BalanceBankAccountPhysical"] || ""} onChange={this.handleChange.bind(this, "g2BalanceBankAccountPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2BalanceBankAccountVerbal" id="g2BalanceBankAccountVerbal"value={this.state.fields["g2BalanceBankAccountVerbal"] || ""} onChange={this.handleChange.bind(this, "g2BalanceBankAccountVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2BalanceBankAccountInitiates" id="g2BalanceBankAccountInitiates"value={this.state.fields["g2BalanceBankAccountInitiates"] || ""} onChange={this.handleChange.bind(this, "g2BalanceBankAccountInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2BalanceBankAccountNA" id="g2BalanceBankAccountNA" checked={this.state.fields["g2BalanceBankAccountNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BalanceBankAccountNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2BalanceBankAccountPhysical" id="g2BalanceBankAccountPhysical" checked={this.state.fields["g2BalanceBankAccountPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BalanceBankAccountPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2BalanceBankAccountVerbal" id="g2BalanceBankAccountVerbal" checked={this.state.fields["g2BalanceBankAccountVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BalanceBankAccountVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2BalanceBankAccountInitiates" id="g2BalanceBankAccountInitiates" checked={this.state.fields["g2BalanceBankAccountInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BalanceBankAccountInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can understand and respond to ads for housing',
-            goal2NA: <Label check> <Input type="checkbox" name="g2HousingAdsNA" id="g2HousingAdsNA"value={this.state.fields["g2HousingAdsNA"] || ""} onChange={this.handleChange.bind(this, "g2HousingAdsNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2HousingAdsPhysical" id="g2HousingAdsPhysical"value={this.state.fields["g2HousingAdsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2HousingAdsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2HousingAdsVerbal" id="g2HousingAdsVerbal"value={this.state.fields["g2HousingAdsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2HousingAdsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2HousingAdsInitiates" id="g2HousingAdsInitiates"value={this.state.fields["g2HousingAdsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2HousingAdsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2HousingAdsNA" id="g2HousingAdsNA" checked={this.state.fields["g2HousingAdsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HousingAdsNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2HousingAdsPhysical" id="g2HousingAdsPhysical" checked={this.state.fields["g2HousingAdsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HousingAdsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2HousingAdsVerbal" id="g2HousingAdsVerbal" checked={this.state.fields["g2HousingAdsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HousingAdsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2HousingAdsInitiates" id="g2HousingAdsInitiates" checked={this.state.fields["g2HousingAdsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HousingAdsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain where to get information about financial aid for education',
-            goal2NA: <Label check> <Input type="checkbox" name="g2EduFinancialAidNA" id="g2EduFinancialAidNA"value={this.state.fields["g2EduFinancialAidNA"] || ""} onChange={this.handleChange.bind(this, "g2EduFinancialAidNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2EduFinancialAidPhysical" id="g2EduFinancialAidPhysical"value={this.state.fields["g2EduFinancialAidPhysical"] || ""} onChange={this.handleChange.bind(this, "g2EduFinancialAidPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2EduFinancialAidVerbal" id="g2EduFinancialAidVerbal"value={this.state.fields["g2EduFinancialAidVerbal"] || ""} onChange={this.handleChange.bind(this, "g2EduFinancialAidVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2EduFinancialAidInitiates" id="g2EduFinancialAidInitiates"value={this.state.fields["g2EduFinancialAidInitiates"] || ""} onChange={this.handleChange.bind(this, "g2EduFinancialAidInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2EduFinancialAidNA" id="g2EduFinancialAidNA" checked={this.state.fields["g2EduFinancialAidNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EduFinancialAidNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2EduFinancialAidPhysical" id="g2EduFinancialAidPhysical" checked={this.state.fields["g2EduFinancialAidPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EduFinancialAidPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2EduFinancialAidVerbal" id="g2EduFinancialAidVerbal" checked={this.state.fields["g2EduFinancialAidVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EduFinancialAidVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2EduFinancialAidInitiates" id="g2EduFinancialAidInitiates" checked={this.state.fields["g2EduFinancialAidInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EduFinancialAidInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can name ways to save money on things he/she buys',
-            goal2NA: <Label check> <Input type="checkbox" name="g2SaveMoneyNA" id="g2SaveMoneyNA"value={this.state.fields["g2SaveMoneyNA"] || ""} onChange={this.handleChange.bind(this, "g2SaveMoneyNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SaveMoneyPhysical" id="g2SaveMoneyPhysical"value={this.state.fields["g2SaveMoneyPhysical"] || ""} onChange={this.handleChange.bind(this, "g2SaveMoneyPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2SaveMoneyVerbal" id="g2SaveMoneyVerbal"value={this.state.fields["g2SaveMoneyVerbal"] || ""} onChange={this.handleChange.bind(this, "g2SaveMoneyVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2SaveMoneyInitiates" id="g2SaveMoneyInitiates"value={this.state.fields["g2SaveMoneyInitiates"] || ""} onChange={this.handleChange.bind(this, "g2SaveMoneyInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2SaveMoneyNA" id="g2SaveMoneyNA" checked={this.state.fields["g2SaveMoneyNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SaveMoneyNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SaveMoneyPhysical" id="g2SaveMoneyPhysical" checked={this.state.fields["g2SaveMoneyPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SaveMoneyPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2SaveMoneyVerbal" id="g2SaveMoneyVerbal" checked={this.state.fields["g2SaveMoneyVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SaveMoneyVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2SaveMoneyInitiates" id="g2SaveMoneyInitiates" checked={this.state.fields["g2SaveMoneyInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SaveMoneyInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Knows how to research and find local social service agencies (like employment and counseling services)',
-            goal2NA: <Label check> <Input type="checkbox" name="g2SocialServicesNA" id="g2SocialServicesNA"value={this.state.fields["g2SocialServicesNA"] || ""} onChange={this.handleChange.bind(this, "g2SocialServicesNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SocialServicesPhysical" id="g2SocialServicesPhysical"value={this.state.fields["g2SocialServicesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2SocialServicesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2SocialServicesVerbal" id="g2SocialServicesVerbal"value={this.state.fields["g2SocialServicesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2SocialServicesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2SocialServicesInitiates" id="g2SocialServicesInitiates"value={this.state.fields["g2SocialServicesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2SocialServicesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2SocialServicesNA" id="g2SocialServicesNA" checked={this.state.fields["g2SocialServicesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialServicesNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SocialServicesPhysical" id="g2SocialServicesPhysical" checked={this.state.fields["g2SocialServicesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialServicesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2SocialServicesVerbal" id="g2SocialServicesVerbal" checked={this.state.fields["g2SocialServicesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialServicesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2SocialServicesInitiates" id="g2SocialServicesInitiates" checked={this.state.fields["g2SocialServicesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialServicesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain the education or training needed for his/her career options',
-            goal2NA: <Label check> <Input type="checkbox" name="g2CareerEduNA" id="g2CareerEduNA"value={this.state.fields["g2CareerEduNA"] || ""} onChange={this.handleChange.bind(this, "g2CareerEduNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2CareerEduPhysical" id="g2CareerEduPhysical"value={this.state.fields["g2CareerEduPhysical"] || ""} onChange={this.handleChange.bind(this, "g2CareerEduPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2CareerEduVerbal" id="g2CareerEduVerbal"value={this.state.fields["g2CareerEduVerbal"] || ""} onChange={this.handleChange.bind(this, "g2CareerEduVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2CareerEduInitiates" id="g2CareerEduInitiates"value={this.state.fields["g2CareerEduInitiates"] || ""} onChange={this.handleChange.bind(this, "g2CareerEduInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2CareerEduNA" id="g2CareerEduNA" checked={this.state.fields["g2CareerEduNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CareerEduNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2CareerEduPhysical" id="g2CareerEduPhysical" checked={this.state.fields["g2CareerEduPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CareerEduPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2CareerEduVerbal" id="g2CareerEduVerbal" checked={this.state.fields["g2CareerEduVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CareerEduVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2CareerEduInitiates" id="g2CareerEduInitiates" checked={this.state.fields["g2CareerEduInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CareerEduInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: <div className={"sub-section"}>Self-care</div>,
             goal2NA: '',
@@ -8587,100 +9606,100 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: ''
         }, {
             goal2Category: 'Can perform oral care',
-            goal2NA: <Label check> <Input type="checkbox" name="g2OralCareNA" id="g2OralCareNA"value={this.state.fields["g2OralCareNA"] || ""} onChange={this.handleChange.bind(this, "g2OralCareNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2OralCarePhysical" id="g2OralCarePhysical"value={this.state.fields["g2OralCarePhysical"] || ""} onChange={this.handleChange.bind(this, "g2OralCarePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2OralCareVerbal" id="g2OralCareVerbal"value={this.state.fields["g2OralCareVerbal"] || ""} onChange={this.handleChange.bind(this, "g2OralCareVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2OralCareInitiates" id="g2OralCareInitiates"value={this.state.fields["g2OralCareInitiates"] || ""} onChange={this.handleChange.bind(this, "g2OralCareInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2OralCareNA" id="g2OralCareNA" checked={this.state.fields["g2OralCareNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OralCareNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2OralCarePhysical" id="g2OralCarePhysical" checked={this.state.fields["g2OralCarePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OralCarePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2OralCareVerbal" id="g2OralCareVerbal" checked={this.state.fields["g2OralCareVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OralCareVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2OralCareInitiates" id="g2OralCareInitiates" checked={this.state.fields["g2OralCareInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OralCareInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can brush/comb/style hair',
-            goal2NA: <Label check> <Input type="checkbox" name="g2HairNA" id="g2HairNA"value={this.state.fields["g2HairNA"] || ""} onChange={this.handleChange.bind(this, "g2HairNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2HairPhysical" id="g2HairPhysical"value={this.state.fields["g2HairPhysical"] || ""} onChange={this.handleChange.bind(this, "g2HairPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2HairVerbal" id="g2HairVerbal"value={this.state.fields["g2HairVerbal"] || ""} onChange={this.handleChange.bind(this, "g2HairVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2HairInitiates" id="g2HairInitiates"value={this.state.fields["g2HairInitiates"] || ""} onChange={this.handleChange.bind(this, "g2HairInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2HairNA" id="g2HairNA" checked={this.state.fields["g2HairNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HairNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2HairPhysical" id="g2HairPhysical" checked={this.state.fields["g2HairPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HairPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2HairVerbal" id="g2HairVerbal" checked={this.state.fields["g2HairVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HairVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2HairInitiates" id="g2HairInitiates" checked={this.state.fields["g2HairInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HairInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can perform skin care',
-            goal2NA: <Label check> <Input type="checkbox" name="g2SkinCareNA" id="g2SkinCareNA"value={this.state.fields["g2SkinCareNA"] || ""} onChange={this.handleChange.bind(this, "g2SkinCareNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SkinCarePhysical" id="g2SkinCarePhysical"value={this.state.fields["g2SkinCarePhysical"] || ""} onChange={this.handleChange.bind(this, "g2SkinCarePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2SkinCareVerbal" id="g2SkinCareVerbal"value={this.state.fields["g2SkinCareVerbal"] || ""} onChange={this.handleChange.bind(this, "g2SkinCareVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2SkinCareInitiates" id="g2SkinCareInitiates"value={this.state.fields["g2SkinCareInitiates"] || ""} onChange={this.handleChange.bind(this, "g2SkinCareInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2SkinCareNA" id="g2SkinCareNA" checked={this.state.fields["g2SkinCareNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SkinCareNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SkinCarePhysical" id="g2SkinCarePhysical" checked={this.state.fields["g2SkinCarePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SkinCarePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2SkinCareVerbal" id="g2SkinCareVerbal" checked={this.state.fields["g2SkinCareVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SkinCareVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2SkinCareInitiates" id="g2SkinCareInitiates" checked={this.state.fields["g2SkinCareInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SkinCareInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can maintain eye glasses/contacts',
-            goal2NA: <Label check> <Input type="checkbox" name="g2EyeGlassesNA" id="g2EyeGlassesNA"value={this.state.fields["g2EyeGlassesNA"] || ""} onChange={this.handleChange.bind(this, "g2EyeGlassesNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2EyeGlassesPhysical" id="g2EyeGlassesPhysical"value={this.state.fields["g2EyeGlassesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2EyeGlassesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2EyeGlassesVerbal" id="g2EyeGlassesVerbal"value={this.state.fields["g2EyeGlassesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2EyeGlassesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2EyeGlassesInitiates" id="g2EyeGlassesInitiates"value={this.state.fields["g2EyeGlassesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2EyeGlassesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2EyeGlassesNA" id="g2EyeGlassesNA" checked={this.state.fields["g2EyeGlassesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2EyeGlassesPhysical" id="g2EyeGlassesPhysical" checked={this.state.fields["g2EyeGlassesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2EyeGlassesVerbal" id="g2EyeGlassesVerbal"value={this.state.fields["g2EyeGlassesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2EyeGlassesInitiates" id="g2EyeGlassesInitiates"value={this.state.fields["g2EyeGlassesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can maintain a well groomed appearance',
-            goal2NA: <Label check> <Input type="checkbox" name="g2WellGroomedNA" id="g2WellGroomedNA"value={this.state.fields["g2WellGroomedNA"] || ""} onChange={this.handleChange.bind(this, "g2WellGroomedNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2WellGroomedPhysical" id="g2WellGroomedPhysical"value={this.state.fields["g2WellGroomedPhysical"] || ""} onChange={this.handleChange.bind(this, "g2WellGroomedPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2WellGroomedVerbal" id="g2WellGroomedVerbal"value={this.state.fields["g2WellGroomedVerbal"] || ""} onChange={this.handleChange.bind(this, "g2WellGroomedVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2WellGroomedInitiates" id="g2WellGroomedInitiates"value={this.state.fields["g2WellGroomedInitiates"] || ""} onChange={this.handleChange.bind(this, "g2WellGroomedInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2WellGroomedNA" id="g2WellGroomedNA" checked={this.state.fields["g2WellGroomedNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WellGroomedNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2WellGroomedPhysical" id="g2WellGroomedPhysical" checked={this.state.fields["g2WellGroomedPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WellGroomedPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2WellGroomedVerbal" id="g2WellGroomedVerbal" checked={this.state.fields["g2WellGroomedVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WellGroomedVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2WellGroomedInitiates" id="g2WellGroomedInitiates" checked={this.state.fields["g2WellGroomedInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WellGroomedInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can manage toilet needs',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ToiletNeedsNA" id="g2ToiletNeedsNA"value={this.state.fields["g2ToiletNeedsNA"] || ""} onChange={this.handleChange.bind(this, "g2ToiletNeedsNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ToiletNeedsPhysical" id="g2ToiletNeedsPhysical"value={this.state.fields["g2ToiletNeedsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ToiletNeedsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ToiletNeedsVerbal" id="g2ToiletNeedsVerbal"value={this.state.fields["g2ToiletNeedsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ToiletNeedsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ToiletNeedsInitiates" id="g2ToiletNeedsInitiates"value={this.state.fields["g2ToiletNeedsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ToiletNeedsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ToiletNeedsNA" id="g2ToiletNeedsNA" checked={this.state.fields["g2ToiletNeedsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ToiletNeedsNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ToiletNeedsPhysical" id="g2ToiletNeedsPhysical" checked={this.state.fields["g2ToiletNeedsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ToiletNeedsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ToiletNeedsVerbal" id="g2ToiletNeedsVerbal" checked={this.state.fields["g2ToiletNeedsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ToiletNeedsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ToiletNeedsInitiates" id="g2ToiletNeedsInitiates" checked={this.state.fields["g2ToiletNeedsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ToiletNeedsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can manage washing hands to control germs',
-            goal2NA: <Label check> <Input type="checkbox" name="g2WashHandsNA" id="g2WashHandsNA"value={this.state.fields["g2WashHandsNA"] || ""} onChange={this.handleChange.bind(this, "g2WashHandsNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2WashHandsPhysical" id="g2WashHandsPhysical"value={this.state.fields["g2WashHandsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2WashHandsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2WashHandsVerbal" id="g2WashHandsVerbal"value={this.state.fields["g2WashHandsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2WashHandsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2WashHandsInitiates" id="g2WashHandsInitiates"value={this.state.fields["g2WashHandsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2WashHandsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2WashHandsNA" id="g2WashHandsNA" checked={this.state.fields["g2WashHandsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashHandsNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2WashHandsPhysical" id="g2WashHandsPhysical" checked={this.state.fields["g2WashHandsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashHandsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2WashHandsVerbal" id="g2WashHandsVerbal" checked={this.state.fields["g2WashHandsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashHandsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2WashHandsInitiates" id="g2WashHandsInitiates" checked={this.state.fields["g2WashHandsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashHandsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can bathe/shower/shampoo',
-            goal2NA: <Label check> <Input type="checkbox" name="g2BatheNA" id="g2BatheNA"value={this.state.fields["g2BatheNA"] || ""} onChange={this.handleChange.bind(this, "g2BatheNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2BathePhysical" id="g2BathePhysical"value={this.state.fields["g2BathePhysical"] || ""} onChange={this.handleChange.bind(this, "g2BathePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2BatheVerbal" id="g2BatheVerbal"value={this.state.fields["g2BatheVerbal"] || ""} onChange={this.handleChange.bind(this, "g2BatheVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2BatheInitiates" id="g2BatheInitiates"value={this.state.fields["g2BatheInitiates"] || ""} onChange={this.handleChange.bind(this, "g2BatheInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2BatheNA" id="g2BatheNA" checked={this.state.fields["g2BatheNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BatheNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2BathePhysical" id="g2BathePhysical" checked={this.state.fields["g2BathePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BathePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2BatheVerbal" id="g2BatheVerbal" checked={this.state.fields["g2BatheVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BatheVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2BatheInitiates" id="g2BatheInitiates" checked={this.state.fields["g2BatheInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BatheInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can manage shaving needs',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ShavingNeedsNA" id="g2ShavingNeedsNA"value={this.state.fields["g2ShavingNeedsNA"] || ""} onChange={this.handleChange.bind(this, "g2ShavingNeedsNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ShavingNeedsPhysical" id="g2ShavingNeedsPhysical"value={this.state.fields["g2ShavingNeedsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ShavingNeedsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ShavingNeedsVerbal" id="g2ShavingNeedsVerbal"value={this.state.fields["g2ShavingNeedsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ShavingNeedsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ShavingNeedsInitiates" id="g2ShavingNeedsInitiates"value={this.state.fields["g2ShavingNeedsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ShavingNeedsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ShavingNeedsNA" id="g2ShavingNeedsNA" checked={this.state.fields["g2ShavingNeedsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ShavingNeedsNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ShavingNeedsPhysical" id="g2ShavingNeedsPhysical" checked={this.state.fields["g2ShavingNeedsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ShavingNeedsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ShavingNeedsVerbal" id="g2ShavingNeedsVerbal" checked={this.state.fields["g2ShavingNeedsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ShavingNeedsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ShavingNeedsInitiates" id="g2ShavingNeedsInitiates" checked={this.state.fields["g2ShavingNeedsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ShavingNeedsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can use deodorant',
-            goal2NA: <Label check> <Input type="checkbox" name="g2DeodorantNA" id="g2DeodorantNA"value={this.state.fields["g2DeodorantNA"] || ""} onChange={this.handleChange.bind(this, "g2DeodorantNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2DeodorantPhysical" id="g2DeodorantPhysical"value={this.state.fields["g2DeodorantPhysical"] || ""} onChange={this.handleChange.bind(this, "g2DeodorantPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2DeodorantVerbal" id="g2DeodorantVerbal"value={this.state.fields["g2DeodorantVerbal"] || ""} onChange={this.handleChange.bind(this, "g2DeodorantVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2DeodorantInitiates" id="g2DeodorantInitiates"value={this.state.fields["g2DeodorantInitiates"] || ""} onChange={this.handleChange.bind(this, "g2DeodorantInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2DeodorantNA" id="g2DeodorantNA" checked={this.state.fields["g2DeodorantNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DeodorantNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2DeodorantPhysical" id="g2DeodorantPhysical" checked={this.state.fields["g2DeodorantPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DeodorantPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2DeodorantVerbal" id="g2DeodorantVerbal" checked={this.state.fields["g2DeodorantVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DeodorantVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2DeodorantInitiates" id="g2DeodorantInitiates" checked={this.state.fields["g2DeodorantInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DeodorantInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Closes door for bathing/toileting/dressing/etc.',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ClosesDoorNA" id="g2ClosesDoorNA"value={this.state.fields["g2ClosesDoorNA"] || ""} onChange={this.handleChange.bind(this, "g2ClosesDoorNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ClosesDoorPhysical" id="g2ClosesDoorPhysical"value={this.state.fields["g2ClosesDoorPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ClosesDoorPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ClosesDoorVerbal" id="g2ClosesDoorVerbal"value={this.state.fields["g2ClosesDoorVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ClosesDoorVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ClosesDoorInitiates" id="g2ClosesDoorInitiates"value={this.state.fields["g2ClosesDoorInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ClosesDoorInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ClosesDoorNA" id="g2ClosesDoorNA" checked={this.state.fields["g2ClosesDoorNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ClosesDoorNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ClosesDoorPhysical" id="g2ClosesDoorPhysical" checked={this.state.fields["g2ClosesDoorPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ClosesDoorPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ClosesDoorVerbal" id="g2ClosesDoorVerbal" checked={this.state.fields["g2ClosesDoorVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ClosesDoorVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ClosesDoorInitiates" id="g2ClosesDoorInitiates" checked={this.state.fields["g2ClosesDoorInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ClosesDoorInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can take care of minor injuries and illnesses',
-            goal2NA: <Label check> <Input type="checkbox" name="g2MinorInjuriesNA" id="g2MinorInjuriesNA"value={this.state.fields["g2MinorInjuriesNA"] || ""} onChange={this.handleChange.bind(this, "g2MinorInjuriesNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2MinorInjuriesPhysical" id="g2MinorInjuriesPhysical"value={this.state.fields["g2MinorInjuriesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2MinorInjuriesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2MinorInjuriesVerbal" id="g2MinorInjuriesVerbal"value={this.state.fields["g2MinorInjuriesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2MinorInjuriesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2MinorInjuriesInitiates" id="g2MinorInjuriesInitiates"value={this.state.fields["g2MinorInjuriesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2MinorInjuriesInitiatesg2MinorInjuriesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2MinorInjuriesNA" id="g2MinorInjuriesNA" checked={this.state.fields["g2MinorInjuriesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2MinorInjuriesPhysical" id="g2MinorInjuriesPhysical" checked={this.state.fields["g2MinorInjuriesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2MinorInjuriesVerbal" id="g2MinorInjuriesVerbal" checked={this.state.fields["g2MinorInjuriesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2MinorInjuriesInitiates" id="g2MinorInjuriesInitiates" checked={this.state.fields["g2MinorInjuriesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesInitiatesg2MinorInjuriesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'If needed medical help quickly, knows how to get it',
-            goal2NA: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpNA" id="g2GetsMedicalHelpNA"value={this.state.fields["g2GetsMedicalHelpNA"] || ""} onChange={this.handleChange.bind(this, "g2GetsMedicalHelpNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpPhysical" id="g2GetsMedicalHelpPhysical"value={this.state.fields["g2GetsMedicalHelpPhysical"] || ""} onChange={this.handleChange.bind(this, "g2GetsMedicalHelpPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpVerbal" id="g2GetsMedicalHelpVerbal"value={this.state.fields["g2GetsMedicalHelpVerbal"] || ""} onChange={this.handleChange.bind(this, "g2GetsMedicalHelpVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpInitiates" id="g2GetsMedicalHelpInitiates"value={this.state.fields["g2GetsMedicalHelpInitiates"] || ""} onChange={this.handleChange.bind(this, "g2GetsMedicalHelpInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpNA" id="g2GetsMedicalHelpNA" checked={this.state.fields["g2GetsMedicalHelpNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsMedicalHelpNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpPhysical" id="g2GetsMedicalHelpPhysical" checked={this.state.fields["g2GetsMedicalHelpPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsMedicalHelpPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpVerbal" id="g2GetsMedicalHelpVerbal" checked={this.state.fields["g2GetsMedicalHelpVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsMedicalHelpVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpInitiates" id="g2GetsMedicalHelpInitiates" checked={this.state.fields["g2GetsMedicalHelpInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsMedicalHelpInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Knows how and when to call 911',
-            goal2NA: <Label check> <Input type="checkbox" name="g2Call911NA" id="g2Call911NA"value={this.state.fields["g2Call911NA"] || ""} onChange={this.handleChange.bind(this, "g2Call911NA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2Call911Physical" id="g2Call911Physical"value={this.state.fields["g2Call911Physical"] || ""} onChange={this.handleChange.bind(this, "g2Call911Physical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2Call911Verbal" id="g2Call911Verbal"value={this.state.fields["g2Call911Verbal"] || ""} onChange={this.handleChange.bind(this, "g2Call911Verbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2Call911Initiates" id="g2Call911Initiates"value={this.state.fields["g2Call911Initiates"] || ""} onChange={this.handleChange.bind(this, "g2Call911Initiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2Call911NA" id="g2Call911NA" checked={this.state.fields["g2Call911NA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2Call911NA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2Call911Physical" id="g2Call911Physical" checked={this.state.fields["g2Call911Physical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2Call911Physical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2Call911Verbal" id="g2Call911Verbal" checked={this.state.fields["g2Call911Verbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2Call911Verbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2Call911Initiates" id="g2Call911Initiates" checked={this.state.fields["g2Call911Initiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2Call911Initiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can name two or more places to get help if he/she feels unsafe',
-            goal2NA: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeNA" id="g2HelpIfUnsafeNA"value={this.state.fields["g2HelpIfUnsafeNA"] || ""} onChange={this.handleChange.bind(this, "g2HelpIfUnsafeNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2HelpIfUnsafePhysical" id="g2HelpIfUnsafePhysical"value={this.state.fields["g2HelpIfUnsafePhysical"] || ""} onChange={this.handleChange.bind(this, "g2HelpIfUnsafePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeVerbal" id="g2HelpIfUnsafeVerbal"value={this.state.fields["g2HelpIfUnsafeVerbal"] || ""} onChange={this.handleChange.bind(this, "g2HelpIfUnsafeVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeInitiates" id="g2HelpIfUnsafeInitiates"value={this.state.fields["g2HelpIfUnsafeInitiates"] || ""} onChange={this.handleChange.bind(this, "g2HelpIfUnsafeInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeNA" id="g2HelpIfUnsafeNA" checked={this.state.fields["g2HelpIfUnsafeNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HelpIfUnsafeNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2HelpIfUnsafePhysical" id="g2HelpIfUnsafePhysical" checked={this.state.fields["g2HelpIfUnsafePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HelpIfUnsafePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeVerbal" id="g2HelpIfUnsafeVerbal" checked={this.state.fields["g2HelpIfUnsafeVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HelpIfUnsafeVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2HelpIfUnsafeInitiates" id="g2HelpIfUnsafeInitiates" checked={this.state.fields["g2HelpIfUnsafeInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HelpIfUnsafeInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can readily identify who is a stranger and knows appropriate types of interactions with stranger',
-            goal2NA: <Label check> <Input type="checkbox" name="g2IDStrangerNA" id="g2IDStrangerNA"value={this.state.fields["g2IDStrangerNA"] || ""} onChange={this.handleChange.bind(this, "g2IDStrangerNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2IDStrangerPhysical" id="g2IDStrangerPhysical"value={this.state.fields["g2IDStrangerPhysical"] || ""} onChange={this.handleChange.bind(this, "g2IDStrangerPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2IDStrangerVerbal" id="g2IDStrangerVerbal"value={this.state.fields["g2IDStrangerVerbal"] || ""} onChange={this.handleChange.bind(this, "g2IDStrangerVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2IDStrangerInitiates" id="g2IDStrangerInitiates"value={this.state.fields["g2IDStrangerInitiates"] || ""} onChange={this.handleChange.bind(this, "g2IDStrangerInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2IDStrangerNA" id="g2IDStrangerNA" checked={this.state.fields["g2IDStrangerNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2IDStrangerNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2IDStrangerPhysical" id="g2IDStrangerPhysical" checked={this.state.fields["g2IDStrangerPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2IDStrangerPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2IDStrangerVerbal" id="g2IDStrangerVerbal" checked={this.state.fields["g2IDStrangerVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2IDStrangerVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2IDStrangerInitiates" id="g2IDStrangerInitiates" checked={this.state.fields["g2IDStrangerInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2IDStrangerInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: <div className={"sub-section"}>Social Relationships</div>,
             goal2NA: '',
@@ -8689,52 +9708,52 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: ''
         }, {
             goal2Category: 'Is polite to others',
-            goal2NA: <Label check> <Input type="checkbox" name="g2PoliteNA" id="g2PoliteNA"value={this.state.fields["g2PoliteNA"] || ""} onChange={this.handleChange.bind(this, "g2PoliteNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2PolitePhysical" id="g2PolitePhysical"value={this.state.fields["g2PolitePhysical"] || ""} onChange={this.handleChange.bind(this, "g2PolitePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2PoliteVerbal" id="g2PoliteVerbal"value={this.state.fields["g2PoliteVerbal"] || ""} onChange={this.handleChange.bind(this, "g2PoliteVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2PoliteInitiates" id="g2PoliteInitiates"value={this.state.fields["g2PoliteInitiates"] || ""} onChange={this.handleChange.bind(this, "g2PoliteInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2PoliteNA" id="g2PoliteNA" checked={this.state.fields["g2PoliteNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PoliteNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2PolitePhysical" id="g2PolitePhysical" checked={this.state.fields["g2PolitePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PolitePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2PoliteVerbal" id="g2PoliteVerbal" checked={this.state.fields["g2PoliteVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PoliteVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2PoliteInitiates" id="g2PoliteInitiates" checked={this.state.fields["g2PoliteInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PoliteInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Respects other people\'s things',
-            goal2NA: <Label check> <Input type="checkbox" name="g2RespectOthersThingsNA" id="g2RespectOthersThingsNA"value={this.state.fields["g2RespectOthersThingsNA"] || ""} onChange={this.handleChange.bind(this, "g2RespectOthersThingsNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2RespectOthersThingsPhysical" id="g2RespectOthersThingsPhysical"value={this.state.fields["g2RespectOthersThingsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2RespectOthersThingsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2RespectOthersThingsVerbal" id="g2RespectOthersThingsVerbal"value={this.state.fields["g2RespectOthersThingsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2RespectOthersThingsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2RespectOthersThingsInitiates" id="g2RespectOthersThingsInitiates"value={this.state.fields["g2RespectOthersThingsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2RespectOthersThingsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2RespectOthersThingsNA" id="g2RespectOthersThingsNA" checked={this.state.fields["g2RespectOthersThingsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RespectOthersThingsNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2RespectOthersThingsPhysical" id="g2RespectOthersThingsPhysical" checked={this.state.fields["g2RespectOthersThingsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RespectOthersThingsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2RespectOthersThingsVerbal" id="g2RespectOthersThingsVerbal" checked={this.state.fields["g2RespectOthersThingsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RespectOthersThingsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2RespectOthersThingsInitiates" id="g2RespectOthersThingsInitiates" checked={this.state.fields["g2RespectOthersThingsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RespectOthersThingsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Respects other people\'s way of looking at things, their lifestyle, and their attitudes',
-            goal2NA: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasNA" id="g2RespectOthersIdeasNA"value={this.state.fields["g2RespectOthersIdeasNA"] || ""} onChange={this.handleChange.bind(this, "g2RespectOthersIdeasNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasPhysical" id="g2RespectOthersIdeasPhysical"value={this.state.fields["g2RespectOthersIdeasPhysical"] || ""} onChange={this.handleChange.bind(this, "g2RespectOthersIdeasPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasVerbal" id="g2RespectOthersIdeasVerbal"value={this.state.fields["g2RespectOthersIdeasVerbal"] || ""} onChange={this.handleChange.bind(this, "g2RespectOthersIdeasVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasInitiates" id="g2RespectOthersIdeasInitiates"value={this.state.fields["g2RespectOthersIdeasInitiates"] || ""} onChange={this.handleChange.bind(this, "g2RespectOthersIdeasInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasNA" id="g2RespectOthersIdeasNA" checked={this.state.fields["g2RespectOthersIdeasNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RespectOthersIdeasNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasPhysical" id="g2RespectOthersIdeasPhysical" checked={this.state.fields["g2RespectOthersIdeasPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RespectOthersIdeasPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasVerbal" id="g2RespectOthersIdeasVerbal" checked={this.state.fields["g2RespectOthersIdeasVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RespectOthersIdeasVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2RespectOthersIdeasInitiates" id="g2RespectOthersIdeasInitiates" checked={this.state.fields["g2RespectOthersIdeasInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RespectOthersIdeasInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Shows appreciation for things others do for him/her',
-            goal2NA: <Label check> <Input type="checkbox" name="g2AppreciationNA" id="g2AppreciationNA"value={this.state.fields["g2AppreciationNA"] || ""} onChange={this.handleChange.bind(this, "g2AppreciationNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2AppreciationPhysical" id="g2AppreciationPhysical"value={this.state.fields["g2AppreciationPhysical"] || ""} onChange={this.handleChange.bind(this, "g2AppreciationPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2AppreciationVerbal" id="g2AppreciationVerbal"value={this.state.fields["g2AppreciationVerbal"] || ""} onChange={this.handleChange.bind(this, "g2AppreciationVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2AppreciationInitiates" id="g2AppreciationInitiates"value={this.state.fields["g2AppreciationInitiates"] || ""} onChange={this.handleChange.bind(this, "g2AppreciationInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2AppreciationNA" id="g2AppreciationNA" checked={this.state.fields["g2AppreciationNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AppreciationNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2AppreciationPhysical" id="g2AppreciationPhysical" checked={this.state.fields["g2AppreciationPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AppreciationPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2AppreciationVerbal" id="g2AppreciationVerbal" checked={this.state.fields["g2AppreciationVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AppreciationVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2AppreciationInitiates" id="g2AppreciationInitiates" checked={this.state.fields["g2AppreciationInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2AppreciationInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Deals with anger without using violence',
-            goal2NA: <Label check> <Input type="checkbox" name="g2NonviolentAngerNA" id="g2NonviolentAngerNA"value={this.state.fields["g2NonviolentAngerNA"] || ""} onChange={this.handleChange.bind(this, "g2NonviolentAngerNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2NonviolentAngerPhysical" id="g2NonviolentAngerPhysical"value={this.state.fields["g2NonviolentAngerPhysical"] || ""} onChange={this.handleChange.bind(this, "g2NonviolentAngerPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2NonviolentAngerVerbal" id="g2NonviolentAngerVerbal"value={this.state.fields["g2NonviolentAngerVerbal"] || ""} onChange={this.handleChange.bind(this, "g2NonviolentAngerVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2NonviolentAngerInitiates" id="g2NonviolentAngerInitiates"value={this.state.fields["g2NonviolentAngerInitiates"] || ""} onChange={this.handleChange.bind(this, "g2NonviolentAngerInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2NonviolentAngerNA" id="g2NonviolentAngerNA" checked={this.state.fields["g2NonviolentAngerNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2NonviolentAngerNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2NonviolentAngerPhysical" id="g2NonviolentAngerPhysical" checked={this.state.fields["g2NonviolentAngerPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2NonviolentAngerPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2NonviolentAngerVerbal" id="g2NonviolentAngerVerbal" checked={this.state.fields["g2NonviolentAngerVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2NonviolentAngerVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2NonviolentAngerInitiates" id="g2NonviolentAngerInitiates" checked={this.state.fields["g2NonviolentAngerInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2NonviolentAngerInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Thinks about how his/her choices affect others',
-            goal2NA: <Label check> <Input type="checkbox" name="g2EffectOfChoicesNA" id="g2EffectOfChoicesNA"value={this.state.fields["g2EffectOfChoicesNA"] || ""} onChange={this.handleChange.bind(this, "g2EffectOfChoicesNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2EffectOfChoicesPhysical" id="g2EffectOfChoicesPhysical"value={this.state.fields["g2EffectOfChoicesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2EffectOfChoicesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2EffectOfChoicesVerbal" id="g2EffectOfChoicesVerbal"value={this.state.fields["g2EffectOfChoicesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2EffectOfChoicesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2EffectOfChoicesInitiates" id="g2EffectOfChoicesInitiates"value={this.state.fields["g2EffectOfChoicesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2EffectOfChoicesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2EffectOfChoicesNA" id="g2EffectOfChoicesNA" checked={this.state.fields["g2EffectOfChoicesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EffectOfChoicesNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2EffectOfChoicesPhysical" id="g2EffectOfChoicesPhysical" checked={this.state.fields["g2EffectOfChoicesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EffectOfChoicesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2EffectOfChoicesVerbal" id="g2EffectOfChoicesVerbal" checked={this.state.fields["g2EffectOfChoicesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EffectOfChoicesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2EffectOfChoicesInitiates" id="g2EffectOfChoicesInitiates" checked={this.state.fields["g2EffectOfChoicesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EffectOfChoicesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can safely interact with others on the internet',
-            goal2NA: <Label check> <Input type="checkbox" name="g2InternetSafetyNA" id="g2InternetSafetyNA"value={this.state.fields["g2InternetSafetyNA"] || ""} onChange={this.handleChange.bind(this, "g2InternetSafetyNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2InternetSafetyPhysical" id="g2InternetSafetyPhysical"value={this.state.fields["g2InternetSafetyPhysical"] || ""} onChange={this.handleChange.bind(this, "g2InternetSafetyPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2InternetSafetyVerbal" id="g2InternetSafetyVerbal"value={this.state.fields["g2InternetSafetyVerbal"] || ""} onChange={this.handleChange.bind(this, "g2InternetSafetyVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2InternetSafetyInitiates" id="g2InternetSafetyInitiates"value={this.state.fields["g2InternetSafetyInitiates"] || ""} onChange={this.handleChange.bind(this, "g2InternetSafetyInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2InternetSafetyNA" id="g2InternetSafetyNA" checked={this.state.fields["g2InternetSafetyNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2InternetSafetyNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2InternetSafetyPhysical" id="g2InternetSafetyPhysical" checked={this.state.fields["g2InternetSafetyPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2InternetSafetyPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2InternetSafetyVerbal" id="g2InternetSafetyVerbal" checked={this.state.fields["g2InternetSafetyVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2InternetSafetyVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2InternetSafetyInitiates" id="g2InternetSafetyInitiates" checked={this.state.fields["g2InternetSafetyInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2InternetSafetyInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Understands public vs. private activities',
-            goal2NA: <Label check> <Input type="checkbox" name="g2PublicPrivateNA" id="g2PublicPrivateNA"value={this.state.fields["g2PublicPrivateNA"] || ""} onChange={this.handleChange.bind(this, "g2PublicPrivateNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2PublicPrivatePhysical" id="g2PublicPrivatePhysical"value={this.state.fields["g2PublicPrivatePhysical"] || ""} onChange={this.handleChange.bind(this, "g2PublicPrivatePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2PublicPrivateVerbal" id="g2PublicPrivateVerbal"value={this.state.fields["g2PublicPrivateVerbal"] || ""} onChange={this.handleChange.bind(this, "g2PublicPrivateVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2PublicPrivateInitiates" id="g2PublicPrivateInitiates"value={this.state.fields["g2PublicPrivateInitiates"] || ""} onChange={this.handleChange.bind(this, "g2PublicPrivateInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2PublicPrivateNA" id="g2PublicPrivateNA" checked={this.state.fields["g2PublicPrivateNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PublicPrivateNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2PublicPrivatePhysical" id="g2PublicPrivatePhysical" checked={this.state.fields["g2PublicPrivatePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PublicPrivatePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2PublicPrivateVerbal" id="g2PublicPrivateVerbal" checked={this.state.fields["g2PublicPrivateVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PublicPrivateVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2PublicPrivateInitiates" id="g2PublicPrivateInitiates" checked={this.state.fields["g2PublicPrivateInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PublicPrivateInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: <div className={"sub-section"}>Work and Study Skills</div>,
             goal2NA: '',
@@ -8743,58 +9762,58 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: ''
         }, {
             goal2Category: 'Gets his/her work done on time',
-            goal2NA: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeNA" id="g2WorkDoneOnTimeNA"value={this.state.fields["g2WorkDoneOnTimeNA"] || ""} onChange={this.handleChange.bind(this, "g2WorkDoneOnTimeNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimePhysical" id="g2WorkDoneOnTimePhysical"value={this.state.fields["g2WorkDoneOnTimePhysical"] || ""} onChange={this.handleChange.bind(this, "g2WorkDoneOnTimePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeVerbal" id="g2WorkDoneOnTimeVerbal"value={this.state.fields["g2WorkDoneOnTimeVerbal"] || ""} onChange={this.handleChange.bind(this, "g2WorkDoneOnTimeVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeInitiates" id="g2WorkDoneOnTimeInitiates"value={this.state.fields["g2WorkDoneOnTimeInitiates"] || ""} onChange={this.handleChange.bind(this, "g2WorkDoneOnTimeInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeNA" id="g2WorkDoneOnTimeNA" checked={this.state.fields["g2WorkDoneOnTimeNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WorkDoneOnTimeNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimePhysical" id="g2WorkDoneOnTimePhysical" checked={this.state.fields["g2WorkDoneOnTimePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WorkDoneOnTimePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeVerbal" id="g2WorkDoneOnTimeVerbal" checked={this.state.fields["g2WorkDoneOnTimeVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WorkDoneOnTimeVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2WorkDoneOnTimeInitiates" id="g2WorkDoneOnTimeInitiates" checked={this.state.fields["g2WorkDoneOnTimeInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WorkDoneOnTimeInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Gets to school or work on time',
-            goal2NA: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolNA" id="g2OnTimeToSchoolNA"value={this.state.fields["g2OnTimeToSchoolNA"] || ""} onChange={this.handleChange.bind(this, "g2OnTimeToSchoolNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolPhysical" id="g2OnTimeToSchoolPhysical"value={this.state.fields["g2OnTimeToSchoolPhysical"] || ""} onChange={this.handleChange.bind(this, "g2OnTimeToSchoolPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolVerbal" id="g2OnTimeToSchoolVerbal"value={this.state.fields["g2OnTimeToSchoolVerbal"] || ""} onChange={this.handleChange.bind(this, "g2OnTimeToSchoolVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolInitiates" id="g2OnTimeToSchoolInitiates"value={this.state.fields["g2OnTimeToSchoolInitiates"] || ""} onChange={this.handleChange.bind(this, "g2OnTimeToSchoolInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolNA" id="g2OnTimeToSchoolNA" checked={this.state.fields["g2OnTimeToSchoolNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OnTimeToSchoolNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolPhysical" id="g2OnTimeToSchoolPhysical" checked={this.state.fields["g2OnTimeToSchoolPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OnTimeToSchoolPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolVerbal" id="g2OnTimeToSchoolVerbal" checked={this.state.fields["g2OnTimeToSchoolVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OnTimeToSchoolVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2OnTimeToSchoolInitiates" id="g2OnTimeToSchoolInitiates" checked={this.state.fields["g2OnTimeToSchoolInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OnTimeToSchoolInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Knows how and where to get help outside of school',
-            goal2NA: <Label check> <Input type="checkbox" name="g2SchoolHelpNA" id="g2SchoolHelpNA"value={this.state.fields["g2SchoolHelpNA"] || ""} onChange={this.handleChange.bind(this, "g2SchoolHelpNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SchoolHelpPhysical" id="g2SchoolHelpPhysical"value={this.state.fields["g2SchoolHelpPhysical"] || ""} onChange={this.handleChange.bind(this, "g2SchoolHelpPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2SchoolHelpVerbal" id="g2SchoolHelpVerbal"value={this.state.fields["g2SchoolHelpVerbal"] || ""} onChange={this.handleChange.bind(this, "g2SchoolHelpVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2SchoolHelpInitiates" id="g2SchoolHelpInitiates"value={this.state.fields["g2SchoolHelpInitiates"] || ""} onChange={this.handleChange.bind(this, "g2SchoolHelpInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2SchoolHelpNA" id="g2SchoolHelpNA" checked={this.state.fields["g2SchoolHelpNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SchoolHelpNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SchoolHelpPhysical" id="g2SchoolHelpPhysical" checked={this.state.fields["g2SchoolHelpPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SchoolHelpPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2SchoolHelpVerbal" id="g2SchoolHelpVerbal" checked={this.state.fields["g2SchoolHelpVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SchoolHelpVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2SchoolHelpInitiates" id="g2SchoolHelpInitiates" checked={this.state.fields["g2SchoolHelpInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SchoolHelpInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Prepares for exams and presentations',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ExamPrepNA" id="g2ExamPrepNA"value={this.state.fields["g2ExamPrepNA"] || ""} onChange={this.handleChange.bind(this, "g2ExamPrepNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ExamPrepPhysical" id="g2ExamPrepPhysical"value={this.state.fields["g2ExamPrepPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ExamPrepPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ExamPrepVerbal" id="g2ExamPrepVerbal"value={this.state.fields["g2ExamPrepVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ExamPrepVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ExamPrepInitiates" id="g2ExamPrepInitiates"value={this.state.fields["g2ExamPrepInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ExamPrepInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ExamPrepNA" id="g2ExamPrepNA" checked={this.state.fields["g2ExamPrepNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ExamPrepNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ExamPrepPhysical" id="g2ExamPrepPhysical" checked={this.state.fields["g2ExamPrepPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ExamPrepPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ExamPrepVerbal" id="g2ExamPrepVerbal" checked={this.state.fields["g2ExamPrepVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ExamPrepVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ExamPrepInitiates" id="g2ExamPrepInitiates" checked={this.state.fields["g2ExamPrepInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ExamPrepInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Looks over his/her work for mistakes',
-            goal2NA: <Label check> <Input type="checkbox" name="g2LooksForMistakesNA" id="g2LooksForMistakesNA"value={this.state.fields["g2LooksForMistakesNA"] || ""} onChange={this.handleChange.bind(this, "g2LooksForMistakesNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2LooksForMistakesPhysical" id="g2LooksForMistakesPhysical"value={this.state.fields["g2LooksForMistakesPhysical"] || ""} onChange={this.handleChange.bind(this, "g2LooksForMistakesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2LooksForMistakesVerbal" id="g2LooksForMistakesVerbal"value={this.state.fields["g2LooksForMistakesVerbal"] || ""} onChange={this.handleChange.bind(this, "g2LooksForMistakesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2LooksForMistakesInitiates" id="g2LooksForMistakesInitiates"value={this.state.fields["g2LooksForMistakesInitiates"] || ""} onChange={this.handleChange.bind(this, "g2LooksForMistakesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2LooksForMistakesNA" id="g2LooksForMistakesNA" checked={this.state.fields["g2LooksForMistakesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LooksForMistakesNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2LooksForMistakesPhysical" id="g2LooksForMistakesPhysical" checked={this.state.fields["g2LooksForMistakesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LooksForMistakesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2LooksForMistakesVerbal" id="g2LooksForMistakesVerbal" checked={this.state.fields["g2LooksForMistakesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LooksForMistakesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2LooksForMistakesInitiates" id="g2LooksForMistakesInitiates" checked={this.state.fields["g2LooksForMistakesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LooksForMistakesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Uses the library, newspaper, computer/internet, or other resources to get information',
-            goal2NA: <Label check> <Input type="checkbox" name="g2GetsInformationNA" id="g2GetsInformationNA"value={this.state.fields["g2GetsInformationNA"] || ""} onChange={this.handleChange.bind(this, "g2GetsInformationNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2GetsInformationPhysical" id="g2GetsInformationPhysical"value={this.state.fields["g2GetsInformationPhysical"] || ""} onChange={this.handleChange.bind(this, "g2GetsInformationPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2GetsInformationVerbal" id="g2GetsInformationVerbal"value={this.state.fields["g2GetsInformationVerbal"] || ""} onChange={this.handleChange.bind(this, "g2GetsInformationVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2GetsInformationInitiates" id="g2GetsInformationInitiates"value={this.state.fields["g2GetsInformationInitiates"] || ""} onChange={this.handleChange.bind(this, "g2GetsInformationInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2GetsInformationNA" id="g2GetsInformationNA" checked={ this.state.fields["g2GetsInformationNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsInformationNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2GetsInformationPhysical" id="g2GetsInformationPhysical" checked={this.state.fields["g2GetsInformationPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsInformationPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2GetsInformationVerbal" id="g2GetsInformationVerbal" checked={this.state.fields["g2GetsInformationVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsInformationVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2GetsInformationInitiates" id="g2GetsInformationInitiates" checked={this.state.fields["g2GetsInformationInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsInformationInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Knows how to access the internet to do homework',
-            goal2NA: <Label check> <Input type="checkbox" name="g2InternetForHomeworkNA" id="g2InternetForHomeworkNA"value={this.state.fields["g2InternetForHomeworkNA"] || ""} onChange={this.handleChange.bind(this, "g2InternetForHomeworkNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2InternetForHomeworkPhysical" id="g2InternetForHomeworkPhysical"value={this.state.fields["g2InternetForHomeworkPhysical"] || ""} onChange={this.handleChange.bind(this, "g2InternetForHomeworkPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2InternetForHomeworkVerbal" id="g2InternetForHomeworkVerbal"value={this.state.fields["g2InternetForHomeworkVerbal"] || ""} onChange={this.handleChange.bind(this, "g2InternetForHomeworkVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2InternetForHomeworkInitiates" id="g2InternetForHomeworkInitiates"value={this.state.fields["g2InternetForHomeworkInitiates"] || ""} onChange={this.handleChange.bind(this, "g2InternetForHomeworkInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2InternetForHomeworkNA" id="g2InternetForHomeworkNA" checked={this.state.fields["g2InternetForHomeworkNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2InternetForHomeworkNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2InternetForHomeworkPhysical" id="g2InternetForHomeworkPhysical" checked={this.state.fields["g2InternetForHomeworkPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2InternetForHomeworkPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2InternetForHomeworkVerbal" id="g2InternetForHomeworkVerbal" checked={this.state.fields["g2InternetForHomeworkVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2InternetForHomeworkVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2InternetForHomeworkInitiates" id="g2InternetForHomeworkInitiates" checked={this.state.fields["g2InternetForHomeworkInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2InternetForHomeworkInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Knows how to use a search engine',
-            goal2NA: <Label check> <Input type="checkbox" name="g2SearchEngineNA" id="g2SearchEngineNA"value={this.state.fields["g2SearchEngineNA"] || ""} onChange={this.handleChange.bind(this, "g2SearchEngineNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SearchEnginePhysical" id="g2SearchEnginePhysical"value={this.state.fields["g2SearchEnginePhysical"] || ""} onChange={this.handleChange.bind(this, "g2SearchEnginePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2SearchEngineVerbal" id="g2SearchEngineVerbal"value={this.state.fields["g2SearchEngineVerbal"] || ""} onChange={this.handleChange.bind(this, "g2SearchEngineVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2SearchEngineInitiates" id="g2SearchEngineInitiates"value={this.state.fields["g2SearchEngineInitiates"] || ""} onChange={this.handleChange.bind(this, "g2SearchEngineInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2SearchEngineNA" id="g2SearchEngineNA" checked={this.state.fields["g2SearchEngineNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SearchEngineNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SearchEnginePhysical" id="g2SearchEnginePhysical" checked={this.state.fields["g2SearchEnginePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SearchEnginePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2SearchEngineVerbal" id="g2SearchEngineVerbal" checked={this.state.fields["g2SearchEngineVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SearchEngineVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2SearchEngineInitiates" id="g2SearchEngineInitiates" checked={this.state.fields["g2SearchEngineInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SearchEngineInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can create, save, open, retrieve, and print documents on the computer',
-            goal2NA: <Label check> <Input type="checkbox" name="g2ComputerDocumentsNA" id="g2ComputerDocumentsNA"value={this.state.fields["g2ComputerDocumentsNA"] || ""} onChange={this.handleChange.bind(this, "g2ComputerDocumentsNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2ComputerDocumentsPhysical" id="g2ComputerDocumentsPhysical"value={this.state.fields["g2ComputerDocumentsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2ComputerDocumentsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2ComputerDocumentsVerbal" id="g2ComputerDocumentsVerbal"value={this.state.fields["g2ComputerDocumentsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2ComputerDocumentsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2ComputerDocumentsInitiates" id="g2ComputerDocumentsInitiates"value={this.state.fields["g2ComputerDocumentsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2ComputerDocumentsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2ComputerDocumentsNA" id="g2ComputerDocumentsNA" checked={this.state.fields["g2ComputerDocumentsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComputerDocumentsNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2ComputerDocumentsPhysical" id="g2ComputerDocumentsPhysical" checked={this.state.fields["g2ComputerDocumentsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComputerDocumentsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2ComputerDocumentsVerbal" id="g2ComputerDocumentsVerbal" checked={this.state.fields["g2ComputerDocumentsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComputerDocumentsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2ComputerDocumentsInitiates" id="g2ComputerDocumentsInitiates" checked={this.state.fields["g2ComputerDocumentsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2ComputerDocumentsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: <div className={"sub-section"}>Extra Items</div>,
             goal2NA: '',
@@ -8803,30 +9822,30 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: ''
         }, {
             goal2Category: 'Can make appointments with his/her doctor, dentist, or clinic when needed',
-            goal2NA: <Label check> <Input type="checkbox" name="g2MakeAppointmentsNA" id="g2MakeAppointmentsNA"value={this.state.fields["g2MakeAppointmentsNA"] || ""} onChange={this.handleChange.bind(this, "g2MakeAppointmentsNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2MakeAppointmentsPhysical" id="g2MakeAppointmentsPhysical"value={this.state.fields["g2MakeAppointmentsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2MakeAppointmentsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2MakeAppointmentsPhysical" id="g2MakeAppointmentsPhysical"value={this.state.fields["g2MakeAppointmentsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2MakeAppointmentsPhysical")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2MakeAppointmentsInitiates" id="g2MakeAppointmentsInitiates"value={this.state.fields["g2MakeAppointmentsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2MakeAppointmentsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2MakeAppointmentsNA" id="g2MakeAppointmentsNA" checked={this.state.fields["g2MakeAppointmentsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MakeAppointmentsNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2MakeAppointmentsPhysical" id="g2MakeAppointmentsPhysical" checked={this.state.fields["g2MakeAppointmentsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MakeAppointmentsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2MakeAppointmentsPhysical" id="g2MakeAppointmentsPhysical" checked={this.state.fields["g2MakeAppointmentsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MakeAppointmentsPhysical")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2MakeAppointmentsInitiates" id="g2MakeAppointmentsInitiates" checked={this.state.fields["g2MakeAppointmentsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MakeAppointmentsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Avoids relationships that hurt or are dangerous',
-            goal2NA: <Label check> <Input type="checkbox" name="g2HurtRelationshipsNA" id="g2HurtRelationshipsNA"value={this.state.fields["g2HurtRelationshipsNA"] || ""} onChange={this.handleChange.bind(this, "g2HurtRelationshipsNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2HurtRelationshipsPhysical" id="g2HurtRelationshipsPhysical"value={this.state.fields["g2HurtRelationshipsPhysical"] || ""} onChange={this.handleChange.bind(this, "g2HurtRelationshipsPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2HurtRelationshipsVerbal" id="g2HurtRelationshipsVerbal"value={this.state.fields["g2HurtRelationshipsVerbal"] || ""} onChange={this.handleChange.bind(this, "g2HurtRelationshipsVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2HurtRelationshipsInitiates" id="g2HurtRelationshipsInitiates"value={this.state.fields["g2HurtRelationshipsInitiates"] || ""} onChange={this.handleChange.bind(this, "g2HurtRelationshipsInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2HurtRelationshipsNA" id="g2HurtRelationshipsNA" checked={this.state.fields["g2HurtRelationshipsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HurtRelationshipsNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2HurtRelationshipsPhysical" id="g2HurtRelationshipsPhysical" checked={this.state.fields["g2HurtRelationshipsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HurtRelationshipsPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2HurtRelationshipsVerbal" id="g2HurtRelationshipsVerbal" checked={this.state.fields["g2HurtRelationshipsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HurtRelationshipsVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2HurtRelationshipsInitiates" id="g2HurtRelationshipsInitiates" checked={this.state.fields["g2HurtRelationshipsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2HurtRelationshipsInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how to get a copy of his/her birth certificate',
-            goal2NA: <Label check> <Input type="checkbox" name="g2BirthCertificateNA" id="g2BirthCertificateNA"value={this.state.fields["g2BirthCertificateNA"] || ""} onChange={this.handleChange.bind(this, "g2BirthCertificateNA")}/> N/A </Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2BirthCertificatePhysical" id="g2BirthCertificatePhysical"value={this.state.fields["g2BirthCertificatePhysical"] || ""} onChange={this.handleChange.bind(this, "g2BirthCertificatePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2BirthCertificateVerbal" id="g2BirthCertificateVerbal"value={this.state.fields["g2BirthCertificateVerbal"] || ""} onChange={this.handleChange.bind(this, "g2BirthCertificateVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2BirthCertificateInitiates" id="g2BirthCertificateInitiates"value={this.state.fields["g2BirthCertificateInitiates"] || ""} onChange={this.handleChange.bind(this, "g2BirthCertificateInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2BirthCertificateNA" id="g2BirthCertificateNA" checked={this.state.fields["g2BirthCertificateNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BirthCertificateNA")}/> N/A </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2BirthCertificatePhysical" id="g2BirthCertificatePhysical" checked={this.state.fields["g2BirthCertificatePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BirthCertificatePhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2BirthCertificateVerbal" id="g2BirthCertificateVerbal" checked={this.state.fields["g2BirthCertificateVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BirthCertificateVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2BirthCertificateInitiates" id="g2BirthCertificateInitiates" checked={this.state.fields["g2BirthCertificateInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2BirthCertificateInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can explain how to get a copy of his/her Social Security card',
-            goal2NA: <Label check> <Input type="checkbox" name="g2SocialSecurityCardNA" id="g2SocialSecurityCardNA"value={this.state.fields["g2SocialSecurityCardNA"] || ""} onChange={this.handleChange.bind(this, "g2SocialSecurityCardNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SocialSecurityCardPhysical" id="g2SocialSecurityCardPhysical"value={this.state.fields["g2SocialSecurityCardNA"] || ""} onChange={this.handleChange.bind(this, "g2SocialSecurityCardNA")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2SocialSecurityCardVerbal" id="g2SocialSecurityCardVerbal"value={this.state.fields["g2SocialSecurityCardVerbal"] || ""} onChange={this.handleChange.bind(this, "g2SocialSecurityCardVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2SocialSecurityCardInitiates" id="g2SocialSecurityCardInitiates"value={this.state.fields["g2SocialSecurityCardInitiates"] || ""} onChange={this.handleChange.bind(this, "g2SocialSecurityCardInitiates")}/> Initiates Independently
+            goal2NA: <Label check> <Input type="checkbox" name="g2SocialSecurityCardNA" id="g2SocialSecurityCardNA" checked={this.state.fields["g2SocialSecurityCardNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SocialSecurityCardPhysical" id="g2SocialSecurityCardPhysical" checked={this.state.fields["g2SocialSecurityCardNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardNA")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2SocialSecurityCardVerbal" id="g2SocialSecurityCardVerbal" checked={this.state.fields["g2SocialSecurityCardVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2SocialSecurityCardInitiates" id="g2SocialSecurityCardInitiates" checked={this.state.fields["g2SocialSecurityCardInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardInitiates")}/> Initiates Independently
             </Label>
-        }]
+        }];
 
         return (
             <fieldset id="/chai/section11">

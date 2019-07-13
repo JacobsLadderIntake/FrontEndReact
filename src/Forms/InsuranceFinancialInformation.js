@@ -36,91 +36,6 @@ class InsuranceFinancialInformation extends Component{
                 Header: 'Do you have a current assessment on file for this year?',
                 accessor: 'assessment'
             }],
-            therapyServicesData: [{
-                therapy: 'Occupational Therapy',
-                provider: <input type="text" name="providerOT" className={"tableInputField"}/>,
-                schedule: <input type="text" name="scheduleOT" className={"tableInputField"}/>,
-                assessment: <Input type="select"
-                                   name="assessmentOT"
-                                   id="assessmentOT"
-                                   onChange={this.handleChange.bind(this)}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                therapy: 'Physical Therapy',
-                provider: <input type="text" name="providerPT" className={"tableInputField"}/>,
-                schedule: <input type="text" name="schedulePT" className={"tableInputField"}/>,
-                assessment: <Input type="select"
-                                   name="assessmentPT"
-                                   id="assessmentPT"
-                                   onChange={this.handleChange.bind(this)}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                therapy: 'Speech Therapy',
-                provider: <input type="text" name="providerST" className={"tableInputField"}/>,
-                schedule: <input type="text" name="scheduleST" className={"tableInputField"}/>,
-                assessment: <Input type="select"
-                                   name="assessmentST"
-                                   id="assessmentST"
-                                   onChange={this.handleChange.bind(this)}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                therapy: 'Mental and Behavioral Health',
-                provider: <input type="text" name="providerMBH" className={"tableInputField"}/>,
-                schedule: <input type="text" name="scheduleMBH" className={"tableInputField"}/>,
-                assessment: <Input type="select"
-                                   name="assessmentMBH"
-                                   id="assessmentMBH"
-                                   onChange={this.handleChange.bind(this)}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                therapy: <input type="text" name="otherTherapy1" className={"tableInputField"} placeholder={" Other"}/>,
-                provider: <input type="text" name="providerOther1" className={"tableInputField"}/>,
-                schedule: <input type="text" name="scheduleOther1" className={"tableInputField"}/>,
-                assessment: <Input type="select"
-                                   name="assessmentOther1"
-                                   id="assessmentOther1"
-                                   onChange={this.handleChange.bind(this)}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                therapy: <input type="text" name="otherTherapy2" className={"tableInputField"} placeholder={" Other"}/>,
-                provider: <input type="text" name="providerOther2" className={"tableInputField"}/>,
-                schedule: <input type="text" name="scheduleOther2" className={"tableInputField"}/>,
-                assessment: <Input type="select"
-                                   name="assessmentOther2"
-                                   id="assessmentOther2"
-                                   onChange={this.handleChange.bind(this)}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }, {
-                therapy: <input type="text" name="otherTherapy3" className={"tableInputField"} placeholder={" Other"}/>,
-                provider: <input type="text" name="providerOther3" className={"tableInputField"}/>,
-                schedule: <input type="text" name="scheduleOther3" className={"tableInputField"}/>,
-                assessment: <Input type="select"
-                                   name="assessmentOther3"
-                                   id="assessmentOther3"
-                                   onChange={this.handleChange.bind(this)}>
-                    <option></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </Input>
-            }],
             submitButtonPressed: false,
             saveButtonPressed:false
         };
@@ -534,6 +449,76 @@ class InsuranceFinancialInformation extends Component{
     }
 
     renderInsurance() {
+        const therapyServicesData= [{
+            therapy: 'Occupational Therapy',
+            provider: <input type="text" name="providerOT" className={"tableInputField"}/>,
+            schedule: <input type="text" name="scheduleOT" className={"tableInputField"}/>,
+            assessment: <Input type="select" name="assessmentOT" id="assessmentOT" onChange={this.handleChange.bind(this)}>
+            <option></option>
+            <option>Yes</option>
+            <option>No</option>
+            </Input>
+        }, {
+            therapy: 'Physical Therapy',
+            provider: <input type="text" name="providerPT" className={"tableInputField"}/>,
+            schedule: <input type="text" name="schedulePT" className={"tableInputField"}/>,
+            assessment: <Input type="select" name="assessmentPT" id="assessmentPT"
+                               onChange={this.handleChange.bind(this)}>
+            <option></option>
+            <option>Yes</option>
+            <option>No</option>
+            </Input>
+        }, {
+            therapy: 'Speech Therapy',
+            provider: <input type="text" name="providerST" className={"tableInputField"}/>,
+            schedule: <input type="text" name="scheduleST" className={"tableInputField"}/>,
+            assessment: <Input type="select" name="assessmentST" id="assessmentST"
+                               onChange={this.handleChange.bind(this)}>
+            <option></option>
+            <option>Yes</option>
+            <option>No</option>
+            </Input>
+        }, {
+            therapy: 'Mental and Behavioral Health',
+            provider: <input type="text" name="providerMBH" className={"tableInputField"}/>,
+            schedule: <input type="text" name="scheduleMBH" className={"tableInputField"}/>,
+            assessment: <Input type="select" name="assessmentMBH" id="assessmentMBH"
+                               onChange={this.handleChange.bind(this)}>
+            <option></option>
+            <option>Yes</option>
+            <option>No</option>
+            </Input>
+        }, {
+            therapy: <input type="text" name="otherTherapy1" className={"tableInputField"} placeholder={" Other"}/>,
+            provider: <input type="text" name="providerOther1" className={"tableInputField"}/>,
+            schedule: <input type="text" name="scheduleOther1" className={"tableInputField"}/>,
+            assessment: <Input type="select" name="assessmentOther1" id="assessmentOther1"
+                               onChange={this.handleChange.bind(this)}>
+            <option></option>
+            <option>Yes</option>
+            <option>No</option>
+            </Input>
+        }, {
+            therapy: <input type="text" name="otherTherapy2" className={"tableInputField"} placeholder={" Other"}/>,
+            provider: <input type="text" name="providerOther2" className={"tableInputField"}/>,
+            schedule: <input type="text" name="scheduleOther2" className={"tableInputField"}/>,
+            assessment: <Input type="select" name="assessmentOther2" id="assessmentOther2"
+                               onChange={this.handleChange.bind(this)}>
+            <option></option>
+            <option>Yes</option>
+            <option>No</option>
+            </Input>
+        }, {
+            therapy: <input type="text" name="otherTherapy3" className={"tableInputField"} placeholder={" Other"}/>,
+            provider: <input type="text" name="providerOther3" className={"tableInputField"}/>,
+            schedule: <input type="text" name="scheduleOther3" className={"tableInputField"}/>,
+            assessment: <Input type="select" name="assessmentOther3" id="assessmentOther3"
+                               onChange={this.handleChange.bind(this)}>
+                <option></option>
+                <option>Yes</option>
+                <option>No</option>
+            </Input>
+        }]
         return(
             <fieldset>
                 <div>
@@ -1142,8 +1127,8 @@ class InsuranceFinancialInformation extends Component{
                         <Label className="control-label required">Does the client currently receive therapy services outside of Jacob's Ladder?</Label>
                             <Col sm ={2}>
                                 <Input type="select"
-                                       name="gncWaiver"
-                                       id="gncWaiver"
+                                       name="therapyOutside"
+                                       id="therapyOutside"
                                        onChange={this.toggleOutsideTherapyServices.bind(this)}>
                                     <option></option>
                                     <option>Yes</option>
@@ -1158,7 +1143,7 @@ class InsuranceFinancialInformation extends Component{
                                     on same days for insurance purposes.</Label>
                                     <ReactTable
                                         className={"therapyServicesTable -striped -highlight"}
-                                        data={this.state.therapyServicesData}
+                                        data={therapyServicesData}
                                         columns={this.state.therapyServicesColumns}
                                         defaultPageSize={7}
                                         showPagination={false}
