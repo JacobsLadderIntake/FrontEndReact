@@ -16,11 +16,11 @@ import {
     Row
 } from "reactstrap";
 import ReactTable from "react-table";
-import { token, userID } from '../Login';
+import { token } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
 let infoObj = {"ChildID": childID};
-let sec11InfoObj = {"ChildID": childID};;
+let sec11InfoObj = {"ChildID": childID};
 
 class ClientHistoryAndInformation extends Component {
     constructor(props) {
@@ -254,12 +254,12 @@ class ClientHistoryAndInformation extends Component {
 
     togglePhysicalAssistance(field,e){
         this.setState(state=>({physicalAssistance:!state.physicalAssistance}));
-        this.handleChange(field,e);
+        // this.handleChange(field,e);
     }
 
     toggleVerbalDirectives(field,e){
         this.setState(state=>({verbalDirectives:!state.verbalDirectives}));
-        this.handleChange(field,e);
+        // this.handleChange(field,e);
 
     }
     toggleBehavioralGoals(){
@@ -267,7 +267,7 @@ class ClientHistoryAndInformation extends Component {
     }
     toggleCurrentEvents(field,e) {
         this.setState(state=>({currentEvents: !state.currentEvents}));
-        this.handleChange(field,e);
+        // this.handleChange(field,e);
 
     }
     toggleEpipen() {
@@ -279,7 +279,8 @@ class ClientHistoryAndInformation extends Component {
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;
-        infoObj[field] = e.target.value
+        infoObj[field] = e.target.value;
+        sec11InfoObj[field] = e.target.value;
         this.validate();
         this.setState({fields: fields});
     }
@@ -935,21 +936,21 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("rigid").setAttribute("class", "form-control")
             }
 
-            if (!fields["physicalAssistanceYes"] && !fields["physicalAssistanceNo"]){
-                document.getElementById("physicalAssistanceQuestion").setAttribute("class", "control-label required error")
-            } else {
-                document.getElementById("physicalAssistanceQuestion").setAttribute("class", "control-label required")
-            }
-            if (!fields["verbalDirectivesYes"] && !fields["verbalDirectivesNo"]){
-                document.getElementById("verbalDirectivesQuestion").setAttribute("class", "control-label required error")
-            } else {
-                document.getElementById("verbalDirectivesQuestion").setAttribute("class", "control-label required")
-            }
-            if (!fields["currentEventsYes"] && !fields["currentEventsNo"]){
-                document.getElementById("currentEventsQuestion").setAttribute("class", "control-label required error")
-            } else {
-                document.getElementById("currentEventsQuestion").setAttribute("class", "control-label required")
-            }
+            // if (!fields["physicalAssistanceYes"] && !fields["physicalAssistanceNo"]){
+            //     document.getElementById("physicalAssistanceQuestion").setAttribute("class", "control-label required error")
+            // } else {
+            //     document.getElementById("physicalAssistanceQuestion").setAttribute("class", "control-label required")
+            // }
+            // if (!fields["verbalDirectivesCheckYes"] && !fields["verbalDirectivesCheckNo"]){
+            //     document.getElementById("verbalDirectivesQuestion").setAttribute("class", "control-label required error")
+            // } else {
+            //     document.getElementById("verbalDirectivesQuestion").setAttribute("class", "control-label required")
+            // }
+            // if (!fields["currentEventsYes"] && !fields["currentEventsNo"]){
+            //     document.getElementById("currentEventsQuestion").setAttribute("class", "control-label required error")
+            // } else {
+            //     document.getElementById("currentEventsQuestion").setAttribute("class", "control-label required")
+            // }
             //SECTION 10
             if (!fields["morning"]) {
                 formIsValid = false;
@@ -1119,6 +1120,7 @@ class ClientHistoryAndInformation extends Component {
             },
         });
         const body = await response.json();
+        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["dob"] = body.Form[0].dob == null ? "" : body.Form[0].dob;
@@ -1367,6 +1369,7 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["artProductsRarely"] = body.Form[0].artProductsRarely == null ? "" : body.Form[0].artProductsRarely;
             this.state.fields["artProductsNever"] = body.Form[0].artProductsNever == null ? "" : body.Form[0].artProductsNever;
             this.state.fields["dairyExcess"] = body.Form[0].dairyExcess == null ? "" : body.Form[0].dairyExcess;
+            this.state.fields["dairyDaily"] = body.Form[0].dailyDairy == null ? "" : body.Form[0].dailyDairy;
             this.state.fields["dairyWeekly"] = body.Form[0].dairyWeekly == null ? "" : body.Form[0].dairyWeekly;
             this.state.fields["dairyRarely"] = body.Form[0].dairyRarely == null ? "" : body.Form[0].dairyRarely;
             this.state.fields["dairyNever"] = body.Form[0].dairyNever == null ? "" : body.Form[0].dairyNever;
@@ -1735,9 +1738,6 @@ class ClientHistoryAndInformation extends Component {
     postSection11ToDB() {
         var update = JSON.stringify(sec11InfoObj);
         var url = 'api/children/' + childID + '/forms/Section11';
-        console.log("post section 11 url" + url);
-        console.log("updated section 11 JSON");
-        console.log(update);
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -1751,18 +1751,15 @@ class ClientHistoryAndInformation extends Component {
 
     fetchSection11FromDB = async () => {
         var url = 'api/children/' + childID + '/forms/Section11';
-        console.log("get url " + url);
         const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'token': token,
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
         });
         const body = await response.json();
-        console.log("fetch section 11 from db response");
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["g1SitNA"] = body.Form[0].g1SitNA == null ? "" : body.Form[0].g1SitNA;
@@ -2537,6 +2534,7 @@ class ClientHistoryAndInformation extends Component {
         infoObj.artProductsRarely = fields["artProductsRarely"];
         infoObj.artProductsNever = fields["artProductsNever"];
         infoObj.dairyExcess = fields["dairyExcess"];
+        infoObj.dailyDairy = fields["dairyDaily"];
         infoObj.dairyWeekly = fields["dairyWeekly"];
         infoObj.dairyRarely = fields["dairyRarely"];
         infoObj.dairyNever = fields["dairyNever"];
@@ -2898,8 +2896,6 @@ class ClientHistoryAndInformation extends Component {
         infoObj.oxygenTank = fields["oxygenTank"];
         infoObj.hearingDevice = fields["hearingDevice"];
         infoObj.otherSupply = fields["otherSupply"];
-        console.log("UPDATED FIELDS")
-        console.log(infoObj);
     }
 
     updateSection11Fields () {
@@ -3425,6 +3421,8 @@ class ClientHistoryAndInformation extends Component {
         sec11InfoObj.g2SocialSecurityCardPhysical = fields["g2SocialSecurityCardPhysical"];
         sec11InfoObj.g2SocialSecurityCardVerbal = fields["g2SocialSecurityCardVerbal"];
         sec11InfoObj.g2SocialSecurityCardInitiates = fields["g2SocialSecurityCardInitiates"];
+        console.log("UPDATED SECTION 11 FIELDS")
+        console.log(sec11InfoObj)
     }
 
     handleSubmit(event) {
@@ -5726,7 +5724,7 @@ class ClientHistoryAndInformation extends Component {
                 <option value = {"no"}>No</option>
                 <option value = {"not-sure"}>Not Sure</option>
             </Input>
-        }]
+        }];
         const foodGroupData = [{
             foodGroup: 'Vegetables',
             foodExcessive: <div className={"checkbox-div"}><Input type="checkbox" name="vegetableExcess" id="vegetableExcess" className={"checkbox-style"} checked={this.state.fields["vegetableExcess"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "vegetableExcess")}/></div>,
@@ -6793,7 +6791,7 @@ class ClientHistoryAndInformation extends Component {
                             Yes
                         </Label>
                     </FormGroup>
-                    <Collapse isOpen={this.state.behavioralGoals}>
+                    <Collapse isOpen={this.state.fields["behavioralGoalYes"] === "true"}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
                                 <Input
@@ -8709,12 +8707,12 @@ class ClientHistoryAndInformation extends Component {
                 </div>
                 <div>
                     <p > During a behavioral moment, does the client appear to become more heightened or dysregulated when:</p>
-                    <p className={"control-label required"}id={"physicalAssistanceQuestion"} >Provided physical assistance? If yes, please describe:</p>
+
+                    <p className={"control-label required"} id={"physicalAssistanceQuestion"} >Provided physical assistance? If yes, please describe:</p>
                     <Row>
                         <Col sm={1}>
                             <FormGroup check>
                                 <Label check onChange={this.togglePhysicalAssistance.bind(this,"physicalAssistanceYes")}>
-
                                     <Input onChange={this.handleChangeCheckbox.bind(this, "physicalAssistanceYes")}
                                            ref="physicalAssistanceYes"
                                            type="checkbox"
@@ -8724,7 +8722,7 @@ class ClientHistoryAndInformation extends Component {
                             </FormGroup>
                         </Col>
                         <Col sm={11}>
-                            <Collapse isOpen={this.state.physicalAssistance}>
+                            <Collapse isOpen={this.state.fields["physicalAssistanceYes"] === "true"}>
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
@@ -8737,8 +8735,7 @@ class ClientHistoryAndInformation extends Component {
                         </Col>
                     </Row>
                     <FormGroup check>
-                        <Label check onChange={this.handleChange.bind(this,"physicalAssistanceYes")}>
-
+                        <Label check >
                             <Input onChange={this.handleChangeCheckbox.bind(this, "physicalAssistanceNo")}
                                    ref="physicalAssistanceNo"
                                    type="checkbox"
@@ -8753,8 +8750,7 @@ class ClientHistoryAndInformation extends Component {
                     <Row>
                         <Col sm={1}>
                             <FormGroup check>
-                                <Label check id ={"verbalDirectivesYes"} onChange={this.toggleVerbalDirectives.bind(this,"verbalDirectivesYes")}>
-
+                                <Label check onChange={this.toggleVerbalDirectives.bind(this,"verbalDirectivesCheckYes")}>
                                     <Input onChange={this.handleChangeCheckbox.bind(this, "verbalDirectivesCheckYes")}
                                            ref="verbalDirectivesCheckYes"
                                            type="checkbox"
@@ -8764,7 +8760,7 @@ class ClientHistoryAndInformation extends Component {
                             </FormGroup>
                         </Col>
                         <Col sm={11}>
-                            <Collapse isOpen={this.state.verbalDirectives}>
+                            <Collapse isOpen={this.state.fields["verbalDirectivesCheckYes"] === "true"}>
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
@@ -8777,8 +8773,7 @@ class ClientHistoryAndInformation extends Component {
                         </Col>
                     </Row>
                     <FormGroup check>
-                        <Label check id ={"verbalDirectivesNo"} onChange={this.handleChange.bind(this,"verbalDirectivesNo")}>
-
+                        <Label check>
                             <Input onChange={this.handleChangeCheckbox.bind(this, "verbalDirectivesCheckNo")}
                                    ref="verbalDirectivesCheckNo"
                                    type="checkbox"
@@ -8792,8 +8787,7 @@ class ClientHistoryAndInformation extends Component {
                     <Row>
                         <Col sm={1}>
                             <FormGroup check>
-                                <Label check  id ={"currentEventsYes"} onChange={this.toggleCurrentEvents.bind(this,"currentEventsYes")}>
-
+                                <Label check onChange={this.toggleCurrentEvents.bind(this,"currentEventsYes")}>
                                     <Input onChange={this.handleChangeCheckbox.bind(this, "currentEventsCheckYes")}
                                            ref="currentEventsCheckYes"
                                            type="checkbox"
@@ -8803,7 +8797,7 @@ class ClientHistoryAndInformation extends Component {
                             </FormGroup>
                         </Col>
                         <Col sm={11}>
-                            <Collapse isOpen={this.state.currentEvents}>
+                            <Collapse isOpen={this.state.fields["currentEventsCheckYes"] === "true"}>
                                 <Card className={"toggle-card"}>
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
@@ -8816,8 +8810,7 @@ class ClientHistoryAndInformation extends Component {
                         </Col>
                     </Row>
                     <FormGroup check>
-                        <Label check  id ={"currentEventsQuestion"} onChange={this.handleChange.bind(this,"currentEventsNo")} >
-
+                        <Label check>
                             <Input onChange={this.handleChangeCheckbox.bind(this, "currentEventsCheckNo")}
                                    ref="currentEventsCheckNo"
                                    type="checkbox"

@@ -24,33 +24,21 @@ class ParentTable extends Component {
             columns: [{
                 Header: 'Form Name',
                 accessor: 'name',
-            }, {
-                Header: 'Progress',
-                accessor: 'progress',
-                width: 200
             }],
             data: [{
-                name: <div id="chai" style={{color: 'blue', textDecoration: 'underline'}}>Client History and Information Form</div>,
-                progress: 'Not Started',
-                color: 'white',
+                name: <div id="chai" style={{color: 'blue', textDecoration: 'underline'}}>Client History and Information Form</div>
             }, {
-                name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>,
-                progress: 'Not Started'
+                name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>
             }, {
-                name: <div id="pei" >Permission for Exchange of Information Form</div>,
-                progress: 'Not Started'
+                name: <div id="pei"  style={{color: 'blue', textDecoration: 'underline'}}>Permission for Exchange of Information Form</div>
             }, {
-                name: <div id="ep" style={{color: 'blue', textDecoration: 'underline'}}>Enrollment Process Form</div>,
-                progress: 'Not Started'
+                name: <div id="ep" style={{color: 'blue', textDecoration: 'underline'}}>Enrollment Process Form</div>
             }, {
-                name: <div id="bmc" style={{color: 'blue', textDecoration: 'underline'}}>Brain Map Consent Form</div>,
-                progress: 'Not Started'
+                name: <div id="bmc" style={{color: 'blue', textDecoration: 'underline'}}>Brain Map Consent Form</div>
             }, {
-                name: <div id="cca" style={{color: 'blue', textDecoration: 'underline'}}>Credit Card Authorization Form</div>,
-                progress: 'Not Started'
+                name: <div id="cca" style={{color: 'blue', textDecoration: 'underline'}}>Credit Card Authorization Form</div>
             }, {
-                name: <div id="ifi" >Insurance and Financial Information Form</div>,
-                progress: 'Not Started'
+                name: <div id="ifi" style={{color: 'blue', textDecoration: 'underline'}}>Insurance and Financial Information Form</div>
             }]
         };
         this.handleDueDateSubmit = this.handleDueDateSubmit.bind(this);
@@ -82,13 +70,10 @@ class ParentTable extends Component {
         } else if (row.name.props.id === "chai") {
             this.props.history.push("/chai");
         } else if (row.name.props.id === "pei") {
-            // THIS FORM IS NOT YET FULLY WORKING
             this.props.history.push("/pei");
         } else if (row.name.props.id === "cca") {
-            // THIS FORM IS NOT YET FULLY WORKING
             this.props.history.push("/cca");
         } else if (row.name.props.id === "ifi") {
-            // THIS FORM IS NOT YET FULLY WORKING
             this.props.history.push("/ifi");
         }
     }

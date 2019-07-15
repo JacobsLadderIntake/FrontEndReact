@@ -13,7 +13,7 @@ import {
 import {token} from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj = {"ChildID": childID};;
+let infoObj = {"ChildID": childID};
 
 class PermissionExchangeInformation extends Component {
     constructor(props) {
@@ -44,10 +44,10 @@ class PermissionExchangeInformation extends Component {
     updateFields() {
         let fields = this.state.fields;
         infoObj.ChildID = childID;
-        infoObj.StudentName = fields["studentName"];
-        infoObj.ParentName = fields["parentName"];
-        infoObj.Date = fields["date"];
-        infoObj.ConsentCheck = fields["consentCheck"];
+        infoObj.studentName = fields["studentName"];
+        infoObj.parentName = fields["parentName"];
+        infoObj.date = fields["date"];
+        infoObj.consentCheck = fields["consentCheck"];
     }
 
 
@@ -112,10 +112,11 @@ class PermissionExchangeInformation extends Component {
 
     postToDB() {
         var update = JSON.stringify(infoObj);
-        var url = 'api/children/' + childID + '/forms/PermissionExchangeInformationForm';
+        var url = 'api/children/' + childID + '/forms/PermissionForExchangeOfInformationForm';
         const response = fetch(url, {
             method: 'POST',
             headers: {
+                'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
@@ -124,7 +125,7 @@ class PermissionExchangeInformation extends Component {
     }
 
     fetchFromDB = async () => {
-        let url = 'api/children/' + childID + '/forms/PermissionExchangeInformationForm';
+        let url = 'api/children/' + childID + '/forms/PermissionForExchangeOfInformationForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -136,9 +137,9 @@ class PermissionExchangeInformation extends Component {
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
-            this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
-            this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
-            this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
+            this.state.fields["studentName"] = body.Form[0].studentName == null ? "" : body.Form[0].studentName;
+            this.state.fields["parentName"] = body.Form[0].parentName == null ? "" : body.Form[0].parentName;
+            this.state.fields["date"] = body.Form[0].date == null ? "" : body.Form[0].date;
             this.state.fields["consentCheck"] = body.Form[0].consentCheck == null ? "" : body.Form[0].consentCheck;
         }
         return body;

@@ -51,7 +51,6 @@ class CreditCardAuthorization extends Component {
         infoObj.CardNumber = fields["cardNumber"];
         infoObj.Date = fields["date"];
         infoObj.SecurityCode = fields["securityCode"];
-        console.log(infoObj)
     }
 
     validate() {
@@ -132,7 +131,6 @@ class CreditCardAuthorization extends Component {
 
     postToDB() {
         var update = JSON.stringify(infoObj);
-        console.log(update)
         var url = 'api/children/' + childID + '/forms/CreditCardAuthorizationForm';
         const response = fetch(url, {
             method: 'POST',
@@ -156,7 +154,6 @@ class CreditCardAuthorization extends Component {
             },
         });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["name"] = body.Form[0].Name == null ? "" : body.Form[0].Name;
