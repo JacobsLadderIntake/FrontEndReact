@@ -356,7 +356,7 @@ class ClientHistoryAndInformation extends Component {
                 errors["homeNumber"] = "Cannot be empty";
             }
             //SECTION TWO
-            if (!fields["maritalStatus"]) {
+            if (!fields["maritalStatus"] || fields["maritalStatus"] == "blank" ) {
                 formIsValid = false;
                 errors["maritalStatus"] = "Cannot be empty";
             }
@@ -413,22 +413,22 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["birthWeight"] = "Cannot be empty";
             }
-            if (!fields["deliveryType"]) {
+            if (!fields["deliveryType"] || fields["deliveryType"] == "blank") {
                 formIsValid = false;
                 errors["deliveryType"] = "Cannot be empty";
             }
-            if (!fields["pregComplications"]) {
+            if (!fields["pregComplications"] || fields["pregComplications"] == "blank") {
                 formIsValid = false;
                 errors["pregComplications"] = "Cannot be empty";
             }
-            if (!fields["hospitalizedAfterBirth"]) {
+            if (!fields["hospitalizedAfterBirth"] || fields["hospitalizedAfterBirth"] == "blank") {
                 formIsValid = false;
                 errors["hospitalizedAfterBirth"] = "Cannot be empty";
             }
 
 
             //SECTION FOUR
-            if ((!fields["crawlYears"] || fields["crawlYears"] == 0) && (!fields["crawlMonths"] || fields["crawlMonths"] == 0) &&(fields["crawlNa"] == "Yes") || !fields["crawlNa"]){
+            if ((!fields["crawlYears"] || fields["crawlYears"] == 0) && (!fields["crawlMonths"] || fields["crawlMonths"] == 0) &&(fields["crawlNa"] == "yes") || fields["crawlNa"] == "blank" || !fields["crawlNa"]){
                 document.getElementById("crawlYears").setAttribute("class", "form-control testing")
                 document.getElementById("crawlMonths").setAttribute("class", "form-control testing")
                 document.getElementById("crawlNa").setAttribute("class", "form-control testing")
@@ -438,7 +438,7 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("crawlNa").setAttribute("class", "form-control")
 
             }
-            if ((!fields["creptYears"] || fields["creptYears"] == 0) && (!fields["creptMonths"] || fields["creptMonths"] == 0) &&(fields["creptNa"] == "Yes") || !fields["creptNa"]){
+            if ((!fields["creptYears"] || fields["creptYears"] == 0) && (!fields["creptMonths"] || fields["creptMonths"] == 0) &&(fields["creptNa"] == "yes") || fields["creptNa"] == "blank" || !fields["creptNa"]){
                 document.getElementById("creptYears").setAttribute("class", "form-control testing")
                 document.getElementById("creptMonths").setAttribute("class", "form-control testing")
                 document.getElementById("creptNa").setAttribute("class", "form-control testing")
@@ -447,7 +447,7 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("creptMonths").setAttribute("class", "form-control")
                 document.getElementById("creptNa").setAttribute("class", "form-control")
             }
-            if ((!fields["walkYears"] || fields["walkYears"] == 0) && (!fields["walkMonths"] || fields["walkMonths"] == 0) &&(fields["walkNa"] == "Yes") || !fields["walkNa"]){
+            if ((!fields["walkYears"] || fields["walkYears"] == 0) && (!fields["walkMonths"] || fields["walkMonths"] == 0) &&(fields["walkNa"] == "yes") || fields["walkNa"] == "blank" || !fields["walkNa"] ){
                 document.getElementById("walkYears").setAttribute("class", "form-control testing")
                 document.getElementById("walkMonths").setAttribute("class", "form-control testing")
                 document.getElementById("walkNa").setAttribute("class", "form-control testing")
@@ -456,7 +456,7 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("walkMonths").setAttribute("class", "form-control")
                 document.getElementById("walkNa").setAttribute("class", "form-control")
             }
-            if ((!fields["toiletYears"] || fields["toiletYears"] == 0) && (!fields["toiletMonths"] || fields["toiletMonths"] == 0) &&(fields["toiletNa"] == "Yes") || !fields["toiletNa"]){
+            if ((!fields["toiletYears"] || fields["toiletYears"] == 0) && (!fields["toiletMonths"] || fields["toiletMonths"] == 0) &&(fields["toiletNa"] == "yes") || fields["toiletNa"] == "blank" || !fields["toiletNa"]){
                 document.getElementById("toiletYears").setAttribute("class", "form-control testing")
                 document.getElementById("toiletMonths").setAttribute("class", "form-control testing")
                 document.getElementById("toiletNa").setAttribute("class", "form-control testing")
@@ -465,7 +465,7 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("toiletMonths").setAttribute("class", "form-control")
                 document.getElementById("toiletNa").setAttribute("class", "form-control")
             }
-            if ((!fields["wordYears"] || fields["wordYears"] == 0) && (!fields["wordMonths"] || fields["wordMonths"] == 0) &&(fields["wordNa"] == "Yes") || !fields["wordNa"]){
+            if ((!fields["wordYears"] || fields["wordYears"] == 0) && (!fields["wordMonths"] || fields["wordMonths"] == 0) &&(fields["wordNa"] == "yes") || fields["wordNa"] == "blank" || !fields["wordNa"] ){
                 document.getElementById("wordYears").setAttribute("class", "form-control testing")
                 document.getElementById("wordMonths").setAttribute("class", "form-control testing")
                 document.getElementById("wordNa").setAttribute("class", "form-control testing")
@@ -473,7 +473,7 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("wordYears").setAttribute("class", "form-control")
                 document.getElementById("wordMonths").setAttribute("class", "form-control")
                 document.getElementById("wordNa").setAttribute("class", "form-control")
-            }if ((!fields["coupletYears"] || fields["coupletYears"] == 0) && (!fields["coupletMonths"] || fields["coupletMonths"] == 0) &&(fields["coupletNa"] == "Yes") || !fields["coupletNa"]){
+            }if ((!fields["coupletYears"] || fields["coupletYears"] == 0) && (!fields["coupletMonths"] || fields["coupletMonths"] == 0) &&(fields["coupletNa"] == "yes") || fields["coupletNa"] == "blank" || !fields["coupletNa"]){
                 document.getElementById("coupletYears").setAttribute("class", "form-control testing")
                 document.getElementById("coupletMonths").setAttribute("class", "form-control testing")
                 document.getElementById("coupletNa").setAttribute("class", "form-control testing")
@@ -482,7 +482,7 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("coupletMonths").setAttribute("class", "form-control")
                 document.getElementById("coupletNa").setAttribute("class", "form-control")
             }
-            if ((!fields["phraseYears"] || fields["phraseYears"] == 0) && (!fields["phraseMonths"] || fields["phraseMonths"] == 0) &&(fields["phraseNa"] == "Yes") || !fields["phraseNa"]){
+            if ((!fields["phraseYears"] || fields["phraseYears"] == 0) && (!fields["phraseMonths"] || fields["phraseMonths"] == 0) &&(fields["phraseNa"] == "yes") || fields["phraseNa"] == "blank" || !fields["phraseNa"]){
                 document.getElementById("phraseYears").setAttribute("class", "form-control testing")
                 document.getElementById("phraseMonths").setAttribute("class", "form-control testing")
                 document.getElementById("phraseNa").setAttribute("class", "form-control testing")
@@ -491,7 +491,7 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("phraseMonths").setAttribute("class", "form-control")
                 document.getElementById("phraseNa").setAttribute("class", "form-control")
             }
-            if ((!fields["sentenceYears"] || fields["sentenceYears"] == 0) && (!fields["sentenceMonths"] || fields["sentenceMonths"] == 0) &&(fields["sentenceNa"] == "Yes") || !fields["sentenceNa"]){
+            if ((!fields["sentenceYears"] || fields["sentenceYears"] == 0) && (!fields["sentenceMonths"] || fields["sentenceMonths"] == 0) &&(fields["sentenceNa"] == "yes") || fields["sentenceNa"] == "blank" || !fields["sentenceNa"]){
                 document.getElementById("sentenceYears").setAttribute("class", "form-control testing")
                 document.getElementById("sentenceMonths").setAttribute("class", "form-control testing")
                 document.getElementById("sentenceNa").setAttribute("class", "form-control testing")
@@ -499,7 +499,7 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("sentenceYears").setAttribute("class", "form-control")
                 document.getElementById("sentenceMonths").setAttribute("class", "form-control")
                 document.getElementById("sentenceNa").setAttribute("class", "form-control")
-            }if ((!fields["conversationYears"] || fields["conversationYears"] == 0) && (!fields["conversationMonths"] || fields["conversationMonths"] == 0) &&(fields["conversationNa"] == "Yes") || !fields["conversationNa"]){
+            }if ((!fields["conversationYears"] || fields["conversationYears"] == 0) && (!fields["conversationMonths"] || fields["conversationMonths"] == 0) &&(fields["conversationNa"] == "yes") || fields["conversationNa"] == "blank" || !fields["conversationNa"]){
                 document.getElementById("conversationYears").setAttribute("class", "form-control testing")
                 document.getElementById("conversationMonths").setAttribute("class", "form-control testing")
                 document.getElementById("conversationNa").setAttribute("class", "form-control testing")
@@ -509,42 +509,42 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("conversationNa").setAttribute("class", "form-control")
             }
             //SECTION FIVE
-            if (!fields["outsideTherapy"]){
+            if (!fields["outsideTherapy"] || fields["outsideTherapy"] == "blank"){
                 document.getElementById("outsideTherapy").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("outsideTherapy").setAttribute("class", "form-control")
             }
-            if (!fields["brace"]){
+            if (!fields["brace"] || fields["brace"] == "blank"){
                 document.getElementById("brace").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("brace").setAttribute("class", "form-control")
             }
-            if (!fields["feedSupport"]){
+            if (!fields["feedSupport"] || fields["feedSupport"] == "blank"){
                 document.getElementById("feedSupport").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("feedSupport").setAttribute("class", "form-control")
             }
-            if (!fields["toiletEquip"]){
+            if (!fields["toiletEquip"] || fields["toiletEquip"] == "blank"){
                 document.getElementById("toiletEquip").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("toiletEquip").setAttribute("class", "form-control")
             }
-            if (!fields["mobilityEquip"]){
+            if (!fields["mobilityEquip"] || fields["mobilityEquip"] == "blank" ){
                 document.getElementById("mobilityEquip").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("mobilityEquip").setAttribute("class", "form-control")
             }
-            if (!fields["communicationEquip"]){
+            if (!fields["communicationEquip"] || fields["communicationEquip"] == "blank"){
                 document.getElementById("communicationEquip").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("communicationEquip").setAttribute("class", "form-control")
             }
-            if (!fields["oxygenTank"]){
+            if (!fields["oxygenTank"] || fields["oxygenTank"] == "blank"){
                 document.getElementById("oxygenTank").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("oxygenTank").setAttribute("class", "form-control")
             }
-            if (!fields["hearingDevice"]){
+            if (!fields["hearingDevice"] || fields["hearingDevice"] == "blank"){
                 document.getElementById("hearingDevice").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("hearingDevice").setAttribute("class", "form-control")
@@ -676,25 +676,49 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["wakeTime"] = "Cannot be empty";
             }
-            if (!fields["troubleStayingAsleep"]){
+            if (!fields["troubleStayingAsleep"] || fields["troubleStayingAsleep"] == "blank"){
                 document.getElementById("troubleStayingAsleep").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("troubleStayingAsleep").setAttribute("class", "form-control")
             }
-            if (!fields["troubleFallingAsleep"]){
+            if (!fields["troubleFallingAsleep"] || fields["troubleFallingAsleep"] == "blank"){
                 document.getElementById("troubleFallingAsleep").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("troubleFallingAsleep").setAttribute("class", "form-control")
             }
-            if (!fields["wakesEarly"]){
+            if (!fields["wakesEarly"] || fields["wakesEarly"] == "blank"){
                 document.getElementById("wakesEarly").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("wakesEarly").setAttribute("class", "form-control")
             }
+            if (!fields["epilepsy"] || fields["epilepsy"] == "blank"){
+                formIsValid = false;
+                document.getElementById("epilepsy").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("epilepsy").setAttribute("class", "form-control")
+            }
+            if (!fields["diabetes"] || fields["diabetes"] == "blank"){
+                formIsValid = false;
+                document.getElementById("diabetes").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("diabetes").setAttribute("class", "form-control")
+            }
+            if (!fields["asthma"] || fields["asthma"] == "blank"){
+                formIsValid = false;
+                document.getElementById("asthma").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("asthma").setAttribute("class", "form-control")
+            }
+            if (!fields["epipen"] || fields["epipen"] == "blank"){
+                formIsValid = false;
+                document.getElementById("epipen").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("epipen").setAttribute("class", "form-control")
+            }
 
 
 
-            //SECTION SEVEN
+                //SECTION SEVEN
             if (!fields["educationalChallenges"]) {
                 formIsValid = false;
                 errors["educationalChallenges"] = "Cannot be empty";
@@ -786,6 +810,10 @@ class ClientHistoryAndInformation extends Component {
             } else {
                 document.getElementById("skill9").setAttribute("class", "form-control")
             }
+            if (!fields["languageAtHome"]) {
+                formIsValid = false;
+                errors["languageAtHome"] = "Cannot be empty";
+            }
             //SECTION 9
             if (!fields["soothing"]) {
                 formIsValid = false;
@@ -799,138 +827,153 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["positiveBehavior"] = "Cannot be empty";
             }
+            if (!fields["communicationIssue1"] || fields["communicationIssue1"] == "blank"){
+                document.getElementById("communicationIssue1").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("communicationIssue1").setAttribute("class", "form-control")
+            }
+            if (!fields["communicationIssue2"] || fields["communicationIssue2"] == "blank"){
+                document.getElementById("communicationIssue2").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("communicationIssue2").setAttribute("class", "form-control")
+            }
+            if (!fields["communicationIssue3"] || fields["communicationIssue3"] == "blank"){
+                document.getElementById("communicationIssue3").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("communicationIssue3").setAttribute("class", "form-control")
+            }
             //SECTION NINE
-            if (!fields["schoolConcentration"]){
+            if (!fields["schoolConcentration"] || fields["schoolConcentration"] == "'blank"){
                 document.getElementById("schoolConcentration").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("schoolConcentration").setAttribute("class", "form-control")
             }
-            if (!fields["socialAnxiety"]){
+            if (!fields["socialAnxiety"] || fields["socialAnxiety"] == "'blank"){
                 document.getElementById("socialAnxiety").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("socialAnxiety").setAttribute("class", "form-control")
             }
-            if (!fields["lowGrades"]){
+            if (!fields["lowGrades"] || fields["lowGrades"] == "'blank"){
                 document.getElementById("lowGrades").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("lowGrades").setAttribute("class", "form-control")
             }
-            if (!fields["makingFriends"]){
+            if (!fields["makingFriends"] || fields["makingFriends"] == "'blank"){
                 document.getElementById("makingFriends").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("makingFriends").setAttribute("class", "form-control")
             }
-            if (!fields["oppositionalBehavior"]){
+            if (!fields["oppositionalBehavior"] || fields["oppositionalBehavior"] == "'blank"){
                 document.getElementById("oppositionalBehavior").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("oppositionalBehavior").setAttribute("class", "form-control")
             }
-            if (!fields["sociallyIsolated"]){
+            if (!fields["sociallyIsolated"] || fields["sociallyIsolated"] == "'blank"){
                 document.getElementById("sociallyIsolated").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("sociallyIsolated").setAttribute("class", "form-control")
             }
-            if (!fields["agressiveBehavior"]){
+            if (!fields["aggressiveBehavior"] || fields["aggressiveBehavior"] == "'blank"){
                 document.getElementById("aggressiveBehavior").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("aggressiveBehavior").setAttribute("class", "form-control")
             }
-            if (!fields["stressFamily"]){
+            if (!fields["stressFamily"] || fields["stressFamily"] == "'blank"){
                 document.getElementById("stressFamily").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("stressFamily").setAttribute("class", "form-control")
             }
-            if (!fields["generalizedAnxiety"]){
+            if (!fields["generalizedAnxiety"] || fields["generalizedAnxiety"] == "'blank"){
                 document.getElementById("generalizedAnxiety").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("generalizedAnxiety").setAttribute("class", "form-control")
             }
-            if (!fields["phobias"]){
+            if (!fields["phobias"] || fields["phobias"] == "'blank"){
                 document.getElementById("phobias").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("phobias").setAttribute("class", "form-control")
             }
-            if (!fields["temperProblem"]){
+            if (!fields["temperProblem"] || fields["temperProblem"] == "'blank"){
                 document.getElementById("temperProblem").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("temperProblem").setAttribute("class", "form-control")
             }
-            if (!fields["hyperactive"]){
+            if (!fields["hyperactive"] || fields["hyperactive"] == "'blank"){
                 document.getElementById("hyperactive").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("hyperactive").setAttribute("class", "form-control")
             }
-            if (!fields["sensoryProblems"]){
+            if (!fields["sensoryProblems"] || fields["sensoryProblems"] == "'blank"){
                 document.getElementById("sensoryProblems").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("sensoryProblems").setAttribute("class", "form-control")
             }
-            if (!fields["problemsEating"]){
+            if (!fields["problemsEating"] || fields["problemsEating"] == "'blank"){
                 document.getElementById("problemsEating").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("problemsEating").setAttribute("class", "form-control")
             }
-            if (!fields["wettingAccidents"]){
+            if (!fields["wettingAccidents"] || fields["wettingAccidents"] == "'blank"){
                 document.getElementById("wettingAccidents").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("wettingAccidents").setAttribute("class", "form-control")
             }
-            if (!fields["vocalTics"]){
+            if (!fields["vocalTics"] || fields["vocalTics"] == "'blank"){
                 document.getElementById("vocalTics").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("vocalTics").setAttribute("class", "form-control")
             }
-            if (!fields["wakingUp"]){
+            if (!fields["wakingUp"] || fields["wakingUp"] == "'blank"){
                 document.getElementById("wakingUp").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("wakingUp").setAttribute("class", "form-control")
             }
-            if (!fields["nightmares"]){
+            if (!fields["nightmares"] || fields["nightmares"] == "'blank"){
                 document.getElementById("nightmares").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("nightmares").setAttribute("class", "form-control")
             }
-            if (!fields["problemsSleeping"]){
+            if (!fields["problemsSleeping"] || fields["problemsSleeping"] == "'blank"){
                 document.getElementById("problemsSleeping").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("problemsSleeping").setAttribute("class", "form-control")
             }
-            if (!fields["tiredness"]){
+            if (!fields["tiredness"] || fields["tiredness"] == "'blank"){
                 document.getElementById("tiredness").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("tiredness").setAttribute("class", "form-control")
             }
-            if (!fields["sadness"]){
+            if (!fields["sadness"] || fields["sadness"] == "'blank"){
                 document.getElementById("sadness").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("sadness").setAttribute("class", "form-control")
             }
-            if (!fields["impulsive"]){
+            if (!fields["impulsive"] || fields["impulsive"] == "'blank"){
                 document.getElementById("impulsive").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("impulsive").setAttribute("class", "form-control")
             }
-            if (!fields["npncompliant"]){
+            if (!fields["noncompliant"] || fields["noncompliant"] == "'blank"){
                 document.getElementById("noncompliant").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("noncompliant").setAttribute("class", "form-control")
             }
-            if (!fields["injuryBehavior"]){
+            if (!fields["injuryBehavior"] || fields["injuryBehavior"] == "'blank"){
                 document.getElementById("injuryBehavior").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("injuryBehavior").setAttribute("class", "form-control")
             }
-            if (!fields["darting"]){
+            if (!fields["darting"] || fields["darting"] == "'blank"){
                 document.getElementById("darting").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("darting").setAttribute("class", "form-control")
             }
-            if (!fields["abuse"]){
+            if (!fields["abuse"] || fields["abuse"] == "'blank"){
                 document.getElementById("abuse").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("abuse").setAttribute("class", "form-control")
             }
-            if (!fields["rigid"]){
+            if (!fields["rigid"] || fields["rigid"] == "'blank"){
                 document.getElementById("rigid").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("rigid").setAttribute("class", "form-control")
@@ -4368,10 +4411,10 @@ class ClientHistoryAndInformation extends Component {
                 id="creptNa"
                 onChange={this.handleChange.bind(this, "creptNa")}
                                      value = {this.state.fields["creptNa"]}>
-                <option></option>
-                <option>Yes</option>
-                <option>Not Developed</option>
-                <option>Unknown</option>
+                <option value = "blank"></option>
+                <option value = "yes">Yes</option>
+                <option value = "not-developed">Not Developed</option>
+                <option value = "unknown">Unknown</option>
                 </Input>
             }, {
                 devHistoryActivity: 'Walked',
@@ -4426,10 +4469,10 @@ class ClientHistoryAndInformation extends Component {
                                      value = {this.state.fields["walkNa"]}
                 onChange={this.handleChange.bind(this, "walkNa")}
                 >
-                <option></option>
-                <option>Yes</option>
-                <option>Not Developed</option>
-                <option>Unknown</option>
+                    <option value = {"blank"}></option>
+                    <option value ={"yes"}>Yes</option>
+                    <option value ={"not-developed"}>Not Developed</option>
+                    <option value = {"unknown"}>Unknown</option>
 
                 </Input>
             }, {
@@ -4942,7 +4985,7 @@ class ClientHistoryAndInformation extends Component {
                                    name="epilepsy"
                                    id="epilepsy"
                                    accesor={"epilepsy"}
-                                   value={this.state.fields["epilepsy"] || ""}
+                                   value={this.state.fields["epilepsy"]}
                                    onChange={this.handleChange.bind(this, "epilepsy")}>
                 <option value = {"blank"}></option>
                 <option value = {"yes"}>Yes</option>
