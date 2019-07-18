@@ -254,12 +254,10 @@ class ClientHistoryAndInformation extends Component {
 
     togglePhysicalAssistance(field,e){
         this.setState(state=>({physicalAssistance:!state.physicalAssistance}));
-        // this.handleChange(field,e);
     }
 
     toggleVerbalDirectives(field,e){
         this.setState(state=>({verbalDirectives:!state.verbalDirectives}));
-        // this.handleChange(field,e);
 
     }
     toggleBehavioralGoals(){
@@ -267,11 +265,7 @@ class ClientHistoryAndInformation extends Component {
     }
     toggleCurrentEvents(field,e) {
         this.setState(state=>({currentEvents: !state.currentEvents}));
-        // this.handleChange(field,e);
 
-    }
-    toggleEpipen() {
-        this.setState(state=>({epipen: !state.epipen}));
     }
     toggleSeizures() {
         this.setState(state=>({seizures: !state.seizures}));
@@ -284,6 +278,7 @@ class ClientHistoryAndInformation extends Component {
         this.validate();
         this.setState({fields: fields});
     }
+
     handleChangeCheckbox(field,e) {
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
@@ -294,11 +289,7 @@ class ClientHistoryAndInformation extends Component {
 
     checkValue(name) {
         let fields = this.state.fields;
-        if (fields[name] >= 1){
-            return true;
-        } else {
-            return false;
-        }
+        return fields[name] >= 1;
     }
 
     validate() {
@@ -1163,6 +1154,7 @@ class ClientHistoryAndInformation extends Component {
             },
         });
         const body = await response.json();
+        console.log("everything else");
         console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
@@ -1344,7 +1336,7 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["feedSupport"] = body.Form[0].feedSupport == null ? "" : body.Form[0].feedSupport;
             this.state.fields["toiletEquip"] = body.Form[0].toiletEquip == null ? "" : body.Form[0].toiletEquip;
             this.state.fields["mobilityEquip"] = body.Form[0].mobilityEquip == null ? "" : body.Form[0].mobilityEquip;
-            this.state.fields["communicationEquip"] = body.Form[0].communicationEquip == null ? "" : body.Form[0].communicationEquip;
+            this.state.fields["communicationEquip"] = body.Form[0].CommunicationEquip == null ? "" : body.Form[0].CommunicationEquip;
             this.state.fields["oxygenTank"] = body.Form[0].oxygenTank == null ? "" : body.Form[0].oxygenTank;
             this.state.fields["hearingDevice"] = body.Form[0].hearingDevice == null ? "" : body.Form[0].hearingDevice;
             this.state.fields["otherSupply"] = body.Form[0].otherSupply == null ? "" : body.Form[0].otherSupply;
@@ -1770,7 +1762,7 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["feedSupport"] = body.Form[0].feedSupport == null ? "" : body.Form[0].feedSupport;
             this.state.fields["toiletEquip"] = body.Form[0].toiletEquip == null ? "" : body.Form[0].toiletEquip;
             this.state.fields["mobilityEquip"] = body.Form[0].mobilityEquip == null ? "" : body.Form[0].mobilityEquip;
-            this.state.fields["communicationEquip"] = body.Form[0].communicationEquip == null ? "" : body.Form[0].communicationEquip;
+            // this.state.fields["communicationEquip"] = body.Form[0].communicationEquip == null ? "" : body.Form[0].communicationEquip;
             this.state.fields["oxygenTank"] = body.Form[0].oxygenTank == null ? "" : body.Form[0].oxygenTank;
             this.state.fields["hearingDevice"] = body.Form[0].hearingDevice == null ? "" : body.Form[0].hearingDevice;
             this.state.fields["otherSupply"] = body.Form[0].otherSupply == null ? "" : body.Form[0].otherSupply;
@@ -1803,6 +1795,8 @@ class ClientHistoryAndInformation extends Component {
             },
         });
         const body = await response.json();
+        console.log("section 11");
+        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["g1SitNA"] = body.Form[0].g1SitNA == null ? "" : body.Form[0].g1SitNA;
@@ -2509,7 +2503,7 @@ class ClientHistoryAndInformation extends Component {
         infoObj.feedSupport = fields["feedSupport"];
         infoObj.toiletEquip = fields["toiletEquip"];
         infoObj.mobilityEquip = fields["mobilityEquip"];
-        infoObj.communicationEquip = fields["communicationEquip"];
+        infoObj.CommunicationEquip = fields["communicationEquip"];
         infoObj.oxygenTank = fields["oxygenTank"];
         infoObj.hearingDevice = fields["hearingDevice"];
         infoObj.otherSupply = fields["otherSupply"];
@@ -2935,7 +2929,7 @@ class ClientHistoryAndInformation extends Component {
         infoObj.feedSupport = fields["feedSupport"];
         infoObj.toiletEquip = fields["toiletEquip"];
         infoObj.mobilityEquip = fields["mobilityEquip"];
-        infoObj.communicationEquip = fields["communicationEquip"];
+        // infoObj.communicationEquip = fields["communicationEquip"];
         infoObj.oxygenTank = fields["oxygenTank"];
         infoObj.hearingDevice = fields["hearingDevice"];
         infoObj.otherSupply = fields["otherSupply"];
@@ -4932,7 +4926,7 @@ class ClientHistoryAndInformation extends Component {
             otherDrSpecialty: <input type="text" name="doc1Specialty"className={"tableInputField"} value={this.state.fields["doc1Specialty"] || ""} onChange={this.handleChange.bind(this, "doc1Specialty")}/>,
             otherDrPhone: <input type="text" name="doc1Phone"className={"tableInputField"} value={this.state.fields["doc1Phone"] || ""} onChange={this.handleChange.bind(this, "doc1Phone")}/>,
             otherDrSched: <input type="text" name="doc1Sched"className={"tableInputField"} value={this.state.fields["doc1Sched"] || ""} onChange={this.handleChange.bind(this, "doc1Sched")}/>
-        }, {
+            }, {
             otherDrName: <input type="text" name="doc2Name"className={"tableInputField"} value={this.state.fields["doc2Name"] || ""} onChange={this.handleChange.bind(this, "doc2Name")}/>,
             otherDrSpecialty: <input type="text" name="doc2Specialty"className={"tableInputField"} value={this.state.fields["doc2Specialty"] || ""} onChange={this.handleChange.bind(this, "doc2Specialty")}/>,
             otherDrPhone: <input type="text" name="doc2Phone" className={"tableInputField"} value={this.state.fields["doc2Phone"] || ""} onChange={this.handleChange.bind(this, "doc2Phone")}/>,
@@ -4978,7 +4972,7 @@ class ClientHistoryAndInformation extends Component {
             specialDrSpecialty: <input type="text" name="specialDoc5Specialty"className={"tableInputField"} value={this.state.fields["specialDoc5Specialty"] || ""} onChange={this.handleChange.bind(this, "specialDoc5Specialty")}/>,
             specialDrPhone: <input type="text" name="specialDoc5Phone"className={"tableInputField"} value={this.state.fields["specialDoc5Phone"] || ""} onChange={this.handleChange.bind(this, "specialDoc5Phone")}/>,
             specialDrSched: <input type="text" name="specialDoc5Sched"className={"tableInputField"} value={this.state.fields["specialDoc5Sched"] || ""} onChange={this.handleChange.bind(this, "specialDoc5Sched")}/>
-        }]
+        }];
         const medicalConditionsData = [{
             medCondition: 'Epilepsy/Seizures',
             medConditionYN: <Input type="select"
@@ -5035,7 +5029,7 @@ class ClientHistoryAndInformation extends Component {
                 <option value = {"yes"}>Yes</option>
                 <option value = {"no"}>No</option>
             </Input>
-        }]
+        }];
         const testingData = [{
             testDate: <input type="text" name="test1Date" className={"tableInputField"} value={this.state.fields["test1Date"] || ""} onChange={this.handleChange.bind(this, "test1Date")}/>,
             testExaminer: <input type="text" name="test1Examiner"className={"tableInputField"} value={this.state.fields["test1Examiner"] || ""} onChange={this.handleChange.bind(this, "test1Examiner")}/>,
@@ -5065,7 +5059,7 @@ class ClientHistoryAndInformation extends Component {
             testDiagnosis: <input type="text" name="test5Diagnosis" className={"tableInputField"} value={this.state.fields["test5Diagnosis"] || ""} onChange={this.handleChange.bind(this, "test5Diagnosis")}/>,
             testReco: <input type="text" name="test5Reco" className={"tableInputField"} value={this.state.fields["test5Reco"] || ""} onChange={this.handleChange.bind(this, "test5Reco")}/>,
 
-        }]
+        }];
         const suppliesData= [{
             supplies: 'Braces/Splints',
             suppliesYN: <Input type="select"
@@ -5154,7 +5148,7 @@ class ClientHistoryAndInformation extends Component {
                 <option value = "yes">Yes</option>
                 <option value = "no">No</option>
             </Input>
-        }]
+        }];
         const medsData = [{
             medsName: <input type="text" name="med1Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Name")} value={this.state.fields["med1Name"] || ""}/>,
             medsDosage: <input type="text" name="med1Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Dosage")} value={this.state.fields["med1Dosage"] || ""}/>,
@@ -5190,7 +5184,7 @@ class ClientHistoryAndInformation extends Component {
             medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Frequency")} value={this.state.fields["med5Frequency"] || ""}/>,
             medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Purpose")} value={this.state.fields["med5Purpose"] || ""}/>,
             medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5SideEffects")} value={this.state.fields["med5SideEffects"] || ""}/>
-        }]
+        }];
 
         return (
             <fieldset id="/chai/section5">
@@ -6837,9 +6831,10 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.state.fields["behavioralGoalYes"] === "true"}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Input
-                                    ref ="behavioralGoalYesExplain"
-                                    type="textarea"/>
+                                <Input ref ="behavioralGoalYesExplain"
+                                       type="textarea"
+                                       value = {this.state.fields["behavioralGoalYesExplain"] || ""}
+                                       onChange={this.handleChange.bind(this, "behavioralGoalYesExplain")}/>
 
                             </CardBody>
                         </Card>
@@ -8770,7 +8765,9 @@ class ClientHistoryAndInformation extends Component {
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
                                             ref = "physicalAssistanceYesExplain"
-                                            type="textarea"/>
+                                            type="textarea"
+                                            value = {this.state.fields["physicalAssistanceYesExplain"] || ""}
+                                            onChange={this.handleChange.bind(this, "physicalAssistanceYesExplain")}/>
 
                                     </CardBody>
                                 </Card>
@@ -8808,7 +8805,10 @@ class ClientHistoryAndInformation extends Component {
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
                                             ref = "verbalDirectivesYesExplain"
-                                            type="textarea"/>
+                                            type="textarea"
+                                            value = {this.state.fields["verbalDirectivesYesExplain"] || ""}
+                                            onChange={this.handleChange.bind(this, "verbalDirectivesYesExplain")}/>
+
 
                                     </CardBody>
                                 </Card>
@@ -8845,7 +8845,9 @@ class ClientHistoryAndInformation extends Component {
                                     <CardBody className={"toggle-card-body"}>
                                         <Input
                                             ref = "currentEventsExplain"
-                                            type="textarea"/>
+                                            type="textarea"
+                                            value = {this.state.fields["currentEventsExplain"] || ""}
+                                            onChange={this.handleChange.bind(this, "currentEventsExplain")}/>
 
                                     </CardBody>
                                 </Card>
@@ -9107,7 +9109,7 @@ class ClientHistoryAndInformation extends Component {
             goal1Initiates: <Label check> <Input type="checkbox" name="g1WantsNeedsInitiates" id="g1WantsNeedsInitiates" checked={this.state.fields["g1WantsNeedsInitiates"]  === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1WantsNeedsInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Answers simple social questions',
-            goal1NA: <Label check> <Input type="checkbox" name="g1SocialQsNA" id="g1socialQsNA" checked={this.state.fields["g1SocialQsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SocialQsNA")}/> N/A </Label>,
+            goal1NA: <Label check> <Input type="checkbox" name="g1socialQsNA" id="g1socialQsNA" checked={this.state.fields["g1socialQsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1socialQsNA")}/> N/A </Label>,
             goal1Physical: <Label check> <Input type="checkbox" name="g1SocialQsPhysical" id="g1SocialQsPhysical" checked={this.state.fields["g1SocialQsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SocialQsPhysical")}/> Physical Prompt </Label>,
             goal1Verbal: <Label check> <Input type="checkbox" name="g1SocialQsVerbal" id="g1SocialQsVerbal" checked={this.state.fields["g1SocialQsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SocialQsVerbal")}/> Verbal Prompt </Label>,
             goal1Initiates: <Label check> <Input type="checkbox" name="g1SocialQsInitiates" id="g1SocialQsInitiates" checked={this.state.fields["g1SocialQsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1SocialQsInitiates")}/> Initiates Independently </Label>
@@ -9164,7 +9166,7 @@ class ClientHistoryAndInformation extends Component {
             goal1NA: <Label check> <Input type="checkbox" name="g1IndTaskShortNA" id="g1IndTaskShortNA" checked={this.state.fields["g1IndTaskShortNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortNA")}/> N/A </Label>,
             goal1Physical: <Label check> <Input type="checkbox" name="g1IndTaskShortPhysical" id="g1IndTaskShortPhysical" checked={this.state.fields["g1IndTaskShortPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortPhysical")}/> Physical Prompt </Label>,
             goal1Verbal: <Label check> <Input type="checkbox" name="g1IndTaskShortVerbal" id="g1IndTaskShortVerbal" checked={this.state.fields["g1IndTaskShortVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortVerbal")}/> Verbal Prompt </Label>,
-            goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskShortInitiates" id="g1IndTaskShortInitiates" checked={this.state.fields["g1IndTaskShortInitiates"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortInitiates")}/> Initiates Independently </Label>
+            goal1Initiates: <Label check> <Input type="checkbox" name="g1IndTaskShortInitiates" id="g1IndTaskShortInitiates" checked={this.state.fields["g1IndTaskShortInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1IndTaskShortInitiates")}/> Initiates Independently </Label>
         }, {
             goal1Category: 'Able to organize materials within and for simple tasks and execute them independently',
             goal1NA: <Label check> <Input type="checkbox" name="g1OrganizeMaterialsNA" id="g1OrganizeMaterialsNA" checked={this.state.fields["g1OrganizeMaterialsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g1OrganizeMaterialsNA")}/> N/A </Label>,
@@ -9434,7 +9436,7 @@ class ClientHistoryAndInformation extends Component {
             goal2Category: 'Uses the microwave',
             goal2NA: <Label check> <Input type="checkbox" name="g2MicrowaveNA" id="g2MicrowaveNA" checked={this.state.fields["g2MicrowaveNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveNA")}/> N/A </Label>,
             goal2Physical: <Label check> <Input type="checkbox" name="g2MicrowavePhysical" id="g2MicrowavePhysical" checked={this.state.fields["g2MicrowavePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowavePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2MicrowaveVerbal" id="g2MicrowaveHelpVerbal" checked={this.state.fields["g2MicrowaveVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveVerbal")}/> Verbal Prompt</Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2MicrowaveVerbal" id="g2MicrowaveVerbal" checked={this.state.fields["g2MicrowaveVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveVerbal")}/> Verbal Prompt</Label>,
             goal2Initiates: <Label check> <Input type="checkbox" name="g2MicrowaveInitiates" id="g2MicrowaveInitiates" checked={this.state.fields["g2MicrowaveInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Uses the stove top',
@@ -9474,10 +9476,10 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: <Label check> <Input type="checkbox" name="g2DishwasherInitiates" id="g2DishwasherInitiates" checked={this.state.fields["g2DishwasherInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DishwasherInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can hand wash/dry/put away dishes',
-            goal2NA: <Label check> <Input type="checkbox" name="g2WashDishesNA" id="g2WashDishesNA"value={this.state.fields["g2WashDishesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2WashDishesPhysical" id="g2WashDishesPhysical"value={this.state.fields["g2WashDishesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2WashDishesVerbal" id="g2WashDishesVerbal"value={this.state.fields["g2WashDishesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2WashDishesInitiates" id="g2WashDishesInitiates"value={this.state.fields["g2WashDishesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2WashDishesNA" id="g2WashDishesNA" checked={this.state.fields["g2WashDishesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2WashDishesPhysical" id="g2WashDishesPhysical" checked={this.state.fields["g2WashDishesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2WashDishesVerbal" id="g2WashDishesVerbal" checked={this.state.fields["g2WashDishesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2WashDishesInitiates" id="g2WashDishesInitiates" checked={this.state.fields["g2WashDishesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WashDishesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can communicate meal preferences in a restaurant or other settings away from home',
             goal2NA: <Label check> <Input type="checkbox" name="g2OrderMealsNA" id="g2OrderMealsNA" checked={this.state.fields["g2OrderMealsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2OrderMealsNA")}/> N/A </Label>,
@@ -9510,10 +9512,10 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: <Label check> <Input type="checkbox" name="g2FixClothesInitiates" id="g2FixClothesInitiates" checked={this.state.fields["g2FixClothesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FixClothesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Follows the basic fire prevention and safety rules for where he/she lives',
-            goal2NA: <Label check> <Input type="checkbox" name="g2FireRulesNA" id="g2FireRulesNA" checked={this.state.fields["g2FireRulesNA"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2FireRulesPhysical" id="g2FireRulesPhysical" checked={this.state.fields["g2FireRulesPhysical"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2FireRulesVerbal" id="g2FireRulesVerbal" checked={this.state.fields["g2FireRulesVerbal"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2FireRulesInitiates" id="g2FireRulesInitiates" checked={this.state.fields["g2FireRulesInitiates"] || ""} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesInitiates")}/> Initiates Independently </Label>
+            goal2NA: <Label check> <Input type="checkbox" name="g2FireRulesNA" id="g2FireRulesNA" checked={this.state.fields["g2FireRulesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesNA")}/> N/A</Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2FireRulesPhysical" id="g2FireRulesPhysical" checked={this.state.fields["g2FireRulesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesPhysical")}/> Physical Prompt </Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2FireRulesVerbal" id="g2FireRulesVerbal" checked={this.state.fields["g2FireRulesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2FireRulesInitiates" id="g2FireRulesInitiates" checked={this.state.fields["g2FireRulesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2FireRulesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can self-monitor time management activities',
             goal2NA: <Label check> <Input type="checkbox" name="g2TimeMgmtNA" id="g2TimeMgmtNA" checked={this.state.fields["g2TimeMgmtNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2TimeMgmtNA")}/> N/A </Label>,
@@ -9540,13 +9542,13 @@ class ClientHistoryAndInformation extends Component {
             goal2Initiates: <Label check> <Input type="checkbox" name="g2RentAgreementInitiates" id="g2RentAgreementInitiates" checked={this.state.fields["g2RentAgreementInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2RentAgreementInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can arrange for new telephone services and utilities',
-            goal2NA: <Label check> <Input type="checkbox" name="g2PhoneServicesNA" id="g2PhoneServicesNA"value={this.state.fields["g2PhoneServicesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesNA")}/> N/A</Label>,
+            goal2NA: <Label check> <Input type="checkbox" name="g2PhoneServicesNA" id="g2PhoneServicesNA" checked={this.state.fields["g2PhoneServicesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesNA")}/> N/A</Label>,
             goal2Physical: <Label check> <Input type="checkbox" name="g2PhoneServicesPhysical" id="g2PhoneServicesPhysical" checked={this.state.fields["g2PhoneServicesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesPhysical")}/> Physical Prompt </Label>,
             goal2Verbal: <Label check> <Input type="checkbox" name="g2PhoneServicesVerbal" id="g2PhoneServicesVerbal" checked={this.state.fields["g2PhoneServicesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesVerbal")}/> Verbal Prompt</Label>,
             goal2Initiates: <Label check> <Input type="checkbox" name="g2PhoneServicesInitiates" id="g2PhoneServicesInitiates" checked={this.state.fields["g2PhoneServicesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2PhoneServicesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can calculate the start-up costs for new living arrangements (rental deposits, rent, utilities, etc.)',
-            goal2NA: <Label check> <Input type="checkbox" name="g2LivingCostsNA" id="g2LivingCostsNA" checked={this.state.fields["g1UtensilsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsNA")}/> N/A </Label>,
+            goal2NA: <Label check> <Input type="checkbox" name="g2LivingCostsNA" id="g2LivingCostsNA" checked={this.state.fields["g2LivingCostsNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsNA")}/> N/A </Label>,
             goal2Physical: <Label check> <Input type="checkbox" name="g2LivingCostsPhysical" id="g2LivingCostsPhysical" checked={this.state.fields["g2LivingCostsPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsPhysical")}/> Physical Prompt </Label>,
             goal2Verbal: <Label check> <Input type="checkbox" name="g2LivingCostsVerbal" id="g2LivingCostsVerbal" checked={this.state.fields["g2LivingCostsVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsVerbal")}/> Verbal Prompt</Label>,
             goal2Initiates: <Label check> <Input type="checkbox" name="g2LivingCostsInitiates" id="g2LivingCostsInitiates" checked={this.state.fields["g2LivingCostsInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2LivingCostsInitiates")}/> Initiates Independently </Label>
@@ -9587,7 +9589,7 @@ class ClientHistoryAndInformation extends Component {
             goal2Verbal: <Label check> <Input type="checkbox" name="g2CreditVerbal" id="g2CreditVerbal" checked={this.state.fields["g2CreditVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CreditVerbal")}/> Verbal Prompt</Label>,
             goal2Initiates: <Label check> <Input type="checkbox" name="g2CreditInitiates" id="g2CreditInitiates" checked={this.state.fields["g2CreditInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2CreditInitiates")}/> Initiates Independently </Label>
         }, {
-            goal2Category: 'Can explain how to get and revew a driver\'s licence',
+            goal2Category: 'Can explain how to get and renew a driver\'s license',
             goal2NA: <Label check> <Input type="checkbox" name="g2DriversLicenseNA" id="g2DriversLicenseNA" checked={this.state.fields["g2DriversLicenseNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DriversLicenseNA")}/> N/A</Label>,
             goal2Physical: <Label check> <Input type="checkbox" name="g2DriversLicensePhysical" id="g2DriversLicensePhysical" checked={this.state.fields["g2DriversLicensePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DriversLicensePhysical")}/> Physical Prompt </Label>,
             goal2Verbal: <Label check> <Input type="checkbox" name="g2DriversLicenseVerbal" id="g2DriversLicenseVerbal" checked={this.state.fields["g2DriversLicenseVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2DriversLicenseVerbal")}/> Verbal Prompt</Label>,
@@ -9686,8 +9688,8 @@ class ClientHistoryAndInformation extends Component {
             goal2Category: 'Can maintain eye glasses/contacts',
             goal2NA: <Label check> <Input type="checkbox" name="g2EyeGlassesNA" id="g2EyeGlassesNA" checked={this.state.fields["g2EyeGlassesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesNA")}/> N/A</Label>,
             goal2Physical: <Label check> <Input type="checkbox" name="g2EyeGlassesPhysical" id="g2EyeGlassesPhysical" checked={this.state.fields["g2EyeGlassesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesPhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2EyeGlassesVerbal" id="g2EyeGlassesVerbal"value={this.state.fields["g2EyeGlassesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2EyeGlassesInitiates" id="g2EyeGlassesInitiates"value={this.state.fields["g2EyeGlassesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesInitiates")}/> Initiates Independently </Label>
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2EyeGlassesVerbal" id="g2EyeGlassesVerbal" checked={this.state.fields["g2EyeGlassesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesVerbal")}/> Verbal Prompt</Label>,
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2EyeGlassesInitiates" id="g2EyeGlassesInitiates" checked={this.state.fields["g2EyeGlassesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2EyeGlassesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Can maintain a well groomed appearance',
             goal2NA: <Label check> <Input type="checkbox" name="g2WellGroomedNA" id="g2WellGroomedNA" checked={this.state.fields["g2WellGroomedNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2WellGroomedNA")}/> N/A </Label>,
@@ -9735,7 +9737,7 @@ class ClientHistoryAndInformation extends Component {
             goal2NA: <Label check> <Input type="checkbox" name="g2MinorInjuriesNA" id="g2MinorInjuriesNA" checked={this.state.fields["g2MinorInjuriesNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesNA")}/> N/A</Label>,
             goal2Physical: <Label check> <Input type="checkbox" name="g2MinorInjuriesPhysical" id="g2MinorInjuriesPhysical" checked={this.state.fields["g2MinorInjuriesPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesPhysical")}/> Physical Prompt </Label>,
             goal2Verbal: <Label check> <Input type="checkbox" name="g2MinorInjuriesVerbal" id="g2MinorInjuriesVerbal" checked={this.state.fields["g2MinorInjuriesVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesVerbal")}/> Verbal Prompt</Label>,
-            goal2Initiates: <Label check> <Input type="checkbox" name="g2MinorInjuriesInitiates" id="g2MinorInjuriesInitiates" checked={this.state.fields["g2MinorInjuriesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesInitiatesg2MinorInjuriesInitiates")}/> Initiates Independently </Label>
+            goal2Initiates: <Label check> <Input type="checkbox" name="g2MinorInjuriesInitiates" id="g2MinorInjuriesInitiates" checked={this.state.fields["g2MinorInjuriesInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MinorInjuriesInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'If needed medical help quickly, knows how to get it',
             goal2NA: <Label check> <Input type="checkbox" name="g2GetsMedicalHelpNA" id="g2GetsMedicalHelpNA" checked={this.state.fields["g2GetsMedicalHelpNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2GetsMedicalHelpNA")}/> N/A </Label>,
@@ -9901,7 +9903,7 @@ class ClientHistoryAndInformation extends Component {
         }, {
             goal2Category: 'Can explain how to get a copy of his/her Social Security card',
             goal2NA: <Label check> <Input type="checkbox" name="g2SocialSecurityCardNA" id="g2SocialSecurityCardNA" checked={this.state.fields["g2SocialSecurityCardNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardNA")}/> N/A</Label>,
-            goal2Physical: <Label check> <Input type="checkbox" name="g2SocialSecurityCardPhysical" id="g2SocialSecurityCardPhysical" checked={this.state.fields["g2SocialSecurityCardNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardNA")}/> Physical Prompt </Label>,
+            goal2Physical: <Label check> <Input type="checkbox" name="g2SocialSecurityCardPhysical" id="g2SocialSecurityCardPhysical" checked={this.state.fields["g2SocialSecurityCardPhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardPhysical")}/> Physical Prompt </Label>,
             goal2Verbal: <Label check> <Input type="checkbox" name="g2SocialSecurityCardVerbal" id="g2SocialSecurityCardVerbal" checked={this.state.fields["g2SocialSecurityCardVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardVerbal")}/> Verbal Prompt</Label>,
             goal2Initiates: <Label check> <Input type="checkbox" name="g2SocialSecurityCardInitiates" id="g2SocialSecurityCardInitiates" checked={this.state.fields["g2SocialSecurityCardInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2SocialSecurityCardInitiates")}/> Initiates Independently
             </Label>
@@ -10347,7 +10349,7 @@ class ClientHistoryAndInformation extends Component {
                         </Label>
                     </FormGroup>
                 </div>
-                <Collapse isOpen={this.state.seizures}>
+                <Collapse isOpen={this.state.fields["seizureCheckYes"] === "true"}>
                     <Card className={"toggle-card"}>
                         <CardBody className={"toggle-card-body"}>
                 <Row>
