@@ -1,5 +1,4 @@
-import React, {Component,useRef } from 'react';
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
 import Header from '../Header/Header';
 
 import './formFormatting.css';
@@ -4921,7 +4920,7 @@ class ClientHistoryAndInformation extends Component {
     }
 
     renderSection5() {
-        const  otherDoctorsData = [{
+        const otherDoctorsData = [{
             otherDrName: <input type="text" name="doc1Name" className={"tableInputField"}  value={this.state.fields["doc1Name"] || ""} onChange={this.handleChange.bind(this, "doc1Name")}/>,
             otherDrSpecialty: <input type="text" name="doc1Specialty"className={"tableInputField"} value={this.state.fields["doc1Specialty"] || ""} onChange={this.handleChange.bind(this, "doc1Specialty")}/>,
             otherDrPhone: <input type="text" name="doc1Phone"className={"tableInputField"} value={this.state.fields["doc1Phone"] || ""} onChange={this.handleChange.bind(this, "doc1Phone")}/>,
@@ -5155,35 +5154,35 @@ class ClientHistoryAndInformation extends Component {
             medsTimeGiven: <input type="text" name="med1TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1TimeGiven")} value={this.state.fields["med1TimeGiven"] || ""}/>,
             medsFrequency: <input type="text" name="med1Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Frequency")} value={this.state.fields["med1Frequency"] || ""}/>,
             medsPurpose: <input type="text" name="med1Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1Purpose")} value={this.state.fields["med1Purpose"] || ""}/>,
-            medsSideEffects: <input type="text" name="med1SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1SideEffects")} value={this.state.fields["med1SideEffects"] || ""}/>
+            medsSideEffects: <input type="text" name="med1SideEffect" className={"tableInputField"} onChange={this.handleChange.bind(this, "med1SideEffect")} value={this.state.fields["med1SideEffect"] || ""}/>
         }, {
             medsName: <input type="text" name="med2Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2Name")} value={this.state.fields["med2Name"] || ""}/>,
             medsDosage: <input type="text" name="med2Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2Dosage")} value={this.state.fields["med2Dosage"] || ""}/>,
             medsTimeGiven: <input type="text" name="med2TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2TimeGiven")} value={this.state.fields["med2TimeGiven"] || ""}/>,
             medsFrequency: <input type="text" name="med2Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2Frequency")} value={this.state.fields["med2Frequency"] || ""}/>,
             medsPurpose: <input type="text" name="med2Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2Purpose")} value={this.state.fields["med2Purpose"] || ""}/>,
-            medsSideEffects: <input type="text" name="med2SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2SideEffects")} value={this.state.fields["med2SideEffects"] || ""}/>
+            medsSideEffects: <input type="text" name="med2SideEffect" className={"tableInputField"} onChange={this.handleChange.bind(this, "med2SideEffect")} value={this.state.fields["med2SideEffect"] || ""}/>
         }, {
             medsName: <input type="text" name="med3Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3Name")} value={this.state.fields["med3Name"] || ""}/>,
             medsDosage: <input type="text" name="med3Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3Dosage")} value={this.state.fields["med3Dosage"] || ""}/>,
             medsTimeGiven: <input type="text" name="med3TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3TimeGiven")} value={this.state.fields["med3TimeGiven"] || ""}/>,
             medsFrequency: <input type="text" name="med3Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3Frequency")} value={this.state.fields["med3Frequency"] || ""}/>,
             medsPurpose: <input type="text" name="med3Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3Purpose")} value={this.state.fields["med3Purpose"] || ""}/>,
-            medsSideEffects: <input type="text" name="med3SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3SideEffects")} value={this.state.fields["med3SideEffects"] || ""}/>
+            medsSideEffects: <input type="text" name="med3SideEffect" className={"tableInputField"} onChange={this.handleChange.bind(this, "med3SideEffect")} value={this.state.fields["med3SideEffect"] || ""}/>
         }, {
             medsName: <input type="text" name="med4Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4Name")} value={this.state.fields["med4Name"] || ""}/>,
             medsDosage: <input type="text" name="med4Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4Dosage")} value={this.state.fields["med4Dosage"] || ""} />,
             medsTimeGiven: <input type="text" name="med4TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4TimeGiven")} value={this.state.fields["med4TimeGiven"] || ""}/>,
             medsFrequency: <input type="text" name="med4Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4Frequency")} value={this.state.fields["med4Frequency"] || ""}/>,
             medsPurpose: <input type="text" name="med4Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4Purpose")} value={this.state.fields["med4Purpose"] || ""}/>,
-            medsSideEffects: <input type="text" name="med4SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4SideEffects")} value={this.state.fields["med4SideEffects"] || ""}/>
+            medsSideEffects: <input type="text" name="med4SideEffect" className={"tableInputField"} onChange={this.handleChange.bind(this, "med4SideEffect")} value={this.state.fields["med4SideEffect"] || ""}/>
         }, {
             medsName: <input type="text" name="med5Name" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Name")} value={this.state.fields["med5Name"] || ""}/>,
             medsDosage: <input type="text" name="med5Dosage" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Dosage")} value={this.state.fields["med5Dosage"] || ""}/>,
             medsTimeGiven: <input type="text" name="med5TimeGiven" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5TimeGiven")} value={this.state.fields["med5TimeGiven"] || ""}/>,
             medsFrequency: <input type="text" name="med5Frequency" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Frequency")} value={this.state.fields["med5Frequency"] || ""}/>,
             medsPurpose: <input type="text" name="med5Purpose" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5Purpose")} value={this.state.fields["med5Purpose"] || ""}/>,
-            medsSideEffects: <input type="text" name="med5SideEffects" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5SideEffects")} value={this.state.fields["med5SideEffects"] || ""}/>
+            medsSideEffects: <input type="text" name="med5SideEffect" className={"tableInputField"} onChange={this.handleChange.bind(this, "med5SideEffect")} value={this.state.fields["med5SideEffect"] || ""}/>
         }];
 
         return (
@@ -5656,7 +5655,7 @@ class ClientHistoryAndInformation extends Component {
                                     name="highMuscleTone"
                                     id="highMuscleTone"
                                     onChange={this.handleChange.bind(this, "highMuscleTone")}
-                                    value={this.state.fields["highuscleTone"] || ""}
+                                    value={this.state.fields["highMuscleTone"] || ""}
             >
                 <option value ={"blank"}></option>
                 <option value ={"yes"}>Yes</option>
@@ -6631,7 +6630,11 @@ class ClientHistoryAndInformation extends Component {
                             <Label> Types of signs used (i.e.ALS or modified):</Label>
                             <Input
                                 type="text"
-                            ref = "typeOfSignLanguage"/>
+                                ref="typeOfSignLanguage"
+                                value={this.state.fields["typeOfSignLanguage"] || ""}
+                                onChange={this.handleChange.bind(this, "typeOfSignLanguage")}
+                                className="error"
+                                invalid={this.state.errors["typeOfSignLanguage"] != null}/>
                         </FormGroup>
                     </Col>
                     <Col sm={5}>
@@ -6639,7 +6642,11 @@ class ClientHistoryAndInformation extends Component {
                             <Label> Number of signs known:</Label>
                             <Input
                                 ref = "numberOfSigns"
-                                type="text"/>
+                                type="text"
+                                value={this.state.fields["numberOfSigns"] || ""}
+                                onChange={this.handleChange.bind(this, "numberOfSigns")}
+                                className="error"
+                                invalid={this.state.errors["numberOfSigns"] != null}/>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -6678,7 +6685,7 @@ class ClientHistoryAndInformation extends Component {
                                 ref = "deviceIndependenceLevel"
                                 type="select"
                                 value = {this.state.fields["deviceIndependenceLevel"]}
-                                onChange={this.handleChangeCheckbox.bind(this, "deviceIndependenceLevel")}>
+                                onChange={this.handleChange.bind(this, "deviceIndependenceLevel")}>
                                 <option value={"blank"}></option>
                                 <option value={"fully"}>Fully Independent</option>
                                 <option value={"emerging"}>Emerging Independence</option>
@@ -6692,7 +6699,7 @@ class ClientHistoryAndInformation extends Component {
                         <FormGroup check>
                             <Label check>
 
-                                <Input onChange={this.handleChangeCheckbox.bind(this, "communicationBinder")}
+                                <Input onChange={this.handleChange.bind(this, "communicationBinder")}
                                        ref="communicationBinder"
                                        type="checkbox"
                                        checked={this.state.fields["communicationBinder"] === "true"} />
@@ -6707,7 +6714,7 @@ class ClientHistoryAndInformation extends Component {
                                 ref = "binderIndependenceLevel"
                                 type="select"
                                 value = {this.state.fields["binderIndependenceLevel"]}
-                                onChange={this.handleChangeCheckbox.bind(this, "binderIndependenceLevel")}>
+                                onChange={this.handleChange.bind(this, "binderIndependenceLevel")}>
                                 <option value={"blank"}></option>
                                 <option value={"fully"}>Fully Independent</option>
                                 <option value={"emerging"}>Emerging Independence</option>
@@ -6737,7 +6744,11 @@ class ClientHistoryAndInformation extends Component {
                                 <Label> Please Explain</Label>
                                 <Input
                                     ref= "explainOtherCommunication"
-                                    type="textarea"/>
+                                    type="textarea"
+                                    value={this.state.fields["explainOtherCommunication"] || ""}
+                                    onChange={this.handleChange.bind(this, "explainOtherCommunication")}
+                                    className="error"
+                                    invalid={this.state.errors["explainOtherCommunication"] != null}/>
                             </FormGroup>
                         </Col>
 
@@ -6835,7 +6846,6 @@ class ClientHistoryAndInformation extends Component {
                                        type="textarea"
                                        value = {this.state.fields["behavioralGoalYesExplain"] || ""}
                                        onChange={this.handleChange.bind(this, "behavioralGoalYesExplain")}/>
-
                             </CardBody>
                         </Card>
                     </Collapse>
@@ -6856,9 +6866,7 @@ class ClientHistoryAndInformation extends Component {
                 <p><b>School/Social</b></p>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"schoolConcentration")}>
-                            School Concentration Difficulties
-                        </Label>
+                        <Label className="control-label required">School Concentration Difficulties</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="schoolConcentration"
@@ -6882,46 +6890,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("schoolConcentration")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                    <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
-                                    <Input
-                                        ref="schoolConcentrationCurrent"
-                                        type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Input
+                                    ref ="schoolConcentrationCurrent"
+                                    type="textarea"
+                                    value = {this.state.fields["schoolConcentrationCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "schoolConcentrationCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref = "schoolConcentrationTypical"
-                                type="textarea"
-                                className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
-                            <Input
-                                ref  = "schoolConcentrationLast"
-                                type="textarea"
-                                className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    type="textarea"
+                                    value = {this.state.fields["schoolConcentrationTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "schoolConcentrationTypical")}/>
+                                <Label> How long do they generally last?</Label>
+                                <Input
+                                    ref="schoolConcentrationLast"
+                                    type="textarea"
+                                    value = {this.state.fields["schoolConcentrationLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "schoolConcentrationLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="schoolConcentrationLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["schoolConcentrationLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "schoolConcentrationLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref = "schoolConcentrationPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["schoolConcentrationPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "schoolConcentrationPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref = "schoolConcentrationHandleBehaviors"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value = {this.state.fields["schoolConcentrationHandleBehaviors"] || ""}
+                                    onChange={this.handleChange.bind(this, "schoolConcentrationHandleBehaviors")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required">
-                            Social Anxiety</Label>
+                        <Label className="control-label required">Social Anxiety</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="socialAnxiety"
@@ -6941,51 +6952,53 @@ class ClientHistoryAndInformation extends Component {
                             <option value = "9">9</option>
                             <option value = "10">10</option>
                         </Input>
-
                     </FormGroup>
                     <Collapse isOpen={this.checkValue("socialAnxiety")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="socialAnxietyCurrent"
-                                    type="textarea"/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    type="textarea"
+                                    value = {this.state.fields["socialAnxietyCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "socialAnxietyCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="socialAnxietyTypical"
-                                    type="textarea"/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    type="textarea"
+                                    value = {this.state.fields["socialAnxietyTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "socialAnxietyTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="socialAnxietyLast"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["socialAnxietyLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "socialAnxietyLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="socialAnxietyLocation"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["socialAnxietyLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "socialAnxietyLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="socialAnxietyPrecursors"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["socialAnxietyPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "socialAnxietyPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="socialAnxietyHandleBehavior"
                                     type="textarea"
-                                />
-
+                                    value = {this.state.fields["socialAnxietyHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "socialAnxietyHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"lowGrades")}>
-                            Grades dropping or consistently low
-                        </Label>
-
+                        <Label className="control-label required">Grades dropping or consistently low</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="lowGrades"
@@ -7009,53 +7022,56 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("lowGrades")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
-                                <Input
-                                    ref="lowGradesCurrent"
-                                    type="textarea"
-                                />
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
+                                {/*Renee*/}
+                                {/*<Input*/}
+                                    {/*ref="lowGradesCurrent"*/}
+                                    {/*type="textarea"*/}
+                                    {/*value = {this.state.fields["lowGradesCurrent"] || ""}*/}
+                                    {/*onChange={this.handleChange.bind(this, "lowGradesCurrent")}/>*/}
                                 <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
                                 <Input
                                     ref="lowGradesTypical"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value = {this.state.fields["lowGradesTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "lowGradesTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="lowGradesLast"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["lowGradesLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "lowGradesLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="lowGradesLocation"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["lowGradesLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "lowGradesLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="lowGradesPrecursors"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["lowGradesPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "lowGradesPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="lowGradesHandleBehavior"
                                     type="textarea"
-                                />
-
+                                    value = {this.state.fields["lowGradesHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "lowGradesHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"makingFriends")}>
-                            Problems Making or Keeping Friends
-                        </Label>
+                        <Label  className="control-label required">Problems Making or Keeping Friends</Label>
                         <Input type="select"
-                                   className={"col-4"}
-                                   ref="makingFriends"
-                                   id = "makingFriends"
-                                   value={this.state.fields["makingFriends"] || ""}
-                                   onChange={this.handleChange.bind(this, "makingFriends")}>
+                               className={"col-4"}
+                               ref="makingFriends"
+                               id = "makingFriends"
+                               value={this.state.fields["makingFriends"] || ""}
+                               onChange={this.handleChange.bind(this, "makingFriends")}>
                             <option value = "blank"></option>
                             <option value = "0">0</option>
                             <option value = "1">1</option>
@@ -7073,46 +7089,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("makingFriends")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="makingFriendsCurrent"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value = {this.state.fields["makingFriendsCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "makingFriendsCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="makingFriendsTypical"
-                                    type="textarea"/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    type="textarea"
+                                    value = {this.state.fields["makingFriendsTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "makingFriendsTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="makingFriendsLast"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["makingFriendsLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "makingFriendsLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="makingFriendsLocation"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["makingFriendsLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "makingFriendsLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="makingFriendsPrecursors"
                                     type="textarea"
-                                />
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["makingFriendsPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "makingFriendsPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="makingFriendsHandleBehavior"
                                     type="textarea"
-                                />
-
+                                    value = {this.state.fields["makingFriendsHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "makingFriendsHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"oppositionalBehavior")}>
-                            Oppositional, defiant behavior
-                        </Label>
+                        <Label className="control-label required">Oppositional, defiant behavior</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="oppositionalBehavior"
@@ -7136,51 +7155,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("oppositionalBehavior")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="oppositionalBehaviorCurrent"
                                     type="textarea"
-
-                                />
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value = {this.state.fields["oppositionalBehaviorCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "oppositionalBehaviorCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
-                                    type="textarea"
                                     ref="oppositionalBehaviorTypical"
-                                />
-                                <Label className="control-label required"> How long do they generally last?</Label>
-                                <Input
                                     type="textarea"
+                                    value = {this.state.fields["oppositionalBehaviorTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "oppositionalBehaviorTypical")}/>
+                                <Label> How long do they generally last?</Label>
+                                <Input
                                     ref="oppositionalBehaviorLast"
-
-                                />
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
-                                <Input
                                     type="textarea"
+                                    value = {this.state.fields["oppositionalBehaviorLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "oppositionalBehaviorLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
                                     ref="oppositionalBehaviorLocation"
-                                />
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
-                                <Input
                                     type="textarea"
+                                    value = {this.state.fields["oppositionalBehaviorLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "oppositionalBehaviorLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
                                     ref="oppositionalBehaviorPrecursors"
-
-                                />
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
-                                <Input
                                     type="textarea"
+                                    value = {this.state.fields["oppositionalBehaviorPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "oppositionalBehaviorPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
+                                <Input
                                     ref="oppositionalBehaviorHandleBehavior"
-                                />
-
+                                    type="textarea"
+                                    value = {this.state.fields["oppositionalBehaviorHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "oppositionalBehaviorHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"problemsWithAuthority")}>
-                            Problems With Authority
-                        </Label>
-
+                        <Label  className="control-label required">Problems With Authority</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="problemsWithAuthority"
@@ -7204,48 +7221,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("problemsWithAuthority")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="textarea"
                                     ref="problemsWithAuthorityCurrent"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    type="textarea"
+                                    value = {this.state.fields["problemsWithAuthorityCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsWithAuthorityCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="problemsWithAuthorityTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value = {this.state.fields["problemsWithAuthorityTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsWithAuthorityTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="problemsWithAuthorityLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["problemsWithAuthorityLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsWithAuthorityLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
-                                    type="textarea"
                                     ref="problemsWithAuthorityLocation"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    type="textarea"
+                                    value = {this.state.fields["problemsWithAuthorityLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsWithAuthorityLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="problemsWithAuthorityPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["problemsWithAuthorityPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsWithAuthorityPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="problemsWithAuthorityHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value = {this.state.fields["problemsWithAuthorityHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsWithAuthorityHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"sociallyIsolated")}>
-                            Isolated socially from peers
-                        </Label>
-
+                        <Label className="control-label required">Isolated socially from peers</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="sociallyIsolated"
@@ -7269,48 +7287,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("sociallyIsolated")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="sociallyIsolatedCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value = {this.state.fields["sociallyIsolatedCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "sociallyIsolatedCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="sociallyIsolatedTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value = {this.state.fields["sociallyIsolatedTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "sociallyIsolatedTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="sociallyIsolatedLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["sociallyIsolatedLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "sociallyIsolatedLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="sociallyIsolatedLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["sociallyIsolatedLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "sociallyIsolatedLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="sociallyIsolatedPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["sociallyIsolatedPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "sociallyIsolatedPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="sociallyIsolatedHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value = {this.state.fields["sociallyIsolatedHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "sociallyIsolatedHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"aggressiveBehavior")}>
-                            Aggressive Behavior towards others
-                        </Label>
-
+                        <Label className="control-label required">Aggressive Behavior towards others</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="aggressiveBehavior"
@@ -7334,47 +7353,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("aggressiveBehavior")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="textarea"
                                     ref="aggressiveBehaviorCurrent"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    type="textarea"
+                                    value = {this.state.fields["aggressiveBehaviorCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "aggressiveBehaviorCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="aggressiveBehaviorTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value = {this.state.fields["aggressiveBehaviorTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "aggressiveBehaviorTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
-                                    type="textarea"
                                     ref="aggressiveBehaviorLast"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    type="textarea"
+                                    value = {this.state.fields["aggressiveBehaviorLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "aggressiveBehaviorLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="aggressiveBehaviorLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["aggressiveBehaviorLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "aggressiveBehaviorLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="aggressiveBehaviorPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["aggressiveBehaviorPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "aggressiveBehaviorPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="aggressiveBehaviorHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value = {this.state.fields["aggressiveBehaviorHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "aggressiveBehaviorHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"stressFamily")}>
-                            Stress from conflicts within family
-                        </Label>
+                        <Label  className="control-label required">Stress from conflicts within family</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="stressFamily"
@@ -7398,47 +7419,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("stressFamily")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="stressFamilyCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value = {this.state.fields["stressFamilyCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "stressFamilyCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="stressFamilyTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value = {this.state.fields["stressFamilyTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "stressFamilyTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="stressFamilyLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["stressFamilyLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "stressFamilyLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="stressFamilyLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["stressFamilyLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "stressFamilyLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="stressFamilyPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["stressFamilyPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "stressFamilyPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="stressFamilyHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value = {this.state.fields["stressFamilyHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "stressFamilyHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
-                            Generalized Anxiety (across many situations)
-                        </Label>
+                        <Label  className="control-label required">Generalized Anxiety (across many situations)</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="generalizedAnxiety"
@@ -7462,47 +7485,48 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="textarea"
-                                    className={"required"}
                                     ref="generalizedAnxietyCurrent"
-                                />
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
-                                <Input
                                     type="textarea"
+                                    value = {this.state.fields["generalizedAnxietyCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "generalizedAnxietyCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
+                                <Input
                                     ref="generalizedAnxietyTypical"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    type="textarea"
+                                    value = {this.state.fields["generalizedAnxietyTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "generalizedAnxietyTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="generalizedAnxietyLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["generalizedAnxietyLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "generalizedAnxietyLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="generalizedAnxietyLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["generalizedAnxietyLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "generalizedAnxietyLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
-                                    type="textarea"
                                     ref="generalizedAnxietyPrecursors"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
-                                <Input
                                     type="textarea"
+                                    value = {this.state.fields["generalizedAnxietyPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "generalizedAnxietyPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
+                                <Input
                                     ref="generalizedAnxietyHandleBehavior"
-                                    className={"required"}/>
-
+                                    type="textarea"
+                                    value = {this.state.fields["generalizedAnxietyHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "generalizedAnxietyHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                         <FormGroup>
-                            <Label  className="control-label required" onChange={this.handleChange.bind(this,"generalizedAnxiety")}>
-                                Specific fears/ phobias (list):
-                            </Label>
+                            <Label className="control-label required">Specific fears/ phobias (list):</Label>
                             <Row>
                             <Col sm={4}>
                                 <Input type="select"
@@ -7525,11 +7549,12 @@ class ClientHistoryAndInformation extends Component {
                                 </Input>
                             </Col>
                             <Col sm={8}>
-
                                 <Input
                                     ref = "phobiasExplain"
                                     type="textarea"
-                                placeholde="Please List"/>
+                                    placeholder="Please List"
+                                    value = {this.state.fields["phobiasExplain"] || ""}
+                                    onChange={this.handleChange.bind(this, "phobiasExplain")}/>
                             </Col>
                             </Row>
                         </FormGroup>
@@ -7537,38 +7562,42 @@ class ClientHistoryAndInformation extends Component {
                         <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
                             <Card className={"toggle-card"}>
                                 <CardBody className={"toggle-card-body"}>
-                                    <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                    <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                     <Input
                                         ref="phobiasCurrent"
                                         type="textarea"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                        value = {this.state.fields["phobiasCurrent"] || ""}
+                                        onChange={this.handleChange.bind(this, "phobiasCurrent")}/>
+                                    <Label> What do these behaviors typically look like?  </Label>
                                     <Input
-                                        type="textarea"
                                         ref="phobiasTypical"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> How long do they generally last?</Label>
-                                    <Input
                                         type="textarea"
+                                        value = {this.state.fields["phobiasTypical"] || ""}
+                                        onChange={this.handleChange.bind(this, "phobiasTypical")}/>
+                                    <Label> How long do they generally last?</Label>
+                                    <Input
                                         ref="phobiasLast"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                        type="textarea"
+                                        value = {this.state.fields["phobiasLast"] || ""}
+                                        onChange={this.handleChange.bind(this, "phobiasLast")}/>
+                                    <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                     <Input
                                         ref="phobiasLocation"
                                         type="textarea"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                        value = {this.state.fields["phobiasLocation"] || ""}
+                                        onChange={this.handleChange.bind(this, "phobiasLocation")}/>
+                                    <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                     <Input
                                         ref="phobiasPrecursors"
                                         type="textarea"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                        value = {this.state.fields["phobiasExplain"] || ""}
+                                        onChange={this.handleChange.bind(this, "phobiasExplain")}/>
+                                    <Label> How do you typically handle these behaviors?</Label>
                                     <Input
                                         ref="phobiasHandleBehavior"
                                         type="textarea"
-                                        className={"required"}/>
-
+                                        value = {this.state.fields["phobiasHandleBehavior"] || ""}
+                                        onChange={this.handleChange.bind(this, "phobiasHandleBehavior")}/>
                                 </CardBody>
                             </Card>
                         </Collapse>
@@ -7577,16 +7606,13 @@ class ClientHistoryAndInformation extends Component {
                 <div>
 
                     <FormGroup>
-                        <Label className="control-label required" onChange={this.handleChange.bind(this,"hyperactive")}>
-                            Hyperactive, difficulty being still
-                        </Label>
-
+                        <Label className="control-label required">Hyperactive, difficulty being still</Label>
                         <Input type="select"
                                className={"col-4"}
-                                   ref="hyperactive"
-                                   id = "hyperactive"
-                                   value={this.state.fields["hyperactive"] || ""}
-                                   onChange={this.handleChange.bind(this, "hyperactive")}>
+                               ref="hyperactive"
+                               id = "hyperactive"
+                               value={this.state.fields["hyperactive"] || ""}
+                               onChange={this.handleChange.bind(this, "hyperactive")}>
                             <option value = "blank"></option>
                             <option value = "0">0</option>
                             <option value = "1">1</option>
@@ -7604,38 +7630,42 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("hyperactive")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="hyperactiveCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value = {this.state.fields["hyperactiveCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "hyperactiveCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="hyperactiveTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value = {this.state.fields["hyperactiveTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "hyperactiveTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="hyperactiveLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["hyperactiveLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "hyperactiveLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="hyperactiveLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["hyperactiveLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "hyperactiveLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="hyperactivePrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["hyperactivePrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "hyperactivePrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="hyperactiveHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value = {this.state.fields["hyperactiveHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "hyperactiveHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
@@ -7643,9 +7673,7 @@ class ClientHistoryAndInformation extends Component {
 
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"sensoryProblems")}>
-                            Sensory problems
-                        </Label>
+                        <Label  className="control-label required">Sensory problems</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="sensoryProblems"
@@ -7669,52 +7697,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("sensoryProblems")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="textarea"
-                                    className={"required"}
                                     ref="sensoryProblemsCurrent"
-                                />
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
-                                <Input
                                     type="textarea"
-                                    className={"required"}
+                                    value = {this.state.fields["sensoryProblemsCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "sensoryProblemsCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
+                                <Input
                                     ref="sensoryProblemsTypical"
-                                />
-                                <Label className="control-label required"> How long do they generally last?</Label>
-                                <Input
                                     type="textarea"
-                                    className={"required"}
+                                    value = {this.state.fields["sensoryProblemsTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "sensoryProblemsTypical")}/>
+                                <Label> How long do they generally last?</Label>
+                                <Input
                                     ref="sensoryProblemsLast"
-                                />
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
-                                <Input
                                     type="textarea"
-                                    className={"required"}
+                                    value = {this.state.fields["sensoryProblemsLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "sensoryProblemsLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                <Input
                                     ref="sensoryProblemsLocation"
-                                />
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
-                                <Input
                                     type="textarea"
-                                    className={"required"}
+                                    value = {this.state.fields["sensoryProblemsLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "sensoryProblemsLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                <Input
                                     ref="sensoryProblemsPrecursors"
-                                />
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    type="textarea"
+                                    value = {this.state.fields["sensoryProblemsPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "sensoryProblemsPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="sensoryProblemsHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value = {this.state.fields["sensoryProblemsHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "sensoryProblemsHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsEating")}>
-                            Problems with eating
-                        </Label>
+                        <Label className="control-label required">Problems with eating</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="problemsEating"
@@ -7738,47 +7763,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("problemsEating")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="problemsEatingCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value = {this.state.fields["problemsEatingCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsEatingCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="problemsEatingTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value = {this.state.fields["problemsEatingTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsEatingTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="problemsEatingLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value = {this.state.fields["problemsEatingLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsEatingLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="problemsEatingLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value = {this.state.fields["problemsEatingLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsEatingLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="problemsEatingPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value = {this.state.fields["problemsEatingPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "sensoryProblemsHandleBehavior")}/>
+                                <Label> How problemsEatingPrecursors you typically handle these behaviors?</Label>
                                 <Input
                                     ref="problemsEatingHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["problemsEatingHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsEatingHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required" onChange={this.handleChange.bind(this,"wettingAccidents")}>
-                            Wetting/Soiling accidents
-                        </Label>
+                        <Label className="control-label required">Wetting/Soiling accidents</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="wettingAccidents"
@@ -7802,47 +7829,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("wettingAccidents")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="wettingAccidentsCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["wettingAccidentsCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "wettingAccidentsCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
-                                    type="textarea"
                                     ref="wettingAccidentsTypical"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    type="textarea"
+                                    value={this.state.fields["wettingAccidentsTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "wettingAccidentsTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="wettingAccidentsLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["wettingAccidentsLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "wettingAccidentsLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="wettingAccidentsLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["wettingAccidentsLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "wettingAccidentsLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="wettingAccidentsPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["wettingAccidentsPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "wettingAccidentsPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="wettingAccidentsHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["wettingAccidentsHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "wettingAccidentsHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"vocalTics")}>
-                            Vocal or motor tics
-                        </Label>
+                        <Label  className="control-label required">Vocal or motor tics</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="vocalTics"
@@ -7866,49 +7895,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("vocalTics")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="textarea"
-                                    className={"required"}
                                     ref="vocalTicsCurrent"
-                                />
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
-                                <Input
                                     type="textarea"
-                                    className={"required"}
+                                    value={this.state.fields["vocalTicsCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "vocalTicsCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
+                                <Input
                                     ref="vocalTicsTypical"
-                                />
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    type="textarea"
+                                    value={this.state.fields["vocalTicsTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "vocalTicsTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="vocalTicsLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["vocalTicsLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "vocalTicsLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="vocalTicsLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["vocalTicsLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "vocalTicsLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="vocalTicsPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["vocalTicsPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "vocalTicsPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="vocalTicsHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["vocalTicsHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "vocalTicsHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"wakingUp")}>
-                            Trouble waking up
-                        </Label>
+                        <Label  className="control-label required">Trouble waking up</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="wakingUp"
@@ -7932,48 +7961,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("wakingUp")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="wakingUpCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["wakingUpCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "wakingUpCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="wakingUpTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["wakingUpTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "wakingUpTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="wakingUpLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["wakingUpLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "wakingUpLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="wakingUpLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["wakingUpLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "wakingUpLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="wakingUpPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["wakingUpPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "wakingUpPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="wakingUpHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["wakingUpHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "wakingUpHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"nightmares")}>
-                            Nightmares
-                        </Label>
-
+                        <Label className="control-label required">Nightmares</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="nightmares"
@@ -7997,47 +8027,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("nightmares")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="nightmaresCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["nightmaresCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "nightmaresCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="nightmaresTypical"
                                     type="textarea"
-                                    className={"required"}/>
+                                    value={this.state.fields["nightmaresTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "nightmaresTypical")}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
                                     ref="nightmaresLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["nightmaresLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "nightmaresLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="nightmaresLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["nightmaresLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "nightmaresLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="nightmaresPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["nightmaresPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "nightmaresPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="nightmaresHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["nightmaresHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "nightmaresHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required"  onChange={this.handleChange.bind(this,"problemsSleeping")}>
-                            Problems Sleeping
-                        </Label>
+                        <Label className="control-label required">Problems Sleeping</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="problemsSleeping"
@@ -8061,47 +8093,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("problemsSleeping")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="problemsSleepingCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["problemsSleepingCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsSleepingCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="problemsSleepingTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["problemsSleepingTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsSleepingTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="problemsSleepingLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["problemsSleepingLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsSleepingLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="problemsSleepingLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["problemsSleepingLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsSleepingLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="problemsSleepingPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["problemsSleepingPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsSleepingPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="problemsSleepingHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["problemsSleepingHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "problemsSleepingHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required" onChange={this.handleChange.bind(this,"tiredness")}>
-                            Fatigue/Tiredness
-                        </Label>
+                        <Label className="control-label required">Fatigue/Tiredness</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="tiredness"
@@ -8125,40 +8159,42 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("tiredness")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="textarea"
-                                    className={"required"}
                                     ref="tirednessCurrent"
-                                />
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
-                                <Input
                                     type="textarea"
+                                    value={this.state.fields["tirednessCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "tirednessCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
+                                <Input
                                     ref="tirednessTypical"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
-                                <Input
                                     type="textarea"
+                                    value={this.state.fields["tirednessTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "tirednessTypical")}/>
+                                <Label> How long do they generally last?</Label>
+                                <Input
                                     ref="tirednessLast"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    type="textarea"
+                                    value={this.state.fields["tirednessLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "tirednessLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="tirednessLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["tirednessLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "tirednessLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="tirednessPrecurosors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["tirednessPrecurosors"] || ""}
+                                    onChange={this.handleChange.bind(this, "tirednessPrecurosors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
-                                    type="textarea"
-                                    className={"required"}
                                     ref="tirednessHandleBehavior"
-                                />
-
+                                    type="textarea"
+                                    value={this.state.fields["tirednessHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "tirednessHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
@@ -8166,9 +8202,7 @@ class ClientHistoryAndInformation extends Component {
                 <p><b>Emotional</b></p>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"sadness")}>
-                            Sadness or Depression
-                        </Label>
+                        <Label className="control-label required">Sadness or Depression</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="sadness"
@@ -8192,47 +8226,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("sadness")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="sadnessCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["sadnessCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "sadnessCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="sadnessTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["sadnessTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "sadnessTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="sadnessLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["sadnessLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "sadnessLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="sadnessLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["sadnessLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "sadnessLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="sadnessPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["sadnessPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "sadnessPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="sadnessHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["sadnessHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "sadnessHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"impulsive")}>
-                            Impulsive,doesn't think before acting
-                        </Label>
+                        <Label  className="control-label required">Impulsive, doesn't think before acting</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="impulsive"
@@ -8256,47 +8292,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("impulsive")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="impulsiveCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["impulsiveCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "impulsiveCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="impulsiveTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["impulsiveTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "impulsiveTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="impulsiveLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["impulsiveLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "impulsiveLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="impulsiveLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["impulsiveLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "impulsiveLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="impulsivePrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["impulsivePrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "impulsivePrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="impulsiveHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["impulsiveHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "impulsiveHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required"  onChange={this.handleChange.bind(this,"noncompliant")}>
-                            Non-compliant
-                        </Label>
+                        <Label className="control-label required">Non-compliant</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="noncompliant"
@@ -8320,48 +8358,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("noncompliant")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
-                                    type="textarea"
-                                    className={"required"}
                                     ref="noncompliantCurrent"
-                                />
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    type="textarea"
+                                    value={this.state.fields["noncompliantCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "noncompliantCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="noncompliantTypcial"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["noncompliantTypcial"] || ""}
+                                    onChange={this.handleChange.bind(this, "noncompliantTypcial")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="noncompliantLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["noncompliantLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "noncompliantLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="noncompliantLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["noncompliantLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "noncompliantLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="noncompliantPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["noncompliantPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "noncompliantPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="noncompliantHandleBeahvior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["noncompliantHandleBeahvior"] || ""}
+                                    onChange={this.handleChange.bind(this, "noncompliantHandleBeahvior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label  className="control-label required" onChange={this.handleChange.bind(this,"tantrums")}>
-                            Tantrums/"meltdowns"
-                        </Label>
+                        <Label className="control-label required">Tantrums/"meltdowns"</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="tantrums"
@@ -8385,47 +8424,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("tantrums")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="tantrumsCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["tantrumsCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "tantrumsCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="tantrumsTypical"
                                     type="textarea"
-                                    className={"required"}/>
+                                    value={this.state.fields["tantrumsTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "tantrumsTypical")}/>
                                 <Label className="control-label required"> How long do they generally last?</Label>
                                 <Input
                                     ref="tantrumsLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["tantrumsLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "tantrumsLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="tantrumsLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["tantrumsLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "tantrumsLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="tantrumsPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["tantrumsPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "tantrumsPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="tantrumsHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["tantrumsHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "tantrumsHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required" onChange={this.handleChange.bind(this,"injuryBehavior")}>
-                            Self-injurious behavior
-                        </Label>
+                        <Label className="control-label required">Self-injurious behavior</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="injuryBehavior"
@@ -8449,48 +8490,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("injuryBehavior")}>
                             <Card className={"toggle-card"}>
                                 <CardBody className={"toggle-card-body"}>
-                                    <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                    <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                     <Input
-                                        type="textarea"
-                                        className={"required"}
                                         ref="injuryBehaviorCurrent"
-                                    />
-                                    <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                        type="textarea"
+                                        value={this.state.fields["injuryBehaviorCurrent"] || ""}
+                                        onChange={this.handleChange.bind(this, "injuryBehaviorCurrent")}/>
+                                    <Label> What do these behaviors typically look like?  </Label>
                                     <Input
                                         ref="injuryBehaviorTypical"
                                         type="textarea"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> How long do they generally last?</Label>
+                                        value={this.state.fields["injuryBehaviorTypical"] || ""}
+                                        onChange={this.handleChange.bind(this, "injuryBehaviorTypical")}/>
+                                    <Label> How long do they generally last?</Label>
                                     <Input
                                         ref="injuryBehaviorLast"
                                         type="textarea"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                        value={this.state.fields["injuryBehaviorLast"] || ""}
+                                        onChange={this.handleChange.bind(this, "injuryBehaviorLast")}/>
+                                    <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                     <Input
                                         ref="injuryBehaviorLocation"
                                         type="textarea"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                        value={this.state.fields["injuryBehaviorLocation"] || ""}
+                                        onChange={this.handleChange.bind(this, "injuryBehaviorLocation")}/>
+                                    <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                     <Input
                                         ref="injuryBehaviorPrecursors"
                                         type="textarea"
-                                        className={"required"}/>
-                                    <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                        value={this.state.fields["injuryBehaviorPrecursors"] || ""}
+                                        onChange={this.handleChange.bind(this, "injuryBehaviorPrecursors")}/>
+                                    <Label> How do you typically handle these behaviors?</Label>
                                     <Input
                                         ref="injuryBehaviorHandleBehavior"
                                         type="textarea"
-                                        className={"required"}/>
-
+                                        value={this.state.fields["injuryBehaviorHandleBehavior"] || ""}
+                                        onChange={this.handleChange.bind(this, "injuryBehaviorHandleBehavior")}/>
                                 </CardBody>
                             </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required" onChange={this.handleChange.bind(this,"temperProblem")}>
-                            Problems controlling temper
-                        </Label>
+                        <Label className="control-label required">Problems controlling temper</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="temperProblem"
@@ -8514,47 +8556,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("temperProblem")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="temperProblemCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["temperProblemCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "temperProblemCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="temperProblemTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["temperProblemTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "temperProblemTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="temperProblemLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["temperProblemLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "temperProblemLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="temperProblemLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["temperProblemLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "temperProblemLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="temperProblemPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["temperProblemPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "temperProblemPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="temperProblemHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["temperProblemHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "temperProblemHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required" onChange={this.handleChange.bind(this,"darting")}>
-                            Darting/Elopement
-                        </Label>
+                        <Label className="control-label required">Darting/Elopement</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="darting"
@@ -8578,47 +8622,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("darting")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="dartingCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["dartingCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "dartingCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="dartingTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["dartingTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "dartingTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="dartingLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["dartingLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "dartingLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="dartingLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["dartingLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "dartingLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="dartingPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["dartingPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "dartingPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="dartingHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["dartingHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "dartingHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required" onChange={this.handleChange.bind(this,"rigid")}>
-                            Rigid Behavior Patterns
-                        </Label>
+                        <Label className="control-label required">Rigid Behavior Patterns</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="rigid"
@@ -8642,48 +8688,49 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("rigid")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="rigidCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["rigidCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "rigidCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="rigidTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["rigidTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "rigidTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="rigidLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["rigidLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "rigidLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="rigidLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["rigidLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "rigidLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="rigidPrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["rigidPrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "rigidPrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="rigidHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["rigidHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "rigidHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <FormGroup>
-                        <Label className="control-label required" onChange={this.handleChange.bind(this,"abuse")}>
-                            History of abuse (emotional,physical,sexual)
-                        </Label>
-
+                        <Label className="control-label required">History of abuse (emotional, physical, sexual)</Label>
                         <Input type="select"
                                className={"col-4"}
                                ref="abuse"
@@ -8707,45 +8754,48 @@ class ClientHistoryAndInformation extends Component {
                     <Collapse isOpen={this.checkValue("abuse")}>
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
-                                <Label className="control-label required"> What behaviors, either past or current, have you seen at home?  </Label>
+                                <Label> What behaviors, either past or current, have you seen at home?  </Label>
                                 <Input
                                     ref="abuseCurrent"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
-
+                                    value={this.state.fields["abuseCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "abuseCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="abuseTypical"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                    value={this.state.fields["abuseTypical"] || ""}
+                                    onChange={this.handleChange.bind(this, "abuseTypical")}/>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="abuseLast"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
+                                    value={this.state.fields["abuseLast"] || ""}
+                                    onChange={this.handleChange.bind(this, "abuseLast")}/>
+                                <Label> Where do these behaviors normally occur? Is there a common setting in which your child displays these specific behaviors?</Label>
                                 <Input
                                     ref="abuseCurrentLocation"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
+                                    value={this.state.fields["abuseCurrentLocation"] || ""}
+                                    onChange={this.handleChange.bind(this, "abuseCurrentLocation")}/>
+                                <Label> If possible, can you identify the <b>precursors that happen immediately before</b> your child engages in these behaviors? Are there any other additional <b>triggers </b>that elicit these behaviors?</Label>
                                 <Input
                                     ref="abusePrecursors"
                                     type="textarea"
-                                    className={"required"}/>
-                                <Label className="control-label required"> How do you typically handle these behaviors?</Label>
+                                    value={this.state.fields["abusePrecursors"] || ""}
+                                    onChange={this.handleChange.bind(this, "abusePrecursors")}/>
+                                <Label> How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="abuseHandleBehavior"
                                     type="textarea"
-                                    className={"required"}/>
-
+                                    value={this.state.fields["abuseHandleBehavior"] || ""}
+                                    onChange={this.handleChange.bind(this, "abuseHandleBehavior")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
                 </div>
                 <div>
                     <p > During a behavioral moment, does the client appear to become more heightened or dysregulated when:</p>
-
                     <p className={"control-label required"} id={"physicalAssistanceQuestion"} >Provided physical assistance? If yes, please describe:</p>
                     <Row>
                         <Col sm={1}>
