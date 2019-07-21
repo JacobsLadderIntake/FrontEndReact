@@ -10,8 +10,10 @@ import {
     Label,
     Row
 } from "reactstrap";
+import {token} from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj;
+let infoObj = {"ChildID": childID};
 
 class PermissionExchangeInformation extends Component {
     constructor(props) {
@@ -19,7 +21,7 @@ class PermissionExchangeInformation extends Component {
 
         this.state = {
             errors: [],
-            fields: [],
+            fields: {"consentCheck": false},
             submitButtonPressed: false,
             saveButtonPressed:false
         };
@@ -27,7 +29,6 @@ class PermissionExchangeInformation extends Component {
         this.goBack = this.goBack.bind(this);
 
     }
-    infoObj = {"ChildID":"EmmaChild@gmail.com","StudentName":"", "ParentName":"", "Date":""}; //, "ConsentCheck":""};
 
     goBack(event) {
         window.location.reload();
@@ -42,16 +43,13 @@ class PermissionExchangeInformation extends Component {
 
     updateFields() {
         let fields = this.state.fields;
-        let infoObj = this.infoObj;
-        infoObj.StudentName = fields["studentName"];
-        infoObj.ParentName = fields["parentName"];
-        infoObj.Date = fields["date"];
-        // infoObj.ConsentCheck = fields["consentCheck"];
+        infoObj.ChildID = childID;
+        infoObj.studentName = fields["studentName"];
+        infoObj.parentName = fields["parentName"];
+        infoObj.date = fields["date"];
+        infoObj.consentCheck = fields["consentCheck"];
     }
 
-    populateFields() {
-        let fields = this.state.fields;
-    }
 
     validate() {
         // we are going to store errors for all fields
@@ -83,11 +81,8 @@ class PermissionExchangeInformation extends Component {
         event.preventDefault();
         this.updateFields();
         this.postToDB();
-        // this.componentDidMount();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                //NEED TO UPDATE DATABASE
-                console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
         });
@@ -97,45 +92,56 @@ class PermissionExchangeInformation extends Component {
         event.preventDefault();
         this.updateFields();
         this.setState({saveButtonPressed: true});
-        //UPDATE DATABASE
         this.postToDB();
-        // this.componentDidMount();
-        console.log("saved and quit");
         //back to homepage
         this.props.history.push("/parenthome");
     }
 
+    handleChangeCheckbox(field,e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.checked ? "true" : "false";
+        this.validate();
+        this.setState({fields: fields});
+    }
+
     componentDidMount() {
-        this.callApi()
+        this.fetchFromDB()
             .then(res => this.setState({ response: res.express }))
             .catch(err => console.log(err));
     }
 
     postToDB() {
-        infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
-        const response = fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm', {
+        var update = JSON.stringify(infoObj);
+        var url = 'api/children/' + childID + '/forms/PermissionForExchangeOfInformationForm';
+        const response = fetch(url, {
             method: 'POST',
             headers: {
+                'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: infoObj
+            body: update
         });
     }
 
-    callApi = async () => {
-        // infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
-        const response = await fetch('/children/EmmaChild@gmail.com/forms/PermissionExchangeInformationForm');
+    fetchFromDB = async () => {
+        let url = 'api/children/' + childID + '/forms/PermissionForExchangeOfInformationForm';
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
-        this.state.fields["studentName"] = body[0].StudentName;
-        this.state.fields["parentName"] = body[0].ParentName;
-        this.state.fields["date"] = body[0].Date;
-        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
-        console.log(this.state.fields);
+        if (body.Form.length > 0) {
+            this.state.fields["studentName"] = body.Form[0].studentName == null ? "" : body.Form[0].studentName;
+            this.state.fields["parentName"] = body.Form[0].parentName == null ? "" : body.Form[0].parentName;
+            this.state.fields["date"] = body.Form[0].date == null ? "" : body.Form[0].date;
+            this.state.fields["consentCheck"] = body.Form[0].consentCheck == null ? "" : body.Form[0].consentCheck;
+        }
         return body;
     };
 
@@ -148,8 +154,14 @@ class PermissionExchangeInformation extends Component {
                             <Label sm={12} className={"checkBox"}>
                                 <Input type="checkbox"
                                        ref="consentCheck"
-                                       className="error"/>
-                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.”
+                                       checked={this.state.fields["consentCheck"] === "true"}
+                                       onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
+                                       className="error"
+                                       invalid={this.state.fields["consentCheck"] === false || this.state.errors["consentCheck"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}
+                                </FormFeedback>
+                                I acknowledge that I have read and completed this information to the best of my knowledge and ability.
                             </Label>
                         </Col>
 

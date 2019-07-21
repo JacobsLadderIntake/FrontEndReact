@@ -10,8 +10,10 @@ import {
     Label,
     Row
 } from "reactstrap";
+import {token} from '../Login';
+import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj;
+var infoObj = {"ChildID": childID};
 
 class CreditCardAuthorization extends Component {
     constructor(props) {
@@ -19,15 +21,12 @@ class CreditCardAuthorization extends Component {
 
         this.state = {
             errors: [],
-            fields: [],
+            fields: {"consentCheck": false},
             submitButtonPressed: false,
             saveButtonPressed:false
         };
-
         this.goBack = this.goBack.bind(this);
-
     }
-    infoObj = {"ChildID":"EmmaChild@gmail.com","Name":"", "Address":"", "City":"", "State":"", "ZipCode":"", "Country":"", "CardNumber":"", "Date":"", "SecurityCode":""}; //, "ConsentCheck":""};
 
     goBack(event) {
         window.location.reload();
@@ -42,7 +41,7 @@ class CreditCardAuthorization extends Component {
 
     updateFields() {
         let fields = this.state.fields;
-        let infoObj = this.infoObj;
+        infoObj.ChildID = childID;
         infoObj.Name = fields["name"];
         infoObj.Address = fields["address"];
         infoObj.City = fields["city"];
@@ -52,7 +51,6 @@ class CreditCardAuthorization extends Component {
         infoObj.CardNumber = fields["cardNumber"];
         infoObj.Date = fields["date"];
         infoObj.SecurityCode = fields["securityCode"];
-        // infoObj.ConsentCheck = fields["consentCheck"];
     }
 
     validate() {
@@ -109,11 +107,8 @@ class CreditCardAuthorization extends Component {
         event.preventDefault();
         this.updateFields();
         this.postToDB();
-        // this.componentDidMount();
         this.setState({submitButtonPressed:true},() => {
             if (this.validate()) {
-                //NEED TO UPDATE DATABASE
-                console.log("pressed submit");
                 this.props.history.push("/parenthome")
             }
         });
@@ -123,51 +118,54 @@ class CreditCardAuthorization extends Component {
         event.preventDefault();
         this.updateFields();
         this.setState({saveButtonPressed: true});
-        //UPDATE DATABASE
         this.postToDB();
-        // this.componentDidMount();
-        console.log("saved and quit");
         //back to homepage
         this.props.history.push("/parenthome");
     }
 
     componentDidMount() {
-        this.callApi()
+        this.fetchFromDB()
             .then(res => this.setState({ response: res.express }))
             .catch(err => console.log(err));
     }
 
     postToDB() {
-        infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
-        const response = fetch('/children/EmmaChild@gmail.com/forms/CreditCardAuthorizationForm', {
+        var update = JSON.stringify(infoObj);
+        var url = 'api/children/' + childID + '/forms/CreditCardAuthorizationForm';
+        const response = fetch(url, {
             method: 'POST',
             headers: {
+                'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: infoObj
+            body: update
         });
     }
 
-    callApi = async () => {
-        // infoObj = JSON.stringify(this.infoObj);
-        // console.log(infoObj);
-        const response = await fetch('/children/EmmaChild@gmail.com/forms/CreditCardAuthorizationForm');
+    fetchFromDB = async () => {
+        let url = 'api/children/' + childID + '/forms/CreditCardAuthorizationForm';
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'token': token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
-        this.state.fields["name"] = body[0].Name;
-        this.state.fields["address"] = body[0].Address;
-        this.state.fields["city"] = body[0].City;
-        this.state.fields["state"] = body[0].State;
-        this.state.fields["zip"] = body[0].ZipCode;
-        this.state.fields["country"] = body[0].Country;
-        this.state.fields["cardNumber"] = body[0].CardNumber;
-        this.state.fields["date"] = body[0].Date;
-        this.state.fields["securityCode"] = body[0].securityCode;
-        // this.state.fields["consentCheck"] = body[0].ConsentCheck;
-        console.log(this.state.fields);
+        if (body.Form.length > 0) {
+            this.state.fields["name"] = body.Form[0].Name == null ? "" : body.Form[0].Name;
+            this.state.fields["address"] = body.Form[0].Address == null ? "" : body.Form[0].Address;
+            this.state.fields["city"] = body.Form[0].City == null ? "" : body.Form[0].City;
+            this.state.fields["state"] = body.Form[0].State == null ? "" : body.Form[0].State;
+            this.state.fields["zip"] = body.Form[0].ZipCode == null ? "" : body.Form[0].ZipCode;
+            this.state.fields["country"] = body.Form[0].Country == null ? "" : body.Form[0].Country;
+            this.state.fields["cardNumber"] = body.Form[0].CardNumber == null ? "" : body.Form[0].CardNumber;
+            this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
+            this.state.fields["securityCode"] = body.Form[0].SecurityCode == null ? "" : body.Form[0].SecurityCode;
+        }
         return body;
     };
 
@@ -178,18 +176,18 @@ class CreditCardAuthorization extends Component {
                     <FormGroup>
                         <Row>
                         <Col sm={12}>
-                        <Label className="control-label required" sm={12}>Name of Card Holder (First and Last)</Label>
+                            <Label className="control-label required" sm={12}>Name of Card Holder (First and Last)</Label>
 
-                            <Input
-                                type="text"
-                                ref="name"
-                                value={this.state.fields["name"] || ""}
-                                onChange={this.handleChange.bind(this, "name")}
-                                className="error"
-                                invalid={this.state.errors["name"] != null}/>
-                            <FormFeedback
-                                invalid={this.state.errors["name"] }>{this.state.errors["name"]}
-                            </FormFeedback>
+                                <Input
+                                    type="text"
+                                    ref="name"
+                                    value={this.state.fields["name"] || ""}
+                                    onChange={this.handleChange.bind(this, "name")}
+                                    className="error"
+                                    invalid={this.state.errors["name"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["name"] }>{this.state.errors["name"]}
+                                </FormFeedback>
                         </Col>
                         </Row>
                     </FormGroup>
@@ -282,7 +280,7 @@ class CreditCardAuthorization extends Component {
                             </FormFeedback>
                         </Col>
                         <Col sm={4}>
-                            <Label className="control-label required" sm={5}>Expiration Date</Label>
+                            <Label className="control-label required" sm={12}>Expiration Date</Label>
                             <Input
                                 type="text"
                                 ref="date"
@@ -295,7 +293,7 @@ class CreditCardAuthorization extends Component {
                             </FormFeedback>
                         </Col>
                         <Col sm={4}>
-                            <Label className="control-label required" sm={5}>Security Code</Label>
+                            <Label className="control-label required" sm={12}>Security Code</Label>
                             <Input
                                 type="text"
                                 ref="securityCode"

@@ -194,7 +194,6 @@ class Register extends Component {
     createUser = async () => {
         parentObj.userID = this.state.fields["email"].split("@")[0];
         var update = JSON.stringify(parentObj);
-        console.log(update)
         const response = fetch(urlUser, {
             method: 'POST',
             headers: {
@@ -204,13 +203,6 @@ class Register extends Component {
             body: update
         });
         const body = await response.json;
-        console.log(body)
-        /*if (response.status !== 200) throw Error(body.message);
-        if (body.Error) {
-            this.errorDisplay()
-        } else {
-            //token = body.token;
-        }*/
     }
 
     createChild = async () => {
@@ -219,7 +211,6 @@ class Register extends Component {
         // and no parent naming two children the same thing
         childObj.childID = childObj.childFirstName + parentObj.userID;
         var update = JSON.stringify(childObj);
-        console.log(update);
         const response = fetch(urlChild, {
             method: 'POST',
             headers: {

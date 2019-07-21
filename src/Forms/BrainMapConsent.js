@@ -10,17 +10,17 @@ import {
     Label,
     Row
 } from "reactstrap";
-import { token, userID } from '../Login';
+import { token } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
-var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":"", "ConsentCheck":""};
+var infoObj = {"ChildID": childID, "ParentName":"", "Date":"", "ConsentCheck":""};
 
 class BrainMapConsent extends Component{
     constructor(props) {
         super(props);
         this.state = {
             errors: [],
-            fields: [],
+            fields: {"consentCheck": false},
             submitButtonPressed: false,
             saveButtonPressed:false
         };
@@ -45,7 +45,7 @@ class BrainMapConsent extends Component{
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
         infoObj.ConsentCheck = fields["consentCheck"];
-        console.log(infoObj.ConsentCheck)
+
     }
 
     validate() {
@@ -66,6 +66,10 @@ class BrainMapConsent extends Component{
             if (!fields["date"]) {
                 formIsValid = false;
                 errors["date"] = "Cannot be empty";
+            }
+            if (!fields["consentCheck"]) {
+                formIsValid = false;
+                errors["consentCheck"] = "Cannot be empty";
             }
         }
         this.setState({errors: errors});
@@ -88,7 +92,7 @@ class BrainMapConsent extends Component{
       this.updateFields();
       this.setState({saveButtonPressed: true});
       this.postToDB();
-      //back to homepage
+      //back to parent checklist
       this.props.history.push("/parenthome");
     }
 
@@ -110,12 +114,10 @@ class BrainMapConsent extends Component{
           },
           body: update
       });
-      console.log(response);
     }
 
     fetchFromDB = async () => {
         var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
-        console.log("in fetch " + url);
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -130,25 +132,16 @@ class BrainMapConsent extends Component{
           this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
           this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
           this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
-          this.state.fields["consentCheck"] = body.Form[0].ConsentCheck[0] == null ? true: body.Form[0].ConsentCheck.data[0]
-            console.log(this.state.fields["studentName"]);
-            console.log(this.state.fields[body.Form[0].ConsentCheck[0]]);
-            console.log(this.state.fields["consentCheck"]);
-          console.log("yeet")
+          this.state.fields["consentCheck"] = body.Form[0].ConsentCheck == null ? "" : body.Form[0].ConsentCheck;
 
         }
         return body;
     };
+
     handleChangeCheckbox(field,e) {
         let fields = this.state.fields;
-        if (e.target.checked == true) {
-            fields[field] = true;
-            console.log("yep")
-        } else {
-            fields[field] = false;
-            console.log("nope")
-
-        }
+        fields[field] = e.target.checked ? "true" : "false";
+        this.validate();
         this.setState({fields: fields});
     }
 
@@ -161,9 +154,13 @@ class BrainMapConsent extends Component{
                           <Label sm={12} className={"checkBox"}>
                               <Input type="checkbox"
                                      ref="consentCheck"
-                                     className="error"
+                                     checked={this.state.fields["consentCheck"] === "true"}
                                      onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
-                                     checked={this.state.fields["consentCheck"] || ""}/>
+                                     className="error"
+                                     invalid={this.state.fields["consentCheck"] === false || this.state.errors["consentCheck"] != null}/>
+                              <FormFeedback
+                                  invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}
+                              </FormFeedback>
                               I hereby give release to complete a brain map as part of the Jacob’s Ladder initial evaluation process.
                           </Label>
                       </Col>

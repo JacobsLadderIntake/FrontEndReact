@@ -24,33 +24,21 @@ class ParentTable extends Component {
             columns: [{
                 Header: 'Form Name',
                 accessor: 'name',
-            }, {
-                Header: 'Progress',
-                accessor: 'progress',
-                width: 200
             }],
             data: [{
-                name: <div id="chai" style={{color: 'blue', textDecoration: 'underline'}}>Client History and Information Form</div>,
-                progress: 'Not Started',
-                color: 'white',
+                name: <div id="chai" style={{color: 'blue', textDecoration: 'underline'}}>Client History and Information Form</div>
             }, {
-                name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>,
-                progress: 'Not Started'
+                name: <div id="cmr" style={{color: 'blue', textDecoration: 'underline'}}>Consent and Medical Release Form</div>
             }, {
-                name: 'Permission for Exchange of Information Form',
-                progress: 'Not Started'
+                name: <div id="pei"  style={{color: 'blue', textDecoration: 'underline'}}>Permission for Exchange of Information Form</div>
             }, {
-                name: <div id="ep" style={{color: 'blue', textDecoration: 'underline'}}>Enrollment Process Form</div>,
-                progress: 'Not Started'
+                name: <div id="ep" style={{color: 'blue', textDecoration: 'underline'}}>Enrollment Process Form</div>
             }, {
-                name: <div id="bmc" style={{color: 'blue', textDecoration: 'underline'}}>Brain Map Consent Form</div>,
-                progress: 'Not Started'
+                name: <div id="bmc" style={{color: 'blue', textDecoration: 'underline'}}>Brain Map Consent Form</div>
             }, {
-                name: 'Credit Card Authorization Form',
-                progress: 'Not Started'
+                name: <div id="cca" style={{color: 'blue', textDecoration: 'underline'}}>Credit Card Authorization Form</div>
             }, {
-                name: 'Insurance and Financial Information Form',
-                progress: 'Not Started'
+                name: <div id="ifi" style={{color: 'blue', textDecoration: 'underline'}}>Insurance and Financial Information Form</div>
             }]
         };
         this.handleDueDateSubmit = this.handleDueDateSubmit.bind(this);
@@ -72,6 +60,7 @@ class ParentTable extends Component {
 
     handleClick(row, event) {
         event.preventDefault();
+
         if (row.name.props.id === "bmc") {
             this.props.history.push("/bmc");
         } else if (row.name.props.id === "ep") {
@@ -80,15 +69,13 @@ class ParentTable extends Component {
             this.props.history.push("/cmr");
         } else if (row.name.props.id === "chai") {
             this.props.history.push("/chai");
-        } else if (row.name === "Permission for Exchange of Information Form") {
+        } else if (row.name.props.id === "pei") {
             this.props.history.push("/pei");
-        } else if (row.name === "Credit Card Authorization Form") {
+        } else if (row.name.props.id === "cca") {
             this.props.history.push("/cca");
-        } else if (row.name === "Insurance and Financial Information Form") {
+        } else if (row.name.props.id === "ifi") {
             this.props.history.push("/ifi");
         }
-        // console.log(this.state.data.name);
-        // need to figure out how to access the row that has been clicked on, not sure how to do that though
     }
 
     getChild = async () => {
@@ -101,7 +88,6 @@ class ParentTable extends Component {
             },
         });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
         this.state.evalDate = body.UsersChildren[0].EvaluationDate;
@@ -120,14 +106,12 @@ class ParentTable extends Component {
             },
         });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
         this.state.fields["evalDateInput"] = body.UsersChildren[0].EvaluationDate;
         this.state.fields["dueDateInput"] = body.UsersChildren[0].ProfileDueDate;
         childID = body.UsersChildren[0].ChildID;
         childObj = body.UsersChildren[0];
-        console.log(childObj);
         return body;
     };
 
@@ -135,8 +119,6 @@ class ParentTable extends Component {
         childObj.ProfileDueDate =  this.state.fields["dueDateInput"];
         childObj.EvaluationDate = this.state.fields["evalDateInput"];
         var update = JSON.stringify(childObj);
-        console.log("updated JSON");
-        console.log(update);
         const response = fetch('/children/', {
             method: 'POST',
             headers: {
@@ -145,8 +127,6 @@ class ParentTable extends Component {
             },
             body: update
         });
-        console.log("response");
-        console.log(response);
     }
 
     handleChange(field, e) {
@@ -162,7 +142,6 @@ class ParentTable extends Component {
     }
 
     render() {
-        // console.log(isAdmin);
         var dueDate = isAdmin ? <Input ref="dueDateInput"
                                        type="text"
                                        onChange={this.handleChange.bind(this, "dueDateInput")}
@@ -195,7 +174,6 @@ class ParentTable extends Component {
                     getTdProps={(state, rowInfo) => {
                         return {
                             onClick: (e) => {
-                                // console.log(rowInfo);
                                 this.handleClick(rowInfo.original, e);},
                             // style: {background: (rowInfo.progress == "In Progress") ? "grey" : "white"}
 

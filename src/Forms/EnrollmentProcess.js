@@ -10,18 +10,17 @@ import {
     Label,
     Row
 } from "reactstrap";
-import { token, userID } from '../Login';
+import { token } from '../Login';
 import {childID} from "../Parent-Home/ParentTable";
 
-// var childID = "child"
-var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":""};
+var infoObj = {"ChildID": childID, "StudentName":"", "ParentName":"", "Date":"","consentCheck":""};
 
 class EnrollmentProcess extends Component{
     constructor(props) {
         super(props);
         this.state = {
             errors: [],
-            fields: [],
+            fields: {"consentCheck": false},
             submitButtonPressed: false,
             saveButtonPressed:false
         };
@@ -45,7 +44,7 @@ class EnrollmentProcess extends Component{
         infoObj.StudentName = fields["studentName"];
         infoObj.ParentName = fields["parentName"];
         infoObj.Date = fields["date"];
-        // infoObj.ConsentCheck = fields["consentCheck"];
+        infoObj.consentCheck = fields["consentCheck"];
     }
 
     validate() {
@@ -66,6 +65,10 @@ class EnrollmentProcess extends Component{
             if (!fields["date"]) {
                 formIsValid = false;
                 errors["date"] = "Cannot be empty";
+            }
+            if (!fields["consentCheck"]) {
+                formIsValid = false;
+                errors["consentCheck"] = "Cannot be empty";
             }
         }
         this.setState({errors: errors});
@@ -88,7 +91,6 @@ class EnrollmentProcess extends Component{
         this.updateFields();
         this.setState({saveButtonPressed: true});
         this.postToDB();
-        //back to homepage
         this.props.history.push("/parenthome");
     }
 
@@ -123,15 +125,23 @@ class EnrollmentProcess extends Component{
             },
         });
         const body = await response.json();
-        if (response.status !== 200) {
-            throw Error(body.message);
-        } else if (body.Form.length > 0) {
-          this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
-          this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
-          this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
+        if (response.status !== 200) throw Error(body.message);
+        if (body.Form.length > 0) {
+            this.state.fields["studentName"] = body.Form[0].StudentName == null ? "" : body.Form[0].StudentName;
+            this.state.fields["parentName"] = body.Form[0].ParentName == null ? "" : body.Form[0].ParentName;
+            this.state.fields["date"] = body.Form[0].Date == null ? "" : body.Form[0].Date;
+            this.state.fields["consentCheck"] = body.Form[0].consentCheck == null ? "" : body.Form[0].consentCheck;
+
         }
         return body;
     };
+
+    handleChangeCheckbox(field,e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.checked ? "true" : "false";
+        this.validate();
+        this.setState({fields: fields});
+    }
 
     renderFields() {
         return (
@@ -142,11 +152,16 @@ class EnrollmentProcess extends Component{
                             <Label sm={12} className={"checkBox"}>
                                 <Input type="checkbox"
                                        ref="consentCheck"
-                                       className="error"/>
+                                       checked={this.state.fields["consentCheck"] === "true"}
+                                       onChange={this.handleChangeCheckbox.bind(this, "consentCheck")}
+                                       className="error"
+                                       invalid={this.state.fields["consentCheck"] === false || this.state.errors["consentCheck"] != null}/>
+                                <FormFeedback
+                                    invalid={this.state.errors["consentCheck"]}>{this.state.errors["consentCheck"]}
+                                </FormFeedback>
                                 By signing, I acknowledge that I am aware and understand the enrollment process and financial responsibilities.
                             </Label>
                         </Col>
-
                     </FormGroup>
                     <FormGroup>
                         <Label className="control-label required" sm={12}>Student Name (First and Last)</Label>
