@@ -367,8 +367,6 @@ class InsuranceFinancialInformation extends Component{
         infoObj.parentName2 = fields["parentName2"];
         infoObj.date = fields["date"];
         infoObj.consentCheck = fields["consentCheck"];
-        console.log(infoObj)
-
     }
 
     fetchFromDB = async () => {
@@ -382,7 +380,6 @@ class InsuranceFinancialInformation extends Component{
             },
         });
         const body = await response.json();
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["clientName"] = body.Form[0].ClientName == null ? "" : body.Form[0].ClientName;

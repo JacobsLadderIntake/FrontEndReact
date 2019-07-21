@@ -281,7 +281,6 @@ class ClientHistoryAndInformation extends Component {
     handleChangeCheckbox(field,e) {
         let fields = this.state.fields;
         fields[field] = e.target.checked ? "true" : "false";
-        console.log(fields[field]);
         this.validate();
         this.setState({fields: fields});
     }
@@ -346,7 +345,7 @@ class ClientHistoryAndInformation extends Component {
                 errors["homeNumber"] = "Cannot be empty";
             }
             //SECTION TWO
-            if (!fields["maritalStatus"] || fields["maritalStatus"] == "blank" ) {
+            if (!fields["maritalStatus"] || fields["maritalStatus"] === "blank" ) {
                 formIsValid = false;
                 errors["maritalStatus"] = "Cannot be empty";
             }
@@ -390,7 +389,7 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["fatherOccupation"] = "Cannot be empty";
             }
-            if (!fields["isAdopted"] || fields["isAdopted"] =="blank") {
+            if (!fields["isAdopted"] || fields["isAdopted"] === "blank") {
                 formIsValid = false;
                 errors["isAdopted"] = "Cannot be empty";
             }
@@ -403,15 +402,15 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["birthWeight"] = "Cannot be empty";
             }
-            if (!fields["deliveryType"] || fields["deliveryType"] == "blank") {
+            if (!fields["deliveryType"] || fields["deliveryType"] === "blank") {
                 formIsValid = false;
                 errors["deliveryType"] = "Cannot be empty";
             }
-            if (!fields["pregComplications"] || fields["pregComplications"] == "blank") {
+            if (!fields["pregComplications"] || fields["pregComplications"] === "blank") {
                 formIsValid = false;
                 errors["pregComplications"] = "Cannot be empty";
             }
-            if (!fields["hospitalizedAfterBirth"] || fields["hospitalizedAfterBirth"] == "blank") {
+            if (!fields["hospitalizedAfterBirth"] || fields["hospitalizedAfterBirth"] === "blank") {
                 formIsValid = false;
                 errors["hospitalizedAfterBirth"] = "Cannot be empty";
             }
@@ -419,32 +418,31 @@ class ClientHistoryAndInformation extends Component {
 
             //SECTION FOUR
             if ((!fields["crawlYears"] || fields["crawlYears"] == 0) && (!fields["crawlMonths"] || fields["crawlMonths"] == 0) &&(fields["crawlNa"] == "yes") || fields["crawlNa"] == "blank" || !fields["crawlNa"]){
-                document.getElementById("crawlYears").setAttribute("class", "form-control testing")
-                document.getElementById("crawlMonths").setAttribute("class", "form-control testing")
-                document.getElementById("crawlNa").setAttribute("class", "form-control testing")
+                document.getElementById("crawlYears").setAttribute("class", "form-control testing");
+                document.getElementById("crawlMonths").setAttribute("class", "form-control testing");
+                document.getElementById("crawlNa").setAttribute("class", "form-control testing");
             } else {
-                document.getElementById("crawlYears").setAttribute("class", "form-control")
-                document.getElementById("crawlMonths").setAttribute("class", "form-control")
-                document.getElementById("crawlNa").setAttribute("class", "form-control")
-
+                document.getElementById("crawlYears").setAttribute("class", "form-control");
+                document.getElementById("crawlMonths").setAttribute("class", "form-control");
+                document.getElementById("crawlNa").setAttribute("class", "form-control");
             }
             if ((!fields["creptYears"] || fields["creptYears"] == 0) && (!fields["creptMonths"] || fields["creptMonths"] == 0) &&(fields["creptNa"] == "yes") || fields["creptNa"] == "blank" || !fields["creptNa"]){
-                document.getElementById("creptYears").setAttribute("class", "form-control testing")
-                document.getElementById("creptMonths").setAttribute("class", "form-control testing")
-                document.getElementById("creptNa").setAttribute("class", "form-control testing")
+                document.getElementById("creptYears").setAttribute("class", "form-control testing");
+                document.getElementById("creptMonths").setAttribute("class", "form-control testing");
+                document.getElementById("creptNa").setAttribute("class", "form-control testing");
             } else {
-                document.getElementById("creptYears").setAttribute("class", "form-control")
-                document.getElementById("creptMonths").setAttribute("class", "form-control")
-                document.getElementById("creptNa").setAttribute("class", "form-control")
+                document.getElementById("creptYears").setAttribute("class", "form-control");
+                document.getElementById("creptMonths").setAttribute("class", "form-control");
+                document.getElementById("creptNa").setAttribute("class", "form-control");
             }
             if ((!fields["walkYears"] || fields["walkYears"] == 0) && (!fields["walkMonths"] || fields["walkMonths"] == 0) &&(fields["walkNa"] == "yes") || fields["walkNa"] == "blank" || !fields["walkNa"] ){
-                document.getElementById("walkYears").setAttribute("class", "form-control testing")
-                document.getElementById("walkMonths").setAttribute("class", "form-control testing")
-                document.getElementById("walkNa").setAttribute("class", "form-control testing")
+                document.getElementById("walkYears").setAttribute("class", "form-control testing");
+                document.getElementById("walkMonths").setAttribute("class", "form-control testing");
+                document.getElementById("walkNa").setAttribute("class", "form-control testing");
             } else {
-                document.getElementById("walkYears").setAttribute("class", "form-control")
-                document.getElementById("walkMonths").setAttribute("class", "form-control")
-                document.getElementById("walkNa").setAttribute("class", "form-control")
+                document.getElementById("walkYears").setAttribute("class", "form-control");
+                document.getElementById("walkMonths").setAttribute("class", "form-control");
+                document.getElementById("walkNa").setAttribute("class", "form-control");
             }
             if ((!fields["toiletYears"] || fields["toiletYears"] == 0) && (!fields["toiletMonths"] || fields["toiletMonths"] == 0) &&(fields["toiletNa"] == "yes") || fields["toiletNa"] == "blank" || !fields["toiletNa"]){
                 document.getElementById("toiletYears").setAttribute("class", "form-control testing")
@@ -1153,8 +1151,6 @@ class ClientHistoryAndInformation extends Component {
             },
         });
         const body = await response.json();
-        console.log("everything else");
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["dob"] = body.Form[0].dob == null ? "" : body.Form[0].dob;
@@ -1761,10 +1757,13 @@ class ClientHistoryAndInformation extends Component {
             this.state.fields["feedSupport"] = body.Form[0].feedSupport == null ? "" : body.Form[0].feedSupport;
             this.state.fields["toiletEquip"] = body.Form[0].toiletEquip == null ? "" : body.Form[0].toiletEquip;
             this.state.fields["mobilityEquip"] = body.Form[0].mobilityEquip == null ? "" : body.Form[0].mobilityEquip;
-            // this.state.fields["communicationEquip"] = body.Form[0].communicationEquip == null ? "" : body.Form[0].communicationEquip;
             this.state.fields["oxygenTank"] = body.Form[0].oxygenTank == null ? "" : body.Form[0].oxygenTank;
             this.state.fields["hearingDevice"] = body.Form[0].hearingDevice == null ? "" : body.Form[0].hearingDevice;
             this.state.fields["otherSupply"] = body.Form[0].otherSupply == null ? "" : body.Form[0].otherSupply;
+            this.state.fields["lowGradesCurrent"] = body.Form[0].lowGradesCurrent == null ? "" : body.Form[0].lowGradesCurrent;
+            this.state.fields["g1Comments"] = body.Form[0].g1Comments == null ? "" : body.Form[0].g1Comments;
+            this.state.fields["makingFriendsLast"] = body.Form[0].makingFriendsLast == null ? "" : body.Form[0].makingFriendsLast;
+            this.state.fields["impulsiveLast"] = body.Form[0].impulsiveLast == null ? "" : body.Form[0].impulsiveLast;
         }
         return body;
     };
@@ -1794,8 +1793,6 @@ class ClientHistoryAndInformation extends Component {
             },
         });
         const body = await response.json();
-        console.log("section 11");
-        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Form.length > 0) {
             this.state.fields["g1SitNA"] = body.Form[0].g1SitNA == null ? "" : body.Form[0].g1SitNA;
@@ -2928,10 +2925,13 @@ class ClientHistoryAndInformation extends Component {
         infoObj.feedSupport = fields["feedSupport"];
         infoObj.toiletEquip = fields["toiletEquip"];
         infoObj.mobilityEquip = fields["mobilityEquip"];
-        // infoObj.communicationEquip = fields["communicationEquip"];
         infoObj.oxygenTank = fields["oxygenTank"];
         infoObj.hearingDevice = fields["hearingDevice"];
         infoObj.otherSupply = fields["otherSupply"];
+        infoObj.lowGradesCurrent = fields["lowGradesCurrent"];
+        infoObj.g1Comments = fields["g1Comments"];
+        infoObj.makingFriendsLast = fields["makingFriendsLast"];
+        infoObj.impulsiveLast = fields["impulsiveLast"];
     }
 
     updateSection11Fields () {
@@ -3457,8 +3457,6 @@ class ClientHistoryAndInformation extends Component {
         sec11InfoObj.g2SocialSecurityCardPhysical = fields["g2SocialSecurityCardPhysical"];
         sec11InfoObj.g2SocialSecurityCardVerbal = fields["g2SocialSecurityCardVerbal"];
         sec11InfoObj.g2SocialSecurityCardInitiates = fields["g2SocialSecurityCardInitiates"];
-        console.log("UPDATED SECTION 11 FIELDS")
-        console.log(sec11InfoObj)
     }
 
     handleSubmit(event) {
@@ -3469,7 +3467,6 @@ class ClientHistoryAndInformation extends Component {
         this.postSection11ToDB();
         this.setState({submitButtonPressed: true}, () => {
             if (this.validate()) {
-
                 this.props.history.push("/parenthome")
             }
         });
@@ -7023,13 +7020,12 @@ class ClientHistoryAndInformation extends Component {
                         <Card className={"toggle-card"}>
                             <CardBody className={"toggle-card-body"}>
                                 <Label> What behaviors, either past or current, have you seen at home?  </Label>
-                                {/*Renee*/}
-                                {/*<Input*/}
-                                    {/*ref="lowGradesCurrent"*/}
-                                    {/*type="textarea"*/}
-                                    {/*value = {this.state.fields["lowGradesCurrent"] || ""}*/}
-                                    {/*onChange={this.handleChange.bind(this, "lowGradesCurrent")}/>*/}
-                                <Label className="control-label required"> What do these behaviors typically look like?  </Label>
+                                <Input
+                                    ref="lowGradesCurrent"
+                                    type="textarea"
+                                    value = {this.state.fields["lowGradesCurrent"] || ""}
+                                    onChange={this.handleChange.bind(this, "lowGradesCurrent")}/>
+                                <Label> What do these behaviors typically look like?  </Label>
                                 <Input
                                     ref="lowGradesTypical"
                                     type="textarea"
@@ -7517,10 +7513,10 @@ class ClientHistoryAndInformation extends Component {
                                     onChange={this.handleChange.bind(this, "generalizedAnxietyPrecursors")}/>
                                 <Label> How do you typically handle these behaviors?</Label>
                                 <Input
-                                    ref="generalizedAnxietyHandleBehavior"
+                                    ref="generalizedAnxietyHandleBehavio"
                                     type="textarea"
-                                    value = {this.state.fields["generalizedAnxietyHandleBehavior"] || ""}
-                                    onChange={this.handleChange.bind(this, "generalizedAnxietyHandleBehavior")}/>
+                                    value = {this.state.fields["generalizedAnxietyHandleBehavio"] || ""}
+                                    onChange={this.handleChange.bind(this, "generalizedAnxietyHandleBehavio")}/>
                             </CardBody>
                         </Card>
                     </Collapse>
@@ -7559,7 +7555,7 @@ class ClientHistoryAndInformation extends Component {
                             </Row>
                         </FormGroup>
 
-                        <Collapse isOpen={this.checkValue("generalizedAnxiety")}>
+                        <Collapse isOpen={this.checkValue("phobias")}>
                             <Card className={"toggle-card"}>
                                 <CardBody className={"toggle-card-body"}>
                                     <Label> What behaviors, either past or current, have you seen at home?  </Label>
@@ -7590,8 +7586,8 @@ class ClientHistoryAndInformation extends Component {
                                     <Input
                                         ref="phobiasPrecursors"
                                         type="textarea"
-                                        value = {this.state.fields["phobiasExplain"] || ""}
-                                        onChange={this.handleChange.bind(this, "phobiasExplain")}/>
+                                        value = {this.state.fields["phobiasPrecursors"] || ""}
+                                        onChange={this.handleChange.bind(this, "phobiasPrecursors")}/>
                                     <Label> How do you typically handle these behaviors?</Label>
                                     <Input
                                         ref="phobiasHandleBehavior"
@@ -7792,8 +7788,8 @@ class ClientHistoryAndInformation extends Component {
                                     ref="problemsEatingPrecursors"
                                     type="textarea"
                                     value = {this.state.fields["problemsEatingPrecursors"] || ""}
-                                    onChange={this.handleChange.bind(this, "sensoryProblemsHandleBehavior")}/>
-                                <Label> How problemsEatingPrecursors you typically handle these behaviors?</Label>
+                                    onChange={this.handleChange.bind(this, "problemsEatingPrecursors")}/>
+                                <Label>How do you typically handle these behaviors?</Label>
                                 <Input
                                     ref="problemsEatingHandleBehavior"
                                     type="textarea"
@@ -8039,7 +8035,7 @@ class ClientHistoryAndInformation extends Component {
                                     type="textarea"
                                     value={this.state.fields["nightmaresTypical"] || ""}
                                     onChange={this.handleChange.bind(this, "nightmaresTypical")}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="nightmaresLast"
                                     type="textarea"
@@ -8436,7 +8432,7 @@ class ClientHistoryAndInformation extends Component {
                                     type="textarea"
                                     value={this.state.fields["tantrumsTypical"] || ""}
                                     onChange={this.handleChange.bind(this, "tantrumsTypical")}/>
-                                <Label className="control-label required"> How long do they generally last?</Label>
+                                <Label> How long do they generally last?</Label>
                                 <Input
                                     ref="tantrumsLast"
                                     type="textarea"
@@ -9486,7 +9482,7 @@ class ClientHistoryAndInformation extends Component {
             goal2Category: 'Uses the microwave',
             goal2NA: <Label check> <Input type="checkbox" name="g2MicrowaveNA" id="g2MicrowaveNA" checked={this.state.fields["g2MicrowaveNA"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveNA")}/> N/A </Label>,
             goal2Physical: <Label check> <Input type="checkbox" name="g2MicrowavePhysical" id="g2MicrowavePhysical" checked={this.state.fields["g2MicrowavePhysical"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowavePhysical")}/> Physical Prompt </Label>,
-            goal2Verbal: <Label check> <Input type="checkbox" name="g2MicrowaveVerbal" id="g2MicrowaveVerbal" checked={this.state.fields["g2MicrowaveVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveVerbal")}/> Verbal Prompt</Label>,
+            goal2Verbal: <Label check> <Input type="checkbox" name="g2MicrowaveHelpVerbal" id="g2MicrowaveHelpVerbal" checked={this.state.fields["g2MicrowaveHelpVerbal"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveHelpVerbal")}/> Verbal Prompt</Label>,
             goal2Initiates: <Label check> <Input type="checkbox" name="g2MicrowaveInitiates" id="g2MicrowaveInitiates" checked={this.state.fields["g2MicrowaveInitiates"] === "true"} onChange={this.handleChangeCheckbox.bind(this, "g2MicrowaveInitiates")}/> Initiates Independently </Label>
         }, {
             goal2Category: 'Uses the stove top',
