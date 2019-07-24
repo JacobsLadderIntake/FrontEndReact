@@ -926,6 +926,11 @@ class ClientHistoryAndInformation extends Component {
             } else {
                 document.getElementById("problemsSleeping").setAttribute("class", "form-control")
             }
+            if (!fields["problemsWithAuthority"] || fields["problemsWithAuthority"] == "'blank"){
+                document.getElementById("problemsWithAuthority").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("problemsWithAuthority").setAttribute("class", "form-control")
+            }
             if (!fields["tiredness"] || fields["tiredness"] == "'blank"){
                 document.getElementById("tiredness").setAttribute("class", "form-control testing")
             } else {
@@ -935,6 +940,11 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("sadness").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("sadness").setAttribute("class", "form-control")
+            }
+            if (!fields["tantrums"] || fields["tantrums"] == "'blank"){
+                document.getElementById("tantrums").setAttribute("class", "form-control testing")
+            } else {
+                document.getElementById("tantrums").setAttribute("class", "form-control")
             }
             if (!fields["impulsive"] || fields["impulsive"] == "'blank"){
                 document.getElementById("impulsive").setAttribute("class", "form-control testing")
