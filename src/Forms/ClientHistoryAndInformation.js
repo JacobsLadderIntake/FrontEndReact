@@ -543,52 +543,52 @@ class ClientHistoryAndInformation extends Component {
                 document.getElementById("otherSupply").setAttribute("class", "form-control")
             }
             // SECTION SIX
-            if (!fields["lowMuscleTone"]){
+            if (!fields["lowMuscleTone"] || fields["lowMuscleTone"] == "blank"){
                 document.getElementById("lowMuscleTone").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("lowMuscleTone").setAttribute("class", "form-control")
             }
-            if (!fields["highMuscleTone"]){
+            if (!fields["highMuscleTone"] || fields["highMuscleTone"] == "blank"){
                 document.getElementById("highMuscleTone").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("highMuscleTone").setAttribute("class", "form-control")
             }
-            if (!fields["coordination"]){
+            if (!fields["coordination"] || fields["coordination"] == "blank"){
                 document.getElementById("coordination").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("coordination").setAttribute("class", "form-control")
             }
-            if (!fields["crawling"]){
+            if (!fields["crawling"] || fields["crawling"] == "blank"){
                 document.getElementById("crawling").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("crawling").setAttribute("class", "form-control")
             }
-            if (!fields["walking"]){
+            if (!fields["walking"] || fields["walking"] == "blank"){
                 document.getElementById("walking").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("walking").setAttribute("class", "form-control")
             }
-            if (!fields["running"]){
+            if (!fields["running"] || fields["running"] == "blank"){
                 document.getElementById("running").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("running").setAttribute("class", "form-control")
             }
-            if (!fields["athetoid"]){
+            if (!fields["athetoid"] || fields["athetoid"] == "blank"){
                 document.getElementById("athetoid").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("athetoid").setAttribute("class", "form-control")
             }
-            if (!fields["ataxic"]){
+            if (!fields["ataxic"] || fields["ataxic"] == "blank"){
                 document.getElementById("ataxic").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("ataxic").setAttribute("class", "form-control")
             }
-            if (!fields["weak"]){
+            if (!fields["weak"] || fields["weak"] == "blank"){
                 document.getElementById("weak").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("weak").setAttribute("class", "form-control")
             }
-            if (!fields["balance"]){
+            if (!fields["balance"] || fields["balance"] == "blank"){
                 document.getElementById("balance").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("balance").setAttribute("class", "form-control")
@@ -723,27 +723,27 @@ class ClientHistoryAndInformation extends Component {
                 formIsValid = false;
                 errors["skill1"] = "Cannot be empty";
             }
-            if (!fields["handPreference1"]){
+            if (!fields["handPreference1"] ||fields["handPreference1"] == "blank"){
                 document.getElementById("handPreference1").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("handPreference1").setAttribute("class", "form-control")
             }
-            if (!fields["handPreference2"]){
+            if (!fields["handPreference2"] || fields["handPreference2"] == "blank"){
                 document.getElementById("handPreference2").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("handPreference2").setAttribute("class", "form-control")
             }
-            if (!fields["handPreference3"]){
+            if (!fields["handPreference3"] || fields["handPreference3"] == "blank"){
                 document.getElementById("handPreference3").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("handPreference3").setAttribute("class", "form-control")
             }
-            if (!fields["handPreference4"]){
+            if (!fields["handPreference4"] || fields["handPreference4"] == "blank"){
                 document.getElementById("handPreference4").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("handPreference4").setAttribute("class", "form-control")
             }
-            if (!fields["handPreference5"]){
+            if (!fields["handPreference5"] || fields["handPreference5"] == "blank"){
                 document.getElementById("handPreference5").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("handPreference5").setAttribute("class", "form-control")
@@ -753,47 +753,47 @@ class ClientHistoryAndInformation extends Component {
             } else {
                 document.getElementById("iepPlan").setAttribute("class", "form-control")
             }
-            if (!fields["skill1"]){
+            if (!fields["skill1"] || fields["skill1"] == "blank"){
                 document.getElementById("skill1").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill1").setAttribute("class", "form-control")
             }
-            if (!fields["skill2"]){
+            if (!fields["skill2"] || fields["skill2"] == "blank"){
                 document.getElementById("skill2").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill2").setAttribute("class", "form-control")
             }
-            if (!fields["skill3"]){
+            if (!fields["skill3"] || fields["skill3"] == "blank"){
                 document.getElementById("skill3").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill3").setAttribute("class", "form-control")
             }
-            if (!fields["skill4"]){
+            if (!fields["skill4"] || fields["skill4"] == "blank"){
                 document.getElementById("skill4").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill4").setAttribute("class", "form-control")
             }
-            if (!fields["skill5"]){
+            if (!fields["skill5"] || fields["skill5"] == "blank"){
                 document.getElementById("skill5").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill5").setAttribute("class", "form-control")
             }
-            if (!fields["skill6"]){
+            if (!fields["skill6"] || fields["skill6"] == "blank"){
                 document.getElementById("skill6").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill6").setAttribute("class", "form-control")
             }
-            if (!fields["skill7"]){
+            if (!fields["skill7"] || fields["skill7"] == "blank"){
                 document.getElementById("skill7").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill7").setAttribute("class", "form-control")
             }
-            if (!fields["skill8"]){
+            if (!fields["skill8"] || fields["skill8"] == "blank"){
                 document.getElementById("skill8").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill8").setAttribute("class", "form-control")
             }
-            if (!fields["skill9"]){
+            if (!fields["skill9"] || fields["skill9"] == "blank"){
                 document.getElementById("skill9").setAttribute("class", "form-control testing")
             } else {
                 document.getElementById("skill9").setAttribute("class", "form-control")
