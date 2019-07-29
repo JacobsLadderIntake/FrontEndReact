@@ -39,6 +39,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "homepage": "https://cmaggio3.github.io/JacobsLadder/",
+  "homepage": "https://JacobsLadderGT2019.github.io/FrontEndReact/",
   "proxy": "https://jacobsladderapi.herokuapp.com/"
 }
