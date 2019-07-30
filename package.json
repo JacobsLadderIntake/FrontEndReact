@@ -39,6 +39,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "homepage": "https://JacobsLadderIntake.github.io/FrontEndReact/",
+  "homepage": "https://master.d3s6zkvpjflghi.amplifyapp.com ",
   "proxy": "https://jacobsladderapi.herokuapp.com/"
 }
