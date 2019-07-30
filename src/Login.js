@@ -63,7 +63,8 @@ class Login extends Component {
 
     doLogin = async () => {
         infoObj = JSON.stringify(this.infoObj);
-        const response = await fetch("https://jacobsladderapi.herokuapp.com/userlogin",  { 'mode': 'no-cors' },{
+        console.log(infoObj);
+        const response = await fetch("https://jacobsladderapi.herokuapp.com/userlogin",{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -72,6 +73,7 @@ class Login extends Component {
             body: infoObj
         });
         const body = await response.json();
+        console.log(body);
         if (response.status !== 200) throw Error(body.message);
         if (body.Error) {
             this.errorDisplay();
