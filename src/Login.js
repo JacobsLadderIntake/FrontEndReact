@@ -63,10 +63,9 @@ class Login extends Component {
 
     doLogin = async () => {
         infoObj = JSON.stringify(this.infoObj);
-        console.log(infoObj);
-        const response = await fetch("/userlogin",{
+        console.log(proxyurl+url);
+        const response = await fetch(proxyurl + url,{
             method: 'POST',
-            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
