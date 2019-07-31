@@ -131,7 +131,7 @@ class CreditCardAuthorization extends Component {
 
     postToDB() {
         var update = JSON.stringify(infoObj);
-        var url = 'api/children/' + childID + '/forms/CreditCardAuthorizationForm';
+        var url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/CreditCardAuthorizationForm';
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -144,7 +144,7 @@ class CreditCardAuthorization extends Component {
     }
 
     fetchFromDB = async () => {
-        let url = 'api/children/' + childID + '/forms/CreditCardAuthorizationForm';
+        let url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/CreditCardAuthorizationForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
