@@ -111,7 +111,7 @@ class ConsentAndMedicalRelease extends Component {
 
     postToDB() {
         var update = JSON.stringify(infoObj);
-        var url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
+        var url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -124,7 +124,7 @@ class ConsentAndMedicalRelease extends Component {
     }
 
     fetchFromDB = async () => {
-        let url = 'api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
+        let url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/ConsentMedicalReleaseForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
