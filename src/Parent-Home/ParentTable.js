@@ -79,7 +79,7 @@ class ParentTable extends Component {
     }
 
     getChild = async () => {
-        const response = await fetch("api/users/" + userID + "/children", {
+        const response = await fetch("https://jacobsladderapi.herokuapp.com/api/users/" + userID + "/children", {
             method: 'GET',
             headers: {
                 'token': token,
@@ -97,7 +97,7 @@ class ParentTable extends Component {
     };
 
     getChildFromID = async () =>{
-        const response = await fetch("api/users/" + childParentID + "/children", {
+        const response = await fetch("https://jacobsladderapi.herokuapp.com/api/users/" + childParentID + "/children", {
             method: 'GET',
             headers: {
                 'token': token,
