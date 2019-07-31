@@ -31,7 +31,7 @@ class StudentCard extends Component {
     }
 
     getParentName = async () => {
-        const response = await fetch('/api/users/' + this.props.child.ParentID, {
+        const response = await fetch('https://jacobsladderapi.herokuapp.com/api/users/' + this.props.child.ParentID, {
             method: 'GET',
             headers: {
                 'token': token,
