@@ -1138,7 +1138,7 @@ class ClientHistoryAndInformation extends Component {
 
     postToDB() {
         var update = JSON.stringify(infoObj);
-        var url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
+        var url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -1151,7 +1151,7 @@ class ClientHistoryAndInformation extends Component {
     }
 
     fetchFromDB = async () => {
-        let url = 'api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
+        let url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/ClientHistoryIntakeInformationForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
