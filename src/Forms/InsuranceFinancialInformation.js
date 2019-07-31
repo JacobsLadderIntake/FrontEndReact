@@ -370,7 +370,7 @@ class InsuranceFinancialInformation extends Component{
     }
 
     fetchFromDB = async () => {
-        let url = 'api/children/' + childID + '/forms/InsuranceFinancialInformationForm';
+        let url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/InsuranceFinancialInformationForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -469,7 +469,7 @@ class InsuranceFinancialInformation extends Component{
     };
 
     postToDB() {
-        let url = 'api/children/' + childID + '/forms/InsuranceFinancialInformationForm';
+        let url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/InsuranceFinancialInformationForm';
         let update = JSON.stringify(infoObj);
         const response = fetch(url, {
             method: 'POST',
