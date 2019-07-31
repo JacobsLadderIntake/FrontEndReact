@@ -112,7 +112,7 @@ class PermissionExchangeInformation extends Component {
 
     postToDB() {
         var update = JSON.stringify(infoObj);
-        var url = 'api/children/' + childID + '/forms/PermissionForExchangeOfInformationForm';
+        var url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/PermissionForExchangeOfInformationForm';
         const response = fetch(url, {
             method: 'POST',
             headers: {
@@ -125,7 +125,7 @@ class PermissionExchangeInformation extends Component {
     }
 
     fetchFromDB = async () => {
-        let url = 'api/children/' + childID + '/forms/PermissionForExchangeOfInformationForm';
+        let url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/PermissionForExchangeOfInformationForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
