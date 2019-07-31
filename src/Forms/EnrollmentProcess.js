@@ -101,7 +101,7 @@ class EnrollmentProcess extends Component{
     }
 
     postToDB() {
-        let url = 'api/children/' + childID + '/forms/EnrollmentForm';
+        let url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/EnrollmentForm';
         let update = JSON.stringify(infoObj);
         const response = fetch(url, {
             method: 'POST',
@@ -115,7 +115,7 @@ class EnrollmentProcess extends Component{
     }
 
     fetchFromDB = async () => {
-        let url = 'api/children/' + childID + '/forms/EnrollmentForm';
+        let url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/EnrollmentForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
