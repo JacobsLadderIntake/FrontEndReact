@@ -40,5 +40,9 @@
     "not op_mini all"
   ],
   "homepage": "https://master.d3s6zkvpjflghi.amplifyapp.com ",
-  "proxy": "https://jacobsladderapi.herokuapp.com/"
+  "proxy": {
+      "/": {
+          "target": "https://jacobsladderapi.herokuapp.com/"
+      }
+  }
 }
