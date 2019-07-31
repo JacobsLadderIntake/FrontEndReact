@@ -42,7 +42,7 @@
   "homepage": "https://master.d3s6zkvpjflghi.amplifyapp.com ",
   "proxy": {
       "/*": {
-          "target": "https://jacobsladderapi.herokuapp.com/"
+          "target": "https://jacobsladderapi.herokuapp.com:4200"
       }
   }
 }
