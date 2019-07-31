@@ -67,7 +67,7 @@ class Login extends Component {
         const response = await fetch(url,{
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
+                'Accepts': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: infoObj
