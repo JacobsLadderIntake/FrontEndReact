@@ -29,7 +29,7 @@ class AdminHome extends Component {
     }
 
     getUser = async () => {
-        let url = '/api/Users/' + userID;
+        let url = 'https://jacobsladderapi.herokuapp.com/api/Users/' + userID;
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -46,7 +46,7 @@ class AdminHome extends Component {
     };
 
     getChildren = async () => {
-        const response = await fetch('/api/children', {
+        const response = await fetch('https://jacobsladderapi.herokuapp.com/api/children', {
             method: 'GET',
             headers: {
                 'token': token,
