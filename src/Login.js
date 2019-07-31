@@ -66,9 +66,8 @@ class Login extends Component {
         console.log(infoObj);
         const response = await fetch("https://jacobsladderapi.herokuapp.com/userlogin",{
             method: 'POST',
+            mode: 'cors',
             headers: {
-                'Access-Control-Allow-Origin': 'https://master.d3s6zkvpjflghi.amplifyapp.com/#/',
-                'Access-Control-Allow-Credentials': 'true',
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
