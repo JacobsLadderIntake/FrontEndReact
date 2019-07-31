@@ -39,9 +39,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": {
-      "/*": {
-          "target": "https://jacobsladderapi.herokuapp.com:4200"
-      }
-  }
+  "homepage": "https://master.d3s6zkvpjflghi.amplifyapp.com ",
+  "proxy": "https://jacobsladderapi.herokuapp.com/"
 }
