@@ -104,7 +104,7 @@ class BrainMapConsent extends Component{
 
     postToDB() {
       var update = JSON.stringify(infoObj);
-      var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
+      var url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/BrainMapConsentForm';
       const response = fetch(url, {
           method: 'POST',
           headers: {
@@ -117,7 +117,7 @@ class BrainMapConsent extends Component{
     }
 
     fetchFromDB = async () => {
-        var url = 'api/children/' + childID + '/forms/BrainMapConsentForm';
+        var url = 'https://jacobsladderapi.herokuapp.com/api/children/' + childID + '/forms/BrainMapConsentForm';
         const response = await fetch(url, {
             method: 'GET',
             headers: {
