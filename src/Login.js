@@ -64,8 +64,9 @@ class Login extends Component {
     doLogin = async () => {
         infoObj = JSON.stringify(this.infoObj);
         console.log(infoObj);
-        const response = await fetch("https://jacobsladderapi.herokuapp.com/userlogin",{
-            method: 'POST',
+        //const response = await fetch("https://jacobsladderapi.herokuapp.com/userlogin",{
+        const response = await fetch("https://node-cors-server.herokuapp.com/complex-cors",{ 
+            method: 'DELETE',
             mode: 'cors',
             headers: {
                 'Accept': 'application/json',
