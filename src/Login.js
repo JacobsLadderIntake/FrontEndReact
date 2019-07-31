@@ -4,7 +4,7 @@ import './login.css'
 import {Button, FormGroup, Input, Label, FormFeedback} from "reactstrap";
 import Header from "./Header/Header";
 
-var url = 'userlogin/';
+var url = '/userlogin';
 var infoObj = {};
 var token = '';
 var userID = '';
@@ -66,6 +66,7 @@ class Login extends Component {
         console.log(url);
         const response = await fetch(url,{
             method: 'POST',
+            credentials: 'true',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
