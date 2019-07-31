@@ -12,8 +12,8 @@ import Header from "./Header/Header";
 
 var parentObj = {};
 var childObj = {};
-var urlUser = 'https://jacobsladderapi.herokuapp.com//signup';
-var urlChild = 'https://jacobsladderapi.herokuapp.com//children/';
+var urlUser = 'https://jacobsladderapi.herokuapp.com/signup';
+var urlChild = 'https://jacobsladderapi.herokuapp.com/children/';
 var token = '';
 
 class Register extends Component {
