@@ -172,8 +172,13 @@ class Register extends Component {
     updateFields() {
         let fields = this.state.fields;
         parentObj.isAdmin = this.state.isAdminChecked ? "1" : "0";
-        parentObj.userFirstName = fields["parentFirstName"];
-        parentObj.userLastName = fields["parentLastName"];
+        if (fields["parentFirstName"]  && fields["parentLastName"]) {
+            parentObj.UserFirstName = fields["parentFirstName"];
+            parentObj.UserLastName = fields["parentLastName"];
+        } else {
+            parentObj.UserFirstName = fields["firstName"];
+            parentObj.UserLastName = fields["lastName"];
+        }
         parentObj.password = fields["password"];
         parentObj.email = fields["email"];
         parentObj.securityQuestion = fields["securityQuestion"];
