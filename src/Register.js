@@ -192,7 +192,9 @@ class Register extends Component {
         this.setState({submitButtonPressed: true},()=> {
         });
         this.createUser();
-        this.createChild();
+        if (!this.state.isAdminChecked) {
+            this.createChild();
+        }
         this.props.history.push("/");
     }
 
