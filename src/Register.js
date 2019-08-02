@@ -42,7 +42,6 @@ class Register extends Component {
         fields[field] = e.target.value;
         this.validate();
         this.setState({fields});
-        this.updateFields();
     }
 
     validate() {
@@ -159,41 +158,60 @@ class Register extends Component {
         this.setState({fields});
     }
 
-    toggle() {
+    toggle(field, e) {
+        let fields = this.state.fields;
+        fields[field] = e.target.checked ? "true" : "false";
+        this.setState({fields: fields});
+
         this.setState({
             isAdminChecked: !this.state.isAdminChecked,
             startsHidden: !this.state.startsHidden
         });
         if (!this.state.isAdminChecked) {
+
             this.renderConfirmationForm()
         }
     }
 
     updateFields() {
         let fields = this.state.fields;
-        parentObj.isAdmin = fields["isAdmin"] ? 1 : 0;
-        parentObj.userFirstName = fields["parentFirstName"];
-        parentObj.userLastName = fields["parentLastName"];
-        parentObj.password = fields["password"];
-        parentObj.email = fields["email"];
-        parentObj.securityQuestion = fields["securityQuestion"];
-        parentObj.securityQuestionAnswer = fields["securityAnswer"];
-        childObj.childFirstName = this.state.fields["studentFirstName"];
-        childObj.childLastName = this.state.fields["studentLastName"];
+        parentObj.IsAdmin = this.state.isAdminChecked ? "true" : "false";
+        if (fields["parentFirstName"]  && fields["parentLastName"]) {
+            parentObj.UserFirstName = fields["parentFirstName"];
+            parentObj.UserLastName = fields["parentLastName"];
+        } else {
+            parentObj.UserFirstName = fields["firstName"];
+            parentObj.UserLastName = fields["lastName"];
+        }
+        parentObj.Password = fields["password"];
+        parentObj.Email = fields["email"];
+        parentObj.SecurityQuestion = fields["securityQuestion"];
+        parentObj.SecurityQuestionAnswer = fields["securityAnswer"];
+        childObj.ChildFirstName = this.state.fields["studentFirstName"];
+        childObj.ChildLastName = this.state.fields["studentLastName"];
+        console.log("in update");
+        console.log(parentObj);
+        console.log(childObj);
     }
 
     handleSubmit(event) {
         event.preventDefault();
         this.setState({submitButtonPressed: true},()=> {
         });
+        this.updateFields();
         this.createUser();
-        this.createChild();
+        if (!this.state.isAdminChecked) {
+            this.createChild();
+        }
+
         this.props.history.push("/");
     }
 
     createUser = async () => {
-        parentObj.userID = this.state.fields["email"].split("@")[0];
+        console.log("in callbacks");
+        parentObj.UserID = this.state.fields["email"];
         var update = JSON.stringify(parentObj);
+        console.log(update);
         const response = fetch(urlUser, {
             method: 'POST',
             headers: {
@@ -202,25 +220,25 @@ class Register extends Component {
             },
             body: update
         });
-        const body = await response.json;
-    }
+        // const body = await response.json;
+    };
 
     createChild = async () => {
-        childObj.parentID = parentObj.userID;
+        childObj.ParentID = parentObj.UserID;
         // semi-unique childID generation. relies on no parentID being the same
         // and no parent naming two children the same thing
-        childObj.childID = childObj.childFirstName + parentObj.userID;
+        childObj.ChildID = childObj.ChildFirstName + parentObj.UserID;
         var update = JSON.stringify(childObj);
+        console.log(update);
         const response = fetch(urlChild, {
             method: 'POST',
             headers: {
-                //'token': token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: update
         });
-    }
+    };
 
     handleCancel(event) {
         event.preventDefault();
@@ -289,9 +307,12 @@ class Register extends Component {
                         {/*<Alert style={emailAlreadyExists}> This email is already connected to an account. Would you to like to return to return to the <a href = './login'>login page</a>?</Alert>*/}
 
                         <FormGroup check>
-                            <Label check onChange={this.toggle.bind(this)}>
-                                <Input disabled={this.state.isAdminChecked} defaultChecked={this.state.isAdminChecked}
-                                       type="checkbox"/>
+                            <Label check>
+                                <Input disabled={this.state.isAdminChecked}
+                                       type="checkbox"
+                                       id="isAdmin"
+                                       checked={this.state.fields["isAdmin"] === "true"}
+                                       onChange={this.toggle.bind(this, "isAdmin")}/>
                                 I am a member of the admission team.
                             </Label>
                         </FormGroup>
