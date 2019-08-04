@@ -199,7 +199,7 @@ class Register extends Component {
     }
 
     createUser = async () => {
-        parentObj.userID = this.state.fields["email"].split("@")[0];
+        parentObj.userID = this.state.fields["email"];
         var update = JSON.stringify(parentObj);
         const response = fetch(urlUser, {
             method: 'POST',
