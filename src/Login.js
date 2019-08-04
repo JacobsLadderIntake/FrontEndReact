@@ -80,7 +80,7 @@ class Login extends Component {
         } else {
             token = body.token;
             userID = this.state.fields["email"].split("@")[0];
-            if (body.isAdmin === 1) {
+            if (body.isAdmin === "1") {
                 this.props.history.push("/adminhome");
                 isAdmin = true;
             } else {
