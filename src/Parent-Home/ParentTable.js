@@ -116,8 +116,8 @@ class ParentTable extends Component {
     };
 
     updateChild() {
-        childObj.ProfileDueDate =  this.state.fields["dueDateInput"];
-        childObj.EvaluationDate = this.state.fields["evalDateInput"];
+        childObj.profileDueDate =  this.state.fields["dueDateInput"];
+        childObj.evaluationDate = this.state.fields["evalDateInput"];
         var update = JSON.stringify(childObj);
         const response = fetch('"https://jacobsladderapi.herokuapp.com/children/', {
             method: 'POST',
