@@ -90,8 +90,8 @@ class ParentTable extends Component {
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         this.state.studentName = body.UsersChildren[0].ChildFirstName + " " + body.UsersChildren[0].ChildLastName;
-        this.state.evalDate = body.UsersChildren[0].EvaluationDate;
-        this.state.dueDate = body.UsersChildren[0].ProfileDueDate;
+        this.state.fields["evalDateInput"] = body.UsersChildren[0].EvaluationDate;
+        this.state.fields["dueDateInput"] = body.UsersChildren[0].ProfileDueDate;
         childID = body.UsersChildren[0].ChildID;
         return body;
     };
@@ -116,8 +116,8 @@ class ParentTable extends Component {
     };
 
     updateChild() {
-        childObj.profileDueDate =  this.state.fields["dueDateInput"];
-        childObj.evaluationDate = this.state.fields["evalDateInput"];
+        childObj.ProfileDueDate =  this.state.fields["dueDateInput"];
+        childObj.EvaluationDate = this.state.fields["evalDateInput"];
         var update = JSON.stringify(childObj);
         console.log(update)
         const response = fetch('"https://jacobsladderapi.herokuapp.com/children/', {
